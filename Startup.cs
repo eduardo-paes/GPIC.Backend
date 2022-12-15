@@ -1,4 +1,5 @@
 using DotnetGraphQl.Data;
+using DotnetGraphQl.GraphQL;
 using Microsoft.EntityFrameworkCore;
 
 namespace DotnetGraphql
@@ -12,8 +13,13 @@ namespace DotnetGraphql
       Configuration = configuration;
     }
 
-    public void ConfigureServices(IServiceCollection services)
-        => services.AddDbContext<ApplicationDbContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+    public void ConfigureServices(IServiceCollection services){
+      services.AddDbContext<ApplicationDbContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+
+      services
+        .AddGraphQLServer()
+        .AddQueryType<Query>();
+    }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
@@ -22,14 +28,14 @@ namespace DotnetGraphql
         app.UseDeveloperExceptionPage();
       }
 
-      app.UseWebSockets();
+      // app.UseWebSockets();
 
       app.UseRouting();
 
-      // app.UseEndpoints(endpoints =>
-      // {
-      //     endpoints.MapGraphQL();
-      // });
+      app.UseEndpoints(endpoints =>
+      {
+          endpoints.MapGraphQL();
+      });
 
       // app.UseGraphQLVoyager(new GraphQLVoyagerOptions()
       // {
