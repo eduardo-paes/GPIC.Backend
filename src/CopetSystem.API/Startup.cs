@@ -1,8 +1,8 @@
-using DotnetGraphQl.Data;
-using DotnetGraphQl.GraphQL;
+using CopetSystem.API.Data;
+using CopetSystem.API.GraphQL;
 using Microsoft.EntityFrameworkCore;
 
-namespace DotnetGraphql
+namespace CopetSystem.API
 {
   public class Startup
   {

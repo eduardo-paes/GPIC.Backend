@@ -1,4 +1,4 @@
-namespace DotnetGraphql
+namespace CopetSystem.API
 {
   public class Program
   {

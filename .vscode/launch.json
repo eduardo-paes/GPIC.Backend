@@ -10,7 +10,7 @@
       "request": "launch",
       "preLaunchTask": "build",
       // If you have changed target frameworks, make sure to update the program path.
-      "program": "${workspaceFolder}/bin/Debug/net7.0/DotnetGraphQl.dll",
+      "program": "${workspaceFolder}/src/CopetSystem.API/bin/Debug/net7.0/CopetSystem.API.dll",
       "args": [],
       "cwd": "${workspaceFolder}",
       "stopAtEntry": false,

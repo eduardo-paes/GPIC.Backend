@@ -1,7 +1,7 @@
-using DotnetGraphql.Models;
-using DotnetGraphQl.Data;
+using CopetSystem.API.Models;
+using CopetSystem.API.Data;
 
-namespace DotnetGraphQl.GraphQL
+namespace CopetSystem.API.GraphQL
 {
   public class Query
   {

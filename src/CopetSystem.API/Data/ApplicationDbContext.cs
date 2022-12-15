@@ -1,7 +1,7 @@
-using DotnetGraphql.Models;
+using CopetSystem.API.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace DotnetGraphQl.Data
+namespace CopetSystem.API.Data
 {
   public class ApplicationDbContext : DbContext
   {

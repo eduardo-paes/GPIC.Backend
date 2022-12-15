@@ -1,5 +1,5 @@
 # CopetSystem.API
-GraphQL API created in .NET 6.0 to support CopetSystem.SPA.
+GraphQL API created in .NET 7.0 to support CopetSystem.SPA.
 
 ## Migrations
 ---

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace DotnetGraphql.Models
+namespace CopetSystem.API.Models
 {
   public class User
   {
