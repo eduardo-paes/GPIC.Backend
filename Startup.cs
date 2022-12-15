@@ -1,3 +1,6 @@
+using DotnetGraphQl.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace DotnetGraphql
 {
   public class Startup
@@ -9,10 +12,8 @@ namespace DotnetGraphql
       Configuration = configuration;
     }
 
-    public void ConfigureService(IServiceCollection services)
-    {
-
-    }
+    public void ConfigureServices(IServiceCollection services)
+        => services.AddDbContext<ApplicationDbContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
