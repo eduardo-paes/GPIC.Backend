@@ -1,0 +1,134 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.Data/CopetSystem.Infra.Data.csproj": {}
+  },
+  "projects": {
+    "/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Domain/CopetSystem.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Domain/CopetSystem.Domain.csproj",
+        "projectName": "CopetSystem.Domain",
+        "projectPath": "/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Domain/CopetSystem.Domain.csproj",
+        "packagesPath": "/Users/eduardo/.nuget/packages/",
+        "outputPath": "/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/eduardo/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.101/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.Data/CopetSystem.Infra.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.Data/CopetSystem.Infra.Data.csproj",
+        "projectName": "CopetSystem.Infra.Data",
+        "projectPath": "/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.Data/CopetSystem.Infra.Data.csproj",
+        "packagesPath": "/Users/eduardo/.nuget/packages/",
+        "outputPath": "/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.Data/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/eduardo/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Domain/CopetSystem.Domain.csproj": {
+                "projectPath": "/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Domain/CopetSystem.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.1, )"
+            },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[7.0.1, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[7.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.101/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
