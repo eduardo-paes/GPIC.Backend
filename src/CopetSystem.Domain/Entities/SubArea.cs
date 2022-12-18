@@ -1,5 +1,5 @@
 ﻿using System;
-namespace CopetSystem.API.Models
+namespace CopetSystem.Domain.Entities
 {
 	public class SubArea : Entity
 	{

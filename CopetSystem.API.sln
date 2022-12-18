@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
@@ -6,6 +6,10 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D3911CC7-7CF3-4843-B547-C427F57A9EED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopetSystem.API", "src\CopetSystem.API\CopetSystem.API.csproj", "{862A9206-AC16-433A-ABF3-90A368B54F81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopetSystem.Domain", "src\CopetSystem.Domain\CopetSystem.Domain.csproj", "{3D46FA46-8426-483A-B1C2-2225359B99FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopetSystem.Application", "src\CopetSystem.Application\CopetSystem.Application.csproj", "{2CEC4DEE-78D4-4130-AC1E-F732FF9F37DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,8 +24,22 @@ Global
 		{862A9206-AC16-433A-ABF3-90A368B54F81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{862A9206-AC16-433A-ABF3-90A368B54F81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{862A9206-AC16-433A-ABF3-90A368B54F81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70685C44-2526-483D-92AF-F388BF7A82FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70685C44-2526-483D-92AF-F388BF7A82FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70685C44-2526-483D-92AF-F388BF7A82FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70685C44-2526-483D-92AF-F388BF7A82FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D46FA46-8426-483A-B1C2-2225359B99FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D46FA46-8426-483A-B1C2-2225359B99FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D46FA46-8426-483A-B1C2-2225359B99FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D46FA46-8426-483A-B1C2-2225359B99FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CEC4DEE-78D4-4130-AC1E-F732FF9F37DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CEC4DEE-78D4-4130-AC1E-F732FF9F37DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CEC4DEE-78D4-4130-AC1E-F732FF9F37DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CEC4DEE-78D4-4130-AC1E-F732FF9F37DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{862A9206-AC16-433A-ABF3-90A368B54F81} = {D3911CC7-7CF3-4843-B547-C427F57A9EED}
+		{70685C44-2526-483D-92AF-F388BF7A82FF} = {D3911CC7-7CF3-4843-B547-C427F57A9EED}
+		{3D46FA46-8426-483A-B1C2-2225359B99FC} = {D3911CC7-7CF3-4843-B547-C427F57A9EED}
 	EndGlobalSection
 EndGlobal

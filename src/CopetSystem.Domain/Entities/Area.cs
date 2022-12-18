@@ -1,5 +1,5 @@
-﻿using System;
-namespace CopetSystem.API.Models
+using System;
+namespace CopetSystem.Domain.Entities
 {
 	public class Area : Entity
     {

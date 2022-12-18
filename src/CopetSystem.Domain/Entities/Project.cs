@@ -1,4 +1,4 @@
-namespace CopetSystem.API.Models
+namespace CopetSystem.Domain.Entities
 {
     public class Project : Entity
     {
