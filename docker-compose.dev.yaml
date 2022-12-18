@@ -18,6 +18,7 @@ services:
   # PostgreAdmin UI
   pgadmin-copetsystem:
     image: dpage/pgadmin4:latest
+    container_name: copet-system-pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: eduardo-paes@outlook.com
       PGADMIN_DEFAULT_PASSWORD: CopetSystem!2022
