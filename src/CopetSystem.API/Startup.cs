@@ -13,9 +13,9 @@ namespace CopetSystem.API
       Configuration = configuration;
     }
 
-    public void ConfigureServices(IServiceCollection services){
+    public void ConfigureServices(IServiceCollection services)
+    {
       services.AddDbContext<ApplicationDbContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
-
       services
         .AddGraphQLServer()
         .AddQueryType<Query>();
@@ -28,20 +28,15 @@ namespace CopetSystem.API
         app.UseDeveloperExceptionPage();
       }
 
-      // app.UseWebSockets();
+      app.UseWebSockets();
 
       app.UseRouting();
 
       app.UseEndpoints(endpoints =>
       {
-          endpoints.MapGraphQL();
+        endpoints.MapGraphQL();
+        endpoints.MapGraphQLVoyager("ui/voyager");
       });
-
-      // app.UseGraphQLVoyager(new GraphQLVoyagerOptions()
-      // {
-      //     GraphQLEndPoint = "/graphql",
-      //     Path = "/graphql-voyager"
-      // });
     }
   }
 }
