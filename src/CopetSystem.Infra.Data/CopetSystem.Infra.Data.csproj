@@ -14,6 +14,7 @@
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
     <None Remove="Npgsql" />
     <None Remove="Npgsql.EntityFrameworkCore.PostgreSQL" />
+    <None Remove="Npgsql.EntityFrameworkCore.PostgreSQL.Design" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="EntitiesConfiguration\" />
@@ -31,5 +32,6 @@
     </PackageReference>
     <PackageReference Include="Npgsql" Version="7.0.1" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
   </ItemGroup>
 </Project>

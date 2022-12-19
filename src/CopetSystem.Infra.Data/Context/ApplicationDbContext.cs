@@ -5,12 +5,11 @@ namespace CopetSystem.Infra.Data.Context
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-        {
-        }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
+        { }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Role> Roles { get; set; }
 
         public DbSet<MainArea> MainAreas { get; set; }
         public DbSet<Area> Areas { get; set; }
