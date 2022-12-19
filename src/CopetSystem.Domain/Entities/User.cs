@@ -1,59 +1,90 @@
+using System.Data;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 using CopetSystem.Domain.Validation;
 
 namespace CopetSystem.Domain.Entities
 {
     public class User : Entity
     {
-        public string? Name { get; private set; }
-        public string? Email { get; private set; }
-        public string? Password { get; private set; }
-        public string? CPF { get; private set; }
-        public string? Role { get; private set; }
+        private string? _name;
+        public string? Name
+        {
+            get { return _name; }
+            private set
+            {
+                DomainExceptionValidation.When(string.IsNullOrEmpty(value),
+                    ExceptionMessageFactory.Required("name"));
+                DomainExceptionValidation.When(value.Length < 3,
+                    ExceptionMessageFactory.MinLength("name", 3));
+                DomainExceptionValidation.When(value.Length > 300,
+                    ExceptionMessageFactory.MaxLength("name", 300));
+                _name = value;
+            }
+        }
+
+        private string? _email;
+        public string? Email
+        {
+            get { return _email; }
+            private set
+            {
+                DomainExceptionValidation.When(string.IsNullOrEmpty(value),
+                    ExceptionMessageFactory.Required("email"));
+                DomainExceptionValidation.When(ValidateEmail(value),
+                    ExceptionMessageFactory.InvalidEmail("email"));
+                _email = value;
+            }
+        }
+
+        private string? _password;
+        public string? Password
+        {
+            get { return _password; }
+            private set
+            {
+                DomainExceptionValidation.When(string.IsNullOrEmpty(value),
+                    ExceptionMessageFactory.Required("password"));
+                DomainExceptionValidation.When(value.Length < 6,
+                    ExceptionMessageFactory.MinLength("password", 6));
+                _password = value;
+            }
+        }
+
+        private string? _cpf;
+        public string? CPF
+        {
+            get { return _cpf; }
+            private set
+            {
+                DomainExceptionValidation.When(string.IsNullOrEmpty(value),
+                    ExceptionMessageFactory.Required("cpf"));
+
+                // Extract only numbers from cpf
+                value = GetOnlyNumbers(value);
+                DomainExceptionValidation.When(value.Length < 11,
+                    ExceptionMessageFactory.MinLength("cpf", 11));
+                DomainExceptionValidation.When(ValidateCPF(value),
+                    ExceptionMessageFactory.InvalidCpf());
+                _cpf = value;
+            }
+        }
+
+        private string? _role;
+        public string? Role
+        {
+            get { return _role; }
+            private set
+            {
+                DomainExceptionValidation.When(string.IsNullOrEmpty(value),
+                    ExceptionMessageFactory.Required("role"));
+                _role = value;
+            }
+        }
 
         public User(string name, string email, string password, string cpf, string role)
         {
-            ValidateDomain(name, email, password, cpf, role);
-        }
-
-        private void ValidateDomain(string name, string email, string password, string cpf, string role)
-        {
-            // Name
-            DomainExceptionValidation.When(string.IsNullOrEmpty(name),
-                ExceptionMessageFactory.Required("name"));
-            DomainExceptionValidation.When(name.Length < 3,
-                ExceptionMessageFactory.MinLength("name", 3));
-            DomainExceptionValidation.When(name.Length > 300,
-                ExceptionMessageFactory.MaxLength("name", 300));
-
-            // Email
-            DomainExceptionValidation.When(string.IsNullOrEmpty(email),
-                ExceptionMessageFactory.Required("email"));
-            DomainExceptionValidation.When(ValidateEmail(email),
-                ExceptionMessageFactory.InvalidEmail("email"));
-
-            // Password
-            DomainExceptionValidation.When(string.IsNullOrEmpty(password),
-                ExceptionMessageFactory.Required("password"));
-            DomainExceptionValidation.When(password.Length < 6,
-                ExceptionMessageFactory.MinLength("password", 6));
-
-            // CPF
-            DomainExceptionValidation.When(string.IsNullOrEmpty(cpf),
-                ExceptionMessageFactory.Required("cpf"));
-
-            // Extract only numbers from cpf
-            cpf = GetOnlyNumbers(cpf);
-            DomainExceptionValidation.When(cpf.Length < 11,
-                ExceptionMessageFactory.MinLength("cpf", 11));
-            DomainExceptionValidation.When(ValidateCPF(cpf),
-                ExceptionMessageFactory.InvalidCpf());
-
-            // Role
-            DomainExceptionValidation.When(string.IsNullOrEmpty(role),
-                ExceptionMessageFactory.Required("role"));
-
             Name = name;
             Email = email;
             Password = password;
@@ -61,19 +92,24 @@ namespace CopetSystem.Domain.Entities
             Role = role;
         }
 
+        #region Public Setters
+        public void UpdateName(string name) => Name = name;
+        public void UpdatePassword(string password) => Password = password;
+        public void UpdateRole(string role) => Role = role;
+        #endregion
+
+        #region Utils
         private static bool ValidateEmail(string email)
         {
             try
             {
-                return new MailAddress(email) != null ? true : false;
+                return new MailAddress(email) != null ? false : true;
             }
             catch
             {
                 return false;
             }
         }
-
-        private static string GetOnlyNumbers(string input) => string.Concat(input.Where(Char.IsDigit));
 
         private static bool ValidateCPF(string cpf)
         {
@@ -83,30 +119,34 @@ namespace CopetSystem.Domain.Entities
             if (cpf.Length != 11)
                 return false;
 
-            int[] multiplier1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
-            int[] multiplier2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
-
+            // Sum first digit
             int sum = 0;
-            string tmpCPF = cpf.Substring(0, 9);
+            for (int i = 1; i < 10; i++)
+            {
+                sum += int.Parse(cpf[i-1].ToString()) * (11 - i);
+            }
 
-            for (int i = 0; i < 9; i++)
-                sum += int.Parse(tmpCPF[i].ToString()) * multiplier1[i];
+            // Get first digit
+            int dig1 = 11 - (sum % 11);
+            if (dig1 > 9) dig1 = 0;
 
-            int rest = sum % 11;
-            rest = rest < 2 ? 0 : 11 - rest;
-
-            string digit = rest.ToString();
-            tmpCPF = tmpCPF + digit;
+            // Sum second digit
             sum = 0;
+            for (int i = 1; i < 11; i++)
+            {
+                sum += int.Parse(cpf[i - 1].ToString()) * (12 - i);
+            }
 
-            for (int i = 0; i < 10; i++)
-                sum += int.Parse(tmpCPF[i].ToString()) * multiplier2[i];
+            // Get second digit
+            int dig2 = 11 - (sum % 11);
+            if (dig2 > 9) dig2 = 0;
 
-            rest = sum % 11;
-            rest = rest < 2 ? 0 : 11 - rest;
-
-            digit += rest.ToString();
-            return cpf.EndsWith(digit);
+            // Check if CPF ends with correct digits
+            string digit = dig1.ToString() + dig2.ToString();
+            return !cpf.EndsWith(digit);
         }
+
+        private static string GetOnlyNumbers(string input) => string.Concat(input.Where(Char.IsDigit));
+        #endregion
     }
 }
