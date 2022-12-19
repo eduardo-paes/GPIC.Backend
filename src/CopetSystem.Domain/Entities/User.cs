@@ -32,6 +32,8 @@ namespace CopetSystem.Domain.Entities
             {
                 DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("email"));
+                DomainExceptionValidation.When(value.Length > 300,
+                    ExceptionMessageFactory.MaxLength("email", 300));
                 DomainExceptionValidation.When(ValidateEmail(value),
                     ExceptionMessageFactory.InvalidEmail("email"));
                 _email = value;
@@ -48,6 +50,8 @@ namespace CopetSystem.Domain.Entities
                     ExceptionMessageFactory.Required("password"));
                 DomainExceptionValidation.When(value.Length < 6,
                     ExceptionMessageFactory.MinLength("password", 6));
+                DomainExceptionValidation.When(value.Length > 300,
+                    ExceptionMessageFactory.MaxLength("password", 300));
                 _password = value;
             }
         }
@@ -63,8 +67,8 @@ namespace CopetSystem.Domain.Entities
 
                 // Extract only numbers from cpf
                 value = GetOnlyNumbers(value);
-                DomainExceptionValidation.When(value.Length < 11,
-                    ExceptionMessageFactory.MinLength("cpf", 11));
+                DomainExceptionValidation.When(value.Length != 11,
+                    ExceptionMessageFactory.WithLength("cpf", 11));
                 DomainExceptionValidation.When(ValidateCPF(value),
                     ExceptionMessageFactory.InvalidCpf());
                 _cpf = value;
@@ -79,6 +83,8 @@ namespace CopetSystem.Domain.Entities
             {
                 DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("role"));
+                DomainExceptionValidation.When(value.Length > 30,
+                    ExceptionMessageFactory.MaxLength("role", 30));
                 _role = value;
             }
         }

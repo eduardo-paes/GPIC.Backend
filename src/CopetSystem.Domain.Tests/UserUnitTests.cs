@@ -24,7 +24,7 @@ public class UserUnitTests
     }
 
     [Fact]
-    public void CreateUser_BigNameValue_DomainExceptionShortName()
+    public void CreateUser_BigNameValue_DomainExceptionBigName()
     {
         Action action = () => new User("frttcgyxukstpasvqpbhqmsbjjvolqsrbfkaiptymddeegoedgodnxtlotplntqitreugkiernzsjmganfdjxcyagoqrzmadqffbsvehnblaovkzclijojbbrustwczcilguchcmrfswjjwquyjbhwgdtnwysdxuymmaibjwvnpvemjxpdkirtjezwyifnrmngoodufstmndqcgawzlvqazxfhdhrtcditryoiczqabbpdhqgwqzukrenvvezlwiciwbprebrxuiytnumvupvoqtdfnbmoxrrgalrudecdugkfblogserwipsrbcqtmotleqarahfqxokfqmrsorjuofatcvsd", "username@gmail.com", "123456", "15162901784", "TEST");
         action.Should()
@@ -81,6 +81,15 @@ public class UserUnitTests
     }
 
     [Fact]
+    public void CreateUser_BigEmailValue_DomainExceptionBigEmail()
+    {
+        Action action = () => new User("User Name", "frttcgyxukstpasvqpbhqmsbjjvolqsrbfkaiptymddeegoedgodnxtlotplntqitreugkiernzsjmganfdjxcyagoqrzmadqffbsvehnblaovkzclijojbbrustwczcilguchcmrfswjjwquyjbhwgdtnwysdxuymmaibjwvnpvemjxpdkirtjezwyifnrmngoodufstmndqcgawzlvqazxfhdhrtcditryoiczqabbpdhqgwqzukrenvvezlwiciwbprebrxuiytnumvupvoqtdfnbmoxrrgalrudecdugkfblogserwipsrbcqtmotleqarahfqxokfqmrsorjuofatcvsd", "123456", "15162901784", "TEST");
+        action.Should()
+            .Throw<CopetSystem.Domain.Validation.DomainExceptionValidation>()
+            .WithMessage(ExceptionMessageFactory.MaxLength("email", 300));
+    }
+
+    [Fact]
     public void CreateUser_WithNullEmailValue_DomainExceptionRequiredEmail()
     {
         Action action = () => new User("User Name", null, "123456", "15162901784", "TEST");
@@ -107,6 +116,15 @@ public class UserUnitTests
         action.Should()
             .Throw<CopetSystem.Domain.Validation.DomainExceptionValidation>()
             .WithMessage(ExceptionMessageFactory.MinLength("password", 6));
+    }
+
+    [Fact]
+    public void CreateUser_BigPasswordValue_DomainExceptionBigPassword()
+    {
+        Action action = () => new User("User Name", "username@gmail.com", "frttcgyxukstpasvqpbhqmsbjjvolqsrbfkaiptymddeegoedgodnxtlotplntqitreugkiernzsjmganfdjxcyagoqrzmadqffbsvehnblaovkzclijojbbrustwczcilguchcmrfswjjwquyjbhwgdtnwysdxuymmaibjwvnpvemjxpdkirtjezwyifnrmngoodufstmndqcgawzlvqazxfhdhrtcditryoiczqabbpdhqgwqzukrenvvezlwiciwbprebrxuiytnumvupvoqtdfnbmoxrrgalrudecdugkfblogserwipsrbcqtmotleqarahfqxokfqmrsorjuofatcvsd", "15162901784", "TEST");
+        action.Should()
+            .Throw<CopetSystem.Domain.Validation.DomainExceptionValidation>()
+            .WithMessage(ExceptionMessageFactory.MaxLength("password", 300));
     }
 
     [Fact]
@@ -154,7 +172,16 @@ public class UserUnitTests
         Action action = () => new User("User Name", "username@gmail.com", "123456", "1516290178", "TEST");
         action.Should()
             .Throw<CopetSystem.Domain.Validation.DomainExceptionValidation>()
-            .WithMessage(ExceptionMessageFactory.MinLength("cpf", 11));
+            .WithMessage(ExceptionMessageFactory.WithLength("cpf", 11));
+    }
+
+    [Fact]
+    public void CreateUser_BigCpfValue_DomainExceptionBigCpf()
+    {
+        Action action = () => new User("User Name", "username@gmail.com", "123456", "151629017840", "TEST");
+        action.Should()
+            .Throw<CopetSystem.Domain.Validation.DomainExceptionValidation>()
+            .WithMessage(ExceptionMessageFactory.WithLength("cpf", 11));
     }
 
     [Fact]
@@ -186,6 +213,15 @@ public class UserUnitTests
     #endregion
 
     #region Role Tests
+    [Fact]
+    public void CreateUser_BigRoleValue_DomainExceptionBigRole()
+    {
+        Action action = () => new User("User Name", "username@gmail.com", "123456", "15162901784", "frttcgyxukstpasvqpbhqmsbjjvolqsrbfkaiptymddeegoedgodnxtlotplntqitreugkiernzsjmganfdjxcyagoqrzmadqffbsvehnblaovkzclijojbbrustwczcilguchcmrfswjjwquyjbhwgdtnwysdxuymmaibjwvnpvemjxpdkirtjezwyifnrmngoodufstmndqcgawzlvqazxfhdhrtcditryoiczqabbpdhqgwqzukrenvvezlwiciwbprebrxuiytnumvupvoqtdfnbmoxrrgalrudecdugkfblogserwipsrbcqtmotleqarahfqxokfqmrsorjuofatcvsd");
+        action.Should()
+            .Throw<CopetSystem.Domain.Validation.DomainExceptionValidation>()
+            .WithMessage(ExceptionMessageFactory.MaxLength("role", 30));
+    }
+
     [Fact]
     public void CreateUser_MissingRoleValue_DomainExceptionRequiredRole()
     {
