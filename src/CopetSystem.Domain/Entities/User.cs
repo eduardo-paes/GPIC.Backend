@@ -107,7 +107,7 @@ namespace CopetSystem.Domain.Entities
             }
             catch
             {
-                return false;
+                return true;
             }
         }
 
