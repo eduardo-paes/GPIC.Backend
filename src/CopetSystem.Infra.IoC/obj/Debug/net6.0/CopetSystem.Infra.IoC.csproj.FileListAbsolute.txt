@@ -1,4 +1,5 @@
 /Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.IoC/bin/Debug/net6.0/CopetSystem.Infra.IoC.deps.json
+/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.IoC/bin/Debug/net6.0/CopetSystem.Infra.IoC.runtimeconfig.json
 /Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.IoC/bin/Debug/net6.0/CopetSystem.Infra.IoC.dll
 /Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.IoC/bin/Debug/net6.0/CopetSystem.Infra.IoC.pdb
 /Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.IoC/bin/Debug/net6.0/CopetSystem.Application.dll
@@ -16,4 +17,5 @@
 /Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.IoC/obj/Debug/net6.0/CopetSystem.Infra.IoC.dll
 /Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.IoC/obj/Debug/net6.0/refint/CopetSystem.Infra.IoC.dll
 /Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.IoC/obj/Debug/net6.0/CopetSystem.Infra.IoC.pdb
+/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.IoC/obj/Debug/net6.0/CopetSystem.Infra.IoC.genruntimeconfig.cache
 /Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.IoC/obj/Debug/net6.0/ref/CopetSystem.Infra.IoC.dll

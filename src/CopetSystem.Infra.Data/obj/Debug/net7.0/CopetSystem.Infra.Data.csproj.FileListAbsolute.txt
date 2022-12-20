@@ -1,0 +1,17 @@
+/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.Data/bin/Debug/net7.0/CopetSystem.Infra.Data.deps.json
+/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.Data/bin/Debug/net7.0/CopetSystem.Infra.Data.runtimeconfig.json
+/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.Data/bin/Debug/net7.0/CopetSystem.Infra.Data.dll
+/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.Data/bin/Debug/net7.0/CopetSystem.Infra.Data.pdb
+/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.Data/bin/Debug/net7.0/CopetSystem.Domain.dll
+/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.Data/bin/Debug/net7.0/CopetSystem.Domain.pdb
+/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.Data/obj/Debug/net7.0/CopetSystem.Infra.Data.csproj.AssemblyReference.cache
+/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.Data/obj/Debug/net7.0/CopetSystem.Infra.Data.GeneratedMSBuildEditorConfig.editorconfig
+/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.Data/obj/Debug/net7.0/CopetSystem.Infra.Data.AssemblyInfoInputs.cache
+/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.Data/obj/Debug/net7.0/CopetSystem.Infra.Data.AssemblyInfo.cs
+/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.Data/obj/Debug/net7.0/CopetSystem.Infra.Data.csproj.CoreCompileInputs.cache
+/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.Data/obj/Debug/net7.0/CopetSystem.Infra.Data.csproj.CopyComplete
+/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.Data/obj/Debug/net7.0/CopetSystem.Infra.Data.dll
+/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.Data/obj/Debug/net7.0/refint/CopetSystem.Infra.Data.dll
+/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.Data/obj/Debug/net7.0/CopetSystem.Infra.Data.pdb
+/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.Data/obj/Debug/net7.0/CopetSystem.Infra.Data.genruntimeconfig.cache
+/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.Data/obj/Debug/net7.0/ref/CopetSystem.Infra.Data.dll

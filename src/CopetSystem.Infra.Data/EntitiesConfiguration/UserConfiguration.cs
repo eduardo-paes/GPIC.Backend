@@ -19,7 +19,7 @@ namespace CopetSystem.Infra.Data.EntitiesConfiguration
             builder.Property(p => p.DeletedAt);
 
             builder.HasData(
-                new User(1, "User Name", "user.name@email.com", "123456", "15162901784", "ADMIN")
+                new User(1, "User Name", "user.name@email.com", "123456", "15162901784", "ADMIN", null)
             );
         }
     }

@@ -8,6 +8,7 @@ namespace CopetSystem.Domain.Entities
 {
     public class User : Entity
     {
+        #region Attributes
         private string? _name;
         public string? Name
         {
@@ -88,8 +89,21 @@ namespace CopetSystem.Domain.Entities
                 _role = value;
             }
         }
+        #endregion
 
-        public User(string name, string email, string password, string cpf, string role)
+        #region Constructors
+        public User(long? id, string? name, string? email, string? password, string? cpf, string? role, DateTime? deletedAt)
+        {
+            Id = id;
+            Name = name;
+            Email = email;
+            Password = password;
+            CPF = cpf;
+            Role = role;
+            DeletedAt = deletedAt;
+        }
+
+        public User(string? name, string? email, string? password, string? cpf, string? role)
         {
             Name = name;
             Email = email;
@@ -98,10 +112,16 @@ namespace CopetSystem.Domain.Entities
             Role = role;
         }
 
-        #region Public Setters
-        public void UpdateName(string name) => Name = name;
-        public void UpdatePassword(string password) => Password = password;
-        public void UpdateRole(string role) => Role = role;
+        /// <summary>
+        /// Constructor to dbcontext EF instancing.
+        /// </summary>
+        protected User() { }
+        #endregion
+
+        #region Updaters
+        public void UpdateName(string? name) => Name = name;
+        public void UpdatePassword(string? password) => Password = password;
+        public void UpdateRole(string? role) => Role = role;
         #endregion
 
         #region Utils
@@ -129,7 +149,7 @@ namespace CopetSystem.Domain.Entities
             int sum = 0;
             for (int i = 1; i < 10; i++)
             {
-                sum += int.Parse(cpf[i-1].ToString()) * (11 - i);
+                sum += int.Parse(cpf[i - 1].ToString()) * (11 - i);
             }
 
             // Get first digit
@@ -152,7 +172,9 @@ namespace CopetSystem.Domain.Entities
             return !cpf.EndsWith(digit);
         }
 
-        private static string GetOnlyNumbers(string input) => string.Concat(input.Where(Char.IsDigit));
+        private static string? GetOnlyNumbers(string? input) => !string.IsNullOrEmpty(input)
+            ? string.Concat(input.Where(Char.IsDigit))
+            : input;
         #endregion
     }
 }
