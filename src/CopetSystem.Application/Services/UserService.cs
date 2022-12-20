@@ -8,18 +8,18 @@ namespace CopetSystem.Application.Services
 {
 	public class UserService : IUserService
 	{
-        private IUserRepository _repository;
+        private readonly IUserRepository _repository;
         private readonly IMapper _mapper;
-        public UserService(IUserRepository categoryRepository, IMapper mapper)
+        public UserService(IUserRepository repository, IMapper mapper)
         {
-            _repository = categoryRepository;
+            _repository = repository;
             _mapper = mapper;
         }
 
         public async Task<IQueryable<UserReadDTO>> GetActiveUsers()
         {
             var entities = await _repository.GetActiveUsers();
-            return _mapper.Map<IQueryable<UserReadDTO>>(entities);
+            return _mapper.Map<IEnumerable<UserReadDTO>>(entities).AsQueryable();
         }
 
         public async Task<UserReadDTO> GetByEmail(string? email)
@@ -37,7 +37,7 @@ namespace CopetSystem.Application.Services
         public async Task<IQueryable<UserReadDTO>> GetInactiveUsers()
         {
             var entities = await _repository.GetInactiveUsers();
-            return _mapper.Map<IQueryable<UserReadDTO>>(entities);
+            return _mapper.Map<IEnumerable<UserReadDTO>>(entities).AsQueryable();
         }
     }
 }

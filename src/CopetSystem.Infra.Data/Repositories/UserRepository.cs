@@ -21,28 +21,19 @@ namespace CopetSystem.Infra.Data.Repositories
             return user;
         }
 
-        public async Task<User> GetByEmail(string? email)
-        {
-            return await _context.Users
-                .FirstOrDefaultAsync(x => x.Email == email && x.DeletedAt == null);
-        }
+        public async Task<User> GetByEmail(string? email) => await _context.Users
+            .FirstOrDefaultAsync(x => x.Email == email && x.DeletedAt == null)
+            ?? throw new Exception("User not found.");
 
-        public async Task<User> GetById(int? id)
-        {
-            return await _context.Users.FindAsync(id);
-        }
+        public async Task<User> GetById(int? id) => await _context.Users
+            .FindAsync(id)
+            ?? throw new Exception("User not found.");
 
-        public async Task<IEnumerable<User>> GetActiveUsers()
-        {
-            return await _context.Users
-                .Where(x => x.DeletedAt == null).ToListAsync();
-        }
+        public async Task<IEnumerable<User>> GetActiveUsers() => await _context.Users
+            .Where(x => x.DeletedAt == null).ToListAsync();
 
-        public async Task<IEnumerable<User>> GetInactiveUsers()
-        {
-            return await _context.Users
-                .Where(x => x.DeletedAt != null).ToListAsync();
-        }
+        public async Task<IEnumerable<User>> GetInactiveUsers() => await _context.Users
+            .Where(x => x.DeletedAt != null).ToListAsync();
 
         public async Task<User> Remove(User user)
         {

@@ -14,21 +14,18 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services,
             IConfiguration configuration)
     {
-        services.AddDbContext<ApplicationDbContext>(options =>
-         options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"
-        ), b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
-
-        // Repositórios
-        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddDbContext<ApplicationDbContext>(
+            o => o.UseNpgsql(configuration.GetConnectionString("DefaultConnection"),
+            b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
         // Serviços de Negócios
         services.AddScoped<IUserService, UserService>();
 
+        // Repositórios
+        services.AddScoped<IUserRepository, UserRepository>();
+
         // DTOs
         services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
-
-        //var myhandlers = AppDomain.CurrentDomain.Load("CopetSystem.Application");
-        //services.AddMediatR(myhandlers);
 
         return services;
     }

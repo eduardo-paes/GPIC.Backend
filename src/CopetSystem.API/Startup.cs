@@ -1,42 +1,47 @@
-using CopetSystem.API.Data;
-using CopetSystem.API.GraphQL;
+using CopetSystem.API.Queries;
+using CopetSystem.Infra.Data.Repositories;
+using CopetSystem.Infra.IoC;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace CopetSystem.API
 {
-  public class Startup
-  {
-    private readonly IConfiguration Configuration;
-
-    public Startup(IConfiguration configuration)
+    public class Startup
     {
-      Configuration = configuration;
+        private readonly IConfiguration Configuration;
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddInfrastructure(Configuration);
+            services
+              .AddScoped<UserQuery>()
+              .AddGraphQLServer()
+              .AddQueryType<UserQuery>()
+              .AddFiltering()
+              .AddSorting();
+        }
+
+        public static void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.UseWebSockets();
+
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapGraphQL("/graphql");
+                endpoints.MapGraphQLVoyager("/graphql-voyager");
+            });
+        }
     }
-
-    public void ConfigureServices(IServiceCollection services)
-    {
-      services.AddDbContext<ApplicationDbContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
-      services
-        .AddGraphQLServer()
-        .AddQueryType<Query>();
-    }
-
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-    {
-      if (env.IsDevelopment())
-      {
-        app.UseDeveloperExceptionPage();
-      }
-
-      app.UseWebSockets();
-
-      app.UseRouting();
-
-      app.UseEndpoints(endpoints =>
-      {
-        endpoints.MapGraphQL();
-        endpoints.MapGraphQLVoyager("ui/voyager");
-      });
-    }
-  }
 }
