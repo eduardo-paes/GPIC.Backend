@@ -37,7 +37,7 @@ namespace CopetSystem.Infra.Data.Repositories
 
         public async Task<User> Remove(User user)
         {
-            user.DeletedAt = DateTime.Now;
+            user.DeactivateEntity();
             _context.Update(user);
             await _context.SaveChangesAsync();
             return user;
