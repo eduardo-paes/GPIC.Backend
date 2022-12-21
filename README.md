@@ -34,10 +34,17 @@ Removendo as Migrations:
 dotnet ef migrations remove
 ```
 
-## Running
-Some commands to build and run .NET project:
+## Execução com Dotnet
+Comandos para execução do projeto .NET utilizando CLI:
 ```
 cd CopetSystem.API
 dotnet build 
 dotnet run
+```
+
+## Execucação com Docker
+Comandos para execução do projeto .NET utilizando Docker:
+```
+docker build . -t copet-system-api:dev 
+docker run --name copet-system-api -p 8080:80 -d copet-system-api:dev
 ```

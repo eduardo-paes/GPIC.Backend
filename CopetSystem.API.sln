@@ -3,19 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopetSystem.API", ".\CopetSystem.API\CopetSystem.API.csproj", "{862A9206-AC16-433A-ABF3-90A368B54F81}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopetSystem.API", "CopetSystem.API\CopetSystem.API.csproj", "{862A9206-AC16-433A-ABF3-90A368B54F81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopetSystem.Domain", ".\CopetSystem.Domain\CopetSystem.Domain.csproj", "{3D46FA46-8426-483A-B1C2-2225359B99FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopetSystem.Domain", "CopetSystem.Domain\CopetSystem.Domain.csproj", "{3D46FA46-8426-483A-B1C2-2225359B99FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopetSystem.Application", ".\CopetSystem.Application\CopetSystem.Application.csproj", "{2CEC4DEE-78D4-4130-AC1E-F732FF9F37DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopetSystem.Application", "CopetSystem.Application\CopetSystem.Application.csproj", "{2CEC4DEE-78D4-4130-AC1E-F732FF9F37DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopetSystem.Infra.Data", ".\CopetSystem.Infra.Data\CopetSystem.Infra.Data.csproj", "{2669F050-AFB0-4DB8-A81E-D0F4D8DDDD01}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopetSystem.Infra.Data", "CopetSystem.Infra.Data\CopetSystem.Infra.Data.csproj", "{2669F050-AFB0-4DB8-A81E-D0F4D8DDDD01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopetSystem.Domain.Tests", ".\CopetSystem.Domain.Tests\CopetSystem.Domain.Tests.csproj", "{04B6663E-228C-4278-B913-614958C9DBFB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopetSystem.Domain.Tests", "CopetSystem.Domain.Tests\CopetSystem.Domain.Tests.csproj", "{04B6663E-228C-4278-B913-614958C9DBFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopetSystem.Infra.IoC", ".\CopetSystem.Infra.IoC\CopetSystem.Infra.IoC.csproj", "{656ABFBE-1791-4014-B59E-F9C83DBF8AC0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopetSystem.Infra.IoC", "CopetSystem.Infra.IoC\CopetSystem.Infra.IoC.csproj", "{656ABFBE-1791-4014-B59E-F9C83DBF8AC0}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{211AB03C-7E20-4D19-BE61-6D0BE442C878}"
+Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "docker-compose", "docker-compose.dcproj", "{F1BE8E3E-45DB-4341-B7A9-A2F93209E6BF}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{84B8DFE3-440C-4E7F-B35E-5A668D03D549}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,10 +56,14 @@ Global
 		{656ABFBE-1791-4014-B59E-F9C83DBF8AC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{656ABFBE-1791-4014-B59E-F9C83DBF8AC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{656ABFBE-1791-4014-B59E-F9C83DBF8AC0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{211AB03C-7E20-4D19-BE61-6D0BE442C878}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{211AB03C-7E20-4D19-BE61-6D0BE442C878}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{211AB03C-7E20-4D19-BE61-6D0BE442C878}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{211AB03C-7E20-4D19-BE61-6D0BE442C878}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1BE8E3E-45DB-4341-B7A9-A2F93209E6BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1BE8E3E-45DB-4341-B7A9-A2F93209E6BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1BE8E3E-45DB-4341-B7A9-A2F93209E6BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1BE8E3E-45DB-4341-B7A9-A2F93209E6BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84B8DFE3-440C-4E7F-B35E-5A668D03D549}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84B8DFE3-440C-4E7F-B35E-5A668D03D549}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84B8DFE3-440C-4E7F-B35E-5A668D03D549}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84B8DFE3-440C-4E7F-B35E-5A668D03D549}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{862A9206-AC16-433A-ABF3-90A368B54F81} = {D3911CC7-7CF3-4843-B547-C427F57A9EED}
