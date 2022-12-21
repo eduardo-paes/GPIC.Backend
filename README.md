@@ -20,7 +20,7 @@ Exemplo:
 ## Migrations
 Criando as Migrations iniciais para criação das tabelas do banco de dados:
 ```
-cd src/CopetSystem.API
+cd CopetSystem.API
 dotnet ef migrations add Initialize --project ../CopetSystem.Infra.Data/CopetSystem.Infra.Data.csproj
 ```
 
@@ -37,7 +37,7 @@ dotnet ef migrations remove
 ## Running
 Some commands to build and run .NET project:
 ```
-cd src/CopetSystem.API
+cd CopetSystem.API
 dotnet build 
 dotnet run
 ```
