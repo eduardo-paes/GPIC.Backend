@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kdVv5V2HdyMlvSLjfXTLRAJLyiP1rigEDaFCCo0aU9gRjAdaGMPsvoLwf9Y5O3vLSbawCMDpe8EaGe0GDo701Q==",
+  "dgSpecHash": "ZwsZf+XJqIqplQRUmwGqkAT/xLKMzc1f9APcsoIlmlEe3vCJZAwsCpqRzeuGIeudMTXQ2ynaIXfPWnhc0qtjVg==",
   "success": true,
   "projectFilePath": "/Users/eduardo/Projects/CEFET/CopetSystem/CopetSystem.API/src/CopetSystem.Infra.Data/CopetSystem.Infra.Data.csproj",
   "expectedPackageFiles": [
@@ -13,6 +13,7 @@
     "/Users/eduardo/.nuget/packages/microsoft.entityframeworkcore.design/7.0.1/microsoft.entityframeworkcore.design.7.0.1.nupkg.sha512",
     "/Users/eduardo/.nuget/packages/microsoft.entityframeworkcore.relational/7.0.1/microsoft.entityframeworkcore.relational.7.0.1.nupkg.sha512",
     "/Users/eduardo/.nuget/packages/microsoft.entityframeworkcore.relational.design/1.1.0/microsoft.entityframeworkcore.relational.design.1.1.0.nupkg.sha512",
+    "/Users/eduardo/.nuget/packages/microsoft.entityframeworkcore.tools/7.0.1/microsoft.entityframeworkcore.tools.7.0.1.nupkg.sha512",
     "/Users/eduardo/.nuget/packages/microsoft.extensions.caching.abstractions/7.0.0/microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
     "/Users/eduardo/.nuget/packages/microsoft.extensions.caching.memory/7.0.0/microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
     "/Users/eduardo/.nuget/packages/microsoft.extensions.configuration.abstractions/7.0.0/microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
@@ -33,6 +34,7 @@
     "/Users/eduardo/.nuget/packages/npgsql/7.0.1/npgsql.7.0.1.nupkg.sha512",
     "/Users/eduardo/.nuget/packages/npgsql.entityframeworkcore.postgresql/7.0.1/npgsql.entityframeworkcore.postgresql.7.0.1.nupkg.sha512",
     "/Users/eduardo/.nuget/packages/npgsql.entityframeworkcore.postgresql.design/1.1.0/npgsql.entityframeworkcore.postgresql.design.1.1.0.nupkg.sha512",
+    "/Users/eduardo/.nuget/packages/nuget.commandline/6.3.1/nuget.commandline.6.3.1.nupkg.sha512",
     "/Users/eduardo/.nuget/packages/runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "/Users/eduardo/.nuget/packages/runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "/Users/eduardo/.nuget/packages/runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl/4.3.0/runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",

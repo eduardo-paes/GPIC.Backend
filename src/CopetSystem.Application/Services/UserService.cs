@@ -22,9 +22,9 @@ namespace CopetSystem.Application.Services
             return _mapper.Map<IEnumerable<UserReadDTO>>(entities).AsQueryable();
         }
 
-        public async Task<UserReadDTO> GetByEmail(string? email)
+        public async Task<UserReadDTO> ResetPassword(long? id, string? password)
         {
-            var entity = await _repository.GetByEmail(email);
+            var entity = await _repository.ResetPassword(id, password);
             return _mapper.Map<UserReadDTO>(entity);
         }
 

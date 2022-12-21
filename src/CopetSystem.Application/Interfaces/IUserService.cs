@@ -9,7 +9,7 @@ namespace CopetSystem.Application.Interfaces
         Task<IQueryable<UserReadDTO>> GetInactiveUsers();
 
         Task<UserReadDTO> GetById(int? id);
-        Task<UserReadDTO> GetByEmail(string? email);
+        Task<UserReadDTO> ResetPassword(long? id, string? password);
 
         //Task<UserReadDTO> Create(UserReadDTO user);
         //Task<UserReadDTO> Update(UserReadDTO user);

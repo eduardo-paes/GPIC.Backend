@@ -8,8 +8,9 @@ namespace CopetSystem.Domain.Interfaces
         Task<IEnumerable<User>> GetActiveUsers();
         Task<IEnumerable<User>> GetInactiveUsers();
 
-        Task<User> GetById(int? id);
-        Task<User> GetByEmail(string? email);
+        Task<User> GetById(long? id);
+        Task<User> Login(string? email, string? password);
+        Task<User> ResetPassword(long? id, string? password);
 
         Task<User> Create(User user);
         Task<User> Update(User user);
