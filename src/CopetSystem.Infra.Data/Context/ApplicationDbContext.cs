@@ -26,12 +26,6 @@ namespace CopetSystem.Infra.Data.Context
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
         }
-
-        public override ValueTask DisposeAsync()
-        {
-            base.DisposeAsync();
-            return new ValueTask();
-        }
     }
 }
 
