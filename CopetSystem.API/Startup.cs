@@ -17,13 +17,14 @@ namespace CopetSystem.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            // Realiza comunicação com os demais Projetos.
             services.AddInfrastructure(Configuration);
-            services
-              .AddScoped<UserQuery>()
-              .AddGraphQLServer()
-              .AddQueryType<UserQuery>()
-              .AddFiltering()
-              .AddSorting();
+
+            // Configuração do Swagger
+            services.AddInfrastructureSwagger();
+
+            // Adição dos Controllers
+            services.AddControllers();
         }
 
         public static void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -31,16 +32,20 @@ namespace CopetSystem.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CopetSystem.API v1"));
             }
 
-            app.UseWebSockets();
-
+            app.UseHttpsRedirection();
+            // Trata as respostas dos Endpoints
+            app.UseStatusCodePages();
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGraphQL("/graphql");
-                endpoints.MapGraphQLVoyager("/graphql-voyager");
+                endpoints.MapControllers();
             });
         }
     }
