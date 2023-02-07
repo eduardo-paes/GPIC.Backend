@@ -1,14 +1,33 @@
-namespace CopetSystem.API
-{
-  public class Program
-  {
-    public static void Main(string[] args)
-        => CreateHostBuilder(args).Build().Run();
+using System.Configuration;
+using CopetSystem.Infra.IoC;
 
-    // EF Core uses this method at design time to access the DbContext
-    public static IHostBuilder CreateHostBuilder(string[] args)
-        => Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(
-                webBuilder => webBuilder.UseStartup<Startup>());
-  }
+var builder = WebApplication.CreateBuilder(args);
+
+// Adição dos Controllers
+builder.Services.AddControllers();
+
+// Realiza comunicação com os demais Projetos.
+builder.Services.AddInfrastructure(builder.Configuration);
+
+// Configuração do Swagger
+builder.Services.AddInfrastructureSwagger();
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
+
+app.UseHttpsRedirection();
+
+//app.UseStatusCodePages();
+//app.UseRouting();
+//app.UseAuthentication();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();

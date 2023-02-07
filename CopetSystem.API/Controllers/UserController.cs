@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CopetSystem.API.Queries
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("Api/[controller]")]
     public class UserController : ControllerBase
     {
         private readonly IUserService _service;
@@ -15,7 +15,14 @@ namespace CopetSystem.API.Queries
             _service = service;
         }
 
-        [HttpGet]
+        /// <summary>
+        /// Busca todos os usuários ativos.
+        /// </summary>
+        /// <param></param>
+        /// <returns>Todos os usuários ativos</returns>
+        /// <response code="200">Retorna todos os usuários ativos</response>
+        [HttpGet(Name = "GetAllActiveUsers")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<UserReadDTO>>> Get()
         {
             var users = await _service.GetActiveUsers();

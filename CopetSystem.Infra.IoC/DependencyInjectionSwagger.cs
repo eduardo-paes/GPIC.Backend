@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -8,9 +10,19 @@ namespace CopetSystem.Infra.IoC
 	{
         public static IServiceCollection AddInfrastructureSwagger(this IServiceCollection services)
         {
+            services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CleanArchMvc.API", Version = "v1" });
+                // Adiciona documentação com Swagger
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "CopetSystem.API",
+                    Version = "v1",
+                    Description = "API Rest criada em .NET 6 para controle de projetos de iniciação científica do CEFET."
+                });
+
+                // Adiciona comentários dos métodos nas rotas do Swagger
+                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "CopetSystem.API.xml"));
 
                 //c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 //{
