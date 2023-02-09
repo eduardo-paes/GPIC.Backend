@@ -5,22 +5,22 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CopetSystem.Infra.Data.EntitiesConfiguration
 {
-    public class AreaConfiguration : IEntityTypeConfiguration<Area>
+    public class MainAreaConfiguration : IEntityTypeConfiguration<MainArea>
     {
-        public void Configure(EntityTypeBuilder<Area> builder)
+        public void Configure(EntityTypeBuilder<MainArea> builder)
         {
-            builder.ToTable("Areas");
+            builder.ToTable("MainAreas");
             builder.HasKey(t => t.Id);
             builder.Property(p => p.Id).ValueGeneratedOnAdd();
             builder.Property(p => p.Name).HasMaxLength(100).IsRequired();
             builder.Property(p => p.Code).HasMaxLength(100).IsRequired();
-            builder.Property(p => p.MainAreaId).IsRequired();
 
             builder.HasData(
-                new Area(new Guid(), "ABC-123", "Area 1"),
-                new Area(new Guid(), "DEF-456", "Area 2"),
-                new Area(new Guid(), "GHI-789", "Area 3")
+                new MainArea("ABC-123", "MainArea 1"),
+                new MainArea("DEF-456", "MainArea 2"),
+                new MainArea("GHI-789", "MainArea 3")
             );
         }
     }
 }
+
