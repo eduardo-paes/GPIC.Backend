@@ -11,6 +11,7 @@ namespace CopetSystem.Infra.Data.EntitiesConfiguration
         {
             builder.ToTable("Users");
             builder.HasKey(t => t.Id);
+            builder.Property(p => p.Id).ValueGeneratedOnAdd();
             builder.Property(p => p.Name).HasMaxLength(300).IsRequired();
             builder.Property(p => p.Email).HasMaxLength(300).IsRequired();
             builder.Property(p => p.Password).HasMaxLength(300).IsRequired();
@@ -19,7 +20,7 @@ namespace CopetSystem.Infra.Data.EntitiesConfiguration
             builder.Property(p => p.DeletedAt);
 
             builder.HasData(
-                new User(1, "User Name", "user.name@email.com", "123456", "15162901784", "ADMIN", null)
+                new User("User Name", "user.name@email.com", "123456", "15162901784", "ADMIN", null)
             );
         }
     }

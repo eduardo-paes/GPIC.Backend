@@ -92,9 +92,8 @@ namespace CopetSystem.Domain.Entities
         #endregion
 
         #region Constructors
-        public User(long? id, string? name, string? email, string? password, string? cpf, string? role, DateTime? deletedAt)
+        public User(string? name, string? email, string? password, string? cpf, string? role, DateTime? deletedAt)
         {
-            Id = id;
             Name = name;
             Email = email;
             Password = password;
