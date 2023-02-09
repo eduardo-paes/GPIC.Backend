@@ -6,41 +6,64 @@ namespace CopetSystem.Domain.Entities
 {
     public class Area : Entity
     {
-        public long MainAreaId { get; private set; }
-        public string? Code { get; private set; }
-        public string? Name { get; private set; }
-
-        public Area(long mainAreaId, string code, string name)
+        #region Attributes
+        private Guid? _mainAreaId;
+        public Guid? MainAreaId
         {
-            ValidateDomain(mainAreaId, code, name);
+            get { return _mainAreaId; }
+            private set
+            {
+                DomainExceptionValidation.When(!value.HasValue,
+                    ExceptionMessageFactory.Invalid("mainAreaId"));
+                _mainAreaId = value;
+            }
         }
 
-        private void ValidateDomain(long mainAreaId, string code, string name)
+        private string? _code;
+        public string? Code
         {
-            // Id
-            DomainExceptionValidation.When(mainAreaId < 0,
-                ExceptionMessageFactory.Invalid("id"));
+            get { return _code; }
+            private set
+            {
+                DomainExceptionValidation.When(string.IsNullOrEmpty(value),
+                    ExceptionMessageFactory.Required("code"));
+                DomainExceptionValidation.When(value.Length < 3,
+                    ExceptionMessageFactory.MinLength("code", 3));
+                DomainExceptionValidation.When(value.Length > 100,
+                    ExceptionMessageFactory.MaxLength("code", 100));
+                _code = value;
+            }
+        }
 
-            // Code
-            DomainExceptionValidation.When(string.IsNullOrEmpty(code),
-                ExceptionMessageFactory.Required("code"));
-            DomainExceptionValidation.When(code.Length < 3,
-                ExceptionMessageFactory.MinLength("code", 3));
-            DomainExceptionValidation.When(code.Length > 100,
-                ExceptionMessageFactory.MaxLength("code", 100));
-
-            // Name
-            DomainExceptionValidation.When(string.IsNullOrEmpty(name),
+        private string? _name;
+        public string? Name
+        {
+            get { return _name; }
+            private set
+            {
+                DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                 ExceptionMessageFactory.Required("name"));
-            DomainExceptionValidation.When(name.Length < 3,
-                ExceptionMessageFactory.MinLength("name", 3));
-            DomainExceptionValidation.When(name.Length > 300,
-                ExceptionMessageFactory.MaxLength("name", 300));
+                DomainExceptionValidation.When(value.Length < 3,
+                    ExceptionMessageFactory.MinLength("name", 3));
+                DomainExceptionValidation.When(value.Length > 300,
+                    ExceptionMessageFactory.MaxLength("name", 300));
+                _name = value;
+            }
+        }
+        #endregion
 
+        #region Constructors
+        public Area(Guid? mainAreaId, string? code, string? name)
+        {
             MainAreaId = mainAreaId;
             Code = code;
             Name = name;
         }
+
+        /// <summary>
+        /// Constructor to dbcontext EF instancing.
+        /// </summary>
+        protected Area() { }
+        #endregion
     }
 }
-
