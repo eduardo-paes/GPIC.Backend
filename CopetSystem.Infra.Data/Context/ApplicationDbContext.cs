@@ -12,8 +12,8 @@ namespace CopetSystem.Infra.Data.Context
 
         public DbSet<User> Users { get; set; }
 
-        //public DbSet<MainArea> MainAreas { get; set; }
-        //public DbSet<Area> Areas { get; set; }
+        public DbSet<MainArea> MainAreas { get; set; }
+        public DbSet<Area> Areas { get; set; }
         //public DbSet<SubArea> SubAreas { get; set; }
 
         //public DbSet<ProgramType> ProgramTypes { get; set; }
