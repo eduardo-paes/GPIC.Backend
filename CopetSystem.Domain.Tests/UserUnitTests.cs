@@ -210,6 +210,25 @@ public class UserUnitTests
             .Throw<CopetSystem.Domain.Validation.DomainExceptionValidation>()
             .WithMessage(ExceptionMessageFactory.InvalidCpf());
     }
+
+    [Fact]
+    public void UpdateUserCpf_WithValidParameters_ResultObjectValidState()
+    {
+        var model = new User("User Name", "username@gmail.com", "123456", "15162901784", "TEST");
+        Action action = () => model.UpdateCPF("15162901784");
+        action.Should()
+            .NotThrow<CopetSystem.Domain.Validation.DomainExceptionValidation>();
+    }
+
+    [Fact]
+    public void UpdateUserCpf_WithInvalidParameters_ResultObjectValidState()
+    {
+        var model = new User("User Name", "username@gmail.com", "123456", "15162901784", "TEST");
+        Action action = () => model.UpdateCPF(string.Empty);
+        action.Should()
+            .Throw<CopetSystem.Domain.Validation.DomainExceptionValidation>()
+            .WithMessage(ExceptionMessageFactory.Required("cpf"));
+    }
     #endregion
 
     #region Role Tests

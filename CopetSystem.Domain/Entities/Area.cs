@@ -50,6 +50,8 @@ namespace CopetSystem.Domain.Entities
                 _name = value;
             }
         }
+
+        public virtual MainArea? MainArea { get; private set; }
         #endregion
 
         #region Constructors

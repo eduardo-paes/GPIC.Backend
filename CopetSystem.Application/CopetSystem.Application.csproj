@@ -12,12 +12,14 @@
     <None Remove="Interfaces\" />
     <None Remove="Mappings\" />
     <None Remove="AutoMapper" />
+    <None Remove="DTOs\User\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DTOs\" />
     <Folder Include="Services\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Mappings\" />
+    <Folder Include="DTOs\User\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.0" />

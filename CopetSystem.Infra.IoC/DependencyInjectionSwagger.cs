@@ -16,8 +16,8 @@ namespace CopetSystem.Infra.IoC
                 // Adiciona documentação com Swagger
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "CopetSystem.API",
                     Version = "v1",
+                    Title = "CopetSystem.API",
                     Description = "API Rest criada em .NET 6 para controle de projetos de iniciação científica do CEFET."
                 });
 

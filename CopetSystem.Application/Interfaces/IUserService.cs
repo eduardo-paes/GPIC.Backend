@@ -1,5 +1,5 @@
 ﻿using System;
-using CopetSystem.Application.DTOs;
+using CopetSystem.Application.DTOs.User;
 
 namespace CopetSystem.Application.Interfaces
 {
@@ -8,12 +8,14 @@ namespace CopetSystem.Application.Interfaces
         Task<IQueryable<UserReadDTO>> GetActiveUsers();
         Task<IQueryable<UserReadDTO>> GetInactiveUsers();
 
-        Task<UserReadDTO> GetById(int? id);
-        Task<UserReadDTO> ResetPassword(long? id, string? password);
+        Task<UserReadDTO> GetById(Guid? id);
+        Task<UserReadDTO> ResetPassword(Guid? id, string? password);
 
-        //Task<UserReadDTO> Create(UserReadDTO user);
-        //Task<UserReadDTO> Update(UserReadDTO user);
-        //Task<UserReadDTO> Remove(UserReadDTO user);
+        Task<UserReadDTO> Create(UserCreateDTO user);
+        Task<UserReadDTO> Update(Guid? id, UserUpdateDTO user);
+
+        Task<UserReadDTO> Activate(Guid id);
+        Task<UserReadDTO> Deactivate(Guid id);
     }
 }
 

@@ -16,11 +16,9 @@ namespace CopetSystem.Infra.Data.EntitiesConfiguration
             builder.Property(p => p.Code).HasMaxLength(100).IsRequired();
             builder.Property(p => p.MainAreaId).IsRequired();
 
-            builder.HasData(
-                new Area(new Guid(), "ABC-123", "Area 1"),
-                new Area(new Guid(), "DEF-456", "Area 2"),
-                new Area(new Guid(), "GHI-789", "Area 3")
-            );
+            builder.HasOne(a => a.MainArea)
+                .WithMany()
+                .HasForeignKey(a => a.MainAreaId);
         }
     }
 }

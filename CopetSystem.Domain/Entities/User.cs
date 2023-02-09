@@ -121,6 +121,7 @@ namespace CopetSystem.Domain.Entities
         public void UpdateName(string? name) => Name = name;
         public void UpdatePassword(string? password) => Password = password;
         public void UpdateRole(string? role) => Role = role;
+        public void UpdateCPF(string? cpf) => CPF = cpf;
         #endregion
 
         #region Utils

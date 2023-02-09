@@ -18,10 +18,6 @@ namespace CopetSystem.Infra.Data.EntitiesConfiguration
             builder.Property(p => p.CPF).HasMaxLength(15).IsRequired();
             builder.Property(p => p.Role).HasMaxLength(30).IsRequired();
             builder.Property(p => p.DeletedAt);
-
-            builder.HasData(
-                new User("User Name", "user.name@email.com", "123456", "15162901784", "ADMIN", null)
-            );
         }
     }
 }

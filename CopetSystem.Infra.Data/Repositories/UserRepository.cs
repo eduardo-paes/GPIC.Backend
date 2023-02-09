@@ -12,7 +12,7 @@ namespace CopetSystem.Infra.Data.Repositories
         public UserRepository(ApplicationDbContext context) => _context = context;
         
         #region CRUD Methods
-        public async Task<User> GetById(long? id) => await _context.Users
+        public async Task<User> GetById(Guid? id) => await _context.Users
             .FindAsync(id)
                 ?? throw new Exception("User not found.");
 
@@ -25,14 +25,6 @@ namespace CopetSystem.Infra.Data.Repositories
         public async Task<User> Create(User user)
         {
             _context.Add(user);
-            await _context.SaveChangesAsync();
-            return user;
-        }
-
-        public async Task<User> Remove(User user)
-        {
-            user.DeactivateEntity();
-            _context.Update(user);
             await _context.SaveChangesAsync();
             return user;
         }
@@ -53,7 +45,7 @@ namespace CopetSystem.Infra.Data.Repositories
                     ?? throw new Exception("User not found.");
         }
 
-        public Task<User> ResetPassword(long? id, string? password)
+        public Task<User> ResetPassword(Guid? id, string? password)
         {
             throw new NotImplementedException();
         }
