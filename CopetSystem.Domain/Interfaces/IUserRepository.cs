@@ -9,11 +9,12 @@ namespace CopetSystem.Domain.Interfaces
         Task<IEnumerable<User>> GetInactiveUsers();
 
         Task<User> GetById(Guid? id);
-        Task<User> Login(string? email, string? password);
-        Task<User> ResetPassword(Guid? id, string? password);
-
-        Task<User> Create(User user);
         Task<User> Update(User user);
+
+        #region Auth
+        Task<User> Register(User user);
+        Task<User?> GetUserByEmail(string? email);
+        #endregion
     }
 }
 

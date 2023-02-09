@@ -74,27 +74,6 @@ namespace CopetSystem.API.Queries
         }
 
         /// <summary>
-        /// Realiza criação de usário.
-        /// </summary>
-        /// <param></param>
-        /// <returns>Retorna usuário criado</returns>
-        /// <response code="200">Retorna usuário criado</response>
-        [HttpPost(Name = "CreateUser")]
-        public async Task<ActionResult<UserReadDTO>> Create([FromBody] UserCreateDTO dto)
-        {
-            UserReadDTO? user;
-            try
-            {
-                user = await _service.Create(dto);
-                return Ok(user);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        /// <summary>
         /// Realiza atualização de usário.
         /// </summary>
         /// <param></param>

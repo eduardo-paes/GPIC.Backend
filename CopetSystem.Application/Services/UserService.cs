@@ -17,7 +17,6 @@ namespace CopetSystem.Application.Services
             _mapper = mapper;
         }
 
-        #region CRUD
         public async Task<UserReadDTO> GetById(Guid? id)
         {
             var entity = await GetUser(id);
@@ -34,12 +33,6 @@ namespace CopetSystem.Application.Services
         {
             var entities = await _repository.GetInactiveUsers();
             return _mapper.Map<IEnumerable<UserReadDTO>>(entities).AsQueryable();
-        }
-
-        public async Task<UserReadDTO> Create(UserCreateDTO user)
-        {
-            var entity = await _repository.Create(_mapper.Map<User>(user));
-            return _mapper.Map<UserReadDTO>(entity);
         }
 
         public async Task<UserReadDTO> Update(Guid? id, UserUpdateDTO dto)
@@ -78,7 +71,6 @@ namespace CopetSystem.Application.Services
             var entity = await _repository.Update(user);
             return _mapper.Map<UserReadDTO>(entity);
         }
-        #endregion
 
         #region Private Methods
         private async Task<User> GetUser(Guid? id)
@@ -87,14 +79,6 @@ namespace CopetSystem.Application.Services
             if (entity == null)
                 throw new Exception("Nenhum usuário encontrato para o id informado.");
             return entity;
-        }
-        #endregion
-
-        #region Auth
-        public async Task<UserReadDTO> ResetPassword(Guid? id, string? password)
-        {
-            var entity = await _repository.ResetPassword(id, password);
-            return _mapper.Map<UserReadDTO>(entity);
         }
         #endregion
     }

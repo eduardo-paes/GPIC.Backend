@@ -9,9 +9,6 @@ namespace CopetSystem.Application.Interfaces
         Task<IQueryable<UserReadDTO>> GetInactiveUsers();
 
         Task<UserReadDTO> GetById(Guid? id);
-        Task<UserReadDTO> ResetPassword(Guid? id, string? password);
-
-        Task<UserReadDTO> Create(UserCreateDTO user);
         Task<UserReadDTO> Update(Guid? id, UserUpdateDTO user);
 
         Task<UserReadDTO> Activate(Guid id);

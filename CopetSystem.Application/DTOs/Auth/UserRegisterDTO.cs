@@ -1,7 +1,7 @@
 ﻿using System;
-namespace CopetSystem.Application.DTOs.User
+namespace CopetSystem.Application.DTOs.Auth
 {
-	public class UserCreateDTO
+	public class UserRegisterDTO
     {
         public string? Name { get; set; }
         public string? Role { get; set; }

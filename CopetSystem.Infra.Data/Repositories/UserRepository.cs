@@ -22,13 +22,6 @@ namespace CopetSystem.Infra.Data.Repositories
         public async Task<IEnumerable<User>> GetInactiveUsers() => await _context.Users
             .Where(x => x.DeletedAt != null).ToListAsync();
 
-        public async Task<User> Create(User user)
-        {
-            _context.Add(user);
-            await _context.SaveChangesAsync();
-            return user;
-        }
-
         public async Task<User> Update(User user)
         {
             _context.Update(user);
@@ -38,16 +31,16 @@ namespace CopetSystem.Infra.Data.Repositories
         #endregion
 
         #region Auth Methods
-        public async Task<User> Login(string? email, string? password)
+        public async Task<User> Register(User user)
         {
-            return await _context.Users
-                .FirstOrDefaultAsync(x => x.Email == email && x.DeletedAt == null)
-                    ?? throw new Exception("User not found.");
+            _context.Add(user);
+            await _context.SaveChangesAsync();
+            return user;
         }
 
-        public Task<User> ResetPassword(Guid? id, string? password)
+        public async Task<User?> GetUserByEmail(string? email)
         {
-            throw new NotImplementedException();
+            return await _context.Users.FirstOrDefaultAsync(x => x.Email == email && x.DeletedAt == null);                    
         }
         #endregion
     }
