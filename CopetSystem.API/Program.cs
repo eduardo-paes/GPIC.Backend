@@ -1,6 +1,4 @@
-using System.Configuration;
 using CopetSystem.Infra.IoC;
-using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
 
