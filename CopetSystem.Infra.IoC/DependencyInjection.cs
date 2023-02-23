@@ -20,6 +20,7 @@ public static class DependencyInjection
 
         // Serviços de Negócios
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IAuthService, AuthService>();
 
         // Repositórios
         services.AddScoped<IUserRepository, UserRepository>();
