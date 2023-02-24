@@ -4,7 +4,7 @@ namespace CopetSystem.Domain.Interfaces
 {
 	public interface IGenericCRUDRepository<T>
 	{
-        Task<T> Get();
+        Task<T> GetById(Guid? id);
         Task<IEnumerable<T>> GetAll();
 
         Task<T> Create(T model);
