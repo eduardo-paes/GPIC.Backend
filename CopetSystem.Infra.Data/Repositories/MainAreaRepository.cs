@@ -24,8 +24,11 @@ namespace CopetSystem.Infra.Data.Repositories
         public async Task<MainArea> GetById(Guid? id) => await _context.MainAreas.FindAsync(id)
                 ?? throw new Exception("MainArea not found.");
 
-        public async Task<MainArea> Remove(MainArea model)
+        public async Task<MainArea> Delete(Guid? id)
         {
+            var model = await _context.MainAreas.FindAsync(id);
+            if (model == null) throw new Exception("MainArea not found.");
+
             model.DeactivateEntity();
             return await Update(model);
         }

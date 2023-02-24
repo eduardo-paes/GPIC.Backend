@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using CopetSystem.Domain.Validation;
 
 namespace CopetSystem.Domain.Entities
@@ -50,6 +51,11 @@ namespace CopetSystem.Domain.Entities
         /// Constructor to dbcontext EF instancing.
         /// </summary>
         protected MainArea() { }
+        #endregion
+
+        #region Updaters
+        public void UpdateName(string? name) => Name = name;
+        public void UpdateCode(string? code) => Code = code;
         #endregion
     }
 }

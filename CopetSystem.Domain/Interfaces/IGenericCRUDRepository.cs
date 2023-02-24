@@ -8,7 +8,7 @@ namespace CopetSystem.Domain.Interfaces
         Task<IEnumerable<T>> GetAll();
 
         Task<T> Create(T model);
-        Task<T> Remove(T model);
+        Task<T> Delete(Guid? id);
         Task<T> Update(T model);
     }
 }
