@@ -9,6 +9,7 @@ namespace CopetSystem.Application.Services
 {
 	public class UserService : IUserService
 	{
+        #region Global Scope
         private readonly IUserRepository _repository;
         private readonly IMapper _mapper;
         public UserService(IUserRepository repository, IMapper mapper)
@@ -16,10 +17,15 @@ namespace CopetSystem.Application.Services
             _repository = repository;
             _mapper = mapper;
         }
+        #endregion
 
+        #region Public Methods
         public async Task<UserReadDTO> GetById(Guid? id)
         {
             var entity = await GetUser(id);
+            if (entity == null)
+                throw new Exception("Nenhum usuário encontrato para o id informado.");
+
             return _mapper.Map<UserReadDTO>(entity);
         }
 
@@ -71,6 +77,7 @@ namespace CopetSystem.Application.Services
             var entity = await _repository.Update(user);
             return _mapper.Map<UserReadDTO>(entity);
         }
+        #endregion
 
         #region Private Methods
         private async Task<User> GetUser(Guid? id)

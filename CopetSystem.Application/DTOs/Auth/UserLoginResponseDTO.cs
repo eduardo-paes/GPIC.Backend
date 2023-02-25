@@ -3,18 +3,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CopetSystem.Application.DTOs.Auth
 {
-	public class UserRegisterDTO
+	public class UserLoginResponseDTO
     {
-		[Required]
+        public Guid? Id { get; set; }
         public string? Name { get; set; }
-		[Required]
         public string? Role { get; set; }
-		[Required]
         public string? Email { get; set; }
-		[Required]
-        public string? CPF { get; set; }
-		[Required]
-        public string? Password { get; set; }
+        public string? Token { get; set; }
     }
 }
 

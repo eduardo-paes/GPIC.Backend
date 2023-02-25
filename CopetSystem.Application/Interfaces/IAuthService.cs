@@ -7,7 +7,7 @@ namespace CopetSystem.Application.Interfaces
 	public interface IAuthService
 	{
         Task<UserReadDTO> Register(UserRegisterDTO dto);
-        Task<string> Login(UserLoginDTO dto);
+        Task<UserLoginResponseDTO> Login(UserLoginRequestDTO dto);
         Task<bool> ResetPassword(UserResetPasswordDTO dto);
     }
 }

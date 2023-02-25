@@ -10,6 +10,7 @@ namespace CopetSystem.Application.Services
 {
 	public class AuthService : IAuthService
     {
+        #region Global Scope
         private readonly IUserRepository _repository;
         private readonly IMapper _mapper;
         public AuthService(IUserRepository repository, IMapper mapper)
@@ -17,14 +18,16 @@ namespace CopetSystem.Application.Services
             _repository = repository;
             _mapper = mapper;
         }
+        #endregion
 
+        #region Public Methods
         public async Task<UserReadDTO> Register(UserRegisterDTO dto)
         {
             var entity = await _repository.Register(_mapper.Map<User>(dto));
             return _mapper.Map<UserReadDTO>(entity);
         }
 
-        public async Task<string> Login(UserLoginDTO dto)
+        public async Task<UserLoginResponseDTO> Login(UserLoginRequestDTO dto)
         {
             if (string.IsNullOrEmpty(dto.Email))
                 throw new Exception("Email não informado.");
@@ -39,7 +42,10 @@ namespace CopetSystem.Application.Services
             if (!entity.Password.Equals(dto.Password))
                 throw new Exception("Credenciais inválidas.");
 
-            return "token";
+            var model = _mapper.Map<UserLoginResponseDTO>(entity);
+            model.Token = GenerateToken(model.Id, model.Role);
+
+            return model;
         }
 
         public async Task<bool> ResetPassword(UserResetPasswordDTO dto)
@@ -55,6 +61,7 @@ namespace CopetSystem.Application.Services
                 return await Task.FromResult(false);
             }
         }
+        #endregion
 
         #region Private Methods
         private async Task<User> GetUser(Guid? id)
@@ -63,6 +70,11 @@ namespace CopetSystem.Application.Services
             if (entity == null)
                 throw new Exception("Nenhum usuário encontrato para o id informado.");
             return entity;
+        }
+
+        private string GenerateToken(Guid? id, string? role)
+        {
+            return "Token";
         }
         #endregion
     }

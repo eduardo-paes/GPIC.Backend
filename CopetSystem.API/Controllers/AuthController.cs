@@ -23,16 +23,23 @@ namespace CopetSystem.API.Controllers
         /// <returns>Retorna token de acesso</returns>
         /// <response code="200">Retorna token de acesso</response>
         [HttpPost("Login", Name = "LoginUser")]
-        public async Task<ActionResult<string>> Login([FromBody] UserLoginDTO dto)
+        public async Task<ActionResult<UserLoginResponseDTO>> Login([FromBody] UserLoginRequestDTO dto)
         {
-            try
+            if (ModelState.IsValid)
             {
-                var token = await _service.Login(dto);
-                return Ok(token);
+                try
+                {
+                    var user = await _service.Login(dto);
+                    return Ok(user);
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                return BadRequest(ex.Message);
+                return BadRequest("Campos inválidos.");
             }
         }
 
@@ -45,15 +52,22 @@ namespace CopetSystem.API.Controllers
         [HttpPost("Register", Name = "RegisterUser")]
         public async Task<ActionResult<UserReadDTO>> Create([FromBody] UserRegisterDTO dto)
         {
-            UserReadDTO? user;
-            try
+            if (ModelState.IsValid)
             {
-                user = await _service.Register(dto);
-                return Ok(user);
+                UserReadDTO? user;
+                try
+                {
+                    user = await _service.Register(dto);
+                    return Ok(user);
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                return BadRequest(ex.Message);
+                return BadRequest("Campos inválidos.");
             }
         }
 
@@ -66,14 +80,21 @@ namespace CopetSystem.API.Controllers
         [HttpPost("ResetPassword", Name = "ResetPasswordUser")]
         public async Task<ActionResult<string>> ResetPassword([FromBody] UserResetPasswordDTO dto)
         {
-            try
+            if (ModelState.IsValid)
             {
-                var res = await _service.ResetPassword(dto);
-                return Ok(res);
+                try
+                {
+                    var res = await _service.ResetPassword(dto);
+                    return Ok(res);
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                return BadRequest(ex.Message);
+                return BadRequest("Campos inválidos.");
             }
         }
     }

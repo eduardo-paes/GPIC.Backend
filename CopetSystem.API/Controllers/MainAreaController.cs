@@ -1,4 +1,6 @@
 using System;
+using CopetSystem.Application.DTOs.Auth;
+using CopetSystem.Application.DTOs.MainArea;
 using CopetSystem.Application.DTOs.User;
 using CopetSystem.Application.Interfaces;
 using CopetSystem.Domain.Entities;
@@ -8,133 +10,130 @@ namespace CopetSystem.API.Queries
 {
     [ApiController]
     [Route("Api/[controller]")]
-    public class UserController : ControllerBase
+    public class MainAreaController : ControllerBase
     {
-        private readonly IUserService _service;
-        public UserController(IUserService service)
+        private readonly IMainAreaService _service;
+        public MainAreaController(IMainAreaService service)
         {
             _service = service;
         }
 
         /// <summary>
-        /// Busca usuário pelo id.
+        /// Busca área principal pelo id.
         /// </summary>
         /// <param></param>
-        /// <returns>Todos os usuários ativos</returns>
-        /// <response code="200">Retorna todos os usuários ativos</response>
-        [HttpGet("{id}", Name = "GetUserById")]
+        /// <returns>Área principal correspondente</returns>
+        /// <response code="200">Retorna área principal correspondente</response>
+        [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<UserReadDTO>>> GetById(Guid? id)
+        public async Task<ActionResult<ReadMainAreaDTO>> GetById(Guid? id)
         {
             if (id == null)
                 return BadRequest("O id informado não pode ser nulo.");
 
-            var users = await _service.GetById(id);
-            if (users == null)
-            {
-                return NotFound("Nenhum usuário encontrado.");
-            }
-            return Ok(users);
-        }
-
-        /// <summary>
-        /// Busca todos os usuários ativos.
-        /// </summary>
-        /// <param></param>
-        /// <returns>Todos os usuários ativos</returns>
-        /// <response code="200">Retorna todos os usuários ativos</response>
-        [HttpGet("Active/", Name = "GetAllActiveUsers")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<UserReadDTO>>> GetAllActive()
-        {
-            var users = await _service.GetActiveUsers();
-            if (users == null)
-            {
-                return NotFound("Nenhum usuário encontrado.");
-            }
-            return Ok(users);
-        }
-
-        /// <summary>
-        /// Busca todos os usuários inativos.
-        /// </summary>
-        /// <param></param>
-        /// <returns>Todos os usuários inativos</returns>
-        /// <response code="200">Retorna todos os usuários ativos</response>
-        [HttpGet("Inactive/", Name = "GetAllInactiveUsers")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<UserReadDTO>>> GetAllInactive()
-        {
-            var users = await _service.GetInactiveUsers();
-            if (users == null)
-            {
-                return NotFound("Nenhum usuário encontrado.");
-            }
-            return Ok(users);
-        }
-
-        /// <summary>
-        /// Realiza atualização de usário.
-        /// </summary>
-        /// <param></param>
-        /// <returns>Retorna usuário atualizado</returns>
-        /// <response code="200">Retorna usuário atualizado</response>
-        [HttpPut("{id}", Name = "UpdateUser")]
-        public async Task<ActionResult<UserReadDTO>> Update(Guid? id, [FromBody] UserUpdateDTO dto)
-        {
-            UserReadDTO? user;
             try
             {
-                user = await _service.Update(id, dto);
-                return Ok(user);
+                var models = await _service.GetById(id);
+                return Ok(models);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return NotFound(ex.Message);
             }
         }
 
         /// <summary>
-        /// Realiza reativação de usário.
+        /// Busca todas as áreas principais ativas.
         /// </summary>
         /// <param></param>
-        /// <returns>Retorna usuário reativado</returns>
-        /// <response code="200">Retorna usuário reativado</response>
-        [HttpPut("Active/{id}", Name = "ActivateUser")]
-        public async Task<ActionResult<UserReadDTO>> Activate(Guid? id)
+        /// <returns>Todas as áreas principais ativas</returns>
+        /// <response code="200">Retorna todas as áreas principais ativas</response>
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<IEnumerable<ReadMainAreaDTO>>> GetAll()
         {
-            if (id == null)
-                return BadRequest("O id informado não pode ser nulo.");
-
-            UserReadDTO? user;
-            try
+            var models = await _service.GetAll();
+            if (models == null)
             {
-                user = await _service.Activate(id.Value);
-                return Ok(user);
+                return NotFound("Nenhuma Área Principal encontrada.");
             }
-            catch (Exception ex)
+            return Ok(models);
+        }
+
+        /// <summary>
+        /// Cria área principal.
+        /// </summary>
+        /// <param></param>
+        /// <returns>Área principal criada</returns>
+        /// <response code="200">Retorna área principal criada</response>
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<ReadMainAreaDTO>> Create([FromBody] CreateMainAreaDTO dto)
+        {
+            if (ModelState.IsValid)
             {
-                return BadRequest(ex.Message);
+                ReadMainAreaDTO? model;
+                try
+                {
+                    model = await _service.Create(dto);
+                    return Ok(model);
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
+            else
+            {
+                return BadRequest("Campos inválidos.");
             }
         }
 
         /// <summary>
-        /// Realiza desativação de usário.
+        /// Atualiza área principal.
         /// </summary>
         /// <param></param>
-        /// <returns>Retorna usuário desativado</returns>
-        /// <response code="200">Retorna usuário desativado</response>
-        [HttpPut("Inactive/{id}", Name = "DeactivateUser")]
-        public async Task<ActionResult<UserReadDTO>> Deactivate(Guid? id)
+        /// <returns>Área principal atualizada</returns>
+        /// <response code="200">Retorna área principal atualizada</response>
+        [HttpPut("{id}")]
+        public async Task<ActionResult<ReadMainAreaDTO>> Update(Guid? id, [FromBody] UpdateMainAreaDTO dto)
+        {
+            if (ModelState.IsValid)
+            {
+                ReadMainAreaDTO? model;
+                try
+                {
+                    model = await _service.Update(id, dto);
+                    return Ok(model);
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
+            else
+            {
+                return BadRequest("Campos inválidos.");
+            }
+        }
+
+        /// <summary>
+        /// Remove área principal.
+        /// </summary>
+        /// <param></param>
+        /// <returns>Área principal removida</returns>
+        /// <response code="200">Retorna área principal removida</response>
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<ReadMainAreaDTO>> Delete(Guid? id)
         {
             if (id == null)
                 return BadRequest("O id informado não pode ser nulo.");
 
-            UserReadDTO? user;
+            ReadMainAreaDTO? model;
             try
             {
-                user = await _service.Deactivate(id.Value);
-                return Ok(user);
+                model = await _service.Delete(id.Value);
+                return Ok(model);
             }
             catch (Exception ex)
             {

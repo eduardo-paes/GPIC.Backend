@@ -29,12 +29,15 @@ namespace CopetSystem.API.Queries
             if (id == null)
                 return BadRequest("O id informado não pode ser nulo.");
 
-            var users = await _service.GetById(id);
-            if (users == null)
+            try
             {
-                return NotFound("Nenhum usuário encontrado.");
+                var users = await _service.GetById(id);
+                return Ok(users);
             }
-            return Ok(users);
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
         /// <summary>

@@ -21,9 +21,11 @@ public static class DependencyInjection
         // Serviços de Negócios
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<IMainAreaService, MainAreaService>();
 
         // Repositórios
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IMainAreaRepository, MainAreaRepository>();
 
         // DTOs
         services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
