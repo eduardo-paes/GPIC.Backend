@@ -3,6 +3,7 @@ using System.Data.Entity;
 using CopetSystem.Domain.Entities;
 using CopetSystem.Domain.Interfaces;
 using CopetSystem.Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace CopetSystem.Infra.Data.Repositories
 {
@@ -18,11 +19,10 @@ namespace CopetSystem.Infra.Data.Repositories
             return model;
         }
 
-        public async Task<IEnumerable<MainArea>> GetAll() => await _context.MainAreas.ToListAsync()
-                ?? throw new Exception("MainArea not found.");
+        public async Task<IEnumerable<MainArea>> GetAll() => await _context.MainAreas
+            .Where(x => x.DeletedAt == null).ToListAsync();
 
-        public async Task<MainArea> GetById(Guid? id) => await _context.MainAreas.FindAsync(id)
-                ?? throw new Exception("MainArea not found.");
+        public async Task<MainArea?> GetById(Guid? id) => await _context.MainAreas.FindAsync(id);
 
         public async Task<MainArea> Delete(Guid? id)
         {
@@ -39,6 +39,9 @@ namespace CopetSystem.Infra.Data.Repositories
             await _context.SaveChangesAsync();
             return model;
         }
+
+        public async Task<MainArea> GetByCode(string? code) => await _context.MainAreas
+            .FirstOrDefaultAsync(x => x.Code == code && x.DeletedAt == null);
     }
 }
 

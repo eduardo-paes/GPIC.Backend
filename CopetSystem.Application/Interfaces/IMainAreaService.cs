@@ -6,12 +6,12 @@ namespace CopetSystem.Application.Interfaces
 {
 	public interface IMainAreaService
 	{
-        Task<MainAreaDTO> GetById(Guid? id);
-        Task<IQueryable<MainAreaDTO>> GetAll();
+        Task<ReadMainAreaDTO> GetById(Guid? id);
+        Task<IQueryable<ReadMainAreaDTO>> GetAll();
 
-        Task<MainAreaDTO> Create(MainAreaDTO model);
-        Task<MainAreaDTO> Update(Guid? id, MainAreaDTO model);
-        Task<MainAreaDTO> Delete(Guid id);
+        Task<ReadMainAreaDTO> Create(CreateMainAreaDTO model);
+        Task<ReadMainAreaDTO> Update(Guid? id, UpdateMainAreaDTO model);
+        Task<ReadMainAreaDTO> Delete(Guid id);
     }
 }
 
