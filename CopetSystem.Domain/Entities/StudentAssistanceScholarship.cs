@@ -1,4 +1,5 @@
 ﻿using System;
+using CopetSystem.Domain.Entities.Primitives;
 using CopetSystem.Domain.Validation;
 
 namespace CopetSystem.Domain.Entities

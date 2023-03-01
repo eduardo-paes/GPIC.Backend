@@ -1,4 +1,6 @@
 ﻿using System;
+using CopetSystem.Domain.Entities.Primitives;
+
 namespace CopetSystem.Domain.Entities
 {
 	public class ProgramType : Entity

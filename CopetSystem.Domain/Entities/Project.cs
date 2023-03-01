@@ -1,3 +1,5 @@
+using CopetSystem.Domain.Entities.Primitives;
+
 namespace CopetSystem.Domain.Entities
 {
     public class Project : Entity

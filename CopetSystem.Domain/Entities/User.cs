@@ -2,6 +2,7 @@ using System.Data;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
+using CopetSystem.Domain.Entities.Primitives;
 using CopetSystem.Domain.Validation;
 
 namespace CopetSystem.Domain.Entities

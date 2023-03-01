@@ -1,5 +1,5 @@
 ﻿using System;
-namespace CopetSystem.Domain.Entities
+namespace CopetSystem.Domain.Entities.Primitives
 {
 	public abstract class Entity
 	{
