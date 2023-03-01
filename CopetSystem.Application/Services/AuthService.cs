@@ -23,7 +23,18 @@ namespace CopetSystem.Application.Services
         #region Public Methods
         public async Task<UserReadDTO> Register(UserRegisterDTO dto)
         {
-            var entity = await _repository.Register(_mapper.Map<User>(dto));
+            // Valida se já existe usuário para o CPF informado
+            var entity = await _repository.GetUserByCPF(dto.CPF);
+            if (entity != null)
+                throw new Exception("Já existe um usuário com o CPF informado informado.");
+
+            // Valida se já existe usuário para o e-mail informado
+            entity = await _repository.GetUserByEmail(dto.Email);
+            if (entity != null)
+                throw new Exception("Já existe um usuário com o Email informado informado.");
+
+            // Realiza criação do usuário
+            entity = await _repository.Register(_mapper.Map<User>(dto));
             return _mapper.Map<UserReadDTO>(entity);
         }
 
