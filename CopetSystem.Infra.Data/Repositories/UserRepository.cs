@@ -40,7 +40,12 @@ namespace CopetSystem.Infra.Data.Repositories
 
         public async Task<User?> GetUserByEmail(string? email)
         {
-            return await _context.Users.FirstOrDefaultAsync(x => x.Email == email && x.DeletedAt == null);                    
+            return await _context.Users.FirstOrDefaultAsync(x => x.Email == email);                    
+        }
+
+        public async Task<User?> GetUserByCPF(string? cpf)
+        {
+            return await _context.Users.FirstOrDefaultAsync(x => x.Email == cpf);
         }
         #endregion
     }
