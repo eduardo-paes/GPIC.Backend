@@ -1,5 +1,4 @@
-﻿using System;
-using CopetSystem.Domain.Entities;
+﻿using CopetSystem.Domain.Entities;
 using CopetSystem.Domain.Interfaces;
 using CopetSystem.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;

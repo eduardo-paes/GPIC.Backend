@@ -5,7 +5,7 @@ namespace CopetSystem.Domain.Interfaces
 {
 	public interface IMainAreaRepository : IGenericCRUDRepository<MainArea>
 	{
-        Task<MainArea> GetByCode(string? code);
+        Task<MainArea?> GetByCode(string? code);
     }
 }
 

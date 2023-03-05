@@ -19,6 +19,7 @@
     <None Remove="Microsoft.EntityFrameworkCore" />
     <None Remove="Microsoft.EntityFrameworkCore.Tools" />
     <None Remove="NuGet.CommandLine" />
+    <None Remove="System.Linq.Async" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="EntitiesConfiguration\" />
@@ -47,5 +48,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="System.Linq.Async" Version="6.0.1" />
   </ItemGroup>
 </Project>

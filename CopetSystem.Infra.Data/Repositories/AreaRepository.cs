@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data.Entity;
+﻿// using System.Data.Entity;
 using CopetSystem.Domain.Entities;
 using CopetSystem.Domain.Interfaces;
 using CopetSystem.Infra.Data.Context;
@@ -7,8 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CopetSystem.Infra.Data.Repositories
 {
-	public class AreaRepository : IAreaRepository
-	{
+    public class AreaRepository : IAreaRepository
+    {
         #region Global Scope
         private readonly ApplicationDbContext _context;
         public AreaRepository(ApplicationDbContext context) => _context = context;
@@ -22,15 +21,23 @@ namespace CopetSystem.Infra.Data.Repositories
         #endregion
 
         #region Public Methods
-        public async Task<Area> GetByCode(string? code) => await _context.Areas
-            .FirstOrDefaultAsync(x => x.Code == code && x.DeletedAt == null);
+        public async Task<Area?> GetByCode(string? code) => await _context.Areas
+            .Where(x => x.Code == code && x.DeletedAt == null)
+            .ToAsyncEnumerable()
+            .FirstOrDefaultAsync();
 
         public async Task<IEnumerable<Area>> GetAll() => await _context.Areas
-            .Where(x => x.DeletedAt == null).ToListAsync();
+            .Where(x => x.DeletedAt == null)
+            .Include(x => x.MainArea)
+            .AsAsyncEnumerable()
+            .ToListAsync();
 
         public async Task<Area> GetById(Guid? id) =>
-            await _context.Areas.FindAsync(id)
+            await _context.Areas
+                .Include(x => x.MainArea)
+                .FirstOrDefaultAsync(x => x.Id == id)
                 ?? throw new Exception($"Nenhuma Área encontrada para o id {id}");
+
 
         public async Task<Area> Delete(Guid? id)
         {

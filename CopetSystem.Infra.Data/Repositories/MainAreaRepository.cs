@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using CopetSystem.Domain.Entities;
 using CopetSystem.Domain.Interfaces;
 using CopetSystem.Infra.Data.Context;
@@ -7,8 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CopetSystem.Infra.Data.Repositories
 {
-	public class MainAreaRepository : IMainAreaRepository
-	{
+    public class MainAreaRepository : IMainAreaRepository
+    {
         #region Global Scope
         private readonly ApplicationDbContext _context;
         public MainAreaRepository(ApplicationDbContext context) => _context = context;
@@ -22,11 +21,15 @@ namespace CopetSystem.Infra.Data.Repositories
         #endregion
 
         #region Public Methods
-        public async Task<MainArea> GetByCode(string? code) => await _context.MainAreas
-            .FirstOrDefaultAsync(x => x.Code == code && x.DeletedAt == null);
+        public async Task<MainArea?> GetByCode(string? code) => await _context.MainAreas
+            .Where(x => x.Code == code && x.DeletedAt == null)
+            .ToAsyncEnumerable()
+            .FirstOrDefaultAsync();
 
         public async Task<IEnumerable<MainArea>> GetAll() => await _context.MainAreas
-            .Where(x => x.DeletedAt == null).ToListAsync();
+            .Where(x => x.DeletedAt == null)
+            .AsAsyncEnumerable()
+            .ToListAsync();
 
         public async Task<MainArea> GetById(Guid? id) =>
             await _context.MainAreas.FindAsync(id)
