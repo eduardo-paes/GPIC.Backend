@@ -1,5 +1,5 @@
 # CopetSystem.API
-GraphQL API created in .NET 6.0 to support CopetSystem.SPA.
+Restful API created in .NET 6.0 to support CopetSystem.SPA.
 
 ## DataBase - PostgreSQL
 Para levantar o banco de dados é necessário executar o comando abaixo na pasta raiz:
