@@ -19,18 +19,21 @@ public static class DependencyInjection
             b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
         // Serviços de Negócios
-        services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IAreaService, AreaService>();
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IMainAreaService, MainAreaService>();
-        services.AddScoped<IAreaService, AreaService>();
+        services.AddScoped<IUserService, UserService>();
 
         // Repositórios
-        services.AddScoped<IUserRepository, UserRepository>();
-        services.AddScoped<IMainAreaRepository, MainAreaRepository>();
         services.AddScoped<IAreaRepository, AreaRepository>();
+        services.AddScoped<IMainAreaRepository, MainAreaRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
 
-        // DTOs
-        services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
+        // DTO Mappers
+        services.AddAutoMapper(typeof(AreaMappings));
+        services.AddAutoMapper(typeof(AuthMappings));
+        services.AddAutoMapper(typeof(MainAreaMappings));
+        services.AddAutoMapper(typeof(UserMappings));
 
         return services;
     }
