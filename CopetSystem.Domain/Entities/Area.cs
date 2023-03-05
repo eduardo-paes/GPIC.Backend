@@ -63,10 +63,24 @@ namespace CopetSystem.Domain.Entities
             Name = name;
         }
 
+        public Area(Guid? mainAreaId, string? code, string? name, MainArea? mainArea)
+        {
+            MainAreaId = mainAreaId;
+            Code = code;
+            Name = name;
+            MainArea = mainArea;
+        }
+
         /// <summary>
         /// Constructor to dbcontext EF instancing.
         /// </summary>
         protected Area() { }
+        #endregion
+
+        #region Updaters
+        public void UpdateName(string? name) => Name = name;
+        public void UpdateCode(string? code) => Code = code;
+        public void UpdateMainArea(Guid? mainAreaId) => MainAreaId = mainAreaId;
         #endregion
     }
 }

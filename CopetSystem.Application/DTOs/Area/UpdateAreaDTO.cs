@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace CopetSystem.Application.DTOs.MainArea
+namespace CopetSystem.Application.DTOs.Area
 {
-	public class UpdateMainAreaDTO : CreateMainAreaDTO
+	public class UpdateAreaDTO : BaseAreaDTO
     {
         public Guid? Id { get; set; }
     }

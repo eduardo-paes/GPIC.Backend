@@ -23,6 +23,7 @@ namespace CopetSystem.Application.Services
         #region Public Methods
         public async Task<ReadMainAreaDTO> Create(CreateMainAreaDTO dto)
         {
+            // Validação de código da Área
             var entity = await _repository.GetByCode(dto.Code);
             if (entity != null)
                 throw new Exception($"Já existe uma Área Principal para o código {dto.Code}");
@@ -33,8 +34,8 @@ namespace CopetSystem.Application.Services
 
         public async Task<ReadMainAreaDTO> Delete(Guid id)
         {
-            var entity = await _repository.Delete(id);
-            return _mapper.Map<ReadMainAreaDTO>(entity);
+            var model = await _repository.Delete(id);
+            return _mapper.Map<ReadMainAreaDTO>(model);
         }
 
         public async Task<IQueryable<ReadMainAreaDTO>> GetAll()
@@ -46,9 +47,6 @@ namespace CopetSystem.Application.Services
         public async Task<ReadMainAreaDTO> GetById(Guid? id)
         {
             var entity = await _repository.GetById(id);
-            if (entity == null)
-                throw new Exception($"Nenhuma Área Principal encontrada para o id {id}");
-
             return _mapper.Map<ReadMainAreaDTO>(entity);
         }
 
@@ -56,8 +54,6 @@ namespace CopetSystem.Application.Services
         {
             // Recupera entidade que será atualizada
             var entity = await _repository.GetById(id);
-            if (entity == null)
-                throw new Exception($"Nenhuma Área Principal encontrada para o id {id}");
 
             // Atualiza atributos permitidos
             entity.UpdateName(dto.Name);

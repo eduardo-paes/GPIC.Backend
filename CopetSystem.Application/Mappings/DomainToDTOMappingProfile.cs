@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CopetSystem.Application.DTOs.Area;
 using CopetSystem.Application.DTOs.Auth;
 using CopetSystem.Application.DTOs.MainArea;
 using CopetSystem.Application.DTOs.User;
@@ -22,6 +23,11 @@ namespace CopetSystem.Application.Mappings
             CreateMap<MainArea, CreateMainAreaDTO>().ReverseMap();
             CreateMap<MainArea, UpdateMainAreaDTO>().ReverseMap();
             CreateMap<MainArea, ReadMainAreaDTO>().ReverseMap();
+
+            // Area
+            CreateMap<Area, CreateAreaDTO>().ReverseMap();
+            CreateMap<Area, UpdateAreaDTO>().ReverseMap();
+            CreateMap<Area, ReadAreaDTO>().ReverseMap();
         }
     }
 }

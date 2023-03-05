@@ -1,6 +1,6 @@
 using System;
 using CopetSystem.Application.DTOs.Auth;
-using CopetSystem.Application.DTOs.MainArea;
+using CopetSystem.Application.DTOs.Area;
 using CopetSystem.Application.DTOs.User;
 using CopetSystem.Application.Interfaces;
 using CopetSystem.Domain.Entities;
@@ -10,10 +10,10 @@ namespace CopetSystem.API.Queries
 {
     [ApiController]
     [Route("Api/[controller]")]
-    public class MainAreaController : ControllerBase
+    public class AreaController : ControllerBase
     {
-        private readonly IMainAreaService _service;
-        public MainAreaController(IMainAreaService service)
+        private readonly IAreaService _service;
+        public AreaController(IAreaService service)
         {
             _service = service;
         }
@@ -26,7 +26,7 @@ namespace CopetSystem.API.Queries
         /// <response code="200">Retorna área principal correspondente</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<ReadMainAreaDTO>> GetById(Guid? id)
+        public async Task<ActionResult<ReadAreaDTO>> GetById(Guid? id)
         {
             if (id == null)
                 return BadRequest("O id informado não pode ser nulo.");
@@ -50,7 +50,7 @@ namespace CopetSystem.API.Queries
         /// <response code="200">Retorna todas as áreas principais ativas</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<ReadMainAreaDTO>>> GetAll()
+        public async Task<ActionResult<IEnumerable<ReadAreaDTO>>> GetAll()
         {
             var models = await _service.GetAll();
             if (models == null)
@@ -68,11 +68,11 @@ namespace CopetSystem.API.Queries
         /// <response code="200">Retorna área principal criada</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<ReadMainAreaDTO>> Create([FromBody] CreateMainAreaDTO dto)
+        public async Task<ActionResult<ReadAreaDTO>> Create([FromBody] CreateAreaDTO dto)
         {
             if (ModelState.IsValid)
             {
-                ReadMainAreaDTO? model;
+                ReadAreaDTO? model;
                 try
                 {
                     model = await _service.Create(dto);
@@ -96,11 +96,11 @@ namespace CopetSystem.API.Queries
         /// <returns>Área principal atualizada</returns>
         /// <response code="200">Retorna área principal atualizada</response>
         [HttpPut("{id}")]
-        public async Task<ActionResult<ReadMainAreaDTO>> Update(Guid? id, [FromBody] UpdateMainAreaDTO dto)
+        public async Task<ActionResult<ReadAreaDTO>> Update(Guid? id, [FromBody] UpdateAreaDTO dto)
         {
             if (ModelState.IsValid)
             {
-                ReadMainAreaDTO? model;
+                ReadAreaDTO? model;
                 try
                 {
                     model = await _service.Update(id, dto);
@@ -124,12 +124,12 @@ namespace CopetSystem.API.Queries
         /// <returns>Área principal removida</returns>
         /// <response code="200">Retorna área principal removida</response>
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ReadMainAreaDTO>> Delete(Guid? id)
+        public async Task<ActionResult<ReadAreaDTO>> Delete(Guid? id)
         {
             if (id == null)
                 return BadRequest("O id informado não pode ser nulo.");
 
-            ReadMainAreaDTO? model;
+            ReadAreaDTO? model;
             try
             {
                 model = await _service.Delete(id.Value);

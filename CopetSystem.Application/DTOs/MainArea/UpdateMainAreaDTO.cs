@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CopetSystem.Application.DTOs.MainArea
 {
-	public class UpdateMainAreaDTO : CreateMainAreaDTO
+	public class UpdateMainAreaDTO : BaseMainAreaDTO
     {
         public Guid? Id { get; set; }
     }

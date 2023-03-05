@@ -3,13 +3,13 @@ namespace CopetSystem.Domain.Validation
 {
 	public class ExceptionMessageFactory
 	{
-		public static string MinLength(string prop, int length) => $"Invalid {prop}, too short, minimum {length} characters.";
-        public static string MaxLength(string prop, int length) => $"Invalid {prop}, too big, maximun {length} characters.";
-        public static string WithLength(string prop, int length) => $"Invalid {prop}, length must be {length} characters.";
-        public static string Required(string prop) => $"Invalid {prop}. {FirstCharToUpper(prop)} attribute is required.";
-        public static string Invalid(string prop) => $"Invalid {FirstCharToUpper(prop)} value.";
-        public static string InvalidEmail(string prop) => $"Invalid {FirstCharToUpper(prop)} value. E-mail informed isn't valid.";
-        public static string InvalidCpf() => $"Invalid CPF value. Sequence of numbers isn't a valid CPF as per government logic.";
+		public static string MinLength(string prop, int length) => $"Valor do campo {prop} muito curto, o mínimo de caracteres é {length}.";
+        public static string MaxLength(string prop, int length) => $"Valor do campo {prop} muito grande, o máximo de caracteres é {length}.";
+        public static string WithLength(string prop, int length) => $"Valor do campo {prop} inválido, o número de caracteres deve ser {length}.";
+        public static string Required(string prop) => $"Valor do campo {prop} inválido. {FirstCharToUpper(prop)} precisa ser preenchido.";
+        public static string Invalid(string prop) => $"Valor do campo {FirstCharToUpper(prop)} inválido.";
+        public static string InvalidEmail(string prop) => $"Valor do campo {FirstCharToUpper(prop)} inválido. O e-mail informado não é válido.";
+        public static string InvalidCpf() => $"Valor de CPF inválido. Sequência de números não é um CPF válido pela lógica do governo.";
 
         private static string FirstCharToUpper(string input) => $"{input.FirstOrDefault().ToString().ToUpper()}{input.Substring(1)}";
     }

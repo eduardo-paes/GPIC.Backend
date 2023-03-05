@@ -15,6 +15,7 @@
     <None Remove="DTOs\User\" />
     <None Remove="DTOs\Auth\" />
     <None Remove="DTOs\MainArea\" />
+    <None Remove="DTOs\Area\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DTOs\" />
@@ -24,6 +25,7 @@
     <Folder Include="DTOs\User\" />
     <Folder Include="DTOs\Auth\" />
     <Folder Include="DTOs\MainArea\" />
+    <Folder Include="DTOs\Area\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.0" />

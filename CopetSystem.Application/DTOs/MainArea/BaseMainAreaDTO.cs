@@ -1,13 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace CopetSystem.Application.DTOs.Area
+namespace CopetSystem.Application.DTOs.MainArea
 {
-	public class BaseAreaDTO
+	public class BaseMainAreaDTO
 	{
-        [Required]
-        public Guid? MainAreaId { get; set; }
-        [Required]
+		[Required]
         public string? Name { get; set; }
 		[Required]
         public string? Code { get; set; }

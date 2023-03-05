@@ -1,17 +1,17 @@
 ﻿using System;
-using CopetSystem.Application.DTOs.MainArea;
+using CopetSystem.Application.DTOs.Area;
 using CopetSystem.Application.DTOs.User;
 
 namespace CopetSystem.Application.Interfaces
 {
-	public interface IMainAreaService
+	public interface IAreaService
 	{
-        Task<ReadMainAreaDTO> GetById(Guid? id);
-        Task<IQueryable<ReadMainAreaDTO>> GetAll();
+        Task<ReadAreaDTO> GetById(Guid? id);
+        Task<IQueryable<ReadAreaDTO>> GetAll();
 
-        Task<ReadMainAreaDTO> Create(CreateMainAreaDTO model);
-        Task<ReadMainAreaDTO> Update(Guid? id, UpdateMainAreaDTO model);
-        Task<ReadMainAreaDTO> Delete(Guid id);
+        Task<ReadAreaDTO> Create(CreateAreaDTO model);
+        Task<ReadAreaDTO> Update(Guid? id, UpdateAreaDTO model);
+        Task<ReadAreaDTO> Delete(Guid id);
     }
 }
 
