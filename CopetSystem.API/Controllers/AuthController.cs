@@ -11,9 +11,11 @@ namespace CopetSystem.API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _service;
-        public AuthController(IAuthService service)
+        private readonly ILogger<AuthController> _logger;
+        public AuthController(IAuthService service, ILogger<AuthController> logger)
         {
             _service = service;
+            _logger = logger;
         }
 
         /// <summary>
@@ -25,21 +27,16 @@ namespace CopetSystem.API.Controllers
         [HttpPost("Login", Name = "LoginUser")]
         public async Task<ActionResult<UserLoginResponseDTO>> Login([FromBody] UserLoginRequestDTO dto)
         {
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    var user = await _service.Login(dto);
-                    return Ok(user);
-                }
-                catch (Exception ex)
-                {
-                    return BadRequest(ex.Message);
-                }
+                var model = await _service.Login(dto);
+                _logger.LogInformation($"Login realizado pelo usuário: {model.Id}.");
+                return Ok(model);
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest("Campos inválidos.");
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -52,22 +49,16 @@ namespace CopetSystem.API.Controllers
         [HttpPost("Register", Name = "RegisterUser")]
         public async Task<ActionResult<UserReadDTO>> Create([FromBody] UserRegisterDTO dto)
         {
-            if (ModelState.IsValid)
+            try
             {
-                UserReadDTO? user;
-                try
-                {
-                    user = await _service.Register(dto);
-                    return Ok(user);
-                }
-                catch (Exception ex)
-                {
-                    return BadRequest(ex.Message);
-                }
+                var model = await _service.Register(dto);
+                _logger.LogInformation($"Usuário criado: {model.Id}");
+                return Ok(model);
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest("Campos inválidos.");
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -80,21 +71,16 @@ namespace CopetSystem.API.Controllers
         [HttpPost("ResetPassword", Name = "ResetPasswordUser")]
         public async Task<ActionResult<string>> ResetPassword([FromBody] UserResetPasswordDTO dto)
         {
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    var res = await _service.ResetPassword(dto);
-                    return Ok(res);
-                }
-                catch (Exception ex)
-                {
-                    return BadRequest(ex.Message);
-                }
+                var res = await _service.ResetPassword(dto);
+                _logger.LogInformation($"Solicitação de reset de senha realizada para o usuário: {dto.Id}");
+                return Ok(res);
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest("Campos inválidos.");
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
     }

@@ -7,6 +7,8 @@ using CopetSystem.Infra.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace CopetSystem.Infra.IoC;
 public static class DependencyInjection
@@ -17,6 +19,18 @@ public static class DependencyInjection
         services.AddDbContext<ApplicationDbContext>(
             o => o.UseNpgsql(configuration.GetConnectionString("DefaultConnection"),
             b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+
+        // Serviços de Log 
+        Log.Logger = new LoggerConfiguration()
+            .ReadFrom.Configuration(configuration)
+            .CreateLogger();
+
+        services.AddLogging(loggingBuilder =>
+        {
+            loggingBuilder.ClearProviders();
+            loggingBuilder.AddSerilog(Log.Logger, dispose: true);
+        });
+
 
         // Serviços de Negócios
         services.AddScoped<IAreaService, AreaService>();

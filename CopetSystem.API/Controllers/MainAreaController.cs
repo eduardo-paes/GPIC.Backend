@@ -6,16 +6,18 @@ using CopetSystem.Application.Interfaces;
 using CopetSystem.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CopetSystem.API.Queries
+namespace CopetSystem.API.Controllers
 {
     [ApiController]
     [Route("Api/[controller]")]
     public class MainAreaController : ControllerBase
     {
         private readonly IMainAreaService _service;
-        public MainAreaController(IMainAreaService service)
+        private readonly ILogger<MainAreaController> _logger;
+        public MainAreaController(IMainAreaService service, ILogger<MainAreaController> logger)
         {
             _service = service;
+            _logger = logger;
         }
 
         /// <summary>
@@ -29,15 +31,21 @@ namespace CopetSystem.API.Queries
         public async Task<ActionResult<ReadMainAreaDTO>> GetById(Guid? id)
         {
             if (id == null)
-                return BadRequest("O id informado não pode ser nulo.");
+            {
+                string msg = "O id informado não pode ser nulo.";
+                _logger.LogWarning(msg);
+                return BadRequest(msg);
+            }
 
             try
             {
-                var models = await _service.GetById(id);
-                return Ok(models);
+                var model = await _service.GetById(id);
+                _logger.LogInformation($"Área Principal encontrada para o id {id}.");
+                return Ok(model);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 return NotFound(ex.Message);
             }
         }
@@ -55,8 +63,11 @@ namespace CopetSystem.API.Queries
             var models = await _service.GetAll();
             if (models == null)
             {
-                return NotFound("Nenhuma Área Principal encontrada.");
+                string msg = "Nenhuma Área Principal encontrada.";
+                _logger.LogWarning(msg);
+                return NotFound(msg);
             }
+            _logger.LogInformation($"Áreas principais encontradas: {models.Count()}");
             return Ok(models);
         }
 
@@ -70,22 +81,16 @@ namespace CopetSystem.API.Queries
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<ReadMainAreaDTO>> Create([FromBody] CreateMainAreaDTO dto)
         {
-            if (ModelState.IsValid)
+            try
             {
-                ReadMainAreaDTO? model;
-                try
-                {
-                    model = await _service.Create(dto);
-                    return Ok(model);
-                }
-                catch (Exception ex)
-                {
-                    return BadRequest(ex.Message);
-                }
+                var model = await _service.Create(dto);
+                _logger.LogInformation($"Área principal criada: {model.Id}");
+                return Ok(model);
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest("Campos inválidos.");
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -98,22 +103,16 @@ namespace CopetSystem.API.Queries
         [HttpPut("{id}")]
         public async Task<ActionResult<ReadMainAreaDTO>> Update(Guid? id, [FromBody] UpdateMainAreaDTO dto)
         {
-            if (ModelState.IsValid)
+            try
             {
-                ReadMainAreaDTO? model;
-                try
-                {
-                    model = await _service.Update(id, dto);
-                    return Ok(model);
-                }
-                catch (Exception ex)
-                {
-                    return BadRequest(ex.Message);
-                }
+                var model = await _service.Update(id, dto);
+                _logger.LogInformation($"Área principal atualizada: {model.Id}");
+                return Ok(model);
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest("Campos inválidos.");
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -127,16 +126,21 @@ namespace CopetSystem.API.Queries
         public async Task<ActionResult<ReadMainAreaDTO>> Delete(Guid? id)
         {
             if (id == null)
-                return BadRequest("O id informado não pode ser nulo.");
+            {
+                string msg = "O id informado não pode ser nulo.";
+                _logger.LogWarning(msg);
+                return BadRequest(msg);
+            }
 
-            ReadMainAreaDTO? model;
             try
             {
-                model = await _service.Delete(id.Value);
+                var model = await _service.Delete(id.Value);
+                _logger.LogInformation($"Área principal removida: {model.Id}");
                 return Ok(model);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 return BadRequest(ex.Message);
             }
         }

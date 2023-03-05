@@ -4,16 +4,18 @@ using CopetSystem.Application.Interfaces;
 using CopetSystem.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CopetSystem.API.Queries
+namespace CopetSystem.API.Controllers
 {
     [ApiController]
     [Route("Api/[controller]")]
     public class UserController : ControllerBase
     {
         private readonly IUserService _service;
-        public UserController(IUserService service)
+        private readonly ILogger<UserController> _logger;
+        public UserController(IUserService service, ILogger<UserController> logger)
         {
             _service = service;
+            _logger = logger;
         }
 
         /// <summary>
@@ -27,15 +29,21 @@ namespace CopetSystem.API.Queries
         public async Task<ActionResult<IEnumerable<UserReadDTO>>> GetById(Guid? id)
         {
             if (id == null)
-                return BadRequest("O id informado não pode ser nulo.");
+            {
+                string msg = "O id informado não pode ser nulo.";
+                _logger.LogWarning(msg);
+                return BadRequest(msg);
+            }
 
             try
             {
-                var users = await _service.GetById(id);
-                return Ok(users);
+                var model = await _service.GetById(id);
+                _logger.LogInformation($"Usuário encontrado para o id {id}.");
+                return Ok(model);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 return NotFound(ex.Message);
             }
         }
@@ -50,12 +58,15 @@ namespace CopetSystem.API.Queries
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<UserReadDTO>>> GetAllActive()
         {
-            var users = await _service.GetActiveUsers();
-            if (users == null)
+            var models = await _service.GetActiveUsers();
+            if (models == null)
             {
-                return NotFound("Nenhum usuário encontrado.");
+                string msg = "Nenhum usuário encontrado.";
+                _logger.LogWarning(msg);
+                return NotFound(msg);
             }
-            return Ok(users);
+            _logger.LogInformation($"Usuários encontrados: {models.Count()}");
+            return Ok(models);
         }
 
         /// <summary>
@@ -68,12 +79,15 @@ namespace CopetSystem.API.Queries
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<UserReadDTO>>> GetAllInactive()
         {
-            var users = await _service.GetInactiveUsers();
-            if (users == null)
+            var models = await _service.GetInactiveUsers();
+            if (models == null)
             {
-                return NotFound("Nenhum usuário encontrado.");
+                string msg = "Nenhum usuário encontrado.";
+                _logger.LogWarning(msg);
+                return NotFound(msg);
             }
-            return Ok(users);
+            _logger.LogInformation($"Usuários encontrados: {models.Count()}");
+            return Ok(models);
         }
 
         /// <summary>
@@ -85,14 +99,15 @@ namespace CopetSystem.API.Queries
         [HttpPut("{id}", Name = "UpdateUser")]
         public async Task<ActionResult<UserReadDTO>> Update(Guid? id, [FromBody] UserUpdateDTO dto)
         {
-            UserReadDTO? user;
             try
             {
-                user = await _service.Update(id, dto);
-                return Ok(user);
+                var model = await _service.Update(id, dto);
+                _logger.LogInformation($"Usuário atualizado: {model.Id}");
+                return Ok(model);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 return BadRequest(ex.Message);
             }
         }
@@ -107,16 +122,21 @@ namespace CopetSystem.API.Queries
         public async Task<ActionResult<UserReadDTO>> Activate(Guid? id)
         {
             if (id == null)
-                return BadRequest("O id informado não pode ser nulo.");
+            {
+                string msg = "O id informado não pode ser nulo.";
+                _logger.LogWarning(msg);
+                return BadRequest(msg);
+            }
 
-            UserReadDTO? user;
             try
             {
-                user = await _service.Activate(id.Value);
-                return Ok(user);
+                var model = await _service.Activate(id.Value);
+                _logger.LogInformation($"Usuário ativado: {model.Id}");
+                return Ok(model);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 return BadRequest(ex.Message);
             }
         }
@@ -131,16 +151,21 @@ namespace CopetSystem.API.Queries
         public async Task<ActionResult<UserReadDTO>> Deactivate(Guid? id)
         {
             if (id == null)
-                return BadRequest("O id informado não pode ser nulo.");
+            {
+                string msg = "O id informado não pode ser nulo.";
+                _logger.LogWarning(msg);
+                return BadRequest(msg);
+            }
 
-            UserReadDTO? user;
             try
             {
-                user = await _service.Deactivate(id.Value);
-                return Ok(user);
+                var model = await _service.Deactivate(id.Value);
+                _logger.LogInformation($"Usuário desativado: {model.Id}");
+                return Ok(model);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 return BadRequest(ex.Message);
             }
         }

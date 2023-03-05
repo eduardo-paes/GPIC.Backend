@@ -1,32 +1,37 @@
 using CopetSystem.Infra.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Adição dos Controllers
-builder.Services.AddControllers();
-
-// Realiza comunicação com os demais Projetos.
-builder.Services.AddInfrastructure(builder.Configuration);
-
-// Configuração do Swagger
-builder.Services.AddInfrastructureSwagger();
-
-var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    // Adição dos Controllers
+    builder.Services.AddControllers();
+
+    // Realiza comunicação com os demais Projetos.
+    builder.Services.AddInfrastructure(builder.Configuration);
+
+    // Configuração do Swagger
+    builder.Services.AddInfrastructureSwagger();
+
+    // Permite que rotas sejam acessíveis em lowercase
+    builder.Services.AddRouting(options => options.LowercaseUrls = true);
 }
 
-app.UseHttpsRedirection();
+var app = builder.Build();
+{
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
 
-//app.UseStatusCodePages();
-//app.UseRouting();
-//app.UseAuthentication();
+    app.UseHttpsRedirection();
 
-app.UseAuthorization();
+    //app.UseStatusCodePages();
+    //app.UseRouting();
+    //app.UseAuthentication();
 
-app.MapControllers();
+    app.UseAuthorization();
 
-app.Run();
+    app.MapControllers();
+
+    app.Run();
+}

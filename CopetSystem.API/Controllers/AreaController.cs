@@ -6,16 +6,18 @@ using CopetSystem.Application.Interfaces;
 using CopetSystem.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CopetSystem.API.Queries
+namespace CopetSystem.API.Controllers
 {
     [ApiController]
     [Route("Api/[controller]")]
     public class AreaController : ControllerBase
     {
         private readonly IAreaService _service;
-        public AreaController(IAreaService service)
+        private readonly ILogger<AreaController> _logger;
+        public AreaController(IAreaService service, ILogger<AreaController> logger)
         {
             _service = service;
+            _logger = logger;
         }
 
         /// <summary>
@@ -29,15 +31,21 @@ namespace CopetSystem.API.Queries
         public async Task<ActionResult<ReadAreaDTO>> GetById(Guid? id)
         {
             if (id == null)
-                return BadRequest("O id informado não pode ser nulo.");
+            {
+                string msg = "O id informado não pode ser nulo.";
+                _logger.LogWarning(msg);
+                return BadRequest(msg);
+            }
 
             try
             {
-                var models = await _service.GetById(id);
-                return Ok(models);
+                var model = await _service.GetById(id);
+                _logger.LogInformation($"Área encontrada para o id {id}.");
+                return Ok(model);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 return NotFound(ex.Message);
             }
         }
@@ -55,8 +63,11 @@ namespace CopetSystem.API.Queries
             var models = await _service.GetAll();
             if (models == null)
             {
-                return NotFound("Nenhuma Área Principal encontrada.");
+                string msg = "Nenhuma Área encontrada.";
+                _logger.LogWarning(msg);
+                return NotFound(msg);
             }
+            _logger.LogInformation($"Áreas encontradas: {models.Count()}");
             return Ok(models);
         }
 
@@ -70,22 +81,16 @@ namespace CopetSystem.API.Queries
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<ReadAreaDTO>> Create([FromBody] CreateAreaDTO dto)
         {
-            if (ModelState.IsValid)
+            try
             {
-                ReadAreaDTO? model;
-                try
-                {
-                    model = await _service.Create(dto);
-                    return Ok(model);
-                }
-                catch (Exception ex)
-                {
-                    return BadRequest(ex.Message);
-                }
+                var model = await _service.Create(dto);
+                _logger.LogInformation($"Área criada: {model.Id}");
+                return Ok(model);
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest("Campos inválidos.");
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -98,22 +103,16 @@ namespace CopetSystem.API.Queries
         [HttpPut("{id}")]
         public async Task<ActionResult<ReadAreaDTO>> Update(Guid? id, [FromBody] UpdateAreaDTO dto)
         {
-            if (ModelState.IsValid)
+            try
             {
-                ReadAreaDTO? model;
-                try
-                {
-                    model = await _service.Update(id, dto);
-                    return Ok(model);
-                }
-                catch (Exception ex)
-                {
-                    return BadRequest(ex.Message);
-                }
+                var model = await _service.Update(id, dto);
+                _logger.LogInformation($"Área atualizada: {model.Id}");
+                return Ok(model);
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest("Campos inválidos.");
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -127,16 +126,21 @@ namespace CopetSystem.API.Queries
         public async Task<ActionResult<ReadAreaDTO>> Delete(Guid? id)
         {
             if (id == null)
-                return BadRequest("O id informado não pode ser nulo.");
+            {
+                string msg = "O id informado não pode ser nulo.";
+                _logger.LogWarning(msg);
+                return BadRequest(msg);
+            }
 
-            ReadAreaDTO? model;
             try
             {
-                model = await _service.Delete(id.Value);
+                var model = await _service.Delete(id.Value);
+                _logger.LogInformation($"Área removida: {model.Id}");
                 return Ok(model);
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 return BadRequest(ex.Message);
             }
         }
