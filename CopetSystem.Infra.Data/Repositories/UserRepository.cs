@@ -9,17 +9,23 @@ namespace CopetSystem.Infra.Data.Repositories
     {
         private readonly ApplicationDbContext _context;
         public UserRepository(ApplicationDbContext context) => _context = context;
-        
+
         #region CRUD Methods
         public async Task<User> GetById(Guid? id) => await _context.Users
             .FindAsync(id)
                 ?? throw new Exception("User not found.");
 
         public async Task<IEnumerable<User>> GetActiveUsers(int skip, int take) => await _context.Users
-            .Where(x => x.DeletedAt == null).ToListAsync();
+            .Where(x => x.DeletedAt == null)
+            .Skip(skip)
+            .Take(take)
+            .ToListAsync();
 
         public async Task<IEnumerable<User>> GetInactiveUsers(int skip, int take) => await _context.Users
-            .Where(x => x.DeletedAt != null).ToListAsync();
+            .Where(x => x.DeletedAt != null)
+            .Skip(skip)
+            .Take(take)
+            .ToListAsync();
 
         public async Task<User> Update(User user)
         {
@@ -39,7 +45,7 @@ namespace CopetSystem.Infra.Data.Repositories
 
         public async Task<User?> GetUserByEmail(string? email)
         {
-            return await _context.Users.FirstOrDefaultAsync(x => x.Email == email);                    
+            return await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
         }
 
         public async Task<User?> GetUserByCPF(string? cpf)
