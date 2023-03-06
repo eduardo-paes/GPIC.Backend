@@ -23,12 +23,11 @@ var app = builder.Build();
         app.UseSwaggerUI();
     }
 
+    app.UseHsts();
     app.UseHttpsRedirection();
 
-    //app.UseStatusCodePages();
-    //app.UseRouting();
-    //app.UseAuthentication();
-
+    app.UseRouting();
+    app.UseAuthentication();
     app.UseAuthorization();
 
     app.MapControllers();
