@@ -10,13 +10,13 @@ namespace CopetSystem.Domain.Interfaces
         /// Retorna usuários ativos no sistema.
         /// </summary>
         /// <returns>Usuários encontrados.</returns>
-        Task<IEnumerable<User>> GetActiveUsers();
+        Task<IEnumerable<User>> GetActiveUsers(int skip, int take);
 
         /// <summary>
         /// Retorna usuários inativos no sistema.
         /// </summary>
         /// <returns>Usuários encontrados.</returns>
-        Task<IEnumerable<User>> GetInactiveUsers();
+        Task<IEnumerable<User>> GetInactiveUsers(int skip, int take);
 
         /// <summary>
         /// Recupera usuário através do Id informado.

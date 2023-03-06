@@ -16,7 +16,7 @@ namespace CopetSystem.Domain.Interfaces
         /// Busca todas as entidades ativas.
         /// </summary>
         /// <returns>Lista de entidades ativas.</returns>
-        Task<IEnumerable<T>> GetAll();
+        Task<IEnumerable<T>> GetAll(int skip, int take);
 
         /// <summary>
         /// Cria entidade conforme parâmetros fornecidos.

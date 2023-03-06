@@ -21,11 +21,11 @@ namespace CopetSystem.API.Controllers
         }
 
         /// <summary>
-        /// Busca área principal pelo id.
+        /// Busca área pelo id.
         /// </summary>
         /// <param></param>
-        /// <returns>Área principal correspondente</returns>
-        /// <response code="200">Retorna área principal correspondente</response>
+        /// <returns>Área correspondente</returns>
+        /// <response code="200">Retorna área correspondente</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<ReadAreaDTO>> GetById(Guid? id)
@@ -51,16 +51,16 @@ namespace CopetSystem.API.Controllers
         }
 
         /// <summary>
-        /// Busca todas as áreas principais ativas.
+        /// Busca todas as áreas ativas.
         /// </summary>
         /// <param></param>
-        /// <returns>Todas as áreas principais ativas</returns>
-        /// <response code="200">Retorna todas as áreas principais ativas</response>
+        /// <returns>Todas as áreas ativas</returns>
+        /// <response code="200">Retorna todas as áreas ativas</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<ReadAreaDTO>>> GetAll()
+        public async Task<ActionResult<IEnumerable<ReadAreaDTO>>> GetAll(int skip = 0, int take = 50)
         {
-            var models = await _service.GetAll();
+            var models = await _service.GetAll(skip, take);
             if (models == null)
             {
                 string msg = "Nenhuma Área encontrada.";
@@ -72,11 +72,11 @@ namespace CopetSystem.API.Controllers
         }
 
         /// <summary>
-        /// Cria área principal.
+        /// Cria área.
         /// </summary>
         /// <param></param>
-        /// <returns>Área principal criada</returns>
-        /// <response code="200">Retorna área principal criada</response>
+        /// <returns>Área criada</returns>
+        /// <response code="200">Retorna área criada</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<ReadAreaDTO>> Create([FromBody] CreateAreaDTO dto)
@@ -95,11 +95,11 @@ namespace CopetSystem.API.Controllers
         }
 
         /// <summary>
-        /// Atualiza área principal.
+        /// Atualiza área.
         /// </summary>
         /// <param></param>
-        /// <returns>Área principal atualizada</returns>
-        /// <response code="200">Retorna área principal atualizada</response>
+        /// <returns>Área atualizada</returns>
+        /// <response code="200">Retorna área atualizada</response>
         [HttpPut("{id}")]
         public async Task<ActionResult<ReadAreaDTO>> Update(Guid? id, [FromBody] UpdateAreaDTO dto)
         {
@@ -117,11 +117,11 @@ namespace CopetSystem.API.Controllers
         }
 
         /// <summary>
-        /// Remove área principal.
+        /// Remove área.
         /// </summary>
         /// <param></param>
-        /// <returns>Área principal removida</returns>
-        /// <response code="200">Retorna área principal removida</response>
+        /// <returns>Área removida</returns>
+        /// <response code="200">Retorna área removida</response>
         [HttpDelete("{id}")]
         public async Task<ActionResult<ReadAreaDTO>> Delete(Guid? id)
         {

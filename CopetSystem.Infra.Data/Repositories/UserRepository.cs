@@ -15,10 +15,10 @@ namespace CopetSystem.Infra.Data.Repositories
             .FindAsync(id)
                 ?? throw new Exception("User not found.");
 
-        public async Task<IEnumerable<User>> GetActiveUsers() => await _context.Users
+        public async Task<IEnumerable<User>> GetActiveUsers(int skip, int take) => await _context.Users
             .Where(x => x.DeletedAt == null).ToListAsync();
 
-        public async Task<IEnumerable<User>> GetInactiveUsers() => await _context.Users
+        public async Task<IEnumerable<User>> GetInactiveUsers(int skip, int take) => await _context.Users
             .Where(x => x.DeletedAt != null).ToListAsync();
 
         public async Task<User> Update(User user)

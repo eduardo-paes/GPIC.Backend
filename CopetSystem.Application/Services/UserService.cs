@@ -29,15 +29,15 @@ namespace CopetSystem.Application.Services
             return _mapper.Map<UserReadDTO>(entity);
         }
 
-        public async Task<IQueryable<UserReadDTO>> GetActiveUsers()
+        public async Task<IQueryable<UserReadDTO>> GetActiveUsers(int skip, int take)
         {
-            var entities = await _repository.GetActiveUsers();
+            var entities = await _repository.GetActiveUsers(skip, take);
             return _mapper.Map<IEnumerable<UserReadDTO>>(entities).AsQueryable();
         }
 
-        public async Task<IQueryable<UserReadDTO>> GetInactiveUsers()
+        public async Task<IQueryable<UserReadDTO>> GetInactiveUsers(int skip, int take)
         {
-            var entities = await _repository.GetInactiveUsers();
+            var entities = await _repository.GetInactiveUsers(skip, take);
             return _mapper.Map<IEnumerable<UserReadDTO>>(entities).AsQueryable();
         }
 

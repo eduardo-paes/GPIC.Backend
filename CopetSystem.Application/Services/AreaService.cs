@@ -48,9 +48,9 @@ namespace CopetSystem.Application.Services
       return _mapper.Map<ReadAreaDTO>(model);
     }
 
-    public async Task<IQueryable<ReadAreaDTO>> GetAll()
-    {
-      var entities = await _areaRepository.GetAll();
+    public async Task<IQueryable<ReadAreaDTO>> GetAll(int skip, int take)
+        {
+      var entities = await _areaRepository.GetAll(skip, take);
       return _mapper.Map<IEnumerable<ReadAreaDTO>>(entities).AsQueryable();
     }
 

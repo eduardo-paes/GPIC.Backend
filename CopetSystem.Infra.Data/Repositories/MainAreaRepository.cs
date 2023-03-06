@@ -26,8 +26,10 @@ namespace CopetSystem.Infra.Data.Repositories
             .ToAsyncEnumerable()
             .FirstOrDefaultAsync();
 
-        public async Task<IEnumerable<MainArea>> GetAll() => await _context.MainAreas
+        public async Task<IEnumerable<MainArea>> GetAll(int skip, int take) => await _context.MainAreas
             .Where(x => x.DeletedAt == null)
+            .Skip(skip)
+            .Take(take)
             .AsAsyncEnumerable()
             .ToListAsync();
 

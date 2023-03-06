@@ -58,9 +58,9 @@ namespace CopetSystem.API.Controllers
         /// <response code="200">Retorna todas as áreas principais ativas</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<ReadMainAreaDTO>>> GetAll()
+        public async Task<ActionResult<IEnumerable<ReadMainAreaDTO>>> GetAll(int skip = 0, int take = 50)
         {
-            var models = await _service.GetAll();
+            var models = await _service.GetAll(skip, take);
             if (models == null)
             {
                 string msg = "Nenhuma Área Principal encontrada.";

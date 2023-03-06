@@ -56,9 +56,9 @@ namespace CopetSystem.API.Controllers
         /// <response code="200">Retorna todos os usuários ativos</response>
         [HttpGet("Active/", Name = "GetAllActiveUsers")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<UserReadDTO>>> GetAllActive()
+        public async Task<ActionResult<IEnumerable<UserReadDTO>>> GetAllActive(int skip = 0, int take = 50)
         {
-            var models = await _service.GetActiveUsers();
+            var models = await _service.GetActiveUsers(skip, take);
             if (models == null)
             {
                 string msg = "Nenhum usuário encontrado.";
@@ -77,9 +77,9 @@ namespace CopetSystem.API.Controllers
         /// <response code="200">Retorna todos os usuários ativos</response>
         [HttpGet("Inactive/", Name = "GetAllInactiveUsers")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<UserReadDTO>>> GetAllInactive()
+        public async Task<ActionResult<IEnumerable<UserReadDTO>>> GetAllInactive(int skip = 0, int take = 50)
         {
-            var models = await _service.GetInactiveUsers();
+            var models = await _service.GetInactiveUsers(skip, take);
             if (models == null)
             {
                 string msg = "Nenhum usuário encontrado.";

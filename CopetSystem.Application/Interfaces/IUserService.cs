@@ -5,8 +5,8 @@ namespace CopetSystem.Application.Interfaces
 {
 	public interface IUserService
 	{
-        Task<IQueryable<UserReadDTO>> GetActiveUsers();
-        Task<IQueryable<UserReadDTO>> GetInactiveUsers();
+        Task<IQueryable<UserReadDTO>> GetActiveUsers(int skip, int take);
+        Task<IQueryable<UserReadDTO>> GetInactiveUsers(int skip, int take);
 
         Task<UserReadDTO> GetById(Guid? id);
         Task<UserReadDTO> Update(Guid? id, UserUpdateDTO user);
