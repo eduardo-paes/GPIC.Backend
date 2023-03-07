@@ -1,5 +1,4 @@
-﻿using System;
-using CopetSystem.Application.DTOs.Auth;
+﻿using CopetSystem.Application.DTOs.Auth;
 using CopetSystem.Application.DTOs.User;
 using CopetSystem.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;

@@ -1,9 +1,5 @@
-using System;
-using CopetSystem.Application.DTOs.Auth;
 using CopetSystem.Application.DTOs.Area;
-using CopetSystem.Application.DTOs.User;
 using CopetSystem.Application.Interfaces;
-using CopetSystem.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CopetSystem.API.Controllers

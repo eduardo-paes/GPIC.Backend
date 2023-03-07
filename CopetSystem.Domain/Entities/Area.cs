@@ -1,5 +1,3 @@
-using System;
-using System.Xml.Linq;
 using CopetSystem.Domain.Entities.Primitives;
 using CopetSystem.Domain.Validation;
 
@@ -19,7 +17,6 @@ namespace CopetSystem.Domain.Entities
                 _mainAreaId = value;
             }
         }
-
         private string? _code;
         public string? Code
         {
@@ -35,7 +32,6 @@ namespace CopetSystem.Domain.Entities
                 _code = value;
             }
         }
-
         private string? _name;
         public string? Name
         {
@@ -51,7 +47,6 @@ namespace CopetSystem.Domain.Entities
                 _name = value;
             }
         }
-
         public virtual MainArea? MainArea { get; private set; }
         #endregion
 

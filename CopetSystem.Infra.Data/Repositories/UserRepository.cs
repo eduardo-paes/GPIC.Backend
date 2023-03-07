@@ -7,8 +7,10 @@ namespace CopetSystem.Infra.Data.Repositories
 {
     public class UserRepository : IUserRepository
     {
+        #region Global Scope
         private readonly ApplicationDbContext _context;
         public UserRepository(ApplicationDbContext context) => _context = context;
+        #endregion
 
         #region CRUD Methods
         public async Task<User> GetById(Guid? id) => await _context.Users

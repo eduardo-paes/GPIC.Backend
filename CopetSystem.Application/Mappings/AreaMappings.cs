@@ -1,5 +1,4 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using CopetSystem.Application.DTOs.Area;
 using CopetSystem.Domain.Entities;
 

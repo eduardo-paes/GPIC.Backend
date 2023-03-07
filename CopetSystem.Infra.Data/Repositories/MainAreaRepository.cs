@@ -11,16 +11,16 @@ namespace CopetSystem.Infra.Data.Repositories
         #region Global Scope
         private readonly ApplicationDbContext _context;
         public MainAreaRepository(ApplicationDbContext context) => _context = context;
+        #endregion
 
+        #region Public Methods
         public async Task<MainArea> Create(MainArea model)
         {
             _context.Add(model);
             await _context.SaveChangesAsync();
             return model;
         }
-        #endregion
 
-        #region Public Methods
         public async Task<MainArea?> GetByCode(string? code) => await _context.MainAreas
             .Where(x => x.Code == code && x.DeletedAt == null)
             .ToAsyncEnumerable()

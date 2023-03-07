@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-using System.Reflection.Emit;
-using CopetSystem.Domain.Entities;
+﻿using CopetSystem.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CopetSystem.Infra.Data.Context
@@ -14,7 +12,7 @@ namespace CopetSystem.Infra.Data.Context
 
         public DbSet<MainArea> MainAreas { get; set; }
         public DbSet<Area> Areas { get; set; }
-        //public DbSet<SubArea> SubAreas { get; set; }
+        public DbSet<SubArea> SubAreas { get; set; }
 
         //public DbSet<ProgramType> ProgramTypes { get; set; }
         //public DbSet<Project> Projects { get; set; }

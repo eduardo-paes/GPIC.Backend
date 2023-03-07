@@ -1,4 +1,4 @@
-using CopetSystem.Application.DTOs.MainArea;
+using CopetSystem.Application.DTOs.SubArea;
 using CopetSystem.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,25 +6,25 @@ namespace CopetSystem.API.Controllers
 {
     [ApiController]
     [Route("Api/[controller]")]
-    public class MainAreaController : ControllerBase
+    public class SubAreaController : ControllerBase
     {
-        private readonly IMainAreaService _service;
-        private readonly ILogger<MainAreaController> _logger;
-        public MainAreaController(IMainAreaService service, ILogger<MainAreaController> logger)
+        private readonly ISubAreaService _service;
+        private readonly ILogger<SubAreaController> _logger;
+        public SubAreaController(ISubAreaService service, ILogger<SubAreaController> logger)
         {
             _service = service;
             _logger = logger;
         }
 
         /// <summary>
-        /// Busca área principal pelo id.
+        /// Busca sub área pelo id.
         /// </summary>
         /// <param></param>
-        /// <returns>Área principal correspondente</returns>
-        /// <response code="200">Retorna área principal correspondente</response>
+        /// <returns>Sub Área correspondente</returns>
+        /// <response code="200">Retorna sub área correspondente</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<ReadMainAreaDTO>> GetById(Guid? id)
+        public async Task<ActionResult<ReadSubAreaDTO>> GetById(Guid? id)
         {
             if (id == null)
             {
@@ -36,7 +36,7 @@ namespace CopetSystem.API.Controllers
             try
             {
                 var model = await _service.GetById(id);
-                _logger.LogInformation($"Área Principal encontrada para o id {id}.");
+                _logger.LogInformation($"Sub Área encontrada para o id {id}.");
                 return Ok(model);
             }
             catch (Exception ex)
@@ -47,40 +47,40 @@ namespace CopetSystem.API.Controllers
         }
 
         /// <summary>
-        /// Busca todas as áreas principais ativas.
+        /// Busca todas as sub áreas ativas.
         /// </summary>
         /// <param></param>
-        /// <returns>Todas as áreas principais ativas</returns>
-        /// <response code="200">Retorna todas as áreas principais ativas</response>
+        /// <returns>Todas as sub áreas ativas</returns>
+        /// <response code="200">Retorna todas as sub áreas ativas</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<ReadMainAreaDTO>>> GetAll(int skip = 0, int take = 50)
+        public async Task<ActionResult<IEnumerable<ReadSubAreaDTO>>> GetAll(int skip = 0, int take = 50)
         {
             var models = await _service.GetAll(skip, take);
             if (models == null)
             {
-                string msg = "Nenhuma Área Principal encontrada.";
+                string msg = "Nenhuma Sub Área encontrada.";
                 _logger.LogWarning(msg);
                 return NotFound(msg);
             }
-            _logger.LogInformation($"Áreas principais encontradas: {models.Count()}");
+            _logger.LogInformation($"Sub Áreas encontradas: {models.Count()}");
             return Ok(models);
         }
 
         /// <summary>
-        /// Cria área principal.
+        /// Cria sub área.
         /// </summary>
         /// <param></param>
-        /// <returns>Área principal criada</returns>
-        /// <response code="200">Retorna área principal criada</response>
+        /// <returns>Sub Área criada</returns>
+        /// <response code="200">Retorna sub área criada</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<ReadMainAreaDTO>> Create([FromBody] CreateMainAreaDTO dto)
+        public async Task<ActionResult<ReadSubAreaDTO>> Create([FromBody] CreateSubAreaDTO dto)
         {
             try
             {
                 var model = await _service.Create(dto);
-                _logger.LogInformation($"Área principal criada: {model.Id}");
+                _logger.LogInformation($"Sub Área criada: {model.Id}");
                 return Ok(model);
             }
             catch (Exception ex)
@@ -91,18 +91,18 @@ namespace CopetSystem.API.Controllers
         }
 
         /// <summary>
-        /// Atualiza área principal.
+        /// Atualiza sub área.
         /// </summary>
         /// <param></param>
-        /// <returns>Área principal atualizada</returns>
-        /// <response code="200">Retorna área principal atualizada</response>
+        /// <returns>Sub Área atualizada</returns>
+        /// <response code="200">Retorna sub área atualizada</response>
         [HttpPut("{id}")]
-        public async Task<ActionResult<ReadMainAreaDTO>> Update(Guid? id, [FromBody] UpdateMainAreaDTO dto)
+        public async Task<ActionResult<ReadSubAreaDTO>> Update(Guid? id, [FromBody] UpdateSubAreaDTO dto)
         {
             try
             {
                 var model = await _service.Update(id, dto);
-                _logger.LogInformation($"Área principal atualizada: {model.Id}");
+                _logger.LogInformation($"Sub Área atualizada: {model.Id}");
                 return Ok(model);
             }
             catch (Exception ex)
@@ -113,13 +113,13 @@ namespace CopetSystem.API.Controllers
         }
 
         /// <summary>
-        /// Remove área principal.
+        /// Remove sub área.
         /// </summary>
         /// <param></param>
-        /// <returns>Área principal removida</returns>
-        /// <response code="200">Retorna área principal removida</response>
+        /// <returns>Sub Área removida</returns>
+        /// <response code="200">Retorna sub área removida</response>
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ReadMainAreaDTO>> Delete(Guid? id)
+        public async Task<ActionResult<ReadSubAreaDTO>> Delete(Guid? id)
         {
             if (id == null)
             {
@@ -131,7 +131,7 @@ namespace CopetSystem.API.Controllers
             try
             {
                 var model = await _service.Delete(id.Value);
-                _logger.LogInformation($"Área principal removida: {model.Id}");
+                _logger.LogInformation($"Sub Área removida: {model.Id}");
                 return Ok(model);
             }
             catch (Exception ex)

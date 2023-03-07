@@ -1,10 +1,9 @@
-﻿using System;
-using CopetSystem.Application.DTOs.User;
+﻿using CopetSystem.Application.DTOs.User;
 
 namespace CopetSystem.Application.Interfaces
 {
-	public interface IUserService
-	{
+    public interface IUserService
+    {
         Task<IQueryable<UserReadDTO>> GetActiveUsers(int skip, int take);
         Task<IQueryable<UserReadDTO>> GetInactiveUsers(int skip, int take);
 

@@ -1,10 +1,8 @@
-﻿using System;
-using CopetSystem.Application.DTOs.MainArea;
-using CopetSystem.Application.Interfaces.Primitives;
+﻿using CopetSystem.Application.DTOs.MainArea;
 
 namespace CopetSystem.Application.Interfaces
 {
-	public interface IMainAreaService
+    public interface IMainAreaService
     {
         Task<ReadMainAreaDTO> GetById(Guid? id);
         Task<IQueryable<ReadMainAreaDTO>> GetAll(int skip, int take);

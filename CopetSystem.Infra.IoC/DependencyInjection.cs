@@ -16,6 +16,7 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services,
             IConfiguration configuration)
     {
+        #region Acesso Appsettings
         // Adicione o caminho base para o arquivo appsettings.json
         var basePath = Path.GetDirectoryName(typeof(DependencyInjection).Assembly.Location);
         var configurationBuilder = new ConfigurationBuilder()
@@ -24,39 +25,47 @@ public static class DependencyInjection
 
         // Use a configuração criada acima para ler as configurações do appsettings.json
         configuration = configurationBuilder.Build();
+        #endregion
 
+        #region Inicialização do banco de dados
         services.AddDbContext<ApplicationDbContext>(
             o => o.UseNpgsql(configuration.GetConnectionString("DefaultConnection"),
             b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+        #endregion
 
-        // Serviços de Log 
+        #region Serviços de Log 
         Log.Logger = new LoggerConfiguration()
             .ReadFrom.Configuration(configuration)
             .CreateLogger();
-
         services.AddLogging(loggingBuilder =>
         {
             loggingBuilder.ClearProviders();
             loggingBuilder.AddSerilog(Log.Logger, dispose: true);
         });
+        #endregion
 
-
-        // Serviços de Negócios
+        #region Serviços de Negócios
         services.AddScoped<IAreaService, AreaService>();
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IMainAreaService, MainAreaService>();
+        services.AddScoped<ISubAreaService, SubAreaService>();
         services.AddScoped<IUserService, UserService>();
+        #endregion
 
-        // Repositórios
+        #region Repositórios
         services.AddScoped<IAreaRepository, AreaRepository>();
         services.AddScoped<IMainAreaRepository, MainAreaRepository>();
+        services.AddScoped<ISubAreaRepository, SubAreaRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
+        #endregion
 
-        // DTO Mappers
+        #region DTO Mappers
         services.AddAutoMapper(typeof(AreaMappings));
         services.AddAutoMapper(typeof(AuthMappings));
         services.AddAutoMapper(typeof(MainAreaMappings));
+        services.AddAutoMapper(typeof(SubAreaMappings));
         services.AddAutoMapper(typeof(UserMappings));
+        #endregion
 
         return services;
     }

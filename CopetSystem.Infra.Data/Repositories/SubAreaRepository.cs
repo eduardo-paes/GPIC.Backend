@@ -1,53 +1,56 @@
-﻿// using System.Data.Entity;
-using CopetSystem.Domain.Entities;
+﻿using CopetSystem.Domain.Entities;
 using CopetSystem.Domain.Interfaces;
 using CopetSystem.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 
 namespace CopetSystem.Infra.Data.Repositories
 {
-    public class AreaRepository : IAreaRepository
+    public class SubAreaRepository : ISubAreaRepository
     {
         #region Global Scope
         private readonly ApplicationDbContext _context;
-        public AreaRepository(ApplicationDbContext context) => _context = context;
+        public SubAreaRepository(ApplicationDbContext context) => _context = context;
         #endregion
 
         #region Public Methods
-        public async Task<Area> Create(Area model)
+        public async Task<SubArea> Create(SubArea model)
         {
             _context.Add(model);
             await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<Area?> GetByCode(string? code) => await _context.Areas
+        public async Task<SubArea?> GetByCode(string? code) => await _context.SubAreas
             .Where(x => x.Code == code && x.DeletedAt == null)
+            .Include(x => x.Area)
+            .Include(x => x.Area.MainArea)
             .ToAsyncEnumerable()
             .FirstOrDefaultAsync();
 
-        public async Task<IEnumerable<Area>> GetAll(int skip, int take) => await _context.Areas
+        public async Task<IEnumerable<SubArea>> GetAll(int skip, int take) => await _context.SubAreas
             .Where(x => x.DeletedAt == null)
             .Skip(skip)
             .Take(take)
-            .Include(x => x.MainArea)
+            .Include(x => x.Area)
+            .Include(x => x.Area.MainArea)
             .AsAsyncEnumerable()
             .ToListAsync();
 
-        public async Task<Area> GetById(Guid? id) =>
-            await _context.Areas
-                .Include(x => x.MainArea)
+        public async Task<SubArea> GetById(Guid? id) =>
+            await _context.SubAreas
+                .Include(x => x.Area)
+                .Include(x => x.Area.MainArea)
                 .FirstOrDefaultAsync(x => x.Id == id)
                 ?? throw new Exception($"Nenhuma Área encontrada para o id {id}");
 
-        public async Task<Area> Delete(Guid? id)
+        public async Task<SubArea> Delete(Guid? id)
         {
             var model = await this.GetById(id);
             model.DeactivateEntity();
             return await Update(model);
         }
 
-        public async Task<Area> Update(Area model)
+        public async Task<SubArea> Update(SubArea model)
         {
             _context.Update(model);
             await _context.SaveChangesAsync();
