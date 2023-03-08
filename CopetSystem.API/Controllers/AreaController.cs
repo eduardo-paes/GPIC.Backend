@@ -28,7 +28,7 @@ namespace CopetSystem.API.Controllers
         {
             if (id == null)
             {
-                string msg = "O id informado não pode ser nulo.";
+                const string msg = "O id informado não pode ser nulo.";
                 _logger.LogWarning(msg);
                 return BadRequest(msg);
             }
@@ -47,16 +47,23 @@ namespace CopetSystem.API.Controllers
         }
 
         /// <summary>
-        /// Busca todas as áreas ativas.
+        /// Busca todas as áreas ativas pela área principal.
         /// </summary>
         /// <param></param>
-        /// <returns>Todas as áreas ativas</returns>
-        /// <response code="200">Retorna todas as áreas ativas</response>
+        /// <returns>Todas as áreas ativas da área principal</returns>
+        /// <response code="200">Retorna todas as áreas ativas da área principal</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<ReadAreaDTO>>> GetAll(int skip = 0, int take = 50)
+        public async Task<ActionResult<IEnumerable<ReadAreaDTO>>> GetAreasByMainArea(Guid? mainAreadId, int skip = 0, int take = 50)
         {
-            var models = await _service.GetAll(skip, take);
+            if (mainAreadId == null)
+            {
+                const string msg = "O MainAreadId informado não pode ser nulo.";
+                _logger.LogWarning(msg);
+                return BadRequest(msg);
+            }
+
+            var models = await _service.GetAreasByMainArea(mainAreadId, skip, take);
             if (models == null)
             {
                 string msg = "Nenhuma Área encontrada.";

@@ -13,8 +13,7 @@ using Serilog;
 namespace CopetSystem.Infra.IoC;
 public static class DependencyInjection
 {
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services,
-            IConfiguration configuration)
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         #region Acesso Appsettings
         // Adicione o caminho base para o arquivo appsettings.json

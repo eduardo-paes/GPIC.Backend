@@ -1,9 +1,7 @@
-﻿using System;
-
-namespace CopetSystem.Domain.Interfaces
+﻿namespace CopetSystem.Domain.Interfaces
 {
-	public interface IGenericCRUDRepository<T>
-	{
+    public interface IGenericCRUDRepository<T>
+    {
         /// <summary>
         /// Busca entidade pelo Id informado.
         /// Lança uma exceção quando a entidade não é encontrada.
@@ -40,4 +38,3 @@ namespace CopetSystem.Domain.Interfaces
         Task<T> Update(T model);
     }
 }
-
