@@ -24,7 +24,7 @@ namespace CopetSystem.API.Controllers
         /// <response code="200">Retorna sub área correspondente</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<ReadSubAreaDTO>> GetById(Guid? id)
+        public async Task<ActionResult<DetailedReadSubAreaDTO>> GetById(Guid? id)
         {
             if (id == null)
             {
@@ -47,19 +47,26 @@ namespace CopetSystem.API.Controllers
         }
 
         /// <summary>
-        /// Busca todas as sub áreas ativas.
+        /// Busca todas as sub áreas ativas pela área.
         /// </summary>
         /// <param></param>
-        /// <returns>Todas as sub áreas ativas</returns>
-        /// <response code="200">Retorna todas as sub áreas ativas</response>
+        /// <returns>Todas as sub áreas ativas da área</returns>
+        /// <response code="200">Retorna todas as sub áreas ativas da área</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<ReadSubAreaDTO>>> GetAll(int skip = 0, int take = 50)
+        public async Task<ActionResult<IEnumerable<ResumedReadSubAreaDTO>>> GetSubAreasByArea(Guid? areaId, int skip = 0, int take = 50)
         {
-            var models = await _service.GetAll(skip, take);
+            if (areaId == null)
+            {
+                const string msg = "O AreadId informado não pode ser nulo.";
+                _logger.LogWarning(msg);
+                return BadRequest(msg);
+            }
+
+            var models = await _service.GetSubAreasByArea(areaId, skip, take);
             if (models == null)
             {
-                string msg = "Nenhuma Sub Área encontrada.";
+                const string msg = "Nenhuma Sub Área encontrada.";
                 _logger.LogWarning(msg);
                 return NotFound(msg);
             }
@@ -75,7 +82,7 @@ namespace CopetSystem.API.Controllers
         /// <response code="200">Retorna sub área criada</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<ReadSubAreaDTO>> Create([FromBody] CreateSubAreaDTO dto)
+        public async Task<ActionResult<DetailedReadSubAreaDTO>> Create([FromBody] CreateSubAreaDTO dto)
         {
             try
             {
@@ -97,7 +104,7 @@ namespace CopetSystem.API.Controllers
         /// <returns>Sub Área atualizada</returns>
         /// <response code="200">Retorna sub área atualizada</response>
         [HttpPut("{id}")]
-        public async Task<ActionResult<ReadSubAreaDTO>> Update(Guid? id, [FromBody] UpdateSubAreaDTO dto)
+        public async Task<ActionResult<DetailedReadSubAreaDTO>> Update(Guid? id, [FromBody] UpdateSubAreaDTO dto)
         {
             try
             {
@@ -119,7 +126,7 @@ namespace CopetSystem.API.Controllers
         /// <returns>Sub Área removida</returns>
         /// <response code="200">Retorna sub área removida</response>
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ReadSubAreaDTO>> Delete(Guid? id)
+        public async Task<ActionResult<DetailedReadSubAreaDTO>> Delete(Guid? id)
         {
             if (id == null)
             {

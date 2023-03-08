@@ -22,7 +22,7 @@ namespace CopetSystem.Application.Services
         #endregion
 
         #region Public Methods
-        public async Task<ReadSubAreaDTO> Create(CreateSubAreaDTO dto)
+        public async Task<DetailedReadSubAreaDTO> Create(CreateSubAreaDTO dto)
         {
             var entity = await _subAreaRepository.GetByCode(dto.Code);
             if (entity != null)
@@ -39,28 +39,28 @@ namespace CopetSystem.Application.Services
 
             // Cria nova área
             entity = await _subAreaRepository.Create(_mapper.Map<SubArea>(dto));
-            return _mapper.Map<ReadSubAreaDTO>(entity);
+            return _mapper.Map<DetailedReadSubAreaDTO>(entity);
         }
 
-        public async Task<ReadSubAreaDTO> Delete(Guid id)
+        public async Task<DetailedReadSubAreaDTO> Delete(Guid id)
         {
             var model = await _subAreaRepository.Delete(id);
-            return _mapper.Map<ReadSubAreaDTO>(model);
+            return _mapper.Map<DetailedReadSubAreaDTO>(model);
         }
 
-        public async Task<IQueryable<ReadSubAreaDTO>> GetAll(int skip, int take)
+        public async Task<IQueryable<ResumedReadSubAreaDTO>> GetSubAreasByArea(Guid? areaId, int skip, int take)
         {
-            var entities = await _subAreaRepository.GetAll(skip, take);
-            return _mapper.Map<IEnumerable<ReadSubAreaDTO>>(entities).AsQueryable();
+            var entities = await _subAreaRepository.GetSubAreasByArea(areaId, skip, take);
+            return _mapper.Map<IEnumerable<ResumedReadSubAreaDTO>>(entities).AsQueryable();
         }
 
-        public async Task<ReadSubAreaDTO> GetById(Guid? id)
+        public async Task<DetailedReadSubAreaDTO> GetById(Guid? id)
         {
             var entity = await _subAreaRepository.GetById(id);
-            return _mapper.Map<ReadSubAreaDTO>(entity);
+            return _mapper.Map<DetailedReadSubAreaDTO>(entity);
         }
 
-        public async Task<ReadSubAreaDTO> Update(Guid? id, UpdateSubAreaDTO dto)
+        public async Task<DetailedReadSubAreaDTO> Update(Guid? id, UpdateSubAreaDTO dto)
         {
             // Recupera entidade que será atualizada
             var entity = await _subAreaRepository.GetById(id);
@@ -72,7 +72,7 @@ namespace CopetSystem.Application.Services
 
             // Salva entidade atualizada no banco
             var model = await _subAreaRepository.Update(entity);
-            return _mapper.Map<ReadSubAreaDTO>(model);
+            return _mapper.Map<DetailedReadSubAreaDTO>(model);
         }
         #endregion
     }

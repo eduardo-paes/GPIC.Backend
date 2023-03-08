@@ -2,14 +2,14 @@
 
 namespace CopetSystem.Application.Interfaces
 {
-    public interface IAreaService
-    {
-        Task<ReadAreaDTO> GetById(Guid? id);
-        Task<IQueryable<ReadAreaDTO>> GetAreasByMainArea(Guid? mainAreaId, int skip, int take);
+  public interface IAreaService
+  {
+    Task<DetailedReadAreaDTO> GetById(Guid? id);
+    Task<IQueryable<ResumedReadAreaDTO>> GetAreasByMainArea(Guid? mainAreaId, int skip, int take);
 
-        Task<ReadAreaDTO> Create(CreateAreaDTO model);
-        Task<ReadAreaDTO> Update(Guid? id, UpdateAreaDTO model);
-        Task<ReadAreaDTO> Delete(Guid id);
-    }
+    Task<DetailedReadAreaDTO> Create(CreateAreaDTO model);
+    Task<DetailedReadAreaDTO> Update(Guid? id, UpdateAreaDTO model);
+    Task<DetailedReadAreaDTO> Delete(Guid id);
+  }
 }
 

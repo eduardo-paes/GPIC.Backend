@@ -10,7 +10,8 @@ namespace CopetSystem.Application.Mappings
         {
             CreateMap<SubArea, CreateSubAreaDTO>().ReverseMap();
             CreateMap<SubArea, UpdateSubAreaDTO>().ReverseMap();
-            CreateMap<SubArea, ReadSubAreaDTO>()
+            CreateMap<SubArea, ResumedReadSubAreaDTO>().ReverseMap();
+            CreateMap<SubArea, DetailedReadSubAreaDTO>()
                 .ForMember(dest => dest.Area, opt => opt.MapFrom(src => src.Area))
                 .ForPath(dest => dest.Area.MainArea, opt => opt.MapFrom(src => src.Area.MainArea))
                 .ReverseMap();

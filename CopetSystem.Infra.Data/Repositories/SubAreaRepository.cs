@@ -27,8 +27,8 @@ namespace CopetSystem.Infra.Data.Repositories
             .ToAsyncEnumerable()
             .FirstOrDefaultAsync();
 
-        public async Task<IEnumerable<SubArea>> GetAll(int skip, int take) => await _context.SubAreas
-            .Where(x => x.DeletedAt == null)
+        public async Task<IEnumerable<SubArea>> GetSubAreasByArea(Guid? areaId, int skip, int take) => await _context.SubAreas
+            .Where(x => x.DeletedAt == null && x.AreaId == areaId)
             .Skip(skip)
             .Take(take)
             .Include(x => x.Area)

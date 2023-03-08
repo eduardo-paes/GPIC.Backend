@@ -4,16 +4,16 @@ using CopetSystem.Domain.Entities;
 
 namespace CopetSystem.Application.Mappings
 {
-    public class AreaMappings : Profile
+  public class AreaMappings : Profile
+  {
+    public AreaMappings()
     {
-        public AreaMappings()
-        {
-            CreateMap<Area, CreateAreaDTO>().ReverseMap();
-            CreateMap<Area, UpdateAreaDTO>().ReverseMap();
-            CreateMap<Area, ReadAreaDTO>()
-                .ForMember(dest => dest.MainArea, opt => opt.MapFrom(src => src.MainArea))
-                .ReverseMap();
-        }
+      CreateMap<Area, CreateAreaDTO>().ReverseMap();
+      CreateMap<Area, UpdateAreaDTO>().ReverseMap();
+      CreateMap<Area, ResumedReadAreaDTO>().ReverseMap();
+      CreateMap<Area, DetailedReadAreaDTO>()
+          .ForMember(dest => dest.MainArea, opt => opt.MapFrom(src => src.MainArea))
+          .ReverseMap();
     }
+  }
 }
-

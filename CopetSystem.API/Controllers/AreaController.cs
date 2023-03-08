@@ -4,10 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CopetSystem.API.Controllers
 {
+    /// <summary>
+    /// Controller das entidades de área.
+    /// </summary>
     [ApiController]
     [Route("Api/[controller]")]
     public class AreaController : ControllerBase
     {
+        #region Global Scope
         private readonly IAreaService _service;
         private readonly ILogger<AreaController> _logger;
         public AreaController(IAreaService service, ILogger<AreaController> logger)
@@ -15,6 +19,7 @@ namespace CopetSystem.API.Controllers
             _service = service;
             _logger = logger;
         }
+        #endregion
 
         /// <summary>
         /// Busca área pelo id.
@@ -24,7 +29,7 @@ namespace CopetSystem.API.Controllers
         /// <response code="200">Retorna área correspondente</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<ReadAreaDTO>> GetById(Guid? id)
+        public async Task<ActionResult<DetailedReadAreaDTO>> GetById(Guid? id)
         {
             if (id == null)
             {
@@ -54,19 +59,19 @@ namespace CopetSystem.API.Controllers
         /// <response code="200">Retorna todas as áreas ativas da área principal</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<ReadAreaDTO>>> GetAreasByMainArea(Guid? mainAreadId, int skip = 0, int take = 50)
+        public async Task<ActionResult<IEnumerable<ResumedReadAreaDTO>>> GetAreasByMainArea(Guid? mainAreaId, int skip = 0, int take = 50)
         {
-            if (mainAreadId == null)
+            if (mainAreaId == null)
             {
-                const string msg = "O MainAreadId informado não pode ser nulo.";
+                const string msg = "O MainAreaId informado não pode ser nulo.";
                 _logger.LogWarning(msg);
                 return BadRequest(msg);
             }
 
-            var models = await _service.GetAreasByMainArea(mainAreadId, skip, take);
+            var models = await _service.GetAreasByMainArea(mainAreaId, skip, take);
             if (models == null)
             {
-                string msg = "Nenhuma Área encontrada.";
+                const string msg = "Nenhuma Área encontrada.";
                 _logger.LogWarning(msg);
                 return NotFound(msg);
             }
@@ -82,7 +87,7 @@ namespace CopetSystem.API.Controllers
         /// <response code="200">Retorna área criada</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<ReadAreaDTO>> Create([FromBody] CreateAreaDTO dto)
+        public async Task<ActionResult<DetailedReadAreaDTO>> Create([FromBody] CreateAreaDTO dto)
         {
             try
             {
@@ -104,7 +109,7 @@ namespace CopetSystem.API.Controllers
         /// <returns>Área atualizada</returns>
         /// <response code="200">Retorna área atualizada</response>
         [HttpPut("{id}")]
-        public async Task<ActionResult<ReadAreaDTO>> Update(Guid? id, [FromBody] UpdateAreaDTO dto)
+        public async Task<ActionResult<DetailedReadAreaDTO>> Update(Guid? id, [FromBody] UpdateAreaDTO dto)
         {
             try
             {
@@ -126,7 +131,7 @@ namespace CopetSystem.API.Controllers
         /// <returns>Área removida</returns>
         /// <response code="200">Retorna área removida</response>
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ReadAreaDTO>> Delete(Guid? id)
+        public async Task<ActionResult<DetailedReadAreaDTO>> Delete(Guid? id)
         {
             if (id == null)
             {

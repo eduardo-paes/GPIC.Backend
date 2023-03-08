@@ -2,10 +2,8 @@
 
 namespace CopetSystem.Application.DTOs.SubArea
 {
-    public class ReadSubAreaDTO : BaseSubAreaDTO
+    public class ResumedReadSubAreaDTO : BaseSubAreaDTO
     {
         public Guid? Id { get; set; }
-        public virtual ReadAreaDTO? Area { get; set; }
     }
 }
-
