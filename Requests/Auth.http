@@ -1,0 +1,22 @@
+@host=https://localhost:5001/api
+
+POST {{host}}/auth/login
+content-type: application/json
+
+{
+    "email": "eduardo@email.com",
+    "password": "123456"
+}
+
+###
+
+POST {{host}}/auth/register
+content-type: application/json
+
+{
+  "name": "Eduardo Paes",
+  "role": "ADMIN",
+  "email": "eduardo@email.com",
+  "cpf": "15162901784",
+  "password": "123456"
+}

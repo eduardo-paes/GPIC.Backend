@@ -1,0 +1,21 @@
+@host=https://localhost:5001/api
+@mainareaid=ab435d74-f2d4-4177-ad19-23f238e938d0
+@areaid=049925e6-5116-4776-9840-1d9d3c7f50d9
+
+GET {{host}}/mainarea
+?skip=0
+&take=50
+
+###
+
+GET {{host}}/area
+?skip=0
+&take=50
+&mainAreaId={{mainareaid}}
+
+###
+
+GET {{host}}/subarea
+?skip=0
+&take=50
+&areaId={{areaid}}
