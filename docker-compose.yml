@@ -1,8 +1,0 @@
-version: '3.4'
-
-services:
-  copetsystem.api:
-    image: ${DOCKER_REGISTRY-}copetsystem
-    build:
-      context: .
-      dockerfile: CopetSystem.API/Dockerfile

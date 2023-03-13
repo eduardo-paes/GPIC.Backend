@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  Infrastructure.WebAPI:
+    image: ${DOCKER_REGISTRY-}copetsystem
+    build:
+      context: .
+      dockerfile: Infrastructure.WebAPI/Dockerfile

@@ -1,6 +1,6 @@
-# CopetSystem.API
+# Infrastructure.WebAPI
 
-Restful API created in .NET 6.0 to support CopetSystem.SPA.
+Restful API created in .NET 6.0 to support SPA.
 
 ## DataBase - PostgreSQL
 
@@ -28,8 +28,7 @@ Exemplo:
 Criando as Migrations iniciais para criação das tabelas do banco de dados:
 
 ```
-cd CopetSystem.API
-dotnet ef migrations add InitializeSubArea --project ../CopetSystem.Infra.Data/CopetSystem.Infra.Data.csproj
+dotnet ef migrations add Initialize --project ./Infrastructure/Persistence/Persistence.csproj
 ```
 
 Executando as Migrations:
@@ -49,7 +48,7 @@ dotnet ef migrations remove
 Comandos para execução do projeto .NET utilizando CLI:
 
 ```
-cd CopetSystem.API
+cd Infrastructure.WebAPI
 dotnet build
 dotnet run
 ```
