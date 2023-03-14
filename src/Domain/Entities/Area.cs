@@ -5,7 +5,7 @@ namespace Domain.Entities
 {
     public class Area : Entity
     {
-        #region Attributes
+        #region Properties
         private Guid? _mainAreaId;
         public Guid? MainAreaId
         {

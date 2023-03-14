@@ -7,7 +7,7 @@ namespace Domain.Entities
 {
     public class MainArea : Entity
     {
-        #region Attributes
+        #region Properties
         private string? _code;
         public string? Code
         {

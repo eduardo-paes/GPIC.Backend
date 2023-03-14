@@ -6,7 +6,7 @@ namespace Domain.Entities
 {
     public class Student : Entity
     {
-        #region Attributes
+        #region Properties
         private DateTime _birthDate;
         public DateTime BirthDate
         {
@@ -154,48 +154,52 @@ namespace Domain.Entities
             }
         }
 
-        private int _phoneDDD;
-        public int PhoneDDD
+        private int? _phoneDDD;
+        public int? PhoneDDD
         {
             get { return _phoneDDD; }
             private set
             {
+                if (value == null) return;
                 DomainExceptionValidation.When(value <= 0,
                     ExceptionMessageFactory.Invalid("DDD do telefone"));
                 _phoneDDD = value;
             }
         }
 
-        private long _phone;
-        public long Phone
+        private long? _phone;
+        public long? Phone
         {
             get { return _phone; }
             private set
             {
+                if (value == null) return;
                 DomainExceptionValidation.When(value <= 0,
                     ExceptionMessageFactory.Invalid("telefone"));
                 _phone = value;
             }
         }
 
-        private int _cellPhoneDDD;
-        public int CellPhoneDDD
+        private int? _cellPhoneDDD;
+        public int? CellPhoneDDD
         {
             get { return _cellPhoneDDD; }
             private set
             {
+                if (value == null) return;
                 DomainExceptionValidation.When(value <= 0,
                     ExceptionMessageFactory.Invalid("DDD do celular"));
                 _cellPhoneDDD = value;
             }
         }
 
-        private long _cellPhone;
-        public long CellPhone
+        private long? _cellPhone;
+        public long? CellPhone
         {
             get { return _cellPhone; }
             private set
             {
+                if (value == null) return;
                 DomainExceptionValidation.When(value <= 0,
                     ExceptionMessageFactory.Invalid("celular"));
                 _cellPhone = value;
@@ -282,25 +286,25 @@ namespace Domain.Entities
 
         #region Constructors
         public Student(
-        DateTime birthDate,
-        long rg,
-        string issuingAgency,
-        DateTime dispatchDate,
-        EGender? gender,
-        ERace? race,
-        string homeAddress,
-        string city,
-        string uf,
-        long cep,
-        int phoneDDD,
-        long phone,
-        int cellPhoneDDD,
-        long cellPhone,
-        Guid? campusId,
-        Guid? courseId,
-        string startYear,
-        EStudentAssistanceProgram? studentAssistanceProgram,
-        Guid? userId)
+            DateTime birthDate,
+            long rg,
+            string issuingAgency,
+            DateTime dispatchDate,
+            EGender? gender,
+            ERace? race,
+            string homeAddress,
+            string city,
+            string uf,
+            long cep,
+            int? phoneDDD,
+            long? phone,
+            int? cellPhoneDDD,
+            long? cellPhone,
+            Guid? campusId,
+            Guid? courseId,
+            string startYear,
+            EStudentAssistanceProgram? studentAssistanceProgram,
+            Guid? userId)
         {
             BirthDate = birthDate;
             RG = rg;
@@ -326,9 +330,7 @@ namespace Domain.Entities
         /// <summary>
         /// Constructor to dbcontext EF instancing.
         /// </summary>
-        public Student()
-        {
-        }
+        public Student() { }
         #endregion
 
         #region Updaters
@@ -342,10 +344,10 @@ namespace Domain.Entities
         public void UpdateCity(string? city) => City = city;
         public void UpdateState(string? uf) => UF = uf;
         public void UpdateCEP(long cep) => CEP = cep;
-        public void UpdatePhoneDDD(int phoneDDD) => PhoneDDD = phoneDDD;
-        public void UpdatePhone(long phone) => Phone = phone;
-        public void UpdateCellPhoneDDD(int cellPhoneDDD) => CellPhoneDDD = cellPhoneDDD;
-        public void UpdateCellPhone(long cellPhone) => CellPhone = cellPhone;
+        public void UpdatePhoneDDD(int? phoneDDD) => PhoneDDD = phoneDDD;
+        public void UpdatePhone(long? phone) => Phone = phone;
+        public void UpdateCellPhoneDDD(int? cellPhoneDDD) => CellPhoneDDD = cellPhoneDDD;
+        public void UpdateCellPhone(long? cellPhone) => CellPhone = cellPhone;
         public void UpdateCampusId(Guid? campusId) => CampusId = campusId;
         public void UpdateCourseId(Guid? courseId) => CourseId = courseId;
         public void UpdateStartYear(string? startYear) => StartYear = startYear;

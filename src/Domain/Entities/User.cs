@@ -7,7 +7,7 @@ namespace Domain.Entities
 {
     public class User : Entity
     {
-        #region Attributes
+        #region Properties
         private string? _name;
         public string? Name
         {
