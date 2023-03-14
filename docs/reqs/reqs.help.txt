@@ -1,0 +1,47 @@
+CREATE
+{
+  "name": "Eduardo Paes",
+  "role": "ADMIN",
+  "email": "eduardo@email.com",
+  "cpf": "15162901784",
+  "password": "123456"
+}
+
+UPDATE
+{
+    "id": "672ba70b-7755-40ab-95ec-34c03333610b",
+    "name": "Eduardo Paes",
+    "role": "ADMIN",
+    "email": "eduardo@email.com",
+    "cpf": "15162901784",
+    "deletedAt": null
+}
+
+LOGIN
+{
+  "email": "eduardo@email.com",
+  "password": "123456"
+}
+
+MAIN_AREAS
+{
+    "id": "ab435d74-f2d4-4177-ad19-23f238e938d0",
+    "name": "Ciências Exatas e da Terra",
+    "code": "1.00.00.00-3"
+}
+
+AREAS
+{
+  "id": "049925e6-5116-4776-9840-1d9d3c7f50d9",
+  "mainAreaId": "ab435d74-f2d4-4177-ad19-23f238e938d0",
+  "name": "Matemática",
+  "code": "1.01.00.00-8"
+}
+
+SUB_AREAS
+{
+  "id": "99cdbb1a-f816-428d-bcdd-047a97140a7f",
+  "areaId": "049925e6-5116-4776-9840-1d9d3c7f50d9",
+  "name": "Álgebra",
+  "code": "1.01.01.00-4"
+}
