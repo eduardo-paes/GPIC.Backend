@@ -1,4 +1,4 @@
-using Infrastructure.IoC.IoC;
+using Infrastructure.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 {
@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
     // Realiza comunicação com os demais Projetos.
     builder.Services.AddInfrastructure(builder.Configuration);
+    builder.Services.AddUseCases();
 
     // Configuração do Swagger
     builder.Services.AddInfrastructureSwagger();

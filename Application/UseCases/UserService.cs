@@ -1,13 +1,11 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using Application.DTOs.User;
-using Application.Interfaces;
 using Domain.Entities;
 using Domain.Interfaces;
 
 namespace Application.Services
 {
-    public class UserService : IUserService
+    public class UserService
     {
         #region Global Scope
         private readonly IUserRepository _repository;

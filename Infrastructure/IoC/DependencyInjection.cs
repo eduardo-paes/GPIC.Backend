@@ -1,16 +1,15 @@
-﻿using Application.Interfaces;
-using Application.Mappings;
-using Application.Services;
+﻿using Application.Mappings;
 using Domain.Interfaces;
 using Infrastructure.Persistence.Context;
 using Infrastructure.Persistence.Repositories;
+using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
 
-namespace Infrastructure.IoC.IoC;
+namespace Infrastructure.IoC;
 public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
@@ -43,12 +42,8 @@ public static class DependencyInjection
         });
         #endregion
 
-        #region Serviços de Negócios
-        services.AddScoped<IAreaService, AreaService>();
-        services.AddScoped<IAuthService, AuthService>();
-        services.AddScoped<IMainAreaService, MainAreaService>();
-        services.AddScoped<ISubAreaService, SubAreaService>();
-        services.AddScoped<IUserService, UserService>();
+        #region Services
+        services.AddScoped<ITokenHandler, TokenHandler>();
         #endregion
 
         #region Repositórios

@@ -1,6 +1,6 @@
 # Infrastructure.WebAPI
 
-Restful API created in .NET 6.0 to support SPA.
+Restful API created in .NET 7.0.0 to support SPA.
 
 ## DataBase - PostgreSQL
 

@@ -1,6 +1,6 @@
 ﻿using Application.DTOs.Auth;
 using Application.DTOs.User;
-using Application.Interfaces;
+using Application.Proxies.Auth;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Infrastructure.WebAPI.Controllers
@@ -9,13 +9,22 @@ namespace Infrastructure.WebAPI.Controllers
     [Route("Api/[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly IAuthService _service;
+        #region Global Scope
+        private readonly ILoginUser _loginUser;
+        private readonly IRegisterUser _registerUser;
+        private readonly IResetPasswordUser _resetPasswordUser;
         private readonly ILogger<AuthController> _logger;
-        public AuthController(IAuthService service, ILogger<AuthController> logger)
+        public AuthController(ILoginUser loginUser,
+                              IRegisterUser registerUser,
+                              IResetPasswordUser resetPasswordUser,
+                              ILogger<AuthController> logger)
         {
-            _service = service;
+            _loginUser = loginUser;
+            _registerUser = registerUser;
+            _resetPasswordUser = resetPasswordUser;
             _logger = logger;
         }
+        #endregion
 
         /// <summary>
         /// Realiza o login do usário.
@@ -28,7 +37,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _service.Login(dto);
+                var model = await _loginUser.Execute(dto);
                 _logger.LogInformation($"Login realizado pelo usuário: {model.Id}.");
                 return Ok(model);
             }
@@ -46,11 +55,11 @@ namespace Infrastructure.WebAPI.Controllers
         /// <returns>Retorna usuário criado</returns>
         /// <response code="200">Retorna usuário criado</response>
         [HttpPost("Register", Name = "RegisterUser")]
-        public async Task<ActionResult<UserReadDTO>> Create([FromBody] UserRegisterDTO dto)
+        public async Task<ActionResult<UserReadDTO>> Register([FromBody] UserRegisterDTO dto)
         {
             try
             {
-                var model = await _service.Register(dto);
+                var model = await _registerUser.Execute(dto);
                 _logger.LogInformation($"Usuário criado: {model.Id}");
                 return Ok(model);
             }
@@ -72,7 +81,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var res = await _service.ResetPassword(dto);
+                var res = await _resetPasswordUser.Execute(dto);
                 _logger.LogInformation($"Solicitação de reset de senha realizada para o usuário: {dto.Id}");
                 return Ok(res);
             }
@@ -84,4 +93,3 @@ namespace Infrastructure.WebAPI.Controllers
         }
     }
 }
-

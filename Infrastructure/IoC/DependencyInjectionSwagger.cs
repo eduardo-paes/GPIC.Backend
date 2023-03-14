@@ -4,7 +4,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Infrastructure.IoC.IoC
+namespace Infrastructure.IoC
 {
     public static class DependencyInjectionSwagger
     {
@@ -18,7 +18,7 @@ namespace Infrastructure.IoC.IoC
                 {
                     Version = "v1",
                     Title = "Infrastructure.WebAPI",
-                    Description = "API Rest criada em .NET 6 para controle de projetos de iniciação científica do CEFET."
+                    Description = "API Rest criada em .NET 7.0 para controle de projetos de iniciação científica do CEFET."
                 });
 
                 // Adiciona comentários dos métodos nas rotas do Swagger

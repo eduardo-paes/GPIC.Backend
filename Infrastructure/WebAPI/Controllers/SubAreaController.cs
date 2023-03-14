@@ -1,5 +1,5 @@
 using Application.DTOs.SubArea;
-using Application.Interfaces;
+using Application.Proxies.SubArea;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Infrastructure.WebAPI.Controllers
@@ -8,13 +8,23 @@ namespace Infrastructure.WebAPI.Controllers
     [Route("Api/[controller]")]
     public class SubAreaController : ControllerBase
     {
-        private readonly ISubAreaService _service;
+        #region Global Scope
+        private readonly ICreateSubArea _createSubArea;
+        private readonly IDeleteSubArea _deleteSubArea;
+        private readonly IGetSubAreaById _getSubAreaById;
+        private readonly IGetSubAreasByArea _getSubAreasByArea;
+        private readonly IUpdateSubArea _updateSubArea;
         private readonly ILogger<SubAreaController> _logger;
-        public SubAreaController(ISubAreaService service, ILogger<SubAreaController> logger)
+        public SubAreaController(ICreateSubArea createSubArea, IDeleteSubArea deleteSubArea, IGetSubAreaById getSubAreaById, IGetSubAreasByArea getSubAreasByArea, IUpdateSubArea updateSubArea, ILogger<SubAreaController> logger)
         {
-            _service = service;
+            _createSubArea = createSubArea;
+            _deleteSubArea = deleteSubArea;
+            _getSubAreaById = getSubAreaById;
+            _getSubAreasByArea = getSubAreasByArea;
+            _updateSubArea = updateSubArea;
             _logger = logger;
         }
+        #endregion
 
         /// <summary>
         /// Busca sub área pelo id.
@@ -35,7 +45,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _service.GetById(id);
+                var model = await _getSubAreaById.Execute(id);
                 _logger.LogInformation($"Sub Área encontrada para o id {id}.");
                 return Ok(model);
             }
@@ -63,7 +73,7 @@ namespace Infrastructure.WebAPI.Controllers
                 return BadRequest(msg);
             }
 
-            var models = await _service.GetSubAreasByArea(areaId, skip, take);
+            var models = await _getSubAreasByArea.Execute(areaId, skip, take);
             if (models == null)
             {
                 const string msg = "Nenhuma Sub Área encontrada.";
@@ -86,7 +96,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _service.Create(dto);
+                var model = await _createSubArea.Execute(dto);
                 _logger.LogInformation($"Sub Área criada: {model.Id}");
                 return Ok(model);
             }
@@ -108,7 +118,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _service.Update(id, dto);
+                var model = await _updateSubArea.Execute(id, dto);
                 _logger.LogInformation($"Sub Área atualizada: {model.Id}");
                 return Ok(model);
             }
@@ -137,7 +147,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _service.Delete(id.Value);
+                var model = await _deleteSubArea.Execute(id.Value);
                 _logger.LogInformation($"Sub Área removida: {model.Id}");
                 return Ok(model);
             }

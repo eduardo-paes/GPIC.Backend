@@ -1,5 +1,5 @@
 using Application.DTOs.Area;
-using Application.Interfaces;
+using Application.Proxies.Area;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Infrastructure.WebAPI.Controllers
@@ -12,11 +12,24 @@ namespace Infrastructure.WebAPI.Controllers
     public class AreaController : ControllerBase
     {
         #region Global Scope
-        private readonly IAreaService _service;
+        private readonly ICreateArea _createArea;
+        private readonly IDeleteArea _deleteArea;
+        private readonly IGetAreaById _getAreaById;
+        private readonly IGetAreasByMainArea _getAreasByMainArea;
+        private readonly IUpdateArea _updateArea;
         private readonly ILogger<AreaController> _logger;
-        public AreaController(IAreaService service, ILogger<AreaController> logger)
+        public AreaController(ICreateArea createArea,
+                              IDeleteArea deleteArea,
+                              IGetAreaById getAreaById,
+                              IGetAreasByMainArea getAreasByMainArea,
+                              IUpdateArea updateArea,
+                              ILogger<AreaController> logger)
         {
-            _service = service;
+            _createArea = createArea;
+            _deleteArea = deleteArea;
+            _getAreaById = getAreaById;
+            _getAreasByMainArea = getAreasByMainArea;
+            _updateArea = updateArea;
             _logger = logger;
         }
         #endregion
@@ -40,7 +53,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _service.GetById(id);
+                var model = await _getAreaById.Execute(id);
                 _logger.LogInformation($"Área encontrada para o id {id}.");
                 return Ok(model);
             }
@@ -68,7 +81,7 @@ namespace Infrastructure.WebAPI.Controllers
                 return BadRequest(msg);
             }
 
-            var models = await _service.GetAreasByMainArea(mainAreaId, skip, take);
+            var models = await _getAreasByMainArea.Execute(mainAreaId, skip, take);
             if (models == null)
             {
                 const string msg = "Nenhuma Área encontrada.";
@@ -91,7 +104,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _service.Create(dto);
+                var model = await _createArea.Execute(dto);
                 _logger.LogInformation($"Área criada: {model.Id}");
                 return Ok(model);
             }
@@ -113,7 +126,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _service.Update(id, dto);
+                var model = await _updateArea.Execute(id, dto);
                 _logger.LogInformation($"Área atualizada: {model.Id}");
                 return Ok(model);
             }
@@ -142,7 +155,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _service.Delete(id.Value);
+                var model = await _deleteArea.Execute(id.Value);
                 _logger.LogInformation($"Área removida: {model.Id}");
                 return Ok(model);
             }

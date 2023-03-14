@@ -8,7 +8,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["Infrastructure.WebAPI/Infrastructure.WebAPI.csproj", "Infrastructure.WebAPI/"]
-COPY ["Infrastructure.IoC.IoC/Infrastructure.IoC.IoC.csproj", "Infrastructure.IoC.IoC/"]
+COPY ["Infrastructure.IoC/Infrastructure.IoC.csproj", "Infrastructure.IoC/"]
 COPY ["Application/Application.csproj", "Application/"]
 COPY ["Domain/Domain.csproj", "Domain/"]
 COPY ["Infrastructure.Persistence/Infrastructure.Persistence.csproj", "Infrastructure.Persistence/"]
