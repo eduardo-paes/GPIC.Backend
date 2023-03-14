@@ -5,4 +5,4 @@ services:
     image: ${DOCKER_REGISTRY-}copetsystem
     build:
       context: .
-      dockerfile: Infrastructure.WebAPI/Dockerfile
+      dockerfile: ../src/Infrastructure/WebAPI/Dockerfile

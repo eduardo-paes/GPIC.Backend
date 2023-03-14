@@ -7,7 +7,8 @@ Restful API created in .NET 7.0.0 to support SPA.
 Para levantar o banco de dados é necessário executar o comando abaixo na pasta raiz:
 
 ```
-  docker compose up -d
+cd docker
+docker compose up -d
 ```
 
 Em seguida, é preciso acessar o pgAdmin através da rota abaixo:
