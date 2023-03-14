@@ -10,4 +10,3 @@ namespace Domain.Entities.Primitives
         public void ActivateEntity() => DeletedAt = null;
     }
 }
-
