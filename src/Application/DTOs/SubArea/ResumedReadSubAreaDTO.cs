@@ -1,6 +1,4 @@
-﻿using Application.DTOs.Area;
-
-namespace Application.DTOs.SubArea
+﻿namespace Application.DTOs.SubArea
 {
     public class ResumedReadSubAreaDTO : BaseSubAreaDTO
     {

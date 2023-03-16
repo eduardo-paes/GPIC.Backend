@@ -1,5 +1,4 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using Application.DTOs.MainArea;
 using Domain.Entities;
 
@@ -11,8 +10,8 @@ namespace Application.Mappings
         {
             CreateMap<MainArea, CreateMainAreaDTO>().ReverseMap();
             CreateMap<MainArea, UpdateMainAreaDTO>().ReverseMap();
-            CreateMap<MainArea, ReadMainAreaDTO>().ReverseMap();
+            CreateMap<MainArea, ResumedReadMainAreaDTO>().ReverseMap();
+            CreateMap<MainArea, DetailedMainAreaDTO>().ReverseMap();
         }
     }
 }
-

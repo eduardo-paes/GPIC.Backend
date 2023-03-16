@@ -4,6 +4,6 @@ namespace Application.Proxies.MainArea
 {
     public interface ICreateMainArea
     {
-        Task<ReadMainAreaDTO> Execute(CreateMainAreaDTO model);
+        Task<DetailedMainAreaDTO> Execute(CreateMainAreaDTO model);
     }
 }

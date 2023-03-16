@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Application.DTOs.Area
 {
@@ -11,4 +10,3 @@ namespace Application.DTOs.Area
         public string? Code { get; set; }
     }
 }
-

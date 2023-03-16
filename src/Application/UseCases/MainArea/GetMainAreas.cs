@@ -17,10 +17,10 @@ namespace Application.UseCases.MainArea
         }
         #endregion
 
-        public async Task<IQueryable<ReadMainAreaDTO>> Execute(int skip, int take)
+        public async Task<IQueryable<ResumedReadMainAreaDTO>> Execute(int skip, int take)
         {
             var entities = await _repository.GetAll(skip, take);
-            return _mapper.Map<IEnumerable<ReadMainAreaDTO>>(entities).AsQueryable();
+            return _mapper.Map<IEnumerable<ResumedReadMainAreaDTO>>(entities).AsQueryable();
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Application.UseCases.MainArea
         }
         #endregion
 
-        public async Task<ReadMainAreaDTO> Execute(CreateMainAreaDTO dto)
+        public async Task<DetailedMainAreaDTO> Execute(CreateMainAreaDTO dto)
         {
             // Validação de código da Área
             var entity = await _repository.GetByCode(dto.Code);
@@ -25,7 +25,7 @@ namespace Application.UseCases.MainArea
                 throw new Exception($"Já existe uma Área Principal para o código {dto.Code}");
 
             entity = await _repository.Create(_mapper.Map<Domain.Entities.MainArea>(dto));
-            return _mapper.Map<ReadMainAreaDTO>(entity);
+            return _mapper.Map<DetailedMainAreaDTO>(entity);
         }
     }
 }

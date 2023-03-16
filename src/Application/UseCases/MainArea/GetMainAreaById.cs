@@ -17,10 +17,10 @@ namespace Application.UseCases.MainArea
         }
         #endregion
 
-        public async Task<ReadMainAreaDTO> Execute(Guid? id)
+        public async Task<DetailedMainAreaDTO> Execute(Guid? id)
         {
             var entity = await _repository.GetById(id);
-            return _mapper.Map<ReadMainAreaDTO>(entity);
+            return _mapper.Map<DetailedMainAreaDTO>(entity);
         }
     }
 }

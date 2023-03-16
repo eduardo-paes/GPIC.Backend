@@ -17,7 +17,7 @@ namespace Application.UseCases.MainArea
         }
         #endregion
 
-        public async Task<ReadMainAreaDTO> Execute(Guid? id, UpdateMainAreaDTO dto)
+        public async Task<DetailedMainAreaDTO> Execute(Guid? id, UpdateMainAreaDTO dto)
         {
             // Recupera entidade que será atualizada
             var entity = await _repository.GetById(id);
@@ -28,7 +28,7 @@ namespace Application.UseCases.MainArea
 
             // Salva entidade atualizada no banco
             var model = await _repository.Update(entity);
-            return _mapper.Map<ReadMainAreaDTO>(model);
+            return _mapper.Map<DetailedMainAreaDTO>(model);
         }
     }
 }

@@ -4,6 +4,6 @@ namespace Application.Proxies.MainArea
 {
     public interface IGetMainAreaById
     {
-        Task<ReadMainAreaDTO> Execute(Guid? id);
+        Task<DetailedMainAreaDTO> Execute(Guid? id);
     }
 }

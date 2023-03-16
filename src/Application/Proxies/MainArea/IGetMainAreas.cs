@@ -4,6 +4,6 @@ namespace Application.Proxies.MainArea
 {
     public interface IGetMainAreas
     {
-        Task<IQueryable<ReadMainAreaDTO>> Execute(int skip, int take);
+        Task<IQueryable<ResumedReadMainAreaDTO>> Execute(int skip, int take);
     }
 }
