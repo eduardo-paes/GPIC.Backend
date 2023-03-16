@@ -1,6 +1,4 @@
-﻿using System;
-using System.Data;
-using Domain.Entities.Primitives;
+﻿using Domain.Entities.Primitives;
 using Domain.Validation;
 
 namespace Domain.Entities
@@ -42,6 +40,13 @@ namespace Domain.Entities
         #endregion
 
         #region Constructors
+        public MainArea(Guid id, string code, string name)
+        {
+            Id = id;
+            Code = code;
+            Name = name;
+        }
+
         public MainArea(string code, string name)
         {
             Code = code;

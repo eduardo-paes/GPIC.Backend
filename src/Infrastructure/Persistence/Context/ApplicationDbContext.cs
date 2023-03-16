@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Persistence.Seeds;
 
 namespace Infrastructure.Persistence.Context
 {
@@ -26,4 +27,3 @@ namespace Infrastructure.Persistence.Context
         }
     }
 }
-

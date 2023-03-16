@@ -58,8 +58,9 @@ namespace Domain.Entities
             Name = name;
         }
 
-        public Area(Guid? mainAreaId, string? code, string? name, MainArea? mainArea)
+        public Area(Guid id, Guid? mainAreaId, string? code, string? name, MainArea? mainArea = null)
         {
+            Id = id;
             MainAreaId = mainAreaId;
             Code = code;
             Name = name;

@@ -29,7 +29,8 @@ Exemplo:
 Criando as Migrations iniciais para criação das tabelas do banco de dados:
 
 ```
-dotnet ef migrations add Initialize --project ./Infrastructure/Persistence/Persistence.csproj
+cd src/Infrastructure/WebAPI
+dotnet ef migrations add Initialize --project ../Persistence/Persistence.csproj
 ```
 
 Executando as Migrations:
@@ -41,7 +42,8 @@ dotnet ef database update
 Removendo as Migrations:
 
 ```
-dotnet ef migrations remove
+cd src/Infrastructure/WebAPI
+dotnet ef migrations remove --project ../Persistence/Persistence.csproj
 ```
 
 ## Execução com Dotnet

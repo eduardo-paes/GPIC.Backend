@@ -58,8 +58,9 @@ namespace Domain.Entities
             Name = name;
         }
 
-        public SubArea(Guid? areaId, string? code, string? name, Area? area)
+        public SubArea(Guid id, Guid? areaId, string? code, string? name, Area? area = null)
         {
+            Id = id;
             AreaId = areaId;
             Code = code;
             Name = name;

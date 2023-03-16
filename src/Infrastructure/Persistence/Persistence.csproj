@@ -50,4 +50,9 @@
     </PackageReference>
     <PackageReference Include="System.Linq.Async" Version="6.0.1" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="Seeds\areas.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

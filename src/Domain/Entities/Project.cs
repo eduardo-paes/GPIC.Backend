@@ -129,8 +129,8 @@ namespace Domain.Entities
             }
         }
 
-        private EProgramType _programTypeId;
-        public EProgramType ProgramTypeId
+        private EProgramType? _programTypeId;
+        public EProgramType? ProgramTypeId
         {
             get => _programTypeId;
             private set
@@ -187,7 +187,7 @@ namespace Domain.Entities
         #endregion
 
         #region Constructors
-        public Project(EProgramType programTypeId, Guid? professorId, Guid? studentId, Guid? subAreaId, bool isScholarshipCandidate,
+        public Project(EProgramType? programTypeId, Guid? professorId, Guid? studentId, Guid? subAreaId, bool isScholarshipCandidate,
             string title, string keyWord1, string keyWord2, string keyWord3, string objective, string methodology, string expectedResults,
             string activitiesExecutionSchedule)
         {
@@ -213,7 +213,7 @@ namespace Domain.Entities
         #endregion
 
         #region Updaters
-        public void UpdateProgramTypeId(EProgramType programTypeId) => ProgramTypeId = programTypeId;
+        public void UpdateProgramTypeId(EProgramType? programTypeId) => ProgramTypeId = programTypeId;
         public void UpdateProfessorId(Guid? professorId) => ProfessorId = professorId;
         public void UpdateStudentId(Guid? studentId) => StudentId = studentId;
         public void UpdateSubAreaId(Guid? subAreaId) => SubAreaId = subAreaId;

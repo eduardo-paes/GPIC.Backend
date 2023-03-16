@@ -7,11 +7,12 @@
       "type": "process",
       "args": [
         "build",
-        "${workspaceFolder}/Infrastructure.WebAPI/Infrastructure.WebAPI.csproj",
+        "${workspaceFolder}/Infrastructure/WebAPI.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
-      "problemMatcher": "$msCompile"
+      "problemMatcher": "$msCompile",
+      "dependsOn": "copy-file"
     },
     {
       "label": "publish",
@@ -19,11 +20,12 @@
       "type": "process",
       "args": [
         "publish",
-        "${workspaceFolder}/Infrastructure.WebAPI/Infrastructure.WebAPI.csproj",
+        "${workspaceFolder}/Infrastructure/WebAPI.csproj",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
-      "problemMatcher": "$msCompile"
+      "problemMatcher": "$msCompile",
+      "dependsOn": "copy-file"
     },
     {
       "label": "watch",
@@ -33,9 +35,22 @@
         "watch",
         "run",
         "--project",
-        "${workspaceFolder}/Infrastructure.WebAPI/Infrastructure.WebAPI.csproj"
+        "${workspaceFolder}/Infrastructure/WebAPI.csproj"
       ],
-      "problemMatcher": "$msCompile"
+      "problemMatcher": "$msCompile",
+      "dependsOn": "copy-file"
+    },
+    {
+      "label": "copy-file",
+      "type": "shell",
+      "command": "cp",
+      "args": [
+        "${workspaceFolder}/src/Infrastructure/Persistence/Seeds/areas.txt",
+        "${workspaceFolder}/src/Infrastructure/WebAPI/bin/Debug/net7.0"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
     }
   ]
 }

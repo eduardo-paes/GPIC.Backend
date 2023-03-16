@@ -17,4 +17,3 @@ namespace Infrastructure.Persistence.EntitiesConfiguration
         }
     }
 }
-
