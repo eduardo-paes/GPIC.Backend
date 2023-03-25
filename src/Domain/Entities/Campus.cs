@@ -3,6 +3,9 @@ using Domain.Validation;
 
 namespace Domain.Entities
 {
+    /// <summary>
+    /// Unidade de ensino
+    /// </summary>
     public class Campus : Entity
     {
         private string? _name;

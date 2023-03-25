@@ -23,8 +23,8 @@ namespace Application.UseCases.MainArea
             var entity = await _repository.GetById(id);
 
             // Atualiza atributos permitidos
-            entity.UpdateName(dto.Name);
-            entity.UpdateCode(dto.Code);
+            entity.Name = dto.Name;
+            entity.Code = dto.Code;
 
             // Salva entidade atualizada no banco
             var model = await _repository.Update(entity);

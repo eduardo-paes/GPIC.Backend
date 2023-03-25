@@ -3,6 +3,9 @@ using Domain.Validation;
 
 namespace Domain.Entities
 {
+    /// <summary>
+    /// Área de conhecimento
+    /// </summary>
     public class Area : Entity
     {
         #region Properties
@@ -10,7 +13,7 @@ namespace Domain.Entities
         public Guid? MainAreaId
         {
             get { return _mainAreaId; }
-            private set
+            set
             {
                 DomainExceptionValidation.When(!value.HasValue,
                     ExceptionMessageFactory.Invalid("mainAreaId"));
@@ -21,7 +24,7 @@ namespace Domain.Entities
         public string? Code
         {
             get { return _code; }
-            private set
+            set
             {
                 DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("code"));
@@ -36,7 +39,7 @@ namespace Domain.Entities
         public string? Name
         {
             get { return _name; }
-            private set
+            set
             {
                 DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                 ExceptionMessageFactory.Required("name"));
@@ -47,7 +50,7 @@ namespace Domain.Entities
                 _name = value;
             }
         }
-        public virtual MainArea? MainArea { get; private set; }
+        public virtual MainArea? MainArea { get; }
         #endregion
 
         #region Constructors
@@ -71,12 +74,6 @@ namespace Domain.Entities
         /// Constructor to dbcontext EF instancing.
         /// </summary>
         protected Area() { }
-        #endregion
-
-        #region Updaters
-        public void UpdateName(string? name) => Name = name;
-        public void UpdateCode(string? code) => Code = code;
-        public void UpdateMainArea(Guid? mainAreaId) => MainAreaId = mainAreaId;
         #endregion
     }
 }

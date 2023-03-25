@@ -10,7 +10,7 @@ namespace Domain.Entities
         public Guid? AreaId
         {
             get { return _areaId; }
-            private set
+            set
             {
                 DomainExceptionValidation.When(!value.HasValue,
                     ExceptionMessageFactory.Invalid("areaId"));
@@ -21,7 +21,7 @@ namespace Domain.Entities
         public string? Code
         {
             get { return _code; }
-            private set
+            set
             {
                 DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("code"));
@@ -36,7 +36,7 @@ namespace Domain.Entities
         public string? Name
         {
             get { return _name; }
-            private set
+            set
             {
                 DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                 ExceptionMessageFactory.Required("name"));
@@ -47,7 +47,7 @@ namespace Domain.Entities
                 _name = value;
             }
         }
-        public virtual Area? Area { get; private set; }
+        public virtual Area? Area { get; }
         #endregion
 
         #region Constructors
@@ -71,12 +71,6 @@ namespace Domain.Entities
         /// Constructor to dbcontext EF instancing.
         /// </summary>
         protected SubArea() { }
-        #endregion
-
-        #region Updaters
-        public void UpdateName(string? name) => Name = name;
-        public void UpdateCode(string? code) => Code = code;
-        public void UpdateArea(Guid? areaId) => AreaId = areaId;
         #endregion
     }
 }

@@ -4,6 +4,9 @@ using Domain.Validation;
 
 namespace Domain.Entities
 {
+    /// <summary>
+    /// Projeto de Iniciação Científica
+    /// </summary>
     public class Project : Entity
     {
         #region Properties
@@ -14,7 +17,7 @@ namespace Domain.Entities
         public string? Title
         {
             get => _title;
-            private set
+            set
             {
                 DomainExceptionValidation.When(string.IsNullOrWhiteSpace(value),
                     ExceptionMessageFactory.Invalid("Título"));
@@ -26,7 +29,7 @@ namespace Domain.Entities
         public string? KeyWord1
         {
             get => _keyWord1;
-            private set
+            set
             {
                 DomainExceptionValidation.When(string.IsNullOrWhiteSpace(value),
                     ExceptionMessageFactory.Invalid("Palavra-chave 1"));
@@ -38,7 +41,7 @@ namespace Domain.Entities
         public string? KeyWord2
         {
             get => _keyWord2;
-            private set
+            set
             {
                 DomainExceptionValidation.When(string.IsNullOrWhiteSpace(value),
                     ExceptionMessageFactory.Invalid("Palavra-chave 2"));
@@ -50,7 +53,7 @@ namespace Domain.Entities
         public string? KeyWord3
         {
             get => _keyWord3;
-            private set
+            set
             {
                 DomainExceptionValidation.When(string.IsNullOrWhiteSpace(value),
                     ExceptionMessageFactory.Invalid("Palavra-chave 3"));
@@ -61,7 +64,7 @@ namespace Domain.Entities
         /// <summary>
         /// É candidato a Bolsa?
         /// </summary>
-        public bool IsScholarshipCandidate { get; private set; }
+        public bool IsScholarshipCandidate { get; set; }
 
         private string? _objective;
         /// <summary>
@@ -70,7 +73,7 @@ namespace Domain.Entities
         public string? Objective
         {
             get => _objective;
-            private set
+            set
             {
                 DomainExceptionValidation.When(string.IsNullOrWhiteSpace(value),
                     ExceptionMessageFactory.Invalid("Objetivo"));
@@ -87,7 +90,7 @@ namespace Domain.Entities
         public string? Methodology
         {
             get => _methodology;
-            private set
+            set
             {
                 DomainExceptionValidation.When(string.IsNullOrWhiteSpace(value),
                     ExceptionMessageFactory.Invalid("Metodologia"));
@@ -104,7 +107,7 @@ namespace Domain.Entities
         public string? ExpectedResults
         {
             get => _expectedResults;
-            private set
+            set
             {
                 DomainExceptionValidation.When(string.IsNullOrWhiteSpace(value),
                     ExceptionMessageFactory.Invalid("Resultados Esperados"));
@@ -121,7 +124,7 @@ namespace Domain.Entities
         public string? ActivitiesExecutionSchedule
         {
             get => _activitiesExecutionSchedule;
-            private set
+            set
             {
                 DomainExceptionValidation.When(string.IsNullOrWhiteSpace(value),
                     ExceptionMessageFactory.Invalid("Cronograma de Execução das Atividades"));
@@ -133,7 +136,7 @@ namespace Domain.Entities
         public EProgramType? ProgramTypeId
         {
             get => _programTypeId;
-            private set
+            set
             {
                 {
                     DomainExceptionValidation.When(value == null,
@@ -147,7 +150,7 @@ namespace Domain.Entities
         public Guid? ProfessorId
         {
             get => _professorId;
-            private set
+            set
             {
                 {
                     DomainExceptionValidation.When(value == null,
@@ -161,7 +164,7 @@ namespace Domain.Entities
         public Guid? StudentId
         {
             get => _studentId;
-            private set
+            set
             {
                 {
                     DomainExceptionValidation.When(value == null,
@@ -175,7 +178,7 @@ namespace Domain.Entities
         public Guid? SubAreaId
         {
             get => _subAreaId;
-            private set
+            set
             {
                 {
                     DomainExceptionValidation.When(value == null,
@@ -184,6 +187,25 @@ namespace Domain.Entities
                 }
             }
         }
+
+        private Guid? _noticeId;
+        public Guid? NoticeId
+        {
+            get => _noticeId;
+            private set
+            {
+                {
+                    DomainExceptionValidation.When(value == null,
+                        ExceptionMessageFactory.Required("id do edital"));
+                    _noticeId = value;
+                }
+            }
+        }
+
+        public virtual Professor? Professor { get; }
+        public virtual Student? Student { get; }
+        public virtual SubArea? SubArea { get; }
+        public virtual Notice? Notice { get; }
         #endregion
 
         #region Constructors
@@ -210,22 +232,6 @@ namespace Domain.Entities
         /// Constructor to dbcontext EF instancing.
         /// </summary>
         public Project() { }
-        #endregion
-
-        #region Updaters
-        public void UpdateProgramTypeId(EProgramType? programTypeId) => ProgramTypeId = programTypeId;
-        public void UpdateProfessorId(Guid? professorId) => ProfessorId = professorId;
-        public void UpdateStudentId(Guid? studentId) => StudentId = studentId;
-        public void UpdateSubAreaId(Guid? subAreaId) => SubAreaId = subAreaId;
-        public void UpdateIsScholarshipCandidate(bool isScholarshipCandidate) => IsScholarshipCandidate = isScholarshipCandidate;
-        public void UpdateTitle(string? title) => Title = title;
-        public void UpdateKeyWord1(string? keyWord1) => KeyWord1 = keyWord1;
-        public void UpdateKeyWord2(string? keyWord2) => KeyWord2 = keyWord2;
-        public void UpdateKeyWord3(string? keyWord3) => KeyWord3 = keyWord3;
-        public void UpdateObjective(string? objective) => Objective = objective;
-        public void UpdateMethodology(string? methodology) => Methodology = methodology;
-        public void UpdateExpectedResults(string? expectedResults) => ExpectedResults = expectedResults;
-        public void UpdateActivitiesExecutionSchedule(string? activitiesExecutionSchedule) => ActivitiesExecutionSchedule = activitiesExecutionSchedule;
         #endregion
     }
 }

@@ -3,7 +3,10 @@ using Domain.Validation;
 
 namespace Domain.Entities
 {
-    public class Notices : Entity
+    /// <summary>
+    /// Edital de seleção de bolsistas
+    /// </summary>
+    public class Notice : Entity
     {
         #region Properties
         private DateTime? _startDate;
@@ -30,12 +33,7 @@ namespace Domain.Entities
             }
         }
 
-        private string? _description;
-        public string? Description
-        {
-            get { return _description; }
-            set { _description = value; }
-        }
+        public string? Description { get; set; }
 
         private string? _docUrl;
         public string? DocUrl
@@ -51,7 +49,7 @@ namespace Domain.Entities
         #endregion
 
         #region Constructors
-        public Notices(DateTime? startDate, DateTime? finalDate, string? description, string? docUrl)
+        public Notice(DateTime? startDate, DateTime? finalDate, string? description, string? docUrl)
         {
             StartDate = startDate;
             FinalDate = finalDate;
@@ -62,14 +60,7 @@ namespace Domain.Entities
         /// <summary>
         /// Constructor to dbcontext EF instancing.
         /// </summary>
-        public Notices() { }
-        #endregion
-
-        #region Updaters
-        public void UpdateStartDate(DateTime? value) => StartDate = value;
-        public void UpdateFinalDate(DateTime? value) => FinalDate = value;
-        public void UpdateDescription(string? value) => Description = value;
-        public void UpdateDocUrl(string? value) => DocUrl = value;
+        public Notice() { }
         #endregion
     }
 }

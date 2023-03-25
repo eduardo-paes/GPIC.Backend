@@ -3,6 +3,9 @@ using Domain.Validation;
 
 namespace Domain.Entities
 {
+    /// <summary>
+    /// Grande área de conhecimento
+    /// </summary>
     public class MainArea : Entity
     {
         #region Properties
@@ -10,7 +13,7 @@ namespace Domain.Entities
         public string? Code
         {
             get { return _code; }
-            private set
+            set
             {
                 DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("code"));
@@ -26,7 +29,7 @@ namespace Domain.Entities
         public string? Name
         {
             get { return _name; }
-            private set
+            set
             {
                 DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                 ExceptionMessageFactory.Required("name"));
@@ -58,11 +61,5 @@ namespace Domain.Entities
         /// </summary>
         protected MainArea() { }
         #endregion
-
-        #region Updaters
-        public void UpdateName(string? name) => Name = name;
-        public void UpdateCode(string? code) => Code = code;
-        #endregion
     }
 }
-

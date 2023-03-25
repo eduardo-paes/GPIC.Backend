@@ -22,7 +22,7 @@ namespace Application.UseCases.Auth
                 if (entity == null)
                     throw new Exception("Nenhum usuário encontrato para o id informado.");
 
-                entity.UpdatePassword(dto.Password);
+                entity.Password = dto.Password;
                 return await Task.FromResult(true);
             }
             catch

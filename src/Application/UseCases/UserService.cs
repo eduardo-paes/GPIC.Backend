@@ -45,9 +45,9 @@ namespace Application.Services
             var user = await GetUser(id);
 
             // Atualiza atributos permitidos
-            user.UpdateName(dto.Name);
-            user.UpdateRole(dto.Role);
-            user.UpdateCPF(dto.CPF);
+            user.Name = dto.Name;
+            user.Role = dto.Role;
+            user.CPF = dto.CPF;
 
             // Salva usuário atualizado no banco
             var entity = await _repository.Update(user);

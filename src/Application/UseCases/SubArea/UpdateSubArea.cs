@@ -23,9 +23,9 @@ namespace Application.UseCases.SubArea
             var entity = await _subAreaRepository.GetById(id);
 
             // Atualiza atributos permitidos
-            entity.UpdateName(dto.Name);
-            entity.UpdateCode(dto.Code);
-            entity.UpdateArea(dto.AreaId);
+            entity.Name = dto.Name;
+            entity.Code = dto.Code;
+            entity.AreaId = dto.AreaId;
 
             // Salva entidade atualizada no banco
             var model = await _subAreaRepository.Update(entity);

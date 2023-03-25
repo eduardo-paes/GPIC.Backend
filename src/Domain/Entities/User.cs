@@ -12,7 +12,7 @@ namespace Domain.Entities
         public string? Name
         {
             get { return _name; }
-            private set
+            set
             {
                 DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("name"));
@@ -44,7 +44,7 @@ namespace Domain.Entities
         public string? Password
         {
             get { return _password; }
-            private set
+            set
             {
                 DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("password"));
@@ -60,7 +60,7 @@ namespace Domain.Entities
         public string? CPF
         {
             get { return _cpf; }
-            private set
+            set
             {
                 DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("cpf"));
@@ -79,7 +79,7 @@ namespace Domain.Entities
         public string? Role
         {
             get { return _role; }
-            private set
+            set
             {
                 DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("role"));
@@ -116,19 +116,12 @@ namespace Domain.Entities
         protected User() { }
         #endregion
 
-        #region Updaters
-        public void UpdateName(string? name) => Name = name;
-        public void UpdatePassword(string? password) => Password = password;
-        public void UpdateRole(string? role) => Role = role;
-        public void UpdateCPF(string? cpf) => CPF = cpf;
-        #endregion
-
         #region Utils
         private static bool ValidateEmail(string email)
         {
             try
             {
-                return new MailAddress(email) != null ? false : true;
+                return new MailAddress(email) == null;
             }
             catch
             {
@@ -172,7 +165,7 @@ namespace Domain.Entities
         }
 
         private static string? GetOnlyNumbers(string? input) => !string.IsNullOrEmpty(input)
-            ? string.Concat(input.Where(Char.IsDigit))
+            ? string.Concat(input.Where(char.IsDigit))
             : input;
         #endregion
     }

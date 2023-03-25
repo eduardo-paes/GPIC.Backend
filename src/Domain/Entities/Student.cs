@@ -4,6 +4,9 @@ using Domain.Validation;
 
 namespace Domain.Entities
 {
+    /// <summary>
+    /// Estudante
+    /// </summary>
     public class Student : Entity
     {
         #region Properties
@@ -11,7 +14,7 @@ namespace Domain.Entities
         public DateTime BirthDate
         {
             get { return _birthDate; }
-            private set
+            set
             {
                 DomainExceptionValidation.When(value == default,
                     ExceptionMessageFactory.Required("Data de Nascimento"));
@@ -25,7 +28,7 @@ namespace Domain.Entities
         public long RG
         {
             get { return _rg; }
-            private set
+            set
             {
                 DomainExceptionValidation.When(value <= 0,
                     ExceptionMessageFactory.Required("RG"));
@@ -40,7 +43,7 @@ namespace Domain.Entities
         public string? IssuingAgency
         {
             get { return _issuingAgency; }
-            private set
+            set
             {
                 DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("Órgão Emissor"));
@@ -57,7 +60,7 @@ namespace Domain.Entities
         public DateTime DispatchDate
         {
             get { return _dispatchDate; }
-            private set
+            set
             {
                 DomainExceptionValidation.When(value == default,
                     ExceptionMessageFactory.Required("Data de expedição da identidade"));
@@ -74,7 +77,7 @@ namespace Domain.Entities
         public EGender? Gender
         {
             get { return _gender; }
-            private set
+            set
             {
                 DomainExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required("Sexo"));
@@ -89,7 +92,7 @@ namespace Domain.Entities
         public ERace? Race
         {
             get { return _race; }
-            private set
+            set
             {
                 DomainExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required("Cor/Raça"));
@@ -104,7 +107,7 @@ namespace Domain.Entities
         public string? HomeAddress
         {
             get { return _homeAddress; }
-            private set
+            set
             {
                 DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("Endereço Residencial"));
@@ -118,7 +121,7 @@ namespace Domain.Entities
         public string? City
         {
             get { return _city; }
-            private set
+            set
             {
                 DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("Cidade"));
@@ -132,7 +135,7 @@ namespace Domain.Entities
         public string? UF
         {
             get { return _uf; }
-            private set
+            set
             {
                 DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("UF"));
@@ -146,7 +149,7 @@ namespace Domain.Entities
         public long CEP
         {
             get { return _cep; }
-            private set
+            set
             {
                 DomainExceptionValidation.When(value <= 0,
                     ExceptionMessageFactory.Invalid("CEP"));
@@ -158,7 +161,7 @@ namespace Domain.Entities
         public int? PhoneDDD
         {
             get { return _phoneDDD; }
-            private set
+            set
             {
                 if (value == null) return;
                 DomainExceptionValidation.When(value <= 0,
@@ -171,7 +174,7 @@ namespace Domain.Entities
         public long? Phone
         {
             get { return _phone; }
-            private set
+            set
             {
                 if (value == null) return;
                 DomainExceptionValidation.When(value <= 0,
@@ -184,7 +187,7 @@ namespace Domain.Entities
         public int? CellPhoneDDD
         {
             get { return _cellPhoneDDD; }
-            private set
+            set
             {
                 if (value == null) return;
                 DomainExceptionValidation.When(value <= 0,
@@ -197,7 +200,7 @@ namespace Domain.Entities
         public long? CellPhone
         {
             get { return _cellPhone; }
-            private set
+            set
             {
                 if (value == null) return;
                 DomainExceptionValidation.When(value <= 0,
@@ -210,7 +213,7 @@ namespace Domain.Entities
         public Guid? CampusId
         {
             get { return _campusId; }
-            private set
+            set
             {
                 DomainExceptionValidation.When(value == null || value == Guid.Empty,
                     ExceptionMessageFactory.Required("campus"));
@@ -222,7 +225,7 @@ namespace Domain.Entities
         public Guid? CourseId
         {
             get { return _courseId; }
-            private set
+            set
             {
                 DomainExceptionValidation.When(value == null || value == Guid.Empty,
                     ExceptionMessageFactory.Required("course"));
@@ -237,7 +240,7 @@ namespace Domain.Entities
         public string? StartYear
         {
             get { return _startYear; }
-            private set
+            set
             {
                 DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("ano de entrada"));
@@ -252,7 +255,7 @@ namespace Domain.Entities
         public EStudentAssistanceProgram? StudentAssistanceProgram
         {
             get { return _studentAssistanceProgram; }
-            private set
+            set
             {
                 {
                     DomainExceptionValidation.When(value == null,
@@ -279,9 +282,9 @@ namespace Domain.Entities
             }
         }
 
-        public virtual User? User { get; set; }
-        public virtual Campus? Campus { get; set; }
-        public virtual Course? Course { get; set; }
+        public virtual User? User { get; }
+        public virtual Campus? Campus { get; }
+        public virtual Course? Course { get; }
         #endregion
 
         #region Constructors
@@ -331,28 +334,6 @@ namespace Domain.Entities
         /// Constructor to dbcontext EF instancing.
         /// </summary>
         public Student() { }
-        #endregion
-
-        #region Updaters
-        public void UpdateBirthDate(DateTime birthDate) => BirthDate = birthDate;
-        public void UpdateIdentity(long rg) => RG = rg;
-        public void UpdateIssuingAgency(string? issuingAgency) => IssuingAgency = issuingAgency;
-        public void UpdateDispatchDate(DateTime dispatchDate) => DispatchDate = dispatchDate;
-        public void UpdateGender(EGender? gender) => Gender = gender;
-        public void UpdateRace(ERace? race) => Race = race;
-        public void UpdateHomeAddress(string? homeAddress) => HomeAddress = homeAddress;
-        public void UpdateCity(string? city) => City = city;
-        public void UpdateState(string? uf) => UF = uf;
-        public void UpdateCEP(long cep) => CEP = cep;
-        public void UpdatePhoneDDD(int? phoneDDD) => PhoneDDD = phoneDDD;
-        public void UpdatePhone(long? phone) => Phone = phone;
-        public void UpdateCellPhoneDDD(int? cellPhoneDDD) => CellPhoneDDD = cellPhoneDDD;
-        public void UpdateCellPhone(long? cellPhone) => CellPhone = cellPhone;
-        public void UpdateCampusId(Guid? campusId) => CampusId = campusId;
-        public void UpdateCourseId(Guid? courseId) => CourseId = courseId;
-        public void UpdateStartYear(string? startYear) => StartYear = startYear;
-        public void UpdateStudentAssistanceProgram(EStudentAssistanceProgram? studentAssistanceProgram) => StudentAssistanceProgram = studentAssistanceProgram;
-        public void UpdateUserId(Guid? userId) => UserId = userId;
         #endregion
     }
 }

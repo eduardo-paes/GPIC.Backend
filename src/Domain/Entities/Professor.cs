@@ -4,6 +4,9 @@ using Domain.Validation;
 
 namespace Domain.Entities
 {
+    /// <summary>
+    /// Professor
+    /// </summary>
     public class Professor : Entity
     {
         #region Properties
@@ -14,7 +17,7 @@ namespace Domain.Entities
         public string? SIAPEEnrollment
         {
             get => _siapeEnrollment;
-            private set
+            set
             {
                 DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("Matrícula SIAPE"));
@@ -31,7 +34,7 @@ namespace Domain.Entities
         public long IdentifyLattes
         {
             get => _identifyLattes;
-            private set
+            set
             {
                 DomainExceptionValidation.When(value <= 0,
                     ExceptionMessageFactory.Invalid("Identificador Lattes"));
@@ -69,12 +72,6 @@ namespace Domain.Entities
         /// Constructor to dbcontext EF instancing.
         /// </summary>
         public Professor() { }
-        #endregion
-
-        #region Updaters
-        public void UpdateSIAPEEnrollment(string? siapeEnrollment) => SIAPEEnrollment = siapeEnrollment;
-        public void UpdateIdentifyLattes(long identifyLattes) => IdentifyLattes = identifyLattes;
-        public void UpdateUserId(Guid? userId) => UserId = userId;
         #endregion
     }
 }
