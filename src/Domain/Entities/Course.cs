@@ -1,7 +1,7 @@
 using Domain.Entities.Primitives;
 using Domain.Validation;
 
-namespace Domain
+namespace Domain.Entities
 {
     public class Course : Entity
     {
