@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Application.DTOs.Base;
+using System;
+
 namespace Application.DTOs.User
 {
-    public class UserReadDTO
+    public class UserReadDTO : ResponseDTO
     {
         public Guid? Id { get; set; }
         public string? Name { get; set; }

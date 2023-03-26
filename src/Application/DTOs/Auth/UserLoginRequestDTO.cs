@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Application.DTOs.Base;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Application.DTOs.Auth
 {
-    public class UserLoginRequestDTO
+    public class UserLoginRequestDTO : RequestDTO
     {
         [Required]
         public string? Email { get; set; }

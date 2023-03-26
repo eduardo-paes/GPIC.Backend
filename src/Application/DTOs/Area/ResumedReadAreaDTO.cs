@@ -1,7 +1,11 @@
-﻿namespace Application.DTOs.Area
+﻿using Application.DTOs.Base;
+
+namespace Application.DTOs.Area
 {
-    public class ResumedReadAreaDTO : BaseAreaDTO
+    public class ResumedReadAreaDTO : ResponseDTO
     {
         public Guid? Id { get; set; }
+        public string? Name { get; set; }
+        public string? Code { get; set; }
     }
 }

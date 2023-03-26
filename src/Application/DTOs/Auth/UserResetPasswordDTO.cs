@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Application.DTOs.Base;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Application.DTOs.Auth
 {
-    public class UserResetPasswordDTO
+    public class UserResetPasswordDTO : RequestDTO
     {
         [Required]
         public Guid? Id { get; set; }

@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Application.DTOs.Base;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Application.DTOs.Auth
 {
-    public class UserRegisterDTO
+    public class UserRegisterDTO : RequestDTO
     {
         [Required]
         public string? Name { get; set; }

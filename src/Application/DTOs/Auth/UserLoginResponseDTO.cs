@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Application.DTOs.Base;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Application.DTOs.Auth
 {
-    public class UserLoginResponseDTO
+    public class UserLoginResponseDTO : ResponseDTO
     {
         public Guid? Id { get; set; }
         public string? Name { get; set; }

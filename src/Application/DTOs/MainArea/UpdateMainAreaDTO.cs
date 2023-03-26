@@ -1,11 +1,16 @@
-﻿using System;
+﻿using Application.DTOs.Base;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Application.DTOs.MainArea
 {
-    public class UpdateMainAreaDTO : BaseMainAreaDTO
+    public class UpdateMainAreaDTO : RequestDTO
     {
         public Guid? Id { get; set; }
+        [Required]
+        public string? Name { get; set; }
+        [Required]
+        public string? Code { get; set; }
     }
 }
 
