@@ -9,8 +9,8 @@ namespace Infrastructure.Persistence.Repositories
     public class MainAreaRepository : IMainAreaRepository
     {
         #region Global Scope
-        private readonly ApplicationDbContext _context;
-        public MainAreaRepository(ApplicationDbContext context) => _context = context;
+        private readonly AdaptersDbContext _context;
+        public MainAreaRepository(AdaptersDbContext context) => _context = context;
         #endregion
 
         #region Public Methods

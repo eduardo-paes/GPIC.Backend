@@ -1,4 +1,4 @@
-﻿using Application.Mappings;
+﻿using Adapters.Mappings;
 using Domain.Interfaces;
 using Infrastructure.Persistence.Context;
 using Infrastructure.Persistence.Repositories;
@@ -26,9 +26,9 @@ public static class DependencyInjection
         #endregion
 
         #region Inicialização do banco de dados
-        services.AddDbContext<ApplicationDbContext>(
+        services.AddDbContext<AdaptersDbContext>(
             o => o.UseNpgsql(configuration.GetConnectionString("DefaultConnection"),
-            b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+            b => b.MigrationsAssembly(typeof(AdaptersDbContext).Assembly.FullName)));
         #endregion
 
         #region Serviços de Log 

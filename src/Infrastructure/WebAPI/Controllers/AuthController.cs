@@ -1,6 +1,6 @@
-﻿using Application.DTOs.Auth;
-using Application.DTOs.User;
-using Application.Proxies.Auth;
+﻿using Adapters.DTOs.Auth;
+using Adapters.DTOs.User;
+using Adapters.Proxies.Auth;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Infrastructure.WebAPI.Controllers

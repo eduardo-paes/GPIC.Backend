@@ -1,5 +1,5 @@
-using Application.DTOs.MainArea;
-using Application.Proxies.MainArea;
+using Adapters.DTOs.MainArea;
+using Adapters.Proxies.MainArea;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Infrastructure.WebAPI.Controllers

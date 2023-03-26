@@ -1,11 +1,11 @@
-using Application.Proxies.Area;
-using Application.Proxies.Auth;
-using Application.Proxies.MainArea;
-using Application.Proxies.SubArea;
-using Application.UseCases.Area;
-using Application.UseCases.Auth;
-using Application.UseCases.MainArea;
-using Application.UseCases.SubArea;
+using Adapters.Proxies.Area;
+using Adapters.Proxies.Auth;
+using Adapters.Proxies.MainArea;
+using Adapters.Proxies.SubArea;
+using Adapters.UseCases.Area;
+using Adapters.UseCases.Auth;
+using Adapters.UseCases.MainArea;
+using Adapters.UseCases.SubArea;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

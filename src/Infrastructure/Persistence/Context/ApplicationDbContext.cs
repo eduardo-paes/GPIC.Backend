@@ -4,9 +4,9 @@ using Persistence.Seeds;
 
 namespace Infrastructure.Persistence.Context
 {
-    public class ApplicationDbContext : DbContext
+    public class AdaptersDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        public AdaptersDbContext(DbContextOptions<AdaptersDbContext> options) : base(options)
         { }
 
         public DbSet<User> Users { get; set; }
@@ -23,7 +23,7 @@ namespace Infrastructure.Persistence.Context
         {
             builder.HasDefaultSchema("public");
             base.OnModelCreating(builder);
-            builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+            builder.ApplyConfigurationsFromAssembly(typeof(AdaptersDbContext).Assembly);
         }
     }
 }

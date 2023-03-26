@@ -6,7 +6,7 @@
 		<Version>1.0.0</Version>
 	</PropertyGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\Application\Application.csproj" />
+		<ProjectReference Include="..\..\Adapters\Adapters.csproj" />
 		<ProjectReference Include="..\..\Domain\Domain.csproj" />
 		<ProjectReference Include="..\Persistence\Persistence.csproj" />
 		<ProjectReference Include="..\Services\Services.csproj" />

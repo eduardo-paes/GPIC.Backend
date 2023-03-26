@@ -8,8 +8,8 @@ namespace Infrastructure.Persistence.Repositories
     public class SubAreaRepository : ISubAreaRepository
     {
         #region Global Scope
-        private readonly ApplicationDbContext _context;
-        public SubAreaRepository(ApplicationDbContext context) => _context = context;
+        private readonly AdaptersDbContext _context;
+        public SubAreaRepository(AdaptersDbContext context) => _context = context;
         #endregion
 
         #region Public Methods

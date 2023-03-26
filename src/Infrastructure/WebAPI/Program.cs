@@ -1,6 +1,6 @@
 using Infrastructure.IoC;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebAdapters.CreateBuilder(args);
 {
     // Adição dos Controllers
     builder.Services.AddControllers();
