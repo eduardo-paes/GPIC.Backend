@@ -1,3 +1,5 @@
+using Adapters.DTOs.Base;
+
 namespace Adapters.Proxies.Base
 {
     public interface IGenericCRUDService
@@ -35,6 +37,6 @@ namespace Adapters.Proxies.Base
         /// </summary>
         /// <param name="model">Parâmetros de atualização.</param>
         /// <returns>Entidade atualizada.</returns>
-        Task<ResponseDTO> Update(RequestDTO model);
+        Task<ResponseDTO> Update(Guid? id, RequestDTO model);
     }
 }

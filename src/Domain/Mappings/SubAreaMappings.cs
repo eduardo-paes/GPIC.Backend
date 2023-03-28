@@ -9,7 +9,7 @@ namespace Domain.Mappings
         public SubAreaMappings()
         {
             CreateMap<SubArea, CreateSubAreaInput>().ReverseMap();
-            CreateMap<SubArea, UpdateSubAreaOutput>().ReverseMap();
+            CreateMap<SubArea, UpdateSubAreaInput>().ReverseMap();
             CreateMap<SubArea, ResumedReadSubAreaOutput>().ReverseMap();
             CreateMap<SubArea, DetailedReadSubAreaOutput>()
                 .ForMember(dest => dest.Area, opt => opt.MapFrom(src => src.Area))

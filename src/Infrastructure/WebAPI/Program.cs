@@ -1,13 +1,14 @@
 using Infrastructure.IoC;
 
-var builder = WebAdapters.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 {
     // Adição dos Controllers
     builder.Services.AddControllers();
 
     // Realiza comunicação com os demais Projetos.
     builder.Services.AddInfrastructure(builder.Configuration);
-    builder.Services.AddUseCases();
+    builder.Services.AddAdapters();
+    builder.Services.AddDomain();
 
     // Configuração do Swagger
     builder.Services.AddInfrastructureSwagger();
@@ -31,7 +32,7 @@ var app = builder.Build();
     app.UseAuthentication();
     app.UseAuthorization();
 
-    app.MapControllers();
+    app.UseEndpoints(endpoints => endpoints.MapControllers());
 
     app.Run();
 }

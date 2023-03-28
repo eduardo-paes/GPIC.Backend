@@ -1,6 +1,8 @@
+using Adapters.Proxies.Base;
+
 namespace Adapters.Proxies.MainArea
 {
-    public public interface IMainAreaService : IGenericCRUDService
+    public interface IMainAreaService : IGenericCRUDService
     {
     }
 }

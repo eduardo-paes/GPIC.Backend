@@ -1,5 +1,3 @@
-using Adapters.DTOs.User;
-using Adapters.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Infrastructure.WebAPI.Controllers

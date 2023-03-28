@@ -1,5 +1,5 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces;
+using Domain.Interfaces.Repositories;
 using Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,8 +8,8 @@ namespace Infrastructure.Persistence.Repositories
     public class UserRepository : IUserRepository
     {
         #region Global Scope
-        private readonly AdaptersDbContext _context;
-        public UserRepository(AdaptersDbContext context) => _context = context;
+        private readonly ApplicationDbContext _context;
+        public UserRepository(ApplicationDbContext context) => _context = context;
         #endregion
 
         #region CRUD Methods

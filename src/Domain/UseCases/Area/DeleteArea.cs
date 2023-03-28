@@ -1,7 +1,7 @@
 using Domain.Contracts.Area;
 using Domain.Interfaces.UseCases.Area;
 using AutoMapper;
-using Domain.Interfaces.UseCases;
+using Domain.Interfaces.Repositories;
 
 namespace Domain.UseCases.Area
 {
@@ -17,8 +17,11 @@ namespace Domain.UseCases.Area
         }
         #endregion
 
-        public async Task<DetailedReadAreaOutput> Execute(Guid id)
+        public async Task<DetailedReadAreaOutput> Execute(Guid? id)
         {
+            if (id == null)
+                throw new Exception("O Id da Área não pode ser vazio.");
+
             var model = await _repository.Delete(id);
             return _mapper.Map<DetailedReadAreaOutput>(model);
         }

@@ -10,4 +10,3 @@ namespace Domain.Contracts.Area
         public Guid? Id { get; set; }
     }
 }
-

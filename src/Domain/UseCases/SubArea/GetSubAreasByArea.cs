@@ -1,7 +1,11 @@
 using Domain.Contracts.SubArea;
 using Domain.Interfaces.UseCases.SubArea;
 using AutoMapper;
-using Domain.Interfaces.UseCases;
+using Domain.Interfaces.Repositories;
+using System.Threading.Tasks;
+using System.Linq;
+using System;
+using System.Collections.Generic;
 
 namespace Domain.UseCases.SubArea
 {

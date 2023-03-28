@@ -1,4 +1,4 @@
-namespace Adapters.Proxies.Base
+namespace Adapters.DTOs.Base
 {
-    public class RequestDTO {}
+    public class RequestDTO { }
 }

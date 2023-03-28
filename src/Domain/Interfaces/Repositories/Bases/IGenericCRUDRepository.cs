@@ -1,4 +1,8 @@
-﻿namespace Domain.Interfaces.Repositories.Bases
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace Domain.Interfaces.Repositories.Bases
 {
     public interface IGenericCRUDRepository<T>
     {

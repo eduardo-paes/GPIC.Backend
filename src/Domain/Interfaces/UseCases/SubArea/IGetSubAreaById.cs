@@ -1,6 +1,8 @@
+using System;
+using System.Threading.Tasks;
 using Domain.Contracts.SubArea;
 
-namespace Domain.Interfaces.SubArea
+namespace Domain.Interfaces.UseCases.SubArea
 {
     public interface IGetSubAreaById
     {

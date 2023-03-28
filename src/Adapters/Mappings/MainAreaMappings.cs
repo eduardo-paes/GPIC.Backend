@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Adapters.DTOs.MainArea;
-using Domain.Entities;
+using Domain.Contracts.MainArea;
 
 namespace Adapters.Mappings
 {
@@ -8,10 +8,10 @@ namespace Adapters.Mappings
     {
         public MainAreaMappings()
         {
-            CreateMap<MainArea, CreateMainAreaDTO>().ReverseMap();
-            CreateMap<MainArea, UpdateMainAreaDTO>().ReverseMap();
-            CreateMap<MainArea, ResumedReadMainAreaDTO>().ReverseMap();
-            CreateMap<MainArea, DetailedMainAreaDTO>().ReverseMap();
+            CreateMap<CreateMainAreaInput, CreateMainAreaDTO>().ReverseMap();
+            CreateMap<UpdateMainAreaInput, UpdateMainAreaDTO>().ReverseMap();
+            CreateMap<ResumedReadMainAreaOutput, ResumedReadMainAreaDTO>().ReverseMap();
+            CreateMap<DetailedMainAreaOutput, DetailedMainAreaDTO>().ReverseMap();
         }
     }
 }

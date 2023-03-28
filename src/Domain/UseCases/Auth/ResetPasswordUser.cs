@@ -1,6 +1,8 @@
 using Domain.Contracts.Auth;
 using Domain.Interfaces.UseCases.Auth;
-using Domain.Interfaces.UseCases;
+using Domain.Interfaces.Repositories;
+using System.Threading.Tasks;
+using System;
 
 namespace Domain.UseCases.Auth
 {

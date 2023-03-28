@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 using Domain.Entities;
-using Domain.Interfaces;
+using Domain.Interfaces.Repositories;
 using Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,8 +9,8 @@ namespace Infrastructure.Persistence.Repositories
     public class MainAreaRepository : IMainAreaRepository
     {
         #region Global Scope
-        private readonly AdaptersDbContext _context;
-        public MainAreaRepository(AdaptersDbContext context) => _context = context;
+        private readonly ApplicationDbContext _context;
+        public MainAreaRepository(ApplicationDbContext context) => _context = context;
         #endregion
 
         #region Public Methods

@@ -1,7 +1,7 @@
-using Domain.Interfaces.UseCases.Area;
 using Domain.Contracts.Area;
 using AutoMapper;
-using Domain.Interfaces.UseCases;
+using Domain.Interfaces.Repositories;
+using Domain.Interfaces.UseCases.Area;
 
 namespace Domain.UseCases.Area
 {
@@ -19,23 +19,23 @@ namespace Domain.UseCases.Area
         }
         #endregion
 
-        public async Task<DetailedReadAreaOutput> Execute(CreateAreaInput dto)
+        public async Task<DetailedReadAreaOutput> Execute(CreateAreaInput model)
         {
-            var entity = await _areaRepository.GetByCode(dto.Code);
+            var entity = await _areaRepository.GetByCode(model.Code);
             if (entity != null)
-                throw new Exception($"Já existe uma Área Principal para o código {dto.Code}");
+                throw new Exception($"Já existe uma Área Principal para o código {model.Code}");
 
             // Verifica id da área princial
-            if (dto.MainAreaId == null)
+            if (model.MainAreaId == null)
                 throw new Exception($"O Id da Área Principal não pode ser vazio.");
 
             // Valida se existe área principal
-            var area = await _mainAreaRepository.GetById(dto.MainAreaId);
+            var area = await _mainAreaRepository.GetById(model.MainAreaId);
             if (area.DeletedAt != null)
                 throw new Exception($"A Área Principal informada está inativa.");
 
             // Cria nova área
-            entity = await _areaRepository.Create(_mapper.Map<Domain.Entities.Area>(dto));
+            entity = await _areaRepository.Create(_mapper.Map<Domain.Entities.Area>(model));
             return _mapper.Map<DetailedReadAreaOutput>(entity);
         }
     }

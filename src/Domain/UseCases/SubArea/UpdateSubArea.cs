@@ -1,7 +1,9 @@
 using Domain.Contracts.SubArea;
 using Domain.Interfaces.UseCases.SubArea;
 using AutoMapper;
-using Domain.Interfaces.UseCases;
+using Domain.Interfaces.Repositories;
+using System.Threading.Tasks;
+using System;
 
 namespace Domain.UseCases.SubArea
 {
@@ -17,7 +19,7 @@ namespace Domain.UseCases.SubArea
         }
         #endregion
 
-        public async Task<DetailedReadSubAreaOutput> Execute(Guid? id, UpdateSubAreaOutput dto)
+        public async Task<DetailedReadSubAreaOutput> Execute(Guid? id, UpdateSubAreaInput dto)
         {
             // Recupera entidade que será atualizada
             var entity = await _subAreaRepository.GetById(id);

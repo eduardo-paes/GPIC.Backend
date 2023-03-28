@@ -1,12 +1,11 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using Persistence.Seeds;
 
 namespace Infrastructure.Persistence.Context
 {
-    public class AdaptersDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
-        public AdaptersDbContext(DbContextOptions<AdaptersDbContext> options) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { }
 
         public DbSet<User> Users { get; set; }
@@ -23,7 +22,7 @@ namespace Infrastructure.Persistence.Context
         {
             builder.HasDefaultSchema("public");
             base.OnModelCreating(builder);
-            builder.ApplyConfigurationsFromAssembly(typeof(AdaptersDbContext).Assembly);
+            builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
         }
     }
 }

@@ -1,19 +1,20 @@
-using Adapters.Proxies.Area;
-using Adapters.Proxies.Auth;
-using Adapters.Proxies.MainArea;
-using Adapters.Proxies.SubArea;
-using Adapters.UseCases.Area;
-using Adapters.UseCases.Auth;
-using Adapters.UseCases.MainArea;
-using Adapters.UseCases.SubArea;
-using Microsoft.Extensions.Configuration;
+using Domain.Interfaces.UseCases.Area;
+using Domain.Interfaces.UseCases.Auth;
+using Domain.Interfaces.UseCases.MainArea;
+using Domain.Interfaces.UseCases.SubArea;
+using Domain.Mappings;
+using Domain.UseCases.Area;
+using Domain.UseCases.Auth;
+using Domain.UseCases.MainArea;
+using Domain.UseCases.SubArea;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.IoC;
-public static class DependencyInjectionUseCases
+public static class DependencyDomainInjection
 {
-    public static IServiceCollection AddUseCases(this IServiceCollection services)
+    public static IServiceCollection AddDomain(this IServiceCollection services)
     {
+        #region UseCases
         #region Area
         services.AddScoped<ICreateArea, CreateArea>();
         services.AddScoped<IDeleteArea, DeleteArea>();
@@ -42,6 +43,15 @@ public static class DependencyInjectionUseCases
         services.AddScoped<IGetSubAreaById, GetSubAreaById>();
         services.AddScoped<IGetSubAreasByArea, GetSubAreasByArea>();
         services.AddScoped<IUpdateSubArea, UpdateSubArea>();
+        #endregion
+        #endregion
+
+        #region Contract Mappers
+        services.AddAutoMapper(typeof(AreaMappings));
+        services.AddAutoMapper(typeof(AuthMappings));
+        services.AddAutoMapper(typeof(MainAreaMappings));
+        services.AddAutoMapper(typeof(SubAreaMappings));
+        services.AddAutoMapper(typeof(UserMappings));
         #endregion
 
         return services;

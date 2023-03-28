@@ -1,6 +1,7 @@
+using System.Threading.Tasks;
 using Domain.Contracts.Auth;
 
-namespace Domain.Interfaces.Auth
+namespace Domain.Interfaces.UseCases.Auth
 {
     public interface ILoginUser
     {

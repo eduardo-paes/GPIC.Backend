@@ -1,5 +1,4 @@
 ﻿using Adapters.DTOs.Base;
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Adapters.DTOs.Area
@@ -14,4 +13,3 @@ namespace Adapters.DTOs.Area
         public string? Code { get; set; }
     }
 }
-

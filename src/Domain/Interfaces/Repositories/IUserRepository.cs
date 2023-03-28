@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Domain.Entities;
 
 namespace Domain.Interfaces.Repositories
@@ -39,7 +41,7 @@ namespace Domain.Interfaces.Repositories
         /// </summary>
         /// <param name="user">Parâmetros de criação do usuário.</param>
         /// <returns>Usuário criado.</returns>
-        Task<User> Register(User user);
+        Task<User?> Register(User user);
 
         /// <summary>
         /// Retorna usuário com o Email informado.
@@ -59,4 +61,3 @@ namespace Domain.Interfaces.Repositories
         #endregion
     }
 }
-

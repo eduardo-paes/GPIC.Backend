@@ -1,5 +1,10 @@
 ﻿using Adapters.Mappings;
+using Adapters.Proxies.Area;
+using Adapters.Proxies.MainArea;
+using Adapters.Proxies.SubArea;
+using Adapters.Services;
 using Domain.Interfaces;
+using Domain.Interfaces.Repositories;
 using Infrastructure.Persistence.Context;
 using Infrastructure.Persistence.Repositories;
 using Infrastructure.Services;
@@ -26,9 +31,9 @@ public static class DependencyInjection
         #endregion
 
         #region Inicialização do banco de dados
-        services.AddDbContext<AdaptersDbContext>(
+        services.AddDbContext<ApplicationDbContext>(
             o => o.UseNpgsql(configuration.GetConnectionString("DefaultConnection"),
-            b => b.MigrationsAssembly(typeof(AdaptersDbContext).Assembly.FullName)));
+            b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
         #endregion
 
         #region Serviços de Log 
@@ -53,15 +58,6 @@ public static class DependencyInjection
         services.AddScoped<IUserRepository, UserRepository>();
         #endregion
 
-        #region DTO Mappers
-        services.AddAutoMapper(typeof(AreaMappings));
-        services.AddAutoMapper(typeof(AuthMappings));
-        services.AddAutoMapper(typeof(MainAreaMappings));
-        services.AddAutoMapper(typeof(SubAreaMappings));
-        services.AddAutoMapper(typeof(UserMappings));
-        #endregion
-
         return services;
     }
 }
-

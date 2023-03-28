@@ -1,6 +1,5 @@
-﻿// using System.Data.Entity;
-using Domain.Entities;
-using Domain.Interfaces;
+﻿using Domain.Entities;
+using Domain.Interfaces.Repositories;
 using Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,8 +8,8 @@ namespace Infrastructure.Persistence.Repositories
     public class AreaRepository : IAreaRepository
     {
         #region Global Scope
-        private readonly AdaptersDbContext _context;
-        public AreaRepository(AdaptersDbContext context) => _context = context;
+        private readonly ApplicationDbContext _context;
+        public AreaRepository(ApplicationDbContext context) => _context = context;
         #endregion
 
         #region Public Methods
@@ -52,6 +51,11 @@ namespace Infrastructure.Persistence.Repositories
             _context.Update(model);
             await _context.SaveChangesAsync();
             return model;
+        }
+
+        public Task<IEnumerable<Area>> GetAll(int skip, int take)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

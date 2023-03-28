@@ -1,16 +1,15 @@
 ﻿using AutoMapper;
 using Domain.Contracts.User;
-using Domain.Entities;
-using Domain.Interfaces.UseCases;
+using Domain.Interfaces.Repositories;
 
 namespace Domain.UseCases.User
 {
-    public class UseUseCase
+    public class UserUseCase
     {
         #region Global Scope
         private readonly IUserRepository _repository;
         private readonly IMapper _mapper;
-        public UserService(IUserRepository repository, IMapper mapper)
+        public UserUseCase(IUserRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -78,7 +77,7 @@ namespace Domain.UseCases.User
         #endregion
 
         #region Private Methods
-        private async Task<User> GetUser(Guid? id)
+        private async Task<Entities.User> GetUser(Guid? id)
         {
             var entity = await _repository.GetById(id);
             if (entity == null)

@@ -1,6 +1,4 @@
 ﻿using Adapters.DTOs.Base;
-using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace Adapters.DTOs.Auth
 {
@@ -13,4 +11,3 @@ namespace Adapters.DTOs.Auth
         public string? Token { get; set; }
     }
 }
-

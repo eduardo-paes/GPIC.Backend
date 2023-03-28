@@ -1,7 +1,9 @@
 using Domain.Contracts.MainArea;
 using Domain.Interfaces.UseCases.MainArea;
 using AutoMapper;
-using Domain.Interfaces.UseCases;
+using Domain.Interfaces.Repositories;
+using System.Threading.Tasks;
+using System;
 
 namespace Domain.UseCases.MainArea
 {

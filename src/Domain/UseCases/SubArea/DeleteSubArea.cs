@@ -1,7 +1,7 @@
 using Domain.Contracts.SubArea;
 using Domain.Interfaces.UseCases.SubArea;
 using AutoMapper;
-using Domain.Interfaces.UseCases;
+using Domain.Interfaces.Repositories;
 
 namespace Domain.UseCases.SubArea
 {
@@ -17,8 +17,11 @@ namespace Domain.UseCases.SubArea
         }
         #endregion
 
-        public async Task<DetailedReadSubAreaOutput> Execute(Guid id)
+        public async Task<DetailedReadSubAreaOutput> Execute(Guid? id)
         {
+            if (id == null)
+                throw new ArgumentNullException(nameof(id));
+
             var model = await _subAreaRepository.Delete(id);
             return _mapper.Map<DetailedReadSubAreaOutput>(model);
         }

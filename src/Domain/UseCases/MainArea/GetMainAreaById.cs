@@ -1,7 +1,7 @@
 using Domain.Contracts.MainArea;
 using Domain.Interfaces.UseCases.MainArea;
 using AutoMapper;
-using Domain.Interfaces.UseCases;
+using Domain.Interfaces.Repositories;
 
 namespace Domain.UseCases.MainArea
 {
@@ -19,6 +19,9 @@ namespace Domain.UseCases.MainArea
 
         public async Task<DetailedMainAreaOutput> Execute(Guid? id)
         {
+            if (id == null)
+                throw new ArgumentNullException(nameof(id));
+
             var entity = await _repository.GetById(id);
             return _mapper.Map<DetailedMainAreaOutput>(entity);
         }

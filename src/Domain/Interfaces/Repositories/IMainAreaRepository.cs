@@ -1,5 +1,6 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using Domain.Entities;
+using Domain.Interfaces.Repositories.Bases;
 
 namespace Domain.Interfaces.Repositories
 {
@@ -8,4 +9,3 @@ namespace Domain.Interfaces.Repositories
         Task<MainArea?> GetByCode(string? code);
     }
 }
-

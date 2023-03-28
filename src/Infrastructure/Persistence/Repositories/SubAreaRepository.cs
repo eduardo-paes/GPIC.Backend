@@ -1,5 +1,5 @@
 ﻿using Domain.Entities;
-using Domain.Interfaces;
+using Domain.Interfaces.Repositories;
 using Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,8 +8,8 @@ namespace Infrastructure.Persistence.Repositories
     public class SubAreaRepository : ISubAreaRepository
     {
         #region Global Scope
-        private readonly AdaptersDbContext _context;
-        public SubAreaRepository(AdaptersDbContext context) => _context = context;
+        private readonly ApplicationDbContext _context;
+        public SubAreaRepository(ApplicationDbContext context) => _context = context;
         #endregion
 
         #region Public Methods
@@ -56,7 +56,11 @@ namespace Infrastructure.Persistence.Repositories
             await _context.SaveChangesAsync();
             return model;
         }
+
+        public Task<IEnumerable<SubArea>> GetAll(int skip, int take)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }
-

@@ -1,7 +1,7 @@
 using Domain.Contracts.MainArea;
 using Domain.Interfaces.UseCases.MainArea;
 using AutoMapper;
-using Domain.Interfaces.UseCases;
+using Domain.Interfaces.Repositories;
 
 namespace Domain.UseCases.MainArea
 {

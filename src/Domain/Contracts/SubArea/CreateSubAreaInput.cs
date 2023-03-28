@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Contracts.SubArea
 {
@@ -8,4 +9,3 @@ namespace Domain.Contracts.SubArea
         public Guid? AreaId { get; set; }
     }
 }
-

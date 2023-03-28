@@ -94,7 +94,7 @@ namespace Domain.Entities
             {
                 DomainExceptionValidation.When(string.IsNullOrWhiteSpace(value),
                     ExceptionMessageFactory.Invalid("Metodologia"));
-                DomainExceptionValidation.When(value.Length > 1500,
+                DomainExceptionValidation.When(value?.Length > 1500,
                     ExceptionMessageFactory.MaxLength("Metodologia", 1500));
                 _methodology = value;
             }
@@ -111,7 +111,7 @@ namespace Domain.Entities
             {
                 DomainExceptionValidation.When(string.IsNullOrWhiteSpace(value),
                     ExceptionMessageFactory.Invalid("Resultados Esperados"));
-                DomainExceptionValidation.When(value.Length > 1500,
+                DomainExceptionValidation.When(value?.Length > 1500,
                     ExceptionMessageFactory.MaxLength("Resultados Esperados", 1500));
                 _expectedResults = value;
             }
