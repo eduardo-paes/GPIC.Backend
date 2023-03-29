@@ -2,9 +2,7 @@ using Domain.Contracts.Auth;
 using Domain.Interfaces.UseCases.Auth;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
-using Domain.Interfaces;
-using System.Threading.Tasks;
-using System;
+using Domain.Interfaces.Services;
 
 namespace Domain.UseCases.Auth
 {

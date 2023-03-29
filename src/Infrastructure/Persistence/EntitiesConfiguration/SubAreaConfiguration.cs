@@ -14,6 +14,7 @@ namespace Infrastructure.Persistence.EntitiesConfiguration
             builder.Property(p => p.Name).HasMaxLength(100).IsRequired();
             builder.Property(p => p.Code).HasMaxLength(100).IsRequired();
             builder.Property(p => p.AreaId).IsRequired();
+            builder.Property(p => p.DeletedAt);
 
             builder.HasOne(a => a.Area)
                 .WithMany()

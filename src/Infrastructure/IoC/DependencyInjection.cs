@@ -1,13 +1,6 @@
-﻿using Adapters.Mappings;
-using Adapters.Proxies.Area;
-using Adapters.Proxies.MainArea;
-using Adapters.Proxies.SubArea;
-using Adapters.Services;
-using Domain.Interfaces;
-using Domain.Interfaces.Repositories;
+﻿using Domain.Interfaces.Repositories;
 using Infrastructure.Persistence.Context;
 using Infrastructure.Persistence.Repositories;
-using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,7 +16,7 @@ public static class DependencyInjection
         // Adicione o caminho base para o arquivo appsettings.json
         var basePath = Path.GetDirectoryName(typeof(DependencyInjection).Assembly.Location);
         var configurationBuilder = new ConfigurationBuilder()
-            .SetBasePath(basePath)
+            .SetBasePath(basePath!)
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
         // Use a configuração criada acima para ler as configurações do appsettings.json
@@ -47,13 +40,10 @@ public static class DependencyInjection
         });
         #endregion
 
-        #region Services
-        services.AddScoped<ITokenHandler, TokenHandler>();
-        #endregion
-
         #region Repositórios
         services.AddScoped<IAreaRepository, AreaRepository>();
         services.AddScoped<IMainAreaRepository, MainAreaRepository>();
+        services.AddScoped<INoticeRepository, NoticeRepository>();
         services.AddScoped<ISubAreaRepository, SubAreaRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
         #endregion

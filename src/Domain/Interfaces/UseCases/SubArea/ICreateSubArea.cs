@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Domain.Contracts.SubArea;
 
 namespace Domain.Interfaces.UseCases.SubArea

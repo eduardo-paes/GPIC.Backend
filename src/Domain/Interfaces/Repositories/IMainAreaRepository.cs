@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Domain.Entities;
+﻿using Domain.Entities;
 using Domain.Interfaces.Repositories.Bases;
 
 namespace Domain.Interfaces.Repositories

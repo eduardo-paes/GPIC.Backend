@@ -1,4 +1,4 @@
-﻿using Domain.Interfaces;
+﻿using Domain.Interfaces.Services;
 
 namespace Infrastructure.Services
 {
