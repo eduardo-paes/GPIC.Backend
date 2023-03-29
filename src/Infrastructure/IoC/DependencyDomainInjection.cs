@@ -11,7 +11,6 @@ using Domain.UseCases.MainArea;
 using Domain.UseCases.Notice;
 using Domain.UseCases.SubArea;
 using Infrastructure.Services;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.IoC;
