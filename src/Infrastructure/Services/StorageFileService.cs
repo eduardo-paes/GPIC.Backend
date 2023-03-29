@@ -48,11 +48,66 @@ namespace Infrastructure.Services
         }
         #endregion
 
-        public async Task<string> UploadNoticeFileAsync(IFormFile file)
+        #region Public Methods
+        public async Task<string> UploadNoticeFileAsync(IFormFile file, string? filePath = null)
+        {
+            // Valida o arquivo
+            filePath = GenerateFilePath(file, _noticeDirectory, filePath, true);
+
+            // Salva o arquivo
+            using (var stream = new FileStream(filePath, FileMode.Create))
+                await file.CopyToAsync(stream);
+
+            // Retorna o caminho do arquivo
+            return filePath;
+        }
+
+        public async Task<string> UploadStudentDocFileAsync(IFormFile file, string? filePath = null)
+        {
+            // Valida o arquivo
+            filePath = GenerateFilePath(file, _studentDocDirectory, filePath);
+
+            // Salva o arquivo
+            using (var stream = new FileStream(filePath, FileMode.Create))
+                await file.CopyToAsync(stream);
+
+            // Retorna o caminho do arquivo
+            return filePath;
+        }
+
+        public async Task<string> UploadReportFileAsync(IFormFile file, string? filePath = null)
+        {
+            // Valida o arquivo
+            filePath = GenerateFilePath(file, _reportDirectory, filePath, true);
+
+            // Salva o arquivo
+            using (var stream = new FileStream(filePath, FileMode.Create))
+                await file.CopyToAsync(stream);
+
+            // Retorna o caminho do arquivo
+            return filePath;
+        }
+
+        public void DeleteFile(string filePath)
+        {
+            try
+            {
+                if (File.Exists(filePath))
+                    File.Delete(filePath);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"O arquivo {filePath} não pode ser excluído.", ex);
+            }
+        }
+        #endregion
+
+        #region Private Methods
+        private string GenerateFilePath(IFormFile file, string custom_directory, string? filePath = null, bool onlyPdf = false)
         {
             // Verifica se a extensão do arquivo é permitida
             var extension = Path.GetExtension(file.FileName);
-            if (!_allowedExtensions.Contains(extension))
+            if ((onlyPdf && extension != ".pdf") || (!_allowedExtensions.Contains(extension)))
                 throw new Exception($"A extensão {extension} do arquivo não é permitida.");
 
             // Verifica o tamanho do arquivo
@@ -62,17 +117,22 @@ namespace Infrastructure.Services
             // Gera um nome único para o arquivo
             string fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
 
-            // Cria o diretório caso não exista
-            string dirPath = Path.Combine(_directory, _noticeDirectory);
-            if (!Directory.Exists(dirPath))
-                Directory.CreateDirectory(dirPath);
+            // Gera o caminho do arquivo se não for informado
+            if (string.IsNullOrEmpty(filePath))
+            {
+                // Cria o diretório caso não exista
+                string dirPath = Path.Combine(_directory, custom_directory);
+                if (!Directory.Exists(dirPath))
+                    Directory.CreateDirectory(dirPath);
 
-            // Salva o arquivo
-            string filePath = Path.Combine(dirPath, fileName);
-            using (var stream = new FileStream(filePath, FileMode.Create))
-                await file.CopyToAsync(stream);
-
-            // Retorna o caminho do arquivo
+                // Gera o caminho do arquivo
+                filePath = Path.Combine(dirPath, fileName);
+            }
+            // Deleta o arquivo se o caminho do arquivo for informado
+            else
+            {
+                DeleteFile(filePath);
+            }
             return filePath;
         }
 
@@ -87,5 +147,6 @@ namespace Infrastructure.Services
             // Use a configuração criada acima para ler as configurações do appsettings.json
             return configurationBuilder.Build();
         }
+        #endregion
     }
 }

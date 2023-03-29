@@ -77,7 +77,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna edital criado</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<DetailedReadNoticeDTO>> Create([FromBody] CreateNoticeDTO dto)
+        public async Task<ActionResult<DetailedReadNoticeDTO>> Create([FromForm] CreateNoticeDTO dto)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <returns>Edital atualizado</returns>
         /// <response code="200">Retorna edital atualizado</response>
         [HttpPut("{id}")]
-        public async Task<ActionResult<DetailedReadNoticeDTO>> Update(Guid? id, [FromBody] UpdateNoticeDTO dto)
+        public async Task<ActionResult<DetailedReadNoticeDTO>> Update(Guid? id, [FromForm] UpdateNoticeDTO dto)
         {
             try
             {

@@ -12,7 +12,6 @@ namespace Adapters.DTOs.Notice
         public DateTime? FinalDate { get; set; }
 
         public string? Description { get; set; }
-        public string? DocUrl { get; set; }
         public IFormFile? File { get; set; }
     }
 }

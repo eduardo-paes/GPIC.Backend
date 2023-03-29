@@ -35,9 +35,13 @@ namespace Domain.UseCases.Notice
             // Recupera entidade que será atualizada
             var entity = await _repository.GetById(id);
 
+            // Verifica se a entidade foi excluída
+            if (entity.DeletedAt != null)
+                throw new Exception("O Edital informado já foi excluído.");
+
             // Salva arquivo no repositório e atualiza atributo DocUrl
             if (dto.File != null)
-                entity.DocUrl = await _storageFileService.UploadNoticeFileAsync(dto.File);
+                entity.DocUrl = await _storageFileService.UploadNoticeFileAsync(dto.File, entity.DocUrl);
 
             // Atualiza atributos permitidos
             entity.StartDate = dto.StartDate;

@@ -16,9 +16,16 @@ namespace Infrastructure.Persistence.Repositories
         #region Public Methods
         public async Task<Notice> Create(Notice model)
         {
-            _context.Add(model);
-            await _context.SaveChangesAsync();
-            return model;
+            try
+            {
+                _context.Add(model);
+                await _context.SaveChangesAsync();
+                return model;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public async Task<IEnumerable<Notice>> GetAll(int skip, int take) => await _context.Notices
@@ -48,12 +55,18 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<Notice?> GetNoticeByPeriod(DateTime start, DateTime end)
         {
-            return await _context.Notices
-                .FirstOrDefaultAsync(x => (x.StartDate <= start && x.FinalDate >= end)
-                || (x.StartDate <= end && x.FinalDate >= end)
-                || (x.StartDate <= start && x.FinalDate >= start));
+            var startDate = start.ToUniversalTime();
+            var finalDate = end.ToUniversalTime();
+
+            var entities = await _context.Notices
+                .Where(x => ((x.StartDate <= startDate && x.FinalDate >= finalDate)
+                || (x.StartDate <= finalDate && x.FinalDate >= finalDate)
+                || (x.StartDate <= startDate && x.FinalDate >= startDate))
+                && x.DeletedAt == null)
+                .AsAsyncEnumerable()
+                .ToListAsync();
+            return entities.FirstOrDefault();
         }
         #endregion
     }
 }
-
