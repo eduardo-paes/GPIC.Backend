@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace Domain.Interfaces.Repositories.Bases
+﻿namespace Domain.Interfaces.Repositories.Bases
 {
     public interface IGenericCRUDRepository<T>
     {
@@ -12,7 +8,7 @@ namespace Domain.Interfaces.Repositories.Bases
         /// </summary>
         /// <param name="id">Id da entidade.</param>
         /// <returns>Entidade encontrada.</returns>
-        Task<T> GetById(Guid? id);
+        Task<T?> GetById(Guid? id);
 
         /// <summary>
         /// Busca todas as entidades ativas.

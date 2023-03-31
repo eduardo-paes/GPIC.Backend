@@ -1,12 +1,14 @@
 using Domain.Interfaces.Services;
 using Domain.Interfaces.UseCases.Area;
 using Domain.Interfaces.UseCases.Auth;
+using Domain.Interfaces.UseCases.Course;
 using Domain.Interfaces.UseCases.MainArea;
 using Domain.Interfaces.UseCases.Notice;
 using Domain.Interfaces.UseCases.SubArea;
 using Domain.Mappings;
 using Domain.UseCases.Area;
 using Domain.UseCases.Auth;
+using Domain.UseCases.Course;
 using Domain.UseCases.MainArea;
 using Domain.UseCases.Notice;
 using Domain.UseCases.SubArea;
@@ -38,6 +40,14 @@ public static class DependencyDomainInjection
         services.AddScoped<IResetPasswordUser, ResetPasswordUser>();
         #endregion
 
+        #region Course
+        services.AddScoped<ICreateCourse, CreateCourse>();
+        services.AddScoped<IDeleteCourse, DeleteCourse>();
+        services.AddScoped<IGetCourseById, GetCourseById>();
+        services.AddScoped<IGetCourses, GetCourses>();
+        services.AddScoped<IUpdateCourse, UpdateCourse>();
+        #endregion
+
         #region MainArea
         services.AddScoped<ICreateMainArea, CreateMainArea>();
         services.AddScoped<IDeleteMainArea, DeleteMainArea>();
@@ -66,6 +76,7 @@ public static class DependencyDomainInjection
         #region Contract Mappers
         services.AddAutoMapper(typeof(AreaMappings));
         services.AddAutoMapper(typeof(AuthMappings));
+        services.AddAutoMapper(typeof(CourseMappings));
         services.AddAutoMapper(typeof(MainAreaMappings));
         services.AddAutoMapper(typeof(NoticeMappings));
         services.AddAutoMapper(typeof(SubAreaMappings));
