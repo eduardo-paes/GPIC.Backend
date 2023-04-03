@@ -19,10 +19,14 @@ namespace Domain.UseCases.Area
 
         public async Task<DetailedReadAreaOutput> Execute(Guid? id)
         {
+            // Verifica se o id foi informado
             if (id == null)
-                throw new Exception("O Id da Área não pode ser vazio.");
+                throw new ArgumentNullException(nameof(id));
 
+            // Remove a entidade
             var model = await _repository.Delete(id);
+
+            // Retorna a área removida
             return _mapper.Map<DetailedReadAreaOutput>(model);
         }
     }

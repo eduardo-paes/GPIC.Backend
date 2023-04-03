@@ -4,6 +4,7 @@ using Domain.Interfaces.UseCases.Auth;
 using Domain.Interfaces.UseCases.Course;
 using Domain.Interfaces.UseCases.MainArea;
 using Domain.Interfaces.UseCases.Notice;
+using Domain.Interfaces.UseCases.ProgramType;
 using Domain.Interfaces.UseCases.SubArea;
 using Domain.Mappings;
 using Domain.UseCases.Area;
@@ -11,6 +12,7 @@ using Domain.UseCases.Auth;
 using Domain.UseCases.Course;
 using Domain.UseCases.MainArea;
 using Domain.UseCases.Notice;
+using Domain.UseCases.ProgramType;
 using Domain.UseCases.SubArea;
 using Infrastructure.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -64,6 +66,14 @@ public static class DependencyDomainInjection
         services.AddScoped<IUpdateNotice, UpdateNotice>();
         #endregion
 
+        #region ProgramType
+        services.AddScoped<ICreateProgramType, CreateProgramType>();
+        services.AddScoped<IDeleteProgramType, DeleteProgramType>();
+        services.AddScoped<IGetProgramTypeById, GetProgramTypeById>();
+        services.AddScoped<IGetProgramTypes, GetProgramTypes>();
+        services.AddScoped<IUpdateProgramType, UpdateProgramType>();
+        #endregion
+
         #region SubArea
         services.AddScoped<ICreateSubArea, CreateSubArea>();
         services.AddScoped<IDeleteSubArea, DeleteSubArea>();
@@ -79,6 +89,7 @@ public static class DependencyDomainInjection
         services.AddAutoMapper(typeof(CourseMappings));
         services.AddAutoMapper(typeof(MainAreaMappings));
         services.AddAutoMapper(typeof(NoticeMappings));
+        services.AddAutoMapper(typeof(ProgramTypeMappings));
         services.AddAutoMapper(typeof(SubAreaMappings));
         services.AddAutoMapper(typeof(UserMappings));
         #endregion

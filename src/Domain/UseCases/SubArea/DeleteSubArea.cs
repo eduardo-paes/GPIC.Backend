@@ -8,21 +8,25 @@ namespace Domain.UseCases.SubArea
     public class DeleteSubArea : IDeleteSubArea
     {
         #region Global Scope
-        private readonly ISubAreaRepository _subAreaRepository;
+        private readonly ISubAreaRepository _repository;
         private readonly IMapper _mapper;
         public DeleteSubArea(ISubAreaRepository subAreaRepository, IMapper mapper)
         {
-            _subAreaRepository = subAreaRepository;
+            _repository = subAreaRepository;
             _mapper = mapper;
         }
         #endregion
 
         public async Task<DetailedReadSubAreaOutput> Execute(Guid? id)
         {
+            // Verifica se o id foi informado
             if (id == null)
                 throw new ArgumentNullException(nameof(id));
 
-            var model = await _subAreaRepository.Delete(id);
+            // Remove a entidade
+            var model = await _repository.Delete(id);
+
+            // Retorna o entidade removido
             return _mapper.Map<DetailedReadSubAreaOutput>(model);
         }
     }

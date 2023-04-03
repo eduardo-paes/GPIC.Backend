@@ -26,10 +26,8 @@ namespace Domain.UseCases.Notice
             if (id == null)
                 throw new ArgumentNullException(nameof(id));
 
-            // Verifica se o edital existe
+            // Remove a entidade
             var model = await _repository.Delete(id);
-            if (model == null)
-                throw new Exception("Edital não encontrado.");
 
             // Deleta o arquivo do edital
             if (!string.IsNullOrEmpty(model.DocUrl))

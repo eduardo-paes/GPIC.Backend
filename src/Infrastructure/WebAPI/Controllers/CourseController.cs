@@ -9,11 +9,11 @@ namespace Infrastructure.WebAPI.Controllers
     public class CourseController : ControllerBase
     {
         #region Global Scope
-        private readonly ICourseService _noticeService;
+        private readonly ICourseService _courseService;
         private readonly ILogger<CourseController> _logger;
         public CourseController(ICourseService noticeService, ILogger<CourseController> logger)
         {
-            _noticeService = noticeService;
+            _courseService = noticeService;
             _logger = logger;
         }
         #endregion
@@ -37,7 +37,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _noticeService.GetById(id);
+                var model = await _courseService.GetById(id);
                 _logger.LogInformation($"Curso encontrado para o id {id}.");
                 return Ok(model);
             }
@@ -49,16 +49,16 @@ namespace Infrastructure.WebAPI.Controllers
         }
 
         /// <summary>
-        /// Busca todas os editais ativos.
+        /// Busca todas os cursos ativos.
         /// </summary>
         /// <param></param>
-        /// <returns>Todas os editais ativos</returns>
-        /// <response code="200">Retorna todas os editais ativos</response>
+        /// <returns>Todas os cursos ativos</returns>
+        /// <response code="200">Retorna todas os cursos ativos</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<ResumedReadCourseDTO>>> GetAll(int skip = 0, int take = 50)
         {
-            var models = await _noticeService.GetAll(skip, take);
+            var models = await _courseService.GetAll(skip, take);
             if (models == null)
             {
                 const string msg = "Nenhum Curso encontrado.";
@@ -81,7 +81,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _noticeService.Create(dto) as DetailedReadCourseDTO;
+                var model = await _courseService.Create(dto) as DetailedReadCourseDTO;
                 _logger.LogInformation($"Curso criado: {model.Id}");
                 return Ok(model);
             }
@@ -103,7 +103,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _noticeService.Update(id, dto) as DetailedReadCourseDTO;
+                var model = await _courseService.Update(id, dto) as DetailedReadCourseDTO;
                 _logger.LogInformation($"Curso atualizado: {model.Id}");
                 return Ok(model);
             }
@@ -132,7 +132,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _noticeService.Delete(id.Value) as DetailedReadCourseDTO;
+                var model = await _courseService.Delete(id.Value) as DetailedReadCourseDTO;
                 _logger.LogInformation($"Curso removido: {model.Id}");
                 return Ok(model);
             }

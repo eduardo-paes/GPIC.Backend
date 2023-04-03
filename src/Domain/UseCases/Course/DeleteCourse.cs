@@ -2,7 +2,6 @@ using Domain.Contracts.Course;
 using Domain.Interfaces.UseCases.Course;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
-using Domain.Interfaces.Services;
 
 namespace Domain.UseCases.Course
 {
@@ -24,12 +23,10 @@ namespace Domain.UseCases.Course
             if (id == null)
                 throw new ArgumentNullException(nameof(id));
 
-            // Verifica se o edital existe
+            // Remove a entidade
             var model = await _repository.Delete(id);
-            if (model == null)
-                throw new Exception("Curso não encontrado.");
 
-            // Retorna o edital removido
+            // Retorna o curso removido
             return _mapper.Map<DetailedReadCourseOutput>(model);
         }
     }

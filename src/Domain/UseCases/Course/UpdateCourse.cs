@@ -2,7 +2,6 @@ using Domain.Contracts.Course;
 using Domain.Interfaces.UseCases.Course;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
-using Domain.Interfaces.Services;
 
 namespace Domain.UseCases.Course
 {

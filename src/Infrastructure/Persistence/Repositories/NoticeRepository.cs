@@ -37,11 +37,13 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<Notice> GetById(Guid? id) =>
             await _context.Notices.FindAsync(id)
-                ?? throw new Exception($"Nenhuma Área Principal encontrada para o id {id}");
+                ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
 
         public async Task<Notice> Delete(Guid? id)
         {
             var model = await this.GetById(id);
+            if (model == null)
+                throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
             return await Update(model);
         }

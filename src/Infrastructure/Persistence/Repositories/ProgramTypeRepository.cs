@@ -6,38 +6,32 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Repositories
 {
-    public class MainAreaRepository : IMainAreaRepository
+    public class ProgramTypeRepository : IProgramTypeRepository
     {
         #region Global Scope
         private readonly ApplicationDbContext _context;
-        public MainAreaRepository(ApplicationDbContext context) => _context = context;
+        public ProgramTypeRepository(ApplicationDbContext context) => _context = context;
         #endregion
 
         #region Public Methods
-        public async Task<MainArea> Create(MainArea model)
+        public async Task<ProgramType> Create(ProgramType model)
         {
             _context.Add(model);
             await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<MainArea?> GetByCode(string? code) => await _context.MainAreas
-            .Where(x => x.Code == code && x.DeletedAt == null)
-            .ToAsyncEnumerable()
-            .FirstOrDefaultAsync();
-
-        public async Task<IEnumerable<MainArea>> GetAll(int skip, int take) => await _context.MainAreas
+        public async Task<IEnumerable<ProgramType>> GetAll(int skip, int take) => await _context.ProgramTypes
             .Where(x => x.DeletedAt == null)
             .Skip(skip)
             .Take(take)
             .AsAsyncEnumerable()
             .ToListAsync();
 
-        public async Task<MainArea> GetById(Guid? id) =>
-            await _context.MainAreas.FindAsync(id)
-                ?? throw new Exception($"Nenhuma Área Principal encontrada para o id {id}");
+        public async Task<ProgramType?> GetById(Guid? id) =>
+            await _context.ProgramTypes.FindAsync(id);
 
-        public async Task<MainArea> Delete(Guid? id)
+        public async Task<ProgramType> Delete(Guid? id)
         {
             var model = await this.GetById(id);
             if (model == null)
@@ -46,13 +40,22 @@ namespace Infrastructure.Persistence.Repositories
             return await Update(model);
         }
 
-        public async Task<MainArea> Update(MainArea model)
+        public async Task<ProgramType> Update(ProgramType model)
         {
             _context.Update(model);
             await _context.SaveChangesAsync();
             return model;
         }
+
+        public async Task<ProgramType?> GetProgramTypeByName(string name)
+        {
+            var entities = await _context.ProgramTypes.Where(x =>
+                    x.Name.ToLower() == name.ToLower()
+                    && x.DeletedAt == null)
+                .AsAsyncEnumerable()
+                .ToListAsync();
+            return entities.FirstOrDefault();
+        }
         #endregion
     }
 }
-
