@@ -1,38 +1,15 @@
-using Infrastructure.IoC;
-
-var builder = WebApplication.CreateBuilder(args);
+namespace Infrastructure.WebAPI;
+public class Program
 {
-    // Adição dos Controllers
-    builder.Services.AddControllers();
-
-    // Realiza comunicação com os demais Projetos.
-    builder.Services.AddInfrastructure(builder.Configuration);
-    builder.Services.AddAdapters();
-    builder.Services.AddDomain();
-
-    // Configuração do Swagger
-    builder.Services.AddInfrastructureSwagger();
-
-    // Permite que rotas sejam acessíveis em lowercase
-    builder.Services.AddRouting(options => options.LowercaseUrls = true);
-}
-
-var app = builder.Build();
-{
-    if (app.Environment.IsDevelopment())
+    public static void Main(string[] args)
     {
-        app.UseSwagger();
-        app.UseSwaggerUI();
+        CreateHostBuilder(args).Build().Run();
     }
 
-    app.UseHsts();
-    app.UseHttpsRedirection();
-
-    app.UseRouting();
-    app.UseAuthentication();
-    app.UseAuthorization();
-
-    app.UseEndpoints(endpoints => endpoints.MapControllers());
-
-    app.Run();
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            });
 }

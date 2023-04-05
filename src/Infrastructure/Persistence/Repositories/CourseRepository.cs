@@ -47,10 +47,15 @@ namespace Infrastructure.Persistence.Repositories
             return model;
         }
 
-        public async Task<Course?> GetCourseByName(string name) =>
-            await _context.Courses.FirstOrDefaultAsync(x =>
-            string.Equals(x.Name, name, StringComparison.OrdinalIgnoreCase)
-            && x.DeletedAt == null);
+        public async Task<Course?> GetCourseByName(string name)
+        {
+            var entities = await _context.Courses.Where(x =>
+                    x.Name.ToLower() == name.ToLower()
+                    && x.DeletedAt == null)
+                .AsAsyncEnumerable()
+                .ToListAsync();
+            return entities.FirstOrDefault();
+        }
         #endregion
     }
 }

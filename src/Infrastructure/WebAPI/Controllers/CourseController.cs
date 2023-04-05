@@ -77,7 +77,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna curso criado</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<DetailedReadCourseDTO>> Create([FromForm] CreateCourseDTO dto)
+        public async Task<ActionResult<DetailedReadCourseDTO>> Create([FromBody] CreateCourseDTO dto)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <returns>Curso atualizado</returns>
         /// <response code="200">Retorna curso atualizado</response>
         [HttpPut("{id}")]
-        public async Task<ActionResult<DetailedReadCourseDTO>> Update(Guid? id, [FromForm] UpdateCourseDTO dto)
+        public async Task<ActionResult<DetailedReadCourseDTO>> Update(Guid? id, [FromBody] UpdateCourseDTO dto)
         {
             try
             {
