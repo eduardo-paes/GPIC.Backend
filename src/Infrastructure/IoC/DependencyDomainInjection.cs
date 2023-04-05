@@ -1,6 +1,7 @@
 using Domain.Interfaces.Services;
 using Domain.Interfaces.UseCases.Area;
 using Domain.Interfaces.UseCases.Auth;
+using Domain.Interfaces.UseCases.Campus;
 using Domain.Interfaces.UseCases.Course;
 using Domain.Interfaces.UseCases.MainArea;
 using Domain.Interfaces.UseCases.Notice;
@@ -9,6 +10,7 @@ using Domain.Interfaces.UseCases.SubArea;
 using Domain.Mappings;
 using Domain.UseCases.Area;
 using Domain.UseCases.Auth;
+using Domain.UseCases.Campus;
 using Domain.UseCases.Course;
 using Domain.UseCases.MainArea;
 using Domain.UseCases.Notice;
@@ -40,6 +42,14 @@ public static class DependencyDomainInjection
         services.AddScoped<ILoginUser, LoginUser>();
         services.AddScoped<IRegisterUser, RegisterUser>();
         services.AddScoped<IResetPasswordUser, ResetPasswordUser>();
+        #endregion
+
+        #region Campus
+        services.AddScoped<ICreateCampus, CreateCampus>();
+        services.AddScoped<IDeleteCampus, DeleteCampus>();
+        services.AddScoped<IGetCampusById, GetCampusById>();
+        services.AddScoped<IGetCampuses, GetCampuses>();
+        services.AddScoped<IUpdateCampus, UpdateCampus>();
         #endregion
 
         #region Course
@@ -86,6 +96,7 @@ public static class DependencyDomainInjection
         #region Contract Mappers
         services.AddAutoMapper(typeof(AreaMappings));
         services.AddAutoMapper(typeof(AuthMappings));
+        services.AddAutoMapper(typeof(CampusMappings));
         services.AddAutoMapper(typeof(CourseMappings));
         services.AddAutoMapper(typeof(MainAreaMappings));
         services.AddAutoMapper(typeof(NoticeMappings));

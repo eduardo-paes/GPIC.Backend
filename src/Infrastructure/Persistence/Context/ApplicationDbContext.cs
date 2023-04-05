@@ -9,6 +9,7 @@ namespace Infrastructure.Persistence.Context
         { }
 
         public DbSet<Area> Areas { get; set; }
+        public DbSet<Campus> Campuss { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<MainArea> MainAreas { get; set; }
         public DbSet<Notice> Notices { get; set; }

@@ -7,14 +7,14 @@ using Microsoft.AspNetCore.TestHost;
 namespace Infra.WebAPI.Tests.Controllers
 {
     [TestFixture]
-    public class CoursesControllerTests : IDisposable
+    public class CourseControllerTests : IDisposable
     {
         private readonly TestServer _server;
         private readonly HttpClient _client;
 
         private readonly string _baseAddress = "/api/course";
 
-        public CoursesControllerTests()
+        public CourseControllerTests()
         {
             // Configura o servidor de teste
             _server = new TestServer(new WebHostBuilder().UseStartup<Startup>());
