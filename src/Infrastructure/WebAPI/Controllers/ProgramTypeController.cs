@@ -77,7 +77,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna tipo de programa criado</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<DetailedReadProgramTypeDTO>> Create([FromForm] CreateProgramTypeDTO dto)
+        public async Task<ActionResult<DetailedReadProgramTypeDTO>> Create([FromBody] CreateProgramTypeDTO dto)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <returns>Tipo de Programa atualizado</returns>
         /// <response code="200">Retorna tipo de programa atualizado</response>
         [HttpPut("{id}")]
-        public async Task<ActionResult<DetailedReadProgramTypeDTO>> Update(Guid? id, [FromForm] UpdateProgramTypeDTO dto)
+        public async Task<ActionResult<DetailedReadProgramTypeDTO>> Update(Guid? id, [FromBody] UpdateProgramTypeDTO dto)
         {
             try
             {
