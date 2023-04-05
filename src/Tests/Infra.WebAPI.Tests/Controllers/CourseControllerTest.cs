@@ -11,7 +11,6 @@ namespace Infra.WebAPI.Tests.Controllers
     {
         private readonly TestServer _server;
         private readonly HttpClient _client;
-
         private readonly string _baseAddress = "/api/course";
 
         public CourseControllerTests()
@@ -22,7 +21,7 @@ namespace Infra.WebAPI.Tests.Controllers
             _client = _server.CreateClient();
         }
 
-        [Test]
+        [Test, Order(2)]
         public async Task GetAllCourses_ReturnsAllCourses()
         {
             // Arrange
@@ -37,7 +36,7 @@ namespace Infra.WebAPI.Tests.Controllers
             Assert.Greater(courses.Count(), 0);
         }
 
-        [Test]
+        [Test, Order(3)]
         public async Task GetCourseById_ReturnsCourse()
         {
             // Arrange
@@ -55,7 +54,7 @@ namespace Infra.WebAPI.Tests.Controllers
             Assert.AreEqual(expectedCourse.Name, actualCourse.Name);
         }
 
-        [Test]
+        [Test, Order(1)]
         public async Task CreateCourse_ReturnsCreatedCourse()
         {
             // Arrange
@@ -72,7 +71,7 @@ namespace Infra.WebAPI.Tests.Controllers
             Assert.AreEqual(createCourse.Name, createdCourse?.Name);
         }
 
-        [Test]
+        [Test, Order(4)]
         public async Task UpdateCourse_ReturnsUpdatedCourse()
         {
             // Arrange
@@ -92,7 +91,7 @@ namespace Infra.WebAPI.Tests.Controllers
             Assert.AreEqual(updateCourseDTO.Name, updatedCourse?.Name);
         }
 
-        [Test]
+        [Test, Order(5)]
         public async Task DeleteCourse_ReturnDeletedContent()
         {
             // Arrange

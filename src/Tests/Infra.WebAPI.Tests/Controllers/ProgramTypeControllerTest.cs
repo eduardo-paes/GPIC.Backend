@@ -11,7 +11,6 @@ namespace Infra.WebAPI.Tests.Controllers
     {
         private readonly TestServer _server;
         private readonly HttpClient _client;
-
         private readonly string _baseAddress = "/api/programtype";
 
         public ProgramTypeControllerTests()
@@ -22,7 +21,7 @@ namespace Infra.WebAPI.Tests.Controllers
             _client = _server.CreateClient();
         }
 
-        [Test]
+        [Test, Order(2)]
         public async Task GetAllProgramTypes_ReturnsAllProgramTypes()
         {
             // Arrange
@@ -37,7 +36,7 @@ namespace Infra.WebAPI.Tests.Controllers
             Assert.Greater(programtypes.Count(), 0);
         }
 
-        [Test]
+        [Test, Order(3)]
         public async Task GetProgramTypeById_ReturnsProgramType()
         {
             // Arrange
@@ -55,7 +54,7 @@ namespace Infra.WebAPI.Tests.Controllers
             Assert.AreEqual(expectedProgramType.Name, actualProgramType.Name);
         }
 
-        [Test]
+        [Test, Order(1)]
         public async Task CreateProgramType_ReturnsCreatedProgramType()
         {
             // Arrange
@@ -72,7 +71,7 @@ namespace Infra.WebAPI.Tests.Controllers
             Assert.AreEqual(createProgramType.Name, createdProgramType?.Name);
         }
 
-        [Test]
+        [Test, Order(4)]
         public async Task UpdateProgramType_ReturnsUpdatedProgramType()
         {
             // Arrange
@@ -92,7 +91,7 @@ namespace Infra.WebAPI.Tests.Controllers
             Assert.AreEqual(updateProgramTypeDTO.Name, updatedProgramType?.Name);
         }
 
-        [Test]
+        [Test, Order(5)]
         public async Task DeleteProgramType_ReturnDeletedContent()
         {
             // Arrange

@@ -11,7 +11,6 @@ namespace Infra.WebAPI.Tests.Controllers
     {
         private readonly TestServer _server;
         private readonly HttpClient _client;
-
         private readonly string _baseAddress = "/api/campus";
 
         public CampusControllerTests()
@@ -22,7 +21,7 @@ namespace Infra.WebAPI.Tests.Controllers
             _client = _server.CreateClient();
         }
 
-        [Test]
+        [Test, Order(2)]
         public async Task GetAllCampus_ReturnsAllCampus()
         {
             // Arrange
@@ -37,7 +36,7 @@ namespace Infra.WebAPI.Tests.Controllers
             Assert.Greater(campuses.Count(), 0);
         }
 
-        [Test]
+        [Test, Order(3)]
         public async Task GetCampusById_ReturnsCampus()
         {
             // Arrange
@@ -55,7 +54,7 @@ namespace Infra.WebAPI.Tests.Controllers
             Assert.AreEqual(expectedCampus.Name, actualCampus.Name);
         }
 
-        [Test]
+        [Test, Order(1)]
         public async Task CreateCampus_ReturnsCreatedCampus()
         {
             // Arrange
@@ -72,7 +71,7 @@ namespace Infra.WebAPI.Tests.Controllers
             Assert.AreEqual(createCampus.Name, createdCampus?.Name);
         }
 
-        [Test]
+        [Test, Order(4)]
         public async Task UpdateCampus_ReturnsUpdatedCampus()
         {
             // Arrange
@@ -91,7 +90,7 @@ namespace Infra.WebAPI.Tests.Controllers
             Assert.AreEqual(updateCampusDTO.Name, updatedCampus?.Name);
         }
 
-        [Test]
+        [Test, Order(5)]
         public async Task DeleteCampus_ReturnDeletedContent()
         {
             // Arrange
