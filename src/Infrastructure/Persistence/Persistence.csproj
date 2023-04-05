@@ -51,7 +51,13 @@
     <PackageReference Include="System.Linq.Async" Version="6.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="Seeds\areas.txt">
+    <None Update="Seeds\Data\areas.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Seeds\Data\courses.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Seeds\Data\campuses.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

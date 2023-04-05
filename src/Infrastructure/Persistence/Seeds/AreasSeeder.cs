@@ -7,7 +7,7 @@ namespace Persistence.Seeds
     {
         public void Seed(MigrationBuilder builder)
         {
-            string areasFile = Path.Combine(AppContext.BaseDirectory, "Seeds", "areas.txt");
+            string areasFile = Path.Combine(AppContext.BaseDirectory, "Seeds", "Data", "areas.txt");
             string[] lines = File.ReadAllLines(areasFile);
             string[] fields = new string[2];
 
@@ -20,7 +20,6 @@ namespace Persistence.Seeds
                 fields = line.Split(';');
                 mainArea = new MainArea(Guid.NewGuid(), fields[0].Trim(), fields[1].Trim());
                 AddMainArea(builder, mainArea);
-                Console.WriteLine(mainArea.Id);
 
                 foreach (string subLine in lines.Where(x => x.Contains("00.00") && !x.Contains("00.00.00")))
                 {
@@ -30,7 +29,6 @@ namespace Persistence.Seeds
                     {
                         area = new Area(Guid.NewGuid(), mainArea.Id, fields[0].Trim(), fields[1].Trim());
                         AddArea(builder, area);
-                        Console.WriteLine(area.Id);
 
                         foreach (string subSubLine in lines.Where(x => x.Contains("00") && !x.Contains("00.00")))
                         {
@@ -40,7 +38,6 @@ namespace Persistence.Seeds
                             {
                                 subArea = new SubArea(Guid.NewGuid(), area.Id, fields[0].Trim(), fields[1].Trim());
                                 AddSubArea(builder, subArea);
-                                Console.WriteLine(subArea.Id);
                             }
                         }
                     }

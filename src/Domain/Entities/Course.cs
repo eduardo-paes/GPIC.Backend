@@ -29,6 +29,12 @@ namespace Domain.Entities
             Name = name;
         }
 
+        public Course(Guid? id, string? name)
+        {
+            Id = id;
+            Name = name;
+        }
+
         /// <summary>
         /// Constructor to dbcontext EF instancing.
         /// </summary>

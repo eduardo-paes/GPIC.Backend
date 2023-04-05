@@ -44,10 +44,7 @@
       "label": "copy-file",
       "type": "shell",
       "command": "cp",
-      "args": [
-        "${workspaceFolder}/src/Infrastructure/Persistence/Seeds/areas.txt",
-        "${workspaceFolder}/src/Infrastructure/WebAPI/bin/Debug/net7.0"
-      ],
+      "args": ["${workspaceFolder}/src/Infrastructure/WebAPI/bin/Debug/net7.0"],
       "options": {
         "cwd": "${workspaceFolder}"
       }

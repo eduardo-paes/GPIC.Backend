@@ -8,7 +8,7 @@ namespace Infrastructure.Persistence.EntitiesConfiguration
     {
         public void Configure(EntityTypeBuilder<Campus> builder)
         {
-            builder.ToTable("Campuss");
+            builder.ToTable("Campuses");
             builder.HasKey(t => t.Id);
             builder.Property(p => p.Id).ValueGeneratedOnAdd();
             builder.Property(p => p.Name).HasMaxLength(300).IsRequired();
