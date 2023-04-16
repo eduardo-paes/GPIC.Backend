@@ -13,16 +13,16 @@ namespace Adapters.Services
         private readonly ICreateCampus _createCampus;
         private readonly IUpdateCampus _updateCampus;
         private readonly IDeleteCampus _deleteCampus;
-        private readonly IGetCampuses _getCampuss;
+        private readonly IGetCampuses _getCampuses;
         private readonly IGetCampusById _getCampusById;
         private readonly IMapper _mapper;
 
-        public CampusService(ICreateCampus createCampus, IUpdateCampus updateCampus, IDeleteCampus deleteCampus, IGetCampuses getCampuss, IGetCampusById getCampusById, IMapper mapper)
+        public CampusService(ICreateCampus createCampus, IUpdateCampus updateCampus, IDeleteCampus deleteCampus, IGetCampuses getCampuses, IGetCampusById getCampusById, IMapper mapper)
         {
             _createCampus = createCampus;
             _updateCampus = updateCampus;
             _deleteCampus = deleteCampus;
-            _getCampuss = getCampuss;
+            _getCampuses = getCampuses;
             _getCampusById = getCampusById;
             _mapper = mapper;
         }
@@ -44,7 +44,7 @@ namespace Adapters.Services
 
         public async Task<IEnumerable<ResponseDTO>> GetAll(int skip, int take)
         {
-            var result = await _getCampuss.Execute(skip, take);
+            var result = await _getCampuses.Execute(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadCampusDTO>>(result);
         }
 

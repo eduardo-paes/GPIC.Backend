@@ -6,6 +6,7 @@ using Domain.Interfaces.UseCases.Course;
 using Domain.Interfaces.UseCases.MainArea;
 using Domain.Interfaces.UseCases.Notice;
 using Domain.Interfaces.UseCases.ProgramType;
+using Domain.Interfaces.UseCases.Student;
 using Domain.Interfaces.UseCases.SubArea;
 using Domain.Mappings;
 using Domain.UseCases.Area;
@@ -15,8 +16,10 @@ using Domain.UseCases.Course;
 using Domain.UseCases.MainArea;
 using Domain.UseCases.Notice;
 using Domain.UseCases.ProgramType;
+using Domain.UseCases.Student;
 using Domain.UseCases.SubArea;
 using Infrastructure.Services;
+using Infrastructure.Services.Email;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.IoC;
@@ -24,7 +27,8 @@ public static class DependencyDomainInjection
 {
     public static IServiceCollection AddDomain(this IServiceCollection services)
     {
-        #region Services
+        #region External Services
+        // services.AddScoped<IEmailService, EmailService>();
         services.AddScoped<ITokenHandler, TokenHandler>();
         services.AddScoped<IStorageFileService, StorageFileService>();
         #endregion
@@ -84,6 +88,14 @@ public static class DependencyDomainInjection
         services.AddScoped<IUpdateProgramType, UpdateProgramType>();
         #endregion
 
+        #region Student
+        services.AddScoped<ICreateStudent, CreateStudent>();
+        services.AddScoped<IDeleteStudent, DeleteStudent>();
+        services.AddScoped<IGetStudentById, GetStudentById>();
+        services.AddScoped<IGetStudents, GetStudents>();
+        services.AddScoped<IUpdateStudent, UpdateStudent>();
+        #endregion
+
         #region SubArea
         services.AddScoped<ICreateSubArea, CreateSubArea>();
         services.AddScoped<IDeleteSubArea, DeleteSubArea>();
@@ -101,6 +113,7 @@ public static class DependencyDomainInjection
         services.AddAutoMapper(typeof(MainAreaMappings));
         services.AddAutoMapper(typeof(NoticeMappings));
         services.AddAutoMapper(typeof(ProgramTypeMappings));
+        services.AddAutoMapper(typeof(StudentMappings));
         services.AddAutoMapper(typeof(SubAreaMappings));
         services.AddAutoMapper(typeof(UserMappings));
         #endregion

@@ -9,11 +9,11 @@ namespace Infrastructure.WebAPI.Controllers
     public class ProgramTypeController : ControllerBase
     {
         #region Global Scope
-        private readonly IProgramTypeService _programTypeService;
+        private readonly IProgramTypeService _service;
         private readonly ILogger<ProgramTypeController> _logger;
-        public ProgramTypeController(IProgramTypeService noticeService, ILogger<ProgramTypeController> logger)
+        public ProgramTypeController(IProgramTypeService service, ILogger<ProgramTypeController> logger)
         {
-            _programTypeService = noticeService;
+            _service = service;
             _logger = logger;
         }
         #endregion
@@ -37,7 +37,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _programTypeService.GetById(id);
+                var model = await _service.GetById(id);
                 _logger.LogInformation($"Tipo de Programa encontrado para o id {id}.");
                 return Ok(model);
             }
@@ -58,7 +58,7 @@ namespace Infrastructure.WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<ResumedReadProgramTypeDTO>>> GetAll(int skip = 0, int take = 50)
         {
-            var models = await _programTypeService.GetAll(skip, take);
+            var models = await _service.GetAll(skip, take);
             if (models == null)
             {
                 const string msg = "Nenhum Tipo de Programa encontrado.";
@@ -81,7 +81,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _programTypeService.Create(dto) as DetailedReadProgramTypeDTO;
+                var model = await _service.Create(dto) as DetailedReadProgramTypeDTO;
                 _logger.LogInformation($"Tipo de Programa criado: {model.Id}");
                 return Ok(model);
             }
@@ -103,7 +103,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _programTypeService.Update(id, dto) as DetailedReadProgramTypeDTO;
+                var model = await _service.Update(id, dto) as DetailedReadProgramTypeDTO;
                 _logger.LogInformation($"Tipo de Programa atualizado: {model.Id}");
                 return Ok(model);
             }
@@ -132,7 +132,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _programTypeService.Delete(id.Value) as DetailedReadProgramTypeDTO;
+                var model = await _service.Delete(id.Value) as DetailedReadProgramTypeDTO;
                 _logger.LogInformation($"Tipo de Programa removido: {model.Id}");
                 return Ok(model);
             }

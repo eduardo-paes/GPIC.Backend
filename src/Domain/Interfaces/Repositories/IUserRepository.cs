@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Domain.Entities;
+﻿using Domain.Entities;
 
 namespace Domain.Interfaces.Repositories
 {
     public interface IUserRepository
     {
-        #region User
         /// <summary>
         /// Retorna usuários ativos no sistema.
         /// </summary>
@@ -33,15 +29,15 @@ namespace Domain.Interfaces.Repositories
         /// <param name="user">Parâmetros de atualização do usuário.</param>
         /// <returns>Usuário atualizado.</returns>
         Task<User> Update(User user);
-        #endregion
 
-        #region Auth
         /// <summary>
         /// Realiza a criação do usuário utilizando os parâmetros informados.
         /// </summary>
         /// <param name="user">Parâmetros de criação do usuário.</param>
         /// <returns>Usuário criado.</returns>
-        Task<User?> Register(User user);
+        Task<User?> Create(User user);
+
+        Task<User?> Delete(Guid? id);
 
         /// <summary>
         /// Retorna usuário com o Email informado.
@@ -58,6 +54,5 @@ namespace Domain.Interfaces.Repositories
         /// <param name="cpf">CPF do usuário.</param>
         /// <returns>Usuário encontrado.</returns>
         Task<User?> GetUserByCPF(string? cpf);
-        #endregion
     }
 }

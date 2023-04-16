@@ -33,7 +33,7 @@ namespace Domain.UseCases.Auth
                 throw new Exception("Já existe um usuário com o Email informado informado.");
 
             // Realiza criação do usuário
-            entity = await _repository.Register(_mapper.Map<Entities.User>(dto));
+            entity = await _repository.Create(_mapper.Map<Entities.User>(dto));
             return _mapper.Map<UserReadOutput>(entity);
         }
     }

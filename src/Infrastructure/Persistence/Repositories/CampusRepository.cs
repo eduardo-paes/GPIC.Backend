@@ -21,7 +21,7 @@ namespace Infrastructure.Persistence.Repositories
             return model;
         }
 
-        public async Task<IEnumerable<Campus>> GetAll(int skip, int take) => await _context.Campuss
+        public async Task<IEnumerable<Campus>> GetAll(int skip, int take) => await _context.Campuses
             .Where(x => x.DeletedAt == null)
             .Skip(skip)
             .Take(take)
@@ -29,7 +29,7 @@ namespace Infrastructure.Persistence.Repositories
             .ToListAsync();
 
         public async Task<Campus?> GetById(Guid? id) =>
-            await _context.Campuss.FindAsync(id);
+            await _context.Campuses.FindAsync(id);
 
         public async Task<Campus> Delete(Guid? id)
         {
@@ -49,7 +49,7 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<Campus?> GetCampusByName(string name)
         {
-            var entities = await _context.Campuss.Where(x =>
+            var entities = await _context.Campuses.Where(x =>
                     x.Name.ToLower() == name.ToLower()
                     && x.DeletedAt == null)
                 .AsAsyncEnumerable()

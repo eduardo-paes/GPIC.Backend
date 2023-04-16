@@ -6,6 +6,8 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0"/>
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="7.0.0"/>
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0"/>
+    <PackageReference Include="MailKit" Version="4.0.0"/>
+    <PackageReference Include="MimeKit" Version="4.0.0"/>
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>

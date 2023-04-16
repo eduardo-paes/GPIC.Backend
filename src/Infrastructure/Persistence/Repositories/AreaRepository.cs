@@ -33,11 +33,13 @@ namespace Infrastructure.Persistence.Repositories
             .AsAsyncEnumerable()
             .ToListAsync();
 
-        public async Task<Area> GetById(Guid? id) =>
-            await _context.Areas
+        public async Task<Area?> GetById(Guid? id)
+        {
+            return await _context.Areas
                 .Include(x => x.MainArea)
                 .FirstOrDefaultAsync(x => x.Id == id)
                 ?? throw new Exception($"Nenhuma Área encontrada para o id {id}");
+        }
 
         public async Task<Area> Delete(Guid? id)
         {

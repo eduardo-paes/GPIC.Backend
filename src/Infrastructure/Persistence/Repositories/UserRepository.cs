@@ -38,7 +38,7 @@ namespace Infrastructure.Persistence.Repositories
         #endregion
 
         #region Auth Methods
-        public async Task<User> Register(User user)
+        public async Task<User> Create(User user)
         {
             _context.Add(user);
             await _context.SaveChangesAsync();
@@ -53,6 +53,11 @@ namespace Infrastructure.Persistence.Repositories
         public async Task<User?> GetUserByCPF(string? cpf)
         {
             return await _context.Users.FirstOrDefaultAsync(x => x.Email == cpf);
+        }
+
+        public Task<User?> Delete(Guid? id)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

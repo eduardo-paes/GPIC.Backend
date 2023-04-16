@@ -9,12 +9,11 @@ namespace Infrastructure.WebAPI.Controllers
     public class SubAreaController : ControllerBase
     {
         #region Global Scope
-        private readonly ISubAreaService _subAreaService;
+        private readonly ISubAreaService _service;
         private readonly ILogger<SubAreaController> _logger;
-        public SubAreaController(ISubAreaService subAreaService,
-                                 ILogger<SubAreaController> logger)
+        public SubAreaController(ISubAreaService service, ILogger<SubAreaController> logger)
         {
-            _subAreaService = subAreaService;
+            _service = service;
             _logger = logger;
         }
         #endregion
@@ -38,7 +37,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _subAreaService.GetById(id);
+                var model = await _service.GetById(id);
                 _logger.LogInformation($"Sub Área encontrada para o id {id}.");
                 return Ok(model);
             }
@@ -66,7 +65,7 @@ namespace Infrastructure.WebAPI.Controllers
                 return BadRequest(msg);
             }
 
-            var models = await _subAreaService.GetSubAreasByArea(areaId, skip, take);
+            var models = await _service.GetSubAreasByArea(areaId, skip, take);
             if (models == null)
             {
                 const string msg = "Nenhuma Sub Área encontrada.";
@@ -89,7 +88,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _subAreaService.Create(dto) as DetailedReadSubAreaDTO;
+                var model = await _service.Create(dto) as DetailedReadSubAreaDTO;
                 _logger.LogInformation($"Sub Área criada: {model.Id}");
                 return Ok(model);
             }
@@ -111,7 +110,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _subAreaService.Update(id, dto) as DetailedReadSubAreaDTO;
+                var model = await _service.Update(id, dto) as DetailedReadSubAreaDTO;
                 _logger.LogInformation($"Sub Área atualizada: {model.Id}");
                 return Ok(model);
             }
@@ -140,7 +139,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _subAreaService.Delete(id.Value) as DetailedReadSubAreaDTO;
+                var model = await _service.Delete(id.Value) as DetailedReadSubAreaDTO;
                 _logger.LogInformation($"Sub Área removida: {model.Id}");
                 return Ok(model);
             }

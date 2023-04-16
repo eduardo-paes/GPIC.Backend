@@ -9,11 +9,11 @@ namespace Infrastructure.WebAPI.Controllers
     public class CampusController : ControllerBase
     {
         #region Global Scope
-        private readonly ICampusService _courseService;
+        private readonly ICampusService _service;
         private readonly ILogger<CampusController> _logger;
-        public CampusController(ICampusService noticeService, ILogger<CampusController> logger)
+        public CampusController(ICampusService service, ILogger<CampusController> logger)
         {
-            _courseService = noticeService;
+            _service = service;
             _logger = logger;
         }
         #endregion
@@ -37,7 +37,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _courseService.GetById(id);
+                var model = await _service.GetById(id);
                 _logger.LogInformation($"Campus encontrado para o id {id}.");
                 return Ok(model);
             }
@@ -58,7 +58,7 @@ namespace Infrastructure.WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<ResumedReadCampusDTO>>> GetAll(int skip = 0, int take = 50)
         {
-            var models = await _courseService.GetAll(skip, take);
+            var models = await _service.GetAll(skip, take);
             if (models == null)
             {
                 const string msg = "Nenhum Campus encontrado.";
@@ -81,7 +81,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _courseService.Create(dto) as DetailedReadCampusDTO;
+                var model = await _service.Create(dto) as DetailedReadCampusDTO;
                 _logger.LogInformation($"Campus criado: {model.Id}");
                 return Ok(model);
             }
@@ -103,7 +103,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _courseService.Update(id, dto) as DetailedReadCampusDTO;
+                var model = await _service.Update(id, dto) as DetailedReadCampusDTO;
                 _logger.LogInformation($"Campus atualizado: {model.Id}");
                 return Ok(model);
             }
@@ -132,7 +132,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _courseService.Delete(id.Value) as DetailedReadCampusDTO;
+                var model = await _service.Delete(id.Value) as DetailedReadCampusDTO;
                 _logger.LogInformation($"Campus removido: {model.Id}");
                 return Ok(model);
             }

@@ -9,11 +9,11 @@ namespace Infrastructure.WebAPI.Controllers
     public class NoticeController : ControllerBase
     {
         #region Global Scope
-        private readonly INoticeService _noticeService;
+        private readonly INoticeService _service;
         private readonly ILogger<NoticeController> _logger;
-        public NoticeController(INoticeService noticeService, ILogger<NoticeController> logger)
+        public NoticeController(INoticeService service, ILogger<NoticeController> logger)
         {
-            _noticeService = noticeService;
+            _service = service;
             _logger = logger;
         }
         #endregion
@@ -37,7 +37,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _noticeService.GetById(id);
+                var model = await _service.GetById(id);
                 _logger.LogInformation($"Edital encontrado para o id {id}.");
                 return Ok(model);
             }
@@ -58,7 +58,7 @@ namespace Infrastructure.WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<ResumedReadNoticeDTO>>> GetAll(int skip = 0, int take = 50)
         {
-            var models = await _noticeService.GetAll(skip, take);
+            var models = await _service.GetAll(skip, take);
             if (models == null)
             {
                 const string msg = "Nenhum Edital encontrado.";
@@ -81,7 +81,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _noticeService.Create(dto) as DetailedReadNoticeDTO;
+                var model = await _service.Create(dto) as DetailedReadNoticeDTO;
                 _logger.LogInformation($"Edital criado: {model.Id}");
                 return Ok(model);
             }
@@ -103,7 +103,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _noticeService.Update(id, dto) as DetailedReadNoticeDTO;
+                var model = await _service.Update(id, dto) as DetailedReadNoticeDTO;
                 _logger.LogInformation($"Edital atualizado: {model.Id}");
                 return Ok(model);
             }
@@ -132,7 +132,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _noticeService.Delete(id.Value) as DetailedReadNoticeDTO;
+                var model = await _service.Delete(id.Value) as DetailedReadNoticeDTO;
                 _logger.LogInformation($"Edital removido: {model.Id}");
                 return Ok(model);
             }

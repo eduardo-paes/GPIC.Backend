@@ -45,7 +45,6 @@ namespace Domain.UseCases.User
 
             // Atualiza atributos permitidos
             user.Name = dto.Name;
-            user.Role = dto.Role;
             user.CPF = dto.CPF;
 
             // Salva usuário atualizado no banco
@@ -87,4 +86,3 @@ namespace Domain.UseCases.User
         #endregion
     }
 }
-

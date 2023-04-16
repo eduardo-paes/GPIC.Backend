@@ -12,12 +12,11 @@ namespace Infrastructure.WebAPI.Controllers
     public class AreaController : ControllerBase
     {
         #region Global Scope
-        private readonly IAreaService _areaService;
+        private readonly IAreaService _service;
         private readonly ILogger<AreaController> _logger;
-        public AreaController(IAreaService areaService,
-                              ILogger<AreaController> logger)
+        public AreaController(IAreaService service, ILogger<AreaController> logger)
         {
-            _areaService = areaService;
+            _service = service;
             _logger = logger;
         }
         #endregion
@@ -41,7 +40,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _areaService.GetById(id);
+                var model = await _service.GetById(id);
                 _logger.LogInformation($"Área encontrada para o id {id}.");
                 return Ok(model);
             }
@@ -69,7 +68,7 @@ namespace Infrastructure.WebAPI.Controllers
                 return BadRequest(msg);
             }
 
-            var models = await _areaService.GetAreasByMainArea(mainAreaId, skip, take);
+            var models = await _service.GetAreasByMainArea(mainAreaId, skip, take);
             if (models == null)
             {
                 const string msg = "Nenhuma Área encontrada.";
@@ -92,7 +91,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _areaService.Create(dto) as DetailedReadAreaDTO;
+                var model = await _service.Create(dto) as DetailedReadAreaDTO;
                 _logger.LogInformation($"Área criada: {model.Id}");
                 return Ok(model);
             }
@@ -114,7 +113,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _areaService.Update(id, dto) as DetailedReadAreaDTO;
+                var model = await _service.Update(id, dto) as DetailedReadAreaDTO;
                 _logger.LogInformation($"Área atualizada: {model.Id}");
                 return Ok(model);
             }
@@ -143,7 +142,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _areaService.Delete(id.Value) as DetailedReadAreaDTO;
+                var model = await _service.Delete(id.Value) as DetailedReadAreaDTO;
                 _logger.LogInformation($"Área removida: {model.Id}");
                 return Ok(model);
             }

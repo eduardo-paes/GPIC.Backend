@@ -9,11 +9,11 @@ namespace Infrastructure.WebAPI.Controllers
     public class MainAreaController : ControllerBase
     {
         #region Global Scope
-        private readonly IMainAreaService _mainAreaService;
+        private readonly IMainAreaService _service;
         private readonly ILogger<MainAreaController> _logger;
-        public MainAreaController(IMainAreaService mainAreaService, ILogger<MainAreaController> logger)
+        public MainAreaController(IMainAreaService service, ILogger<MainAreaController> logger)
         {
-            _mainAreaService = mainAreaService;
+            _service = service;
             _logger = logger;
         }
         #endregion
@@ -37,7 +37,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _mainAreaService.GetById(id);
+                var model = await _service.GetById(id);
                 _logger.LogInformation($"Área Principal encontrada para o id {id}.");
                 return Ok(model);
             }
@@ -58,7 +58,7 @@ namespace Infrastructure.WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<ResumedReadMainAreaDTO>>> GetAll(int skip = 0, int take = 50)
         {
-            var models = await _mainAreaService.GetAll(skip, take);
+            var models = await _service.GetAll(skip, take);
             if (models == null)
             {
                 string msg = "Nenhuma Área Principal encontrada.";
@@ -81,7 +81,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _mainAreaService.Create(dto) as DetailedMainAreaDTO;
+                var model = await _service.Create(dto) as DetailedMainAreaDTO;
                 _logger.LogInformation($"Área principal criada: {model.Id}");
                 return Ok(model);
             }
@@ -103,7 +103,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _mainAreaService.Update(id, dto) as DetailedMainAreaDTO;
+                var model = await _service.Update(id, dto) as DetailedMainAreaDTO;
                 _logger.LogInformation($"Área principal atualizada: {model.Id}");
                 return Ok(model);
             }
@@ -132,7 +132,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _mainAreaService.Delete(id.Value) as DetailedMainAreaDTO;
+                var model = await _service.Delete(id.Value) as DetailedMainAreaDTO;
                 _logger.LogInformation($"Área principal removida: {model.Id}");
                 return Ok(model);
             }

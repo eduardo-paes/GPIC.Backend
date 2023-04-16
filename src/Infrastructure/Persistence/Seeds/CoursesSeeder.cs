@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Persistence.Seeds
 {
-    public class CoursesSeeder
+    public static class CoursesSeeder
     {
-        public void Seed(MigrationBuilder builder)
+        public static void Seed(MigrationBuilder builder)
         {
             string coursesFile = Path.Combine(AppContext.BaseDirectory, "Seeds", "Data", "courses.txt");
             foreach (string courseName in File.ReadAllLines(coursesFile))
@@ -15,16 +15,16 @@ namespace Persistence.Seeds
             }
         }
 
-        private void AddCourses(MigrationBuilder builder, Course m)
+        private static void AddCourses(MigrationBuilder builder, Course m)
         {
             builder.InsertData(
-                schema: "public",
                 table: "Courses",
                 columns: new[] { "Id", "DeletedAt", "Name" },
                 values: new object[,]
                 {
                     { m.Id, m.DeletedAt, m.Name },
-                });
+                },
+                schema: "public");
         }
     }
 }

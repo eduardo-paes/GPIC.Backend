@@ -1,11 +1,15 @@
 ﻿using Domain.Interfaces.Repositories;
+using Domain.Interfaces.Services;
 using Infrastructure.Persistence.Context;
 using Infrastructure.Persistence.Repositories;
+using Infrastructure.Services.Email;
+using Infrastructure.Services.Email.Configs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using Services.Email;
 
 namespace Infrastructure.IoC;
 public static class DependencyInjection
@@ -40,6 +44,17 @@ public static class DependencyInjection
         });
         #endregion
 
+        #region Serviço de E-mail
+        var emailConfig = new EmailConfiguration();
+        configuration.GetSection("EmailConfiguration").Bind(emailConfig);
+        services.AddSingleton<IEmailServiceFactory, EmailServiceFactory>();
+        services.AddSingleton(sp =>
+        {
+            var factory = sp.GetRequiredService<IEmailServiceFactory>();
+            return factory.Create(emailConfig);
+        });
+        #endregion
+
         #region Repositórios
         services.AddScoped<IAreaRepository, AreaRepository>();
         services.AddScoped<ICampusRepository, CampusRepository>();
@@ -47,6 +62,7 @@ public static class DependencyInjection
         services.AddScoped<IMainAreaRepository, MainAreaRepository>();
         services.AddScoped<INoticeRepository, NoticeRepository>();
         services.AddScoped<IProgramTypeRepository, ProgramTypeRepository>();
+        services.AddScoped<IStudentRepository, StudentRepository>();
         services.AddScoped<ISubAreaRepository, SubAreaRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
         #endregion

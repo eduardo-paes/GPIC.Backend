@@ -9,11 +9,12 @@ namespace Infrastructure.Persistence.Context
         { }
 
         public DbSet<Area> Areas { get; set; }
-        public DbSet<Campus> Campuss { get; set; }
+        public DbSet<Campus> Campuses { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<MainArea> MainAreas { get; set; }
         public DbSet<Notice> Notices { get; set; }
         public DbSet<ProgramType> ProgramTypes { get; set; }
+        public DbSet<Student> Students { get; set; }
         public DbSet<SubArea> SubAreas { get; set; }
         public DbSet<User> Users { get; set; }
 

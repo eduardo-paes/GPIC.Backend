@@ -1,17 +1,28 @@
 using Infrastructure.IoC;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Infrastructure.WebAPI
 {
+    /// <summary>
+    /// Classe de iniciação da WebAPI.
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// Propriedade de configuração.
+        /// </summary>
         public IConfiguration Configuration { get; }
+
+        /// <summary>
+        /// Construtor da classe.
+        /// </summary>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-
+        /// <summary>
+        /// Realiza a configuração dos serviços de injeção de dependência.
+        /// </summary>
         public void ConfigureServices(IServiceCollection services)
         {
             // Adição dos Controllers
@@ -29,6 +40,9 @@ namespace Infrastructure.WebAPI
             services.AddRouting(options => options.LowercaseUrls = true);
         }
 
+        /// <summary>
+        /// Adiciona as configurações de segurança, documentação e roteamento.
+        /// </summary>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

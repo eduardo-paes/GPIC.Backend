@@ -47,7 +47,7 @@ namespace Domain.Entities
             {
                 DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("Órgão Emissor"));
-                DomainExceptionValidation.When(value.Length > 50,
+                DomainExceptionValidation.When(value?.Length > 50,
                     ExceptionMessageFactory.MaxLength("Órgão Emissor", 50));
                 _issuingAgency = value;
             }
@@ -111,7 +111,7 @@ namespace Domain.Entities
             {
                 DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("Endereço Residencial"));
-                DomainExceptionValidation.When(value.Length > 300,
+                DomainExceptionValidation.When(value?.Length > 300,
                     ExceptionMessageFactory.MaxLength("Endereço Residencial", 300));
                 _homeAddress = value;
             }
@@ -125,7 +125,7 @@ namespace Domain.Entities
             {
                 DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("Cidade"));
-                DomainExceptionValidation.When(value.Length > 50,
+                DomainExceptionValidation.When(value?.Length > 50,
                     ExceptionMessageFactory.MaxLength("Cidade", 50));
                 _city = value;
             }
@@ -139,7 +139,7 @@ namespace Domain.Entities
             {
                 DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("UF"));
-                DomainExceptionValidation.When(value.Length != 2,
+                DomainExceptionValidation.When(value?.Length != 2,
                     ExceptionMessageFactory.WithLength("UF", 2));
                 _uf = value;
             }
@@ -272,7 +272,7 @@ namespace Domain.Entities
         public Guid? UserId
         {
             get { return _userId; }
-            private set
+            set
             {
                 {
                     DomainExceptionValidation.When(value == null,

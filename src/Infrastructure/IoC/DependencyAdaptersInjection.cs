@@ -5,6 +5,7 @@ using Adapters.Proxies.Course;
 using Adapters.Proxies.MainArea;
 using Adapters.Proxies.Notice;
 using Adapters.Proxies.ProgramType;
+using Adapters.Proxies.Student;
 using Adapters.Proxies.SubArea;
 using Adapters.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,6 +22,7 @@ public static class DependencyAdaptersInjection
         services.AddScoped<IMainAreaService, MainAreaService>();
         services.AddScoped<INoticeService, NoticeService>();
         services.AddScoped<IProgramTypeService, ProgramTypeService>();
+        services.AddScoped<IStudentService, StudentService>();
         services.AddScoped<ISubAreaService, SubAreaService>();
         #endregion
 
@@ -32,6 +34,7 @@ public static class DependencyAdaptersInjection
         services.AddAutoMapper(typeof(MainAreaMappings));
         services.AddAutoMapper(typeof(NoticeMappings));
         services.AddAutoMapper(typeof(ProgramTypeMappings));
+        services.AddAutoMapper(typeof(StudentMappings));
         services.AddAutoMapper(typeof(SubAreaMappings));
         services.AddAutoMapper(typeof(UserMappings));
         #endregion
