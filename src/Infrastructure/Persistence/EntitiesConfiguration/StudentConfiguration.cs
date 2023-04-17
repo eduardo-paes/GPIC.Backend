@@ -52,6 +52,10 @@ namespace Infrastructure.Persistence.EntitiesConfiguration
             builder.Property(p => p.UserId)
                 .IsRequired();
             builder.Property(p => p.DeletedAt);
+
+            builder.HasOne(a => a.User)
+                .WithOne()
+                .HasForeignKey<Student>(a => a.UserId);
         }
     }
 }

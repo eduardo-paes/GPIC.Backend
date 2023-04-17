@@ -1,19 +1,11 @@
 using Domain.Interfaces.Services;
 using Infrastructure.Services.Email;
 using Infrastructure.Services.Email.Configs;
-using Microsoft.Extensions.Configuration;
 
 namespace Services.Email
 {
     public class EmailServiceFactory : IEmailServiceFactory
     {
-        private readonly IConfiguration _configuration;
-
-        public EmailServiceFactory(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
-
         public IEmailService Create(EmailConfiguration configuration)
         {
             string? from = configuration.From;
