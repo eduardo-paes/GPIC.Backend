@@ -81,6 +81,8 @@ namespace Domain.Entities
             {
                 DomainExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required("Sexo"));
+                if (!Enum.TryParse<EGender>(value.ToString(), out var _))
+                    throw new Exception($"Valor inválido para Sexo: {value}");
                 _gender = value;
             }
         }
@@ -96,6 +98,8 @@ namespace Domain.Entities
             {
                 DomainExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required("Cor/Raça"));
+                if (!Enum.TryParse<ERace>(value.ToString(), out var _))
+                    throw new Exception($"Valor inválido para Cor/Raça: {value}");
                 _race = value;
             }
         }
@@ -257,11 +261,11 @@ namespace Domain.Entities
             get { return _studentAssistanceProgram; }
             set
             {
-                {
-                    DomainExceptionValidation.When(value == null,
-                        ExceptionMessageFactory.Required("bolsa de estudos"));
-                    _studentAssistanceProgram = value;
-                }
+                DomainExceptionValidation.When(value == null,
+                    ExceptionMessageFactory.Required("bolsa de estudos"));
+                if (!Enum.TryParse<EStudentAssistanceProgram>(value.ToString(), out var _))
+                    throw new Exception($"Valor inválido para Bolsa de estudos: {value}");
+                _studentAssistanceProgram = value;
             }
         }
 

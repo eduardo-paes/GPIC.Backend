@@ -14,6 +14,10 @@ namespace Adapters.Mappings
             CreateMap<DetailedReadStudentOutput, DetailedReadStudentDTO>()
                 .ForMember(dest => dest.User,
                     opt => opt.MapFrom(src => src.User))
+                .ForMember(dest => dest.Campus,
+                    opt => opt.MapFrom(src => src.Campus))
+                .ForMember(dest => dest.Course,
+                    opt => opt.MapFrom(src => src.Course))
                 .ReverseMap();
         }
     }

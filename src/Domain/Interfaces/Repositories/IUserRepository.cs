@@ -21,7 +21,7 @@ namespace Domain.Interfaces.Repositories
         /// </summary>
         /// <param name="id">Id do usuário.</param>
         /// <returns>Usuário encontrado.</returns>
-        Task<User> GetById(Guid? id);
+        Task<User?> GetById(Guid? id);
 
         /// <summary>
         /// Atualiza usuário utilizando os parâmetros informados.
@@ -35,9 +35,14 @@ namespace Domain.Interfaces.Repositories
         /// </summary>
         /// <param name="user">Parâmetros de criação do usuário.</param>
         /// <returns>Usuário criado.</returns>
-        Task<User?> Create(User user);
+        Task<User> Create(User user);
 
-        Task<User?> Delete(Guid? id);
+        /// <summary>
+        /// Realiza a remoção do usuário utilizando o id informado.
+        /// </summary>
+        /// <param name="id">Id do usuário.</param>
+        /// <returns>Usuário removido.</returns>
+        Task<User> Delete(Guid? id);
 
         /// <summary>
         /// Retorna usuário com o Email informado.

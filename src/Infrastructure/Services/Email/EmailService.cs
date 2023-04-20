@@ -1,6 +1,6 @@
+using System.Net;
+using System.Net.Mail;
 using Domain.Interfaces.Services;
-using MailKit.Net.Smtp;
-using MimeKit;
 
 namespace Infrastructure.Services.Email
 {
@@ -12,14 +12,16 @@ namespace Infrastructure.Services.Email
         private readonly int _smtpPort;
         private readonly string? _smtpUsername;
         private readonly string? _smtpPassword;
+        private readonly string? _apiDomain;
 
-        public EmailService(string? from, string? smtpServer, int smtpPort, string? smtpUsername, string? smtpPassword)
+        public EmailService(string? from, string? smtpServer, int smtpPort, string? smtpUsername, string? smtpPassword, string? apiDomain)
         {
             _from = from;
             _smtpServer = smtpServer;
             _smtpPort = smtpPort;
             _smtpUsername = smtpUsername;
             _smtpPassword = smtpPassword;
+            _apiDomain = apiDomain;
         }
         #endregion
 
@@ -30,21 +32,26 @@ namespace Infrastructure.Services.Email
                 throw new Exception("Parâmetros inválidos. Email, nome e token são obrigatórios.");
 
             // Lê mensagem do template em html salvo localmente
-            var template = await File.ReadAllTextAsync("./Email/Templates/ConfirmEmail.html");
+            string? currentDirectory = Path.GetDirectoryName(typeof(EmailService).Assembly.Location);
+            if (currentDirectory == null)
+                throw new Exception("Não foi possível encontrar o diretório atual do projeto.");
+
+            // Lê mensagem do template em html salvo localmente
+            string template = await File.ReadAllTextAsync(Path.Combine(currentDirectory!, "Email/Templates/ConfirmEmail.html"));
 
             // Gera mensagem de envio
             const string subject = "Confirmação de Cadastro";
-            string body = string.Format(@template, name, token);
+            string body = template.Replace("#USER_NAME#", name).Replace("#USER_TOKEN#", token).Replace("#API_DOMAIN#", _apiDomain);
 
             // Tentativa de envio de email
             try
             {
-                await SendEmailAsync(email, name, subject, body);
+                await SendEmailAsync(email, subject, body);
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return false;
+                throw new Exception($"Não foi possível enviar o email de confirmação. {ex.Message}");
             }
         }
 
@@ -54,19 +61,28 @@ namespace Infrastructure.Services.Email
         }
 
         #region Private Methods
-        public async Task SendEmailAsync(string email, string recipientName, string subject, string message)
+        public async Task SendEmailAsync(string email, string subject, string message)
         {
-            var mimeMessage = new MimeMessage();
-            mimeMessage.From.Add(new MailboxAddress(_smtpUsername, _from));
-            mimeMessage.To.Add(new MailboxAddress(email, recipientName));
-            mimeMessage.Subject = subject;
-            mimeMessage.Body = new TextPart("plain") { Text = message };
+            // Verifica se os parâmetros são nulos ou vazios
+            if (_from == null || _smtpServer == null || _smtpUsername == null || _smtpPassword == null)
+                throw new Exception("Parâmetros de configuração de email não foram encontrados.");
 
-            using var smtpClient = new SmtpClient();
-            await smtpClient.ConnectAsync(_smtpServer, _smtpPort, useSsl: true);
-            await smtpClient.AuthenticateAsync(_from, _smtpPassword);
-            await smtpClient.SendAsync(mimeMessage);
-            await smtpClient.DisconnectAsync(quit: true);
+            // Cria objeto de mensagem
+            var mc = new MailMessage(_from, email)
+            {
+                Subject = subject,
+                Body = message,
+                IsBodyHtml = true
+            };
+
+            // Envia mensagem
+            using var smtpClient = new SmtpClient(_smtpServer, _smtpPort);
+            smtpClient.Timeout = 1000000;
+            smtpClient.EnableSsl = true;
+            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtpClient.UseDefaultCredentials = false;
+            smtpClient.Credentials = new NetworkCredential(_smtpUsername, _smtpPassword);
+            await smtpClient.SendMailAsync(mc);
         }
         #endregion
     }

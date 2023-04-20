@@ -12,4 +12,3 @@ namespace Adapters.DTOs.Auth
         public string? Password { get; set; }
     }
 }
-

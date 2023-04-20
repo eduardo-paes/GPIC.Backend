@@ -11,4 +11,3 @@ namespace Domain.Contracts.Auth
         public string? Password { get; set; }
     }
 }
-

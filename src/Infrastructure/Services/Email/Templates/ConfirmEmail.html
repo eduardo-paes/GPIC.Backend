@@ -5,7 +5,7 @@
     <title>Confirmação de Cadastro</title>
     <style>
       body {
-        background-color: #f2f2f2;
+        /* background-color: #f2f2f2; */
         font-family: Arial, sans-serif;
         color: #444444;
       }
@@ -56,10 +56,17 @@
   <body>
     <div class="container">
       <h1>Confirmação de Cadastro</h1>
-      <p>Olá <strong>{0}</strong>,</p>
+      <p>Olá <strong>#USER_NAME#</strong>,</p>
       <p>Seu cadastro foi realizado com sucesso em nosso sistema.</p>
       <p>Por favor, confirme seu cadastro clicando no botão abaixo:</p>
-      <p><a href="{1}" class="btn">Confirmar Cadastro</a></p>
+      <p>
+        <a
+          href="#API_DOMAIN#/api/user/confirm-email/#USER_TOKEN#"
+          class="btn"
+          target="_blank"
+          >Confirmar Cadastro</a
+        >
+      </p>
       <p>
         Atenciosamente, <br /><strong>G-PIC</strong><br />
         <span class="details">

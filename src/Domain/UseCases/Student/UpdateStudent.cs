@@ -44,16 +44,18 @@ namespace Domain.UseCases.Student
             student.City = dto.City;
             student.CourseId = dto.CourseId;
             student.DispatchDate = dto.DispatchDate;
-            student.Gender = (EGender)dto.Gender;
             student.HomeAddress = dto.HomeAddress;
             student.IssuingAgency = dto.IssuingAgency;
             student.Phone = dto.Phone;
             student.PhoneDDD = dto.PhoneDDD;
-            student.Race = (ERace)dto.Race;
             student.RG = dto.RG;
             student.StartYear = dto.StartYear;
-            student.StudentAssistanceProgram = (EStudentAssistanceProgram)dto.StudentAssistanceProgram;
             student.UF = dto.UF;
+
+            // Enums            
+            student.Race = (ERace)dto.Race;
+            student.Gender = (EGender)dto.Gender;
+            student.StudentAssistanceProgram = (EStudentAssistanceProgram)dto.StudentAssistanceProgram;
 
             // Atualiza estudante com as informações fornecidas
             student = await _studentRepository.Update(student);

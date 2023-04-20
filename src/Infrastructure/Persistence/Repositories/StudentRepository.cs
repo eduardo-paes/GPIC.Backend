@@ -1,4 +1,4 @@
-﻿using System.Data.Entity;
+﻿// using System.Data.Entity;
 using Domain.Entities;
 using Domain.Interfaces.Repositories;
 using Infrastructure.Persistence.Context;
@@ -22,6 +22,7 @@ namespace Infrastructure.Persistence.Repositories
         }
 
         public async Task<IEnumerable<Student>> GetAll(int skip, int take) => await _context.Students
+            .Include(x => x.User)
             .Where(x => x.DeletedAt == null)
             .Skip(skip)
             .Take(take)
@@ -29,7 +30,11 @@ namespace Infrastructure.Persistence.Repositories
             .ToListAsync();
 
         public async Task<Student?> GetById(Guid? id) =>
-            await _context.Students.FindAsync(id);
+            await _context.Students
+                .Include(x => x.User)
+                .Include(x => x.Campus)
+                .Include(x => x.Course)
+                .FirstOrDefaultAsync(x => x.Id == id);
 
         public async Task<Student> Delete(Guid? id)
         {

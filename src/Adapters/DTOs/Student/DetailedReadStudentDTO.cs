@@ -1,4 +1,6 @@
 ﻿using Adapters.DTOs.Base;
+using Adapters.DTOs.Campus;
+using Adapters.DTOs.Course;
 using Adapters.DTOs.User;
 
 namespace Adapters.DTOs.Student
@@ -8,6 +10,8 @@ namespace Adapters.DTOs.Student
         public Guid? Id { get; set; }
         public DateTime? DeletedAt { get; set; }
         public UserReadDTO? User { get; set; }
+        public DetailedReadCampusDTO? Campus { get; set; }
+        public DetailedReadCourseDTO? Course { get; set; }
 
         #region Required Properties
         public DateTime BirthDate { get; set; }

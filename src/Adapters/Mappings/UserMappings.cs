@@ -1,7 +1,7 @@
 ﻿using System;
 using AutoMapper;
 using Adapters.DTOs.User;
-using Domain.Entities;
+using Domain.Contracts.User;
 
 namespace Adapters.Mappings
 {
@@ -9,9 +9,8 @@ namespace Adapters.Mappings
     {
         public UserMappings()
         {
-            CreateMap<User, UserReadDTO>().ReverseMap();
-            CreateMap<User, UserUpdateDTO>().ReverseMap();
+            CreateMap<UserReadOutput, UserReadDTO>().ReverseMap();
+            CreateMap<UserUpdateInput, UserUpdateDTO>().ReverseMap();
         }
     }
 }
-

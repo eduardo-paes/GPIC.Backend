@@ -13,9 +13,8 @@ namespace Infrastructure.Persistence.Repositories
         #endregion
 
         #region CRUD Methods
-        public async Task<User> GetById(Guid? id) => await _context.Users
-            .FindAsync(id)
-                ?? throw new Exception("User not found.");
+        public async Task<User?> GetById(Guid? id) => await _context.Users
+            .FindAsync(id);
 
         public async Task<IEnumerable<User>> GetActiveUsers(int skip, int take) => await _context.Users
             .Where(x => x.DeletedAt == null)
@@ -35,9 +34,7 @@ namespace Infrastructure.Persistence.Repositories
             await _context.SaveChangesAsync();
             return user;
         }
-        #endregion
 
-        #region Auth Methods
         public async Task<User> Create(User user)
         {
             _context.Add(user);
@@ -45,19 +42,25 @@ namespace Infrastructure.Persistence.Repositories
             return user;
         }
 
+        public async Task<User> Delete(Guid? id)
+        {
+            var model = await GetById(id);
+            if (model == null)
+                throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
+            model.DeactivateEntity();
+            return await Update(model);
+        }
+        #endregion
+
+        #region Auth Methods
         public async Task<User?> GetUserByEmail(string? email)
         {
-            return await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
+            return await _context.Users.FirstOrDefaultAsync(x => x.Email == email && x.DeletedAt == null);
         }
 
         public async Task<User?> GetUserByCPF(string? cpf)
         {
             return await _context.Users.FirstOrDefaultAsync(x => x.Email == cpf);
-        }
-
-        public Task<User?> Delete(Guid? id)
-        {
-            throw new NotImplementedException();
         }
         #endregion
     }

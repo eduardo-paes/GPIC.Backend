@@ -11,12 +11,21 @@ namespace Domain.UseCases.Student
         #region Global Scope
         private readonly IStudentRepository _studentRepository;
         private readonly IUserRepository _userRepository;
+        private readonly ICourseRepository _courseRepository;
+        private readonly ICampusRepository _campusRepository;
         private readonly IEmailService _emailService;
         private readonly IMapper _mapper;
-        public CreateStudent(IStudentRepository studentRepository, IUserRepository userRepository, IEmailService emailService, IMapper mapper)
+        public CreateStudent(IStudentRepository studentRepository,
+            IUserRepository userRepository,
+            ICampusRepository campusRepository,
+            ICourseRepository courseRepository,
+            IEmailService emailService,
+            IMapper mapper)
         {
             _studentRepository = studentRepository;
             _userRepository = userRepository;
+            _campusRepository = campusRepository;
+            _courseRepository = courseRepository;
             _emailService = emailService;
             _mapper = mapper;
         }
@@ -37,8 +46,18 @@ namespace Domain.UseCases.Student
             if (user != null)
                 throw new Exception("Já existe um usuário com o CPF informado.");
 
+            // Verifica se curso informado existe
+            var course = await _courseRepository.GetById(dto.CourseId);
+            if (course == null)
+                throw new Exception("Curso informado não existe.");
+
+            // Verifica se campus informado existe
+            var campus = await _campusRepository.GetById(dto.CampusId);
+            if (campus == null)
+                throw new Exception("Campus informado não existe.");
+
             // Cria usuário
-            user = new Entities.User(dto.Name, dto.Email, dto.CPF, dto.Password, Entities.Enums.ERole.STUDENT);
+            user = new Entities.User(dto.Name, dto.Email, dto.Password, dto.CPF, Entities.Enums.ERole.STUDENT);
 
             // Adiciona usuário no banco
             user = await _userRepository.Create(user);
@@ -52,9 +71,7 @@ namespace Domain.UseCases.Student
                 throw new Exception("Não foi possível criar o estudante.");
 
             // Envia e-mail de confirmação
-            var emailStatus = await _emailService.SendConfirmationEmail(user.Email, user.Name, user.ValidationCode);
-            if (!emailStatus)
-                throw new Exception("Não foi possível enviar o e-mail de confirmação.");
+            await _emailService.SendConfirmationEmail(user.Email, user.Name, user.ValidationCode);
 
             // Salva entidade no banco
             return _mapper.Map<DetailedReadStudentOutput>(entity);

@@ -6,15 +6,12 @@ namespace Services.Email
 {
     public class EmailServiceFactory : IEmailServiceFactory
     {
-        public IEmailService Create(EmailConfiguration configuration)
-        {
-            string? from = configuration.From;
-            string? smtpServer = configuration.SmtpServer;
-            int smtpPort = configuration.SmtpPort;
-            string? smtpUsername = configuration.SmtpUsername;
-            string? smtpPassword = configuration.SmtpPassword;
-
-            return new EmailService(from, smtpServer, smtpPort, smtpUsername, smtpPassword);
-        }
+        public IEmailService Create(EmailConfiguration configuration) => new EmailService(
+            configuration.From,
+            configuration.SmtpServer,
+            configuration.SmtpPort,
+            configuration.SmtpUsername,
+            configuration.SmtpPassword,
+            configuration.ApiDomain);
     }
 }

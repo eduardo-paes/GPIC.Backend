@@ -3,8 +3,9 @@ using Adapters.DTOs.Course;
 using Infrastructure.WebAPI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
+using NUnit.Framework;
 
-namespace Infra.WebAPI.Tests.Controllers
+namespace Tests.Infrastructure.WebAPI.Controllers
 {
     [TestFixture]
     public class CourseControllerTests : IDisposable

@@ -1,4 +1,5 @@
 using System.Data;
+using System.Linq;
 using System.Net.Mail;
 using Domain.Entities.Enums;
 using Domain.Entities.Primitives;
@@ -95,7 +96,7 @@ namespace Domain.Entities
             get { return _validationCode; }
             private set
             {
-                if (IsConfirmed)
+                if (!IsConfirmed)
                 {
                     DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                         ExceptionMessageFactory.Required("validationCode"));
@@ -140,7 +141,7 @@ namespace Domain.Entities
         internal void GenerateValidationCode()
         {
             IsConfirmed = false;
-            Random random = new();
+            var random = new Random();
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             ValidationCode = new string(Enumerable.Repeat(chars, 6)
                 .Select(s => s[random.Next(s.Length)]).ToArray());

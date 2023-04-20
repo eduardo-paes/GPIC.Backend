@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Persistence.Seeds
 {
-    public static class CampusSeeder
+    public static class CampusesSeeder
     {
         public static void Seed(MigrationBuilder builder)
         {
