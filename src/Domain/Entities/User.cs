@@ -149,6 +149,8 @@ namespace Domain.Entities
 
         internal void ConfirmUser(string validationCode)
         {
+            DomainExceptionValidation.When(IsConfirmed,
+                "O e-mail do usuário já foi confirmado.");
             DomainExceptionValidation.When(ValidationCode != validationCode,
                 "Código de validação inválido.");
             IsConfirmed = true;
