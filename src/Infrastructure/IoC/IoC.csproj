@@ -1,38 +1,39 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-		<Version>1.0.0</Version>
-	</PropertyGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\..\Adapters\Adapters.csproj" />
-		<ProjectReference Include="..\..\Domain\Domain.csproj" />
-		<ProjectReference Include="..\Persistence\Persistence.csproj" />
-		<ProjectReference Include="..\Services\Services.csproj" />
-	</ItemGroup>
-	<ItemGroup>
-		<None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
-		<None Remove="Swashbuckle.AspNetCore" />
-		<None Remove="Swashbuckle.AspNetCore.SwaggerGen" />
-		<None Remove="Swashbuckle.AspNetCore.SwaggerUI" />
-		<None Remove="Serilog" />
-		<None Remove="Serilog.Sinks.File" />
-		<None Remove="Serilog.Sinks.Console" />
-		<None Remove="Serilog.Extensions.Logging" />
-		<None Remove="Serilog.Expressions" />
-		<None Remove="Serilog.Settings.Configuration" />
-	</ItemGroup>
-	<ItemGroup>
-		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
-		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
-		<PackageReference Include="Serilog" Version="2.12.0" />
-		<PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
-		<PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
-		<PackageReference Include="Serilog.Extensions.Logging" Version="3.1.0" />
-		<PackageReference Include="Serilog.Expressions" Version="3.4.1" />
-		<PackageReference Include="Serilog.Settings.Configuration" Version="3.4.0" />
-	</ItemGroup>
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Adapters\Adapters.csproj"/>
+    <ProjectReference Include="..\..\Domain\Domain.csproj"/>
+    <ProjectReference Include="..\Persistence\Persistence.csproj"/>
+    <ProjectReference Include="..\Services\Services.csproj"/>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection"/>
+    <None Remove="Swashbuckle.AspNetCore"/>
+    <None Remove="Swashbuckle.AspNetCore.SwaggerGen"/>
+    <None Remove="Swashbuckle.AspNetCore.SwaggerUI"/>
+    <None Remove="Serilog"/>
+    <None Remove="Serilog.Sinks.File"/>
+    <None Remove="Serilog.Sinks.Console"/>
+    <None Remove="Serilog.Extensions.Logging"/>
+    <None Remove="Serilog.Expressions"/>
+    <None Remove="Serilog.Settings.Configuration"/>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0"/>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0"/>
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0"/>
+    <PackageReference Include="Serilog" Version="2.12.0"/>
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0"/>
+    <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0"/>
+    <PackageReference Include="Serilog.Extensions.Logging" Version="3.1.0"/>
+    <PackageReference Include="Serilog.Expressions" Version="3.4.1"/>
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.4.0"/>
+    <PackageReference Include="DotNetEnv" Version="2.5.0"/>
+  </ItemGroup>
 </Project>

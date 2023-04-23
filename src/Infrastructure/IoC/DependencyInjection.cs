@@ -14,15 +14,19 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        #region Acesso Appsettings
-        // Adicione o caminho base para o arquivo appsettings.json
+        #region Configurações de Ambiente
+        // Caminho base para o arquivo appsettings.json
         var basePath = Path.GetDirectoryName(typeof(DependencyInjection).Assembly.Location);
-        var configurationBuilder = new ConfigurationBuilder()
-            .SetBasePath(basePath!)
-            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
-        // Use a configuração criada acima para ler as configurações do appsettings.json
-        configuration = configurationBuilder.Build();
+        // Carrega informações de ambiente (.env)
+        DotNetEnv.Env.Load(Path.Combine(basePath!, ".env"));
+
+        // Adicione o caminho base para o arquivo appsettings.json
+        configuration = new ConfigurationBuilder()
+            .SetBasePath(basePath!)
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            .AddEnvironmentVariables()
+            .Build();
         #endregion
 
         #region Inicialização do banco de dados
@@ -45,6 +49,8 @@ public static class DependencyInjection
         #region Serviço de E-mail
         var smtpConfig = new SmtpConfiguration();
         configuration.GetSection("SmtpConfiguration").Bind(smtpConfig);
+        smtpConfig.Password = configuration.GetSection("SmtpPassword").Value;
+        smtpConfig.Username = configuration.GetSection("SmtpUsername").Value;
         services.AddSingleton<IEmailServiceFactory, EmailServiceFactory>();
         services.AddSingleton(sp =>
         {
