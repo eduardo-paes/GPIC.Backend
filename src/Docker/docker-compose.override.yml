@@ -1,9 +1,10 @@
-version: '3'
+version: '3.4'
+
 services:
   # PostgreSQL Database
-  postgres-copetsystem:
+  postgres:
     image: postgres:latest
-    container_name: copet-system-db
+    container_name: postgres
     environment:
       POSTGRES_PASSWORD: Copet@123
       POSTGRES_USER: copet-admin
@@ -13,34 +14,37 @@ services:
     volumes:
       - ./volumes/postgresql:/var/lib/postgresql/data
     networks:
-      - postgres-copetsystem-network
+      - postgres-network
 
   # PostgreAdmin UI
-  pgadmin-copetsystem:
+  pgadmin:
     image: dpage/pgadmin4:latest
-    container_name: copet-system-pgadmin
+    container_name: pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: eduardo-paes@outlook.com
       PGADMIN_DEFAULT_PASSWORD: CopetSystem!2022
     ports:
       - 16543:80
     depends_on:
-      - postgres-copetsystem
+      - postgres
     networks:
-      - postgres-copetsystem-network
+      - postgres-network
 
-  webapi-copetsystem:
-    build: .
-    command: >
-      sh -c "dotnet ef database update &&
-             dotnet WebAPI.dll"
-    volumes:
-      - .:/app
+  # Web API
+  webapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
     ports:
-      - "80:80"
+      - 5555:443
+    volumes:
+      - ~/.aspnet/https:/root/.aspnet/https:ro
+      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
     depends_on:
-      - db
+      - postgres
+    networks:
+      - postgres-network
 
 networks:
-  postgres-copetsystem-network:
+  postgres-network:
     driver: bridge
