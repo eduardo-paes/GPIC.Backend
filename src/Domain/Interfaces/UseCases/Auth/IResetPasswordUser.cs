@@ -1,10 +1,7 @@
-using System.Threading.Tasks;
 using Domain.Contracts.Auth;
 
-namespace Domain.Interfaces.UseCases.Auth
+namespace Domain.Interfaces.UseCases.Auth;
+public interface IResetPasswordUser
 {
-    public interface IResetPasswordUser
-    {
-        Task<bool> Execute(UserResetPasswordInput dto);
-    }
+    Task<string> Execute(UserResetPasswordInput dto);
 }

@@ -1,22 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Domain.Interfaces.Repositories;
-using Domain.Interfaces.UseCases.User;
+using Domain.Interfaces.UseCases.Auth;
 
-namespace Domain.UseCases.User
+namespace Domain.UseCases.Auth
 {
     public class ConfirmUserEmail : IConfirmUserEmail
     {
+        #region Global Scope
         private readonly IUserRepository _userRepository;
+        public ConfirmUserEmail(IUserRepository userRepository) => _userRepository = userRepository;
+        #endregion
 
-        public ConfirmUserEmail(IUserRepository userRepository)
-        {
-            _userRepository = userRepository;
-        }
-
-        public async Task Execute(Guid? userId, string? token)
+        public async Task<string> Execute(Guid? userId, string? token)
         {
             // Verifica se userId é nulo
             if (userId == null)
@@ -32,13 +26,13 @@ namespace Domain.UseCases.User
                 throw new Exception("Usuário não encontrado.");
 
             // Confirma usuário
-            user.ConfirmUser(token);
+            user.ConfirmUserEmail(token);
 
             // Atualiza usuário
             await _userRepository.Update(user);
 
-            // Retorna
-            return;
+            // Retorna mensagem de sucesso
+            return "Usuário confirmado com sucesso.";
         }
     }
 }

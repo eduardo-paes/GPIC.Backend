@@ -1,5 +1,4 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using Domain.Contracts.Auth;
 using Domain.Entities;
 
@@ -14,4 +13,3 @@ namespace Domain.Mappings
         }
     }
 }
-

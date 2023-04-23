@@ -1,10 +1,7 @@
-using System.Threading.Tasks;
 using Domain.Contracts.Auth;
 
-namespace Domain.Interfaces.UseCases.Auth
+namespace Domain.Interfaces.UseCases.Auth;
+public interface ILoginUser
 {
-    public interface ILoginUser
-    {
-        Task<UserLoginOutput> Execute(UserLoginInput dto);
-    }
+    Task<UserLoginOutput> Execute(UserLoginInput dto);
 }

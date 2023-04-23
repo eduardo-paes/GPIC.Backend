@@ -1,5 +1,4 @@
 using System.Data;
-using System.Linq;
 using System.Net.Mail;
 using Domain.Entities.Enums;
 using Domain.Entities.Primitives;
@@ -100,13 +99,26 @@ namespace Domain.Entities
                 {
                     DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                         ExceptionMessageFactory.Required("validationCode"));
-                    DomainExceptionValidation.When(value?.Length > 6,
+                    DomainExceptionValidation.When(value?.Length >= 6,
                         ExceptionMessageFactory.MaxLength("validationCode", 6));
                     _validationCode = value;
                 }
             }
         }
 
+        private string? _forgotPasswordToken;
+        public string? ResetPasswordToken
+        {
+            get { return _forgotPasswordToken; }
+            private set
+            {
+                DomainExceptionValidation.When(string.IsNullOrEmpty(value),
+                    ExceptionMessageFactory.Required("forgotPasswordToken"));
+                DomainExceptionValidation.When(value?.Length >= 6,
+                    ExceptionMessageFactory.MaxLength("forgotPasswordToken", 6));
+                _forgotPasswordToken = value;
+            }
+        }
         #endregion
 
         #region Constructors
@@ -128,7 +140,7 @@ namespace Domain.Entities
             CPF = cpf;
             Role = role;
 
-            GenerateValidationCode();
+            GenerateEmailValidationCode();
         }
 
         /// <summary>
@@ -137,17 +149,14 @@ namespace Domain.Entities
         protected User() { }
         #endregion
 
-        #region Utils
-        internal void GenerateValidationCode()
+        #region Email Confirmation
+        internal void GenerateEmailValidationCode()
         {
             IsConfirmed = false;
-            var random = new Random();
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            ValidationCode = new string(Enumerable.Repeat(chars, 6)
-                .Select(s => s[random.Next(s.Length)]).ToArray());
+            ValidationCode = GenerateValidationCode();
         }
 
-        internal void ConfirmUser(string validationCode)
+        internal void ConfirmUserEmail(string validationCode)
         {
             DomainExceptionValidation.When(IsConfirmed,
                 "O e-mail do usuário já foi confirmado.");
@@ -156,7 +165,24 @@ namespace Domain.Entities
             IsConfirmed = true;
             ValidationCode = null;
         }
+        #endregion
 
+        #region Reset Password
+        internal void GenerateResetPasswordToken() => ResetPasswordToken = GenerateValidationCode(128);
+
+        internal bool UpdatePassword(string password, string token)
+        {
+            if (ResetPasswordToken?.Equals(token) == true)
+            {
+                Password = password;
+                ResetPasswordToken = null;
+                return true;
+            }
+            return false;
+        }
+        #endregion
+
+        #region Private Methods
         private static bool ValidateEmail(string email)
         {
             try
@@ -207,6 +233,14 @@ namespace Domain.Entities
         private static string? GetOnlyNumbers(string? input) => !string.IsNullOrEmpty(input)
             ? string.Concat(input.Where(char.IsDigit))
             : input;
+
+        private static string GenerateValidationCode(int size = 6)
+        {
+            var random = new Random();
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            return new string(Enumerable.Repeat(chars, size)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
         #endregion
     }
 }

@@ -14,12 +14,14 @@ namespace Domain.UseCases.Student
         private readonly ICourseRepository _courseRepository;
         private readonly ICampusRepository _campusRepository;
         private readonly IEmailService _emailService;
+        private readonly IHashService _hashService;
         private readonly IMapper _mapper;
         public CreateStudent(IStudentRepository studentRepository,
             IUserRepository userRepository,
             ICampusRepository campusRepository,
             ICourseRepository courseRepository,
             IEmailService emailService,
+            IHashService hashService,
             IMapper mapper)
         {
             _studentRepository = studentRepository;
@@ -27,6 +29,7 @@ namespace Domain.UseCases.Student
             _campusRepository = campusRepository;
             _courseRepository = courseRepository;
             _emailService = emailService;
+            _hashService = hashService;
             _mapper = mapper;
         }
         #endregion
@@ -55,6 +58,13 @@ namespace Domain.UseCases.Student
             var campus = await _campusRepository.GetById(dto.CampusId);
             if (campus == null || campus.DeletedAt != null)
                 throw new Exception("Campus informado não existe.");
+
+            // Verifica se a senha é nula
+            if (string.IsNullOrEmpty(dto.Password))
+                throw new Exception("Senha não informada.");
+
+            // Gera hash da senha
+            dto.Password = _hashService.HashPassword(dto.Password);
 
             // Cria usuário
             user = new Entities.User(dto.Name, dto.Email, dto.Password, dto.CPF, Entities.Enums.ERole.STUDENT);

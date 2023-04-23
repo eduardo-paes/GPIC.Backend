@@ -19,7 +19,6 @@ using Domain.UseCases.ProgramType;
 using Domain.UseCases.Student;
 using Domain.UseCases.SubArea;
 using Infrastructure.Services;
-using Infrastructure.Services.Email;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.IoC;
@@ -28,8 +27,8 @@ public static class DependencyDomainInjection
     public static IServiceCollection AddDomain(this IServiceCollection services)
     {
         #region External Services
-        // services.AddScoped<IEmailService, EmailService>();
-        services.AddScoped<ITokenHandler, TokenHandler>();
+        services.AddScoped<IHashService, HashService>();
+        services.AddScoped<ITokenAuthenticationService, TokenAuthenticationService>();
         services.AddScoped<IStorageFileService, StorageFileService>();
         #endregion
 
@@ -44,7 +43,6 @@ public static class DependencyDomainInjection
 
         #region Auth
         services.AddScoped<ILoginUser, LoginUser>();
-        services.AddScoped<IRegisterUser, RegisterUser>();
         services.AddScoped<IResetPasswordUser, ResetPasswordUser>();
         #endregion
 
