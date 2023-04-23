@@ -60,7 +60,7 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<User?> GetUserByCPF(string? cpf)
         {
-            return await _context.Users.FirstOrDefaultAsync(x => x.Email == cpf);
+            return await _context.Users.FirstOrDefaultAsync(x => x.CPF == cpf && x.DeletedAt == null);
         }
         #endregion
     }

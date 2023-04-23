@@ -48,12 +48,12 @@ namespace Domain.UseCases.Student
 
             // Verifica se curso informado existe
             var course = await _courseRepository.GetById(dto.CourseId);
-            if (course == null)
+            if (course == null || course.DeletedAt != null)
                 throw new Exception("Curso informado não existe.");
 
             // Verifica se campus informado existe
             var campus = await _campusRepository.GetById(dto.CampusId);
-            if (campus == null)
+            if (campus == null || campus.DeletedAt != null)
                 throw new Exception("Campus informado não existe.");
 
             // Cria usuário
