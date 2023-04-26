@@ -1,5 +1,6 @@
 ﻿using Adapters.Mappings;
 using Adapters.Proxies.Area;
+using Adapters.Proxies.Auth;
 using Adapters.Proxies.Campus;
 using Adapters.Proxies.Course;
 using Adapters.Proxies.MainArea;
@@ -17,6 +18,7 @@ public static class DependencyAdaptersInjection
     {
         #region Services
         services.AddScoped<IAreaService, AreaService>();
+        services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<ICampusService, CampusService>();
         services.AddScoped<ICourseService, CourseService>();
         services.AddScoped<IMainAreaService, MainAreaService>();

@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace Domain.Contracts.Auth
+﻿namespace Domain.Contracts.Auth
 {
     public class UserLoginOutput
     {
@@ -12,4 +9,3 @@ namespace Domain.Contracts.Auth
         public string? Token { get; set; }
     }
 }
-

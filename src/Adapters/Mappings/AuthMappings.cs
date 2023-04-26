@@ -1,7 +1,6 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using Adapters.DTOs.Auth;
-using Domain.Entities;
+using Domain.Contracts.Auth;
 
 namespace Adapters.Mappings
 {
@@ -9,8 +8,9 @@ namespace Adapters.Mappings
     {
         public AuthMappings()
         {
-            CreateMap<User, UserRegisterDTO>().ReverseMap();
-            CreateMap<User, UserLoginResponseDTO>().ReverseMap();
+            CreateMap<UserLoginInput, UserLoginRequestDTO>().ReverseMap();
+            CreateMap<UserLoginOutput, UserLoginResponseDTO>().ReverseMap();
+            CreateMap<UserResetPasswordInput, UserResetPasswordDTO>().ReverseMap();
         }
     }
 }

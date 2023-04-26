@@ -1,4 +1,5 @@
 using Domain.Interfaces.Repositories;
+using Domain.Interfaces.Services;
 using Domain.Interfaces.UseCases.Auth;
 
 namespace Domain.UseCases.Auth
@@ -7,7 +8,12 @@ namespace Domain.UseCases.Auth
     {
         #region Global Scope
         private readonly IUserRepository _userRepository;
-        public ForgotPassword(IUserRepository userRepository) => _userRepository = userRepository;
+        private readonly IEmailService _emailService;
+        public ForgotPassword(IUserRepository userRepository, IEmailService emailService)
+        {
+            _emailService = emailService;
+            _userRepository = userRepository;
+        }
         #endregion
 
         public async Task<string> Execute(string? email)
@@ -27,8 +33,15 @@ namespace Domain.UseCases.Auth
             // Salva alterações
             await _userRepository.Update(user);
 
+            // Envia email de recuperação de senha
+            await _emailService.SendResetPasswordEmail(user.Email, user.Name, user.ResetPasswordToken);
+
+            // Verifica se o token foi gerado
+            if (string.IsNullOrEmpty(user.ResetPasswordToken))
+                throw new Exception("Token não gerado.");
+
             // Retorna token
-            return user.ResetPasswordToken ?? throw new Exception("Token não gerado.");
+            return "Token de recuperação gerado e enviado por e-mail com sucesso.";
         }
     }
 }

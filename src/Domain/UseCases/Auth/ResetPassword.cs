@@ -3,14 +3,20 @@ using Domain.Interfaces.UseCases.Auth;
 using Domain.Interfaces.Repositories;
 using System.Threading.Tasks;
 using System;
+using Domain.Interfaces.Services;
 
 namespace Domain.UseCases.Auth
 {
-    public class ResetPasswordUser : IResetPasswordUser
+    public class ResetPassword : IResetPassword
     {
         #region Global Scope
         private readonly IUserRepository _userRepository;
-        public ResetPasswordUser(IUserRepository userRepository) => _userRepository = userRepository;
+        private readonly IHashService _hashService;
+        public ResetPassword(IUserRepository userRepository, IHashService hashService)
+        {
+            _userRepository = userRepository;
+            _hashService = hashService;
+        }
         #endregion
 
         public async Task<string> Execute(UserResetPasswordInput dto)
@@ -32,8 +38,16 @@ namespace Domain.UseCases.Auth
             if (entity == null)
                 throw new Exception("Nenhum usuário encontrato para o id informado.");
 
+            // Verifica se o token de validação é nulo
+            if (string.IsNullOrEmpty(entity.ResetPasswordToken))
+                throw new Exception("Solicitação de atualização de senha não permitido.");
+
+            // Verifica se o token de validação é igual ao token informado
+            dto.Password = _hashService.HashPassword(dto.Password);
+
             // Atualiza a senha do usuário
-            entity.UpdatePassword(dto.Password, dto.Token);
+            if (!entity.UpdatePassword(dto.Password, dto.Token))
+                throw new Exception("Token de validação inválido.");
 
             // Salva as alterações
             await _userRepository.Update(entity);

@@ -8,7 +8,6 @@ namespace Domain.Mappings
     {
         public AuthMappings()
         {
-            CreateMap<User, UserRegisterInput>().ReverseMap();
             CreateMap<User, UserLoginOutput>().ReverseMap();
         }
     }

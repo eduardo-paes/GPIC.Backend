@@ -6,14 +6,14 @@ using Domain.Interfaces.Services;
 
 namespace Domain.UseCases.Auth
 {
-    public class LoginUser : ILoginUser
+    public class Login : ILogin
     {
         #region Global Scope
         private readonly ITokenAuthenticationService _tokenService;
         private readonly IUserRepository _userRepository;
         private readonly IHashService _hashService;
         private readonly IMapper _mapper;
-        public LoginUser(ITokenAuthenticationService tokenService, IUserRepository userRepository, IHashService hashService, IMapper mapper)
+        public Login(ITokenAuthenticationService tokenService, IUserRepository userRepository, IHashService hashService, IMapper mapper)
         {
             _tokenService = tokenService;
             _userRepository = userRepository;
@@ -36,6 +36,10 @@ namespace Domain.UseCases.Auth
             var entity = await _userRepository.GetUserByEmail(dto.Email);
             if (entity == null)
                 throw new Exception("Nenhum usuário encontrado.");
+
+            // Verifica se o usuário está confirmado
+            if (!entity.IsConfirmed)
+                throw new Exception("O e-mail do usuário ainda não foi confirmado.");
 
             // Verifica se a senha é válida
             if (!_hashService.VerifyPassword(dto.Password, entity.Password))

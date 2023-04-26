@@ -99,7 +99,7 @@ namespace Domain.Entities
                 {
                     DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                         ExceptionMessageFactory.Required("validationCode"));
-                    DomainExceptionValidation.When(value?.Length >= 6,
+                    DomainExceptionValidation.When(value?.Length > 6,
                         ExceptionMessageFactory.MaxLength("validationCode", 6));
                     _validationCode = value;
                 }
@@ -112,9 +112,10 @@ namespace Domain.Entities
             get { return _forgotPasswordToken; }
             private set
             {
-                DomainExceptionValidation.When(string.IsNullOrEmpty(value),
-                    ExceptionMessageFactory.Required("forgotPasswordToken"));
-                DomainExceptionValidation.When(value?.Length >= 6,
+                if (string.IsNullOrEmpty(value))
+                    return;
+
+                DomainExceptionValidation.When(value?.Length > 6,
                     ExceptionMessageFactory.MaxLength("forgotPasswordToken", 6));
                 _forgotPasswordToken = value;
             }
@@ -168,7 +169,7 @@ namespace Domain.Entities
         #endregion
 
         #region Reset Password
-        internal void GenerateResetPasswordToken() => ResetPasswordToken = GenerateValidationCode(128);
+        internal void GenerateResetPasswordToken() => ResetPasswordToken = GenerateValidationCode(6);
 
         internal bool UpdatePassword(string password, string token)
         {

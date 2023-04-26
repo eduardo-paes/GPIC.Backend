@@ -3,11 +3,11 @@ using Domain.Interfaces.UseCases.Auth;
 
 namespace Domain.UseCases.Auth
 {
-    public class ConfirmUserEmail : IConfirmUserEmail
+    public class ConfirmEmail : IConfirmEmail
     {
         #region Global Scope
         private readonly IUserRepository _userRepository;
-        public ConfirmUserEmail(IUserRepository userRepository) => _userRepository = userRepository;
+        public ConfirmEmail(IUserRepository userRepository) => _userRepository = userRepository;
         #endregion
 
         public async Task<string> Execute(Guid? userId, string? token)

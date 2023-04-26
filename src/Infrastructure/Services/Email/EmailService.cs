@@ -50,9 +50,34 @@ public class EmailService : IEmailService
         }
     }
 
-    public Task<bool> SendResetPasswordEmail(string? email, string? name, string? token)
+    public async Task<bool> SendResetPasswordEmail(string? email, string? name, string? token)
     {
-        throw new NotImplementedException();
+        // Verifica se os parâmetros são nulos ou vazios
+        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(token))
+            throw new Exception("Parâmetros inválidos. Email, nome e token são obrigatórios.");
+
+        // Lê mensagem do template em html salvo localmente
+        string? currentDirectory = Path.GetDirectoryName(typeof(EmailService).Assembly.Location);
+        if (currentDirectory == null)
+            throw new Exception("Não foi possível encontrar o diretório atual do projeto.");
+
+        // Lê mensagem do template em html salvo localmente
+        string template = await File.ReadAllTextAsync(Path.Combine(currentDirectory!, "Email/Templates/ResetPassword.html"));
+
+        // Gera mensagem de envio
+        const string subject = "Recuperação de Senha";
+        string body = template.Replace("#USER_NAME#", name).Replace("#USER_TOKEN#", token);
+
+        // Tentativa de envio de email
+        try
+        {
+            await SendEmailAsync(email, subject, body);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Não foi possível enviar o email de recuperação de senha. {ex.Message}");
+        }
     }
 
     #region Private Methods

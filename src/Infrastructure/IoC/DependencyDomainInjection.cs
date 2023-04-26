@@ -42,8 +42,10 @@ public static class DependencyDomainInjection
         #endregion
 
         #region Auth
-        services.AddScoped<ILoginUser, LoginUser>();
-        services.AddScoped<IResetPasswordUser, ResetPasswordUser>();
+        services.AddScoped<IConfirmEmail, ConfirmEmail>();
+        services.AddScoped<IForgotPassword, ForgotPassword>();
+        services.AddScoped<ILogin, Login>();
+        services.AddScoped<IResetPassword, ResetPassword>();
         #endregion
 
         #region Campus

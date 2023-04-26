@@ -1,5 +1,5 @@
 namespace Domain.Interfaces.UseCases.Auth;
-public interface IConfirmUserEmail
+public interface IConfirmEmail
 {
     Task<string> Execute(Guid? userId, string? token);
 }
