@@ -5,6 +5,6 @@ namespace Adapters.Proxies.Area
 {
     public interface IAreaService : IGenericCRUDService
     {
-        Task<IQueryable<ResponseDTO>> GetAreasByMainArea(Guid? mainAreaId, int skip, int take);
+        Task<IEnumerable<ResponseDTO>> GetAreasByMainArea(Guid? mainAreaId, int skip, int take);
     }
 }

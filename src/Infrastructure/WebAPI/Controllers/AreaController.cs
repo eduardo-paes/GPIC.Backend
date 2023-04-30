@@ -33,6 +33,8 @@ namespace Infrastructure.WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<DetailedReadAreaDTO>> GetById(Guid? id)
         {
+            _logger.LogInformation("Executando ({MethodName}) com os parâmetros: Id = {id}", id);
+
             if (id == null)
             {
                 const string msg = "O id informado não pode ser nulo.";
@@ -43,12 +45,12 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.GetById(id);
-                _logger.LogInformation($"Área encontrada para o id {id}.");
+                _logger.LogInformation("Método ({MethodName}) executado. Retorno: Id = {id}", id);
                 return Ok(model);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError("Ocorreu um erro: {ErrorMessage}", ex.Message);
                 return NotFound(ex.Message);
             }
         }
@@ -63,6 +65,8 @@ namespace Infrastructure.WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<ResumedReadAreaDTO>>> GetAreasByMainArea(Guid? mainAreaId, int skip = 0, int take = 50)
         {
+            _logger.LogInformation("Executando método com os parâmetros: MainAreaId = {mainAreaId}, Skip = {skip}, Take = {take}", mainAreaId, skip, take);
+
             if (mainAreaId == null)
             {
                 const string msg = "O MainAreaId informado não pode ser nulo.";
@@ -70,15 +74,24 @@ namespace Infrastructure.WebAPI.Controllers
                 return BadRequest(msg);
             }
 
-            var models = await _service.GetAreasByMainArea(mainAreaId, skip, take);
-            if (models == null)
+            try
             {
-                const string msg = "Nenhuma Área encontrada.";
-                _logger.LogWarning(msg);
-                return NotFound(msg);
+                var models = await _service.GetAreasByMainArea(mainAreaId, skip, take);
+                if (models == null)
+                {
+                    const string msg = "Nenhuma Área encontrada.";
+                    _logger.LogWarning(msg);
+                    return NotFound(msg);
+                }
+                int count = models.Count();
+                _logger.LogInformation("Método finalizado, retorno: Número de entidades = {count}", count);
+                return Ok(models);
             }
-            _logger.LogInformation($"Áreas encontradas: {models.Count()}");
-            return Ok(models);
+            catch (Exception ex)
+            {
+                _logger.LogError("Ocorreu um erro: {ErrorMessage}", ex.Message);
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
@@ -94,12 +107,12 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.Create(dto) as DetailedReadAreaDTO;
-                _logger.LogInformation($"Área criada: {model.Id}");
+                _logger.LogInformation("Método finalizado, retorno: Id = {id}", model?.Id);
                 return Ok(model);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError("Ocorreu um erro: {ErrorMessage}", ex.Message);
                 return BadRequest(ex.Message);
             }
         }
@@ -121,7 +134,7 @@ namespace Infrastructure.WebAPI.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError("Ocorreu um erro: {ErrorMessage}", ex.Message);
                 return BadRequest(ex.Message);
             }
         }
@@ -150,7 +163,7 @@ namespace Infrastructure.WebAPI.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError("Ocorreu um erro: {ErrorMessage}", ex.Message);
                 return BadRequest(ex.Message);
             }
         }

@@ -31,6 +31,7 @@ namespace Infrastructure.Persistence.Repositories
             .Take(take)
             .Include(x => x.MainArea)
             .AsAsyncEnumerable()
+            .OrderBy(x => x.Name)
             .ToListAsync();
 
         public async Task<Area?> GetById(Guid? id)
