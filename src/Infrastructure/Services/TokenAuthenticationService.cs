@@ -50,8 +50,6 @@ public class TokenAuthenticationService : ITokenAuthenticationService
         // Definir o tempo de expiração
         var expiration = DateTime.UtcNow.AddMinutes(expireIn);
 
-        var test = _configuration.GetSection("Jwt:SecretKey").Value;
-
         // Gerar o Token
         var token = new JwtSecurityToken(
             issuer: _configuration.GetSection("Jwt:Issuer").Value,

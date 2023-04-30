@@ -1,5 +1,6 @@
 using Adapters.DTOs.Area;
 using Adapters.Proxies.Area;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Infrastructure.WebAPI.Controllers
@@ -9,6 +10,7 @@ namespace Infrastructure.WebAPI.Controllers
     /// </summary>
     [ApiController]
     [Route("Api/[controller]")]
+    [Authorize]
     public class AreaController : ControllerBase
     {
         #region Global Scope

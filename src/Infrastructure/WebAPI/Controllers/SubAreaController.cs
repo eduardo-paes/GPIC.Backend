@@ -1,11 +1,13 @@
 using Adapters.DTOs.SubArea;
 using Adapters.Proxies.SubArea;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Infrastructure.WebAPI.Controllers
 {
     [ApiController]
     [Route("Api/[controller]")]
+    [Authorize]
     public class SubAreaController : ControllerBase
     {
         #region Global Scope

@@ -1,11 +1,13 @@
 using Adapters.DTOs.ProgramType;
 using Adapters.Proxies.ProgramType;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Infrastructure.WebAPI.Controllers
 {
     [ApiController]
     [Route("Api/[controller]")]
+    [Authorize]
     public class ProgramTypeController : ControllerBase
     {
         #region Global Scope

@@ -1,11 +1,13 @@
 using Adapters.DTOs.Campus;
 using Adapters.Proxies.Campus;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Infrastructure.WebAPI.Controllers
 {
     [ApiController]
     [Route("Api/[controller]")]
+    [Authorize]
     public class CampusController : ControllerBase
     {
         #region Global Scope

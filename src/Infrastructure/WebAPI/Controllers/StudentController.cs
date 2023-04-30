@@ -1,5 +1,6 @@
 using Adapters.DTOs.Student;
 using Adapters.Proxies.Student;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Infrastructure.WebAPI.Controllers
@@ -9,6 +10,7 @@ namespace Infrastructure.WebAPI.Controllers
     /// </summary>
     [ApiController]
     [Route("Api/[controller]")]
+    [Authorize]
     public class StudentController : ControllerBase
     {
         #region Global Scope
@@ -80,6 +82,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna Estudante criado</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [AllowAnonymous]
         public async Task<ActionResult<DetailedReadStudentDTO>> Create([FromBody] CreateStudentDTO dto)
         {
             try

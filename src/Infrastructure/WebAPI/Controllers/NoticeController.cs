@@ -1,11 +1,13 @@
 using Adapters.DTOs.Notice;
 using Adapters.Proxies.Notice;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Infrastructure.WebAPI.Controllers
 {
     [ApiController]
     [Route("Api/[controller]")]
+    [Authorize]
     public class NoticeController : ControllerBase
     {
         #region Global Scope
