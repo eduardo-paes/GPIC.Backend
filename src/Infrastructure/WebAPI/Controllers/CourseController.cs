@@ -45,7 +45,7 @@ namespace Infrastructure.WebAPI.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError("Ocorreu um erro: {ErrorMessage}", ex.Message);
                 return NotFound(ex.Message);
             }
         }
@@ -84,12 +84,12 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.Create(dto) as DetailedReadCourseDTO;
-                _logger.LogInformation($"Curso criado: {model.Id}");
+                _logger.LogInformation($"Curso criado: {model?.Id}");
                 return Ok(model);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError("Ocorreu um erro: {ErrorMessage}", ex.Message);
                 return BadRequest(ex.Message);
             }
         }
@@ -106,12 +106,12 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.Update(id, dto) as DetailedReadCourseDTO;
-                _logger.LogInformation($"Curso atualizado: {model.Id}");
+                _logger.LogInformation($"Curso atualizado: {model?.Id}");
                 return Ok(model);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError("Ocorreu um erro: {ErrorMessage}", ex.Message);
                 return BadRequest(ex.Message);
             }
         }
@@ -135,12 +135,12 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.Delete(id.Value) as DetailedReadCourseDTO;
-                _logger.LogInformation($"Curso removido: {model.Id}");
+                _logger.LogInformation($"Curso removido: {model?.Id}");
                 return Ok(model);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError("Ocorreu um erro: {ErrorMessage}", ex.Message);
                 return BadRequest(ex.Message);
             }
         }

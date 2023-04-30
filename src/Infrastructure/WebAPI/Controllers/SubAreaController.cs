@@ -45,7 +45,7 @@ namespace Infrastructure.WebAPI.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError("Ocorreu um erro: {ErrorMessage}", ex.Message);
                 return NotFound(ex.Message);
             }
         }
@@ -96,7 +96,7 @@ namespace Infrastructure.WebAPI.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError("Ocorreu um erro: {ErrorMessage}", ex.Message);
                 return BadRequest(ex.Message);
             }
         }
@@ -118,7 +118,7 @@ namespace Infrastructure.WebAPI.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError("Ocorreu um erro: {ErrorMessage}", ex.Message);
                 return BadRequest(ex.Message);
             }
         }
@@ -147,7 +147,7 @@ namespace Infrastructure.WebAPI.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex.Message);
+                _logger.LogError("Ocorreu um erro: {ErrorMessage}", ex.Message);
                 return BadRequest(ex.Message);
             }
         }
