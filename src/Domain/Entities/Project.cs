@@ -77,7 +77,7 @@ namespace Domain.Entities
             {
                 DomainExceptionValidation.When(string.IsNullOrWhiteSpace(value),
                     ExceptionMessageFactory.Invalid("Objetivo"));
-                DomainExceptionValidation.When(value.Length > 1500,
+                DomainExceptionValidation.When(value?.Length > 1500,
                     ExceptionMessageFactory.MaxLength("Objetivo", 1500));
                 _objective = value;
             }

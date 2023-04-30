@@ -35,6 +35,10 @@ namespace Domain.UseCases.Notice
             // Recupera entidade que será atualizada
             var entity = await _repository.GetById(id);
 
+            // Verifica se entidade existe
+            if (entity == null)
+                throw new Exception("Edital não encontrado.");
+
             // Verifica se a entidade foi excluída
             if (entity.DeletedAt != null)
                 throw new Exception("O Edital informado já foi excluído.");

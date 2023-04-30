@@ -21,7 +21,7 @@ namespace Domain.Entities
             {
                 DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("Matrícula SIAPE"));
-                DomainExceptionValidation.When(value.Length != 7,
+                DomainExceptionValidation.When(value?.Length != 7,
                     ExceptionMessageFactory.WithLength("Matrícula SIAPE", 7));
                 _siapeEnrollment = value;
             }
@@ -58,6 +58,8 @@ namespace Domain.Entities
                 }
             }
         }
+
+        public virtual User? User { get; }
         #endregion
 
         #region Constructors

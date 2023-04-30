@@ -24,6 +24,10 @@ namespace Domain.UseCases.SubArea
             // Recupera entidade que será atualizada
             var entity = await _subAreaRepository.GetById(id);
 
+            // Verifica se entidade existe
+            if (entity == null)
+                throw new Exception("Subárea não encontrada.");
+
             // Atualiza atributos permitidos
             entity.Name = dto.Name;
             entity.Code = dto.Code;

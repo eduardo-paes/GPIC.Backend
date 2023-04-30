@@ -17,7 +17,7 @@ namespace Domain.Entities
             {
                 DomainExceptionValidation.When(!value.HasValue,
                     ExceptionMessageFactory.Invalid("Data Inicial"));
-                _startDate = value.Value.ToUniversalTime();
+                _startDate = value.HasValue ? value.Value.ToUniversalTime() : null;
             }
         }
 
@@ -29,7 +29,7 @@ namespace Domain.Entities
             {
                 DomainExceptionValidation.When(!value.HasValue,
                     ExceptionMessageFactory.Invalid("Data Final"));
-                _finalDate = value.Value.ToUniversalTime();
+                _finalDate = value.HasValue ? value.Value.ToUniversalTime() : null;
             }
         }
 

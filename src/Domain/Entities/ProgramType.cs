@@ -16,9 +16,9 @@ namespace Domain.Entities
             {
                 DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("nome"));
-                DomainExceptionValidation.When(value.Length < 3,
+                DomainExceptionValidation.When(value?.Length < 3,
                     ExceptionMessageFactory.MinLength("nome", 3));
-                DomainExceptionValidation.When(value.Length > 300,
+                DomainExceptionValidation.When(value?.Length > 300,
                     ExceptionMessageFactory.MaxLength("nome", 300));
                 _name = value;
             }
@@ -32,9 +32,9 @@ namespace Domain.Entities
             {
                 if (!string.IsNullOrEmpty(value))
                 {
-                    DomainExceptionValidation.When(value.Length < 3,
+                    DomainExceptionValidation.When(value?.Length < 3,
                         ExceptionMessageFactory.MinLength("descrição", 3));
-                    DomainExceptionValidation.When(value.Length > 300,
+                    DomainExceptionValidation.When(value?.Length > 300,
                         ExceptionMessageFactory.MaxLength("descrição", 300));
                 }
                 _description = value;

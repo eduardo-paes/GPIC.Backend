@@ -30,6 +30,10 @@ namespace Domain.UseCases.Course
             // Recupera entidade que será atualizada
             var entity = await _repository.GetById(id);
 
+            // Verifica se entidade existe
+            if (entity == null)
+                throw new Exception("Curso não encontrado.");
+
             // Verifica se a entidade foi excluída
             if (entity.DeletedAt != null)
                 throw new Exception("O Curso informado já foi excluído.");

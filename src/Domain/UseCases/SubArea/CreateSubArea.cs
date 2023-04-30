@@ -25,16 +25,21 @@ namespace Domain.UseCases.SubArea
         {
             var entity = await _subAreaRepository.GetByCode(dto.Code);
             if (entity != null)
-                throw new Exception($"Já existe uma Sub Área para o código {dto.Code}");
+                throw new Exception($"Já existe uma Subárea para o código {dto.Code}");
 
             // Verifica id da área
             if (dto.AreaId == null)
-                throw new Exception($"O Id da Área não pode ser vazio.");
+                throw new Exception("O Id da Área não pode ser vazio.");
 
             // Valida se existe área
             var area = await _areaRepository.GetById(dto.AreaId);
+
+            // Verifica se Área existe
+            if (area == null)
+                throw new Exception("A Área informada não existe.");
+
             if (area.DeletedAt != null)
-                throw new Exception($"A Área informada está inativa.");
+                throw new Exception("A Área informada está inativa.");
 
             // Cria nova área
             entity = await _subAreaRepository.Create(_mapper.Map<Domain.Entities.SubArea>(dto));

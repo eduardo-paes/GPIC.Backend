@@ -16,9 +16,9 @@ namespace Domain.Entities
             {
                 DomainExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("name"));
-                DomainExceptionValidation.When(value.Length < 3,
+                DomainExceptionValidation.When(value?.Length < 3,
                     ExceptionMessageFactory.MinLength("name", 3));
-                DomainExceptionValidation.When(value.Length > 300,
+                DomainExceptionValidation.When(value?.Length > 300,
                     ExceptionMessageFactory.MaxLength("name", 300));
                 _name = value;
             }

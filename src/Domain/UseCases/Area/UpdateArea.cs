@@ -24,6 +24,10 @@ namespace Domain.UseCases.Area
             // Recupera entidade que será atualizada
             var entity = await _repository.GetById(id);
 
+            // Verifica se entidade existe
+            if (entity == null)
+                throw new Exception("Área não encontrada.");
+
             // Atualiza atributos permitidos
             entity.Name = dto.Name;
             entity.Code = dto.Code;

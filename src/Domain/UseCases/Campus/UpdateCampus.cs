@@ -30,6 +30,10 @@ namespace Domain.UseCases.Campus
             // Recupera entidade que será atualizada
             var entity = await _repository.GetById(id);
 
+            // Verifica se entidade existe
+            if (entity == null)
+                throw new Exception("Campus não encontrado.");
+
             // Verifica se a entidade foi excluída
             if (entity.DeletedAt != null)
                 throw new Exception("O Campus informado já foi excluído.");
