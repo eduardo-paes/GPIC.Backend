@@ -1,15 +1,6 @@
 ﻿using Adapters.Mappings;
-using Adapters.Proxies.Area;
-using Adapters.Proxies.Auth;
-using Adapters.Proxies.Campus;
-using Adapters.Proxies.Course;
-using Adapters.Proxies.MainArea;
-using Adapters.Proxies.Notice;
-using Adapters.Proxies.ProgramType;
-using Adapters.Proxies.Student;
-using Adapters.Proxies.SubArea;
+using Adapters.Proxies;
 using Adapters.Services;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.IoC;
@@ -24,6 +15,7 @@ public static class DependencyAdaptersInjection
         services.AddScoped<ICourseService, CourseService>();
         services.AddScoped<IMainAreaService, MainAreaService>();
         services.AddScoped<INoticeService, NoticeService>();
+        services.AddScoped<IProfessorService, ProfessorService>();
         services.AddScoped<IProgramTypeService, ProgramTypeService>();
         services.AddScoped<IStudentService, StudentService>();
         services.AddScoped<ISubAreaService, SubAreaService>();

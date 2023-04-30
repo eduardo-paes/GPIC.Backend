@@ -9,6 +9,7 @@ public static class DependencyInjectionJWT
 {
     public static IServiceCollection AddInfrastructureJWT(this IServiceCollection services)
     {
+        // Define valores das propriedades de configuração
         IConfiguration configuration = SettingsConfiguration.GetConfiguration();
 
         /// Informar o tipo de autenticação;

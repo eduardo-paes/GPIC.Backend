@@ -14,6 +14,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services)
     {
+        // Define valores das propriedades de configuração
         IConfiguration configuration = SettingsConfiguration.GetConfiguration();
         services.AddSingleton<IConfiguration>(configuration);
 
@@ -23,7 +24,7 @@ public static class DependencyInjection
             b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
         #endregion
 
-        #region Serviços de Log 
+        #region Serviço de Log 
         Log.Logger = new LoggerConfiguration()
             .ReadFrom.Configuration(configuration)
             .CreateLogger();
@@ -53,6 +54,7 @@ public static class DependencyInjection
         services.AddScoped<ICourseRepository, CourseRepository>();
         services.AddScoped<IMainAreaRepository, MainAreaRepository>();
         services.AddScoped<INoticeRepository, NoticeRepository>();
+        services.AddScoped<IProfessorRepository, ProfessorRepository>();
         services.AddScoped<IProgramTypeRepository, ProgramTypeRepository>();
         services.AddScoped<IStudentRepository, StudentRepository>();
         services.AddScoped<ISubAreaRepository, SubAreaRepository>();

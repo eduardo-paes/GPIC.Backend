@@ -1,25 +1,8 @@
 using Domain.Interfaces.Services;
-using Domain.Interfaces.UseCases.Area;
-using Domain.Interfaces.UseCases.Auth;
-using Domain.Interfaces.UseCases.Campus;
-using Domain.Interfaces.UseCases.Course;
-using Domain.Interfaces.UseCases.MainArea;
-using Domain.Interfaces.UseCases.Notice;
-using Domain.Interfaces.UseCases.ProgramType;
-using Domain.Interfaces.UseCases.Student;
-using Domain.Interfaces.UseCases.SubArea;
+using Domain.Interfaces.UseCases;
 using Domain.Mappings;
-using Domain.UseCases.Area;
-using Domain.UseCases.Auth;
-using Domain.UseCases.Campus;
-using Domain.UseCases.Course;
-using Domain.UseCases.MainArea;
-using Domain.UseCases.Notice;
-using Domain.UseCases.ProgramType;
-using Domain.UseCases.Student;
-using Domain.UseCases.SubArea;
+using Domain.UseCases;
 using Infrastructure.Services;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.IoC;
@@ -81,6 +64,14 @@ public static class DependencyDomainInjection
         services.AddScoped<IUpdateNotice, UpdateNotice>();
         #endregion
 
+        #region Professor
+        services.AddScoped<ICreateProfessor, CreateProfessor>();
+        services.AddScoped<IDeleteProfessor, DeleteProfessor>();
+        services.AddScoped<IGetProfessorById, GetProfessorById>();
+        services.AddScoped<IGetProfessors, GetProfessors>();
+        services.AddScoped<IUpdateProfessor, UpdateProfessor>();
+        #endregion
+
         #region ProgramType
         services.AddScoped<ICreateProgramType, CreateProgramType>();
         services.AddScoped<IDeleteProgramType, DeleteProgramType>();
@@ -112,6 +103,7 @@ public static class DependencyDomainInjection
         services.AddAutoMapper(typeof(CourseMappings));
         services.AddAutoMapper(typeof(MainAreaMappings));
         services.AddAutoMapper(typeof(NoticeMappings));
+        services.AddAutoMapper(typeof(ProfessorMappings));
         services.AddAutoMapper(typeof(ProgramTypeMappings));
         services.AddAutoMapper(typeof(StudentMappings));
         services.AddAutoMapper(typeof(SubAreaMappings));
