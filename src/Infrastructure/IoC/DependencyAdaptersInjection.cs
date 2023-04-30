@@ -9,6 +9,7 @@ using Adapters.Proxies.ProgramType;
 using Adapters.Proxies.Student;
 using Adapters.Proxies.SubArea;
 using Adapters.Services;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.IoC;

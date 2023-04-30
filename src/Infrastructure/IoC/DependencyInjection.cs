@@ -12,22 +12,10 @@ using Serilog;
 namespace Infrastructure.IoC;
 public static class DependencyInjection
 {
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services)
     {
-        #region Configurações de Ambiente
-        // Caminho base para o arquivo appsettings.json
-        var basePath = Path.GetDirectoryName(typeof(DependencyInjection).Assembly.Location);
-
-        // Carrega informações de ambiente (.env)
-        DotNetEnv.Env.Load(Path.Combine(basePath!, ".env"));
-
-        // Adicione o caminho base para o arquivo appsettings.json
-        configuration = new ConfigurationBuilder()
-            .SetBasePath(basePath!)
-            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-            .AddEnvironmentVariables()
-            .Build();
-        #endregion
+        IConfiguration configuration = SettingsConfiguration.GetConfiguration();
+        services.AddSingleton<IConfiguration>(configuration);
 
         #region Inicialização do banco de dados
         services.AddDbContext<ApplicationDbContext>(

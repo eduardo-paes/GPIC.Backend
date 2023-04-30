@@ -22,30 +22,32 @@ namespace Infrastructure.IoC
                 // Adiciona comentários dos métodos nas rotas do Swagger
                 c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Infrastructure.WebAPI.xml"));
 
-                //c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
-                //{
-                //    Name = "Authorization",
-                //    Type = SecuritySchemeType.ApiKey,
-                //    Scheme = "Bearer",
-                //    BearerFormat = "JWT",
-                //    In = ParameterLocation.Header,
-                //    Description = "JWT Authorization header using the Bearer scheme."
-                //});
+                // Adiciona o JWT como esquema de segurança
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "JWT Authorization header using the Bearer scheme."
+                });
 
-                //c.AddSecurityRequirement(new OpenApiSecurityRequirement()
-                //{
-                //    {
-                //        new OpenApiSecurityScheme
-                //        {
-                //            Reference = new OpenApiReference
-                //            {
-                //                Type = ReferenceType.SecurityScheme,
-                //                Id = "Bearer"
-                //            }
-                //        },
-                //        System.Array.Empty<string>()
-                //    }
-                //});
+                // Adiciona o JWT como esquema de segurança global para todas as rotas
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                {
+                   {
+                       new OpenApiSecurityScheme
+                       {
+                           Reference = new OpenApiReference
+                           {
+                               Type = ReferenceType.SecurityScheme,
+                               Id = "Bearer"
+                           }
+                       },
+                       Array.Empty<string>()
+                   }
+                });
             });
             services.AddSingleton<SwaggerGenerator>();
             return services;

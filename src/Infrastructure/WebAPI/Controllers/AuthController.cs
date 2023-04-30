@@ -1,5 +1,6 @@
 ﻿using Adapters.DTOs.Auth;
 using Adapters.Proxies.Auth;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Infrastructure.WebAPI.Controllers
@@ -25,6 +26,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <param name="token">Token de validação</param>
         /// <returns>Resultado da solicitação de validação</returns>
         /// <response code="200">E-mail confirmado com sucesso</response>
+        [AllowAnonymous]
         [HttpPost("ConfirmEmail", Name = "ConfirmEmail")]
         public async Task<ActionResult<string>> ConfirmEmail(Guid? userId, string? token)
         {
@@ -48,6 +50,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <param></param>
         /// <returns>Resultado da requisição</returns>
         /// <response code="200">Solicitação realizada com sucesso</response>
+        [AllowAnonymous]
         [HttpPost("ForgotPassword", Name = "ForgotPassword")]
         public async Task<ActionResult<string>> ForgotPassword(string? email)
         {
@@ -70,13 +73,14 @@ namespace Infrastructure.WebAPI.Controllers
         /// <param></param>
         /// <returns>Retorna token de acesso</returns>
         /// <response code="200">Retorna token de acesso</response>
+        [AllowAnonymous]
         [HttpPost("Login", Name = "Login")]
         public async Task<ActionResult<UserLoginResponseDTO>> Login([FromBody] UserLoginRequestDTO dto)
         {
             try
             {
                 var model = await _authService.Login(dto);
-                _logger.LogInformation($"Login realizado pelo usuário: {model.Id}.");
+                _logger.LogInformation($"Login realizado pelo usuário: {dto.Email}.");
                 return Ok(model);
             }
             catch (Exception ex)
@@ -92,6 +96,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <param></param>
         /// <returns>Retorna o status da alteração</returns>
         /// <response code="200">Retorna o status da alteração</response>
+        [AllowAnonymous]
         [HttpPost("ResetPassword", Name = "ResetPassword")]
         public async Task<ActionResult<string>> ResetPassword([FromBody] UserResetPasswordDTO dto)
         {

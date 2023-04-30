@@ -19,6 +19,7 @@ using Domain.UseCases.ProgramType;
 using Domain.UseCases.Student;
 using Domain.UseCases.SubArea;
 using Infrastructure.Services;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.IoC;
@@ -107,7 +108,6 @@ public static class DependencyDomainInjection
 
         #region Contract Mappers
         services.AddAutoMapper(typeof(AreaMappings));
-        services.AddAutoMapper(typeof(AuthMappings));
         services.AddAutoMapper(typeof(CampusMappings));
         services.AddAutoMapper(typeof(CourseMappings));
         services.AddAutoMapper(typeof(MainAreaMappings));

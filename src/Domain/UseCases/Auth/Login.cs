@@ -1,6 +1,5 @@
 using Domain.Contracts.Auth;
 using Domain.Interfaces.UseCases.Auth;
-using AutoMapper;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
 
@@ -12,13 +11,11 @@ namespace Domain.UseCases.Auth
         private readonly ITokenAuthenticationService _tokenService;
         private readonly IUserRepository _userRepository;
         private readonly IHashService _hashService;
-        private readonly IMapper _mapper;
-        public Login(ITokenAuthenticationService tokenService, IUserRepository userRepository, IHashService hashService, IMapper mapper)
+        public Login(ITokenAuthenticationService tokenService, IUserRepository userRepository, IHashService hashService)
         {
             _tokenService = tokenService;
             _userRepository = userRepository;
             _hashService = hashService;
-            _mapper = mapper;
         }
         #endregion
 
@@ -45,14 +42,8 @@ namespace Domain.UseCases.Auth
             if (!_hashService.VerifyPassword(dto.Password, entity.Password))
                 throw new Exception("Credenciais inválidas.");
 
-            // Mapeia o resultado
-            var model = _mapper.Map<UserLoginOutput>(entity);
-
-            // Gera o token de autenticação
-            model.Token = _tokenService.GenerateToken(model.Id, model.Role);
-
-            // Retorna o resultado
-            return model;
+            // Gera o token de autenticação e retorna o resultado
+            return _tokenService.GenerateToken(entity.Id, entity.Name, entity.Role.ToString());
         }
     }
 }

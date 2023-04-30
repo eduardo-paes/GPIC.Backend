@@ -8,19 +8,6 @@ namespace Infrastructure.WebAPI
     public class Startup
     {
         /// <summary>
-        /// Propriedade de configuração.
-        /// </summary>
-        public IConfiguration Configuration { get; }
-
-        /// <summary>
-        /// Construtor da classe.
-        /// </summary>
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        /// <summary>
         /// Realiza a configuração dos serviços de injeção de dependência.
         /// </summary>
         public void ConfigureServices(IServiceCollection services)
@@ -29,12 +16,15 @@ namespace Infrastructure.WebAPI
             services.AddControllers();
 
             // Realiza comunicação com os demais Projetos.
-            services.AddInfrastructure(Configuration);
+            services.AddInfrastructure();
             services.AddAdapters();
             services.AddDomain();
 
             // Configuração do Swagger
             services.AddInfrastructureSwagger();
+
+            // Configuração do JWT
+            services.AddInfrastructureJWT();
 
             // Permite que rotas sejam acessíveis em lowercase
             services.AddRouting(options => options.LowercaseUrls = true);

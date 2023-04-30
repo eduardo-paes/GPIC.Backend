@@ -30,7 +30,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             if (id == null)
             {
-                string msg = "O id informado não pode ser nulo.";
+                const string msg = "O id informado não pode ser nulo.";
                 _logger.LogWarning(msg);
                 return BadRequest(msg);
             }
@@ -82,7 +82,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.Create(dto) as DetailedReadCampusDTO;
-                _logger.LogInformation($"Campus criado: {model.Id}");
+                _logger.LogInformation($"Campus criado: {model?.Id}");
                 return Ok(model);
             }
             catch (Exception ex)
@@ -104,7 +104,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.Update(id, dto) as DetailedReadCampusDTO;
-                _logger.LogInformation($"Campus atualizado: {model.Id}");
+                _logger.LogInformation($"Campus atualizado: {model?.Id}");
                 return Ok(model);
             }
             catch (Exception ex)
@@ -133,7 +133,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.Delete(id.Value) as DetailedReadCampusDTO;
-                _logger.LogInformation($"Campus removido: {model.Id}");
+                _logger.LogInformation($"Campus removido: {model?.Id}");
                 return Ok(model);
             }
             catch (Exception ex)
