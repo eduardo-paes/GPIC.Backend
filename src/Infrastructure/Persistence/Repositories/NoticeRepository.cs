@@ -16,16 +16,9 @@ namespace Infrastructure.Persistence.Repositories
         #region Public Methods
         public async Task<Notice> Create(Notice model)
         {
-            try
-            {
-                _context.Add(model);
-                await _context.SaveChangesAsync();
-                return model;
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+            _context.Add(model);
+            await _context.SaveChangesAsync();
+            return model;
         }
 
         public async Task<IEnumerable<Notice>> GetAll(int skip, int take) => await _context.Notices
@@ -36,13 +29,11 @@ namespace Infrastructure.Persistence.Repositories
             .OrderByDescending(x => x.StartDate)
             .ToListAsync();
 
-        public async Task<Notice> GetById(Guid? id) =>
-            await _context.Notices.FindAsync(id)
-                ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
+        public async Task<Notice?> GetById(Guid? id) => await _context.Notices.FindAsync(id);
 
         public async Task<Notice> Delete(Guid? id)
         {
-            var model = await this.GetById(id);
+            var model = await GetById(id);
             if (model == null)
                 throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();

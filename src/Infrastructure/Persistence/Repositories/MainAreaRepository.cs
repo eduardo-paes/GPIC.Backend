@@ -34,9 +34,8 @@ namespace Infrastructure.Persistence.Repositories
             .OrderBy(x => x.Name)
             .ToListAsync();
 
-        public async Task<MainArea> GetById(Guid? id) =>
-            await _context.MainAreas.FindAsync(id)
-                ?? throw new Exception($"Nenhuma Área Principal encontrada para o id {id}");
+        public async Task<MainArea?> GetById(Guid? id) =>
+            await _context.MainAreas.FindAsync(id);
 
         public async Task<MainArea> Delete(Guid? id)
         {

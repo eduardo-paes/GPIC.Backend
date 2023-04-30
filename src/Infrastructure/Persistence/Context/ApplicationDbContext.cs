@@ -13,6 +13,7 @@ namespace Infrastructure.Persistence.Context
         public DbSet<Course> Courses { get; set; }
         public DbSet<MainArea> MainAreas { get; set; }
         public DbSet<Notice> Notices { get; set; }
+        public DbSet<Professor> Professors { get; set; }
         public DbSet<ProgramType> ProgramTypes { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<SubArea> SubAreas { get; set; }

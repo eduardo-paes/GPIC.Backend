@@ -34,7 +34,7 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<ProgramType> Delete(Guid? id)
         {
-            var model = await this.GetById(id);
+            var model = await GetById(id);
             if (model == null)
                 throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
