@@ -1,6 +1,6 @@
 using Domain.Contracts.ProgramType;
 
-namespace Domain.Interfaces.UseCases.ProgramType
+namespace Domain.Interfaces.UseCases
 {
     public interface IUpdateProgramType
     {

@@ -1,10 +1,10 @@
 using Domain.Contracts.Student;
-using Domain.Interfaces.UseCases.Student;
+using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
 using Domain.Entities.Enums;
 
-namespace Domain.UseCases.Student
+namespace Domain.UseCases
 {
     public class UpdateStudent : IUpdateStudent
     {

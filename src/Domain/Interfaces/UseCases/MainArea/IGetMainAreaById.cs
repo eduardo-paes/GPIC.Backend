@@ -1,6 +1,6 @@
 using Domain.Contracts.MainArea;
 
-namespace Domain.Interfaces.UseCases.MainArea
+namespace Domain.Interfaces.UseCases
 {
     public interface IGetMainAreaById
     {

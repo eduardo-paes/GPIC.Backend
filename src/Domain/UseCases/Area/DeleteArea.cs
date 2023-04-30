@@ -1,9 +1,9 @@
 using Domain.Contracts.Area;
-using Domain.Interfaces.UseCases.Area;
+using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
 
-namespace Domain.UseCases.Area
+namespace Domain.UseCases
 {
     public class DeleteArea : IDeleteArea
     {

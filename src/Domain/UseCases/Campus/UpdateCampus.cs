@@ -1,9 +1,9 @@
 using Domain.Contracts.Campus;
-using Domain.Interfaces.UseCases.Campus;
+using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
 
-namespace Domain.UseCases.Campus
+namespace Domain.UseCases
 {
     public class UpdateCampus : IUpdateCampus
     {

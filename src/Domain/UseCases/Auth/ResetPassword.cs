@@ -1,11 +1,11 @@
 using Domain.Contracts.Auth;
-using Domain.Interfaces.UseCases.Auth;
+using Domain.Interfaces.UseCases;
 using Domain.Interfaces.Repositories;
 using System.Threading.Tasks;
 using System;
 using Domain.Interfaces.Services;
 
-namespace Domain.UseCases.Auth
+namespace Domain.UseCases
 {
     public class ResetPassword : IResetPassword
     {

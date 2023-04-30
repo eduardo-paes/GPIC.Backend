@@ -1,9 +1,9 @@
 using Domain.Contracts.ProgramType;
-using Domain.Interfaces.UseCases.ProgramType;
+using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
 
-namespace Domain.UseCases.ProgramType
+namespace Domain.UseCases
 {
     public class DeleteProgramType : IDeleteProgramType
     {

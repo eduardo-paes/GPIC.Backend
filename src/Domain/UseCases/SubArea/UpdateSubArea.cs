@@ -1,11 +1,11 @@
 using Domain.Contracts.SubArea;
-using Domain.Interfaces.UseCases.SubArea;
+using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
 using System.Threading.Tasks;
 using System;
 
-namespace Domain.UseCases.SubArea
+namespace Domain.UseCases
 {
     public class UpdateSubArea : IUpdateSubArea
     {

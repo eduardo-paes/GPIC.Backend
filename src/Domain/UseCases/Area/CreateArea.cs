@@ -1,9 +1,9 @@
 using Domain.Contracts.Area;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
-using Domain.Interfaces.UseCases.Area;
+using Domain.Interfaces.UseCases;
 
-namespace Domain.UseCases.Area
+namespace Domain.UseCases
 {
     public class CreateArea : ICreateArea
     {

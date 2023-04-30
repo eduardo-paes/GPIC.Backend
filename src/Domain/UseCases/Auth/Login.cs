@@ -1,9 +1,9 @@
 using Domain.Contracts.Auth;
-using Domain.Interfaces.UseCases.Auth;
+using Domain.Interfaces.UseCases;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
 
-namespace Domain.UseCases.Auth
+namespace Domain.UseCases
 {
     public class Login : ILogin
     {

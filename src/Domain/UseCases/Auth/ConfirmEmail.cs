@@ -1,7 +1,7 @@
 using Domain.Interfaces.Repositories;
-using Domain.Interfaces.UseCases.Auth;
+using Domain.Interfaces.UseCases;
 
-namespace Domain.UseCases.Auth
+namespace Domain.UseCases
 {
     public class ConfirmEmail : IConfirmEmail
     {

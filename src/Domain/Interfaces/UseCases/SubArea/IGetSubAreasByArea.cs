@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Domain.Contracts.SubArea;
 
-namespace Domain.Interfaces.UseCases.SubArea
+namespace Domain.Interfaces.UseCases
 {
     public interface IGetSubAreasByArea
     {

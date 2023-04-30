@@ -2,7 +2,7 @@
 using Domain.Contracts.User;
 using Domain.Interfaces.Repositories;
 
-namespace Domain.UseCases.User
+namespace Domain.UseCases
 {
     public class UserUseCase
     {

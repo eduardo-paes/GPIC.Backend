@@ -1,9 +1,9 @@
 using Domain.Contracts.Course;
-using Domain.Interfaces.UseCases.Course;
+using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
 
-namespace Domain.UseCases.Course
+namespace Domain.UseCases
 {
     public class UpdateCourse : IUpdateCourse
     {

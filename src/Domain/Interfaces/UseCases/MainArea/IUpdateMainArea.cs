@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Domain.Contracts.MainArea;
 
-namespace Domain.Interfaces.UseCases.MainArea
+namespace Domain.Interfaces.UseCases
 {
     public interface IUpdateMainArea
     {

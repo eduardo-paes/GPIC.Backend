@@ -1,6 +1,6 @@
 using Domain.Contracts.Student;
 
-namespace Domain.Interfaces.UseCases.Student
+namespace Domain.Interfaces.UseCases
 {
     public interface IGetStudents
     {

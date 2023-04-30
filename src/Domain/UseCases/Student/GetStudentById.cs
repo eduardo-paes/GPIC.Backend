@@ -1,9 +1,9 @@
 using Domain.Contracts.Student;
-using Domain.Interfaces.UseCases.Student;
+using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
 
-namespace Domain.UseCases.Student
+namespace Domain.UseCases
 {
     public class GetStudentById : IGetStudentById
     {

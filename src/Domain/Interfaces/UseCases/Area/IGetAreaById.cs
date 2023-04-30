@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Domain.Contracts.Area;
 
-namespace Domain.Interfaces.UseCases.Area
+namespace Domain.Interfaces.UseCases
 {
     public interface IGetAreaById
     {

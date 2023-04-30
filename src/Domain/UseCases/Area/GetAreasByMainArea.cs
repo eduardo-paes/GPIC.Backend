@@ -1,5 +1,5 @@
 using Domain.Contracts.Area;
-using Domain.Interfaces.UseCases.Area;
+using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
 using System.Threading.Tasks;
@@ -7,7 +7,7 @@ using System.Linq;
 using System;
 using System.Collections.Generic;
 
-namespace Domain.UseCases.Area
+namespace Domain.UseCases
 {
     public class GetAreasByMainArea : IGetAreasByMainArea
     {

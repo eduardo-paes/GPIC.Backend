@@ -1,6 +1,6 @@
 using Domain.Contracts.Campus;
 
-namespace Domain.Interfaces.UseCases.Campus
+namespace Domain.Interfaces.UseCases
 {
     public interface IDeleteCampus
     {

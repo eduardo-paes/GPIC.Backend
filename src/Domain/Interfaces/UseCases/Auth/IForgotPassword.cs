@@ -1,4 +1,4 @@
-namespace Domain.Interfaces.UseCases.Auth;
+namespace Domain.Interfaces.UseCases;
 public interface IForgotPassword
 {
     Task<string> Execute(string? email);

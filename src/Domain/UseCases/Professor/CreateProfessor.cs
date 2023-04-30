@@ -1,10 +1,10 @@
 using Domain.Contracts.Professor;
-using Domain.Interfaces.UseCases.Professor;
+using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
 
-namespace Domain.UseCases.Professor
+namespace Domain.UseCases
 {
     public class CreateProfessor : ICreateProfessor
     {

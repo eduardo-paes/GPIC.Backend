@@ -1,6 +1,6 @@
 using Domain.Contracts.Course;
 
-namespace Domain.Interfaces.UseCases.Course
+namespace Domain.Interfaces.UseCases
 {
     public interface IUpdateCourse
     {

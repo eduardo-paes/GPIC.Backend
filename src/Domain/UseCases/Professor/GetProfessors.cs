@@ -1,9 +1,9 @@
 using Domain.Contracts.Professor;
-using Domain.Interfaces.UseCases.Professor;
+using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
 
-namespace Domain.UseCases.Professor
+namespace Domain.UseCases
 {
     public class GetProfessors : IGetProfessors
     {

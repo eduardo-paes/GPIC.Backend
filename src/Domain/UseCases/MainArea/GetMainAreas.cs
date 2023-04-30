@@ -1,9 +1,9 @@
 using Domain.Contracts.MainArea;
-using Domain.Interfaces.UseCases.MainArea;
+using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
 
-namespace Domain.UseCases.MainArea
+namespace Domain.UseCases
 {
     public class GetMainAreas : IGetMainAreas
     {

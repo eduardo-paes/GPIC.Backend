@@ -1,10 +1,10 @@
 using Domain.Contracts.Notice;
-using Domain.Interfaces.UseCases.Notice;
+using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
 
-namespace Domain.UseCases.Notice
+namespace Domain.UseCases
 {
     public class UpdateNotice : IUpdateNotice
     {

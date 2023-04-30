@@ -1,6 +1,6 @@
 using Domain.Contracts.Notice;
 
-namespace Domain.Interfaces.UseCases.Notice
+namespace Domain.Interfaces.UseCases
 {
     public interface IGetNotices
     {
