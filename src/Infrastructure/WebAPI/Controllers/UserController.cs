@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Infrastructure.WebAPI.Controllers
 {
+    /// <summary>
+    /// Controller de Usuário.
+    /// </summary>
     [ApiController]
     [Route("Api/[controller]")]
     [Authorize]
@@ -36,7 +39,7 @@ namespace Infrastructure.WebAPI.Controllers
         //     try
         //     {
         //         var model = await _service.GetById(id);
-        //         _logger.LogInformation($"Usuário encontrado para o id {id}.");
+        //         _logger.LogInformation($"Usuário encontrado para o id {id}.", id);
         //         return Ok(model);
         //     }
         //     catch (Exception ex)
@@ -63,7 +66,7 @@ namespace Infrastructure.WebAPI.Controllers
         //         _logger.LogWarning(msg);
         //         return NotFound(msg);
         //     }
-        //     _logger.LogInformation($"Usuários encontrados: {models.Count()}");
+        //     _logger.LogInformation($"Usuários encontrados: {quantidade}", models.Count());
         //     return Ok(models);
         // }
 
@@ -84,7 +87,7 @@ namespace Infrastructure.WebAPI.Controllers
         //         _logger.LogWarning(msg);
         //         return NotFound(msg);
         //     }
-        //     _logger.LogInformation($"Usuários encontrados: {models.Count()}");
+        //     _logger.LogInformation($"Usuários encontrados: {quantidade}", models.Count());
         //     return Ok(models);
         // }
 
@@ -100,7 +103,7 @@ namespace Infrastructure.WebAPI.Controllers
         //     try
         //     {
         //         var model = await _service.Update(id, dto);
-        //         _logger.LogInformation($"Usuário atualizado: {model.Id}");
+        //         _logger.LogInformation($"Usuário atualizado: {id}", model.Id);
         //         return Ok(model);
         //     }
         //     catch (Exception ex)
@@ -129,7 +132,7 @@ namespace Infrastructure.WebAPI.Controllers
         //     try
         //     {
         //         var model = await _service.Activate(id.Value);
-        //         _logger.LogInformation($"Usuário ativado: {model.Id}");
+        //         _logger.LogInformation($"Usuário ativado: {id}", model.Id);
         //         return Ok(model);
         //     }
         //     catch (Exception ex)
@@ -158,7 +161,7 @@ namespace Infrastructure.WebAPI.Controllers
         //     try
         //     {
         //         var model = await _service.Deactivate(id.Value);
-        //         _logger.LogInformation($"Usuário desativado: {model.Id}");
+        //         _logger.LogInformation($"Usuário desativado: {id}", model.Id);
         //         return Ok(model);
         //     }
         //     catch (Exception ex)

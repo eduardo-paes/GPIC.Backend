@@ -1,10 +1,13 @@
 using Adapters.DTOs.MainArea;
-using Adapters.Proxies.MainArea;
+using Adapters.Proxies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Infrastructure.WebAPI.Controllers
 {
+    /// <summary>
+    /// Controller de Área Principal.
+    /// </summary>
     [ApiController]
     [Route("Api/[controller]")]
     [Authorize]
@@ -13,6 +16,11 @@ namespace Infrastructure.WebAPI.Controllers
         #region Global Scope
         private readonly IMainAreaService _service;
         private readonly ILogger<MainAreaController> _logger;
+        /// <summary>
+        /// Construtor do Controller de Área Principal.
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="logger"></param>
         public MainAreaController(IMainAreaService service, ILogger<MainAreaController> logger)
         {
             _service = service;
@@ -32,7 +40,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             if (id == null)
             {
-                string msg = "O id informado não pode ser nulo.";
+                const string msg = "O id informado não pode ser nulo.";
                 _logger.LogWarning(msg);
                 return BadRequest(msg);
             }
@@ -40,7 +48,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.GetById(id);
-                _logger.LogInformation($"Área Principal encontrada para o id {id}.");
+                _logger.LogInformation("Área Principal encontrada para o id {id}.", id);
                 return Ok(model);
             }
             catch (Exception ex)
@@ -63,11 +71,11 @@ namespace Infrastructure.WebAPI.Controllers
             var models = await _service.GetAll(skip, take);
             if (models == null)
             {
-                string msg = "Nenhuma Área Principal encontrada.";
+                const string msg = "Nenhuma Área Principal encontrada.";
                 _logger.LogWarning(msg);
                 return NotFound(msg);
             }
-            _logger.LogInformation($"Áreas principais encontradas: {models.Count()}");
+            _logger.LogInformation("Áreas principais encontradas: {quantidade}", models.Count());
             return Ok(models);
         }
 
@@ -84,7 +92,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.Create(dto) as DetailedMainAreaDTO;
-                _logger.LogInformation($"Área principal criada: {model.Id}");
+                _logger.LogInformation("Área principal criada: {id}", model?.Id);
                 return Ok(model);
             }
             catch (Exception ex)
@@ -106,7 +114,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.Update(id, dto) as DetailedMainAreaDTO;
-                _logger.LogInformation($"Área principal atualizada: {model.Id}");
+                _logger.LogInformation("Área principal atualizada: {id}", model?.Id);
                 return Ok(model);
             }
             catch (Exception ex)
@@ -127,7 +135,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             if (id == null)
             {
-                string msg = "O id informado não pode ser nulo.";
+                const string msg = "O id informado não pode ser nulo.";
                 _logger.LogWarning(msg);
                 return BadRequest(msg);
             }
@@ -135,7 +143,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.Delete(id.Value) as DetailedMainAreaDTO;
-                _logger.LogInformation($"Área principal removida: {model.Id}");
+                _logger.LogInformation("Área principal removida: {id}", model?.Id);
                 return Ok(model);
             }
             catch (Exception ex)

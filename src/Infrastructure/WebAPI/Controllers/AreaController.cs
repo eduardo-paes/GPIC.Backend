@@ -1,12 +1,12 @@
 using Adapters.DTOs.Area;
-using Adapters.Proxies.Area;
+using Adapters.Proxies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Infrastructure.WebAPI.Controllers
 {
     /// <summary>
-    /// Controller das entidades de área.
+    /// Controller de Área.
     /// </summary>
     [ApiController]
     [Route("Api/[controller]")]
@@ -16,6 +16,11 @@ namespace Infrastructure.WebAPI.Controllers
         #region Global Scope
         private readonly IAreaService _service;
         private readonly ILogger<AreaController> _logger;
+        /// <summary>
+        /// Construtor do Controller de Área.
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="logger"></param>
         public AreaController(IAreaService service, ILogger<AreaController> logger)
         {
             _service = service;
@@ -129,7 +134,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.Update(id, dto) as DetailedReadAreaDTO;
-                _logger.LogInformation($"Área atualizada: {model.Id}");
+                _logger.LogInformation("Área atualizada: {id}", model?.Id);
                 return Ok(model);
             }
             catch (Exception ex)
@@ -150,7 +155,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             if (id == null)
             {
-                string msg = "O id informado não pode ser nulo.";
+                const string msg = "O id informado não pode ser nulo.";
                 _logger.LogWarning(msg);
                 return BadRequest(msg);
             }
@@ -158,7 +163,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.Delete(id.Value) as DetailedReadAreaDTO;
-                _logger.LogInformation($"Área removida: {model.Id}");
+                _logger.LogInformation("Área removida: {id}", model?.Id);
                 return Ok(model);
             }
             catch (Exception ex)

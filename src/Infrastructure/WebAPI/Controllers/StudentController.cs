@@ -1,5 +1,5 @@
 using Adapters.DTOs.Student;
-using Adapters.Proxies.Student;
+using Adapters.Proxies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,6 +16,11 @@ namespace Infrastructure.WebAPI.Controllers
         #region Global Scope
         private readonly IStudentService _service;
         private readonly ILogger<StudentController> _logger;
+        /// <summary>
+        /// Construtor do Controller de Estudante.
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="logger"></param>
         public StudentController(IStudentService service, ILogger<StudentController> logger)
         {
             _service = service;
@@ -35,7 +40,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             if (id == null)
             {
-                string msg = "O id informado não pode ser nulo.";
+                const string msg = "O id informado não pode ser nulo.";
                 _logger.LogWarning(msg);
                 return BadRequest(msg);
             }
@@ -43,7 +48,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.GetById(id);
-                _logger.LogInformation($"Estudante encontrado para o id {id}.");
+                _logger.LogInformation("Estudante encontrado para o id {id}.", id);
                 return Ok(model);
             }
             catch (Exception ex)
@@ -70,7 +75,7 @@ namespace Infrastructure.WebAPI.Controllers
                 _logger.LogWarning(msg);
                 return NotFound(msg);
             }
-            _logger.LogInformation($"Estudante encontrados: {models.Count()}");
+            _logger.LogInformation("Estudante encontrados: {quantidade}", models.Count());
             return Ok(models);
         }
 
@@ -88,7 +93,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.Create(dto) as DetailedReadStudentDTO;
-                _logger.LogInformation($"Estudante criado: {model.Id}");
+                _logger.LogInformation("Estudante criado: {id}", model?.Id);
                 return Ok(model);
             }
             catch (Exception ex)
@@ -110,7 +115,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.Update(id, dto) as DetailedReadStudentDTO;
-                _logger.LogInformation($"Estudante atualizado: {model.Id}");
+                _logger.LogInformation("Estudante atualizado: {id}", model?.Id);
                 return Ok(model);
             }
             catch (Exception ex)
@@ -131,7 +136,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             if (id == null)
             {
-                string msg = "O id informado não pode ser nulo.";
+                const string msg = "O id informado não pode ser nulo.";
                 _logger.LogWarning(msg);
                 return BadRequest(msg);
             }
@@ -139,7 +144,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.Delete(id.Value) as DetailedReadStudentDTO;
-                _logger.LogInformation($"Estudante removido: {model.Id}");
+                _logger.LogInformation("Estudante removido: {id}", model?.Id);
                 return Ok(model);
             }
             catch (Exception ex)

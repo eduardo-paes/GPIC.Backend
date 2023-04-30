@@ -1,10 +1,13 @@
 ﻿using Adapters.DTOs.Auth;
-using Adapters.Proxies.Auth;
+using Adapters.Proxies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Infrastructure.WebAPI.Controllers
 {
+    /// <summary>
+    /// Controller de Autenticação.
+    /// </summary>
     [ApiController]
     [Route("Api/[controller]")]
     public class AuthController : ControllerBase
@@ -12,6 +15,11 @@ namespace Infrastructure.WebAPI.Controllers
         #region Global Scope
         private readonly IAuthService _authService;
         private readonly ILogger<AuthController> _logger;
+        /// <summary>
+        /// Construtor do Controller de Autenticação.
+        /// </summary>
+        /// <param name="authService"></param>
+        /// <param name="logger"></param>
         public AuthController(IAuthService authService, ILogger<AuthController> logger)
         {
             _authService = authService;
@@ -33,7 +41,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var result = await _authService.ConfirmEmail(userId, token);
-                _logger.LogInformation(result);
+                _logger.LogInformation("Resultado: {Result}", result);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -57,7 +65,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var result = await _authService.ForgotPassword(email);
-                _logger.LogInformation(result);
+                _logger.LogInformation("Resultado: {Result}", result);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -80,7 +88,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _authService.Login(dto);
-                _logger.LogInformation($"Login realizado pelo usuário: {dto.Email}.");
+                _logger.LogInformation("Login realizado pelo usuário: {email}.", dto.Email);
                 return Ok(model);
             }
             catch (Exception ex)
@@ -102,9 +110,9 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var res = await _authService.ResetPassword(dto);
-                _logger.LogInformation(res);
-                return Ok(res);
+                var result = await _authService.ResetPassword(dto);
+                _logger.LogInformation("Resultado: {Result}", result);
+                return Ok(result);
             }
             catch (Exception ex)
             {

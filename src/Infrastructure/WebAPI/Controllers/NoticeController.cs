@@ -1,10 +1,13 @@
 using Adapters.DTOs.Notice;
-using Adapters.Proxies.Notice;
+using Adapters.Proxies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Infrastructure.WebAPI.Controllers
 {
+    /// <summary>
+    /// Controller de Edital.
+    /// </summary>
     [ApiController]
     [Route("Api/[controller]")]
     [Authorize]
@@ -13,6 +16,11 @@ namespace Infrastructure.WebAPI.Controllers
         #region Global Scope
         private readonly INoticeService _service;
         private readonly ILogger<NoticeController> _logger;
+        /// <summary>
+        /// Construtor do Controller de Edital.
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="logger"></param>
         public NoticeController(INoticeService service, ILogger<NoticeController> logger)
         {
             _service = service;
@@ -32,7 +40,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             if (id == null)
             {
-                string msg = "O id informado não pode ser nulo.";
+                const string msg = "O id informado não pode ser nulo.";
                 _logger.LogWarning(msg);
                 return BadRequest(msg);
             }
@@ -40,7 +48,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.GetById(id);
-                _logger.LogInformation($"Edital encontrado para o id {id}.");
+                _logger.LogInformation("Edital encontrado para o id {id}.", id);
                 return Ok(model);
             }
             catch (Exception ex)
@@ -67,7 +75,7 @@ namespace Infrastructure.WebAPI.Controllers
                 _logger.LogWarning(msg);
                 return NotFound(msg);
             }
-            _logger.LogInformation($"Editais encontrados: {models.Count()}");
+            _logger.LogInformation("Editais encontrados: {quantidade}", models.Count());
             return Ok(models);
         }
 
@@ -84,7 +92,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.Create(dto) as DetailedReadNoticeDTO;
-                _logger.LogInformation($"Edital criado: {model.Id}");
+                _logger.LogInformation("Edital criado: {id}", model?.Id);
                 return Ok(model);
             }
             catch (Exception ex)
@@ -106,7 +114,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.Update(id, dto) as DetailedReadNoticeDTO;
-                _logger.LogInformation($"Edital atualizado: {model.Id}");
+                _logger.LogInformation("Edital atualizado: {id}", model?.Id);
                 return Ok(model);
             }
             catch (Exception ex)
@@ -127,7 +135,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             if (id == null)
             {
-                string msg = "O id informado não pode ser nulo.";
+                const string msg = "O id informado não pode ser nulo.";
                 _logger.LogWarning(msg);
                 return BadRequest(msg);
             }
@@ -135,7 +143,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.Delete(id.Value) as DetailedReadNoticeDTO;
-                _logger.LogInformation($"Edital removido: {model.Id}");
+                _logger.LogInformation("Edital removido: {id}", model?.Id);
                 return Ok(model);
             }
             catch (Exception ex)

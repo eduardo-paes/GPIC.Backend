@@ -1,10 +1,13 @@
 using Adapters.DTOs.ProgramType;
-using Adapters.Proxies.ProgramType;
+using Adapters.Proxies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Infrastructure.WebAPI.Controllers
 {
+    /// <summary>
+    /// Controller de Tipo de Programa.
+    /// </summary>
     [ApiController]
     [Route("Api/[controller]")]
     [Authorize]
@@ -13,6 +16,11 @@ namespace Infrastructure.WebAPI.Controllers
         #region Global Scope
         private readonly IProgramTypeService _service;
         private readonly ILogger<ProgramTypeController> _logger;
+        /// <summary>
+        /// Construtor do Controller de Tipo de Programa.
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="logger"></param>
         public ProgramTypeController(IProgramTypeService service, ILogger<ProgramTypeController> logger)
         {
             _service = service;
@@ -32,7 +40,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             if (id == null)
             {
-                string msg = "O id informado não pode ser nulo.";
+                const string msg = "O id informado não pode ser nulo.";
                 _logger.LogWarning(msg);
                 return BadRequest(msg);
             }
@@ -40,7 +48,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.GetById(id);
-                _logger.LogInformation($"Tipo de Programa encontrado para o id {id}.");
+                _logger.LogInformation("Tipo de Programa encontrado para o id {id}.", id);
                 return Ok(model);
             }
             catch (Exception ex)
@@ -67,7 +75,7 @@ namespace Infrastructure.WebAPI.Controllers
                 _logger.LogWarning(msg);
                 return NotFound(msg);
             }
-            _logger.LogInformation($"Tipos de Programas encontrados: {models.Count()}");
+            _logger.LogInformation("Tipos de Programas encontrados: {quantidade}", models.Count());
             return Ok(models);
         }
 
@@ -84,7 +92,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.Create(dto) as DetailedReadProgramTypeDTO;
-                _logger.LogInformation($"Tipo de Programa criado: {model.Id}");
+                _logger.LogInformation("Tipo de Programa criado: {id}", model?.Id);
                 return Ok(model);
             }
             catch (Exception ex)
@@ -106,7 +114,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.Update(id, dto) as DetailedReadProgramTypeDTO;
-                _logger.LogInformation($"Tipo de Programa atualizado: {model.Id}");
+                _logger.LogInformation("Tipo de Programa atualizado: {id}", model?.Id);
                 return Ok(model);
             }
             catch (Exception ex)
@@ -127,7 +135,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             if (id == null)
             {
-                string msg = "O id informado não pode ser nulo.";
+                const string msg = "O id informado não pode ser nulo.";
                 _logger.LogWarning(msg);
                 return BadRequest(msg);
             }
@@ -135,7 +143,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.Delete(id.Value) as DetailedReadProgramTypeDTO;
-                _logger.LogInformation($"Tipo de Programa removido: {model.Id}");
+                _logger.LogInformation("Tipo de Programa removido: {id}", model?.Id);
                 return Ok(model);
             }
             catch (Exception ex)
