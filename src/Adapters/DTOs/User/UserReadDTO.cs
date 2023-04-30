@@ -13,4 +13,3 @@ namespace Adapters.DTOs.User
         public DateTime? DeletedAt { get; set; }
     }
 }
-

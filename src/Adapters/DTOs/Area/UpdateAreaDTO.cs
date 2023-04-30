@@ -14,4 +14,3 @@ namespace Adapters.DTOs.Area
         public Guid? MainAreaId { get; set; }
     }
 }
-
