@@ -1,9 +1,9 @@
 using Adapters.DTOs.Area;
 using Adapters.DTOs.Base;
-using Adapters.Proxies.Area;
+using Adapters.Proxies;
 using AutoMapper;
 using Domain.Contracts.Area;
-using Domain.Interfaces.UseCases.Area;
+using Domain.Interfaces.UseCases;
 
 namespace Adapters.Services
 {

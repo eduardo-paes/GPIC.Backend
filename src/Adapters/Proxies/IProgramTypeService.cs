@@ -1,8 +1,4 @@
 using Adapters.Proxies.Base;
 
-namespace Adapters.Proxies.ProgramType
-{
-    public interface IProgramTypeService : IGenericCRUDService
-    {
-    }
-}
+namespace Adapters.Proxies;
+public interface IProgramTypeService : IGenericCRUDService { }

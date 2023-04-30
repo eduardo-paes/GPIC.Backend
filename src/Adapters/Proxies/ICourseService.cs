@@ -1,8 +1,4 @@
 using Adapters.Proxies.Base;
 
-namespace Adapters.Proxies.Course
-{
-    public interface ICourseService : IGenericCRUDService
-    {
-    }
-}
+namespace Adapters.Proxies;
+public interface ICourseService : IGenericCRUDService { }

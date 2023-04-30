@@ -1,9 +1,9 @@
 using Adapters.DTOs.Base;
 using Adapters.DTOs.Campus;
-using Adapters.Proxies.Campus;
+using Adapters.Proxies;
 using AutoMapper;
 using Domain.Contracts.Campus;
-using Domain.Interfaces.UseCases.Campus;
+using Domain.Interfaces.UseCases;
 
 namespace Adapters.Services
 {

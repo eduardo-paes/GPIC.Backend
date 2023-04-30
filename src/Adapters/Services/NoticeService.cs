@@ -1,9 +1,9 @@
 using Adapters.DTOs.Base;
 using Adapters.DTOs.Notice;
-using Adapters.Proxies.Notice;
+using Adapters.Proxies;
 using AutoMapper;
 using Domain.Contracts.Notice;
-using Domain.Interfaces.UseCases.Notice;
+using Domain.Interfaces.UseCases;
 
 namespace Adapters.Services
 {

@@ -1,9 +1,9 @@
 using Adapters.DTOs.Base;
 using Adapters.DTOs.Course;
-using Adapters.Proxies.Course;
+using Adapters.Proxies;
 using AutoMapper;
 using Domain.Contracts.Course;
-using Domain.Interfaces.UseCases.Course;
+using Domain.Interfaces.UseCases;
 
 namespace Adapters.Services
 {

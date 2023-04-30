@@ -1,8 +1,8 @@
 using Adapters.DTOs.Auth;
-using Adapters.Proxies.Auth;
+using Adapters.Proxies;
 using AutoMapper;
 using Domain.Contracts.Auth;
-using Domain.Interfaces.UseCases.Auth;
+using Domain.Interfaces.UseCases;
 
 namespace Adapters.Services
 {

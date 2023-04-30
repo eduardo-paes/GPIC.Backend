@@ -1,9 +1,9 @@
 using Adapters.DTOs.Base;
 using Adapters.DTOs.Student;
-using Adapters.Proxies.Student;
+using Adapters.Proxies;
 using AutoMapper;
 using Domain.Contracts.Student;
-using Domain.Interfaces.UseCases.Student;
+using Domain.Interfaces.UseCases;
 
 namespace Adapters.Services
 {

@@ -1,9 +1,9 @@
 using Adapters.DTOs.Base;
 using Adapters.DTOs.ProgramType;
-using Adapters.Proxies.ProgramType;
+using Adapters.Proxies;
 using AutoMapper;
 using Domain.Contracts.ProgramType;
-using Domain.Interfaces.UseCases.ProgramType;
+using Domain.Interfaces.UseCases;
 
 namespace Adapters.Services
 {

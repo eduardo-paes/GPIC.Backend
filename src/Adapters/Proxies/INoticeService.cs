@@ -1,8 +1,4 @@
 using Adapters.Proxies.Base;
 
-namespace Adapters.Proxies.Notice
-{
-    public interface INoticeService : IGenericCRUDService
-    {
-    }
-}
+namespace Adapters.Proxies;
+public interface INoticeService : IGenericCRUDService { }
