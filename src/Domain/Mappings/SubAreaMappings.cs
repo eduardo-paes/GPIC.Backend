@@ -13,7 +13,11 @@ namespace Domain.Mappings
             CreateMap<SubArea, ResumedReadSubAreaOutput>().ReverseMap();
             CreateMap<SubArea, DetailedReadSubAreaOutput>()
                 .ForMember(dest => dest.Area, opt => opt.MapFrom(src => src.Area))
-                .ForPath(dest => dest.Area.MainArea, opt => opt.MapFrom(src => src.Area.MainArea))
+                .ForPath(dest => dest.Area != null
+                    ? dest.Area.MainArea
+                    : null, opt => opt.MapFrom(src => src.Area != null
+                        ? src.Area.MainArea
+                        : null))
                 .ReverseMap();
         }
     }

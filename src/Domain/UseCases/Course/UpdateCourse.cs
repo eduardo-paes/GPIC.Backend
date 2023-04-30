@@ -39,9 +39,8 @@ namespace Domain.UseCases.Course
                 throw new Exception("O Curso informado já foi excluído.");
 
             // Verifica se o nome já está sendo usado
-            if (entity.Name.ToLower() != dto.Name.ToLower()
-                && await _repository.GetCourseByName(dto.Name) != null)
-                throw new Exception($"Já existe um Curso para o nome informado.");
+            if (!string.Equals(entity.Name, dto.Name, StringComparison.OrdinalIgnoreCase) && await _repository.GetCourseByName(dto.Name) != null)
+                throw new Exception("Já existe um Curso para o nome informado.");
 
             // Atualiza atributos permitidos
             entity.Name = dto.Name;
