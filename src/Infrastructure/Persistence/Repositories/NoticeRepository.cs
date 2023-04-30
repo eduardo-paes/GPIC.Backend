@@ -33,6 +33,7 @@ namespace Infrastructure.Persistence.Repositories
             .Skip(skip)
             .Take(take)
             .AsAsyncEnumerable()
+            .OrderByDescending(x => x.StartDate)
             .ToListAsync();
 
         public async Task<Notice> GetById(Guid? id) =>

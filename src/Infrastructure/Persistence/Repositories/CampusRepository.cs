@@ -26,6 +26,7 @@ namespace Infrastructure.Persistence.Repositories
             .Skip(skip)
             .Take(take)
             .AsAsyncEnumerable()
+            .OrderBy(x => x.Name)
             .ToListAsync();
 
         public async Task<Campus?> GetById(Guid? id) =>

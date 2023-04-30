@@ -27,6 +27,7 @@ namespace Infrastructure.Persistence.Repositories
             .Skip(skip)
             .Take(take)
             .AsAsyncEnumerable()
+            .OrderBy(x => x.User?.Name)
             .ToListAsync();
 
         public async Task<Student?> GetById(Guid? id) =>
