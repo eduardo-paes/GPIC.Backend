@@ -6,7 +6,9 @@ namespace Domain.Entities.Enums
     {
         [Description("Administrador")]
         ADMIN,
+        [Description("Student")]
+        STUDENT,
         [Description("Professor")]
-        STUDENT
+        PROFESSOR
     }
 }

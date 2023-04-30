@@ -49,7 +49,7 @@ namespace Domain.Entities
         public Guid? UserId
         {
             get { return _userId; }
-            private set
+            set
             {
                 {
                     DomainExceptionValidation.When(value == null,
