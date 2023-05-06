@@ -46,16 +46,16 @@ namespace Adapters.Services
             return _mapper.Map<UserReadDTO>(result);
         }
 
-        public async Task<IQueryable<UserReadDTO>> GetActiveUsers(int skip, int take)
+        public async Task<IEnumerable<UserReadDTO>> GetActiveUsers(int skip, int take)
         {
             var result = await _getActiveUsers.Execute(skip, take);
-            return _mapper.Map<IQueryable<UserReadDTO>>(result);
+            return _mapper.Map<IEnumerable<UserReadDTO>>(result);
         }
 
-        public async Task<IQueryable<UserReadDTO>> GetInactiveUsers(int skip, int take)
+        public async Task<IEnumerable<UserReadDTO>> GetInactiveUsers(int skip, int take)
         {
             var result = await _getInactiveUsers.Execute(skip, take);
-            return _mapper.Map<IQueryable<UserReadDTO>>(result);
+            return _mapper.Map<IEnumerable<UserReadDTO>>(result);
         }
 
         public async Task<UserReadDTO> GetUserById(Guid? id)

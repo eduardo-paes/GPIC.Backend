@@ -4,6 +4,6 @@ namespace Domain.Interfaces.UseCases
 {
     public interface IGetActiveUsers
     {
-        Task<IQueryable<UserReadOutput>> Execute(int skip, int take);
+        Task<IEnumerable<UserReadOutput>> Execute(int skip, int take);
     }
 }

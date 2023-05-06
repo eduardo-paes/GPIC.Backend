@@ -95,6 +95,16 @@ public static class DependencyDomainInjection
         services.AddScoped<IGetSubAreasByArea, GetSubAreasByArea>();
         services.AddScoped<IUpdateSubArea, UpdateSubArea>();
         #endregion
+
+        #region User
+        services.AddScoped<IActivateUser, ActivateUser>();
+        services.AddScoped<IDeactivateUser, DeactivateUser>();
+        services.AddScoped<IGetActiveUsers, GetActiveUsers>();
+        services.AddScoped<IGetInactiveUsers, GetInactiveUsers>();
+        services.AddScoped<IGetUserById, GetUserById>();
+        services.AddScoped<IUpdateUser, UpdateUser>();
+        #endregion
+
         #endregion
 
         #region Contract Mappers

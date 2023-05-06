@@ -3,7 +3,7 @@ using Domain.Contracts.User;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.UseCases;
 
-namespace Domain.UseCases.User
+namespace Domain.UseCases
 {
     public class ActivateUser : IActivateUser
     {

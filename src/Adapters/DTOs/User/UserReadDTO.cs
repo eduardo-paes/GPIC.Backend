@@ -1,5 +1,4 @@
 ﻿using Adapters.DTOs.Base;
-using System;
 
 namespace Adapters.DTOs.User
 {

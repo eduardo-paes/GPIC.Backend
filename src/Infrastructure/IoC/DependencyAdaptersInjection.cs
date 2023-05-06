@@ -19,6 +19,7 @@ public static class DependencyAdaptersInjection
         services.AddScoped<IProgramTypeService, ProgramTypeService>();
         services.AddScoped<IStudentService, StudentService>();
         services.AddScoped<ISubAreaService, SubAreaService>();
+        services.AddScoped<IUserService, UserService>();
         #endregion
 
         #region DTO Mappers

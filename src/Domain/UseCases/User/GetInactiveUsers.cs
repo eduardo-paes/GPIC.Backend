@@ -3,7 +3,7 @@ using Domain.Contracts.User;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.UseCases;
 
-namespace Domain.UseCases.User
+namespace Domain.UseCases
 {
     public class GetInactiveUsers : IGetInactiveUsers
     {
@@ -17,7 +17,7 @@ namespace Domain.UseCases.User
         }
         #endregion
 
-        public async Task<IQueryable<UserReadOutput>> Execute(int skip, int take)
+        public async Task<IEnumerable<UserReadOutput>> Execute(int skip, int take)
         {
             var entities = await _repository.GetInactiveUsers(skip, take);
             return _mapper.Map<IEnumerable<UserReadOutput>>(entities).AsQueryable();
