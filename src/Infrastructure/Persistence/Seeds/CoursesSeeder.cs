@@ -17,12 +17,14 @@ namespace Persistence.Seeds
 
         private static void AddCourses(MigrationBuilder builder, Course m)
         {
+            if (m?.Id == null || m?.Name == null)
+                return;
             builder.InsertData(
                 table: "Courses",
                 columns: new[] { "Id", "DeletedAt", "Name" },
                 values: new object[,]
                 {
-                    { m.Id, m.DeletedAt, m.Name },
+                    { m.Id, null!, m.Name },
                 },
                 schema: "public");
         }

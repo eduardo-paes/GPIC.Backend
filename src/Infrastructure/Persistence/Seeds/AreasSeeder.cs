@@ -51,31 +51,46 @@ namespace Persistence.Seeds
             }
         }
 
-        private static void AddMainArea(MigrationBuilder builder, MainArea m) => builder.InsertData(
+        private static void AddMainArea(MigrationBuilder builder, MainArea m)
+        {
+            if (m?.Id == null || m?.Code == null || m?.Name == null)
+                return;
+            builder.InsertData(
             table: "MainAreas",
             columns: new[] { "Id", "Code", "DeletedAt", "Name" },
             values: new object[,]
             {
-                { m.Id, m.Code, m.DeletedAt, m.Name },
+                { m.Id, m.Code, null!, m.Name },
             },
             schema: "public");
+        }
 
-        private static void AddArea(MigrationBuilder builder, Area a) => builder.InsertData(
+        private static void AddArea(MigrationBuilder builder, Area a)
+        {
+            if (a?.Id == null || a?.Code == null || a?.Name == null || a?.MainAreaId == null)
+                return;
+            builder.InsertData(
             table: "Areas",
             columns: new[] { "Id", "Code", "DeletedAt", "Name", "MainAreaId" },
             values: new object[,]
             {
-                { a.Id, a.Code, a.DeletedAt, a.Name, a.MainAreaId },
+                { a.Id, a.Code, null!, a.Name, a.MainAreaId },
             },
             schema: "public");
+        }
 
-        private static void AddSubArea(MigrationBuilder builder, SubArea s) => _ = builder.InsertData(
+        private static void AddSubArea(MigrationBuilder builder, SubArea s)
+        {
+            if (s?.Id == null || s?.Code == null || s?.Name == null || s?.AreaId == null)
+                return;
+            builder.InsertData(
             table: "SubAreas",
             columns: new[] { "Id", "Code", "DeletedAt", "Name", "AreaId" },
             values: new object[,]
             {
-                { s.Id, s.Code, s.DeletedAt, s.Name, s.AreaId },
+                { s.Id, s.Code, null!, s.Name, s.AreaId },
             },
             schema: "public");
+        }
     }
 }
