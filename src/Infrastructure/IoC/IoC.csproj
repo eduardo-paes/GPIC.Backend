@@ -36,5 +36,6 @@
     <PackageReference Include="Serilog.Settings.Configuration" Version="3.4.0"/>
     <PackageReference Include="DotNetEnv" Version="2.5.0"/>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.5"/>
+    <PackageReference Include="Serilog.Sinks.Seq" Version="5.2.3-dev-00262"/>
   </ItemGroup>
 </Project>

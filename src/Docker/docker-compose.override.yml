@@ -30,6 +30,16 @@ services:
     networks:
       - postgres-network
 
+  seq:
+    image: datalust/seq:latest
+    ports:
+      - "5341:80"
+    environment:
+      - ACCEPT_EULA=Y
+      - SEQ_LICENSE_KEY=<your-license-key>
+    networks:
+      - postgres-network
+
   # Web API
   webapi:
     environment:
@@ -42,6 +52,7 @@ services:
       - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
     depends_on:
       - postgres
+      - seq
     networks:
       - postgres-network
 
