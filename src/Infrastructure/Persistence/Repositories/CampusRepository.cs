@@ -34,9 +34,8 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<Campus> Delete(Guid? id)
         {
-            var model = await this.GetById(id);
-            if (model == null)
-                throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
+            var model = await GetById(id)
+                ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
             return await Update(model);
         }
@@ -50,9 +49,8 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<Campus?> GetCampusByName(string name)
         {
-            var entities = await _context.Campuses.Where(x =>
-                    x.Name.ToLower() == name.ToLower()
-                    && x.DeletedAt == null)
+            var entities = await _context.Campuses
+                .Where(x => x.Name.ToLower() == name.ToLower() && x.DeletedAt == null)
                 .AsAsyncEnumerable()
                 .ToListAsync();
             return entities.FirstOrDefault();

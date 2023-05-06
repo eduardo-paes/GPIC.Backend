@@ -34,9 +34,8 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<Course> Delete(Guid? id)
         {
-            var model = await this.GetById(id);
-            if (model == null)
-                throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
+            var model = await GetById(id)
+                ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
             return await Update(model);
         }
