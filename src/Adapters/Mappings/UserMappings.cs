@@ -1,5 +1,4 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using Adapters.DTOs.User;
 using Domain.Contracts.User;
 
