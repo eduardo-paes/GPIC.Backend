@@ -87,6 +87,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna área principal criada</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedMainAreaDTO>> Create([FromBody] CreateMainAreaDTO dto)
         {
             try
@@ -109,6 +110,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <returns>Área principal atualizada</returns>
         /// <response code="200">Retorna área principal atualizada</response>
         [HttpPut("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedMainAreaDTO>> Update(Guid? id, [FromBody] UpdateMainAreaDTO dto)
         {
             try
@@ -131,6 +133,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <returns>Área principal removida</returns>
         /// <response code="200">Retorna área principal removida</response>
         [HttpDelete("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedMainAreaDTO>> Delete(Guid? id)
         {
             if (id == null)

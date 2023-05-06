@@ -19,6 +19,7 @@ public static class DependencyInjectionJWT
             opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
             opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
         })
+
         /// Habilita a autenticação JWT usando o esquema e desafio definidos;
         /// Validar o token.
         .AddJwtBearer(options =>
@@ -42,6 +43,14 @@ public static class DependencyInjectionJWT
                 /// do que foi definido na geração do Token.
                 ClockSkew = TimeSpan.Zero
             };
+        });
+
+        /// Define as políticas de autorização
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("ADMIN"));
+            options.AddPolicy("RequireProfessorRole", policy => policy.RequireRole("PROFESSOR"));
+            options.AddPolicy("RequireStudentRole", policy => policy.RequireRole("STUDENT"));
         });
         return services;
     }

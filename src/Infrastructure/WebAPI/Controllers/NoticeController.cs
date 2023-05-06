@@ -87,6 +87,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna edital criado</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedReadNoticeDTO>> Create([FromForm] CreateNoticeDTO dto)
         {
             try
@@ -109,6 +110,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <returns>Edital atualizado</returns>
         /// <response code="200">Retorna edital atualizado</response>
         [HttpPut("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedReadNoticeDTO>> Update(Guid? id, [FromForm] UpdateNoticeDTO dto)
         {
             try
@@ -131,6 +133,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <returns>Edital removido</returns>
         /// <response code="200">Retorna edital removido</response>
         [HttpDelete("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedReadNoticeDTO>> Delete(Guid? id)
         {
             if (id == null)

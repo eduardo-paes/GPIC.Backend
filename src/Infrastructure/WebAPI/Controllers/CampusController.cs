@@ -87,6 +87,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna campus criado</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedReadCampusDTO>> Create([FromBody] CreateCampusDTO dto)
         {
             try
@@ -109,6 +110,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <returns>Campus atualizado</returns>
         /// <response code="200">Retorna campus atualizado</response>
         [HttpPut("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedReadCampusDTO>> Update(Guid? id, [FromBody] UpdateCampusDTO dto)
         {
             try
@@ -131,6 +133,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <returns>Campus removido</returns>
         /// <response code="200">Retorna campus removido</response>
         [HttpDelete("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedReadCampusDTO>> Delete(Guid? id)
         {
             if (id == null)

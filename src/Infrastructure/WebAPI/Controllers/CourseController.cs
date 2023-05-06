@@ -87,6 +87,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna curso criado</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedReadCourseDTO>> Create([FromBody] CreateCourseDTO dto)
         {
             try
@@ -109,6 +110,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <returns>Curso atualizado</returns>
         /// <response code="200">Retorna curso atualizado</response>
         [HttpPut("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedReadCourseDTO>> Update(Guid? id, [FromBody] UpdateCourseDTO dto)
         {
             try
@@ -131,6 +133,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <returns>Curso removido</returns>
         /// <response code="200">Retorna curso removido</response>
         [HttpDelete("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedReadCourseDTO>> Delete(Guid? id)
         {
             if (id == null)

@@ -110,6 +110,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <returns>Estudante atualizado</returns>
         /// <response code="200">Retorna Estudante atualizado</response>
         [HttpPut("{id}")]
+        [Authorize(Roles = "ADMIN, STUDENT")]
         public async Task<ActionResult<DetailedReadStudentDTO>> Update(Guid? id, [FromBody] UpdateStudentDTO dto)
         {
             try
@@ -132,6 +133,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <returns>Estudante removido</returns>
         /// <response code="200">Retorna Estudante removido</response>
         [HttpDelete("{id}")]
+        [Authorize(Roles = "ADMIN, STUDENT")]
         public async Task<ActionResult<DetailedReadStudentDTO>> Delete(Guid? id)
         {
             if (id == null)

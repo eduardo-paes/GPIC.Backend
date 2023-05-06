@@ -87,6 +87,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna tipo de programa criado</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedReadProgramTypeDTO>> Create([FromBody] CreateProgramTypeDTO dto)
         {
             try
@@ -109,6 +110,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <returns>Tipo de Programa atualizado</returns>
         /// <response code="200">Retorna tipo de programa atualizado</response>
         [HttpPut("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedReadProgramTypeDTO>> Update(Guid? id, [FromBody] UpdateProgramTypeDTO dto)
         {
             try
@@ -131,6 +133,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <returns>Tipo de Programa removido</returns>
         /// <response code="200">Retorna tipo de programa removido</response>
         [HttpDelete("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedReadProgramTypeDTO>> Delete(Guid? id)
         {
             if (id == null)

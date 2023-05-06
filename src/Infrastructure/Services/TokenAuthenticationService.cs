@@ -31,9 +31,9 @@ public class TokenAuthenticationService : ITokenAuthenticationService
         // Declaração do usuário
         var claims = new[]
         {
-            new Claim("userId", id.Value.ToString()),
-            new Claim("userName", userName),
-            new Claim("role", role),
+            new Claim(ClaimTypes.Sid, id.Value.ToString()),
+            new Claim(ClaimTypes.Name, userName),
+            new Claim(ClaimTypes.Role, role),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
 
