@@ -13,11 +13,7 @@ namespace Adapters.Mappings
             CreateMap<ResumedReadSubAreaOutput, ResumedReadSubAreaDTO>().ReverseMap();
             CreateMap<DetailedReadSubAreaOutput, DetailedReadSubAreaDTO>()
                 .ForMember(dest => dest.Area, opt => opt.MapFrom(src => src.Area))
-                .ForPath(dest => dest.Area != null
-                    ? dest.Area.MainArea
-                    : null, opt => opt.MapFrom(src => src.Area != null
-                        ? src.Area.MainArea
-                        : null))
+                .ForPath(dest => dest.Area.MainArea, opt => opt.MapFrom(src => src.Area.MainArea))
                 .ReverseMap();
         }
     }
