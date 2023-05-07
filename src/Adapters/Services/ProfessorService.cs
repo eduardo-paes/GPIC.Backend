@@ -17,7 +17,12 @@ namespace Adapters.Services
         private readonly IGetProfessorById _getProfessorById;
         private readonly IMapper _mapper;
 
-        public ProfessorService(ICreateProfessor createProfessor, IUpdateProfessor updateProfessor, IDeleteProfessor deleteProfessor, IGetProfessors getProfessors, IGetProfessorById getProfessorById, IMapper mapper)
+        public ProfessorService(ICreateProfessor createProfessor,
+            IUpdateProfessor updateProfessor,
+            IDeleteProfessor deleteProfessor,
+            IGetProfessors getProfessors,
+            IGetProfessorById getProfessorById,
+            IMapper mapper)
         {
             _createProfessor = createProfessor;
             _updateProfessor = updateProfessor;

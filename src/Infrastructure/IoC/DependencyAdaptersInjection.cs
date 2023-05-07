@@ -29,6 +29,7 @@ public static class DependencyAdaptersInjection
         services.AddAutoMapper(typeof(CourseMappings));
         services.AddAutoMapper(typeof(MainAreaMappings));
         services.AddAutoMapper(typeof(NoticeMappings));
+        services.AddAutoMapper(typeof(ProfessorMappings));
         services.AddAutoMapper(typeof(ProgramTypeMappings));
         services.AddAutoMapper(typeof(StudentMappings));
         services.AddAutoMapper(typeof(SubAreaMappings));

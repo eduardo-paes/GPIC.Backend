@@ -26,14 +26,12 @@ namespace Domain.UseCases
                 throw new ArgumentNullException(nameof(id));
 
             // Verifica se o professor existe
-            var professor = await _professorRepository.GetById(id);
-            if (professor == null)
-                throw new Exception("Professor não encontrado para o Id informado.");
+            var professor = await _professorRepository.GetById(id)
+                ?? throw new Exception("Professor não encontrado para o Id informado.");
 
             // Verifica se o usuário existe
-            var user = await _userRepository.GetById(professor.UserId);
-            if (user == null)
-                throw new Exception("Usuário não encontrado para o Id informado.");
+            _ = await _userRepository.GetById(professor.UserId)
+                ?? throw new Exception("Usuário não encontrado para o Id informado.");
 
             // Remove o professor
             professor = await _professorRepository.Delete(id);
@@ -41,9 +39,8 @@ namespace Domain.UseCases
                 throw new Exception("O professor não pôde ser removido.");
 
             // Remove o usuário
-            user = await _userRepository.Delete(professor.UserId);
-            if (user == null)
-                throw new Exception("O usuário não pôde ser removido.");
+            _ = await _userRepository.Delete(professor.UserId)
+                ?? throw new Exception("O usuário não pôde ser removido.");
 
             // Retorna o professor removido
             return _mapper.Map<DetailedReadProfessorOutput>(professor);
