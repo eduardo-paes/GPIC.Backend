@@ -28,19 +28,19 @@ namespace Infrastructure.WebAPI.Controllers
         #endregion
 
         /// <summary>
-        /// Realiza a confirmação do e-mail do usuário através do token de validação fornecido e do Id do usuário.
+        /// Realiza a confirmação do e-mail do usuário através do token de validação fornecido e do E-mail do usuário.
         /// </summary>
-        /// <param name="userId">Id do usuário</param>
+        /// <param name="email">E-mail do usuário</param>
         /// <param name="token">Token de validação</param>
         /// <returns>Resultado da solicitação de validação</returns>
         /// <response code="200">E-mail confirmado com sucesso</response>
         [AllowAnonymous]
         [HttpPost("ConfirmEmail", Name = "ConfirmEmail")]
-        public async Task<ActionResult<string>> ConfirmEmail(Guid? userId, string? token)
+        public async Task<ActionResult<string>> ConfirmEmail(string? email, string? token)
         {
             try
             {
-                var result = await _authService.ConfirmEmail(userId, token);
+                var result = await _authService.ConfirmEmail(email, token);
                 _logger.LogInformation("Resultado: {Result}", result);
                 return Ok(result);
             }

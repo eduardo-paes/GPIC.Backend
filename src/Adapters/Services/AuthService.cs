@@ -25,7 +25,7 @@ namespace Adapters.Services
         }
         #endregion
 
-        public async Task<string> ConfirmEmail(Guid? userId, string? token) => await _confirmUserEmail.Execute(userId, token);
+        public async Task<string> ConfirmEmail(string? email, string? token) => await _confirmUserEmail.Execute(email, token);
 
         public async Task<string> ForgotPassword(string? email) => await _forgotPassword.Execute(email);
 
