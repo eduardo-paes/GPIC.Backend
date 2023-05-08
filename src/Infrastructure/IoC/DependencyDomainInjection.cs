@@ -13,7 +13,7 @@ public static class DependencyDomainInjection
         #region External Services
         services.AddScoped<IHashService, HashService>();
         services.AddScoped<ITokenAuthenticationService, TokenAuthenticationService>();
-        services.AddScoped<IStorageFileService, StorageFileService>();
+        services.AddScoped<IStorageFileService, AzureStorageService>();
         #endregion
 
         #region UseCases

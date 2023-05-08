@@ -10,6 +10,7 @@
     <PackageReference Include="SHA3" Version="1.0.0-rc"/>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.30.0"/>
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.16.0"/>
   </ItemGroup>
   <ItemGroup>
     <None Update="Email\Templates\ConfirmEmail.html">

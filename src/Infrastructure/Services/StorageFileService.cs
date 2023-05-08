@@ -10,9 +10,7 @@ namespace Infrastructure.Services
         private readonly string _directory;
         private readonly string?[] _allowedExtensions;
         private readonly long _maxFileSizeInBytes;
-        private readonly string _noticeDirectory;
-        private readonly string _studentDocDirectory;
-        private readonly string _reportDirectory;
+        private readonly string _folder;
 
         public StorageFileService(IConfiguration configuration)
         {
@@ -23,9 +21,8 @@ namespace Infrastructure.Services
                 ?? throw new Exception("O diretório de armazenamento de arquivos não foi configurado.");
 
             // Verifica se as extensões de arquivos permitidas foram configuradas
-            var allowedExtensions = configuration.GetSection("StorageFile:AllowedExtensions");
-            if (allowedExtensions == null)
-                throw new Exception("As extensões de arquivos permitidas não foram configuradas.");
+            var allowedExtensions = configuration.GetSection("StorageFile:AllowedExtensions")
+                ?? throw new Exception("As extensões de arquivos permitidas não foram configuradas.");
             _allowedExtensions = allowedExtensions.GetChildren().Select(x => x.Value).ToArray();
 
             // Verifica se o tamanho máximo de arquivo foi configurado
@@ -35,24 +32,16 @@ namespace Infrastructure.Services
                 throw new Exception("O tamanho máximo de arquivo não foi configurado.");
 
             // Verifica se o diretório de armazenamento de arquivos dos editais foi configurado
-            _noticeDirectory = configuration["StorageFile:NoticeDirectory"]
-                ?? throw new Exception("O diretório de armazenamento de arquivos não foi configurado.");
-
-            // Verifica se o diretório de armazenamento de arquivos dos documentos dos alunos foi configurado
-            _studentDocDirectory = configuration["StorageFile:StudentDocDirectory"]
-                ?? throw new Exception("O diretório de armazenamento de arquivos não foi configurado.");
-
-            // Verifica se o diretório de armazenamento de arquivos dos relatórios foi configurado
-            _reportDirectory = configuration["StorageFile:ReportDirectory"]
+            _folder = configuration["StorageFile:Folder"]
                 ?? throw new Exception("O diretório de armazenamento de arquivos não foi configurado.");
         }
         #endregion
 
         #region Public Methods
-        public async Task<string> UploadNoticeFileAsync(IFormFile file, string? filePath = null)
+        public async Task<string> UploadFileAsync(IFormFile file, string? filePath = null)
         {
             // Valida o arquivo
-            filePath = GenerateFilePath(file, _noticeDirectory, filePath, true);
+            filePath = GenerateFilePath(file, _folder, filePath, true);
 
             // Salva o arquivo
             using (var stream = new FileStream(filePath, FileMode.Create))
@@ -62,38 +51,13 @@ namespace Infrastructure.Services
             return filePath;
         }
 
-        public async Task<string> UploadStudentDocFileAsync(IFormFile file, string? filePath = null)
-        {
-            // Valida o arquivo
-            filePath = GenerateFilePath(file, _studentDocDirectory, filePath);
-
-            // Salva o arquivo
-            using (var stream = new FileStream(filePath, FileMode.Create))
-                await file.CopyToAsync(stream);
-
-            // Retorna o caminho do arquivo
-            return filePath;
-        }
-
-        public async Task<string> UploadReportFileAsync(IFormFile file, string? filePath = null)
-        {
-            // Valida o arquivo
-            filePath = GenerateFilePath(file, _reportDirectory, filePath, true);
-
-            // Salva o arquivo
-            using (var stream = new FileStream(filePath, FileMode.Create))
-                await file.CopyToAsync(stream);
-
-            // Retorna o caminho do arquivo
-            return filePath;
-        }
-
-        public void DeleteFile(string filePath)
+        public async Task DeleteFile(string filePath)
         {
             try
             {
                 if (File.Exists(filePath))
                     File.Delete(filePath);
+                await Task.CompletedTask;
             }
             catch (Exception ex)
             {

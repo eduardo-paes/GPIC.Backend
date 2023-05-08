@@ -31,7 +31,7 @@ namespace Domain.UseCases
 
             // Deleta o arquivo do edital
             if (!string.IsNullOrEmpty(model.DocUrl))
-                _storageFileService.DeleteFile(model.DocUrl);
+                await _storageFileService.DeleteFile(model.DocUrl);
 
             // Retorna o edital removido
             return _mapper.Map<DetailedReadNoticeOutput>(model);

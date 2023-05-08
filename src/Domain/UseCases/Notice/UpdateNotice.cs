@@ -45,7 +45,7 @@ namespace Domain.UseCases
 
             // Salva arquivo no repositório e atualiza atributo DocUrl
             if (dto.File != null)
-                entity.DocUrl = await _storageFileService.UploadNoticeFileAsync(dto.File, entity.DocUrl);
+                entity.DocUrl = await _storageFileService.UploadFileAsync(dto.File, entity.DocUrl);
 
             // Atualiza atributos permitidos
             entity.StartDate = dto.StartDate;

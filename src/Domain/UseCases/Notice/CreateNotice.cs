@@ -35,10 +35,11 @@ namespace Domain.UseCases
 
             // Salva arquivo no repositório e atualiza atributo DocUrl
             if (dto.File != null)
-                dto.DocUrl = await _storageFileService.UploadNoticeFileAsync(dto.File);
+                dto.DocUrl = await _storageFileService.UploadFileAsync(dto.File);
 
             // Cria entidade
-            entity = await _repository.Create(_mapper.Map<Entities.Notice>(dto));
+            entity = _mapper.Map<Entities.Notice>(dto);
+            entity = await _repository.Create(entity);
 
             // Salva entidade no banco
             return _mapper.Map<DetailedReadNoticeOutput>(entity);
