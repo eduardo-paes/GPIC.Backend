@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Configuration;
 
-namespace Infrastructure.IoC;
+namespace Infrastructure.IoC.Utils;
 public static class SettingsConfiguration
 {
     public static IConfiguration GetConfiguration()

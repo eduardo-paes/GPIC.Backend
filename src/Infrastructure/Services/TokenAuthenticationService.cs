@@ -4,14 +4,13 @@ using Domain.Contracts.Auth;
 using Domain.Interfaces.Services;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Microsoft.Extensions.Configuration;
 
 namespace Infrastructure.Services;
 public class TokenAuthenticationService : ITokenAuthenticationService
 {
     #region Global Scope
-    private readonly IConfiguration _configuration;
-    public TokenAuthenticationService(IConfiguration configuration) => _configuration = configuration;
+    private readonly IDotEnvSecrets _dotEnvSecrets;
+    public TokenAuthenticationService(IDotEnvSecrets dotEnvSecrets) => _dotEnvSecrets = dotEnvSecrets;
     #endregion
 
     public UserLoginOutput GenerateToken(Guid? id, string? userName, string? role)
@@ -38,22 +37,22 @@ public class TokenAuthenticationService : ITokenAuthenticationService
         };
 
         // Gerar chave privada para assinar o token
-        var privateKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("Jwt:SecretKey").Value
+        var privateKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_dotEnvSecrets.GetJwtSecret()
             ?? throw new Exception("Chave secreta não informada.")));
 
         // Gerar a assinatura digital
         var credentials = new SigningCredentials(privateKey, SecurityAlgorithms.HmacSha256);
 
         // Tempo de expiração do token
-        var expireIn = int.Parse(_configuration.GetSection("Jwt:ExpireIn").Value ?? "10");
+        var expireIn = int.Parse(_dotEnvSecrets.GetJwtExpirationTime() ?? "10");
 
         // Definir o tempo de expiração
         var expiration = DateTime.UtcNow.AddMinutes(expireIn);
 
         // Gerar o Token
         var token = new JwtSecurityToken(
-            issuer: _configuration.GetSection("Jwt:Issuer").Value,
-            audience: _configuration.GetSection("Jwt:Audience").Value,
+            issuer: _dotEnvSecrets.GetJwtIssuer() ?? throw new Exception("Emissor do token não informado."),
+            audience: _dotEnvSecrets.GetJwtAudience() ?? throw new Exception("Público do token não informado."),
             claims: claims,
             expires: expiration,
             signingCredentials: credentials);

@@ -1,6 +1,8 @@
 ﻿using Domain.Interfaces.Repositories;
+using Infrastructure.IoC.Utils;
 using Infrastructure.Persistence.Context;
 using Infrastructure.Persistence.Repositories;
+using Infrastructure.Services;
 using Infrastructure.Services.Email.Configs;
 using Infrastructure.Services.Email.Factories;
 using Microsoft.EntityFrameworkCore;
@@ -16,11 +18,15 @@ public static class DependencyInjection
     {
         // Define valores das propriedades de configuração
         IConfiguration configuration = SettingsConfiguration.GetConfiguration();
-        services.AddSingleton<IConfiguration>(configuration);
+        services.AddSingleton(configuration);
+
+        // Carrega informações de ambiente (.env)
+        var dotEnvSecrets = new DotEnvSecrets();
+        services.AddScoped<IDotEnvSecrets, DotEnvSecrets>();
 
         #region Inicialização do banco de dados
         services.AddDbContext<ApplicationDbContext>(
-            o => o.UseNpgsql(configuration.GetConnectionString("DefaultConnection"),
+            o => o.UseNpgsql(dotEnvSecrets.GetDatabaseConnectionString(),
             b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
         #endregion
 
@@ -38,8 +44,8 @@ public static class DependencyInjection
         #region Serviço de E-mail
         var smtpConfig = new SmtpConfiguration();
         configuration.GetSection("SmtpConfiguration").Bind(smtpConfig);
-        smtpConfig.Password = configuration.GetSection("SmtpPassword").Value;
-        smtpConfig.Username = configuration.GetSection("SmtpUsername").Value;
+        smtpConfig.Password = dotEnvSecrets.GetSmtpUserPassword();
+        smtpConfig.Username = dotEnvSecrets.GetSmtpUserName();
         services.AddSingleton<IEmailServiceFactory, EmailServiceFactory>();
         services.AddSingleton(sp =>
         {
