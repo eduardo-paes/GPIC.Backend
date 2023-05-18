@@ -485,6 +485,33 @@ namespace Domain.Entities
 
         #endregion
 
+        #region Resultados da Avaliação
+        /// <summary>
+        /// Status do projeto.
+        /// </summary>
+        public EProjectStatus? Status { get; set; }
+
+        /// <summary>
+        /// Descrição do status.
+        /// </summary>
+        public string? StatusDescription { get; set; }
+
+        /// <summary>
+        /// Observação do avaliador após processo de análise.
+        /// </summary>
+        public string? EvaluatorObservation { get; set; }
+
+        /// <summary>
+        /// Descrição da solicitação de recurso do orientador.
+        /// </summary>
+        public string? AppealDescription { get; set; }
+
+        /// <summary>
+        /// Observação do avaliador após processo de análise do recurso.
+        /// </summary>
+        public string? AppealEvaluatorObservation { get; set; }
+        #endregion
+
         #region Relacionamentos
         private EProgramType? _programTypeId;
         public EProgramType? ProgramTypeId
