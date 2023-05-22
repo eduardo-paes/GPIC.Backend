@@ -23,7 +23,7 @@
 
 - Texto da Declaração
 
-```
+```text
 O solicitante declara formalmente que está de acordo com:
 a) fornecer informações verdadeiras e exatas;
 b) aceitar que o usuário é o único responsável por toda e qualquer informação cadastrada no formulário;
