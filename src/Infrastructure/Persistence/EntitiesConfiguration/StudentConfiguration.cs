@@ -57,6 +57,8 @@ namespace Infrastructure.Persistence.EntitiesConfiguration
             .HasForeignKey<Student>(a => a.UserId);
             builder.HasOne(a => a.Campus).WithMany().HasForeignKey(a => a.CampusId);
             builder.HasOne(a => a.Course).WithMany().HasForeignKey(a => a.CourseId);
+
+            builder.HasQueryFilter(x => x.DeletedAt == null);
         }
     }
 }

@@ -23,6 +23,8 @@ namespace Infrastructure.Persistence.EntitiesConfiguration
 
             builder.HasOne(a => a.User).WithOne()
             .HasForeignKey<Professor>(a => a.UserId);
+
+            builder.HasQueryFilter(x => x.DeletedAt == null);
         }
     }
 }

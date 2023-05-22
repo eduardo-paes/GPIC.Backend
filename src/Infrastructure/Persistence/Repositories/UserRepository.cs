@@ -17,13 +17,13 @@ namespace Infrastructure.Persistence.Repositories
             .FindAsync(id);
 
         public async Task<IEnumerable<User>> GetActiveUsers(int skip, int take) => await _context.Users
-            .Where(x => x.DeletedAt == null)
             .Skip(skip)
             .Take(take)
             .OrderBy(x => x.Name)
             .ToListAsync();
 
         public async Task<IEnumerable<User>> GetInactiveUsers(int skip, int take) => await _context.Users
+            .IgnoreQueryFilters()
             .Where(x => x.DeletedAt != null)
             .Skip(skip)
             .Take(take)
@@ -54,9 +54,9 @@ namespace Infrastructure.Persistence.Repositories
         #endregion
 
         #region Auth Methods
-        public async Task<User?> GetUserByEmail(string? email) => await _context.Users.FirstOrDefaultAsync(x => x.Email == email && x.DeletedAt == null);
+        public async Task<User?> GetUserByEmail(string? email) => await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
 
-        public async Task<User?> GetUserByCPF(string? cpf) => await _context.Users.FirstOrDefaultAsync(x => x.CPF == cpf && x.DeletedAt == null);
+        public async Task<User?> GetUserByCPF(string? cpf) => await _context.Users.FirstOrDefaultAsync(x => x.CPF == cpf);
         #endregion
     }
 }

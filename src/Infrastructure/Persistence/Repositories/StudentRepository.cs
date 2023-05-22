@@ -23,7 +23,6 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<IEnumerable<Student>> GetAll(int skip, int take) => await _context.Students
             .Include(x => x.User)
-            .Where(x => x.DeletedAt == null)
             .Skip(skip)
             .Take(take)
             .AsAsyncEnumerable()
@@ -35,13 +34,13 @@ namespace Infrastructure.Persistence.Repositories
                 .Include(x => x.User)
                 .Include(x => x.Campus)
                 .Include(x => x.Course)
+                .IgnoreQueryFilters()
                 .FirstOrDefaultAsync(x => x.Id == id);
 
         public async Task<Student> Delete(Guid? id)
         {
-            var model = await this.GetById(id);
-            if (model == null)
-                throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
+            var model = await GetById(id)
+                ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
             return await Update(model);
         }

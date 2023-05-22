@@ -21,14 +21,14 @@ namespace Infrastructure.Persistence.Repositories
         }
 
         public async Task<SubArea?> GetByCode(string? code) => await _context.SubAreas
-            .Where(x => x.Code == code && x.DeletedAt == null)
+            .Where(x => x.Code == code)
             .Include(x => x.Area)
             .Include(x => x.Area != null ? x.Area.MainArea : null)
             .ToAsyncEnumerable()
             .FirstOrDefaultAsync();
 
         public async Task<IEnumerable<SubArea>> GetSubAreasByArea(Guid? areaId, int skip, int take) => await _context.SubAreas
-            .Where(x => x.DeletedAt == null && x.AreaId == areaId)
+            .Where(x => x.AreaId == areaId)
             .Skip(skip)
             .Take(take)
             .Include(x => x.Area)
@@ -41,13 +41,13 @@ namespace Infrastructure.Persistence.Repositories
             await _context.SubAreas
                 .Include(x => x.Area)
                 .Include(x => x.Area != null ? x.Area.MainArea : null)
+                .IgnoreQueryFilters()
                 .FirstOrDefaultAsync(x => x.Id == id);
 
         public async Task<SubArea> Delete(Guid? id)
         {
-            var model = await GetById(id);
-            if (model == null)
-                throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
+            var model = await GetById(id)
+                ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
             return await Update(model);
         }

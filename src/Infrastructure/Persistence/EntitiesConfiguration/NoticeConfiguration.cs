@@ -17,6 +17,8 @@ namespace Infrastructure.Persistence.EntitiesConfiguration
             builder.Property(p => p.Description).HasMaxLength(300);
             builder.Property(p => p.DocUrl).HasMaxLength(300);
             builder.Property(p => p.DeletedAt);
+
+            builder.HasQueryFilter(x => x.DeletedAt == null);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using Domain.Entities;
+﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -20,6 +19,8 @@ namespace Infrastructure.Persistence.EntitiesConfiguration
             builder.HasOne(a => a.MainArea)
                 .WithMany()
                 .HasForeignKey(a => a.MainAreaId);
+
+            builder.HasQueryFilter(x => x.DeletedAt == null);
         }
     }
 }

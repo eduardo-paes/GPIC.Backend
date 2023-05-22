@@ -20,6 +20,8 @@ namespace Infrastructure.Persistence.EntitiesConfiguration
             builder.Property(p => p.ResetPasswordToken).HasMaxLength(6);
             builder.Property(p => p.IsConfirmed).IsRequired();
             builder.Property(p => p.DeletedAt);
+
+            builder.HasQueryFilter(x => x.DeletedAt == null);
         }
     }
 }

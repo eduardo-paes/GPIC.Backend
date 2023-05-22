@@ -19,6 +19,8 @@ namespace Infrastructure.Persistence.EntitiesConfiguration
             builder.HasOne(a => a.Area)
                 .WithMany()
                 .HasForeignKey(a => a.AreaId);
+
+            builder.HasQueryFilter(x => x.DeletedAt == null);
         }
     }
 }

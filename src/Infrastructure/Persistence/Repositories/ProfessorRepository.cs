@@ -22,7 +22,6 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<IEnumerable<Professor>> GetAll(int skip, int take) => await _context.Professors
             .Include(x => x.User)
-            .Where(x => x.DeletedAt == null)
             .Skip(skip)
             .Take(take)
             .AsAsyncEnumerable()
@@ -32,6 +31,7 @@ namespace Infrastructure.Persistence.Repositories
         public async Task<Professor?> GetById(Guid? id) =>
             await _context.Professors
                 .Include(x => x.User)
+                .IgnoreQueryFilters()
                 .FirstOrDefaultAsync(x => x.Id == id);
 
         public async Task<Professor> Delete(Guid? id)

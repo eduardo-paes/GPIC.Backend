@@ -22,12 +22,11 @@ namespace Infrastructure.Persistence.Repositories
         }
 
         public async Task<MainArea?> GetByCode(string? code) => await _context.MainAreas
-            .Where(x => x.Code == code && x.DeletedAt == null)
+            .Where(x => x.Code == code)
             .ToAsyncEnumerable()
             .FirstOrDefaultAsync();
 
         public async Task<IEnumerable<MainArea>> GetAll(int skip, int take) => await _context.MainAreas
-            .Where(x => x.DeletedAt == null)
             .Skip(skip)
             .Take(take)
             .AsAsyncEnumerable()
@@ -35,13 +34,14 @@ namespace Infrastructure.Persistence.Repositories
             .ToListAsync();
 
         public async Task<MainArea?> GetById(Guid? id) =>
-            await _context.MainAreas.FindAsync(id);
+            await _context.MainAreas
+                .IgnoreQueryFilters()
+                .FirstOrDefaultAsync(x => x.Id == id);
 
         public async Task<MainArea> Delete(Guid? id)
         {
-            var model = await this.GetById(id);
-            if (model == null)
-                throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
+            var model = await GetById(id)
+                ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
             return await Update(model);
         }
@@ -55,4 +55,3 @@ namespace Infrastructure.Persistence.Repositories
         #endregion
     }
 }
-

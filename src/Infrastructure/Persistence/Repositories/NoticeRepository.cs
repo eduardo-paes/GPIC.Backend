@@ -22,20 +22,21 @@ namespace Infrastructure.Persistence.Repositories
         }
 
         public async Task<IEnumerable<Notice>> GetAll(int skip, int take) => await _context.Notices
-            .Where(x => x.DeletedAt == null)
             .Skip(skip)
             .Take(take)
             .AsAsyncEnumerable()
             .OrderByDescending(x => x.StartDate)
             .ToListAsync();
 
-        public async Task<Notice?> GetById(Guid? id) => await _context.Notices.FindAsync(id);
+        public async Task<Notice?> GetById(Guid? id) =>
+            await _context.Notices
+                .IgnoreQueryFilters()
+                .FirstOrDefaultAsync(x => x.Id == id);
 
         public async Task<Notice> Delete(Guid? id)
         {
-            var model = await GetById(id);
-            if (model == null)
-                throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
+            var model = await GetById(id)
+                ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
             return await Update(model);
         }
@@ -53,10 +54,9 @@ namespace Infrastructure.Persistence.Repositories
             var finalDate = end.ToUniversalTime();
 
             var entities = await _context.Notices
-                .Where(x => ((x.StartDate <= startDate && x.FinalDate >= finalDate)
+                .Where(x => (x.StartDate <= startDate && x.FinalDate >= finalDate)
                 || (x.StartDate <= finalDate && x.FinalDate >= finalDate)
                 || (x.StartDate <= startDate && x.FinalDate >= startDate))
-                && x.DeletedAt == null)
                 .AsAsyncEnumerable()
                 .ToListAsync();
             return entities.FirstOrDefault();

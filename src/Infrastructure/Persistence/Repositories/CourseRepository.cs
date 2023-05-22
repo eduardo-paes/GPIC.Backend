@@ -22,7 +22,6 @@ namespace Infrastructure.Persistence.Repositories
         }
 
         public async Task<IEnumerable<Course>> GetAll(int skip, int take) => await _context.Courses
-            .Where(x => x.DeletedAt == null)
             .Skip(skip)
             .Take(take)
             .AsAsyncEnumerable()
@@ -30,7 +29,9 @@ namespace Infrastructure.Persistence.Repositories
             .ToListAsync();
 
         public async Task<Course?> GetById(Guid? id) =>
-            await _context.Courses.FindAsync(id);
+            await _context.Courses
+                .IgnoreQueryFilters()
+                .FirstOrDefaultAsync(x => x.Id == id);
 
         public async Task<Course> Delete(Guid? id)
         {
@@ -51,9 +52,7 @@ namespace Infrastructure.Persistence.Repositories
         {
             string loweredName = name.ToLower();
             var entities = await _context.Courses
-                .Where(x =>
-                    x.Name!.ToLower() == loweredName
-                    && x.DeletedAt == null)
+                .Where(x => x.Name!.ToLower() == loweredName)
                 .AsAsyncEnumerable()
                 .ToListAsync();
             return entities.FirstOrDefault();
