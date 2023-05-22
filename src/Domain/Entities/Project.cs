@@ -386,34 +386,34 @@ namespace Domain.Entities
         /// <summary>
         /// Carta patente com titularidade do CEFET/RJ.
         /// </summary>
-        private int? _PatentLetter;
+        private int? _patentLetter;
         public int? PatentLetter
         {
-            get => _PatentLetter;
+            get => _patentLetter;
             set
             {
                 DomainExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required(nameof(value)));
                 DomainExceptionValidation.When(value < 0,
                     ExceptionMessageFactory.Invalid(nameof(value)));
-                _PatentLetter = value;
+                _patentLetter = value;
             }
         }
 
         /// <summary>
         /// Depósito de patente com titularidade do CEFET/RJ.
         /// </summary>
-        private int? _PatentDeposit;
+        private int? _patentDeposit;
         public int? PatentDeposit
         {
-            get => _PatentDeposit;
+            get => _patentDeposit;
             set
             {
                 DomainExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required(nameof(value)));
                 DomainExceptionValidation.When(value < 0,
                     ExceptionMessageFactory.Invalid(nameof(value)));
-                _PatentDeposit = value;
+                _patentDeposit = value;
             }
         }
 
@@ -513,8 +513,8 @@ namespace Domain.Entities
         #endregion
 
         #region Relacionamentos
-        private EProgramType? _programTypeId;
-        public EProgramType? ProgramTypeId
+        private Guid? _programTypeId;
+        public Guid? ProgramTypeId
         {
             get => _programTypeId;
             set
@@ -583,15 +583,33 @@ namespace Domain.Entities
             }
         }
 
+        public virtual ProgramType? ProgramType { get; }
         public virtual Professor? Professor { get; }
         public virtual Student? Student { get; }
         public virtual SubArea? SubArea { get; }
         public virtual Notice? Notice { get; }
         #endregion
+
+        #region Informações de Controle
+        /// <summary>
+        /// Data de submissão do projeto na plataforma.
+        /// </summary>
+        public DateTime SubmitionDate { get; set; }
+
+        /// <summary>
+        /// Data de ressubmissão do projeto na plataforma.
+        /// </summary>
+        public DateTime RessubmitionDate { get; set; }
+
+        /// <summary>
+        /// Data de cancelamento do projeto.
+        /// </summary>
+        public DateTime CancelationDate { get; set; }
+        #endregion
         #endregion
 
         #region Constructors
-        public Project(EProgramType? programTypeId, Guid? professorId, Guid? studentId, Guid? subAreaId, bool isScholarshipCandidate,
+        public Project(Guid? programTypeId, Guid? professorId, Guid? studentId, Guid? subAreaId, bool isScholarshipCandidate,
             string title, string keyWord1, string keyWord2, string keyWord3, string objective, string methodology, string expectedResults,
             string activitiesExecutionSchedule)
         {
