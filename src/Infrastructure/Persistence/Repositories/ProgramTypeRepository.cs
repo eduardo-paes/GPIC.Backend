@@ -49,8 +49,10 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<ProgramType?> GetProgramTypeByName(string name)
         {
-            var entities = await _context.ProgramTypes.Where(x =>
-                    x.Name.ToLower() == name.ToLower()
+            string loweredName = name.ToLower();
+            var entities = await _context.ProgramTypes
+                .Where(x =>
+                    x.Name!.ToLower() == loweredName
                     && x.DeletedAt == null)
                 .AsAsyncEnumerable()
                 .ToListAsync();

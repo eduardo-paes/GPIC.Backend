@@ -49,8 +49,11 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<Campus?> GetCampusByName(string name)
         {
+            string loweredName = name.ToLower();
             var entities = await _context.Campuses
-                .Where(x => x.Name.ToLower() == name.ToLower() && x.DeletedAt == null)
+                .Where(x =>
+                    x.Name!.ToLower() == loweredName
+                    && x.DeletedAt == null)
                 .AsAsyncEnumerable()
                 .ToListAsync();
             return entities.FirstOrDefault();

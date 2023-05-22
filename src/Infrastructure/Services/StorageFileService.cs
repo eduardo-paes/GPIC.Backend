@@ -41,7 +41,7 @@ namespace Infrastructure.Services
         public async Task<string> UploadFileAsync(IFormFile file, string? filePath = null)
         {
             // Valida o arquivo
-            filePath = GenerateFilePath(file, _folder, filePath, true);
+            filePath = await GenerateFilePath(file, _folder, filePath, true);
 
             // Salva o arquivo
             using (var stream = new FileStream(filePath, FileMode.Create))
@@ -67,7 +67,7 @@ namespace Infrastructure.Services
         #endregion
 
         #region Private Methods
-        private string GenerateFilePath(IFormFile file, string custom_directory, string? filePath = null, bool onlyPdf = false)
+        private async Task<string> GenerateFilePath(IFormFile file, string custom_directory, string? filePath = null, bool onlyPdf = false)
         {
             // Verifica se a extensão do arquivo é permitida
             var extension = Path.GetExtension(file.FileName);
@@ -95,7 +95,7 @@ namespace Infrastructure.Services
             // Deleta o arquivo se o caminho do arquivo for informado
             else
             {
-                DeleteFile(filePath);
+                await DeleteFile(filePath);
             }
             return filePath;
         }
