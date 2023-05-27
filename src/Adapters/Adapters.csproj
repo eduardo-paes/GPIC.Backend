@@ -7,26 +7,26 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="DTOs\" />
+    <None Remove="Gateways\" />
     <None Remove="Services\" />
     <None Remove="Interfaces\" />
     <None Remove="Mappings\" />
     <None Remove="AutoMapper" />
-    <None Remove="DTOs\User\" />
-    <None Remove="DTOs\Auth\" />
-    <None Remove="DTOs\MainArea\" />
-    <None Remove="DTOs\Area\" />
+    <None Remove="Gateways\User\" />
+    <None Remove="Gateways\Auth\" />
+    <None Remove="Gateways\MainArea\" />
+    <None Remove="Gateways\Area\" />
     <None Remove="Interfaces\Primitives\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DTOs\" />
+    <Folder Include="Gateways\" />
     <Folder Include="Services\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Mappings\" />
-    <Folder Include="DTOs\User\" />
-    <Folder Include="DTOs\Auth\" />
-    <Folder Include="DTOs\MainArea\" />
-    <Folder Include="DTOs\Area\" />
+    <Folder Include="Gateways\User\" />
+    <Folder Include="Gateways\Auth\" />
+    <Folder Include="Gateways\MainArea\" />
+    <Folder Include="Gateways\Area\" />
     <Folder Include="Interfaces\Primitives\" />
   </ItemGroup>
   <ItemGroup>

@@ -19,7 +19,7 @@ namespace Domain.UseCases
         }
         #endregion
 
-        public async Task<DetailedReadSubAreaOutput> Execute(Guid? id, UpdateSubAreaInput dto)
+        public async Task<DetailedReadSubAreaOutput> Execute(Guid? id, UpdateSubAreaInput input)
         {
             // Recupera entidade que será atualizada
             var entity = await _subAreaRepository.GetById(id);
@@ -29,9 +29,9 @@ namespace Domain.UseCases
                 throw new Exception("Subárea não encontrada.");
 
             // Atualiza atributos permitidos
-            entity.Name = dto.Name;
-            entity.Code = dto.Code;
-            entity.AreaId = dto.AreaId;
+            entity.Name = input.Name;
+            entity.Code = input.Code;
+            entity.AreaId = input.AreaId;
 
             // Salva entidade atualizada no banco
             var model = await _subAreaRepository.Update(entity);

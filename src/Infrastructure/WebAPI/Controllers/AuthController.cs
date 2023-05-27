@@ -1,5 +1,5 @@
-﻿using Adapters.DTOs.Auth;
-using Adapters.Proxies;
+﻿using Adapters.Gateways.Auth;
+using Adapters.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,14 +13,14 @@ namespace Infrastructure.WebAPI.Controllers
     public class AuthController : ControllerBase
     {
         #region Global Scope
-        private readonly IAuthService _authService;
+        private readonly IAuthPresenterController _authService;
         private readonly ILogger<AuthController> _logger;
         /// <summary>
         /// Construtor do Controller de Autenticação.
         /// </summary>
         /// <param name="authService"></param>
         /// <param name="logger"></param>
-        public AuthController(IAuthService authService, ILogger<AuthController> logger)
+        public AuthController(IAuthPresenterController authService, ILogger<AuthController> logger)
         {
             _authService = authService;
             _logger = logger;
@@ -83,12 +83,12 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna token de acesso</response>
         [AllowAnonymous]
         [HttpPost("Login", Name = "Login")]
-        public async Task<ActionResult<UserLoginResponseDTO>> Login([FromBody] UserLoginRequestDTO dto)
+        public async Task<ActionResult<UserLoginResponse>> Login([FromBody] UserLoginRequest request)
         {
             try
             {
-                var model = await _authService.Login(dto);
-                _logger.LogInformation("Login realizado pelo usuário: {email}.", dto.Email);
+                var model = await _authService.Login(request);
+                _logger.LogInformation("Login realizado pelo usuário: {email}.", request.Email);
                 return Ok(model);
             }
             catch (Exception ex)
@@ -106,11 +106,11 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna o status da alteração</response>
         [AllowAnonymous]
         [HttpPost("ResetPassword", Name = "ResetPassword")]
-        public async Task<ActionResult<string>> ResetPassword([FromBody] UserResetPasswordDTO dto)
+        public async Task<ActionResult<string>> ResetPassword([FromBody] UserResetPasswordRequest request)
         {
             try
             {
-                var result = await _authService.ResetPassword(dto);
+                var result = await _authService.ResetPassword(request);
                 _logger.LogInformation("Resultado: {Result}", result);
                 return Ok(result);
             }

@@ -17,7 +17,7 @@ namespace Domain.UseCases
         }
         #endregion
 
-        public async Task<DetailedReadProfessorOutput> Execute(Guid? id, UpdateProfessorInput dto)
+        public async Task<DetailedReadProfessorOutput> Execute(Guid? id, UpdateProfessorInput input)
         {
             // Verifica se o id foi informado
             if (id == null)
@@ -32,8 +32,8 @@ namespace Domain.UseCases
                 throw new Exception("O professor informado já foi excluído.");
 
             // Atualiza atributos permitidos
-            professor.IdentifyLattes = dto.IdentifyLattes;
-            professor.SIAPEEnrollment = dto.SIAPEEnrollment;
+            professor.IdentifyLattes = input.IdentifyLattes;
+            professor.SIAPEEnrollment = input.SIAPEEnrollment;
 
             // Atualiza professor com as informações fornecidas
             professor = await _professorRepository.Update(professor);

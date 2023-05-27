@@ -19,18 +19,18 @@ namespace Domain.UseCases
         }
         #endregion
 
-        public async Task<UserLoginOutput> Execute(UserLoginInput dto)
+        public async Task<UserLoginOutput> Execute(UserLoginInput input)
         {
             // Verifica se o email é nulo
-            if (string.IsNullOrEmpty(dto.Email))
+            if (string.IsNullOrEmpty(input.Email))
                 throw new Exception("Email não informado.");
 
             // Verifica se a senha é nula
-            else if (string.IsNullOrEmpty(dto.Password))
+            else if (string.IsNullOrEmpty(input.Password))
                 throw new Exception("Senha não informada.");
 
             // Busca usuário pelo email
-            var entity = await _userRepository.GetUserByEmail(dto.Email);
+            var entity = await _userRepository.GetUserByEmail(input.Email);
             if (entity == null)
                 throw new Exception("Nenhum usuário encontrado.");
 
@@ -39,7 +39,7 @@ namespace Domain.UseCases
                 throw new Exception("O e-mail do usuário ainda não foi confirmado.");
 
             // Verifica se a senha é válida
-            if (!_hashService.VerifyPassword(dto.Password, entity.Password))
+            if (!_hashService.VerifyPassword(input.Password, entity.Password))
                 throw new Exception("Credenciais inválidas.");
 
             // Gera o token de autenticação e retorna o resultado

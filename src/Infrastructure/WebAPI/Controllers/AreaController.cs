@@ -1,5 +1,5 @@
-using Adapters.DTOs.Area;
-using Adapters.Proxies;
+using Adapters.Gateways.Area;
+using Adapters.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,14 +14,14 @@ namespace Infrastructure.WebAPI.Controllers
     public class AreaController : ControllerBase
     {
         #region Global Scope
-        private readonly IAreaService _service;
+        private readonly IAreaPresenterController _service;
         private readonly ILogger<AreaController> _logger;
         /// <summary>
         /// Construtor do Controller de Área.
         /// </summary>
         /// <param name="service"></param>
         /// <param name="logger"></param>
-        public AreaController(IAreaService service, ILogger<AreaController> logger)
+        public AreaController(IAreaPresenterController service, ILogger<AreaController> logger)
         {
             _service = service;
             _logger = logger;
@@ -36,7 +36,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna área correspondente</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<DetailedReadAreaDTO>> GetById(Guid? id)
+        public async Task<ActionResult<DetailedReadAreaResponse>> GetById(Guid? id)
         {
             _logger.LogInformation("Executando ({MethodName}) com os parâmetros: Id = {id}", id);
 
@@ -68,7 +68,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna todas as áreas ativas da área principal</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<ResumedReadAreaDTO>>> GetAreasByMainArea(Guid? mainAreaId, int skip = 0, int take = 50)
+        public async Task<ActionResult<IEnumerable<ResumedReadAreaResponse>>> GetAreasByMainArea(Guid? mainAreaId, int skip = 0, int take = 50)
         {
             _logger.LogInformation("Executando método com os parâmetros: MainAreaId = {mainAreaId}, Skip = {skip}, Take = {take}", mainAreaId, skip, take);
 
@@ -108,11 +108,11 @@ namespace Infrastructure.WebAPI.Controllers
         [HttpPost]
         [Authorize(Roles = "ADMIN")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<DetailedReadAreaDTO>> Create([FromBody] CreateAreaDTO dto)
+        public async Task<ActionResult<DetailedReadAreaResponse>> Create([FromBody] CreateAreaRequest request)
         {
             try
             {
-                var model = await _service.Create(dto) as DetailedReadAreaDTO;
+                var model = await _service.Create(request) as DetailedReadAreaResponse;
                 _logger.LogInformation("Método finalizado, retorno: Id = {id}", model?.Id);
                 return Ok(model);
             }
@@ -131,11 +131,11 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna área atualizada</response>
         [HttpPut("{id}")]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadAreaDTO>> Update(Guid? id, [FromBody] UpdateAreaDTO dto)
+        public async Task<ActionResult<DetailedReadAreaResponse>> Update(Guid? id, [FromBody] UpdateAreaRequest request)
         {
             try
             {
-                var model = await _service.Update(id, dto) as DetailedReadAreaDTO;
+                var model = await _service.Update(id, request) as DetailedReadAreaResponse;
                 _logger.LogInformation("Área atualizada: {id}", model?.Id);
                 return Ok(model);
             }
@@ -154,7 +154,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna área removida</response>
         [HttpDelete("{id}")]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadAreaDTO>> Delete(Guid? id)
+        public async Task<ActionResult<DetailedReadAreaResponse>> Delete(Guid? id)
         {
             if (id == null)
             {
@@ -165,7 +165,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _service.Delete(id.Value) as DetailedReadAreaDTO;
+                var model = await _service.Delete(id.Value) as DetailedReadAreaResponse;
                 _logger.LogInformation("Área removida: {id}", model?.Id);
                 return Ok(model);
             }

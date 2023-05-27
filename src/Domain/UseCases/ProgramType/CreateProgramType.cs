@@ -17,19 +17,19 @@ namespace Domain.UseCases
         }
         #endregion
 
-        public async Task<DetailedReadProgramTypeOutput> Execute(CreateProgramTypeInput dto)
+        public async Task<DetailedReadProgramTypeOutput> Execute(CreateProgramTypeInput input)
         {
             // Verifica se nome foi informado
-            if (string.IsNullOrEmpty(dto.Name))
-                throw new ArgumentNullException(nameof(dto.Name));
+            if (string.IsNullOrEmpty(input.Name))
+                throw new ArgumentNullException(nameof(input.Name));
 
             // Verifica se já existe um tipo de programa com o nome indicado
-            var entity = await _repository.GetProgramTypeByName(dto.Name);
+            var entity = await _repository.GetProgramTypeByName(input.Name);
             if (entity != null)
                 throw new Exception($"Já existe um Tipo de Programa para o nome informado.");
 
             // Cria entidade
-            entity = await _repository.Create(_mapper.Map<Entities.ProgramType>(dto));
+            entity = await _repository.Create(_mapper.Map<Entities.ProgramType>(input));
 
             // Salva entidade no banco
             return _mapper.Map<DetailedReadProgramTypeOutput>(entity);

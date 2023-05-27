@@ -1,0 +1,6 @@
+Sem bolsa;Não possui bolsa de assistência estudantil.
+PAED;Programa de Auxílio ao Estudante com Deficiência (PAED).
+PAEm;Programa de Auxílio Emergencial (PAEm).
+PAE;Programa de Auxílio ao Estudante (PAE).
+Auxílio Digital;Bolsa de Auxílio Digital.
+Outra;Outro tipo de bolsa.

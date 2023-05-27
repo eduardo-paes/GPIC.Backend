@@ -19,14 +19,14 @@ namespace Domain.UseCases
         }
         #endregion
 
-        public async Task<DetailedMainAreaOutput> Execute(CreateMainAreaInput dto)
+        public async Task<DetailedMainAreaOutput> Execute(CreateMainAreaInput input)
         {
             // Validação de código da Área
-            var entity = await _repository.GetByCode(dto.Code);
+            var entity = await _repository.GetByCode(input.Code);
             if (entity != null)
-                throw new Exception($"Já existe uma Área Principal para o código {dto.Code}");
+                throw new Exception($"Já existe uma Área Principal para o código {input.Code}");
 
-            entity = await _repository.Create(_mapper.Map<Domain.Entities.MainArea>(dto));
+            entity = await _repository.Create(_mapper.Map<Domain.Entities.MainArea>(input));
             return _mapper.Map<DetailedMainAreaOutput>(entity);
         }
     }

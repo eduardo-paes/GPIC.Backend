@@ -19,9 +19,9 @@ namespace Domain.Entities
             get => _siapeEnrollment;
             set
             {
-                DomainExceptionValidation.When(string.IsNullOrEmpty(value),
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("Matrícula SIAPE"));
-                DomainExceptionValidation.When(value?.Length != 7,
+                EntityExceptionValidation.When(value?.Length != 7,
                     ExceptionMessageFactory.WithLength("Matrícula SIAPE", 7));
                 _siapeEnrollment = value;
             }
@@ -36,7 +36,7 @@ namespace Domain.Entities
             get => _identifyLattes;
             set
             {
-                DomainExceptionValidation.When(value <= 0,
+                EntityExceptionValidation.When(value <= 0,
                     ExceptionMessageFactory.Invalid("Identificador Lattes"));
                 _identifyLattes = value;
             }
@@ -52,7 +52,7 @@ namespace Domain.Entities
             set
             {
                 {
-                    DomainExceptionValidation.When(value == null,
+                    EntityExceptionValidation.When(value == null,
                         ExceptionMessageFactory.Required("id do usuário"));
                     _userId = value;
                 }

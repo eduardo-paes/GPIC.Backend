@@ -12,13 +12,13 @@ namespace Domain.Entities
         public string? Name
         {
             get { return _name; }
-            private set
+            set
             {
-                DomainExceptionValidation.When(string.IsNullOrEmpty(value),
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("nome"));
-                DomainExceptionValidation.When(value?.Length < 3,
+                EntityExceptionValidation.When(value?.Length < 3,
                     ExceptionMessageFactory.MinLength("nome", 3));
-                DomainExceptionValidation.When(value?.Length > 100,
+                EntityExceptionValidation.When(value?.Length > 100,
                     ExceptionMessageFactory.MaxLength("nome", 100));
                 _name = value;
             }
@@ -28,22 +28,34 @@ namespace Domain.Entities
         public string? Description
         {
             get { return _description; }
-            private set
+            set
             {
-                DomainExceptionValidation.When(string.IsNullOrEmpty(value),
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("descrição"));
-                DomainExceptionValidation.When(value?.Length < 3,
+                EntityExceptionValidation.When(value?.Length < 3,
                     ExceptionMessageFactory.MinLength("descrição", 3));
-                DomainExceptionValidation.When(value?.Length > 1500,
+                EntityExceptionValidation.When(value?.Length > 1500,
                     ExceptionMessageFactory.MaxLength("descrição", 1500));
                 _description = value;
             }
         }
 
-        public StudentAssistanceScholarship(string name, string description)
+        public StudentAssistanceScholarship(string? name, string? description)
         {
             Name = name;
             Description = description;
         }
+
+        public StudentAssistanceScholarship(Guid? id, string? name, string? description)
+        {
+            Id = id;
+            Name = name;
+            Description = description;
+        }
+
+        /// <summary>
+        /// Constructor to dbcontext EF instancing.
+        /// </summary>
+        public StudentAssistanceScholarship() { }
     }
 }

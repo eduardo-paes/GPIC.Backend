@@ -28,30 +28,30 @@ namespace Domain.UseCases
         }
         #endregion
 
-        public async Task<DetailedReadProfessorOutput> Execute(CreateProfessorInput dto)
+        public async Task<DetailedReadProfessorOutput> Execute(CreateProfessorInput input)
         {
             // Realiza o map da entidade e a validação dos campos informados
-            var entity = _mapper.Map<Entities.Professor>(dto);
+            var entity = _mapper.Map<Entities.Professor>(input);
 
             // Verifica se a senha é nula
-            if (string.IsNullOrEmpty(dto.Password))
+            if (string.IsNullOrEmpty(input.Password))
                 throw new Exception("Senha não informada.");
 
             // Verifica se já existe um usuário com o e-mail informado
-            var user = await _userRepository.GetUserByEmail(dto.Email);
+            var user = await _userRepository.GetUserByEmail(input.Email);
             if (user != null)
                 throw new Exception("Já existe um usuário com o e-mail informado.");
 
             // Verifica se já existe um usuário com o CPF informado
-            user = await _userRepository.GetUserByCPF(dto.CPF);
+            user = await _userRepository.GetUserByCPF(input.CPF);
             if (user != null)
                 throw new Exception("Já existe um usuário com o CPF informado.");
 
             // Gera hash da senha
-            dto.Password = _hashService.HashPassword(dto.Password);
+            input.Password = _hashService.HashPassword(input.Password);
 
             // Cria usuário
-            user = new Entities.User(dto.Name, dto.Email, dto.Password, dto.CPF, Entities.Enums.ERole.PROFESSOR);
+            user = new Entities.User(input.Name, input.Email, input.Password, input.CPF, Entities.Enums.ERole.PROFESSOR);
 
             // Adiciona usuário no banco
             user = await _userRepository.Create(user);

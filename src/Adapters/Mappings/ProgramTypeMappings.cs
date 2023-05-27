@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Adapters.DTOs.ProgramType;
+using Adapters.Gateways.ProgramType;
 using Domain.Contracts.ProgramType;
 
 namespace Adapters.Mappings
@@ -8,10 +8,10 @@ namespace Adapters.Mappings
     {
         public ProgramTypeMappings()
         {
-            CreateMap<CreateProgramTypeInput, CreateProgramTypeDTO>().ReverseMap();
-            CreateMap<UpdateProgramTypeInput, UpdateProgramTypeDTO>().ReverseMap();
-            CreateMap<ResumedReadProgramTypeOutput, ResumedReadProgramTypeDTO>().ReverseMap();
-            CreateMap<DetailedReadProgramTypeOutput, DetailedReadProgramTypeDTO>().ReverseMap();
+            CreateMap<CreateProgramTypeInput, CreateProgramTypeRequest>().ReverseMap();
+            CreateMap<UpdateProgramTypeInput, UpdateProgramTypeRequest>().ReverseMap();
+            CreateMap<ResumedReadProgramTypeOutput, ResumedReadProgramTypeResponse>().ReverseMap();
+            CreateMap<DetailedReadProgramTypeOutput, DetailedReadProgramTypeResponse>().ReverseMap();
         }
     }
 }

@@ -1,5 +1,5 @@
-using Adapters.DTOs.MainArea;
-using Adapters.Proxies;
+using Adapters.Gateways.MainArea;
+using Adapters.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,14 +14,14 @@ namespace Infrastructure.WebAPI.Controllers
     public class MainAreaController : ControllerBase
     {
         #region Global Scope
-        private readonly IMainAreaService _service;
+        private readonly IMainAreaPresenterController _service;
         private readonly ILogger<MainAreaController> _logger;
         /// <summary>
         /// Construtor do Controller de Área Principal.
         /// </summary>
         /// <param name="service"></param>
         /// <param name="logger"></param>
-        public MainAreaController(IMainAreaService service, ILogger<MainAreaController> logger)
+        public MainAreaController(IMainAreaPresenterController service, ILogger<MainAreaController> logger)
         {
             _service = service;
             _logger = logger;
@@ -36,7 +36,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna área principal correspondente</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<DetailedMainAreaDTO>> GetById(Guid? id)
+        public async Task<ActionResult<DetailedMainAreaResponse>> GetById(Guid? id)
         {
             if (id == null)
             {
@@ -66,7 +66,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna todas as áreas principais ativas</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<ResumedReadMainAreaDTO>>> GetAll(int skip = 0, int take = 50)
+        public async Task<ActionResult<IEnumerable<ResumedReadMainAreaResponse>>> GetAll(int skip = 0, int take = 50)
         {
             var models = await _service.GetAll(skip, take);
             if (models == null)
@@ -88,11 +88,11 @@ namespace Infrastructure.WebAPI.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedMainAreaDTO>> Create([FromBody] CreateMainAreaDTO dto)
+        public async Task<ActionResult<DetailedMainAreaResponse>> Create([FromBody] CreateMainAreaRequest request)
         {
             try
             {
-                var model = await _service.Create(dto) as DetailedMainAreaDTO;
+                var model = await _service.Create(request) as DetailedMainAreaResponse;
                 _logger.LogInformation("Área principal criada: {id}", model?.Id);
                 return Ok(model);
             }
@@ -111,11 +111,11 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna área principal atualizada</response>
         [HttpPut("{id}")]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedMainAreaDTO>> Update(Guid? id, [FromBody] UpdateMainAreaDTO dto)
+        public async Task<ActionResult<DetailedMainAreaResponse>> Update(Guid? id, [FromBody] UpdateMainAreaRequest request)
         {
             try
             {
-                var model = await _service.Update(id, dto) as DetailedMainAreaDTO;
+                var model = await _service.Update(id, request) as DetailedMainAreaResponse;
                 _logger.LogInformation("Área principal atualizada: {id}", model?.Id);
                 return Ok(model);
             }
@@ -134,7 +134,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna área principal removida</response>
         [HttpDelete("{id}")]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedMainAreaDTO>> Delete(Guid? id)
+        public async Task<ActionResult<DetailedMainAreaResponse>> Delete(Guid? id)
         {
             if (id == null)
             {
@@ -145,7 +145,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _service.Delete(id.Value) as DetailedMainAreaDTO;
+                var model = await _service.Delete(id.Value) as DetailedMainAreaResponse;
                 _logger.LogInformation("Área principal removida: {id}", model?.Id);
                 return Ok(model);
             }

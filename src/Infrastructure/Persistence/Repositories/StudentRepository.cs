@@ -35,6 +35,7 @@ namespace Infrastructure.Persistence.Repositories
                 .Include(x => x.Campus)
                 .Include(x => x.Course)
                 .IgnoreQueryFilters()
+                .AsAsyncEnumerable()
                 .FirstOrDefaultAsync(x => x.Id == id);
 
         public async Task<Student> Delete(Guid? id)

@@ -14,11 +14,11 @@ namespace Domain.Entities
             get { return _name; }
             set
             {
-                DomainExceptionValidation.When(string.IsNullOrEmpty(value),
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("nome"));
-                DomainExceptionValidation.When(value?.Length < 3,
+                EntityExceptionValidation.When(value?.Length < 3,
                     ExceptionMessageFactory.MinLength("nome", 3));
-                DomainExceptionValidation.When(value?.Length > 300,
+                EntityExceptionValidation.When(value?.Length > 300,
                     ExceptionMessageFactory.MaxLength("nome", 300));
                 _name = value;
             }
@@ -32,9 +32,9 @@ namespace Domain.Entities
             {
                 if (!string.IsNullOrEmpty(value))
                 {
-                    DomainExceptionValidation.When(value?.Length < 3,
+                    EntityExceptionValidation.When(value?.Length < 3,
                         ExceptionMessageFactory.MinLength("descrição", 3));
-                    DomainExceptionValidation.When(value?.Length > 300,
+                    EntityExceptionValidation.When(value?.Length > 300,
                         ExceptionMessageFactory.MaxLength("descrição", 300));
                 }
                 _description = value;
@@ -43,6 +43,13 @@ namespace Domain.Entities
 
         public ProgramType(string name, string description)
         {
+            Name = name;
+            Description = description;
+        }
+
+        public ProgramType(Guid? id, string name, string description)
+        {
+            Id = id;
             Name = name;
             Description = description;
         }

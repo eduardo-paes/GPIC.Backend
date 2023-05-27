@@ -83,7 +83,7 @@ _Campos que comporão as entidades relacionadas com Projeto._
 
 - Atividades / Período (String)
 
-### PontuacaoAtividades (Índice AP - Edital PIBIC)
+### PontuacaoAtividades (Índice AP - Edital PIBIC) (OK)
 
 - Pegar do arquivo Excel <--
 

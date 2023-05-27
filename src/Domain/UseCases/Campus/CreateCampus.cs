@@ -17,19 +17,19 @@ namespace Domain.UseCases
         }
         #endregion
 
-        public async Task<DetailedReadCampusOutput> Execute(CreateCampusInput dto)
+        public async Task<DetailedReadCampusOutput> Execute(CreateCampusInput input)
         {
             // Verifica se nome foi informado
-            if (string.IsNullOrEmpty(dto.Name))
-                throw new ArgumentNullException(nameof(dto.Name));
+            if (string.IsNullOrEmpty(input.Name))
+                throw new ArgumentNullException(nameof(input.Name));
 
             // Verifica se já existe um edital para o período indicado
-            var entity = await _repository.GetCampusByName(dto.Name);
+            var entity = await _repository.GetCampusByName(input.Name);
             if (entity != null)
                 throw new Exception($"Já existe um Campus para o nome informado.");
 
             // Cria entidade
-            entity = await _repository.Create(_mapper.Map<Entities.Campus>(dto));
+            entity = await _repository.Create(_mapper.Map<Entities.Campus>(input));
 
             // Salva entidade no banco
             return _mapper.Map<DetailedReadCampusOutput>(entity);

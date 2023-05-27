@@ -1,5 +1,5 @@
-using Adapters.DTOs.ProgramType;
-using Adapters.Proxies;
+using Adapters.Gateways.ProgramType;
+using Adapters.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,14 +14,14 @@ namespace Infrastructure.WebAPI.Controllers
     public class ProgramTypeController : ControllerBase
     {
         #region Global Scope
-        private readonly IProgramTypeService _service;
+        private readonly IProgramTypePresenterController _service;
         private readonly ILogger<ProgramTypeController> _logger;
         /// <summary>
         /// Construtor do Controller de Tipo de Programa.
         /// </summary>
         /// <param name="service"></param>
         /// <param name="logger"></param>
-        public ProgramTypeController(IProgramTypeService service, ILogger<ProgramTypeController> logger)
+        public ProgramTypeController(IProgramTypePresenterController service, ILogger<ProgramTypeController> logger)
         {
             _service = service;
             _logger = logger;
@@ -36,7 +36,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna tipo de programa correspondente</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<DetailedReadProgramTypeDTO>> GetById(Guid? id)
+        public async Task<ActionResult<DetailedReadProgramTypeResponse>> GetById(Guid? id)
         {
             if (id == null)
             {
@@ -66,7 +66,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna todas os tipos de programas ativos</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<ResumedReadProgramTypeDTO>>> GetAll(int skip = 0, int take = 50)
+        public async Task<ActionResult<IEnumerable<ResumedReadProgramTypeResponse>>> GetAll(int skip = 0, int take = 50)
         {
             var models = await _service.GetAll(skip, take);
             if (models == null)
@@ -88,11 +88,11 @@ namespace Infrastructure.WebAPI.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadProgramTypeDTO>> Create([FromBody] CreateProgramTypeDTO dto)
+        public async Task<ActionResult<DetailedReadProgramTypeResponse>> Create([FromBody] CreateProgramTypeRequest request)
         {
             try
             {
-                var model = await _service.Create(dto) as DetailedReadProgramTypeDTO;
+                var model = await _service.Create(request) as DetailedReadProgramTypeResponse;
                 _logger.LogInformation("Tipo de Programa criado: {id}", model?.Id);
                 return Ok(model);
             }
@@ -111,11 +111,11 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna tipo de programa atualizado</response>
         [HttpPut("{id}")]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadProgramTypeDTO>> Update(Guid? id, [FromBody] UpdateProgramTypeDTO dto)
+        public async Task<ActionResult<DetailedReadProgramTypeResponse>> Update(Guid? id, [FromBody] UpdateProgramTypeRequest request)
         {
             try
             {
-                var model = await _service.Update(id, dto) as DetailedReadProgramTypeDTO;
+                var model = await _service.Update(id, request) as DetailedReadProgramTypeResponse;
                 _logger.LogInformation("Tipo de Programa atualizado: {id}", model?.Id);
                 return Ok(model);
             }
@@ -134,7 +134,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna tipo de programa removido</response>
         [HttpDelete("{id}")]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadProgramTypeDTO>> Delete(Guid? id)
+        public async Task<ActionResult<DetailedReadProgramTypeResponse>> Delete(Guid? id)
         {
             if (id == null)
             {
@@ -145,7 +145,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _service.Delete(id.Value) as DetailedReadProgramTypeDTO;
+                var model = await _service.Delete(id.Value) as DetailedReadProgramTypeResponse;
                 _logger.LogInformation("Tipo de Programa removido: {id}", model?.Id);
                 return Ok(model);
             }

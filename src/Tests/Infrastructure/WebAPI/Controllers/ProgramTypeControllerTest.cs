@@ -1,5 +1,5 @@
 using System.Net.Http.Json;
-using Adapters.DTOs.ProgramType;
+using Adapters.Gateways.ProgramType;
 using Infrastructure.WebAPI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
@@ -32,7 +32,7 @@ namespace Tests.Infrastructure.WebAPI.Controllers
 
             // Assert
             response.EnsureSuccessStatusCode(); // Status Code 200-299
-            var programtypes = await response.Content.ReadFromJsonAsync<IEnumerable<ResumedReadProgramTypeDTO>>();
+            var programtypes = await response.Content.ReadFromJsonAsync<IEnumerable<ResumedReadProgramTypeResponse>>();
             Assert.NotNull(programtypes);
             Assert.Greater(programtypes.Count(), 0);
         }
@@ -42,12 +42,12 @@ namespace Tests.Infrastructure.WebAPI.Controllers
         {
             // Arrange
             var getAll = await _client.GetAsync(_baseAddress);
-            var programtypes = await getAll.Content.ReadFromJsonAsync<IEnumerable<ResumedReadProgramTypeDTO>>();
+            var programtypes = await getAll.Content.ReadFromJsonAsync<IEnumerable<ResumedReadProgramTypeResponse>>();
             var expectedProgramType = programtypes.First();
 
             // Act
             var response = await _client.GetAsync($"{_baseAddress}/{expectedProgramType.Id}");
-            var actualProgramType = await response.Content.ReadFromJsonAsync<ResumedReadProgramTypeDTO>();
+            var actualProgramType = await response.Content.ReadFromJsonAsync<ResumedReadProgramTypeResponse>();
 
             // Assert
             response.EnsureSuccessStatusCode(); // Status Code 200-299
@@ -59,11 +59,11 @@ namespace Tests.Infrastructure.WebAPI.Controllers
         public async Task CreateProgramType_ReturnsCreatedProgramType()
         {
             // Arrange
-            var createProgramType = new CreateProgramTypeDTO { Name = $"Test ProgramType {DateTime.Now:ddMMyyyyhhmmss}", Description = "Test Description" };
+            var createProgramType = new CreateProgramTypeRequest { Name = $"Test ProgramType {DateTime.Now:ddMMyyyyhhmmss}", Description = "Test Description" };
 
             // Act
             var response = await _client.PostAsJsonAsync(_baseAddress, createProgramType);
-            var createdProgramType = await response.Content.ReadFromJsonAsync<DetailedReadProgramTypeDTO>();
+            var createdProgramType = await response.Content.ReadFromJsonAsync<DetailedReadProgramTypeResponse>();
 
             // Assert
             response.EnsureSuccessStatusCode(); // Status Code 200-299
@@ -77,19 +77,19 @@ namespace Tests.Infrastructure.WebAPI.Controllers
         {
             // Arrange
             var getAll = await _client.GetAsync(_baseAddress);
-            var programtypes = await getAll.Content.ReadFromJsonAsync<IEnumerable<ResumedReadProgramTypeDTO>>();
-            var updateProgramTypeDTO = new DetailedReadProgramTypeDTO { Id = programtypes.First().Id, Name = "Update Test", Description = "Update Test" };
+            var programtypes = await getAll.Content.ReadFromJsonAsync<IEnumerable<ResumedReadProgramTypeResponse>>();
+            var UpdateProgramTypeRequest = new DetailedReadProgramTypeResponse { Id = programtypes.First().Id, Name = "Update Test", Description = "Update Test" };
             var id = programtypes.First().Id;
 
             // Act
-            var response = await _client.PutAsJsonAsync($"{_baseAddress}/{updateProgramTypeDTO.Id}", updateProgramTypeDTO);
-            var updatedProgramType = await response.Content.ReadFromJsonAsync<DetailedReadProgramTypeDTO>();
+            var response = await _client.PutAsJsonAsync($"{_baseAddress}/{UpdateProgramTypeRequest.Id}", UpdateProgramTypeRequest);
+            var updatedProgramType = await response.Content.ReadFromJsonAsync<DetailedReadProgramTypeResponse>();
 
             // Assert
             response.EnsureSuccessStatusCode(); // Status Code 200-299
             Assert.NotNull(updatedProgramType);
-            Assert.AreEqual(updateProgramTypeDTO.Id, updatedProgramType?.Id);
-            Assert.AreEqual(updateProgramTypeDTO.Name, updatedProgramType?.Name);
+            Assert.AreEqual(UpdateProgramTypeRequest.Id, updatedProgramType?.Id);
+            Assert.AreEqual(UpdateProgramTypeRequest.Name, updatedProgramType?.Name);
         }
 
         [Test, Order(5)]
@@ -97,12 +97,12 @@ namespace Tests.Infrastructure.WebAPI.Controllers
         {
             // Arrange
             var getAll = await _client.GetAsync(_baseAddress);
-            var programtypes = await getAll.Content.ReadFromJsonAsync<IEnumerable<ResumedReadProgramTypeDTO>>();
+            var programtypes = await getAll.Content.ReadFromJsonAsync<IEnumerable<ResumedReadProgramTypeResponse>>();
             var id = programtypes.First().Id;
 
             // Act
             var response = await _client.DeleteAsync($"{_baseAddress}/{id}");
-            var deletedProgramType = await response.Content.ReadFromJsonAsync<DetailedReadProgramTypeDTO>();
+            var deletedProgramType = await response.Content.ReadFromJsonAsync<DetailedReadProgramTypeResponse>();
 
             // Assert
             response.EnsureSuccessStatusCode(); // Status Code 200-299

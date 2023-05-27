@@ -19,22 +19,22 @@ namespace Domain.UseCases
         }
         #endregion
 
-        public async Task<string> Execute(UserResetPasswordInput dto)
+        public async Task<string> Execute(UserResetPasswordInput input)
         {
             // Verifica se o id do usuário é nulo
-            if (dto.Id == null)
-                throw new ArgumentNullException(nameof(dto.Id), "Id do usuário não informado.");
+            if (input.Id == null)
+                throw new ArgumentNullException(nameof(input.Id), "Id do usuário não informado.");
 
             // Verifica se a senha é nula
-            else if (dto.Password == null)
-                throw new ArgumentNullException(nameof(dto.Password), "Senha não informada.");
+            else if (input.Password == null)
+                throw new ArgumentNullException(nameof(input.Password), "Senha não informada.");
 
             // Verifica se o token é nulo
-            else if (dto.Token == null)
-                throw new ArgumentNullException(nameof(dto.Token), "Token não informado.");
+            else if (input.Token == null)
+                throw new ArgumentNullException(nameof(input.Token), "Token não informado.");
 
             // Busca o usuário pelo id
-            var entity = await _userRepository.GetById(dto.Id);
+            var entity = await _userRepository.GetById(input.Id);
             if (entity == null)
                 throw new Exception("Nenhum usuário encontrato para o id informado.");
 
@@ -43,10 +43,10 @@ namespace Domain.UseCases
                 throw new Exception("Solicitação de atualização de senha não permitido.");
 
             // Verifica se o token de validação é igual ao token informado
-            dto.Password = _hashService.HashPassword(dto.Password);
+            input.Password = _hashService.HashPassword(input.Password);
 
             // Atualiza a senha do usuário
-            if (!entity.UpdatePassword(dto.Password, dto.Token))
+            if (!entity.UpdatePassword(input.Password, input.Token))
                 throw new Exception("Token de validação inválido.");
 
             // Salva as alterações

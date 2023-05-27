@@ -1,5 +1,5 @@
 using System.Net.Http.Json;
-using Adapters.DTOs.Course;
+using Adapters.Gateways.Course;
 using Infrastructure.WebAPI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
@@ -32,7 +32,7 @@ namespace Tests.Infrastructure.WebAPI.Controllers
 
             // Assert
             response.EnsureSuccessStatusCode(); // Status Code 200-299
-            var courses = await response.Content.ReadFromJsonAsync<IEnumerable<ResumedReadCourseDTO>>();
+            var courses = await response.Content.ReadFromJsonAsync<IEnumerable<ResumedReadCourseResponse>>();
             Assert.NotNull(courses);
             Assert.Greater(courses.Count(), 0);
         }
@@ -42,12 +42,12 @@ namespace Tests.Infrastructure.WebAPI.Controllers
         {
             // Arrange
             var getAll = await _client.GetAsync(_baseAddress);
-            var courses = await getAll.Content.ReadFromJsonAsync<IEnumerable<ResumedReadCourseDTO>>();
+            var courses = await getAll.Content.ReadFromJsonAsync<IEnumerable<ResumedReadCourseResponse>>();
             var expectedCourse = courses.First();
 
             // Act
             var response = await _client.GetAsync($"{_baseAddress}/{expectedCourse.Id}");
-            var actualCourse = await response.Content.ReadFromJsonAsync<ResumedReadCourseDTO>();
+            var actualCourse = await response.Content.ReadFromJsonAsync<ResumedReadCourseResponse>();
 
             // Assert
             response.EnsureSuccessStatusCode(); // Status Code 200-299
@@ -59,11 +59,11 @@ namespace Tests.Infrastructure.WebAPI.Controllers
         public async Task CreateCourse_ReturnsCreatedCourse()
         {
             // Arrange
-            var createCourse = new CreateCourseDTO { Name = $"Test Course {DateTime.Now:ddMMyyyyhhmmss}" };
+            var createCourse = new CreateCourseRequest { Name = $"Test Course {DateTime.Now:ddMMyyyyhhmmss}" };
 
             // Act
             var response = await _client.PostAsJsonAsync(_baseAddress, createCourse);
-            var createdCourse = await response.Content.ReadFromJsonAsync<DetailedReadCourseDTO>();
+            var createdCourse = await response.Content.ReadFromJsonAsync<DetailedReadCourseResponse>();
 
             // Assert
             response.EnsureSuccessStatusCode(); // Status Code 200-299
@@ -77,19 +77,19 @@ namespace Tests.Infrastructure.WebAPI.Controllers
         {
             // Arrange
             var getAll = await _client.GetAsync(_baseAddress);
-            var courses = await getAll.Content.ReadFromJsonAsync<IEnumerable<ResumedReadCourseDTO>>();
-            var updateCourseDTO = new DetailedReadCourseDTO { Id = courses.First().Id, Name = "Update Test" };
+            var courses = await getAll.Content.ReadFromJsonAsync<IEnumerable<ResumedReadCourseResponse>>();
+            var updateCourse = new DetailedReadCourseResponse { Id = courses.First().Id, Name = "Update Test" };
             var id = courses.First().Id;
 
             // Act
-            var response = await _client.PutAsJsonAsync($"{_baseAddress}/{updateCourseDTO.Id}", updateCourseDTO);
-            var updatedCourse = await response.Content.ReadFromJsonAsync<DetailedReadCourseDTO>();
+            var response = await _client.PutAsJsonAsync($"{_baseAddress}/{updateCourse.Id}", updateCourse);
+            var updatedCourse = await response.Content.ReadFromJsonAsync<DetailedReadCourseResponse>();
 
             // Assert
             response.EnsureSuccessStatusCode(); // Status Code 200-299
             Assert.NotNull(updatedCourse);
-            Assert.AreEqual(updateCourseDTO.Id, updatedCourse?.Id);
-            Assert.AreEqual(updateCourseDTO.Name, updatedCourse?.Name);
+            Assert.AreEqual(updateCourse.Id, updatedCourse?.Id);
+            Assert.AreEqual(updateCourse.Name, updatedCourse?.Name);
         }
 
         [Test, Order(5)]
@@ -97,12 +97,12 @@ namespace Tests.Infrastructure.WebAPI.Controllers
         {
             // Arrange
             var getAll = await _client.GetAsync(_baseAddress);
-            var courses = await getAll.Content.ReadFromJsonAsync<IEnumerable<ResumedReadCourseDTO>>();
+            var courses = await getAll.Content.ReadFromJsonAsync<IEnumerable<ResumedReadCourseResponse>>();
             var id = courses.First().Id;
 
             // Act
             var response = await _client.DeleteAsync($"{_baseAddress}/{id}");
-            var deletedCourse = await response.Content.ReadFromJsonAsync<DetailedReadCourseDTO>();
+            var deletedCourse = await response.Content.ReadFromJsonAsync<DetailedReadCourseResponse>();
 
             // Assert
             response.EnsureSuccessStatusCode(); // Status Code 200-299

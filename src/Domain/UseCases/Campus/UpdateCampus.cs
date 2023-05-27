@@ -17,15 +17,15 @@ namespace Domain.UseCases
         }
         #endregion
 
-        public async Task<DetailedReadCampusOutput> Execute(Guid? id, UpdateCampusInput dto)
+        public async Task<DetailedReadCampusOutput> Execute(Guid? id, UpdateCampusInput input)
         {
             // Verifica se o id foi informado
             if (id == null)
                 throw new ArgumentNullException(nameof(id));
 
             // Verifica se nome foi informado
-            if (string.IsNullOrEmpty(dto.Name))
-                throw new ArgumentNullException(nameof(dto.Name));
+            if (string.IsNullOrEmpty(input.Name))
+                throw new ArgumentNullException(nameof(input.Name));
 
             // Recupera entidade que será atualizada
             var entity = await _repository.GetById(id);
@@ -39,11 +39,11 @@ namespace Domain.UseCases
                 throw new Exception("O Campus informado já foi excluído.");
 
             // Verifica se o nome já está sendo usado
-            if (!string.Equals(entity.Name, dto.Name, StringComparison.OrdinalIgnoreCase) && await _repository.GetCampusByName(dto.Name) != null)
+            if (!string.Equals(entity.Name, input.Name, StringComparison.OrdinalIgnoreCase) && await _repository.GetCampusByName(input.Name) != null)
                 throw new Exception("Já existe um Campus para o nome informado.");
 
             // Atualiza atributos permitidos
-            entity.Name = dto.Name;
+            entity.Name = input.Name;
 
             // Salva entidade atualizada no banco
             var model = await _repository.Update(entity);

@@ -34,40 +34,40 @@ namespace Domain.UseCases
         }
         #endregion
 
-        public async Task<DetailedReadStudentOutput> Execute(CreateStudentInput dto)
+        public async Task<DetailedReadStudentOutput> Execute(CreateStudentInput input)
         {
             // Realiza o map da entidade e a validação dos campos informados
-            var entity = _mapper.Map<Entities.Student>(dto);
+            var entity = _mapper.Map<Entities.Student>(input);
 
             // Verifica se já existe um usuário com o e-mail informado
-            var user = await _userRepository.GetUserByEmail(dto.Email);
+            var user = await _userRepository.GetUserByEmail(input.Email);
             if (user != null)
                 throw new Exception("Já existe um usuário com o e-mail informado.");
 
             // Verifica se já existe um usuário com o CPF informado
-            user = await _userRepository.GetUserByCPF(dto.CPF);
+            user = await _userRepository.GetUserByCPF(input.CPF);
             if (user != null)
                 throw new Exception("Já existe um usuário com o CPF informado.");
 
             // Verifica se curso informado existe
-            var course = await _courseRepository.GetById(dto.CourseId);
+            var course = await _courseRepository.GetById(input.CourseId);
             if (course == null || course.DeletedAt != null)
                 throw new Exception("Curso informado não existe.");
 
             // Verifica se campus informado existe
-            var campus = await _campusRepository.GetById(dto.CampusId);
+            var campus = await _campusRepository.GetById(input.CampusId);
             if (campus == null || campus.DeletedAt != null)
                 throw new Exception("Campus informado não existe.");
 
             // Verifica se a senha é nula
-            if (string.IsNullOrEmpty(dto.Password))
+            if (string.IsNullOrEmpty(input.Password))
                 throw new Exception("Senha não informada.");
 
             // Gera hash da senha
-            dto.Password = _hashService.HashPassword(dto.Password);
+            input.Password = _hashService.HashPassword(input.Password);
 
             // Cria usuário
-            user = new Entities.User(dto.Name, dto.Email, dto.Password, dto.CPF, Entities.Enums.ERole.STUDENT);
+            user = new Entities.User(input.Name, input.Email, input.Password, input.CPF, Entities.Enums.ERole.STUDENT);
 
             // Adiciona usuário no banco
             user = await _userRepository.Create(user);

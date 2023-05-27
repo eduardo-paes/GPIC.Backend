@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Adapters.DTOs.SubArea;
+using Adapters.Gateways.SubArea;
 using Domain.Contracts.SubArea;
 
 namespace Adapters.Mappings
@@ -8,10 +8,10 @@ namespace Adapters.Mappings
     {
         public SubAreaMappings()
         {
-            CreateMap<CreateSubAreaInput, CreateSubAreaDTO>().ReverseMap();
-            CreateMap<UpdateSubAreaInput, UpdateSubAreaDTO>().ReverseMap();
-            CreateMap<ResumedReadSubAreaOutput, ResumedReadSubAreaDTO>().ReverseMap();
-            CreateMap<DetailedReadSubAreaOutput, DetailedReadSubAreaDTO>()
+            CreateMap<CreateSubAreaInput, CreateSubAreaRequest>().ReverseMap();
+            CreateMap<UpdateSubAreaInput, UpdateSubAreaRequest>().ReverseMap();
+            CreateMap<ResumedReadSubAreaOutput, ResumedReadSubAreaResponse>().ReverseMap();
+            CreateMap<DetailedReadSubAreaOutput, DetailedReadSubAreaResponse>()
                 .ForMember(dest => dest.Area, opt => opt.MapFrom(src => src.Area))
                 .ForPath(dest => dest.Area!.MainArea, opt => opt.MapFrom(src => src.Area!.MainArea))
                 .ReverseMap();

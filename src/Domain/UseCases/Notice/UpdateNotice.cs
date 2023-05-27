@@ -20,17 +20,17 @@ namespace Domain.UseCases
         }
         #endregion
 
-        public async Task<DetailedReadNoticeOutput> Execute(Guid? id, UpdateNoticeInput dto)
+        public async Task<DetailedReadNoticeOutput> Execute(Guid? id, UpdateNoticeInput input)
         {
             // Verifica se o id foi informado
             if (id == null)
                 throw new ArgumentNullException(nameof(id));
 
             // Verifica se as datas foram informadas
-            if (dto.StartDate == null)
-                throw new ArgumentNullException(nameof(dto.StartDate));
-            if (dto.FinalDate == null)
-                throw new ArgumentNullException(nameof(dto.FinalDate));
+            if (input.StartDate == null)
+                throw new ArgumentNullException(nameof(input.StartDate));
+            if (input.FinalDate == null)
+                throw new ArgumentNullException(nameof(input.FinalDate));
 
             // Recupera entidade que será atualizada
             var entity = await _repository.GetById(id);
@@ -44,13 +44,13 @@ namespace Domain.UseCases
                 throw new Exception("O Edital informado já foi excluído.");
 
             // Salva arquivo no repositório e atualiza atributo DocUrl
-            if (dto.File != null)
-                entity.DocUrl = await _storageFileService.UploadFileAsync(dto.File, entity.DocUrl);
+            if (input.File != null)
+                entity.DocUrl = await _storageFileService.UploadFileAsync(input.File, entity.DocUrl);
 
             // Atualiza atributos permitidos
-            entity.StartDate = dto.StartDate;
-            entity.FinalDate = dto.FinalDate;
-            entity.Description = dto.Description;
+            entity.StartDate = input.StartDate;
+            entity.FinalDate = input.FinalDate;
+            entity.Description = input.Description;
 
             // Salva entidade atualizada no banco
             var model = await _repository.Update(entity);

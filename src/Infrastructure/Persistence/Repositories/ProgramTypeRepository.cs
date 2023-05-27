@@ -31,6 +31,7 @@ namespace Infrastructure.Persistence.Repositories
         public async Task<ProgramType?> GetById(Guid? id) =>
             await _context.ProgramTypes
                 .IgnoreQueryFilters()
+                .AsAsyncEnumerable()
                 .FirstOrDefaultAsync(x => x.Id == id);
 
         public async Task<ProgramType> Delete(Guid? id)

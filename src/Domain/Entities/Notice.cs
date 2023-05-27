@@ -15,7 +15,7 @@ namespace Domain.Entities
             get { return _startDate; }
             set
             {
-                DomainExceptionValidation.When(!value.HasValue,
+                EntityExceptionValidation.When(!value.HasValue,
                     ExceptionMessageFactory.Invalid("Data Inicial"));
                 _startDate = value.HasValue ? value.Value.ToUniversalTime() : null;
             }
@@ -27,7 +27,7 @@ namespace Domain.Entities
             get { return _finalDate; }
             set
             {
-                DomainExceptionValidation.When(!value.HasValue,
+                EntityExceptionValidation.When(!value.HasValue,
                     ExceptionMessageFactory.Invalid("Data Final"));
                 _finalDate = value.HasValue ? value.Value.ToUniversalTime() : null;
             }
@@ -41,7 +41,7 @@ namespace Domain.Entities
             get { return _docUrl; }
             set
             {
-                DomainExceptionValidation.When(string.IsNullOrEmpty(value),
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Invalid("URL do Edital"));
                 _docUrl = value;
             }

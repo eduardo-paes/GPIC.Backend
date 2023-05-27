@@ -1,5 +1,5 @@
-using Adapters.DTOs.SubArea;
-using Adapters.Proxies;
+using Adapters.Gateways.SubArea;
+using Adapters.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,14 +14,14 @@ namespace Infrastructure.WebAPI.Controllers
     public class SubAreaController : ControllerBase
     {
         #region Global Scope
-        private readonly ISubAreaService _service;
+        private readonly ISubAreaPresenterController _service;
         private readonly ILogger<SubAreaController> _logger;
         /// <summary>
         /// Construtor do Controller de Sub Área.
         /// </summary>
         /// <param name="service"></param>
         /// <param name="logger"></param>
-        public SubAreaController(ISubAreaService service, ILogger<SubAreaController> logger)
+        public SubAreaController(ISubAreaPresenterController service, ILogger<SubAreaController> logger)
         {
             _service = service;
             _logger = logger;
@@ -36,7 +36,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna sub área correspondente</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<DetailedReadSubAreaDTO>> GetById(Guid? id)
+        public async Task<ActionResult<DetailedReadSubAreaResponse>> GetById(Guid? id)
         {
             if (id == null)
             {
@@ -66,7 +66,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna todas as sub áreas ativas da área</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<ResumedReadSubAreaDTO>>> GetSubAreasByArea(Guid? areaId, int skip = 0, int take = 50)
+        public async Task<ActionResult<IEnumerable<ResumedReadSubAreaResponse>>> GetSubAreasByArea(Guid? areaId, int skip = 0, int take = 50)
         {
             if (areaId == null)
             {
@@ -95,11 +95,11 @@ namespace Infrastructure.WebAPI.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadSubAreaDTO>> Create([FromBody] CreateSubAreaDTO dto)
+        public async Task<ActionResult<DetailedReadSubAreaResponse>> Create([FromBody] CreateSubAreaRequest request)
         {
             try
             {
-                var model = await _service.Create(dto) as DetailedReadSubAreaDTO;
+                var model = await _service.Create(request) as DetailedReadSubAreaResponse;
                 _logger.LogInformation("Sub Área criada: {id}", model?.Id);
                 return Ok(model);
             }
@@ -118,11 +118,11 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna sub área atualizada</response>
         [HttpPut("{id}")]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadSubAreaDTO>> Update(Guid? id, [FromBody] UpdateSubAreaDTO dto)
+        public async Task<ActionResult<DetailedReadSubAreaResponse>> Update(Guid? id, [FromBody] UpdateSubAreaRequest request)
         {
             try
             {
-                var model = await _service.Update(id, dto) as DetailedReadSubAreaDTO;
+                var model = await _service.Update(id, request) as DetailedReadSubAreaResponse;
                 _logger.LogInformation("Sub Área atualizada: {id}", model?.Id);
                 return Ok(model);
             }
@@ -141,7 +141,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna sub área removida</response>
         [HttpDelete("{id}")]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadSubAreaDTO>> Delete(Guid? id)
+        public async Task<ActionResult<DetailedReadSubAreaResponse>> Delete(Guid? id)
         {
             if (id == null)
             {
@@ -152,7 +152,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _service.Delete(id.Value) as DetailedReadSubAreaDTO;
+                var model = await _service.Delete(id.Value) as DetailedReadSubAreaResponse;
                 _logger.LogInformation("Sub Área removida: {id}", model?.Id);
                 return Ok(model);
             }

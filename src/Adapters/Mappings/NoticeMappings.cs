@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Adapters.DTOs.Notice;
+using Adapters.Gateways.Notice;
 using Domain.Contracts.Notice;
 
 namespace Adapters.Mappings
@@ -8,10 +8,10 @@ namespace Adapters.Mappings
     {
         public NoticeMappings()
         {
-            CreateMap<CreateNoticeInput, CreateNoticeDTO>().ReverseMap();
-            CreateMap<UpdateNoticeInput, UpdateNoticeDTO>().ReverseMap();
-            CreateMap<ResumedReadNoticeOutput, ResumedReadNoticeDTO>().ReverseMap();
-            CreateMap<DetailedReadNoticeOutput, DetailedReadNoticeDTO>().ReverseMap();
+            CreateMap<CreateNoticeInput, CreateNoticeRequest>().ReverseMap();
+            CreateMap<UpdateNoticeInput, UpdateNoticeRequest>().ReverseMap();
+            CreateMap<ResumedReadNoticeOutput, ResumedReadNoticeResponse>().ReverseMap();
+            CreateMap<DetailedReadNoticeOutput, DetailedReadNoticeResponse>().ReverseMap();
         }
     }
 }

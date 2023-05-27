@@ -30,7 +30,7 @@ Criando as Migrations iniciais para criação das tabelas do banco de dados:
 
 ```bash
 cd src/Infrastructure/WebAPI
-dotnet ef migrations add UpdateNotices --project ../Persistence/Persistence.csproj
+dotnet ef migrations add Initialize --project ../Persistence/Persistence.csproj
 ```
 
 Executando as Migrations:

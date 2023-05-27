@@ -15,11 +15,11 @@ namespace Domain.Entities
             get { return _name; }
             set
             {
-                DomainExceptionValidation.When(string.IsNullOrEmpty(value),
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("name"));
-                DomainExceptionValidation.When(value?.Length < 3,
+                EntityExceptionValidation.When(value?.Length < 3,
                     ExceptionMessageFactory.MinLength("name", 3));
-                DomainExceptionValidation.When(value?.Length > 300,
+                EntityExceptionValidation.When(value?.Length > 300,
                     ExceptionMessageFactory.MaxLength("name", 300));
                 _name = value;
             }
@@ -31,11 +31,11 @@ namespace Domain.Entities
             get { return _email; }
             set
             {
-                DomainExceptionValidation.When(string.IsNullOrEmpty(value),
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("email"));
-                DomainExceptionValidation.When(value?.Length > 300,
+                EntityExceptionValidation.When(value?.Length > 300,
                     ExceptionMessageFactory.MaxLength("email", 300));
-                DomainExceptionValidation.When(ValidateEmail(value!),
+                EntityExceptionValidation.When(ValidateEmail(value!),
                     ExceptionMessageFactory.InvalidEmail("email"));
                 _email = value;
             }
@@ -47,11 +47,11 @@ namespace Domain.Entities
             get { return _password; }
             set
             {
-                DomainExceptionValidation.When(string.IsNullOrEmpty(value),
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("password"));
-                DomainExceptionValidation.When(value?.Length < 6,
+                EntityExceptionValidation.When(value?.Length < 6,
                     ExceptionMessageFactory.MinLength("password", 6));
-                DomainExceptionValidation.When(value?.Length > 300,
+                EntityExceptionValidation.When(value?.Length > 300,
                     ExceptionMessageFactory.MaxLength("password", 300));
                 _password = value;
             }
@@ -63,14 +63,14 @@ namespace Domain.Entities
             get { return _cpf; }
             set
             {
-                DomainExceptionValidation.When(string.IsNullOrEmpty(value),
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("cpf"));
 
                 // Extract only numbers from cpf
                 value = GetOnlyNumbers(value);
-                DomainExceptionValidation.When(value?.Length != 11,
+                EntityExceptionValidation.When(value?.Length != 11,
                     ExceptionMessageFactory.WithLength("cpf", 11));
-                DomainExceptionValidation.When(ValidateCPF(value!),
+                EntityExceptionValidation.When(ValidateCPF(value!),
                     ExceptionMessageFactory.InvalidCpf());
                 _cpf = value;
             }
@@ -82,7 +82,7 @@ namespace Domain.Entities
             get { return _role; }
             set
             {
-                DomainExceptionValidation.When(value == null,
+                EntityExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required("role"));
                 _role = value;
             }
@@ -97,9 +97,9 @@ namespace Domain.Entities
             {
                 if (!IsConfirmed)
                 {
-                    DomainExceptionValidation.When(string.IsNullOrEmpty(value),
+                    EntityExceptionValidation.When(string.IsNullOrEmpty(value),
                         ExceptionMessageFactory.Required("validationCode"));
-                    DomainExceptionValidation.When(value?.Length > 6,
+                    EntityExceptionValidation.When(value?.Length > 6,
                         ExceptionMessageFactory.MaxLength("validationCode", 6));
                     _validationCode = value;
                 }
@@ -115,7 +115,7 @@ namespace Domain.Entities
                 if (string.IsNullOrEmpty(value))
                     return;
 
-                DomainExceptionValidation.When(value?.Length > 6,
+                EntityExceptionValidation.When(value?.Length > 6,
                     ExceptionMessageFactory.MaxLength("forgotPasswordToken", 6));
                 _forgotPasswordToken = value;
             }
@@ -159,9 +159,9 @@ namespace Domain.Entities
 
         internal void ConfirmUserEmail(string validationCode)
         {
-            DomainExceptionValidation.When(IsConfirmed,
+            EntityExceptionValidation.When(IsConfirmed,
                 "O e-mail do usuário já foi confirmado.");
-            DomainExceptionValidation.When(ValidationCode != validationCode,
+            EntityExceptionValidation.When(ValidationCode != validationCode,
                 "Código de validação inválido.");
             IsConfirmed = true;
             ValidationCode = null;

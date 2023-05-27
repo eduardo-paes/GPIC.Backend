@@ -17,7 +17,7 @@ namespace Domain.UseCases
         }
         #endregion
 
-        public async Task<UserReadOutput> Execute(Guid? id, UserUpdateInput dto)
+        public async Task<UserReadOutput> Execute(Guid? id, UserUpdateInput input)
         {
             // Verifica se o id informado é nulo
             if (id == null)
@@ -28,8 +28,8 @@ namespace Domain.UseCases
                 ?? throw new Exception("Nenhum usuário encontrato para o id informado.");
 
             // Atualiza atributos permitidos
-            user.Name = dto.Name;
-            user.CPF = dto.CPF;
+            user.Name = input.Name;
+            user.CPF = input.CPF;
 
             // Salva usuário atualizado no banco
             var entity = await _repository.Update(user);

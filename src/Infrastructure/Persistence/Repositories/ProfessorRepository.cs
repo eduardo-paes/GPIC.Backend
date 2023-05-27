@@ -32,6 +32,7 @@ namespace Infrastructure.Persistence.Repositories
             await _context.Professors
                 .Include(x => x.User)
                 .IgnoreQueryFilters()
+                .AsAsyncEnumerable()
                 .FirstOrDefaultAsync(x => x.Id == id);
 
         public async Task<Professor> Delete(Guid? id)

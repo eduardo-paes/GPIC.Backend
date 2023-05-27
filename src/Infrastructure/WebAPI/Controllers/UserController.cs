@@ -1,6 +1,6 @@
 using System.Security.Claims;
-using Adapters.DTOs.User;
-using Adapters.Proxies;
+using Adapters.Gateways.User;
+using Adapters.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,14 +15,14 @@ namespace Infrastructure.WebAPI.Controllers
     public class UserController : ControllerBase
     {
         #region Global Scope
-        private readonly IUserService _service;
+        private readonly IUserPresenterController _service;
         private readonly ILogger<UserController> _logger;
         /// <summary>
         /// Construtor do Controller de Usuário.
         /// </summary>
         /// <param name="service"></param>
         /// <param name="logger"></param>
-        public UserController(IUserService service, ILogger<UserController> logger)
+        public UserController(IUserPresenterController service, ILogger<UserController> logger)
         {
             _service = service;
             _logger = logger;
@@ -37,7 +37,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna todos os usuários ativos</response>
         [HttpGet("{id}", Name = "GetUserById")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<UserReadDTO>>> GetById(Guid? id)
+        public async Task<ActionResult<IEnumerable<UserReadResponse>>> GetById(Guid? id)
         {
             if (id == null)
             {
@@ -67,7 +67,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna todos os usuários ativos</response>
         [HttpGet("Active/", Name = "GetAllActiveUsers")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<UserReadDTO>>> GetAllActive(int skip = 0, int take = 50)
+        public async Task<ActionResult<IEnumerable<UserReadResponse>>> GetAllActive(int skip = 0, int take = 50)
         {
             var models = await _service.GetActiveUsers(skip, take);
             if (models == null)
@@ -88,7 +88,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna todos os usuários ativos</response>
         [HttpGet("Inactive/", Name = "GetAllInactiveUsers")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<UserReadDTO>>> GetAllInactive(int skip = 0, int take = 50)
+        public async Task<ActionResult<IEnumerable<UserReadResponse>>> GetAllInactive(int skip = 0, int take = 50)
         {
             var models = await _service.GetInactiveUsers(skip, take);
             if (models == null)
@@ -109,7 +109,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna usuário atualizado</response>
         [HttpPut(Name = "UpdateUser")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<UserReadDTO>> Update([FromBody] UserUpdateDTO dto)
+        public async Task<ActionResult<UserReadResponse>> Update([FromBody] UserUpdateRequest request)
         {
             try
             {
@@ -134,7 +134,7 @@ namespace Infrastructure.WebAPI.Controllers
                 var idUser = Guid.Parse(idClaim.Value);
 
                 // Atualiza o usuário e retorna o usuário atualizado
-                var model = await _service.UpdateUser(idUser, dto);
+                var model = await _service.UpdateUser(idUser, request);
 
                 _logger.LogInformation("Usuário atualizado: {id}", model.Id);
                 return Ok(model);
@@ -155,7 +155,7 @@ namespace Infrastructure.WebAPI.Controllers
         [HttpPut("Active/{id}", Name = "ActivateUser")]
         [Authorize(Roles = "ADMIN")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<UserReadDTO>> Activate(Guid? id)
+        public async Task<ActionResult<UserReadResponse>> Activate(Guid? id)
         {
             if (id == null)
             {
@@ -186,7 +186,7 @@ namespace Infrastructure.WebAPI.Controllers
         [HttpPut("Inactive/{id}", Name = "DeactivateUser")]
         [Authorize(Roles = "ADMIN")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<UserReadDTO>> Deactivate(Guid? id)
+        public async Task<ActionResult<UserReadResponse>> Deactivate(Guid? id)
         {
             if (id == null)
             {

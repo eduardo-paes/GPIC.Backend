@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Adapters.DTOs.Campus;
+using Adapters.Gateways.Campus;
 using Domain.Contracts.Campus;
 
 namespace Adapters.Mappings
@@ -8,10 +8,10 @@ namespace Adapters.Mappings
     {
         public CampusMappings()
         {
-            CreateMap<CreateCampusInput, CreateCampusDTO>().ReverseMap();
-            CreateMap<UpdateCampusInput, UpdateCampusDTO>().ReverseMap();
-            CreateMap<ResumedReadCampusOutput, ResumedReadCampusDTO>().ReverseMap();
-            CreateMap<DetailedReadCampusOutput, DetailedReadCampusDTO>().ReverseMap();
+            CreateMap<CreateCampusInput, CreateCampusRequest>().ReverseMap();
+            CreateMap<UpdateCampusInput, UpdateCampusRequest>().ReverseMap();
+            CreateMap<ResumedReadCampusOutput, ResumedReadCampusResponse>().ReverseMap();
+            CreateMap<DetailedReadCampusOutput, DetailedReadCampusResponse>().ReverseMap();
         }
     }
 }

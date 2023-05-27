@@ -42,6 +42,7 @@ namespace Infrastructure.Persistence.Repositories
                 .Include(x => x.Area)
                 .Include(x => x.Area != null ? x.Area.MainArea : null)
                 .IgnoreQueryFilters()
+                .AsAsyncEnumerable()
                 .FirstOrDefaultAsync(x => x.Id == id);
 
         public async Task<SubArea> Delete(Guid? id)

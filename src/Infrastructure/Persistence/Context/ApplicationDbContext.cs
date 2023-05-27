@@ -26,11 +26,11 @@ namespace Infrastructure.Persistence.Context
         public DbSet<Professor> Professors { get; set; }
         public DbSet<ProgramType> ProgramTypes { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<StudentAssistanceScholarship> AssistanceScholarships { get; set; }
         public DbSet<SubArea> SubAreas { get; set; }
         public DbSet<User> Users { get; set; }
 
         //public DbSet<Project> Projects { get; set; }
-        //public DbSet<StudentAssistanceScholarship> AssistanceScholarships { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

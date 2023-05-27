@@ -1,5 +1,5 @@
-using Adapters.DTOs.Notice;
-using Adapters.Proxies;
+using Adapters.Gateways.Notice;
+using Adapters.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,14 +14,14 @@ namespace Infrastructure.WebAPI.Controllers
     public class NoticeController : ControllerBase
     {
         #region Global Scope
-        private readonly INoticeService _service;
+        private readonly INoticePresenterController _service;
         private readonly ILogger<NoticeController> _logger;
         /// <summary>
         /// Construtor do Controller de Edital.
         /// </summary>
         /// <param name="service"></param>
         /// <param name="logger"></param>
-        public NoticeController(INoticeService service, ILogger<NoticeController> logger)
+        public NoticeController(INoticePresenterController service, ILogger<NoticeController> logger)
         {
             _service = service;
             _logger = logger;
@@ -36,7 +36,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna edital correspondente</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<DetailedReadNoticeDTO>> GetById(Guid? id)
+        public async Task<ActionResult<DetailedReadNoticeResponse>> GetById(Guid? id)
         {
             if (id == null)
             {
@@ -66,7 +66,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna todas os editais ativos</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<ResumedReadNoticeDTO>>> GetAll(int skip = 0, int take = 50)
+        public async Task<ActionResult<IEnumerable<ResumedReadNoticeResponse>>> GetAll(int skip = 0, int take = 50)
         {
             var models = await _service.GetAll(skip, take);
             if (models == null)
@@ -88,11 +88,11 @@ namespace Infrastructure.WebAPI.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadNoticeDTO>> Create([FromForm] CreateNoticeDTO dto)
+        public async Task<ActionResult<DetailedReadNoticeResponse>> Create([FromForm] CreateNoticeRequest request)
         {
             try
             {
-                var model = await _service.Create(dto) as DetailedReadNoticeDTO;
+                var model = await _service.Create(request) as DetailedReadNoticeResponse;
                 _logger.LogInformation("Edital criado: {id}", model?.Id);
                 return Ok(model);
             }
@@ -111,11 +111,11 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna edital atualizado</response>
         [HttpPut("{id}")]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadNoticeDTO>> Update(Guid? id, [FromForm] UpdateNoticeDTO dto)
+        public async Task<ActionResult<DetailedReadNoticeResponse>> Update(Guid? id, [FromForm] UpdateNoticeRequest request)
         {
             try
             {
-                var model = await _service.Update(id, dto) as DetailedReadNoticeDTO;
+                var model = await _service.Update(id, request) as DetailedReadNoticeResponse;
                 _logger.LogInformation("Edital atualizado: {id}", model?.Id);
                 return Ok(model);
             }
@@ -134,7 +134,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna edital removido</response>
         [HttpDelete("{id}")]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadNoticeDTO>> Delete(Guid? id)
+        public async Task<ActionResult<DetailedReadNoticeResponse>> Delete(Guid? id)
         {
             if (id == null)
             {
@@ -145,7 +145,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _service.Delete(id.Value) as DetailedReadNoticeDTO;
+                var model = await _service.Delete(id.Value) as DetailedReadNoticeResponse;
                 _logger.LogInformation("Edital removido: {id}", model?.Id);
                 return Ok(model);
             }

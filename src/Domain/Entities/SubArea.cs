@@ -12,7 +12,7 @@ namespace Domain.Entities
             get { return _areaId; }
             set
             {
-                DomainExceptionValidation.When(!value.HasValue,
+                EntityExceptionValidation.When(!value.HasValue,
                     ExceptionMessageFactory.Invalid("areaId"));
                 _areaId = value;
             }
@@ -23,11 +23,11 @@ namespace Domain.Entities
             get { return _code; }
             set
             {
-                DomainExceptionValidation.When(string.IsNullOrEmpty(value),
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required("code"));
-                DomainExceptionValidation.When(value?.Length < 3,
+                EntityExceptionValidation.When(value?.Length < 3,
                     ExceptionMessageFactory.MinLength("code", 3));
-                DomainExceptionValidation.When(value?.Length > 100,
+                EntityExceptionValidation.When(value?.Length > 100,
                     ExceptionMessageFactory.MaxLength("code", 100));
                 _code = value;
             }
@@ -38,11 +38,11 @@ namespace Domain.Entities
             get { return _name; }
             set
             {
-                DomainExceptionValidation.When(string.IsNullOrEmpty(value),
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
                 ExceptionMessageFactory.Required("name"));
-                DomainExceptionValidation.When(value?.Length < 3,
+                EntityExceptionValidation.When(value?.Length < 3,
                     ExceptionMessageFactory.MinLength("name", 3));
-                DomainExceptionValidation.When(value?.Length > 300,
+                EntityExceptionValidation.When(value?.Length > 300,
                     ExceptionMessageFactory.MaxLength("name", 300));
                 _name = value;
             }

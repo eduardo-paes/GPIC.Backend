@@ -24,6 +24,7 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<IEnumerable<User>> GetInactiveUsers(int skip, int take) => await _context.Users
             .IgnoreQueryFilters()
+            .AsAsyncEnumerable()
             .Where(x => x.DeletedAt != null)
             .Skip(skip)
             .Take(take)

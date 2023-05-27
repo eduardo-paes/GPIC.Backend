@@ -16,10 +16,10 @@ namespace Domain.Entities
             get { return _birthDate; }
             set
             {
-                DomainExceptionValidation.When(value == default,
-                    ExceptionMessageFactory.Required("Data de Nascimento"));
-                DomainExceptionValidation.When(value >= DateTime.Now,
-                    ExceptionMessageFactory.LessThan("Data de Nascimento", "data atual"));
+                EntityExceptionValidation.When(value == default,
+                    ExceptionMessageFactory.Required(nameof(value)));
+                EntityExceptionValidation.When(value >= DateTime.Now,
+                    ExceptionMessageFactory.LessThan(nameof(value), DateTime.Now.ToString("dd/MM/yyyy")));
                 _birthDate = value;
             }
         }
@@ -30,8 +30,8 @@ namespace Domain.Entities
             get { return _rg; }
             set
             {
-                DomainExceptionValidation.When(value <= 0,
-                    ExceptionMessageFactory.Required("RG"));
+                EntityExceptionValidation.When(value <= 0,
+                    ExceptionMessageFactory.Required(nameof(value)));
                 _rg = value;
             }
         }
@@ -45,10 +45,10 @@ namespace Domain.Entities
             get { return _issuingAgency; }
             set
             {
-                DomainExceptionValidation.When(string.IsNullOrEmpty(value),
-                    ExceptionMessageFactory.Required("Órgão Emissor"));
-                DomainExceptionValidation.When(value?.Length > 50,
-                    ExceptionMessageFactory.MaxLength("Órgão Emissor", 50));
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
+                    ExceptionMessageFactory.Required(nameof(value)));
+                EntityExceptionValidation.When(value?.Length > 50,
+                    ExceptionMessageFactory.MaxLength(nameof(value), 50));
                 _issuingAgency = value;
             }
         }
@@ -62,10 +62,10 @@ namespace Domain.Entities
             get { return _dispatchDate; }
             set
             {
-                DomainExceptionValidation.When(value == default,
-                    ExceptionMessageFactory.Required("Data de expedição da identidade"));
-                DomainExceptionValidation.When(value >= DateTime.Now,
-                    ExceptionMessageFactory.LessThan("Data de expedição da identidade", "data atual"));
+                EntityExceptionValidation.When(value == default,
+                    ExceptionMessageFactory.Required(nameof(value)));
+                EntityExceptionValidation.When(value >= DateTime.Now,
+                    ExceptionMessageFactory.LessThan(nameof(value), DateTime.Now.ToString("dd/MM/yyyy")));
                 _dispatchDate = value;
             }
         }
@@ -79,10 +79,10 @@ namespace Domain.Entities
             get { return _gender; }
             set
             {
-                DomainExceptionValidation.When(value == null,
-                    ExceptionMessageFactory.Required("Sexo"));
-                if (!Enum.TryParse<EGender>(value.ToString(), out var _))
-                    throw new Exception($"Valor inválido para Sexo: {value}");
+                EntityExceptionValidation.When(value == null,
+                    ExceptionMessageFactory.Required(nameof(value)));
+                EntityExceptionValidation.When(!Enum.TryParse<EGender>(value.ToString(), out var _),
+                    ExceptionMessageFactory.Invalid(nameof(value)));
                 _gender = value;
             }
         }
@@ -96,10 +96,10 @@ namespace Domain.Entities
             get { return _race; }
             set
             {
-                DomainExceptionValidation.When(value == null,
-                    ExceptionMessageFactory.Required("Cor/Raça"));
-                if (!Enum.TryParse<ERace>(value.ToString(), out var _))
-                    throw new Exception($"Valor inválido para Cor/Raça: {value}");
+                EntityExceptionValidation.When(value == null,
+                    ExceptionMessageFactory.Required(nameof(value)));
+                EntityExceptionValidation.When(!Enum.TryParse<ERace>(value.ToString(), out var _),
+                    ExceptionMessageFactory.Invalid(nameof(value)));
                 _race = value;
             }
         }
@@ -113,10 +113,10 @@ namespace Domain.Entities
             get { return _homeAddress; }
             set
             {
-                DomainExceptionValidation.When(string.IsNullOrEmpty(value),
-                    ExceptionMessageFactory.Required("Endereço Residencial"));
-                DomainExceptionValidation.When(value?.Length > 300,
-                    ExceptionMessageFactory.MaxLength("Endereço Residencial", 300));
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
+                    ExceptionMessageFactory.Required(nameof(value)));
+                EntityExceptionValidation.When(value?.Length > 300,
+                    ExceptionMessageFactory.MaxLength(nameof(value), 300));
                 _homeAddress = value;
             }
         }
@@ -127,10 +127,10 @@ namespace Domain.Entities
             get { return _city; }
             set
             {
-                DomainExceptionValidation.When(string.IsNullOrEmpty(value),
-                    ExceptionMessageFactory.Required("Cidade"));
-                DomainExceptionValidation.When(value?.Length > 50,
-                    ExceptionMessageFactory.MaxLength("Cidade", 50));
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
+                    ExceptionMessageFactory.Required(nameof(value)));
+                EntityExceptionValidation.When(value?.Length > 50,
+                    ExceptionMessageFactory.MaxLength(nameof(value), 50));
                 _city = value;
             }
         }
@@ -141,10 +141,10 @@ namespace Domain.Entities
             get { return _uf; }
             set
             {
-                DomainExceptionValidation.When(string.IsNullOrEmpty(value),
-                    ExceptionMessageFactory.Required("UF"));
-                DomainExceptionValidation.When(value?.Length != 2,
-                    ExceptionMessageFactory.WithLength("UF", 2));
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
+                    ExceptionMessageFactory.Required(nameof(value)));
+                EntityExceptionValidation.When(value?.Length != 2,
+                    ExceptionMessageFactory.WithLength(nameof(value), 2));
                 _uf = value;
             }
         }
@@ -155,8 +155,8 @@ namespace Domain.Entities
             get { return _cep; }
             set
             {
-                DomainExceptionValidation.When(value <= 0,
-                    ExceptionMessageFactory.Invalid("CEP"));
+                EntityExceptionValidation.When(value <= 0,
+                    ExceptionMessageFactory.Invalid(nameof(value)));
                 _cep = value;
             }
         }
@@ -168,8 +168,8 @@ namespace Domain.Entities
             set
             {
                 if (value == null) return;
-                DomainExceptionValidation.When(value <= 0,
-                    ExceptionMessageFactory.Invalid("DDD do telefone"));
+                EntityExceptionValidation.When(value <= 0,
+                    ExceptionMessageFactory.Invalid(nameof(value)));
                 _phoneDDD = value;
             }
         }
@@ -181,8 +181,8 @@ namespace Domain.Entities
             set
             {
                 if (value == null) return;
-                DomainExceptionValidation.When(value <= 0,
-                    ExceptionMessageFactory.Invalid("telefone"));
+                EntityExceptionValidation.When(value <= 0,
+                    ExceptionMessageFactory.Invalid(nameof(value)));
                 _phone = value;
             }
         }
@@ -194,8 +194,8 @@ namespace Domain.Entities
             set
             {
                 if (value == null) return;
-                DomainExceptionValidation.When(value <= 0,
-                    ExceptionMessageFactory.Invalid("DDD do celular"));
+                EntityExceptionValidation.When(value <= 0,
+                    ExceptionMessageFactory.Invalid(nameof(value)));
                 _cellPhoneDDD = value;
             }
         }
@@ -207,8 +207,8 @@ namespace Domain.Entities
             set
             {
                 if (value == null) return;
-                DomainExceptionValidation.When(value <= 0,
-                    ExceptionMessageFactory.Invalid("celular"));
+                EntityExceptionValidation.When(value <= 0,
+                    ExceptionMessageFactory.Invalid(nameof(value)));
                 _cellPhone = value;
             }
         }
@@ -219,8 +219,8 @@ namespace Domain.Entities
             get { return _campusId; }
             set
             {
-                DomainExceptionValidation.When(value == null || value == Guid.Empty,
-                    ExceptionMessageFactory.Required("campus"));
+                EntityExceptionValidation.When(value == null || value == Guid.Empty,
+                    ExceptionMessageFactory.Required(nameof(value)));
                 _campusId = value;
             }
         }
@@ -231,8 +231,8 @@ namespace Domain.Entities
             get { return _courseId; }
             set
             {
-                DomainExceptionValidation.When(value == null || value == Guid.Empty,
-                    ExceptionMessageFactory.Required("course"));
+                EntityExceptionValidation.When(value == null || value == Guid.Empty,
+                    ExceptionMessageFactory.Required(nameof(value)));
                 _courseId = value;
             }
         }
@@ -246,26 +246,24 @@ namespace Domain.Entities
             get { return _startYear; }
             set
             {
-                DomainExceptionValidation.When(string.IsNullOrEmpty(value),
-                    ExceptionMessageFactory.Required("ano de entrada"));
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
+                    ExceptionMessageFactory.Required(nameof(value)));
                 _startYear = value;
             }
         }
 
         /// <summary>
-        /// O aluno possui bolsa de assistência estudantil
+        /// Tipo de Bolsa de Assistência Estudantil do aluno
         /// </summary>
-        private EStudentAssistanceProgram? _studentAssistanceProgram;
-        public EStudentAssistanceProgram? StudentAssistanceProgram
+        private Guid? _studentAssistanceScholarshipId;
+        public Guid? StudentAssistanceScholarshipId
         {
-            get { return _studentAssistanceProgram; }
+            get { return _studentAssistanceScholarshipId; }
             set
             {
-                DomainExceptionValidation.When(value == null,
-                    ExceptionMessageFactory.Required("bolsa de estudos"));
-                if (!Enum.TryParse<EStudentAssistanceProgram>(value.ToString(), out var _))
-                    throw new Exception($"Valor inválido para Bolsa de estudos: {value}");
-                _studentAssistanceProgram = value;
+                EntityExceptionValidation.When(value == null,
+                    ExceptionMessageFactory.Required(nameof(value)));
+                _studentAssistanceScholarshipId = value;
             }
         }
 
@@ -279,8 +277,8 @@ namespace Domain.Entities
             set
             {
                 {
-                    DomainExceptionValidation.When(value == null,
-                        ExceptionMessageFactory.Required("id do usuário"));
+                    EntityExceptionValidation.When(value == null,
+                        ExceptionMessageFactory.Required(nameof(value)));
                     _userId = value;
                 }
             }
@@ -289,6 +287,7 @@ namespace Domain.Entities
         public virtual User? User { get; }
         public virtual Campus? Campus { get; }
         public virtual Course? Course { get; }
+        public virtual StudentAssistanceScholarship? StudentAssistanceScholarship { get; }
         #endregion
 
         #region Constructors
@@ -310,7 +309,7 @@ namespace Domain.Entities
             Guid? campusId,
             Guid? courseId,
             string startYear,
-            EStudentAssistanceProgram? studentAssistanceProgram,
+            Guid? studentAssistanceProgramId,
             Guid? userId)
         {
             BirthDate = birthDate;
@@ -330,7 +329,7 @@ namespace Domain.Entities
             CampusId = campusId;
             CourseId = courseId;
             StartYear = startYear;
-            StudentAssistanceProgram = studentAssistanceProgram;
+            StudentAssistanceScholarshipId = studentAssistanceProgramId;
             UserId = userId;
         }
 

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Adapters.DTOs.Course;
+using Adapters.Gateways.Course;
 using Domain.Contracts.Course;
 
 namespace Adapters.Mappings
@@ -8,10 +8,10 @@ namespace Adapters.Mappings
     {
         public CourseMappings()
         {
-            CreateMap<CreateCourseInput, CreateCourseDTO>().ReverseMap();
-            CreateMap<UpdateCourseInput, UpdateCourseDTO>().ReverseMap();
-            CreateMap<ResumedReadCourseOutput, ResumedReadCourseDTO>().ReverseMap();
-            CreateMap<DetailedReadCourseOutput, DetailedReadCourseDTO>().ReverseMap();
+            CreateMap<CreateCourseInput, CreateCourseRequest>().ReverseMap();
+            CreateMap<UpdateCourseInput, UpdateCourseRequest>().ReverseMap();
+            CreateMap<ResumedReadCourseOutput, ResumedReadCourseResponse>().ReverseMap();
+            CreateMap<DetailedReadCourseOutput, DetailedReadCourseResponse>().ReverseMap();
         }
     }
 }

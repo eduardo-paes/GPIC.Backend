@@ -18,7 +18,7 @@ namespace Domain.UseCases
         }
         #endregion
 
-        public async Task<DetailedReadStudentOutput> Execute(Guid? id, UpdateStudentInput dto)
+        public async Task<DetailedReadStudentOutput> Execute(Guid? id, UpdateStudentInput input)
         {
             // Verifica se o id foi informado
             if (id == null)
@@ -36,26 +36,26 @@ namespace Domain.UseCases
                 throw new Exception("O estudante informado já foi excluído.");
 
             // Atualiza atributos permitidos
-            student.BirthDate = dto.BirthDate;
-            student.CampusId = dto.CampusId;
-            student.CellPhone = dto.CellPhone;
-            student.CellPhoneDDD = dto.CellPhoneDDD;
-            student.CEP = dto.CEP;
-            student.City = dto.City;
-            student.CourseId = dto.CourseId;
-            student.DispatchDate = dto.DispatchDate;
-            student.HomeAddress = dto.HomeAddress;
-            student.IssuingAgency = dto.IssuingAgency;
-            student.Phone = dto.Phone;
-            student.PhoneDDD = dto.PhoneDDD;
-            student.RG = dto.RG;
-            student.StartYear = dto.StartYear;
-            student.UF = dto.UF;
+            student.BirthDate = input.BirthDate;
+            student.CampusId = input.CampusId;
+            student.CellPhone = input.CellPhone;
+            student.CellPhoneDDD = input.CellPhoneDDD;
+            student.CEP = input.CEP;
+            student.City = input.City;
+            student.CourseId = input.CourseId;
+            student.DispatchDate = input.DispatchDate;
+            student.HomeAddress = input.HomeAddress;
+            student.IssuingAgency = input.IssuingAgency;
+            student.Phone = input.Phone;
+            student.PhoneDDD = input.PhoneDDD;
+            student.RG = input.RG;
+            student.StartYear = input.StartYear;
+            student.UF = input.UF;
+            student.StudentAssistanceScholarshipId = input.StudentAssistanceScholarshipId;
 
             // Enums            
-            student.Race = (ERace)dto.Race;
-            student.Gender = (EGender)dto.Gender;
-            student.StudentAssistanceProgram = (EStudentAssistanceProgram)dto.StudentAssistanceProgram;
+            student.Race = (ERace)input.Race;
+            student.Gender = (EGender)input.Gender;
 
             // Atualiza estudante com as informações fornecidas
             student = await _studentRepository.Update(student);

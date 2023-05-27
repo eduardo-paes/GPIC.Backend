@@ -17,15 +17,15 @@ namespace Domain.UseCases
         }
         #endregion
 
-        public async Task<DetailedReadProgramTypeOutput> Execute(Guid? id, UpdateProgramTypeInput dto)
+        public async Task<DetailedReadProgramTypeOutput> Execute(Guid? id, UpdateProgramTypeInput input)
         {
             // Verifica se o id foi informado
             if (id == null)
                 throw new ArgumentNullException(nameof(id));
 
             // Verifica se nome foi informado
-            if (string.IsNullOrEmpty(dto.Name))
-                throw new ArgumentNullException(nameof(dto.Name));
+            if (string.IsNullOrEmpty(input.Name))
+                throw new ArgumentNullException(nameof(input.Name));
 
             // Recupera entidade que será atualizada
             var entity = await _repository.GetById(id);
@@ -39,13 +39,13 @@ namespace Domain.UseCases
                 throw new Exception("O Tipo de Programa informado já foi excluído.");
 
             // Verifica se o nome já está sendo usado
-            if (!string.Equals(entity.Name, dto.Name, StringComparison.OrdinalIgnoreCase)
-                && await _repository.GetProgramTypeByName(dto.Name) != null)
+            if (!string.Equals(entity.Name, input.Name, StringComparison.OrdinalIgnoreCase)
+                && await _repository.GetProgramTypeByName(input.Name) != null)
                 throw new Exception($"Já existe um Tipo de Programa para o nome informado.");
 
             // Atualiza atributos permitidos
-            entity.Name = dto.Name;
-            entity.Description = dto.Description;
+            entity.Name = input.Name;
+            entity.Description = input.Description;
 
             // Salva entidade atualizada no banco
             var model = await _repository.Update(entity);

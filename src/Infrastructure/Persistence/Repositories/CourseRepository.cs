@@ -1,4 +1,8 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Threading.Tasks;
 using Domain.Entities;
 using Domain.Interfaces.Repositories;
 using Infrastructure.Persistence.Context;
@@ -31,6 +35,7 @@ namespace Infrastructure.Persistence.Repositories
         public async Task<Course?> GetById(Guid? id) =>
             await _context.Courses
                 .IgnoreQueryFilters()
+                .AsAsyncEnumerable()
                 .FirstOrDefaultAsync(x => x.Id == id);
 
         public async Task<Course> Delete(Guid? id)

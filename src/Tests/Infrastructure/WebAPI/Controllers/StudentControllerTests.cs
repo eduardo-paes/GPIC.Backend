@@ -1,5 +1,5 @@
 using System.Net.Http.Json;
-using Adapters.DTOs.Student;
+using Adapters.Gateways.Student;
 using Infrastructure.WebAPI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
@@ -36,7 +36,7 @@ namespace Tests.Infrastructure.WebAPI.Controllers
 
             // Assert
             response.EnsureSuccessStatusCode(); // Status Code 200-299
-            var students = await response.Content.ReadFromJsonAsync<IEnumerable<ResumedReadStudentDTO>>();
+            var students = await response.Content.ReadFromJsonAsync<IEnumerable<ResumedReadStudentResponse>>();
             Assert.NotNull(students);
             Assert.Greater(students.Count(), 0);
         }
@@ -46,12 +46,12 @@ namespace Tests.Infrastructure.WebAPI.Controllers
         // {
         //     // Arrange
         //     var getAll = await _client.GetAsync(_baseAddress);
-        //     var students = await getAll.Content.ReadFromJsonAsync<IEnumerable<ResumedReadStudentDTO>>();
+        //     var students = await getAll.Content.ReadFromJsonAsync<IEnumerable<ResumedReadStudentResponse>>();
         //     var expectedStudent = students.First();
 
         //     // Act
         //     var response = await _client.GetAsync($"{_baseAddress}/{expectedStudent.Id}");
-        //     var actualStudent = await response.Content.ReadFromJsonAsync<ResumedReadStudentDTO>();
+        //     var actualStudent = await response.Content.ReadFromJsonAsync<ResumedReadStudentResponse>();
 
         //     // Assert
         //     response.EnsureSuccessStatusCode(); // Status Code 200-299
@@ -67,7 +67,7 @@ namespace Tests.Infrastructure.WebAPI.Controllers
 
             // Act
             var response = await _client.PostAsJsonAsync(_baseAddress, createStudent);
-            var createdStudent = await response.Content.ReadFromJsonAsync<DetailedReadStudentDTO>();
+            var createdStudent = await response.Content.ReadFromJsonAsync<DetailedReadStudentResponse>();
 
             // Assert
             response.EnsureSuccessStatusCode(); // Status Code 200-299
@@ -81,18 +81,18 @@ namespace Tests.Infrastructure.WebAPI.Controllers
         // {
         //     // Arrange
         //     var getAll = await _client.GetAsync(_baseAddress);
-        //     var students = await getAll.Content.ReadFromJsonAsync<IEnumerable<ResumedReadStudentDTO>>();
-        //     var updateStudentDTO = new DetailedReadStudentDTO { Id = students.First().Id, Name = "Update Test" };
+        //     var students = await getAll.Content.ReadFromJsonAsync<IEnumerable<ResumedReadStudentResponse>>();
+        //     var UpdateStudentRequest = new DetailedReadStudentResponse { Id = students.First().Id, Name = "Update Test" };
 
         //     // Act
-        //     var response = await _client.PutAsJsonAsync($"{_baseAddress}/{updateStudentDTO.Id}", updateStudentDTO);
-        //     var updatedStudent = await response.Content.ReadFromJsonAsync<DetailedReadStudentDTO>();
+        //     var response = await _client.PutAsJsonAsync($"{_baseAddress}/{UpdateStudentRequest.Id}", UpdateStudentRequest);
+        //     var updatedStudent = await response.Content.ReadFromJsonAsync<DetailedReadStudentResponse>();
 
         //     // Assert
         //     response.EnsureSuccessStatusCode(); // Status Code 200-299
         //     Assert.NotNull(updatedStudent);
-        //     Assert.AreEqual(updateStudentDTO.Id, updatedStudent?.Id);
-        //     Assert.AreEqual(updateStudentDTO.Name, updatedStudent?.Name);
+        //     Assert.AreEqual(UpdateStudentRequest.Id, updatedStudent?.Id);
+        //     Assert.AreEqual(UpdateStudentRequest.Name, updatedStudent?.Name);
         // }
 
         // [Test, Order(5)]
@@ -100,12 +100,12 @@ namespace Tests.Infrastructure.WebAPI.Controllers
         // {
         //     // Arrange
         //     var getAll = await _client.GetAsync(_baseAddress);
-        //     var students = await getAll.Content.ReadFromJsonAsync<IEnumerable<ResumedReadStudentDTO>>();
+        //     var students = await getAll.Content.ReadFromJsonAsync<IEnumerable<ResumedReadStudentResponse>>();
         //     var id = students.First().Id;
 
         //     // Act
         //     var response = await _client.DeleteAsync($"{_baseAddress}/{id}");
-        //     var deletedStudent = await response.Content.ReadFromJsonAsync<DetailedReadStudentDTO>();
+        //     var deletedStudent = await response.Content.ReadFromJsonAsync<DetailedReadStudentResponse>();
 
         //     // Assert
         //     response.EnsureSuccessStatusCode(); // Status Code 200-299

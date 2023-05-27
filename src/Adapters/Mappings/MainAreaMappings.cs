@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Adapters.DTOs.MainArea;
+using Adapters.Gateways.MainArea;
 using Domain.Contracts.MainArea;
 
 namespace Adapters.Mappings
@@ -8,10 +8,10 @@ namespace Adapters.Mappings
     {
         public MainAreaMappings()
         {
-            CreateMap<CreateMainAreaInput, CreateMainAreaDTO>().ReverseMap();
-            CreateMap<UpdateMainAreaInput, UpdateMainAreaDTO>().ReverseMap();
-            CreateMap<ResumedReadMainAreaOutput, ResumedReadMainAreaDTO>().ReverseMap();
-            CreateMap<DetailedMainAreaOutput, DetailedMainAreaDTO>().ReverseMap();
+            CreateMap<CreateMainAreaInput, CreateMainAreaRequest>().ReverseMap();
+            CreateMap<UpdateMainAreaInput, UpdateMainAreaRequest>().ReverseMap();
+            CreateMap<ResumedReadMainAreaOutput, ResumedReadMainAreaResponse>().ReverseMap();
+            CreateMap<DetailedMainAreaOutput, DetailedMainAreaResponse>().ReverseMap();
         }
     }
 }

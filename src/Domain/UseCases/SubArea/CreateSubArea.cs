@@ -21,18 +21,18 @@ namespace Domain.UseCases
         }
         #endregion
 
-        public async Task<DetailedReadSubAreaOutput> Execute(CreateSubAreaInput dto)
+        public async Task<DetailedReadSubAreaOutput> Execute(CreateSubAreaInput input)
         {
-            var entity = await _subAreaRepository.GetByCode(dto.Code);
+            var entity = await _subAreaRepository.GetByCode(input.Code);
             if (entity != null)
-                throw new Exception($"Já existe uma Subárea para o código {dto.Code}");
+                throw new Exception($"Já existe uma Subárea para o código {input.Code}");
 
             // Verifica id da área
-            if (dto.AreaId == null)
+            if (input.AreaId == null)
                 throw new Exception("O Id da Área não pode ser vazio.");
 
             // Valida se existe área
-            var area = await _areaRepository.GetById(dto.AreaId);
+            var area = await _areaRepository.GetById(input.AreaId);
 
             // Verifica se Área existe
             if (area == null)
@@ -42,7 +42,7 @@ namespace Domain.UseCases
                 throw new Exception("A Área informada está inativa.");
 
             // Cria nova área
-            entity = await _subAreaRepository.Create(_mapper.Map<Domain.Entities.SubArea>(dto));
+            entity = await _subAreaRepository.Create(_mapper.Map<Domain.Entities.SubArea>(input));
             return _mapper.Map<DetailedReadSubAreaOutput>(entity);
         }
     }

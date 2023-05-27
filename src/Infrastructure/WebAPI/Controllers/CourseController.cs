@@ -1,5 +1,5 @@
-using Adapters.DTOs.Course;
-using Adapters.Proxies;
+using Adapters.Gateways.Course;
+using Adapters.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,14 +14,14 @@ namespace Infrastructure.WebAPI.Controllers
     public class CourseController : ControllerBase
     {
         #region Global Scope
-        private readonly ICourseService _service;
+        private readonly ICoursePresenterController _service;
         private readonly ILogger<CourseController> _logger;
         /// <summary>
         /// Construtor do Controller de Curso.
         /// </summary>
         /// <param name="service"></param>
         /// <param name="logger"></param>
-        public CourseController(ICourseService service, ILogger<CourseController> logger)
+        public CourseController(ICoursePresenterController service, ILogger<CourseController> logger)
         {
             _service = service;
             _logger = logger;
@@ -36,7 +36,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna curso correspondente</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<DetailedReadCourseDTO>> GetById(Guid? id)
+        public async Task<ActionResult<DetailedReadCourseResponse>> GetById(Guid? id)
         {
             if (id == null)
             {
@@ -66,7 +66,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna todas os cursos ativos</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<ResumedReadCourseDTO>>> GetAll(int skip = 0, int take = 50)
+        public async Task<ActionResult<IEnumerable<ResumedReadCourseResponse>>> GetAll(int skip = 0, int take = 50)
         {
             var models = await _service.GetAll(skip, take);
             if (models == null)
@@ -88,11 +88,11 @@ namespace Infrastructure.WebAPI.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadCourseDTO>> Create([FromBody] CreateCourseDTO dto)
+        public async Task<ActionResult<DetailedReadCourseResponse>> Create([FromBody] CreateCourseRequest request)
         {
             try
             {
-                var model = await _service.Create(dto) as DetailedReadCourseDTO;
+                var model = await _service.Create(request) as DetailedReadCourseResponse;
                 _logger.LogInformation("Curso criado: {id}", model?.Id);
                 return Ok(model);
             }
@@ -111,11 +111,11 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna curso atualizado</response>
         [HttpPut("{id}")]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadCourseDTO>> Update(Guid? id, [FromBody] UpdateCourseDTO dto)
+        public async Task<ActionResult<DetailedReadCourseResponse>> Update(Guid? id, [FromBody] UpdateCourseRequest request)
         {
             try
             {
-                var model = await _service.Update(id, dto) as DetailedReadCourseDTO;
+                var model = await _service.Update(id, request) as DetailedReadCourseResponse;
                 _logger.LogInformation("Curso atualizado: {id}", model?.Id);
                 return Ok(model);
             }
@@ -134,7 +134,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna curso removido</response>
         [HttpDelete("{id}")]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadCourseDTO>> Delete(Guid? id)
+        public async Task<ActionResult<DetailedReadCourseResponse>> Delete(Guid? id)
         {
             if (id == null)
             {
@@ -145,7 +145,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _service.Delete(id.Value) as DetailedReadCourseDTO;
+                var model = await _service.Delete(id.Value) as DetailedReadCourseResponse;
                 _logger.LogInformation("Curso removido: {id}", model?.Id);
                 return Ok(model);
             }

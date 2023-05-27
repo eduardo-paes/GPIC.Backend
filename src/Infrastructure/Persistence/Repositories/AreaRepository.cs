@@ -39,6 +39,7 @@ namespace Infrastructure.Persistence.Repositories
             return await _context.Areas
                 .Include(x => x.MainArea)
                 .IgnoreQueryFilters()
+                .AsAsyncEnumerable()
                 .FirstOrDefaultAsync(x => x.Id == id)
                 ?? throw new Exception($"Nenhuma Área encontrada para o id {id}");
         }

@@ -1,9 +1,9 @@
-using Adapters.DTOs.Base;
+using Adapters.Gateways.Base;
 using System.ComponentModel.DataAnnotations;
 
 namespace Tests.Infrastructure.WebAPI.Mocks
 {
-    public class CreateUserMock : RequestDTO
+    public class CreateUserMock : Request
     {
         public string? Name { get; set; } = "John Doe";
         public string? CPF { get; set; } = "12345678910";

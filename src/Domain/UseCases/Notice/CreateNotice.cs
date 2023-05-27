@@ -20,25 +20,25 @@ namespace Domain.UseCases
         }
         #endregion
 
-        public async Task<DetailedReadNoticeOutput> Execute(CreateNoticeInput dto)
+        public async Task<DetailedReadNoticeOutput> Execute(CreateNoticeInput input)
         {
             // Verifica se as datas foram informadas
-            if (dto.StartDate == null)
-                throw new ArgumentNullException(nameof(dto.StartDate));
-            if (dto.FinalDate == null)
-                throw new ArgumentNullException(nameof(dto.FinalDate));
+            if (input.StartDate == null)
+                throw new ArgumentNullException(nameof(input.StartDate));
+            if (input.FinalDate == null)
+                throw new ArgumentNullException(nameof(input.FinalDate));
 
             // Verifica se já existe um edital para o período indicado
-            var entity = await _repository.GetNoticeByPeriod((DateTime)dto.StartDate, (DateTime)dto.FinalDate);
+            var entity = await _repository.GetNoticeByPeriod((DateTime)input.StartDate, (DateTime)input.FinalDate);
             if (entity != null)
                 throw new Exception($"Já existe um Edital para o período indicado.");
 
             // Salva arquivo no repositório e atualiza atributo DocUrl
-            if (dto.File != null)
-                dto.DocUrl = await _storageFileService.UploadFileAsync(dto.File);
+            if (input.File != null)
+                input.DocUrl = await _storageFileService.UploadFileAsync(input.File);
 
             // Cria entidade
-            entity = _mapper.Map<Entities.Notice>(dto);
+            entity = _mapper.Map<Entities.Notice>(input);
             entity = await _repository.Create(entity);
 
             // Salva entidade no banco

@@ -20,7 +20,7 @@ namespace Domain.Entities
             get => _title;
             set
             {
-                DomainExceptionValidation.When(string.IsNullOrWhiteSpace(value),
+                EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
                     ExceptionMessageFactory.Invalid(nameof(value)));
                 _title = value;
             }
@@ -32,7 +32,7 @@ namespace Domain.Entities
             get => _keyWord1;
             set
             {
-                DomainExceptionValidation.When(string.IsNullOrWhiteSpace(value),
+                EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
                     ExceptionMessageFactory.Invalid(nameof(value)));
                 _keyWord1 = value;
             }
@@ -44,7 +44,7 @@ namespace Domain.Entities
             get => _keyWord2;
             set
             {
-                DomainExceptionValidation.When(string.IsNullOrWhiteSpace(value),
+                EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
                     ExceptionMessageFactory.Invalid(nameof(value)));
                 _keyWord2 = value;
             }
@@ -56,7 +56,7 @@ namespace Domain.Entities
             get => _keyWord3;
             set
             {
-                DomainExceptionValidation.When(string.IsNullOrWhiteSpace(value),
+                EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
                     ExceptionMessageFactory.Invalid(nameof(value)));
                 _keyWord3 = value;
             }
@@ -81,9 +81,9 @@ namespace Domain.Entities
             get => _objective;
             set
             {
-                DomainExceptionValidation.When(string.IsNullOrWhiteSpace(value),
+                EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
                     ExceptionMessageFactory.Invalid(nameof(value)));
-                DomainExceptionValidation.When(value?.Length > 1500,
+                EntityExceptionValidation.When(value?.Length > 1500,
                     ExceptionMessageFactory.MaxLength(nameof(value), 1500));
                 _objective = value;
             }
@@ -98,9 +98,9 @@ namespace Domain.Entities
             get => _methodology;
             set
             {
-                DomainExceptionValidation.When(string.IsNullOrWhiteSpace(value),
+                EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
                     ExceptionMessageFactory.Invalid(nameof(value)));
-                DomainExceptionValidation.When(value?.Length > 1500,
+                EntityExceptionValidation.When(value?.Length > 1500,
                     ExceptionMessageFactory.MaxLength(nameof(value), 1500));
                 _methodology = value;
             }
@@ -115,9 +115,9 @@ namespace Domain.Entities
             get => _expectedResults;
             set
             {
-                DomainExceptionValidation.When(string.IsNullOrWhiteSpace(value),
+                EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
                     ExceptionMessageFactory.Invalid(nameof(value)));
-                DomainExceptionValidation.When(value?.Length > 1500,
+                EntityExceptionValidation.When(value?.Length > 1500,
                     ExceptionMessageFactory.MaxLength(nameof(value), 1500));
                 _expectedResults = value;
             }
@@ -132,7 +132,7 @@ namespace Domain.Entities
             get => _activitiesExecutionSchedule;
             set
             {
-                DomainExceptionValidation.When(string.IsNullOrWhiteSpace(value),
+                EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
                     ExceptionMessageFactory.Invalid(nameof(value)));
                 _activitiesExecutionSchedule = value;
             }
@@ -149,9 +149,9 @@ namespace Domain.Entities
             get => _workType1;
             set
             {
-                DomainExceptionValidation.When(value == null,
+                EntityExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required(nameof(value)));
-                DomainExceptionValidation.When(value < 0,
+                EntityExceptionValidation.When(value < 0,
                     ExceptionMessageFactory.Invalid(nameof(value)));
                 _workType1 = value;
             }
@@ -166,9 +166,9 @@ namespace Domain.Entities
             get => _workType2;
             set
             {
-                DomainExceptionValidation.When(value == null,
+                EntityExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required(nameof(value)));
-                DomainExceptionValidation.When(value < 0,
+                EntityExceptionValidation.When(value < 0,
                     ExceptionMessageFactory.Invalid(nameof(value)));
                 _workType2 = value;
             }
@@ -183,9 +183,9 @@ namespace Domain.Entities
             get => _indexedConferenceProceedings;
             set
             {
-                DomainExceptionValidation.When(value == null,
+                EntityExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required(nameof(value)));
-                DomainExceptionValidation.When(value < 0,
+                EntityExceptionValidation.When(value < 0,
                     ExceptionMessageFactory.Invalid(nameof(value)));
                 _indexedConferenceProceedings = value;
             }
@@ -200,9 +200,9 @@ namespace Domain.Entities
             get => _notIndexedConferenceProceedings;
             set
             {
-                DomainExceptionValidation.When(value == null,
+                EntityExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required(nameof(value)));
-                DomainExceptionValidation.When(value < 0,
+                EntityExceptionValidation.When(value < 0,
                     ExceptionMessageFactory.Invalid(nameof(value)));
                 _notIndexedConferenceProceedings = value;
             }
@@ -217,9 +217,9 @@ namespace Domain.Entities
             get => _completedBook;
             set
             {
-                DomainExceptionValidation.When(value == null,
+                EntityExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required(nameof(value)));
-                DomainExceptionValidation.When(value < 0,
+                EntityExceptionValidation.When(value < 0,
                     ExceptionMessageFactory.Invalid(nameof(value)));
                 _completedBook = value;
             }
@@ -234,9 +234,9 @@ namespace Domain.Entities
             get => _organizedBook;
             set
             {
-                DomainExceptionValidation.When(value == null,
+                EntityExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required(nameof(value)));
-                DomainExceptionValidation.When(value < 0,
+                EntityExceptionValidation.When(value < 0,
                     ExceptionMessageFactory.Invalid(nameof(value)));
                 _organizedBook = value;
             }
@@ -251,9 +251,9 @@ namespace Domain.Entities
             get => _bookChapters;
             set
             {
-                DomainExceptionValidation.When(value == null,
+                EntityExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required(nameof(value)));
-                DomainExceptionValidation.When(value < 0,
+                EntityExceptionValidation.When(value < 0,
                     ExceptionMessageFactory.Invalid(nameof(value)));
                 _bookChapters = value;
             }
@@ -268,9 +268,9 @@ namespace Domain.Entities
             get => _bookTranslations;
             set
             {
-                DomainExceptionValidation.When(value == null,
+                EntityExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required(nameof(value)));
-                DomainExceptionValidation.When(value < 0,
+                EntityExceptionValidation.When(value < 0,
                     ExceptionMessageFactory.Invalid(nameof(value)));
                 _bookTranslations = value;
             }
@@ -285,9 +285,9 @@ namespace Domain.Entities
             get => _participationEditorialCommittees;
             set
             {
-                DomainExceptionValidation.When(value == null,
+                EntityExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required(nameof(value)));
-                DomainExceptionValidation.When(value < 0,
+                EntityExceptionValidation.When(value < 0,
                     ExceptionMessageFactory.Invalid(nameof(value)));
                 _participationEditorialCommittees = value;
             }
@@ -304,9 +304,9 @@ namespace Domain.Entities
             get => _fullComposerSoloOrchestraAllTracks;
             set
             {
-                DomainExceptionValidation.When(value == null,
+                EntityExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required(nameof(value)));
-                DomainExceptionValidation.When(value < 0,
+                EntityExceptionValidation.When(value < 0,
                     ExceptionMessageFactory.Invalid(nameof(value)));
                 _fullComposerSoloOrchestraAllTracks = value;
             }
@@ -321,9 +321,9 @@ namespace Domain.Entities
             get => _fullComposerSoloOrchestraCompilation;
             set
             {
-                DomainExceptionValidation.When(value == null,
+                EntityExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required(nameof(value)));
-                DomainExceptionValidation.When(value < 0,
+                EntityExceptionValidation.When(value < 0,
                     ExceptionMessageFactory.Invalid(nameof(value)));
                 _fullComposerSoloOrchestraCompilation = value;
             }
@@ -338,9 +338,9 @@ namespace Domain.Entities
             get => _chamberOrchestraInterpretation;
             set
             {
-                DomainExceptionValidation.When(value == null,
+                EntityExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required(nameof(value)));
-                DomainExceptionValidation.When(value < 0,
+                EntityExceptionValidation.When(value < 0,
                     ExceptionMessageFactory.Invalid(nameof(value)));
                 _chamberOrchestraInterpretation = value;
             }
@@ -355,9 +355,9 @@ namespace Domain.Entities
             get => _individualAndCollectiveArtPerformances;
             set
             {
-                DomainExceptionValidation.When(value == null,
+                EntityExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required(nameof(value)));
-                DomainExceptionValidation.When(value < 0,
+                EntityExceptionValidation.When(value < 0,
                     ExceptionMessageFactory.Invalid(nameof(value)));
                 _individualAndCollectiveArtPerformances = value;
             }
@@ -372,9 +372,9 @@ namespace Domain.Entities
             get => _scientificCulturalArtisticCollectionsCuratorship;
             set
             {
-                DomainExceptionValidation.When(value == null,
+                EntityExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required(nameof(value)));
-                DomainExceptionValidation.When(value < 0,
+                EntityExceptionValidation.When(value < 0,
                     ExceptionMessageFactory.Invalid(nameof(value)));
                 _scientificCulturalArtisticCollectionsCuratorship = value;
             }
@@ -392,9 +392,9 @@ namespace Domain.Entities
             get => _patentLetter;
             set
             {
-                DomainExceptionValidation.When(value == null,
+                EntityExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required(nameof(value)));
-                DomainExceptionValidation.When(value < 0,
+                EntityExceptionValidation.When(value < 0,
                     ExceptionMessageFactory.Invalid(nameof(value)));
                 _patentLetter = value;
             }
@@ -409,9 +409,9 @@ namespace Domain.Entities
             get => _patentDeposit;
             set
             {
-                DomainExceptionValidation.When(value == null,
+                EntityExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required(nameof(value)));
-                DomainExceptionValidation.When(value < 0,
+                EntityExceptionValidation.When(value < 0,
                     ExceptionMessageFactory.Invalid(nameof(value)));
                 _patentDeposit = value;
             }
@@ -426,9 +426,9 @@ namespace Domain.Entities
             get => _softwareRegistration;
             set
             {
-                DomainExceptionValidation.When(value == null,
+                EntityExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required(nameof(value)));
-                DomainExceptionValidation.When(value < 0,
+                EntityExceptionValidation.When(value < 0,
                     ExceptionMessageFactory.Invalid(nameof(value)));
                 _softwareRegistration = value;
             }
@@ -445,9 +445,9 @@ namespace Domain.Entities
             get => _apIndex;
             set
             {
-                DomainExceptionValidation.When(value == null,
+                EntityExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required(nameof(value)));
-                DomainExceptionValidation.When(value < 0,
+                EntityExceptionValidation.When(value < 0,
                     ExceptionMessageFactory.Invalid(nameof(value)));
                 _apIndex = value;
             }
@@ -520,7 +520,7 @@ namespace Domain.Entities
             set
             {
                 {
-                    DomainExceptionValidation.When(value == null,
+                    EntityExceptionValidation.When(value == null,
                         ExceptionMessageFactory.Required(nameof(value)));
                     _programTypeId = value;
                 }
@@ -534,7 +534,7 @@ namespace Domain.Entities
             set
             {
                 {
-                    DomainExceptionValidation.When(value == null,
+                    EntityExceptionValidation.When(value == null,
                         ExceptionMessageFactory.Required(nameof(value)));
                     _professorId = value;
                 }
@@ -548,7 +548,7 @@ namespace Domain.Entities
             set
             {
                 {
-                    DomainExceptionValidation.When(value == null,
+                    EntityExceptionValidation.When(value == null,
                         ExceptionMessageFactory.Required(nameof(value)));
                     _studentId = value;
                 }
@@ -562,7 +562,7 @@ namespace Domain.Entities
             set
             {
                 {
-                    DomainExceptionValidation.When(value == null,
+                    EntityExceptionValidation.When(value == null,
                         ExceptionMessageFactory.Required(nameof(value)));
                     _subAreaId = value;
                 }
@@ -576,7 +576,7 @@ namespace Domain.Entities
             private set
             {
                 {
-                    DomainExceptionValidation.When(value == null,
+                    EntityExceptionValidation.When(value == null,
                         ExceptionMessageFactory.Required(nameof(value)));
                     _noticeId = value;
                 }

@@ -1,5 +1,5 @@
-using Adapters.DTOs.Campus;
-using Adapters.Proxies;
+using Adapters.Gateways.Campus;
+using Adapters.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,14 +14,14 @@ namespace Infrastructure.WebAPI.Controllers
     public class CampusController : ControllerBase
     {
         #region Global Scope
-        private readonly ICampusService _service;
+        private readonly ICampusPresenterController _service;
         private readonly ILogger<CampusController> _logger;
         /// <summary>
         /// Construtor do Controller de Campus.
         /// </summary>
         /// <param name="service"></param>
         /// <param name="logger"></param>
-        public CampusController(ICampusService service, ILogger<CampusController> logger)
+        public CampusController(ICampusPresenterController service, ILogger<CampusController> logger)
         {
             _service = service;
             _logger = logger;
@@ -36,7 +36,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna campus correspondente</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<DetailedReadCampusDTO>> GetById(Guid? id)
+        public async Task<ActionResult<DetailedReadCampusResponse>> GetById(Guid? id)
         {
             if (id == null)
             {
@@ -66,7 +66,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna todas os campus ativos</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<ResumedReadCampusDTO>>> GetAll(int skip = 0, int take = 50)
+        public async Task<ActionResult<IEnumerable<ResumedReadCampusResponse>>> GetAll(int skip = 0, int take = 50)
         {
             var models = await _service.GetAll(skip, take);
             if (models == null)
@@ -88,11 +88,11 @@ namespace Infrastructure.WebAPI.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadCampusDTO>> Create([FromBody] CreateCampusDTO dto)
+        public async Task<ActionResult<DetailedReadCampusResponse>> Create([FromBody] CreateCampusRequest request)
         {
             try
             {
-                var model = await _service.Create(dto) as DetailedReadCampusDTO;
+                var model = await _service.Create(request) as DetailedReadCampusResponse;
                 _logger.LogInformation("Campus criado: {id}", model?.Id);
                 return Ok(model);
             }
@@ -111,11 +111,11 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna campus atualizado</response>
         [HttpPut("{id}")]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadCampusDTO>> Update(Guid? id, [FromBody] UpdateCampusDTO dto)
+        public async Task<ActionResult<DetailedReadCampusResponse>> Update(Guid? id, [FromBody] UpdateCampusRequest request)
         {
             try
             {
-                var model = await _service.Update(id, dto) as DetailedReadCampusDTO;
+                var model = await _service.Update(id, request) as DetailedReadCampusResponse;
                 _logger.LogInformation("Campus atualizado: {id}", model?.Id);
                 return Ok(model);
             }
@@ -134,7 +134,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna campus removido</response>
         [HttpDelete("{id}")]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadCampusDTO>> Delete(Guid? id)
+        public async Task<ActionResult<DetailedReadCampusResponse>> Delete(Guid? id)
         {
             if (id == null)
             {
@@ -145,7 +145,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _service.Delete(id.Value) as DetailedReadCampusDTO;
+                var model = await _service.Delete(id.Value) as DetailedReadCampusResponse;
                 _logger.LogInformation("Campus removido: {id}", model?.Id);
                 return Ok(model);
             }

@@ -1,6 +1,6 @@
 ﻿using Adapters.Mappings;
-using Adapters.Proxies;
-using Adapters.Services;
+using Adapters.Interfaces;
+using Adapters.PresenterController;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.IoC;
@@ -8,21 +8,21 @@ public static class DependencyAdaptersInjection
 {
     public static IServiceCollection AddAdapters(this IServiceCollection services)
     {
-        #region Services
-        services.AddScoped<IAreaService, AreaService>();
-        services.AddScoped<IAuthService, AuthService>();
-        services.AddScoped<ICampusService, CampusService>();
-        services.AddScoped<ICourseService, CourseService>();
-        services.AddScoped<IMainAreaService, MainAreaService>();
-        services.AddScoped<INoticeService, NoticeService>();
-        services.AddScoped<IProfessorService, ProfessorService>();
-        services.AddScoped<IProgramTypeService, ProgramTypeService>();
-        services.AddScoped<IStudentService, StudentService>();
-        services.AddScoped<ISubAreaService, SubAreaService>();
-        services.AddScoped<IUserService, UserService>();
+        #region PresenterControllers
+        services.AddScoped<IAreaPresenterController, AreaPresenterController>();
+        services.AddScoped<IAuthPresenterController, AuthPresenterController>();
+        services.AddScoped<ICampusPresenterController, CampusPresenterController>();
+        services.AddScoped<ICoursePresenterController, CoursePresenterController>();
+        services.AddScoped<IMainAreaPresenterController, MainAreaPresenterController>();
+        services.AddScoped<INoticePresenterController, NoticePresenterController>();
+        services.AddScoped<IProfessorPresenterController, ProfessorPresenterController>();
+        services.AddScoped<IProgramTypePresenterController, ProgramTypePresenterController>();
+        services.AddScoped<IStudentPresenterController, StudentPresenterController>();
+        services.AddScoped<ISubAreaPresenterController, SubAreaPresenterController>();
+        services.AddScoped<IUserPresenterController, UserPresenterController>();
         #endregion
 
-        #region DTO Mappers
+        #region Gateways Mappers
         services.AddAutoMapper(typeof(AreaMappings));
         services.AddAutoMapper(typeof(AuthMappings));
         services.AddAutoMapper(typeof(CampusMappings));

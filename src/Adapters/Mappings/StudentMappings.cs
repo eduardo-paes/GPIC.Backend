@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Adapters.DTOs.Student;
+using Adapters.Gateways.Student;
 using Domain.Contracts.Student;
 
 namespace Adapters.Mappings
@@ -8,10 +8,10 @@ namespace Adapters.Mappings
     {
         public StudentMappings()
         {
-            CreateMap<CreateStudentInput, CreateStudentDTO>().ReverseMap();
-            CreateMap<UpdateStudentInput, UpdateStudentDTO>().ReverseMap();
-            CreateMap<ResumedReadStudentOutput, ResumedReadStudentDTO>().ReverseMap();
-            CreateMap<DetailedReadStudentOutput, DetailedReadStudentDTO>()
+            CreateMap<CreateStudentInput, CreateStudentRequest>().ReverseMap();
+            CreateMap<UpdateStudentInput, UpdateStudentRequest>().ReverseMap();
+            CreateMap<ResumedReadStudentOutput, ResumedReadStudentResponse>().ReverseMap();
+            CreateMap<DetailedReadStudentOutput, DetailedReadStudentResponse>()
                 .ForMember(dest => dest.User,
                     opt => opt.MapFrom(src => src.User))
                 .ForMember(dest => dest.Campus,

@@ -25,7 +25,7 @@ public static class DependencyInjection
         services.AddScoped<IDotEnvSecrets, DotEnvSecrets>();
 
         #region Inicialização do banco de dados
-#if DEBUG
+#if !DEBUG
         services.AddDbContext<ApplicationDbContext>(
             o => o.UseNpgsql(configuration.GetConnectionString("DefaultConnection"),
             b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));

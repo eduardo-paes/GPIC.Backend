@@ -41,11 +41,6 @@ namespace Infrastructure.WebAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-            else
-            {
-                app.UseHsts();
-                app.UseHttpsRedirection();
-            }
 
             app.UseHsts();
             app.UseHttpsRedirection();

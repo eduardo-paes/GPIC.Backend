@@ -32,7 +32,7 @@ namespace Domain.Contracts.Student
         [Required]
         public string? StartYear { get; set; }
         [Required]
-        public int StudentAssistanceProgram { get; set; }
+        public Guid? StudentAssistanceScholarshipId { get; set; }
         #endregion
 
         #region Optional Properties
