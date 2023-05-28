@@ -4,8 +4,11 @@ namespace Domain.Entities.Enums
 {
     public enum EProjectStatus
     {
-        [Description("Aberto: neste status os dados do projeto devem ser completamente preenchidos para ser Submetido.")]
-        Open,
+        [Description("Aberto: Projeto aguardando ser completamente preenchido para então ser Submetido.")]
+        Opened,
+
+        [Description("Submetido: Projeto Submetido e aguardando avaliação por parte do Avaliador.")]
+        Submitted,
 
         [Description("Avaliação: neste status o projeto foi Submetido e se encontra disponível para avaliação por parte do Avaliador.")]
         Evaluation,
@@ -25,7 +28,7 @@ namespace Domain.Entities.Enums
         [Description("Pendente: neste status o projeto já recebeu toda a documentação necessária, mas essa não foi aprovada - os documentos podem ser reenviados dentro de um período de XX dias.")]
         Pending,
 
-        [Description("Cancelado: neste status o projeto foi cancelado por algum motivo.")]
+        [Description("Cancelado: Projeto cancelado pelo professor ou administrador.")]
         Cancelled,
 
         [Description("Encerrado: neste status o projeto já foi concluído e o Orientador possui 30 dias para entregar o Relatório Final, do contrário sua conta será suspensa por XX anos.")]

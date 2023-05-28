@@ -4,6 +4,6 @@ namespace Domain.Interfaces.UseCases.Project
 {
     public interface IRessubmitProject
     {
-        Task<ResumedReadProjectOutput> Execute(Guid? projectId, string? observation);
+        Task<ResumedReadProjectOutput> Execute(Guid? projectId, string? appealDescription);
     }
 }

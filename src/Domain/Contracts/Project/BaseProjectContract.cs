@@ -41,16 +41,36 @@ namespace Domain.Contracts.Project
         public int? SoftwareRegistration { get; set; }
         #endregion
 
+        #region Critérios de Avaliação
+        public int? APIndex { get; set; }
+        public int? Qualification { get; set; }
+        public int? ProjectProposalObjectives { get; set; }
+        public int? AcademicScientificProductionCoherence { get; set; }
+        public int? ProposalMethodologyAdaptation { get; set; }
+        public int? EffectiveContributionToResearch { get; set; }
+        #endregion
+
+        #region Resultados da Avaliação
         public int? Status { get; set; }
         public string? StatusDescription { get; set; }
+        public string? EvaluatorObservation { get; set; }
+        public string? AppealDescription { get; set; }
+        public string? AppealEvaluatorObservation { get; set; }
+        #endregion
 
+        #region Relacionamentos
         public Guid? ProgramTypeId { get; set; }
         public Guid? ProfessorId { get; set; }
         public Guid? StudentId { get; set; }
         public Guid? SubAreaId { get; set; }
         public Guid? NoticeId { get; set; }
-        public DateTime SubmitionDate { get; set; }
-        public DateTime RessubmitionDate { get; set; }
-        public DateTime CancelationDate { get; set; }
+        #endregion
+
+        #region Informações de Controle
+        public DateTime? SubmitionDate { get; set; }
+        public DateTime? RessubmitionDate { get; set; }
+        public DateTime? CancellationDate { get; set; }
+        public string? CancellationReason { get; set; }
+        #endregion
     }
 }

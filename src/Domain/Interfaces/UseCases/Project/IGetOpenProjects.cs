@@ -4,6 +4,6 @@ namespace Domain.Interfaces.UseCases
 {
     public interface IGetOpenProjects
     {
-        Task<IList<ResumedReadProjectOutput>> Execute(int? skip, int? take, bool onlyMyProjects = true);
+        Task<IList<ResumedReadProjectOutput>> Execute(int skip, int take, bool onlyMyProjects = true);
     }
 }

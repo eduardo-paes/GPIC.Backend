@@ -1,8 +1,6 @@
 using Domain.Contracts.Auth;
 using Domain.Interfaces.UseCases;
 using Domain.Interfaces.Repositories;
-using System.Threading.Tasks;
-using System;
 using Domain.Interfaces.Services;
 
 namespace Domain.UseCases
@@ -34,9 +32,8 @@ namespace Domain.UseCases
                 throw new ArgumentNullException(nameof(input.Token), "Token não informado.");
 
             // Busca o usuário pelo id
-            var entity = await _userRepository.GetById(input.Id);
-            if (entity == null)
-                throw new Exception("Nenhum usuário encontrato para o id informado.");
+            var entity = await _userRepository.GetById(input.Id)
+                ?? throw new Exception("Nenhum usuário encontrato para o id informado.");
 
             // Verifica se o token de validação é nulo
             if (string.IsNullOrEmpty(entity.ResetPasswordToken))

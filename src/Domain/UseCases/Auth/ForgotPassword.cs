@@ -23,9 +23,8 @@ namespace Domain.UseCases
                 throw new ArgumentNullException(nameof(email), "Email não informado.");
 
             // Busca usuário pelo email
-            var user = await _userRepository.GetUserByEmail(email);
-            if (user == null)
-                throw new Exception("Nenhum usuário encontrado para o email informado.");
+            var user = await _userRepository.GetUserByEmail(email)
+                ?? throw new Exception("Nenhum usuário encontrado para o email informado.");
 
             // Gera token de recuperação de senha
             user.GenerateResetPasswordToken();
