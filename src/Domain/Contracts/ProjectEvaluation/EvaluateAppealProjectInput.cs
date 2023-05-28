@@ -1,4 +1,4 @@
-namespace Domain.Contracts.Project;
+namespace Domain.Contracts.ProjectEvaluation;
 public class EvaluateAppealProjectInput
 {
     #region Informações Gerais da Avaliação

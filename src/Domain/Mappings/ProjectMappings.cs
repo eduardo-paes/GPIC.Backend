@@ -8,15 +8,10 @@ namespace Domain.Mappings
     {
         public ProjectMappings()
         {
-            // Projects
             CreateMap<Project, OpenProjectInput>().ReverseMap();
             CreateMap<Project, UpdateProjectInput>().ReverseMap();
             CreateMap<Project, ResumedReadProjectOutput>().ReverseMap();
             CreateMap<Project, DetailedReadProjectOutput>().ReverseMap();
-
-            // ProjectEvaluations
-            CreateMap<ProjectEvaluation, EvaluateSubmissionProjectInput>().ReverseMap();
-            CreateMap<ProjectEvaluation, EvaluateAppealProjectInput>().ReverseMap();
         }
     }
 }
