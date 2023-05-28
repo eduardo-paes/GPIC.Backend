@@ -11,4 +11,9 @@ public interface ITokenAuthenticationService
     /// <param name="role">Perfil do usuário</param>
     /// <returns>Token de autenticação.</returns>
     UserLoginOutput GenerateToken(Guid? id, string? userName, string? role);
+
+    /// <summary>
+    /// Retorna as claims do usuário autenticado.
+    /// </summary>
+    UserClaimsOutput GetUserAuthenticatedClaims();
 }

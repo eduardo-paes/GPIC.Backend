@@ -63,4 +63,28 @@ public class TokenAuthenticationService : ITokenAuthenticationService
             Expiration = expiration
         };
     }
+
+    /// <summary>
+    /// Retorna as claims do usuário autenticado.
+    /// </summary>
+    /// <returns>Id, Name e Role.</returns>
+    public UserClaimsOutput GetUserAuthenticatedClaims()
+    {
+        if (ClaimsPrincipal.Current == null)
+            throw new Exception("Usuário não autenticado.");
+
+        var claimsIdentity = ClaimsPrincipal.Current.Identity as ClaimsIdentity
+            ?? throw new Exception("Usuário não autenticado.");
+
+        var id = claimsIdentity.FindFirst(ClaimTypes.Sid)?.Value;
+        if (string.IsNullOrEmpty(id))
+            throw new Exception("Id do usuário não informado.");
+
+        return new UserClaimsOutput()
+        {
+            Id = Guid.Parse(id),
+            Name = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value,
+            Role = claimsIdentity.FindFirst(ClaimTypes.Role)?.Value
+        };
+    }
 }
