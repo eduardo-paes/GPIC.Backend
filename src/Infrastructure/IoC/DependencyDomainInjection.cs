@@ -11,6 +11,7 @@ public static class DependencyDomainInjection
     public static IServiceCollection AddDomain(this IServiceCollection services)
     {
         #region External Services
+        services.AddHttpContextAccessor();
         services.AddScoped<IHashService, HashService>();
         services.AddScoped<ITokenAuthenticationService, TokenAuthenticationService>();
 #if !DEBUG

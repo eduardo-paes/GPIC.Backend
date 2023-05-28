@@ -9,6 +9,6 @@ namespace Adapters.Interfaces
         Task<IEnumerable<UserReadResponse>> GetActiveUsers(int skip, int take);
         Task<IEnumerable<UserReadResponse>> GetInactiveUsers(int skip, int take);
         Task<UserReadResponse> GetUserById(Guid? id);
-        Task<UserReadResponse> UpdateUser(Guid? id, UserUpdateRequest request);
+        Task<UserReadResponse> UpdateUser(UserUpdateRequest request);
     }
 }

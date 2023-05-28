@@ -64,10 +64,10 @@ namespace Adapters.PresenterController
             return _mapper.Map<UserReadResponse>(result);
         }
 
-        public async Task<UserReadResponse> UpdateUser(Guid? id, UserUpdateRequest request)
+        public async Task<UserReadResponse> UpdateUser(UserUpdateRequest request)
         {
             var input = _mapper.Map<UserUpdateInput>(request);
-            var result = await _updateUser.Execute(id, input);
+            var result = await _updateUser.Execute(input);
             return _mapper.Map<UserReadResponse>(result);
         }
     }

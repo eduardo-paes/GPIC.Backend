@@ -1,6 +1,7 @@
 using AutoMapper;
 using Domain.Contracts.User;
 using Domain.Interfaces.Repositories;
+using Domain.Interfaces.Services;
 using Domain.Interfaces.UseCases;
 
 namespace Domain.UseCases
@@ -9,22 +10,27 @@ namespace Domain.UseCases
     {
         #region Global Scope
         private readonly IUserRepository _repository;
+        private readonly ITokenAuthenticationService _tokenAuthenticationService;
         private readonly IMapper _mapper;
-        public UpdateUser(IUserRepository repository, IMapper mapper)
+        public UpdateUser(IUserRepository repository, ITokenAuthenticationService tokenAuthenticationService, IMapper mapper)
         {
             _repository = repository;
+            _tokenAuthenticationService = tokenAuthenticationService;
             _mapper = mapper;
         }
         #endregion
 
-        public async Task<UserReadOutput> Execute(Guid? id, UserUpdateInput input)
+        public async Task<UserReadOutput> Execute(UserUpdateInput input)
         {
+            // Busca as claims do usuário autenticado
+            var userClaims = _tokenAuthenticationService.GetUserAuthenticatedClaims();
+
             // Verifica se o id informado é nulo
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
+            if (userClaims.Id == null)
+                throw new ArgumentNullException(nameof(userClaims.Id));
 
             // Busca usuário pelo id informado
-            var user = await _repository.GetById(id)
+            var user = await _repository.GetById(userClaims.Id)
                 ?? throw new Exception("Nenhum usuário encontrato para o id informado.");
 
             // Atualiza atributos permitidos

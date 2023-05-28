@@ -113,28 +113,8 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                // Recupera o usuário logado
-                if (User.Identity is not ClaimsIdentity identity)
-                {
-                    const string msg = "Não foi possível recuperar o usuário logado.";
-                    _logger.LogWarning(msg);
-                    return BadRequest(msg);
-                }
-
-                // Recupera o id do usuário logado
-                var idClaim = identity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Sid);
-                if (idClaim == null)
-                {
-                    const string msg = "Não foi possível recuperar o id do usuário logado.";
-                    _logger.LogWarning(msg);
-                    return BadRequest(msg);
-                }
-
-                // Converte o id do usuário logado para Guid
-                var idUser = Guid.Parse(idClaim.Value);
-
                 // Atualiza o usuário e retorna o usuário atualizado
-                var model = await _service.UpdateUser(idUser, request);
+                var model = await _service.UpdateUser(request);
 
                 _logger.LogInformation("Usuário atualizado: {id}", model.Id);
                 return Ok(model);

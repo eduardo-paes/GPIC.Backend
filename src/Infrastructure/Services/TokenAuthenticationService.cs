@@ -4,13 +4,20 @@ using Domain.Contracts.Auth;
 using Domain.Interfaces.Services;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.Http;
 
 namespace Infrastructure.Services;
 public class TokenAuthenticationService : ITokenAuthenticationService
 {
     #region Global Scope
     private readonly IDotEnvSecrets _dotEnvSecrets;
-    public TokenAuthenticationService(IDotEnvSecrets dotEnvSecrets) => _dotEnvSecrets = dotEnvSecrets;
+    private readonly IHttpContextAccessor _httpContextAccessor;
+
+    public TokenAuthenticationService(IHttpContextAccessor httpContextAccessor, IDotEnvSecrets dotEnvSecrets)
+    {
+        _httpContextAccessor = httpContextAccessor;
+        _dotEnvSecrets = dotEnvSecrets;
+    }
     #endregion
 
     public UserLoginOutput GenerateToken(Guid? id, string? userName, string? role)
@@ -70,16 +77,23 @@ public class TokenAuthenticationService : ITokenAuthenticationService
     /// <returns>Id, Name e Role.</returns>
     public UserClaimsOutput GetUserAuthenticatedClaims()
     {
-        if (ClaimsPrincipal.Current == null)
-            throw new Exception("Usuário não autenticado.");
+        // Get the current HttpContext to retrieve the claims principal
+        var httpContext = _httpContextAccessor.HttpContext;
 
-        var claimsIdentity = ClaimsPrincipal.Current.Identity as ClaimsIdentity
-            ?? throw new Exception("Usuário não autenticado.");
+        // Check if the user is authenticated
+        if (httpContext?.User.Identity == null || httpContext?.User.Identity.IsAuthenticated != true)
+            throw new Exception("User is not authenticated.");
 
+        // Get the claims principal
+        var claimsIdentity = httpContext.User.Identity as ClaimsIdentity
+            ?? throw new Exception("User is not authenticated.");
+
+        // Get the user's ID
         var id = claimsIdentity.FindFirst(ClaimTypes.Sid)?.Value;
         if (string.IsNullOrEmpty(id))
-            throw new Exception("Id do usuário não informado.");
+            throw new Exception("User ID not provided.");
 
+        // Return the user's claims
         return new UserClaimsOutput()
         {
             Id = Guid.Parse(id),
