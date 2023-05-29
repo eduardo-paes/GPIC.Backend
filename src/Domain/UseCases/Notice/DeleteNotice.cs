@@ -3,6 +3,7 @@ using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
+using Domain.Validation;
 
 namespace Domain.UseCases
 {
@@ -24,17 +25,17 @@ namespace Domain.UseCases
         {
             // Verifica se o id foi informado
             if (id == null)
-                throw new ArgumentNullException(nameof(id));
+                throw UseCaseException.NotInformedParam(nameof(id));
 
             // Remove a entidade
-            var model = await _repository.Delete(id);
+            var entity = await _repository.Delete(id);
 
             // Deleta o arquivo do edital
-            if (!string.IsNullOrEmpty(model.DocUrl))
-                await _storageFileService.DeleteFile(model.DocUrl);
+            if (!string.IsNullOrEmpty(entity.DocUrl))
+                await _storageFileService.DeleteFile(entity.DocUrl);
 
             // Retorna o edital removido
-            return _mapper.Map<DetailedReadNoticeOutput>(model);
+            return _mapper.Map<DetailedReadNoticeOutput>(entity);
         }
     }
 }

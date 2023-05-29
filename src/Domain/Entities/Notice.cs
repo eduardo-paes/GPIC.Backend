@@ -10,35 +10,111 @@ namespace Domain.Entities
     {
         #region Properties
         private DateTime? _startDate;
+        /// <summary>
+        /// Data de início do edital.
+        /// </summary>
         public DateTime? StartDate
         {
-            get { return _startDate; }
+            get => _startDate;
             set
             {
                 EntityExceptionValidation.When(!value.HasValue,
-                    ExceptionMessageFactory.Invalid("Data Inicial"));
+                    ExceptionMessageFactory.Invalid(nameof(StartDate)));
                 _startDate = value.HasValue ? value.Value.ToUniversalTime() : null;
             }
         }
 
         private DateTime? _finalDate;
+        /// <summary>
+        /// Data de término do edital.
+        /// </summary>
         public DateTime? FinalDate
         {
-            get { return _finalDate; }
+            get => _finalDate;
             set
             {
                 EntityExceptionValidation.When(!value.HasValue,
-                    ExceptionMessageFactory.Invalid("Data Final"));
+                    ExceptionMessageFactory.Invalid(nameof(FinalDate)));
                 _finalDate = value.HasValue ? value.Value.ToUniversalTime() : null;
             }
         }
 
+        private DateTime? _appealStartDate;
+        /// <summary>
+        /// Data de início do período de recurso.
+        /// </summary>
+        public DateTime? AppealStartDate
+        {
+            get => _appealStartDate;
+            set
+            {
+                EntityExceptionValidation.When(!value.HasValue,
+                    ExceptionMessageFactory.Invalid(nameof(AppealStartDate)));
+                _appealStartDate = value.HasValue ? value.Value.ToUniversalTime() : null;
+            }
+        }
+
+        private DateTime? _appealFinalDate;
+        /// <summary>
+        /// Data de término do período de recurso.
+        /// </summary>
+        public DateTime? AppealFinalDate
+        {
+            get => _appealFinalDate;
+            set
+            {
+                EntityExceptionValidation.When(!value.HasValue,
+                    ExceptionMessageFactory.Invalid(nameof(AppealFinalDate)));
+                _appealFinalDate = value.HasValue ? value.Value.ToUniversalTime() : null;
+            }
+        }
+
+        private int? _suspensionYears;
+        /// <summary>
+        /// Anos de suspensão do orientador em caso de não entrega do relatório final.
+        /// </summary>
+        public int? SuspensionYears
+        {
+            get => _suspensionYears;
+            set
+            {
+                EntityExceptionValidation.When(!value.HasValue,
+                    ExceptionMessageFactory.Required(nameof(SuspensionYears)));
+                EntityExceptionValidation.When(value < 0,
+                    ExceptionMessageFactory.Invalid(nameof(SuspensionYears)));
+                _suspensionYears = value;
+            }
+        }
+
+        private int? _sendingDocumentationDeadline;
+        /// <summary>
+        /// Prazo para envio da documentação.
+        /// </summary>
+        public int? SendingDocumentationDeadline
+        {
+            get => _sendingDocumentationDeadline;
+            set
+            {
+                EntityExceptionValidation.When(!value.HasValue,
+                    ExceptionMessageFactory.Required(nameof(SuspensionYears)));
+                EntityExceptionValidation.When(value < 0,
+                    ExceptionMessageFactory.Invalid(nameof(SuspensionYears)));
+                _sendingDocumentationDeadline = value;
+            }
+        }
+
+        /// <summary>
+        /// Descrição do edital
+        /// </summary>
         public string? Description { get; set; }
 
         private string? _docUrl;
+        /// <summary>
+        /// URL do edital
+        /// </summary>
         public string? DocUrl
         {
-            get { return _docUrl; }
+            get => _docUrl;
             set
             {
                 EntityExceptionValidation.When(string.IsNullOrEmpty(value),

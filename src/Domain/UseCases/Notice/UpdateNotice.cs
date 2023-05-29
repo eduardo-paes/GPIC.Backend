@@ -3,6 +3,7 @@ using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
+using Domain.Validation;
 
 namespace Domain.UseCases
 {
@@ -24,37 +25,34 @@ namespace Domain.UseCases
         {
             // Verifica se o id foi informado
             if (id == null)
-                throw new ArgumentNullException(nameof(id));
-
-            // Verifica se as datas foram informadas
-            if (input.StartDate == null)
-                throw new ArgumentNullException(nameof(input.StartDate));
-            if (input.FinalDate == null)
-                throw new ArgumentNullException(nameof(input.FinalDate));
+                throw UseCaseException.NotInformedParam(nameof(id));
 
             // Recupera entidade que será atualizada
-            var entity = await _repository.GetById(id);
-
-            // Verifica se entidade existe
-            if (entity == null)
-                throw new Exception("Edital não encontrado.");
+            var entity = await _repository.GetById(id)
+                ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Notice));
 
             // Verifica se a entidade foi excluída
             if (entity.DeletedAt != null)
-                throw new Exception("O Edital informado já foi excluído.");
+                throw UseCaseException.BusinessRuleViolation("The notice entered has already been deleted.");
 
             // Salva arquivo no repositório e atualiza atributo DocUrl
             if (input.File != null)
                 entity.DocUrl = await _storageFileService.UploadFileAsync(input.File, entity.DocUrl);
 
             // Atualiza atributos permitidos
-            entity.StartDate = input.StartDate;
-            entity.FinalDate = input.FinalDate;
-            entity.Description = input.Description;
+            entity.StartDate = input.StartDate ?? entity.StartDate;
+            entity.FinalDate = input.FinalDate ?? entity.FinalDate;
+            entity.AppealStartDate = input.AppealStartDate ?? entity.AppealStartDate;
+            entity.AppealFinalDate = input.AppealFinalDate ?? entity.AppealFinalDate;
+            entity.SuspensionYears = input.SuspensionYears ?? entity.SuspensionYears;
+            entity.SendingDocumentationDeadline = input.SendingDocumentationDeadline ?? entity.SendingDocumentationDeadline;
+            entity.Description = input.Description ?? entity.Description;
 
             // Salva entidade atualizada no banco
-            var model = await _repository.Update(entity);
-            return _mapper.Map<DetailedReadNoticeOutput>(model);
+            await _repository.Update(entity);
+
+            // Retorna entidade atualizada
+            return _mapper.Map<DetailedReadNoticeOutput>(entity);
         }
     }
 }
