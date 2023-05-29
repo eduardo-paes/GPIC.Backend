@@ -67,11 +67,22 @@ namespace Domain.UseCases.ProjectEvaluation
             projectEvaluation.AppealEvaluationDescription = input.AppealEvaluationDescription;
             projectEvaluation.AppealEvaluationStatus = (EProjectStatus)input.AppealEvaluationStatus;
 
+            // Recupera projeto pelo Id.
+            var project = await _projectRepository.GetById(input.ProjectId)
+                ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Project));
+
             // Atualiza avaliação do projeto.
             await _projectEvaluationRepository.Update(projectEvaluation);
 
+            // Atualiza status do projeto.
+            project.Status = (EProjectStatus)input.AppealEvaluationStatus;
+            project.StatusDescription = project.Status.GetDescription();
+
+            // Atualiza projeto.
+            await _projectRepository.Update(project);
+
             // Mappeia a saída e retorna.
-            return _mapper.Map<DetailedReadProjectOutput>(projectEvaluation);
+            return _mapper.Map<DetailedReadProjectOutput>(project);
         }
     }
 }

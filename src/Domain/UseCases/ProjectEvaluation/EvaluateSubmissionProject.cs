@@ -74,7 +74,14 @@ namespace Domain.UseCases.ProjectEvaluation
             var projectEvaluationEntity = _mapper.Map<Entities.ProjectEvaluation>(input);
 
             // Adiciona avaliação do projeto.
-            var output = await _projectEvaluationRepository.Create(projectEvaluationEntity);
+            await _projectEvaluationRepository.Create(projectEvaluationEntity);
+
+            // Atualiza status do projeto.
+            project.Status = (EProjectStatus)input.SubmissionEvaluationStatus;
+            project.StatusDescription = project.Status.GetDescription();
+
+            // Atualiza projeto.
+            var output = await _projectRepository.Update(project);
 
             // Mapeia dados de saída e retorna.
             return _mapper.Map<DetailedReadProjectOutput>(output);
