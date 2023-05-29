@@ -2,7 +2,7 @@
 
 namespace Domain.Contracts.StudentAssistanceScholarship
 {
-    public class BaseStudentAssistanceScholarshipContract
+    public abstract class BaseStudentAssistanceScholarshipContract
     {
         [Required]
         public string? Name { get; set; }

@@ -2,7 +2,7 @@
 
 namespace Domain.Contracts.ProgramType
 {
-    public class BaseProgramTypeContract
+    public abstract class BaseProgramTypeContract
     {
         [Required]
         public string? Name { get; set; }

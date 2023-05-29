@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Contracts.Student
 {
-    public class BaseStudentContract
+    public abstract class BaseStudentContract
     {
         #region Required Properties
         [Required]

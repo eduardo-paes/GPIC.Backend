@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Contracts.Professor
 {
-    public class BaseProfessorContract
+    public abstract class BaseProfessorContract
     {
         [Required]
         public string? SIAPEEnrollment { get; set; }

@@ -1,6 +1,6 @@
 namespace Domain.Contracts.Project
 {
-    public class BaseProjectContract
+    public abstract class BaseProjectContract
     {
         #region Informações do Projeto
         public string? Title { get; set; }

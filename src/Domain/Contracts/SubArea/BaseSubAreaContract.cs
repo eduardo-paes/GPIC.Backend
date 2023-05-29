@@ -2,7 +2,7 @@
 
 namespace Domain.Contracts.SubArea
 {
-    public class BaseSubAreaContract
+    public abstract class BaseSubAreaContract
     {
         [Required]
         public string? Name { get; set; }

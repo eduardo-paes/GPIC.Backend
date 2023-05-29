@@ -2,7 +2,7 @@
 
 namespace Domain.Contracts.Course
 {
-    public class BaseCourseContract
+    public abstract class BaseCourseContract
     {
         [Required]
         public string? Name { get; set; }
