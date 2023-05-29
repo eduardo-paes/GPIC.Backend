@@ -9,6 +9,6 @@ namespace Adapters.Gateways.Area
         public string? Name { get; set; }
         public string? Code { get; set; }
         public DateTime? DeletedAt { get; set; }
-        public virtual DetailedMainAreaResponse? MainArea { get; set; }
+        public virtual DetailedReadMainAreaResponse? MainArea { get; set; }
     }
 }

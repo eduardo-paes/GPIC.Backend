@@ -36,7 +36,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna área principal correspondente</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<DetailedMainAreaResponse>> GetById(Guid? id)
+        public async Task<ActionResult<DetailedReadMainAreaResponse>> GetById(Guid? id)
         {
             if (id == null)
             {
@@ -88,11 +88,11 @@ namespace Infrastructure.WebAPI.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedMainAreaResponse>> Create([FromBody] CreateMainAreaRequest request)
+        public async Task<ActionResult<DetailedReadMainAreaResponse>> Create([FromBody] CreateMainAreaRequest request)
         {
             try
             {
-                var model = await _service.Create(request) as DetailedMainAreaResponse;
+                var model = await _service.Create(request) as DetailedReadMainAreaResponse;
                 _logger.LogInformation("Área principal criada: {id}", model?.Id);
                 return Ok(model);
             }
@@ -111,11 +111,11 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna área principal atualizada</response>
         [HttpPut("{id}")]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedMainAreaResponse>> Update(Guid? id, [FromBody] UpdateMainAreaRequest request)
+        public async Task<ActionResult<DetailedReadMainAreaResponse>> Update(Guid? id, [FromBody] UpdateMainAreaRequest request)
         {
             try
             {
-                var model = await _service.Update(id, request) as DetailedMainAreaResponse;
+                var model = await _service.Update(id, request) as DetailedReadMainAreaResponse;
                 _logger.LogInformation("Área principal atualizada: {id}", model?.Id);
                 return Ok(model);
             }
@@ -134,7 +134,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna área principal removida</response>
         [HttpDelete("{id}")]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedMainAreaResponse>> Delete(Guid? id)
+        public async Task<ActionResult<DetailedReadMainAreaResponse>> Delete(Guid? id)
         {
             if (id == null)
             {
@@ -145,7 +145,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _service.Delete(id.Value) as DetailedMainAreaResponse;
+                var model = await _service.Delete(id.Value) as DetailedReadMainAreaResponse;
                 _logger.LogInformation("Área principal removida: {id}", model?.Id);
                 return Ok(model);
             }

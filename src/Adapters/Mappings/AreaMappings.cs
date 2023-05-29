@@ -8,9 +8,6 @@ namespace Adapters.Mappings
     {
         public AreaMappings()
         {
-            CreateMap<CreateAreaInput, CreateAreaRequest>().ReverseMap();
-            CreateMap<UpdateAreaInput, UpdateAreaRequest>().ReverseMap();
-            CreateMap<ResumedReadAreaOutput, ResumedReadAreaResponse>().ReverseMap();
             CreateMap<DetailedReadAreaOutput, DetailedReadAreaResponse>()
                 .ForMember(dest => dest.MainArea, opt => opt.MapFrom(src => src.MainArea))
                 .ReverseMap();

@@ -17,7 +17,11 @@ namespace Adapters.PresenterController
         private readonly IGetAreaById _getAreaById;
         private readonly IMapper _mapper;
 
-        public AreaPresenterController(ICreateArea createArea, IUpdateArea updateArea, IDeleteArea deleteArea, IGetAreasByMainArea getAreasByMainArea, IGetAreaById getAreaById, IMapper mapper)
+        public AreaPresenterController(ICreateArea createArea,
+            IUpdateArea updateArea,
+            IDeleteArea deleteArea,
+            IGetAreasByMainArea getAreasByMainArea,
+            IGetAreaById getAreaById, IMapper mapper)
         {
             _createArea = createArea;
             _updateArea = updateArea;
@@ -28,43 +32,11 @@ namespace Adapters.PresenterController
         }
         #endregion
 
-        public async Task<IResponse> Create(IRequest request)
-        {
-            var dto = request as CreateAreaRequest;
-            var input = _mapper.Map<CreateAreaInput>(dto);
-            var result = await _createArea.Execute(input);
-            return _mapper.Map<DetailedReadAreaResponse>(result);
-        }
-
-        public async Task<IResponse> Delete(Guid? id)
-        {
-            var result = await _deleteArea.Execute(id);
-            return _mapper.Map<DetailedReadAreaResponse>(result);
-        }
-
-        public async Task<IEnumerable<IResponse>> GetAreasByMainArea(Guid? mainAreaId, int skip, int take)
-        {
-            var result = await _getAreasByMainArea.Execute(mainAreaId, skip, take);
-            return _mapper.Map<IEnumerable<ResumedReadAreaResponse>>(result);
-        }
-
-        public Task<IEnumerable<IResponse>> GetAll(int skip, int take)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<IResponse> GetById(Guid? id)
-        {
-            var result = await _getAreaById.Execute(id);
-            return _mapper.Map<DetailedReadAreaResponse>(result);
-        }
-
-        public async Task<IResponse> Update(Guid? id, IRequest request)
-        {
-            var dto = request as UpdateAreaRequest;
-            var input = _mapper.Map<UpdateAreaInput>(dto);
-            var result = await _updateArea.Execute(id, input);
-            return _mapper.Map<DetailedReadAreaResponse>(result);
-        }
+        public async Task<IResponse?> Create(IRequest request) => _mapper.Map<DetailedReadAreaResponse>(await _createArea.Execute((request as CreateAreaInput)!));
+        public async Task<IResponse?> Delete(Guid? id) => _mapper.Map<DetailedReadAreaResponse>(await _deleteArea.Execute(id));
+        public async Task<IEnumerable<IResponse>?> GetAreasByMainArea(Guid? mainAreaId, int skip, int take) => await _getAreasByMainArea.Execute(mainAreaId, skip, take) as IEnumerable<ResumedReadAreaResponse>;
+        public Task<IEnumerable<IResponse>?> GetAll(int skip, int take) => throw new NotImplementedException();
+        public async Task<IResponse?> GetById(Guid? id) => _mapper.Map<DetailedReadAreaResponse>(await _getAreaById.Execute(id));
+        public async Task<IResponse?> Update(Guid? id, IRequest request) => _mapper.Map<DetailedReadAreaResponse>(await _updateArea.Execute(id, (request as UpdateAreaInput)!));
     }
 }

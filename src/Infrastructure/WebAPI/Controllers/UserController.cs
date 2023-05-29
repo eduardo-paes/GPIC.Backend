@@ -116,7 +116,7 @@ namespace Infrastructure.WebAPI.Controllers
                 // Atualiza o usuário e retorna o usuário atualizado
                 var model = await _service.UpdateUser(request);
 
-                _logger.LogInformation("Usuário atualizado: {id}", model.Id);
+                _logger.LogInformation("Usuário atualizado: {id}", model?.Id);
                 return Ok(model);
             }
             catch (Exception ex)
@@ -147,7 +147,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.ActivateUser(id.Value);
-                _logger.LogInformation("Usuário ativado: {id}", model.Id);
+                _logger.LogInformation("Usuário ativado: {id}", model?.Id);
                 return Ok(model);
             }
             catch (Exception ex)
@@ -178,7 +178,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 var model = await _service.DeactivateUser(id.Value);
-                _logger.LogInformation("Usuário desativado: {id}", model.Id);
+                _logger.LogInformation("Usuário desativado: {id}", model?.Id);
                 return Ok(model);
             }
             catch (Exception ex)

@@ -2,4 +2,4 @@
 using Domain.Contracts.MainArea;
 
 namespace Adapters.Gateways.MainArea;
-public class DetailedMainAreaResponse : DetailedMainAreaOutput, IResponse { }
+public class DetailedReadMainAreaResponse : DetailedMainAreaOutput, IResponse { }

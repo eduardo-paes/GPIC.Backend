@@ -10,33 +10,33 @@ namespace Adapters.Interfaces.Base
         /// </summary>
         /// <param name="id">Id da entidade.</param>
         /// <returns>Entidade encontrada.</returns>
-        Task<IResponse> GetById(Guid? id);
+        Task<IResponse?> GetById(Guid? id);
 
         /// <summary>
         /// Busca todas as entidades ativas.
         /// </summary>
         /// <returns>Lista de entidades ativas.</returns>
-        Task<IEnumerable<IResponse>> GetAll(int skip, int take);
+        Task<IEnumerable<IResponse>?> GetAll(int skip, int take);
 
         /// <summary>
         /// Cria entidade conforme parâmetros fornecidos.
         /// </summary>
         /// <param name="model">Parâmetros de criação.</param>
         /// <returns>Entidade criada.</returns>
-        Task<IResponse> Create(IRequest request);
+        Task<IResponse?> Create(IRequest request);
 
         /// <summary>
         /// Remove entidade através do Id informado.
         /// </summary>
         /// <param name="id">Id da entidade a ser removida.</param>
         /// <returns>Entidade removida.</returns>
-        Task<IResponse> Delete(Guid? id);
+        Task<IResponse?> Delete(Guid? id);
 
         /// <summary>
         /// Atualiza entidade conforme parâmetros fornecidos.
         /// </summary>
         /// <param name="model">Parâmetros de atualização.</param>
         /// <returns>Entidade atualizada.</returns>
-        Task<IResponse> Update(Guid? id, IRequest request);
+        Task<IResponse?> Update(Guid? id, IRequest request);
     }
 }

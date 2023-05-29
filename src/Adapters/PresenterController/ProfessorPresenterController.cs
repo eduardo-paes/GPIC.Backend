@@ -33,38 +33,10 @@ namespace Adapters.PresenterController
         }
         #endregion
 
-        public async Task<IResponse> Create(IRequest request)
-        {
-            var dto = request as CreateProfessorRequest;
-            var input = _mapper.Map<CreateProfessorInput>(dto);
-            var result = await _createProfessor.Execute(input);
-            return _mapper.Map<DetailedReadProfessorResponse>(result);
-        }
-
-        public async Task<IResponse> Delete(Guid? id)
-        {
-            var result = await _deleteProfessor.Execute(id);
-            return _mapper.Map<DetailedReadProfessorResponse>(result);
-        }
-
-        public async Task<IEnumerable<IResponse>> GetAll(int skip, int take)
-        {
-            var result = await _getProfessors.Execute(skip, take);
-            return _mapper.Map<IEnumerable<ResumedReadProfessorResponse>>(result);
-        }
-
-        public async Task<IResponse> GetById(Guid? id)
-        {
-            var result = await _getProfessorById.Execute(id);
-            return _mapper.Map<DetailedReadProfessorResponse>(result);
-        }
-
-        public async Task<IResponse> Update(Guid? id, IRequest request)
-        {
-            var dto = request as UpdateProfessorRequest;
-            var input = _mapper.Map<UpdateProfessorInput>(dto);
-            var result = await _updateProfessor.Execute(id, input);
-            return _mapper.Map<DetailedReadProfessorResponse>(result);
-        }
+        public async Task<IResponse?> Create(IRequest request) => _mapper.Map<DetailedReadProfessorResponse>(await _createProfessor.Execute((request as CreateProfessorInput)!));
+        public async Task<IResponse?> Delete(Guid? id) => _mapper.Map<DetailedReadProfessorResponse>(await _deleteProfessor.Execute(id));
+        public async Task<IEnumerable<IResponse>?> GetAll(int skip, int take) => await _getProfessors.Execute(skip, take) as IEnumerable<ResumedReadProfessorResponse>;
+        public async Task<IResponse?> GetById(Guid? id) => _mapper.Map<DetailedReadProfessorResponse>(await _getProfessorById.Execute(id));
+        public async Task<IResponse?> Update(Guid? id, IRequest request) => _mapper.Map<DetailedReadProfessorResponse>(await _updateProfessor.Execute(id, (request as UpdateProfessorInput)!));
     }
 }

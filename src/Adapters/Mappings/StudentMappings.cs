@@ -8,9 +8,6 @@ namespace Adapters.Mappings
     {
         public StudentMappings()
         {
-            CreateMap<CreateStudentInput, CreateStudentRequest>().ReverseMap();
-            CreateMap<UpdateStudentInput, UpdateStudentRequest>().ReverseMap();
-            CreateMap<ResumedReadStudentOutput, ResumedReadStudentResponse>().ReverseMap();
             CreateMap<DetailedReadStudentOutput, DetailedReadStudentResponse>()
                 .ForMember(dest => dest.User,
                     opt => opt.MapFrom(src => src.User))
