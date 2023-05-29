@@ -2,7 +2,7 @@ using Domain.Contracts.Project;
 
 namespace Domain.Interfaces.UseCases.Project
 {
-    public interface IRessubmitProject
+    public interface IAppealProject
     {
         Task<ResumedReadProjectOutput> Execute(Guid? projectId, string? appealDescription);
     }

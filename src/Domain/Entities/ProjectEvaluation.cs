@@ -1,10 +1,11 @@
 using Domain.Entities.Enums;
-using Domain.Entities.Primitives;
 
 namespace Domain.Entities
 {
-    public class ProjectEvaluation : Entity
+    public class ProjectEvaluation
     {
+        public Guid? Id { get; protected set; }
+
         #region Properties
         #region Informações Gerais da Avaliação
         public Guid? ProjectId { get; set; }
@@ -25,6 +26,11 @@ namespace Domain.Entities
         public DateTime? SubmissionEvaluationDate { get; set; }
 
         /// <summary>
+        /// Status da avaliação da submissão.
+        /// </summary>
+        public EProjectStatus? SubmissionEvaluationStatus { get; set; }
+
+        /// <summary>
         /// Nota da avaliação da submissão.
         /// </summary>
         public string? SubmissionEvaluationDescription { get; set; }
@@ -38,6 +44,11 @@ namespace Domain.Entities
         /// Data da avaliação do recurso.
         /// </summary>
         public DateTime? AppealEvaluationDate { get; set; }
+
+        /// <summary>
+        /// Status da avaliação do recurso.
+        /// </summary>
+        public EProjectStatus? AppealEvaluationStatus { get; set; }
 
         /// <summary>
         /// Nota da avaliação do recurso.
