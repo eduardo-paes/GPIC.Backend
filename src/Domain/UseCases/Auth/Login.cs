@@ -2,6 +2,7 @@ using Domain.Contracts.Auth;
 using Domain.Interfaces.UseCases;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
+using Domain.Validation;
 
 namespace Domain.UseCases
 {
@@ -23,24 +24,23 @@ namespace Domain.UseCases
         {
             // Verifica se o email é nulo
             if (string.IsNullOrEmpty(input.Email))
-                throw new Exception("Email não informado.");
+                throw UseCaseException.NotInformedParam(nameof(input.Email));
 
             // Verifica se a senha é nula
             else if (string.IsNullOrEmpty(input.Password))
-                throw new Exception("Senha não informada.");
+                throw UseCaseException.NotInformedParam(nameof(input.Password));
 
             // Busca usuário pelo email
-            var entity = await _userRepository.GetUserByEmail(input.Email);
-            if (entity == null)
-                throw new Exception("Nenhum usuário encontrado.");
+            var entity = await _userRepository.GetUserByEmail(input.Email)
+                ?? throw UseCaseException.NotFoundEntityByParams(nameof(Entities.User));
 
             // Verifica se o usuário está confirmado
             if (!entity.IsConfirmed)
-                throw new Exception("O e-mail do usuário ainda não foi confirmado.");
+                throw UseCaseException.BusinessRuleViolation("User's email has not yet been confirmed.");
 
             // Verifica se a senha é válida
             if (!_hashService.VerifyPassword(input.Password, entity.Password))
-                throw new Exception("Credenciais inválidas.");
+                throw UseCaseException.BusinessRuleViolation("Invalid credentials.");
 
             // Gera o token de autenticação e retorna o resultado
             return _tokenService.GenerateToken(entity.Id, entity.Name, entity.Role.ToString());
