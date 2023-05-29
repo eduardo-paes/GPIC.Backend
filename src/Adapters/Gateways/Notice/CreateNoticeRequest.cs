@@ -1,17 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Adapters.Gateways.Base;
-using Microsoft.AspNetCore.Http;
+﻿using Adapters.Gateways.Base;
+using Domain.Contracts.Notice;
 
-namespace Adapters.Gateways.Notice
-{
-    public class CreateNoticeRequest : Request
-    {
-        [Required]
-        public DateTime? StartDate { get; set; }
-        [Required]
-        public DateTime? FinalDate { get; set; }
-
-        public string? Description { get; set; }
-        public IFormFile? File { get; set; }
-    }
-}
+namespace Adapters.Gateways.Notice;
+public class CreateNoticeRequest : CreateNoticeInput, IRequest { }

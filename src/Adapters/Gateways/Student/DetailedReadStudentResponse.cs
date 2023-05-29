@@ -5,7 +5,7 @@ using Adapters.Gateways.User;
 
 namespace Adapters.Gateways.Student
 {
-    public class DetailedReadStudentResponse : Response
+    public class DetailedReadStudentResponse : IResponse
     {
         public Guid? Id { get; set; }
         public DateTime? DeletedAt { get; set; }

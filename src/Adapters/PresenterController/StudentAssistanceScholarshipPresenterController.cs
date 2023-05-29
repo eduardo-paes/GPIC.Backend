@@ -33,7 +33,7 @@ namespace Adapters.PresenterController
         }
         #endregion
 
-        public async Task<Response> Create(Request request)
+        public async Task<IResponse> Create(IRequest request)
         {
             var dto = request as CreateStudentAssistanceScholarshipRequest;
             var input = _mapper.Map<CreateStudentAssistanceScholarshipInput>(dto);
@@ -41,25 +41,25 @@ namespace Adapters.PresenterController
             return _mapper.Map<DetailedReadStudentAssistanceScholarshipResponse>(result);
         }
 
-        public async Task<Response> Delete(Guid? id)
+        public async Task<IResponse> Delete(Guid? id)
         {
             var result = await _deleteStudentAssistanceScholarship.Execute(id);
             return _mapper.Map<DetailedReadStudentAssistanceScholarshipResponse>(result);
         }
 
-        public async Task<IEnumerable<Response>> GetAll(int skip, int take)
+        public async Task<IEnumerable<IResponse>> GetAll(int skip, int take)
         {
             var result = await _getStudentAssistanceScholarships.Execute(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadStudentAssistanceScholarshipResponse>>(result);
         }
 
-        public async Task<Response> GetById(Guid? id)
+        public async Task<IResponse> GetById(Guid? id)
         {
             var result = await _getStudentAssistanceScholarshipById.Execute(id);
             return _mapper.Map<DetailedReadStudentAssistanceScholarshipResponse>(result);
         }
 
-        public async Task<Response> Update(Guid? id, Request request)
+        public async Task<IResponse> Update(Guid? id, IRequest request)
         {
             var dto = request as UpdateStudentAssistanceScholarshipRequest;
             var input = _mapper.Map<UpdateStudentAssistanceScholarshipInput>(dto);

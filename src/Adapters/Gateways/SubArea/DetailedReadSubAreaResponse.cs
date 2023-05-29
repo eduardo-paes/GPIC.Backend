@@ -3,7 +3,7 @@ using Adapters.Gateways.Base;
 
 namespace Adapters.Gateways.SubArea
 {
-    public class DetailedReadSubAreaResponse : Response
+    public class DetailedReadSubAreaResponse : IResponse
     {
         public Guid? Id { get; set; }
         public string? Name { get; set; }

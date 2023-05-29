@@ -28,7 +28,7 @@ namespace Adapters.PresenterController
         }
         #endregion
 
-        public async Task<Response> Create(Request request)
+        public async Task<IResponse> Create(IRequest request)
         {
             var dto = request as CreateStudentRequest;
             var input = _mapper.Map<CreateStudentInput>(dto);
@@ -36,25 +36,25 @@ namespace Adapters.PresenterController
             return _mapper.Map<DetailedReadStudentResponse>(result);
         }
 
-        public async Task<Response> Delete(Guid? id)
+        public async Task<IResponse> Delete(Guid? id)
         {
             var result = await _deleteStudent.Execute(id);
             return _mapper.Map<DetailedReadStudentResponse>(result);
         }
 
-        public async Task<IEnumerable<Response>> GetAll(int skip, int take)
+        public async Task<IEnumerable<IResponse>> GetAll(int skip, int take)
         {
             var result = await _getStudents.Execute(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadStudentResponse>>(result);
         }
 
-        public async Task<Response> GetById(Guid? id)
+        public async Task<IResponse> GetById(Guid? id)
         {
             var result = await _getStudentById.Execute(id);
             return _mapper.Map<DetailedReadStudentResponse>(result);
         }
 
-        public async Task<Response> Update(Guid? id, Request request)
+        public async Task<IResponse> Update(Guid? id, IRequest request)
         {
             var dto = request as UpdateStudentRequest;
             var input = _mapper.Map<UpdateStudentInput>(dto);

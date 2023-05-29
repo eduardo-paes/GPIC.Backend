@@ -1,12 +1,5 @@
 ﻿using Adapters.Gateways.Base;
-using System.ComponentModel.DataAnnotations;
+using Domain.Contracts.Course;
 
-namespace Adapters.Gateways.Course
-{
-    public class UpdateCourseRequest : Request
-    {
-        [Required]
-        public string? Name { get; set; }
-        public Guid? Id { get; set; }
-    }
-}
+namespace Adapters.Gateways.Course;
+public class UpdateCourseRequest : UpdateCourseInput, IRequest { }

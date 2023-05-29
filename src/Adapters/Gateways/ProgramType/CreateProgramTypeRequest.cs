@@ -1,12 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Adapters.Gateways.Base;
+﻿using Adapters.Gateways.Base;
+using Domain.Contracts.ProgramType;
 
-namespace Adapters.Gateways.ProgramType
-{
-    public class CreateProgramTypeRequest : Request
-    {
-        [Required]
-        public string? Name { get; set; }
-        public string? Description { get; set; }
-    }
-}
+namespace Adapters.Gateways.ProgramType;
+public class CreateProgramTypeRequest : CreateProgramTypeInput, IRequest { }

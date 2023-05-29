@@ -1,15 +1,5 @@
 ﻿using Adapters.Gateways.Base;
-using System.ComponentModel.DataAnnotations;
+using Domain.Contracts.Auth;
 
-namespace Adapters.Gateways.Auth
-{
-    public class UserResetPasswordRequest : Request
-    {
-        [Required]
-        public Guid? Id { get; set; }
-        [Required]
-        public string? Password { get; set; }
-        [Required]
-        public string? Token { get; set; }
-    }
-}
+namespace Adapters.Gateways.Auth;
+public class UserResetPasswordRequest : UserResetPasswordInput, IRequest { }

@@ -1,11 +1,5 @@
 using Adapters.Gateways.Base;
+using Domain.Contracts.ProgramType;
 
-namespace Adapters.Gateways.ProgramType
-{
-    public class ResumedReadProgramTypeResponse : Response
-    {
-        public Guid? Id { get; set; }
-        public string? Name { get; set; }
-        public string? Description { get; set; }
-    }
-}
+namespace Adapters.Gateways.ProgramType;
+public class ResumedReadProgramTypeResponse : ResumedReadProgramTypeOutput, IResponse { }

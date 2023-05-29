@@ -29,7 +29,7 @@ namespace Adapters.PresenterController
         }
         #endregion
 
-        public async Task<Response> Create(Request request)
+        public async Task<IResponse> Create(IRequest request)
         {
             var dto = request as CreateSubAreaRequest;
             var input = _mapper.Map<CreateSubAreaInput>(dto);
@@ -37,30 +37,30 @@ namespace Adapters.PresenterController
             return _mapper.Map<DetailedReadSubAreaResponse>(result);
         }
 
-        public async Task<Response> Delete(Guid? id)
+        public async Task<IResponse> Delete(Guid? id)
         {
             var result = await _deleteSubArea.Execute(id);
             return _mapper.Map<DetailedReadSubAreaResponse>(result);
         }
 
-        public Task<IEnumerable<Response>> GetAll(int skip, int take)
+        public Task<IEnumerable<IResponse>> GetAll(int skip, int take)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<Response> GetById(Guid? id)
+        public async Task<IResponse> GetById(Guid? id)
         {
             var result = await _getSubAreaById.Execute(id);
             return _mapper.Map<DetailedReadSubAreaResponse>(result);
         }
 
-        public async Task<IQueryable<Response>> GetSubAreasByArea(Guid? areaId, int skip, int take)
+        public async Task<IQueryable<IResponse>> GetSubAreasByArea(Guid? areaId, int skip, int take)
         {
             var result = await _getSubAreasByArea.Execute(areaId, skip, take);
             return _mapper.Map<IQueryable<ResumedReadSubAreaResponse>>(result);
         }
 
-        public async Task<Response> Update(Guid? id, Request request)
+        public async Task<IResponse> Update(Guid? id, IRequest request)
         {
             var dto = request as UpdateSubAreaRequest;
             var input = _mapper.Map<UpdateSubAreaInput>(dto);

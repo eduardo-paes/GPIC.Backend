@@ -1,16 +1,5 @@
 ﻿using Adapters.Gateways.Base;
-using System.ComponentModel.DataAnnotations;
+using Domain.Contracts.SubArea;
 
-namespace Adapters.Gateways.SubArea
-{
-    public class CreateSubAreaRequest : Request
-    {
-        [Required]
-        public Guid? AreaId { get; set; }
-        [Required]
-        public string? Name { get; set; }
-        [Required]
-        public string? Code { get; set; }
-    }
-}
-
+namespace Adapters.Gateways.SubArea;
+public class CreateSubAreaRequest : CreateSubAreaInput, IRequest { }

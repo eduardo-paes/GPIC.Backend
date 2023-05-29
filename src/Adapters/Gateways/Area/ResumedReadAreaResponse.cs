@@ -1,11 +1,5 @@
 ﻿using Adapters.Gateways.Base;
+using Domain.Contracts.Area;
 
-namespace Adapters.Gateways.Area
-{
-    public class ResumedReadAreaResponse : Response
-    {
-        public Guid? Id { get; set; }
-        public string? Name { get; set; }
-        public string? Code { get; set; }
-    }
-}
+namespace Adapters.Gateways.Area;
+public class ResumedReadAreaResponse : ResumedReadAreaOutput, IResponse { }

@@ -1,14 +1,5 @@
 ﻿using Adapters.Gateways.Base;
-using System;
-using System.ComponentModel.DataAnnotations;
+using Domain.Contracts.Auth;
 
-namespace Adapters.Gateways.Auth
-{
-    public class UserLoginRequest : Request
-    {
-        [Required]
-        public string? Email { get; set; }
-        [Required]
-        public string? Password { get; set; }
-    }
-}
+namespace Adapters.Gateways.Auth;
+public class UserLoginRequest : UserLoginInput, IRequest { }

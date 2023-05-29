@@ -1,12 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Adapters.Gateways.Base;
+﻿using Adapters.Gateways.Base;
+using Domain.Contracts.StudentAssistanceScholarship;
 
-namespace Adapters.Gateways.StudentAssistanceScholarship
-{
-    public class CreateStudentAssistanceScholarshipRequest : Request
-    {
-        [Required]
-        public string? Name { get; set; }
-        public string? Description { get; set; }
-    }
-}
+namespace Adapters.Gateways.StudentAssistanceScholarship;
+public class CreateStudentAssistanceScholarshipRequest : CreateStudentAssistanceScholarshipInput, IRequest { }

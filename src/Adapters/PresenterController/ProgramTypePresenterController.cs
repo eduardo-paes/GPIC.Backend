@@ -28,7 +28,7 @@ namespace Adapters.PresenterController
         }
         #endregion
 
-        public async Task<Response> Create(Request request)
+        public async Task<IResponse> Create(IRequest request)
         {
             var dto = request as CreateProgramTypeRequest;
             var input = _mapper.Map<CreateProgramTypeInput>(dto);
@@ -36,25 +36,25 @@ namespace Adapters.PresenterController
             return _mapper.Map<DetailedReadProgramTypeResponse>(result);
         }
 
-        public async Task<Response> Delete(Guid? id)
+        public async Task<IResponse> Delete(Guid? id)
         {
             var result = await _deleteProgramType.Execute(id);
             return _mapper.Map<DetailedReadProgramTypeResponse>(result);
         }
 
-        public async Task<IEnumerable<Response>> GetAll(int skip, int take)
+        public async Task<IEnumerable<IResponse>> GetAll(int skip, int take)
         {
             var result = await _getProgramTypes.Execute(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadProgramTypeResponse>>(result);
         }
 
-        public async Task<Response> GetById(Guid? id)
+        public async Task<IResponse> GetById(Guid? id)
         {
             var result = await _getProgramTypeById.Execute(id);
             return _mapper.Map<DetailedReadProgramTypeResponse>(result);
         }
 
-        public async Task<Response> Update(Guid? id, Request request)
+        public async Task<IResponse> Update(Guid? id, IRequest request)
         {
             var dto = request as UpdateProgramTypeRequest;
             var input = _mapper.Map<UpdateProgramTypeInput>(dto);

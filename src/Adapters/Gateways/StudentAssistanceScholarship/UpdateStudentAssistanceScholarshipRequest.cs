@@ -1,13 +1,5 @@
 ﻿using Adapters.Gateways.Base;
-using System.ComponentModel.DataAnnotations;
+using Domain.Contracts.StudentAssistanceScholarship;
 
-namespace Adapters.Gateways.StudentAssistanceScholarship
-{
-    public class UpdateStudentAssistanceScholarshipRequest : Request
-    {
-        [Required]
-        public string? Name { get; set; }
-        public string? Description { get; set; }
-        public Guid? Id { get; set; }
-    }
-}
+namespace Adapters.Gateways.StudentAssistanceScholarship;
+public class UpdateStudentAssistanceScholarshipRequest : UpdateStudentAssistanceScholarshipInput, IRequest { }

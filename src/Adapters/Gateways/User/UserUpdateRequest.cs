@@ -1,13 +1,5 @@
 ﻿using Adapters.Gateways.Base;
-using System.ComponentModel.DataAnnotations;
+using Domain.Contracts.User;
 
-namespace Adapters.Gateways.User
-{
-    public class UserUpdateRequest : Request
-    {
-        [Required]
-        public string? Name { get; set; }
-        [Required]
-        public string? CPF { get; set; }
-    }
-}
+namespace Adapters.Gateways.User;
+public class UserUpdateRequest : UserUpdateInput, IRequest { }

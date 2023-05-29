@@ -1,10 +1,5 @@
 ﻿using Adapters.Gateways.Base;
+using Domain.Contracts.Auth;
 
-namespace Adapters.Gateways.Auth
-{
-    public class UserLoginResponse : Response
-    {
-        public string? Token { get; set; }
-        public DateTime Expiration { get; set; }
-    }
-}
+namespace Adapters.Gateways.Auth;
+public class UserLoginResponse : UserLoginOutput, IResponse { }

@@ -1,12 +1,5 @@
 ﻿using Adapters.Gateways.Base;
+using Domain.Contracts.MainArea;
 
-namespace Adapters.Gateways.MainArea
-{
-    public class DetailedMainAreaResponse : Response
-    {
-        public Guid? Id { get; set; }
-        public string? Name { get; set; }
-        public string? Code { get; set; }
-        public DateTime? DeletedAt { get; set; }
-    }
-}
+namespace Adapters.Gateways.MainArea;
+public class DetailedMainAreaResponse : DetailedMainAreaOutput, IResponse { }

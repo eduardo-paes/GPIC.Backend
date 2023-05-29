@@ -3,7 +3,7 @@ using Adapters.Gateways.User;
 
 namespace Adapters.Gateways.Professor
 {
-    public class DetailedReadProfessorResponse : Response
+    public class DetailedReadProfessorResponse : IResponse
     {
         public Guid? Id { get; set; }
         public DateTime? DeletedAt { get; set; }

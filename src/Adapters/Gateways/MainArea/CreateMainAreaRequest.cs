@@ -1,13 +1,5 @@
 ﻿using Adapters.Gateways.Base;
-using System.ComponentModel.DataAnnotations;
+using Domain.Contracts.MainArea;
 
-namespace Adapters.Gateways.MainArea
-{
-    public class CreateMainAreaRequest : Request
-    {
-        [Required]
-        public string? Name { get; set; }
-        [Required]
-        public string? Code { get; set; }
-    }
-}
+namespace Adapters.Gateways.MainArea;
+public class CreateMainAreaRequest : CreateMainAreaInput, IRequest { }

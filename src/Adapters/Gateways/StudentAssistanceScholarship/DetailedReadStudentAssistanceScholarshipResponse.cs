@@ -1,12 +1,5 @@
 ﻿using Adapters.Gateways.Base;
+using Domain.Contracts.StudentAssistanceScholarship;
 
-namespace Adapters.Gateways.StudentAssistanceScholarship
-{
-    public class DetailedReadStudentAssistanceScholarshipResponse : Response
-    {
-        public Guid? Id { get; set; }
-        public DateTime? DeletedAt { get; set; }
-        public string? Name { get; set; }
-        public string? Description { get; set; }
-    }
-}
+namespace Adapters.Gateways.StudentAssistanceScholarship;
+public class DetailedReadStudentAssistanceScholarshipResponse : DetailedReadStudentAssistanceScholarshipOutput, IResponse { }

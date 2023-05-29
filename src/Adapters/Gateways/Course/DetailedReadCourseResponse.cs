@@ -1,11 +1,5 @@
 ﻿using Adapters.Gateways.Base;
+using Domain.Contracts.Course;
 
-namespace Adapters.Gateways.Course
-{
-    public class DetailedReadCourseResponse : Response
-    {
-        public Guid? Id { get; set; }
-        public DateTime? DeletedAt { get; set; }
-        public string? Name { get; set; }
-    }
-}
+namespace Adapters.Gateways.Course;
+public class DetailedReadCourseResponse : DetailedReadCourseOutput, IResponse { }

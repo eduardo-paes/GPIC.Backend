@@ -1,15 +1,5 @@
 ﻿using Adapters.Gateways.Base;
-using System.ComponentModel.DataAnnotations;
+using Domain.Contracts.Area;
 
-namespace Adapters.Gateways.Area
-{
-    public class CreateAreaRequest : Request
-    {
-        [Required]
-        public Guid? MainAreaId { get; set; }
-        [Required]
-        public string? Name { get; set; }
-        [Required]
-        public string? Code { get; set; }
-    }
-}
+namespace Adapters.Gateways.Area;
+public class CreateAreaRequest : CreateAreaInput, IRequest { }

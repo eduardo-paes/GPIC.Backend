@@ -1,11 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Adapters.Gateways.Base;
+﻿using Adapters.Gateways.Base;
+using Domain.Contracts.Course;
 
-namespace Adapters.Gateways.Course
-{
-    public class CreateCourseRequest : Request
-    {
-        [Required]
-        public string? Name { get; set; }
-    }
-}
+namespace Adapters.Gateways.Course;
+public class CreateCourseRequest : CreateCourseInput, IRequest { }
