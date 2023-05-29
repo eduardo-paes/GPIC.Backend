@@ -17,10 +17,10 @@ namespace Domain.UseCases
         }
         #endregion
 
-        public async Task<IQueryable<ResumedReadNoticeOutput>> Execute(int skip, int take)
+        public async Task<IEnumerable<ResumedReadNoticeOutput>> Execute(int skip, int take)
         {
             var entities = await _repository.GetAll(skip, take);
-            return _mapper.Map<IEnumerable<ResumedReadNoticeOutput>>(entities).AsQueryable();
+            return _mapper.Map<IEnumerable<ResumedReadNoticeOutput>>(entities);
         }
     }
 }

@@ -108,31 +108,13 @@ namespace Domain.Entities
         /// </summary>
         public string? Description { get; set; }
 
-        private string? _docUrl;
         /// <summary>
         /// URL do edital
         /// </summary>
-        public string? DocUrl
-        {
-            get => _docUrl;
-            set
-            {
-                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
-                    ExceptionMessageFactory.Invalid("URL do Edital"));
-                _docUrl = value;
-            }
-        }
+        public string? DocUrl { get; set; }
         #endregion
 
         #region Constructors
-        public Notice(DateTime? startDate, DateTime? finalDate, string? description, string? docUrl)
-        {
-            StartDate = startDate;
-            FinalDate = finalDate;
-            Description = description;
-            DocUrl = docUrl;
-        }
-
         /// <summary>
         /// Constructor to dbcontext EF instancing.
         /// </summary>

@@ -27,8 +27,9 @@ namespace Domain.UseCases
             var entity = _mapper.Map<Entities.Notice>(input);
 
             // Verifica se já existe um edital para o período indicado
-            _ = await _repository.GetNoticeByPeriod((DateTime)input.StartDate!, (DateTime)input.FinalDate!)
-                ?? throw UseCaseException.BusinessRuleViolation("A notice already exists for the indicated period.");
+            var projectFound = await _repository.GetNoticeByPeriod((DateTime)input.StartDate!, (DateTime)input.FinalDate!);
+            if (projectFound != null)
+                throw UseCaseException.BusinessRuleViolation("A notice already exists for the indicated period.");
 
             // Salva arquivo no repositório e atualiza atributo DocUrl
             if (input.File != null)

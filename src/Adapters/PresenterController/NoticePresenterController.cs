@@ -29,9 +29,9 @@ namespace Adapters.PresenterController
         }
         #endregion
 
-        public async Task<IResponse?> Create(IRequest request) => await _createNotice.Execute((request as CreateNoticeInput)!) as DetailedReadNoticeResponse;
+        public async Task<IResponse?> Create(IRequest request) => await _createNotice.Execute((request as CreateNoticeInput)!) as IResponse;
         public async Task<IResponse?> Delete(Guid? id) => await _deleteNotice.Execute(id) as DetailedReadNoticeResponse;
-        public async Task<IEnumerable<IResponse>?> GetAll(int skip, int take) => await _getNoticees.Execute(skip, take) as IEnumerable<ResumedReadNoticeResponse>;
+        public async Task<IEnumerable<IResponse>?> GetAll(int skip, int take) => (await _getNoticees.Execute(skip, take)) as IEnumerable<IResponse>;
         public async Task<IResponse?> GetById(Guid? id) => await _getNoticeById.Execute(id) as DetailedReadNoticeResponse;
         public async Task<IResponse?> Update(Guid? id, IRequest request) => await _updateNotice.Execute(id, (request as UpdateNoticeInput)!) as DetailedReadNoticeResponse;
     }

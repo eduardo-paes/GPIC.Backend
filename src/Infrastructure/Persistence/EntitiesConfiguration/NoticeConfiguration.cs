@@ -1,5 +1,4 @@
-﻿using System;
-using Domain.Entities;
+﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -14,6 +13,10 @@ namespace Infrastructure.Persistence.EntitiesConfiguration
             builder.Property(p => p.Id).ValueGeneratedOnAdd();
             builder.Property(p => p.StartDate).IsRequired();
             builder.Property(p => p.FinalDate).IsRequired();
+            builder.Property(p => p.AppealStartDate).IsRequired();
+            builder.Property(p => p.AppealFinalDate).IsRequired();
+            builder.Property(p => p.SuspensionYears).IsRequired();
+            builder.Property(p => p.SendingDocumentationDeadline).IsRequired();
             builder.Property(p => p.Description).HasMaxLength(300);
             builder.Property(p => p.DocUrl).HasMaxLength(300);
             builder.Property(p => p.DeletedAt);

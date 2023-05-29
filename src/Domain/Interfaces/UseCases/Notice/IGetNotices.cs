@@ -4,6 +4,6 @@ namespace Domain.Interfaces.UseCases
 {
     public interface IGetNotices
     {
-        Task<IQueryable<ResumedReadNoticeOutput>> Execute(int skip, int take);
+        Task<IEnumerable<ResumedReadNoticeOutput>> Execute(int skip, int take);
     }
 }
