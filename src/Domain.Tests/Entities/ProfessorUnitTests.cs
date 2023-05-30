@@ -4,7 +4,7 @@ using FluentAssertions;
 using System;
 using Xunit;
 
-namespace Tests.Domain.Entities
+namespace Domain.Tests.Entities
 {
     public class ProfessorUnitTests
     {

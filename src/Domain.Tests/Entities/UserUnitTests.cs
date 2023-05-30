@@ -4,7 +4,7 @@ using Domain.Validation;
 using FluentAssertions;
 using Xunit;
 
-namespace Tests.Domain.Entities;
+namespace Domain.Tests.Entities;
 public class UserUniTests
 {
     [Fact(DisplayName = "Create User With Valid State")]

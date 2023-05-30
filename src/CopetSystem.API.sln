@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoC", "Infrastructure\IoC\I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "Infrastructure\WebAPI\WebAPI.csproj", "{163219BE-A0D2-41A1-A028-501AAB069BD9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{370C1BE1-63EE-4D2E-AD4A-6D8392EEFF40}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain.Tests", "Domain.Tests\Domain.Tests.csproj", "{370C1BE1-63EE-4D2E-AD4A-6D8392EEFF40}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "Docker\docker-compose.dcproj", "{58DF51E2-67F0-4740-B20B-8DE70C99FE2B}"
 EndProject

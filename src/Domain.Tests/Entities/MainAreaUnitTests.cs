@@ -3,7 +3,7 @@ using Domain.Validation;
 using FluentAssertions;
 using Xunit;
 
-namespace Tests.Domain.Entities;
+namespace Domain.Tests.Entities;
 public class MainAreaUnitTests
 {
     private MainArea MockValidMainArea() => new MainArea("ABC", "Main Area Name");
