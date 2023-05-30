@@ -52,7 +52,7 @@ namespace Tests.Domain.Entities
             var programType = MockValidProgramType();
 
             // Act & Assert
-            Assert.Throws<EntityExceptionValidation>(() => programType.Name = "lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper.");
+            Assert.Throws<EntityExceptionValidation>(() => programType.Name = new string('A', 1500));
         }
 
         [Fact]
@@ -99,7 +99,7 @@ namespace Tests.Domain.Entities
             var programType = MockValidProgramType();
 
             // Act & Assert
-            Assert.Throws<EntityExceptionValidation>(() => programType.Description = "lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper.");
+            Assert.Throws<EntityExceptionValidation>(() => programType.Description = new string('A', 1500));
         }
     }
 }

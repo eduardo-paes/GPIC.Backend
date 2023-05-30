@@ -50,7 +50,7 @@ public class MainAreaUnitTests
         var mainArea = MockValidMainArea();
 
         // Act & Assert
-        Assert.Throws<EntityExceptionValidation>(() => mainArea.Code = "lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper.");
+        Assert.Throws<EntityExceptionValidation>(() => mainArea.Code = new string('A', 1500));
     }
 
     [Fact]
@@ -95,6 +95,6 @@ public class MainAreaUnitTests
         var mainArea = MockValidMainArea();
 
         // Act & Assert
-        Assert.Throws<EntityExceptionValidation>(() => mainArea.Name = "lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper.");
+        Assert.Throws<EntityExceptionValidation>(() => mainArea.Name = new string('A', 1500));
     }
 }

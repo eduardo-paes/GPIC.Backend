@@ -51,7 +51,7 @@ namespace Tests.Domain.Entities
             var campus = MockValidCampus();
 
             // Act & Assert
-            Assert.Throws<EntityExceptionValidation>(() => campus.Name = "lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper.");
+            Assert.Throws<EntityExceptionValidation>(() => campus.Name = new string('A', 1500));
         }
     }
 }

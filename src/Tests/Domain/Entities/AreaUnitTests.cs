@@ -72,7 +72,7 @@ public class AreaUnitTests
         var area = MockValidArea();
 
         // Act & Assert
-        Assert.Throws<EntityExceptionValidation>(() => area.Code = "lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper.");
+        Assert.Throws<EntityExceptionValidation>(() => area.Code = new string('A', 1500));
     }
 
     [Fact]
@@ -117,6 +117,6 @@ public class AreaUnitTests
         var area = MockValidArea();
 
         // Act & Assert
-        Assert.Throws<EntityExceptionValidation>(() => area.Name = "lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper. lorem ipsum dolor sit amet, consectetur adipiscing elit. mauris ullamcorper.");
+        Assert.Throws<EntityExceptionValidation>(() => area.Name = new string('A', 1500));
     }
 }
