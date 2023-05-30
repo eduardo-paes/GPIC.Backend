@@ -54,7 +54,7 @@ namespace Domain.UseCases.Project
                 // Altera o status do projeto para submetido
                 project.Status = EProjectStatus.Submitted;
                 project.StatusDescription = EProjectStatus.Submitted.GetDescription();
-                project.SubmitionDate = DateTime.Now;
+                project.SubmissionDate = DateTime.Now;
 
                 // Salva alterações no banco de dados
                 await _projectRepository.Update(project);

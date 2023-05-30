@@ -497,12 +497,12 @@ namespace Domain.Entities
         /// <summary>
         /// Data de submissão do projeto na plataforma.
         /// </summary>
-        public DateTime? SubmitionDate { get; set; }
+        public DateTime? SubmissionDate { get; set; }
 
         /// <summary>
         /// Data de ressubmissão do projeto na plataforma.
         /// </summary>
-        public DateTime? RessubmitionDate { get; set; }
+        public DateTime? ResubmissionDate { get; set; }
 
         /// <summary>
         /// Data de cancelamento do projeto.
@@ -517,6 +517,60 @@ namespace Domain.Entities
         #endregion
 
         #region Constructors
+        public Project(string title, string keyWord1, string keyWord2, string keyWord3, bool isScholarshipCandidate,
+                       string objective, string methodology, string expectedResults, string activitiesExecutionSchedule,
+                       int? workType1, int? workType2, int? indexedConferenceProceedings, int? notIndexedConferenceProceedings,
+                       int? completedBook, int? organizedBook, int? bookChapters, int? bookTranslations,
+                       int? participationEditorialCommittees, int? fullComposerSoloOrchestraAllTracks,
+                       int? fullComposerSoloOrchestraCompilation, int? chamberOrchestraInterpretation,
+                       int? individualAndCollectiveArtPerformances, int? scientificCulturalArtisticCollectionsCuratorship,
+                       int? patentLetter, int? patentDeposit, int? softwareRegistration,
+                       Guid studentId, Guid programTypeId, Guid professorId, Guid subAreaId, Guid noticeId,
+                       EProjectStatus? status, string statusDescription, string appealDescription,
+                       DateTime? submitionDate, DateTime? ressubmissionDate, DateTime? cancellationDate,
+                       string cancellationReason)
+        {
+            // Inicializar as propriedades
+            Title = title;
+            KeyWord1 = keyWord1;
+            KeyWord2 = keyWord2;
+            KeyWord3 = keyWord3;
+            IsScholarshipCandidate = isScholarshipCandidate;
+            Objective = objective;
+            Methodology = methodology;
+            ExpectedResults = expectedResults;
+            ActivitiesExecutionSchedule = activitiesExecutionSchedule;
+            WorkType1 = workType1;
+            WorkType2 = workType2;
+            IndexedConferenceProceedings = indexedConferenceProceedings;
+            NotIndexedConferenceProceedings = notIndexedConferenceProceedings;
+            CompletedBook = completedBook;
+            OrganizedBook = organizedBook;
+            BookChapters = bookChapters;
+            BookTranslations = bookTranslations;
+            ParticipationEditorialCommittees = participationEditorialCommittees;
+            FullComposerSoloOrchestraAllTracks = fullComposerSoloOrchestraAllTracks;
+            FullComposerSoloOrchestraCompilation = fullComposerSoloOrchestraCompilation;
+            ChamberOrchestraInterpretation = chamberOrchestraInterpretation;
+            IndividualAndCollectiveArtPerformances = individualAndCollectiveArtPerformances;
+            ScientificCulturalArtisticCollectionsCuratorship = scientificCulturalArtisticCollectionsCuratorship;
+            PatentLetter = patentLetter;
+            PatentDeposit = patentDeposit;
+            SoftwareRegistration = softwareRegistration;
+            StudentId = studentId;
+            ProgramTypeId = programTypeId;
+            ProfessorId = professorId;
+            SubAreaId = subAreaId;
+            NoticeId = noticeId;
+            Status = status;
+            StatusDescription = statusDescription;
+            AppealDescription = appealDescription;
+            SubmissionDate = submitionDate;
+            ResubmissionDate = ressubmissionDate;
+            CancellationDate = cancellationDate;
+            CancellationReason = cancellationReason;
+        }
+
         /// <summary>
         /// Constructor to dbcontext EF instancing.
         /// </summary>
