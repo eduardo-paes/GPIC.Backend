@@ -24,9 +24,16 @@ public static class DependencyAdaptersInjection
 
         #region Gateways Mappers
         services.AddAutoMapper(typeof(AreaMappings));
+        services.AddAutoMapper(typeof(AuthMappings));
+        services.AddAutoMapper(typeof(CampusMappings));
+        services.AddAutoMapper(typeof(CourseMappings));
+        services.AddAutoMapper(typeof(MainAreaMappings));
+        services.AddAutoMapper(typeof(NoticeMappings));
         services.AddAutoMapper(typeof(ProfessorMappings));
+        services.AddAutoMapper(typeof(ProgramTypeMappings));
         services.AddAutoMapper(typeof(StudentMappings));
         services.AddAutoMapper(typeof(SubAreaMappings));
+        services.AddAutoMapper(typeof(UserMappings));
         #endregion
 
         return services;

@@ -17,11 +17,7 @@ namespace Adapters.PresenterController
         private readonly IGetStudentById _getStudentById;
         private readonly IMapper _mapper;
 
-        public StudentPresenterController(ICreateStudent createStudent,
-            IUpdateStudent updateStudent,
-            IDeleteStudent deleteStudent,
-            IGetStudents getStudents,
-            IGetStudentById getStudentById, IMapper mapper)
+        public StudentPresenterController(ICreateStudent createStudent, IUpdateStudent updateStudent, IDeleteStudent deleteStudent, IGetStudents getStudents, IGetStudentById getStudentById, IMapper mapper)
         {
             _createStudent = createStudent;
             _updateStudent = updateStudent;
@@ -32,10 +28,38 @@ namespace Adapters.PresenterController
         }
         #endregion
 
-        public async Task<IResponse?> Create(IRequest request) => _mapper.Map<DetailedReadStudentResponse>(await _createStudent.Execute((request as CreateStudentInput)!));
-        public async Task<IResponse?> Delete(Guid? id) => _mapper.Map<DetailedReadStudentResponse>(await _deleteStudent.Execute(id));
-        public async Task<IEnumerable<IResponse>?> GetAll(int skip, int take) => await _getStudents.Execute(skip, take) as IEnumerable<ResumedReadStudentResponse>;
-        public async Task<IResponse?> GetById(Guid? id) => _mapper.Map<DetailedReadStudentResponse>(await _getStudentById.Execute(id));
-        public async Task<IResponse?> Update(Guid? id, IRequest request) => _mapper.Map<DetailedReadStudentResponse>(await _updateStudent.Execute(id, (request as UpdateStudentInput)!));
+        public async Task<IResponse> Create(IRequest request)
+        {
+            var dto = request as CreateStudentRequest;
+            var input = _mapper.Map<CreateStudentInput>(dto);
+            var result = await _createStudent.Execute(input);
+            return _mapper.Map<DetailedReadStudentResponse>(result);
+        }
+
+        public async Task<IResponse> Delete(Guid? id)
+        {
+            var result = await _deleteStudent.Execute(id);
+            return _mapper.Map<DetailedReadStudentResponse>(result);
+        }
+
+        public async Task<IEnumerable<IResponse>> GetAll(int skip, int take)
+        {
+            var result = await _getStudents.Execute(skip, take);
+            return _mapper.Map<IEnumerable<ResumedReadStudentResponse>>(result);
+        }
+
+        public async Task<IResponse> GetById(Guid? id)
+        {
+            var result = await _getStudentById.Execute(id);
+            return _mapper.Map<DetailedReadStudentResponse>(result);
+        }
+
+        public async Task<IResponse> Update(Guid? id, IRequest request)
+        {
+            var dto = request as UpdateStudentRequest;
+            var input = _mapper.Map<UpdateStudentInput>(dto);
+            var result = await _updateStudent.Execute(id, input);
+            return _mapper.Map<DetailedReadStudentResponse>(result);
+        }
     }
 }

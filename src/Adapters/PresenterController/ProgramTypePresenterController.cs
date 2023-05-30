@@ -1,6 +1,7 @@
 using Adapters.Gateways.Base;
 using Adapters.Gateways.ProgramType;
 using Adapters.Interfaces;
+using AutoMapper;
 using Domain.Contracts.ProgramType;
 using Domain.Interfaces.UseCases;
 
@@ -12,27 +13,53 @@ namespace Adapters.PresenterController
         private readonly ICreateProgramType _createProgramType;
         private readonly IUpdateProgramType _updateProgramType;
         private readonly IDeleteProgramType _deleteProgramType;
-        private readonly IGetProgramTypes _getProgramTypees;
+        private readonly IGetProgramTypes _getProgramTypes;
         private readonly IGetProgramTypeById _getProgramTypeById;
+        private readonly IMapper _mapper;
 
-        public ProgramTypePresenterController(ICreateProgramType createProgramType,
-            IUpdateProgramType updateProgramType,
-            IDeleteProgramType deleteProgramType,
-            IGetProgramTypes getProgramTypees,
-            IGetProgramTypeById getProgramTypeById)
+        public ProgramTypePresenterController(ICreateProgramType createProgramType, IUpdateProgramType updateProgramType, IDeleteProgramType deleteProgramType, IGetProgramTypes getProgramTypes, IGetProgramTypeById getProgramTypeById, IMapper mapper)
         {
             _createProgramType = createProgramType;
             _updateProgramType = updateProgramType;
             _deleteProgramType = deleteProgramType;
-            _getProgramTypees = getProgramTypees;
+            _getProgramTypes = getProgramTypes;
             _getProgramTypeById = getProgramTypeById;
+            _mapper = mapper;
         }
         #endregion
 
-        public async Task<IResponse?> Create(IRequest request) => await _createProgramType.Execute((request as CreateProgramTypeInput)!) as DetailedReadProgramTypeResponse;
-        public async Task<IResponse?> Delete(Guid? id) => await _deleteProgramType.Execute(id) as DetailedReadProgramTypeResponse;
-        public async Task<IEnumerable<IResponse>?> GetAll(int skip, int take) => await _getProgramTypees.Execute(skip, take) as IEnumerable<ResumedReadProgramTypeResponse>;
-        public async Task<IResponse?> GetById(Guid? id) => await _getProgramTypeById.Execute(id) as DetailedReadProgramTypeResponse;
-        public async Task<IResponse?> Update(Guid? id, IRequest request) => await _updateProgramType.Execute(id, (request as UpdateProgramTypeInput)!) as DetailedReadProgramTypeResponse;
+        public async Task<IResponse> Create(IRequest request)
+        {
+            var dto = request as CreateProgramTypeRequest;
+            var input = _mapper.Map<CreateProgramTypeInput>(dto);
+            var result = await _createProgramType.Execute(input);
+            return _mapper.Map<DetailedReadProgramTypeResponse>(result);
+        }
+
+        public async Task<IResponse> Delete(Guid? id)
+        {
+            var result = await _deleteProgramType.Execute(id);
+            return _mapper.Map<DetailedReadProgramTypeResponse>(result);
+        }
+
+        public async Task<IEnumerable<IResponse>> GetAll(int skip, int take)
+        {
+            var result = await _getProgramTypes.Execute(skip, take);
+            return _mapper.Map<IEnumerable<ResumedReadProgramTypeResponse>>(result);
+        }
+
+        public async Task<IResponse> GetById(Guid? id)
+        {
+            var result = await _getProgramTypeById.Execute(id);
+            return _mapper.Map<DetailedReadProgramTypeResponse>(result);
+        }
+
+        public async Task<IResponse> Update(Guid? id, IRequest request)
+        {
+            var dto = request as UpdateProgramTypeRequest;
+            var input = _mapper.Map<UpdateProgramTypeInput>(dto);
+            var result = await _updateProgramType.Execute(id, input);
+            return _mapper.Map<DetailedReadProgramTypeResponse>(result);
+        }
     }
 }

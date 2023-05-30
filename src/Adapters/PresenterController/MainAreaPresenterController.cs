@@ -1,6 +1,7 @@
 using Adapters.Gateways.Base;
 using Adapters.Gateways.MainArea;
 using Adapters.Interfaces;
+using AutoMapper;
 using Domain.Contracts.MainArea;
 using Domain.Interfaces.UseCases;
 
@@ -12,27 +13,53 @@ namespace Adapters.PresenterController
         private readonly ICreateMainArea _createMainArea;
         private readonly IUpdateMainArea _updateMainArea;
         private readonly IDeleteMainArea _deleteMainArea;
-        private readonly IGetMainAreas _getMainAreaes;
+        private readonly IGetMainAreas _getMainAreas;
         private readonly IGetMainAreaById _getMainAreaById;
+        private readonly IMapper _mapper;
 
-        public MainAreaPresenterController(ICreateMainArea createMainArea,
-            IUpdateMainArea updateMainArea,
-            IDeleteMainArea deleteMainArea,
-            IGetMainAreas getMainAreaes,
-            IGetMainAreaById getMainAreaById)
+        public MainAreaPresenterController(ICreateMainArea createMainArea, IUpdateMainArea updateMainArea, IDeleteMainArea deleteMainArea, IGetMainAreas getMainAreas, IGetMainAreaById getMainAreaById, IMapper mapper)
         {
             _createMainArea = createMainArea;
             _updateMainArea = updateMainArea;
             _deleteMainArea = deleteMainArea;
-            _getMainAreaes = getMainAreaes;
+            _getMainAreas = getMainAreas;
             _getMainAreaById = getMainAreaById;
+            _mapper = mapper;
         }
         #endregion
 
-        public async Task<IResponse?> Create(IRequest request) => await _createMainArea.Execute((request as CreateMainAreaInput)!) as DetailedReadMainAreaResponse;
-        public async Task<IResponse?> Delete(Guid? id) => await _deleteMainArea.Execute(id) as DetailedReadMainAreaResponse;
-        public async Task<IEnumerable<IResponse>?> GetAll(int skip, int take) => await _getMainAreaes.Execute(skip, take) as IEnumerable<ResumedReadMainAreaResponse>;
-        public async Task<IResponse?> GetById(Guid? id) => await _getMainAreaById.Execute(id) as DetailedReadMainAreaResponse;
-        public async Task<IResponse?> Update(Guid? id, IRequest request) => await _updateMainArea.Execute(id, (request as UpdateMainAreaInput)!) as DetailedReadMainAreaResponse;
+        public async Task<IResponse> Create(IRequest request)
+        {
+            var dto = request as CreateMainAreaRequest;
+            var input = _mapper.Map<CreateMainAreaInput>(dto);
+            var result = await _createMainArea.Execute(input);
+            return _mapper.Map<DetailedReadMainAreaResponse>(result);
+        }
+
+        public async Task<IResponse> Delete(Guid? id)
+        {
+            var result = await _deleteMainArea.Execute(id);
+            return _mapper.Map<DetailedReadMainAreaResponse>(result);
+        }
+
+        public async Task<IEnumerable<IResponse>> GetAll(int skip, int take)
+        {
+            var result = await _getMainAreas.Execute(skip, take);
+            return _mapper.Map<IEnumerable<ResumedReadMainAreaResponse>>(result);
+        }
+
+        public async Task<IResponse> GetById(Guid? id)
+        {
+            var result = await _getMainAreaById.Execute(id);
+            return _mapper.Map<DetailedReadMainAreaResponse>(result);
+        }
+
+        public async Task<IResponse> Update(Guid? id, IRequest request)
+        {
+            var dto = request as UpdateMainAreaRequest;
+            var input = _mapper.Map<UpdateMainAreaInput>(dto);
+            var result = await _updateMainArea.Execute(id, input);
+            return _mapper.Map<DetailedReadMainAreaResponse>(result);
+        }
     }
 }

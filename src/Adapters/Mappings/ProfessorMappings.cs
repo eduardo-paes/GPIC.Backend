@@ -8,6 +8,9 @@ namespace Adapters.Mappings
     {
         public ProfessorMappings()
         {
+            CreateMap<CreateProfessorInput, CreateProfessorRequest>().ReverseMap();
+            CreateMap<UpdateProfessorInput, UpdateProfessorRequest>().ReverseMap();
+            CreateMap<ResumedReadProfessorOutput, ResumedReadProfessorResponse>().ReverseMap();
             CreateMap<DetailedReadProfessorOutput, DetailedReadProfessorResponse>()
                 .ForMember(dest => dest.User,
                     opt => opt.MapFrom(src => src.User))
