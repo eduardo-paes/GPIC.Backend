@@ -4,15 +4,15 @@ using Domain.Validation;
 using FluentAssertions;
 using Xunit;
 
-namespace Tests.Domain.Entites;
-public class UserUnitTests
+namespace Tests.Domain.Entities;
+public class UserUniTests
 {
     [Fact(DisplayName = "Create User With Valid State")]
     public void CreateUser_WithValidParameters_ResultObjectValidState()
     {
         Action action = () => new User("User Name", "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
         action.Should()
-             .NotThrow<DomainExceptionValidation>();
+             .NotThrow<EntityExceptionValidation>();
     }
 
     #region Name Tests
@@ -21,7 +21,7 @@ public class UserUnitTests
     {
         Action action = () => new User("Us", "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
         action.Should()
-            .Throw<DomainExceptionValidation>()
+            .Throw<EntityExceptionValidation>()
             .WithMessage(ExceptionMessageFactory.MinLength("name", 3));
     }
 
@@ -30,7 +30,7 @@ public class UserUnitTests
     {
         Action action = () => new User("frttcgyxukstpasvqpbhqmsbjjvolqsrbfkaiptymddeegoedgodnxtlotplntqitreugkiernzsjmganfdjxcyagoqrzmadqffbsvehnblaovkzclijojbbrustwczcilguchcmrfswjjwquyjbhwgdtnwysdxuymmaibjwvnpvemjxpdkirtjezwyifnrmngoodufstmndqcgawzlvqazxfhdhrtcditryoiczqabbpdhqgwqzukrenvvezlwiciwbprebrxuiytnumvupvoqtdfnbmoxrrgalrudecdugkfblogserwipsrbcqtmotleqarahfqxokfqmrsorjuofatcvsd", "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
         action.Should()
-            .Throw<DomainExceptionValidation>()
+            .Throw<EntityExceptionValidation>()
             .WithMessage(ExceptionMessageFactory.MaxLength("name", 300));
     }
 
@@ -39,7 +39,7 @@ public class UserUnitTests
     {
         Action action = () => new User(string.Empty, "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
         action.Should()
-            .Throw<DomainExceptionValidation>()
+            .Throw<EntityExceptionValidation>()
             .WithMessage(ExceptionMessageFactory.Required("name"));
     }
 
@@ -48,7 +48,7 @@ public class UserUnitTests
     {
         Action action = () => new User(null, "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
         action.Should()
-            .Throw<DomainExceptionValidation>()
+            .Throw<EntityExceptionValidation>()
             .WithMessage(ExceptionMessageFactory.Required("name"));
     }
 
@@ -58,7 +58,7 @@ public class UserUnitTests
         var model = new User("User Name", "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
         Action action = () => model.Name = "Teste Name";
         action.Should()
-            .NotThrow<DomainExceptionValidation>();
+            .NotThrow<EntityExceptionValidation>();
     }
 
     [Fact]
@@ -67,7 +67,7 @@ public class UserUnitTests
         var model = new User("User Name", "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
         Action action = () => model.Name = string.Empty;
         action.Should()
-            .Throw<DomainExceptionValidation>()
+            .Throw<EntityExceptionValidation>()
             .WithMessage(ExceptionMessageFactory.Required("name"));
     }
     #endregion
@@ -78,7 +78,7 @@ public class UserUnitTests
     {
         Action action = () => new User("User Name", string.Empty, "123456", "15162901784", ERole.ADMIN, null);
         action.Should()
-            .Throw<DomainExceptionValidation>()
+            .Throw<EntityExceptionValidation>()
             .WithMessage(ExceptionMessageFactory.Required("email"));
     }
 
@@ -87,7 +87,7 @@ public class UserUnitTests
     {
         Action action = () => new User("User Name", "frttcgyxukstpasvqpbhqmsbjjvolqsrbfkaiptymddeegoedgodnxtlotplntqitreugkiernzsjmganfdjxcyagoqrzmadqffbsvehnblaovkzclijojbbrustwczcilguchcmrfswjjwquyjbhwgdtnwysdxuymmaibjwvnpvemjxpdkirtjezwyifnrmngoodufstmndqcgawzlvqazxfhdhrtcditryoiczqabbpdhqgwqzukrenvvezlwiciwbprebrxuiytnumvupvoqtdfnbmoxrrgalrudecdugkfblogserwipsrbcqtmotleqarahfqxokfqmrsorjuofatcvsd", "123456", "15162901784", ERole.ADMIN, null);
         action.Should()
-            .Throw<DomainExceptionValidation>()
+            .Throw<EntityExceptionValidation>()
             .WithMessage(ExceptionMessageFactory.MaxLength("email", 300));
     }
 
@@ -96,7 +96,7 @@ public class UserUnitTests
     {
         Action action = () => new User("User Name", null, "123456", "15162901784", ERole.ADMIN, null);
         action.Should()
-            .Throw<DomainExceptionValidation>()
+            .Throw<EntityExceptionValidation>()
             .WithMessage(ExceptionMessageFactory.Required("email"));
     }
 
@@ -105,7 +105,7 @@ public class UserUnitTests
     {
         Action action = () => new User("User Name", "aaaa-bbbb", "123456", "15162901784", ERole.ADMIN, null);
         action.Should()
-            .Throw<DomainExceptionValidation>()
+            .Throw<EntityExceptionValidation>()
             .WithMessage(ExceptionMessageFactory.InvalidEmail("email"));
     }
     #endregion
@@ -116,7 +116,7 @@ public class UserUnitTests
     {
         Action action = () => new User("User Name", "username@gmail.com", "123", "15162901784", ERole.ADMIN, null);
         action.Should()
-            .Throw<DomainExceptionValidation>()
+            .Throw<EntityExceptionValidation>()
             .WithMessage(ExceptionMessageFactory.MinLength("password", 6));
     }
 
@@ -125,7 +125,7 @@ public class UserUnitTests
     {
         Action action = () => new User("User Name", "username@gmail.com", "frttcgyxukstpasvqpbhqmsbjjvolqsrbfkaiptymddeegoedgodnxtlotplntqitreugkiernzsjmganfdjxcyagoqrzmadqffbsvehnblaovkzclijojbbrustwczcilguchcmrfswjjwquyjbhwgdtnwysdxuymmaibjwvnpvemjxpdkirtjezwyifnrmngoodufstmndqcgawzlvqazxfhdhrtcditryoiczqabbpdhqgwqzukrenvvezlwiciwbprebrxuiytnumvupvoqtdfnbmoxrrgalrudecdugkfblogserwipsrbcqtmotleqarahfqxokfqmrsorjuofatcvsd", "15162901784", ERole.ADMIN, null);
         action.Should()
-            .Throw<DomainExceptionValidation>()
+            .Throw<EntityExceptionValidation>()
             .WithMessage(ExceptionMessageFactory.MaxLength("password", 300));
     }
 
@@ -134,7 +134,7 @@ public class UserUnitTests
     {
         Action action = () => new User("User Name", "username@gmail.com", string.Empty, "15162901784", ERole.ADMIN, null);
         action.Should()
-            .Throw<DomainExceptionValidation>()
+            .Throw<EntityExceptionValidation>()
             .WithMessage(ExceptionMessageFactory.Required("password"));
     }
 
@@ -143,7 +143,7 @@ public class UserUnitTests
     {
         Action action = () => new User("User Name", "username@gmail.com", null, "15162901784", ERole.ADMIN, null);
         action.Should()
-            .Throw<DomainExceptionValidation>()
+            .Throw<EntityExceptionValidation>()
             .WithMessage(ExceptionMessageFactory.Required("password"));
     }
 
@@ -153,7 +153,7 @@ public class UserUnitTests
         var model = new User("User Name", "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
         Action action = () => model.Password = "987654321";
         action.Should()
-            .NotThrow<DomainExceptionValidation>();
+            .NotThrow<EntityExceptionValidation>();
     }
 
     [Fact]
@@ -162,7 +162,7 @@ public class UserUnitTests
         var model = new User("User Name", "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
         Action action = () => model.Password = string.Empty;
         action.Should()
-            .Throw<DomainExceptionValidation>()
+            .Throw<EntityExceptionValidation>()
             .WithMessage(ExceptionMessageFactory.Required("password"));
     }
     #endregion
@@ -173,7 +173,7 @@ public class UserUnitTests
     {
         Action action = () => new User("User Name", "username@gmail.com", "123456", "1516290178", ERole.ADMIN, null);
         action.Should()
-            .Throw<DomainExceptionValidation>()
+            .Throw<EntityExceptionValidation>()
             .WithMessage(ExceptionMessageFactory.WithLength("cpf", 11));
     }
 
@@ -182,7 +182,7 @@ public class UserUnitTests
     {
         Action action = () => new User("User Name", "username@gmail.com", "123456", "151629017840", ERole.ADMIN, null);
         action.Should()
-            .Throw<DomainExceptionValidation>()
+            .Throw<EntityExceptionValidation>()
             .WithMessage(ExceptionMessageFactory.WithLength("cpf", 11));
     }
 
@@ -191,7 +191,7 @@ public class UserUnitTests
     {
         Action action = () => new User("User Name", "username@gmail.com", "123456", string.Empty, ERole.ADMIN, null);
         action.Should()
-            .Throw<DomainExceptionValidation>()
+            .Throw<EntityExceptionValidation>()
             .WithMessage(ExceptionMessageFactory.Required("cpf"));
     }
 
@@ -200,7 +200,7 @@ public class UserUnitTests
     {
         Action action = () => new User("User Name", "username@gmail.com", "123456", null, ERole.ADMIN, null);
         action.Should()
-            .Throw<DomainExceptionValidation>()
+            .Throw<EntityExceptionValidation>()
             .WithMessage(ExceptionMessageFactory.Required("cpf"));
     }
 
@@ -209,7 +209,7 @@ public class UserUnitTests
     {
         Action action = () => new User("User Name", "username@gmail.com", "123456", "12345678911", ERole.ADMIN, null);
         action.Should()
-            .Throw<DomainExceptionValidation>()
+            .Throw<EntityExceptionValidation>()
             .WithMessage(ExceptionMessageFactory.InvalidCpf());
     }
 
@@ -219,7 +219,7 @@ public class UserUnitTests
         var model = new User("User Name", "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
         Action action = () => model.CPF = "15162901784";
         action.Should()
-            .NotThrow<DomainExceptionValidation>();
+            .NotThrow<EntityExceptionValidation>();
     }
 
     [Fact]
@@ -228,7 +228,7 @@ public class UserUnitTests
         var model = new User("User Name", "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
         Action action = () => model.CPF = string.Empty;
         action.Should()
-            .Throw<DomainExceptionValidation>()
+            .Throw<EntityExceptionValidation>()
             .WithMessage(ExceptionMessageFactory.Required("cpf"));
     }
     #endregion
@@ -239,7 +239,7 @@ public class UserUnitTests
     {
         Action action = () => new User("User Name", "username@gmail.com", "123456", "15162901784", null, null);
         action.Should()
-            .Throw<DomainExceptionValidation>()
+            .Throw<EntityExceptionValidation>()
             .WithMessage(ExceptionMessageFactory.Required("role"));
     }
 
@@ -249,7 +249,7 @@ public class UserUnitTests
         var model = new User("User Name", "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
         Action action = () => model.Role = ERole.STUDENT;
         action.Should()
-            .NotThrow<DomainExceptionValidation>();
+            .NotThrow<EntityExceptionValidation>();
     }
 
     [Fact]
@@ -258,7 +258,7 @@ public class UserUnitTests
         var model = new User("User Name", "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
         Action action = () => model.Role = null;
         action.Should()
-            .Throw<DomainExceptionValidation>()
+            .Throw<EntityExceptionValidation>()
             .WithMessage(ExceptionMessageFactory.Required("role"));
     }
     #endregion
