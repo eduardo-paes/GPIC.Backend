@@ -9,61 +9,91 @@ namespace Domain.Entities
 
         #region Properties
         #region Informações Gerais da Avaliação
+        private Guid? _projectId;
         public Guid? ProjectId
         {
-            get => ProjectId;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(IsProductivityFellow)));
+            get => _projectId;
+            set
+            {
+                EntityExceptionValidation.When(value is null,
+                    ExceptionMessageFactory.Required(nameof(IsProductivityFellow)));
+                _projectId = value;
+            }
         }
 
+        private bool? _isProductivityFellow;
         /// <summary>
         /// O professor é bolsista de Produtividade?
         /// </summary>
         public bool? IsProductivityFellow
         {
-            get => IsProductivityFellow;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(IsProductivityFellow)));
+            get => _isProductivityFellow;
+            set
+            {
+                EntityExceptionValidation.When(value is null,
+                    ExceptionMessageFactory.Required(nameof(IsProductivityFellow)));
+                _isProductivityFellow = value;
+            }
         }
 
+        private Guid? _submissionEvaluatorId;
         /// <summary>
         /// Id do avaliador que avaliou a submissão.
         /// </summary>
         public Guid? SubmissionEvaluatorId
         {
-            get => SubmissionEvaluatorId;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(SubmissionEvaluatorId)));
+            get => _submissionEvaluatorId;
+            set
+            {
+                EntityExceptionValidation.When(value is null,
+                    ExceptionMessageFactory.Required(nameof(SubmissionEvaluatorId)));
+                _submissionEvaluatorId = value;
+            }
         }
 
+        private DateTime? _submissionEvaluationDate;
         /// <summary>
         /// Data da avaliação da submissão.
         /// </summary>
         public DateTime? SubmissionEvaluationDate
         {
-            get => SubmissionEvaluationDate;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(SubmissionEvaluationDate)));
+            get => _submissionEvaluationDate;
+            set
+            {
+                EntityExceptionValidation.When(value is null,
+                    ExceptionMessageFactory.Required(nameof(SubmissionEvaluationDate)));
+                _submissionEvaluationDate = value;
+            }
         }
 
+        private EProjectStatus? _submissionEvaluationStatus;
         /// <summary>
         /// Status da avaliação da submissão.
         /// </summary>
         public EProjectStatus? SubmissionEvaluationStatus
         {
-            get => SubmissionEvaluationStatus;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(SubmissionEvaluationStatus)));
+            get => _submissionEvaluationStatus;
+            set
+            {
+                EntityExceptionValidation.When(value is null,
+                    ExceptionMessageFactory.Required(nameof(SubmissionEvaluationStatus)));
+                _submissionEvaluationStatus = value;
+            }
         }
 
+        private string? _submissionEvaluationDescription;
         /// <summary>
         /// Nota da avaliação da submissão.
         /// </summary>
         public string? SubmissionEvaluationDescription
         {
-            get => SubmissionEvaluationDescription;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(SubmissionEvaluationDescription)));
+            get => _submissionEvaluationDescription;
+            set
+            {
+                EntityExceptionValidation.When(value is null,
+                    ExceptionMessageFactory.Required(nameof(SubmissionEvaluationDescription)));
+                _submissionEvaluationDescription = value;
+            }
         }
 
         /// <summary>
