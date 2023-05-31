@@ -2,6 +2,7 @@ using Domain.Contracts.Area;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.UseCases;
+using Domain.Validation;
 
 namespace Domain.UseCases
 {
@@ -23,16 +24,16 @@ namespace Domain.UseCases
         {
             var entity = await _areaRepository.GetByCode(model.Code);
             if (entity != null)
-                throw new Exception($"Já existe uma Área Principal para o código {model.Code}");
+                throw UseCaseException.BusinessRuleViolation($"There is already a Main Area for the code {model.Code}.");
 
             // Verifica id da área princial
             if (model.MainAreaId == null)
-                throw new Exception("O Id da Área Principal não pode ser vazio.");
+                throw UseCaseException.NotInformedParam(nameof(model.MainAreaId));
 
             // Valida se existe área principal
             var area = await _mainAreaRepository.GetById(model.MainAreaId);
             if (area?.DeletedAt != null)
-                throw new Exception("A Área Principal informada está inativa.");
+                throw UseCaseException.BusinessRuleViolation("The informed Main Area is inactive.");
 
             // Cria nova área
             entity = await _areaRepository.Create(_mapper.Map<Domain.Entities.Area>(model));

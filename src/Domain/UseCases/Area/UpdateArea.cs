@@ -2,8 +2,7 @@ using Domain.Contracts.Area;
 using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
-using System.Threading.Tasks;
-using System;
+using Domain.Validation;
 
 namespace Domain.UseCases
 {
@@ -21,12 +20,13 @@ namespace Domain.UseCases
 
         public async Task<DetailedReadAreaOutput> Execute(Guid? id, UpdateAreaInput input)
         {
-            // Recupera entidade que será atualizada
-            var entity = await _repository.GetById(id);
+            // Verifica se Id foi informado.
+            if (id is null)
+                throw UseCaseException.NotInformedParam(nameof(id));
 
-            // Verifica se entidade existe
-            if (entity == null)
-                throw new Exception("Área não encontrada.");
+            // Recupera entidade que será atualizada
+            var entity = await _repository.GetById(id)
+                ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.MainArea));
 
             // Atualiza atributos permitidos
             entity.Name = input.Name;

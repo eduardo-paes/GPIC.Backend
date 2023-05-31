@@ -2,6 +2,7 @@ using Domain.Contracts.Area;
 using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
+using Domain.Validation;
 
 namespace Domain.UseCases
 {
@@ -21,7 +22,7 @@ namespace Domain.UseCases
         {
             // Verifica se o id foi informado
             if (id == null)
-                throw new ArgumentNullException(nameof(id));
+                throw UseCaseException.NotInformedParam(nameof(id));
 
             // Remove a entidade
             var model = await _repository.Delete(id);

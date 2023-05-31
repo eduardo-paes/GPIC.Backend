@@ -2,8 +2,7 @@ using Domain.Contracts.Area;
 using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
-using System.Threading.Tasks;
-using System;
+using Domain.Validation;
 
 namespace Domain.UseCases
 {
@@ -21,6 +20,10 @@ namespace Domain.UseCases
 
         public async Task<DetailedReadAreaOutput> Execute(Guid? id)
         {
+            // Verifica se Id foi informado.
+            if (id is null)
+                throw UseCaseException.NotInformedParam(nameof(id));
+
             var entity = await _repository.GetById(id);
             return _mapper.Map<DetailedReadAreaOutput>(entity);
         }

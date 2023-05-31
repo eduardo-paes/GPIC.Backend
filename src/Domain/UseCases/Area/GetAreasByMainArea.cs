@@ -2,10 +2,7 @@ using Domain.Contracts.Area;
 using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
-using System.Threading.Tasks;
-using System.Linq;
-using System;
-using System.Collections.Generic;
+using Domain.Validation;
 
 namespace Domain.UseCases
 {
@@ -23,6 +20,10 @@ namespace Domain.UseCases
 
         public async Task<IQueryable<ResumedReadAreaOutput>> Execute(Guid? mainAreaId, int skip, int take)
         {
+            // Verifica se mainAreaId foi informado.
+            if (mainAreaId is null)
+                throw UseCaseException.NotInformedParam(nameof(mainAreaId));
+
             var entities = await _repository.GetAreasByMainArea(mainAreaId, skip, take);
             return _mapper.Map<IEnumerable<ResumedReadAreaOutput>>(entities).AsQueryable();
         }
