@@ -3,7 +3,7 @@ using Domain.Contracts.Project;
 using Domain.Entities.Enums;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
-using Domain.Interfaces.UseCases;
+using Domain.Interfaces.UseCases.Project;
 
 namespace Domain.UseCases.Project
 {

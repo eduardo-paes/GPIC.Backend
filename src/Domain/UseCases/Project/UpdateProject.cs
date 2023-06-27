@@ -2,7 +2,7 @@ using AutoMapper;
 using Domain.Contracts.Project;
 using Domain.Entities.Enums;
 using Domain.Interfaces.Repositories;
-using Domain.Interfaces.UseCases;
+using Domain.Interfaces.UseCases.Project;
 using Domain.Validation;
 
 namespace Domain.UseCases.Project;
