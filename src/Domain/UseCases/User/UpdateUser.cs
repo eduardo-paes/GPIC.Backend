@@ -3,6 +3,7 @@ using Domain.Contracts.User;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
 using Domain.Interfaces.UseCases;
+using Domain.Validation;
 
 namespace Domain.UseCases
 {
@@ -26,8 +27,7 @@ namespace Domain.UseCases
             var userClaims = _tokenAuthenticationService.GetUserAuthenticatedClaims();
 
             // Verifica se o id informado é nulo
-            if (userClaims.Id == null)
-                throw new ArgumentNullException(nameof(userClaims.Id));
+            UseCaseException.NotInformedParam(userClaims.Id is null, nameof(userClaims.Id));
 
             // Busca usuário pelo id informado
             var user = await _repository.GetById(userClaims.Id)

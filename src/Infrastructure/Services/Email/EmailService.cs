@@ -27,9 +27,7 @@ public class EmailService : IEmailService
             throw new Exception("Parâmetros inválidos. Email, nome e token são obrigatórios.");
 
         // Lê mensagem do template em html salvo localmente
-        string? currentDirectory = Path.GetDirectoryName(typeof(EmailService).Assembly.Location);
-        if (currentDirectory == null)
-            throw new Exception("Não foi possível encontrar o diretório atual do projeto.");
+        string? currentDirectory = Path.GetDirectoryName(typeof(EmailService).Assembly.Location) ?? throw new Exception("Não foi possível encontrar o diretório atual do projeto.");
 
         // Lê mensagem do template em html salvo localmente
         string template = await File.ReadAllTextAsync(Path.Combine(currentDirectory!, "Email/Templates/ConfirmEmail.html"));
@@ -57,9 +55,7 @@ public class EmailService : IEmailService
             throw new Exception("Parâmetros inválidos. Email, nome e token são obrigatórios.");
 
         // Lê mensagem do template em html salvo localmente
-        string? currentDirectory = Path.GetDirectoryName(typeof(EmailService).Assembly.Location);
-        if (currentDirectory == null)
-            throw new Exception("Não foi possível encontrar o diretório atual do projeto.");
+        string? currentDirectory = Path.GetDirectoryName(typeof(EmailService).Assembly.Location) ?? throw new Exception("Não foi possível encontrar o diretório atual do projeto.");
 
         // Lê mensagem do template em html salvo localmente
         string template = await File.ReadAllTextAsync(Path.Combine(currentDirectory!, "Email/Templates/ResetPassword.html"));

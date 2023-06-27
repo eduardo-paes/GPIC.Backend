@@ -22,11 +22,7 @@ namespace Domain.UseCases
         public async Task<DetailedMainAreaOutput> Execute(Guid? id, UpdateMainAreaInput input)
         {
             // Recupera entidade que será atualizada
-            var entity = await _repository.GetById(id);
-
-            // Verifica se entidade existe
-            if (entity == null)
-                throw new Exception("Área Principal não encontrada.");
+            var entity = await _repository.GetById(id) ?? throw new Exception("Área Principal não encontrada.");
 
             // Atualiza atributos permitidos
             entity.Name = input.Name;

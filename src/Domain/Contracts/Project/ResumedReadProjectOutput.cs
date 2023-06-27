@@ -1,7 +1,2 @@
-namespace Domain.Contracts.Project
-{
-    public class ResumedReadProjectOutput : BaseProjectContract
-    {
-
-    }
-}
+namespace Domain.Contracts.Project;
+public class ResumedReadProjectOutput : BaseProjectContract { }

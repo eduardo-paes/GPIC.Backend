@@ -32,12 +32,7 @@ namespace Domain.UseCases
                 throw new Exception("O Id da Área não pode ser vazio.");
 
             // Valida se existe área
-            var area = await _areaRepository.GetById(input.AreaId);
-
-            // Verifica se Área existe
-            if (area == null)
-                throw new Exception("A Área informada não existe.");
-
+            var area = await _areaRepository.GetById(input.AreaId) ?? throw new Exception("A Área informada não existe.");
             if (area.DeletedAt != null)
                 throw new Exception("A Área informada está inativa.");
 

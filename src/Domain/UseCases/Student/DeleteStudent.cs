@@ -26,14 +26,10 @@ namespace Domain.UseCases
                 throw new ArgumentNullException(nameof(id));
 
             // Verifica se o estudante existe
-            var student = await _studentRepository.GetById(id);
-            if (student == null)
-                throw new Exception("Estudante não encontrado para o Id informado.");
+            var student = await _studentRepository.GetById(id) ?? throw new Exception("Estudante não encontrado para o Id informado.");
 
             // Verifica se o usuário existe
-            var user = await _userRepository.GetById(student.UserId);
-            if (user == null)
-                throw new Exception("Usuário não encontrado para o Id informado.");
+            _ = await _userRepository.GetById(student.UserId) ?? throw new Exception("Usuário não encontrado para o Id informado.");
 
             // Remove o estudante
             student = await _studentRepository.Delete(id);
@@ -41,9 +37,7 @@ namespace Domain.UseCases
                 throw new Exception("O estudante não pôde ser removido.");
 
             // Remove o usuário
-            user = await _userRepository.Delete(student.UserId);
-            if (user == null)
-                throw new Exception("O usuário não pôde ser removido.");
+            _ = await _userRepository.Delete(student.UserId) ?? throw new Exception("O usuário não pôde ser removido.");
 
             // Retorna o estudante removido
             return _mapper.Map<DetailedReadStudentOutput>(student);

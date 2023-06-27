@@ -22,11 +22,7 @@ namespace Domain.UseCases
         public async Task<DetailedReadSubAreaOutput> Execute(Guid? id, UpdateSubAreaInput input)
         {
             // Recupera entidade que será atualizada
-            var entity = await _subAreaRepository.GetById(id);
-
-            // Verifica se entidade existe
-            if (entity == null)
-                throw new Exception("Subárea não encontrada.");
+            var entity = await _subAreaRepository.GetById(id) ?? throw new Exception("Subárea não encontrada.");
 
             // Atualiza atributos permitidos
             entity.Name = input.Name;

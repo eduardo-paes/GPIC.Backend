@@ -25,11 +25,7 @@ namespace Domain.UseCases
                 throw new ArgumentNullException(nameof(id));
 
             // Recupera entidade que será atualizada
-            var student = await _studentRepository.GetById(id);
-
-            // Verifica se o estudante foi encontrado
-            if (student == null)
-                throw new Exception("Nenhum estudante encontrado para o Id informado.");
+            var student = await _studentRepository.GetById(id) ?? throw new Exception("Nenhum estudante encontrado para o Id informado.");
 
             // Verifica se a entidade foi excluída
             if (student.DeletedAt != null)

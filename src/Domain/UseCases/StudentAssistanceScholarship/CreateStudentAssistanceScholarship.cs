@@ -2,6 +2,7 @@ using Domain.Contracts.StudentAssistanceScholarship;
 using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
+using Domain.Validation;
 
 namespace Domain.UseCases
 {
@@ -20,13 +21,12 @@ namespace Domain.UseCases
         public async Task<DetailedReadStudentAssistanceScholarshipOutput> Execute(CreateStudentAssistanceScholarshipInput input)
         {
             // Verifica se nome foi informado
-            if (string.IsNullOrEmpty(input.Name))
-                throw new ArgumentNullException(nameof(input.Name));
+            UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.Name), nameof(input.Name));
 
             // Verifica se já existe um tipo de programa com o nome indicado
-            var entity = await _repository.GetStudentAssistanceScholarshipByName(input.Name);
+            var entity = await _repository.GetStudentAssistanceScholarshipByName(input.Name!);
             if (entity != null)
-                throw new Exception($"Já existe um Tipo de Programa para o nome informado.");
+                throw new Exception("Já existe um Tipo de Programa para o nome informado.");
 
             // Cria entidade
             entity = await _repository.Create(_mapper.Map<Entities.StudentAssistanceScholarship>(input));

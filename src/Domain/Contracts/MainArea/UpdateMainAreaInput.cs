@@ -8,4 +8,3 @@ namespace Domain.Contracts.MainArea
         public Guid? Id { get; set; }
     }
 }
-

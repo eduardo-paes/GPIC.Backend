@@ -2,6 +2,7 @@ using Domain.Contracts.StudentAssistanceScholarship;
 using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
+using Domain.Validation;
 
 namespace Domain.UseCases
 {
@@ -24,8 +25,7 @@ namespace Domain.UseCases
                 throw new ArgumentNullException(nameof(id));
 
             // Verifica se nome foi informado
-            if (string.IsNullOrEmpty(input.Name))
-                throw new ArgumentNullException(nameof(input.Name));
+            UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.Name), nameof(input.Name));
 
             // Recupera entidade que será atualizada
             var entity = await _repository.GetById(id)
@@ -37,8 +37,10 @@ namespace Domain.UseCases
 
             // Verifica se o nome já está sendo usado
             if (!string.Equals(entity.Name, input.Name, StringComparison.OrdinalIgnoreCase)
-                && await _repository.GetStudentAssistanceScholarshipByName(input.Name) != null)
-                throw new Exception($"Já existe um Bolsa de Assistência para o nome informado.");
+                && await _repository.GetStudentAssistanceScholarshipByName(input.Name!) != null)
+            {
+                throw new Exception("Já existe um Bolsa de Assistência para o nome informado.");
+            }
 
             // Atualiza atributos permitidos
             entity.Name = input.Name;

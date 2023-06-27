@@ -5,4 +5,3 @@ namespace Domain.Contracts.MainArea
 {
     public class CreateMainAreaInput : BaseMainAreaContract { }
 }
-
