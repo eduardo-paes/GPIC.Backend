@@ -58,11 +58,11 @@ namespace Domain.UseCases.ProjectEvaluation
             if (project.Notice?.StartDate > DateTime.Now || project.Notice?.FinalDate < DateTime.Now)
                 throw UseCaseException.BusinessRuleViolation("Notice is closed.");
 
-            // Verifica se o status do projeto foi informado.
-            if (input.SubmissionEvaluationStatus == null)
+            // Verifica se o status da avaliação foi informado.
+            if (input.SubmissionEvaluationStatus is null)
                 throw UseCaseException.NotInformedParam(nameof(input.SubmissionEvaluationStatus));
 
-            // Verifica se descrição do projeto foi informada.
+            // Verifica se a descrição da avaliação foi informada.
             if (string.IsNullOrEmpty(input.SubmissionEvaluationDescription))
                 throw UseCaseException.NotInformedParam(nameof(input.SubmissionEvaluationDescription));
 
@@ -71,14 +71,22 @@ namespace Domain.UseCases.ProjectEvaluation
             input.SubmissionEvaluatorId = user.Id;
 
             // Mapeia dados de entrada para entidade.
-            var projectEvaluationEntity = _mapper.Map<Entities.ProjectEvaluation>(input);
+            projectEvaluation = _mapper.Map<Entities.ProjectEvaluation>(input);
 
             // Adiciona avaliação do projeto.
-            await _projectEvaluationRepository.Create(projectEvaluationEntity);
+            await _projectEvaluationRepository.Create(projectEvaluation);
 
-            // Atualiza status do projeto.
-            project.Status = (EProjectStatus)input.SubmissionEvaluationStatus;
-            project.StatusDescription = project.Status.GetDescription();
+            // TODO: Se projeto foi aceito, adiciona prazo para envio da documentação.
+            if (projectEvaluation.SubmissionEvaluationStatus == EProjectStatus.Accepted)
+            {
+                project.Status = EProjectStatus.DocumentAnalysis;
+                project.StatusDescription = EProjectStatus.DocumentAnalysis.GetDescription();
+            }
+            else
+            {
+                project.Status = EProjectStatus.Rejected;
+                project.StatusDescription = EProjectStatus.Rejected.GetDescription();
+            }
 
             // Atualiza projeto.
             var output = await _projectRepository.Update(project);

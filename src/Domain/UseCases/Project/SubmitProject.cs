@@ -64,7 +64,7 @@ namespace Domain.UseCases.Project
             }
             else
             {
-                throw new ArgumentException("O projeto não se encontra num estágio que permita submissão.");
+                throw UseCaseException.BusinessRuleViolation("The project is not at a stage that allows submission.");
             }
         }
     }

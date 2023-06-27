@@ -41,48 +41,58 @@ namespace Domain.UseCases.ProjectEvaluation
             var projectEvaluation = await _projectEvaluationRepository.GetByProjectId(input.ProjectId)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.ProjectEvaluation));
 
+            // Recupera projeto pelo Id.
+            var project = await _projectRepository.GetById(input.ProjectId)
+                ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Project));
+
             // Verifica se o avaliador é o professor orientador do projeto.
             if (projectEvaluation.Project?.ProfessorId == user.Id)
                 throw UseCaseException.BusinessRuleViolation("Evaluator is the project advisor.");
 
             // Verifica se o projeto está na fase de recurso.
-            if (projectEvaluation.Project?.Status != EProjectStatus.Rejected)
-                throw UseCaseException.BusinessRuleViolation("Project is not in the appeal phase.");
+            if (projectEvaluation.Project?.Status != EProjectStatus.Evaluation)
+                throw UseCaseException.BusinessRuleViolation("Project is not in the evaluation phase.");
 
-            // Verifica se o edital ainda está aberto.
-            if (projectEvaluation.Project.Notice?.StartDate > DateTime.Now || projectEvaluation.Project.Notice?.FinalDate < DateTime.Now)
-                throw UseCaseException.BusinessRuleViolation("Notice is closed.");
+            // Verifica se o edital está na fase de recurso.
+            if (projectEvaluation.Project.Notice?.AppealStartDate > DateTime.Now || projectEvaluation.Project.Notice?.AppealFinalDate < DateTime.Now)
+                throw UseCaseException.BusinessRuleViolation("Notice isn't in the appeal stage.");
 
-            // Verifica se o status do projeto foi informado.
-            if (input.AppealEvaluationStatus == null)
+            // Verifica se o status da avaliação foi informado.
+            if (input.AppealEvaluationStatus is null)
                 throw UseCaseException.NotInformedParam(nameof(input.AppealEvaluationStatus));
 
-            // Verifica se descrição do projeto foi informada.
+            // Verifica se descrição da avaliação foi informada.
             if (string.IsNullOrEmpty(input.AppealEvaluationDescription))
                 throw UseCaseException.NotInformedParam(nameof(input.AppealEvaluationDescription));
 
             // Atualiza a avaliação do recurso.
             projectEvaluation.AppealEvaluatorId = user.Id;
             projectEvaluation.AppealEvaluationDate = DateTime.Now;
+
+            // Atualiza a descrição e o status da avaliação do recurso.
             projectEvaluation.AppealEvaluationDescription = input.AppealEvaluationDescription;
             projectEvaluation.AppealEvaluationStatus = (EProjectStatus)input.AppealEvaluationStatus;
-
-            // Recupera projeto pelo Id.
-            var project = await _projectRepository.GetById(input.ProjectId)
-                ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Project));
 
             // Atualiza avaliação do projeto.
             await _projectEvaluationRepository.Update(projectEvaluation);
 
-            // Atualiza status do projeto.
-            project.Status = (EProjectStatus)input.AppealEvaluationStatus;
-            project.StatusDescription = project.Status.GetDescription();
+            // TODO: Se projeto foi aceito, adiciona prazo para envio da documentação.
+            if ((EProjectStatus)input.AppealEvaluationStatus == EProjectStatus.Accepted)
+            {
+                project.Status = EProjectStatus.DocumentAnalysis;
+                project.StatusDescription = EProjectStatus.DocumentAnalysis.GetDescription();
+            }
+            else
+            {
+                project.Status = EProjectStatus.Rejected;
+                project.StatusDescription = EProjectStatus.Rejected.GetDescription();
+            }
 
             // Atualiza projeto.
-            await _projectRepository.Update(project);
+            var output = await _projectRepository.Update(project);
 
-            // Mappeia a saída e retorna.
-            return _mapper.Map<DetailedReadProjectOutput>(project);
+            // Mapeia dados de saída e retorna.
+            return _mapper.Map<DetailedReadProjectOutput>(output);
         }
     }
 }
