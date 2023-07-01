@@ -34,37 +34,35 @@ namespace Domain.UseCases.ProjectEvaluation
             var user = _tokenAuthenticationService.GetUserAuthenticatedClaims();
 
             // Verifica se o usuário logado é um avaliador.
-            if (user.Role != ERole.ADMIN.GetDescription() || user.Role != ERole.PROFESSOR.GetDescription())
-                throw UseCaseException.BusinessRuleViolation("User is not an evaluator.");
+            UseCaseException.BusinessRuleViolation(user.Role != ERole.ADMIN.GetDescription() || user.Role != ERole.PROFESSOR.GetDescription(),
+                "User is not an evaluator.");
 
             // Verifica se já existe alguma avaliação para o projeto.
             var projectEvaluation = await _projectEvaluationRepository.GetByProjectId(input.ProjectId);
-            if (projectEvaluation != null)
-                throw UseCaseException.BusinessRuleViolation("Project already evaluated.");
+            UseCaseException.BusinessRuleViolation(projectEvaluation != null,
+                "Project already evaluated.");
 
             // Busca projeto pelo Id.
             var project = await _projectRepository.GetById(input.ProjectId)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Project));
 
             // Verifica se o avaliador é o professor orientador do projeto.
-            if (project.ProfessorId == user.Id)
-                throw UseCaseException.BusinessRuleViolation("Evaluator is the project advisor.");
+            UseCaseException.BusinessRuleViolation(project.ProfessorId == user.Id,
+                    "Evaluator is the project advisor.");
 
             // Verifica se o projeto está na fase de submissão.
-            if (project.Status != EProjectStatus.Submitted)
-                throw UseCaseException.BusinessRuleViolation("Project is not in the submission phase.");
+            UseCaseException.BusinessRuleViolation(project.Status != EProjectStatus.Submitted,
+                "Project is not in the submission phase.");
 
             // Verifica se o edital ainda está aberto.
-            if (project.Notice?.StartDate > DateTime.Now || project.Notice?.FinalDate < DateTime.Now)
-                throw UseCaseException.BusinessRuleViolation("Notice is closed.");
+            UseCaseException.BusinessRuleViolation(project.Notice?.StartDate > DateTime.Now || project.Notice?.FinalDate < DateTime.Now,
+                "Notice is closed.");
 
             // Verifica se o status da avaliação foi informado.
-            if (input.SubmissionEvaluationStatus is null)
-                throw UseCaseException.NotInformedParam(nameof(input.SubmissionEvaluationStatus));
+            UseCaseException.NotInformedParam(input.SubmissionEvaluationStatus is null, nameof(input.SubmissionEvaluationStatus));
 
             // Verifica se a descrição da avaliação foi informada.
-            if (string.IsNullOrEmpty(input.SubmissionEvaluationDescription))
-                throw UseCaseException.NotInformedParam(nameof(input.SubmissionEvaluationDescription));
+            UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.SubmissionEvaluationDescription), nameof(input.SubmissionEvaluationDescription));
 
             // Atribui informações de avaliação.
             input.SubmissionEvaluationDate = DateTime.Now;

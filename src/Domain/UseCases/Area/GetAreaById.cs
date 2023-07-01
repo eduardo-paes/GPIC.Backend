@@ -21,8 +21,7 @@ namespace Domain.UseCases
         public async Task<DetailedReadAreaOutput> Execute(Guid? id)
         {
             // Verifica se Id foi informado.
-            if (id is null)
-                throw UseCaseException.NotInformedParam(nameof(id));
+            UseCaseException.NotInformedParam(id is null, nameof(id));
 
             var entity = await _repository.GetById(id);
             return _mapper.Map<DetailedReadAreaOutput>(entity);

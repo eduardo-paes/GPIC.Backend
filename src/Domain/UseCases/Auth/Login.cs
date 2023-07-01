@@ -23,24 +23,20 @@ namespace Domain.UseCases
         public async Task<UserLoginOutput> Execute(UserLoginInput input)
         {
             // Verifica se o email é nulo
-            if (string.IsNullOrEmpty(input.Email))
-                throw UseCaseException.NotInformedParam(nameof(input.Email));
+            UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.Email), nameof(input.Email));
 
             // Verifica se a senha é nula
-            else if (string.IsNullOrEmpty(input.Password))
-                throw UseCaseException.NotInformedParam(nameof(input.Password));
+            UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.Password), nameof(input.Password));
 
             // Busca usuário pelo email
             var entity = await _userRepository.GetUserByEmail(input.Email)
                 ?? throw UseCaseException.NotFoundEntityByParams(nameof(Entities.User));
 
             // Verifica se o usuário está confirmado
-            if (!entity.IsConfirmed)
-                throw UseCaseException.BusinessRuleViolation("User's email has not yet been confirmed.");
+            UseCaseException.BusinessRuleViolation(!entity.IsConfirmed, "User's email has not yet been confirmed.");
 
             // Verifica se a senha é válida
-            if (!_hashService.VerifyPassword(input.Password, entity.Password))
-                throw UseCaseException.BusinessRuleViolation("Invalid credentials.");
+            UseCaseException.BusinessRuleViolation(!_hashService.VerifyPassword(input.Password!, entity.Password), "Invalid credentials.");
 
             // Gera o token de autenticação e retorna o resultado
             return _tokenService.GenerateToken(entity.Id, entity.Name, entity.Role.ToString());

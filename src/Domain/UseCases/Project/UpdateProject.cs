@@ -69,8 +69,7 @@ public class UpdateProject : IUpdateProject
 
                 // Verifica se o aluno já está em um projeto
                 var studentProjects = await _projectRepository.GetStudentProjects(0, 1, student.Id);
-                if (studentProjects.Any())
-                    throw UseCaseException.BusinessRuleViolation("Student is already on a project.");
+                UseCaseException.BusinessRuleViolation(studentProjects.Any(), "Student is already on a project.");
             }
 
             // Atualiza campos permitidos

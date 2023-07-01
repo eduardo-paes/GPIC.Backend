@@ -24,16 +24,14 @@ namespace Domain.UseCases
         public async Task<DetailedReadNoticeOutput> Execute(Guid? id, UpdateNoticeInput input)
         {
             // Verifica se o id foi informado
-            if (id == null)
-                throw UseCaseException.NotInformedParam(nameof(id));
+            UseCaseException.NotInformedParam(id == null, nameof(id));
 
             // Recupera entidade que será atualizada
             var entity = await _repository.GetById(id)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Notice));
 
             // Verifica se a entidade foi excluída
-            if (entity.DeletedAt != null)
-                throw UseCaseException.BusinessRuleViolation("The notice entered has already been deleted.");
+            UseCaseException.BusinessRuleViolation(entity.DeletedAt != null, "The notice entered has already been deleted.");
 
             // Salva arquivo no repositório e atualiza atributo DocUrl
             if (input.File != null)

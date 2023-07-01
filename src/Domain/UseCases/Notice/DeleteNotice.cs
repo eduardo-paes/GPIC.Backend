@@ -24,8 +24,7 @@ namespace Domain.UseCases
         public async Task<DetailedReadNoticeOutput> Execute(Guid? id)
         {
             // Verifica se o id foi informado
-            if (id == null)
-                throw UseCaseException.NotInformedParam(nameof(id));
+            UseCaseException.NotInformedParam(id == null, nameof(id));
 
             // Remove a entidade
             var entity = await _repository.Delete(id);

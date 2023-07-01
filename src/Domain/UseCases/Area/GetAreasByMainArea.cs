@@ -21,8 +21,7 @@ namespace Domain.UseCases
         public async Task<IQueryable<ResumedReadAreaOutput>> Execute(Guid? mainAreaId, int skip, int take)
         {
             // Verifica se mainAreaId foi informado.
-            if (mainAreaId is null)
-                throw UseCaseException.NotInformedParam(nameof(mainAreaId));
+            UseCaseException.NotInformedParam(mainAreaId is null, nameof(mainAreaId));
 
             var entities = await _repository.GetAreasByMainArea(mainAreaId, skip, take);
             return _mapper.Map<IEnumerable<ResumedReadAreaOutput>>(entities).AsQueryable();

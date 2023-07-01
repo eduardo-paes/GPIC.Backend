@@ -28,8 +28,7 @@ namespace Domain.UseCases
 
             // Verifica se já existe um edital para o período indicado
             var projectFound = await _repository.GetNoticeByPeriod((DateTime)input.StartDate!, (DateTime)input.FinalDate!);
-            if (projectFound != null)
-                throw UseCaseException.BusinessRuleViolation("A notice already exists for the indicated period.");
+            UseCaseException.BusinessRuleViolation(projectFound != null, "A notice already exists for the indicated period.");
 
             // Salva arquivo no repositório e atualiza atributo DocUrl
             if (input.File != null)

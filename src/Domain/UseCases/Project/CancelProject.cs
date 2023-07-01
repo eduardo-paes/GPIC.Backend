@@ -27,8 +27,8 @@ namespace Domain.UseCases.Project
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Project));
 
             // Verifica se o projeto já não foi cancelado ou está encerrado
-            if (project.Status != EProjectStatus.Cancelled || project.Status != EProjectStatus.Closed)
-                throw UseCaseException.BusinessRuleViolation("Project already canceled or terminated.");
+            UseCaseException.BusinessRuleViolation(project.Status != EProjectStatus.Cancelled || project.Status != EProjectStatus.Closed,
+                "Project already canceled or terminated.");
 
             // Atualiza informações de cancelamento do projeto
             project.Status = EProjectStatus.Cancelled;
