@@ -125,6 +125,8 @@ namespace Domain.Entities
             {
                 EntityExceptionValidation.When(value is null,
                     ExceptionMessageFactory.Required(nameof(_agencyNumber)));
+                EntityExceptionValidation.When(long.TryParse(value, out long tmp) && tmp <= 0,
+                    ExceptionMessageFactory.Invalid(ExceptionMessageFactory.Invalid(nameof(_agencyNumber))));
                 _agencyNumber = value;
             }
         }
@@ -140,6 +142,8 @@ namespace Domain.Entities
             {
                 EntityExceptionValidation.When(value is null,
                     ExceptionMessageFactory.Required(nameof(_accountNumber)));
+                EntityExceptionValidation.When(long.TryParse(value, out long tmp) && tmp <= 0,
+                    ExceptionMessageFactory.Invalid(ExceptionMessageFactory.Invalid(nameof(_accountNumber))));
                 _accountNumber = value;
             }
         }
@@ -167,5 +171,12 @@ namespace Domain.Entities
         /// Constructor to dbcontext EF instancing.
         /// </summary>
         protected StudentDocuments() { }
+
+        public StudentDocuments(Guid? projectId, string? agencyNumber, string? accountNumber)
+        {
+            ProjectId = projectId;
+            AgencyNumber = agencyNumber;
+            AccountNumber = accountNumber;
+        }
     }
 }
