@@ -4,7 +4,7 @@ using Domain.Interfaces.Repositories;
 using Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace Persistence.Repositories
+namespace Infrastructure.Persistence.Repositories
 {
     public class ProjectRepository : IProjectRepository
     {

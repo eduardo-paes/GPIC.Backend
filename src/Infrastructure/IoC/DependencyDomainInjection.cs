@@ -1,7 +1,11 @@
 using Domain.Interfaces.Services;
 using Domain.Interfaces.UseCases;
+using Domain.Interfaces.UseCases.Project;
+using Domain.Interfaces.UseCases.ProjectEvaluation;
 using Domain.Mappings;
 using Domain.UseCases;
+using Domain.UseCases.Project;
+using Domain.UseCases.ProjectEvaluation;
 using Infrastructure.Services;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -85,12 +89,46 @@ public static class DependencyDomainInjection
         services.AddScoped<IUpdateProgramType, UpdateProgramType>();
         #endregion
 
+        #region Project
+        services.AddScoped<IAppealProject, AppealProject>();
+        services.AddScoped<ICancelProject, CancelProject>();
+        services.AddScoped<IGetClosedProjects, GetClosedProjects>();
+        services.AddScoped<IGetOpenProjects, GetOpenProjects>();
+        services.AddScoped<IGetProjectById, GetProjectById>();
+        services.AddScoped<IOpenProject, OpenProject>();
+        services.AddScoped<ISubmitProject, SubmitProject>();
+        services.AddScoped<IUpdateProject, UpdateProject>();
+        #endregion
+
+        #region ProjectEvaluation
+        services.AddScoped<IEvaluateAppealProject, EvaluateAppealProject>();
+        services.AddScoped<IEvaluateSubmissionProject, EvaluateSubmissionProject>();
+        services.AddScoped<IGetEvaluationByProjectId, GetEvaluationByProjectId>();
+        #endregion
+
         #region Student
         services.AddScoped<ICreateStudent, CreateStudent>();
         services.AddScoped<IDeleteStudent, DeleteStudent>();
         services.AddScoped<IGetStudentById, GetStudentById>();
         services.AddScoped<IGetStudents, GetStudents>();
         services.AddScoped<IUpdateStudent, UpdateStudent>();
+        #endregion
+
+        #region StudentAssistanceScholarship
+        services.AddScoped<ICreateStudentAssistanceScholarship, CreateStudentAssistanceScholarship>();
+        services.AddScoped<IDeleteStudentAssistanceScholarship, DeleteStudentAssistanceScholarship>();
+        services.AddScoped<IGetStudentAssistanceScholarshipById, GetStudentAssistanceScholarshipById>();
+        services.AddScoped<IGetStudentAssistanceScholarships, GetStudentAssistanceScholarships>();
+        services.AddScoped<IUpdateStudentAssistanceScholarship, UpdateStudentAssistanceScholarship>();
+        #endregion
+
+        #region StudentDocuments
+        services.AddScoped<ICreateStudentDocuments, CreateStudentDocuments>();
+        services.AddScoped<IDeleteStudentDocuments, DeleteStudentDocuments>();
+        services.AddScoped<IGetStudentDocumentsByProjectId, GetStudentDocumentsByProjectId>();
+        services.AddScoped<IGetStudentDocumentsByStudentId, GetStudentDocumentsByStudentId>();
+        services.AddScoped<IUpdateStudentDocuments, UpdateStudentDocuments>();
+        services.AddScoped<ICreateStudentDocuments, CreateStudentDocuments>();
         #endregion
 
         #region SubArea
@@ -120,6 +158,10 @@ public static class DependencyDomainInjection
         services.AddAutoMapper(typeof(NoticeMappings));
         services.AddAutoMapper(typeof(ProfessorMappings));
         services.AddAutoMapper(typeof(ProgramTypeMappings));
+        services.AddAutoMapper(typeof(ProjectEvaluationMappings));
+        services.AddAutoMapper(typeof(ProjectMappings));
+        services.AddAutoMapper(typeof(StudentAssistanceScholarshipMappings));
+        services.AddAutoMapper(typeof(StudentDocumentsMappings));
         services.AddAutoMapper(typeof(StudentMappings));
         services.AddAutoMapper(typeof(SubAreaMappings));
         services.AddAutoMapper(typeof(UserMappings));
