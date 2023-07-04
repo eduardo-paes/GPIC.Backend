@@ -24,6 +24,7 @@ namespace Infrastructure.Persistence.Context
             MainAreas = Set<MainArea>();
             Notices = Set<Notice>();
             Professors = Set<Professor>();
+            Projects = Set<Project>();
             ProgramTypes = Set<ProgramType>();
             Students = Set<Student>();
             SubAreas = Set<SubArea>();
@@ -37,12 +38,11 @@ namespace Infrastructure.Persistence.Context
         public DbSet<MainArea> MainAreas { get; set; }
         public DbSet<Notice> Notices { get; set; }
         public DbSet<Professor> Professors { get; set; }
+        public DbSet<Project> Projects { get; set; }
         public DbSet<ProgramType> ProgramTypes { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<SubArea> SubAreas { get; set; }
         public DbSet<User> Users { get; set; }
-
-        //public DbSet<Project> Projects { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -39,7 +39,7 @@ namespace Domain.UseCases.Project
                 // Altera o status do projeto para submetido
                 project.Status = EProjectStatus.Evaluation;
                 project.StatusDescription = EProjectStatus.Evaluation.GetDescription();
-                project.AppealDescription = appealDescription;
+                project.AppealObservation = appealDescription;
                 project.ResubmissionDate = DateTime.Now;
 
                 // Salva alterações no banco de dados

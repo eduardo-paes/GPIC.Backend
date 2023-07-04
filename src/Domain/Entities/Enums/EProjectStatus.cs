@@ -29,7 +29,7 @@ namespace Domain.Entities.Enums
         Pending,
 
         [Description("Cancelado: Projeto cancelado pelo professor ou administrador.")]
-        Cancelled,
+        Canceled,
 
         [Description("Encerrado: Projeto concluído, o Orientador possui 30 dias para entregar o Relatório Final, do contrário sua conta será suspensa por XX anos.")]
         Closed

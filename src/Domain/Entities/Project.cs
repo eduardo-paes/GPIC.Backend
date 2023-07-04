@@ -34,6 +34,8 @@ namespace Domain.Entities
             {
                 EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
                     ExceptionMessageFactory.Invalid(nameof(value)));
+                EntityExceptionValidation.When(value!.Length > 100,
+                    ExceptionMessageFactory.MaxLength(nameof(value), 100));
                 _keyWord1 = value;
             }
         }
@@ -46,6 +48,8 @@ namespace Domain.Entities
             {
                 EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
                     ExceptionMessageFactory.Invalid(nameof(value)));
+                EntityExceptionValidation.When(value!.Length > 100,
+                    ExceptionMessageFactory.MaxLength(nameof(value), 100));
                 _keyWord2 = value;
             }
         }
@@ -58,6 +62,8 @@ namespace Domain.Entities
             {
                 EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
                     ExceptionMessageFactory.Invalid(nameof(value)));
+                EntityExceptionValidation.When(value!.Length > 100,
+                    ExceptionMessageFactory.MaxLength(nameof(value), 100));
                 _keyWord3 = value;
             }
         }
@@ -492,7 +498,7 @@ namespace Domain.Entities
         /// <summary>
         /// Descrição da solicitação de recurso do orientador.
         /// </summary>
-        public string? AppealDescription { get; set; }
+        public string? AppealObservation { get; set; }
 
         /// <summary>
         /// Data de submissão do projeto na plataforma.
@@ -564,7 +570,7 @@ namespace Domain.Entities
             NoticeId = noticeId;
             Status = status;
             StatusDescription = statusDescription;
-            AppealDescription = appealDescription;
+            AppealObservation = appealDescription;
             SubmissionDate = submitionDate;
             ResubmissionDate = ressubmissionDate;
             CancellationDate = cancellationDate;
