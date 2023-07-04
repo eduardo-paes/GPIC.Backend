@@ -16,7 +16,7 @@ namespace Persistence.Seeds
                         null!,
                         "Root Admin",
                         "edu-paes@hotmail.com",
-                        "123456",
+                        "ieSgcgP4w2Am80FsWXlCqg==.4F9CiQ8v2t4Mu62R/DVJILBtQrl8mPh73MlbogRMXkw=",
                         "50806176083",
                         true,
                         0
