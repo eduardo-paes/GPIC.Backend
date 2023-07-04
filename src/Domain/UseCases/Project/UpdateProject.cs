@@ -34,10 +34,13 @@ public class UpdateProject : IUpdateProject
     }
     #endregion
 
-    public async Task<ResumedReadProjectOutput> Execute(UpdateProjectInput input)
+    public async Task<ResumedReadProjectOutput> Execute(Guid? id, UpdateProjectInput input)
     {
+        // Verifica se o id foi informado
+        UseCaseException.NotInformedParam(id is null, nameof(id));
+
         // Verifica se o projeto existe
-        var project = await _projectRepository.GetById(input.Id)
+        var project = await _projectRepository.GetById(id)
             ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Project));
 
         // Verifica se o projeto está aberto
@@ -47,24 +50,24 @@ public class UpdateProject : IUpdateProject
             var entity = _mapper.Map<Entities.Project>(input);
 
             // Verifica se a nova Subárea existe
-            if (input.SubAreaId != entity.SubAreaId)
+            if (entity.SubAreaId != project.SubAreaId)
             {
-                _ = await _subAreaRepository.GetById(input.SubAreaId)
+                _ = await _subAreaRepository.GetById(entity.SubAreaId)
                     ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.SubArea));
             }
 
             // Verifica se o novo Tipo de Programa existe
-            if (input.ProgramTypeId != entity.ProgramTypeId)
+            if (entity.ProgramTypeId != project.ProgramTypeId)
             {
-                _ = await _programTypeRepository.GetById(input.ProgramTypeId)
+                _ = await _programTypeRepository.GetById(entity.ProgramTypeId)
                     ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.ProgramType));
             }
 
             // Caso tenha sido informado algum aluno no processo de abertura do projeto
-            if (input.StudentId.HasValue && input.StudentId != entity.StudentId)
+            if (entity.StudentId.HasValue && entity.StudentId != project.StudentId)
             {
                 // Verifica se o aluno existe
-                var student = await _studentRepository.GetById(input.StudentId)
+                var student = await _studentRepository.GetById(entity.StudentId)
                     ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Student));
 
                 // Verifica se o aluno já está em um projeto

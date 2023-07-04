@@ -2,8 +2,6 @@ namespace Domain.Contracts.Project
 {
     public class UpdateProjectInput
     {
-        public Guid? Id { get; set; }
-
         #region Informações do Projeto
         public string? Title { get; set; }
         public string? KeyWord1 { get; set; }

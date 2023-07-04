@@ -85,10 +85,10 @@ namespace Adapters.PresenterController
             return _mapper.Map<ResumedReadProjectResponse>(output);
         }
 
-        public async Task<ResumedReadProjectResponse> UpdateProject(UpdateProjectRequest request)
+        public async Task<ResumedReadProjectResponse> UpdateProject(Guid? id, UpdateProjectRequest request)
         {
             var input = _mapper.Map<UpdateProjectInput>(request);
-            var output = await _updateProject.Execute(input);
+            var output = await _updateProject.Execute(id, input);
             return _mapper.Map<ResumedReadProjectResponse>(output);
         }
     }

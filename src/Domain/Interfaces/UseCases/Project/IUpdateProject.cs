@@ -4,6 +4,6 @@ namespace Domain.Interfaces.UseCases.Project
 {
     public interface IUpdateProject
     {
-        Task<ResumedReadProjectOutput> Execute(UpdateProjectInput input);
+        Task<ResumedReadProjectOutput> Execute(Guid? id, UpdateProjectInput input);
     }
 }
