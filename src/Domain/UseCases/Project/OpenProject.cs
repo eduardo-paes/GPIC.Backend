@@ -66,7 +66,7 @@ public class OpenProject : IOpenProject
                 ?? throw new ArgumentException("Aluno não encontrado.");
 
             // Verifica se o aluno já está em um projeto
-            var studentProjects = await _projectRepository.GetStudentClosedProjects(0, 1, student.Id);
+            var studentProjects = await _projectRepository.GetStudentProjects(0, 1, student.Id);
             if (studentProjects.Any())
                 throw new ArgumentException("Aluno já está em um projeto.");
         }

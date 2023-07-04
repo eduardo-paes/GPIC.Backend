@@ -52,6 +52,22 @@ namespace Persistence.EntitiesConfiguration
             builder.Property(p => p.CancellationReason);
             builder.Property(p => p.DeletedAt);
 
+            builder.HasOne(a => a.Student)
+                .WithMany()
+                .HasForeignKey(a => a.StudentId);
+            builder.HasOne(a => a.ProgramType)
+                .WithMany()
+                .HasForeignKey(a => a.ProgramTypeId);
+            builder.HasOne(a => a.Professor)
+                .WithMany()
+                .HasForeignKey(a => a.ProfessorId);
+            builder.HasOne(a => a.SubArea)
+                .WithMany()
+                .HasForeignKey(a => a.SubAreaId);
+            builder.HasOne(a => a.Notice)
+                .WithMany()
+                .HasForeignKey(a => a.NoticeId);
+
             builder.HasQueryFilter(x => x.DeletedAt == null);
         }
     }

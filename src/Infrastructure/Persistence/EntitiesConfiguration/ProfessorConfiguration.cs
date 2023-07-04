@@ -21,8 +21,9 @@ namespace Infrastructure.Persistence.EntitiesConfiguration
                 .IsRequired();
             builder.Property(p => p.DeletedAt);
 
-            builder.HasOne(a => a.User).WithOne()
-            .HasForeignKey<Professor>(a => a.UserId);
+            builder.HasOne(a => a.User)
+                .WithOne()
+                .HasForeignKey<Professor>(a => a.UserId);
 
             builder.HasQueryFilter(x => x.DeletedAt == null);
         }
