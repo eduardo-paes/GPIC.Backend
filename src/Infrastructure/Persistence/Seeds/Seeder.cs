@@ -11,6 +11,7 @@ namespace Persistence.Seeds
             CoursesSeeder.Seed(migrationBuilder);
             ProgramTypesSeeder.Seed(migrationBuilder);
             StudentAssistanceScholarshipSeeder.Seed(migrationBuilder);
+            UserSeeder.Seed(migrationBuilder);
         }
     }
 }

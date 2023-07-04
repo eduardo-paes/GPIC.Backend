@@ -123,16 +123,6 @@ namespace Domain.Entities
         #endregion
 
         #region Constructors
-        public User(string? name, string? email, string? password, string? cpf, ERole? role, DateTime? deletedAt)
-        {
-            Name = name;
-            Email = email;
-            Password = password;
-            CPF = cpf;
-            Role = role;
-            DeletedAt = deletedAt;
-        }
-
         internal User(string? name, string? email, string? password, string? cpf, ERole? role)
         {
             Name = name;
