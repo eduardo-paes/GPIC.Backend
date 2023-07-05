@@ -101,9 +101,9 @@ public static class DependencyDomainInjection
         #endregion
 
         #region ProjectEvaluation
-        services.AddScoped<IEvaluateAppealProject, EvaluateAppealProject>();
-        services.AddScoped<IEvaluateSubmissionProject, EvaluateSubmissionProject>();
-        services.AddScoped<IGetEvaluationByProjectId, GetEvaluationByProjectId>();
+        // services.AddScoped<IEvaluateAppealProject, EvaluateAppealProject>();
+        // services.AddScoped<IEvaluateSubmissionProject, EvaluateSubmissionProject>();
+        // services.AddScoped<IGetEvaluationByProjectId, GetEvaluationByProjectId>();
         #endregion
 
         #region Student
@@ -123,12 +123,12 @@ public static class DependencyDomainInjection
         #endregion
 
         #region StudentDocuments
-        services.AddScoped<ICreateStudentDocuments, CreateStudentDocuments>();
-        services.AddScoped<IDeleteStudentDocuments, DeleteStudentDocuments>();
-        services.AddScoped<IGetStudentDocumentsByProjectId, GetStudentDocumentsByProjectId>();
-        services.AddScoped<IGetStudentDocumentsByStudentId, GetStudentDocumentsByStudentId>();
-        services.AddScoped<IUpdateStudentDocuments, UpdateStudentDocuments>();
-        services.AddScoped<ICreateStudentDocuments, CreateStudentDocuments>();
+        // services.AddScoped<ICreateStudentDocuments, CreateStudentDocuments>();
+        // services.AddScoped<IDeleteStudentDocuments, DeleteStudentDocuments>();
+        // services.AddScoped<IGetStudentDocumentsByProjectId, GetStudentDocumentsByProjectId>();
+        // services.AddScoped<IGetStudentDocumentsByStudentId, GetStudentDocumentsByStudentId>();
+        // services.AddScoped<IUpdateStudentDocuments, UpdateStudentDocuments>();
+        // services.AddScoped<ICreateStudentDocuments, CreateStudentDocuments>();
         #endregion
 
         #region SubArea
