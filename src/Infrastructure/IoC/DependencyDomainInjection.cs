@@ -114,12 +114,12 @@ public static class DependencyDomainInjection
         services.AddScoped<IUpdateStudent, UpdateStudent>();
         #endregion
 
-        #region StudentAssistanceScholarship
-        services.AddScoped<ICreateStudentAssistanceScholarship, CreateStudentAssistanceScholarship>();
-        services.AddScoped<IDeleteStudentAssistanceScholarship, DeleteStudentAssistanceScholarship>();
-        services.AddScoped<IGetStudentAssistanceScholarshipById, GetStudentAssistanceScholarshipById>();
-        services.AddScoped<IGetStudentAssistanceScholarships, GetStudentAssistanceScholarships>();
-        services.AddScoped<IUpdateStudentAssistanceScholarship, UpdateStudentAssistanceScholarship>();
+        #region TypeAssistance
+        services.AddScoped<ICreateTypeAssistance, CreateTypeAssistance>();
+        services.AddScoped<IDeleteTypeAssistance, DeleteTypeAssistance>();
+        services.AddScoped<IGetTypeAssistanceById, GetTypeAssistanceById>();
+        services.AddScoped<IGetTypeAssistances, GetTypeAssistances>();
+        services.AddScoped<IUpdateTypeAssistance, UpdateTypeAssistance>();
         #endregion
 
         #region StudentDocuments
@@ -160,7 +160,7 @@ public static class DependencyDomainInjection
         services.AddAutoMapper(typeof(ProgramTypeMappings));
         services.AddAutoMapper(typeof(ProjectEvaluationMappings));
         services.AddAutoMapper(typeof(ProjectMappings));
-        services.AddAutoMapper(typeof(StudentAssistanceScholarshipMappings));
+        services.AddAutoMapper(typeof(TypeAssistanceMappings));
         services.AddAutoMapper(typeof(StudentDocumentsMappings));
         services.AddAutoMapper(typeof(StudentMappings));
         services.AddAutoMapper(typeof(SubAreaMappings));

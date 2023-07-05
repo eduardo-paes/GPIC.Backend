@@ -19,7 +19,7 @@ public static class DependencyAdaptersInjection
         services.AddScoped<IProgramTypePresenterController, ProgramTypePresenterController>();
         // services.AddScoped<IProjectEvaluationPresenterController, ProjectEvaluationPresenterController>();
         services.AddScoped<IProjectPresenterController, ProjectPresenterController>();
-        services.AddScoped<IStudentAssistanceScholarshipPresenterController, StudentAssistanceScholarshipPresenterController>();
+        services.AddScoped<ITypeAssistancePresenterController, TypeAssistancePresenterController>();
         // services.AddScoped<IStudentDocumentsPresenterController, StudentDocumentsPresenterController>();
         services.AddScoped<IStudentPresenterController, StudentPresenterController>();
         services.AddScoped<ISubAreaPresenterController, SubAreaPresenterController>();
@@ -37,7 +37,7 @@ public static class DependencyAdaptersInjection
         services.AddAutoMapper(typeof(ProgramTypeMappings));
         services.AddAutoMapper(typeof(ProjectEvaluationMapping));
         services.AddAutoMapper(typeof(ProjectMappings));
-        services.AddAutoMapper(typeof(StudentAssistanceScholarshipMappings));
+        services.AddAutoMapper(typeof(TypeAssistanceMappings));
         services.AddAutoMapper(typeof(StudentDocumentsMappings));
         services.AddAutoMapper(typeof(StudentMappings));
         services.AddAutoMapper(typeof(SubAreaMappings));

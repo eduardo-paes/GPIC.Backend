@@ -47,7 +47,7 @@ namespace Domain.UseCases
             student.RG = input.RG;
             student.StartYear = input.StartYear;
             student.UF = input.UF;
-            student.StudentAssistanceScholarshipId = input.StudentAssistanceScholarshipId;
+            student.TypeAssistanceId = input.TypeAssistanceId;
 
             // Enums            
             student.Race = (ERace)input.Race;

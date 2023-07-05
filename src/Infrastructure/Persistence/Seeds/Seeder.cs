@@ -10,7 +10,7 @@ namespace Persistence.Seeds
             CampusesSeeder.Seed(migrationBuilder);
             CoursesSeeder.Seed(migrationBuilder);
             ProgramTypesSeeder.Seed(migrationBuilder);
-            StudentAssistanceScholarshipSeeder.Seed(migrationBuilder);
+            TypeAssistanceSeeder.Seed(migrationBuilder);
             UserSeeder.Seed(migrationBuilder);
         }
     }
