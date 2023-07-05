@@ -1,4 +1,3 @@
-using System.Security.Claims;
 using Adapters.Gateways.User;
 using Adapters.Interfaces;
 using Microsoft.AspNetCore.Authorization;

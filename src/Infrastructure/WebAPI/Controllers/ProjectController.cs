@@ -3,7 +3,7 @@ using Adapters.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebAPI.Controllers
+namespace Infrastructure.WebAPI.Controllers
 {
     /// <summary>
     /// Controller de projetos.
