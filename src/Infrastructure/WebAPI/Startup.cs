@@ -1,55 +1,71 @@
+using AspNetCoreRateLimit;
 using Infrastructure.IoC;
 
-namespace Infrastructure.WebAPI
+namespace Infrastructure.WebAPI;
+
+/// <summary>
+/// Classe de iniciação da WebAPI.
+/// </summary>
+public class Startup
 {
     /// <summary>
-    /// Classe de iniciação da WebAPI.
+    /// Realiza a configuração dos serviços de injeção de dependência.
     /// </summary>
-    public class Startup
+    public void ConfigureServices(IServiceCollection services)
     {
-        /// <summary>
-        /// Realiza a configuração dos serviços de injeção de dependência.
-        /// </summary>
-        public void ConfigureServices(IServiceCollection services)
+        // Adição dos Controllers
+        services.AddControllers();
+
+        // Realiza comunicação com os demais Projetos.
+        services.AddInfrastructure();
+        services.AddAdapters();
+        services.AddDomain();
+
+        // Configuração do Swagger
+        services.AddInfrastructureSwagger();
+
+        // Configuração do JWT
+        services.AddInfrastructureJWT();
+
+        // Permite que rotas sejam acessíveis em lowercase
+        services.AddRouting(options => options.LowercaseUrls = true);
+    }
+
+    /// <summary>
+    /// Adiciona as configurações de segurança, documentação e roteamento.
+    /// </summary>
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        if (env.IsDevelopment())
         {
-            // Adição dos Controllers
-            services.AddControllers();
+            // Show detailed error page in development mode
+            app.UseDeveloperExceptionPage();
 
-            // Realiza comunicação com os demais Projetos.
-            services.AddInfrastructure();
-            services.AddAdapters();
-            services.AddDomain();
-
-            // Configuração do Swagger
-            services.AddInfrastructureSwagger();
-
-            // Configuração do JWT
-            services.AddInfrastructureJWT();
-
-            // Permite que rotas sejam acessíveis em lowercase
-            services.AddRouting(options => options.LowercaseUrls = true);
+            // Enable Swagger middleware for API documentation in development mode
+            app.UseSwagger();
+            app.UseSwaggerUI();
         }
 
-        /// <summary>
-        /// Adiciona as configurações de segurança, documentação e roteamento.
-        /// </summary>
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+        // Enable HTTP Strict Transport Security (HSTS) headers for secure communication
+        app.UseHsts();
 
-            app.UseHsts();
-            app.UseHttpsRedirection();
+        // Redirect HTTP requests to HTTPS for secure communication
+        app.UseHttpsRedirection();
 
-            app.UseRouting();
-            app.UseAuthentication();
-            app.UseAuthorization();
+        // Enable routing for incoming requests
+        app.UseRouting();
 
-            app.UseEndpoints(endpoints => endpoints.MapControllers());
-        }
+        // Enable authentication for the API
+        app.UseAuthentication();
+
+        // Enable authorization for the API
+        app.UseAuthorization();
+
+        // Apply rate limiting middleware to control the number of requests allowed  
+        app.UseClientRateLimiting();
+        app.UseIpRateLimiting();
+
+        // Configure API endpoints
+        app.UseEndpoints(endpoints => endpoints.MapControllers());
     }
 }

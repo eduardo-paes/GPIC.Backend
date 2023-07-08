@@ -1,14 +1,18 @@
-﻿using Domain.Interfaces.Repositories;
+﻿using AspNetCoreRateLimit;
+using Domain.Interfaces.Repositories;
 using Infrastructure.IoC.Utils;
 using Infrastructure.Persistence.Context;
 using Infrastructure.Persistence.Repositories;
 using Infrastructure.Services;
 using Infrastructure.Services.Email.Configs;
 using Infrastructure.Services.Email.Factories;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Serilog;
 
 namespace Infrastructure.IoC;
@@ -73,6 +77,16 @@ public static class DependencyInjection
         services.AddScoped<IStudentRepository, StudentRepository>();
         services.AddScoped<ISubAreaRepository, SubAreaRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
+        #endregion
+
+        #region Rate Limit
+        services.AddMemoryCache();
+        services.AddInMemoryRateLimiting();
+        services.Configure<ClientRateLimitOptions>(configuration.GetSection("IpRateLimiting"));
+        services.AddSingleton<IClientPolicyStore, MemoryCacheClientPolicyStore>();
+        services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
+        services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
+        services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
         #endregion
 
         return services;
