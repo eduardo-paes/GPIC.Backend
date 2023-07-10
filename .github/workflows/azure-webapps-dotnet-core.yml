@@ -1,9 +1,10 @@
-name: Build and deploy ASP.Net Core app to an Azure Web App
+name: Build and deploy .NET app to an Azure Web App
 
 env:
-  AZURE_WEBAPP_NAME: GPIC-Staging-WebAPI # set this to the name of your Azure Web App
-  AZURE_WEBAPP_PACKAGE_PATH: "./src" # set this to the path to your web app project, defaults to the repository root
-  DOTNET_VERSION: "7.0" # set this to the .NET Core version to use
+  AZURE_WEBAPP_NAME: GPIC-Staging-WebAPI
+  AZURE_WEBAPP_PACKAGE_PATH: "/dist"
+  DOTNET_VERSION: "7.0"
+  SOLUTION_PATH: "src/CopetSystem.API.sln"
 
 on:
   push:
@@ -34,16 +35,16 @@ jobs:
             ${{ runner.os }}-nuget-
 
       - name: Build with dotnet
-        run: dotnet build -c Release ${{env.DOTNET_ROOT}}/Infrastructure/WebAPI/WebAPI.csproj
+        run: dotnet build ${{env.SOLUTION_PATH}}
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/dist
+        run: dotnet publish ${{env.SOLUTION_PATH}} -c Release -o ${{env.AZURE_WEBAPP_PACKAGE_PATH}} --no-build
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: .net-app
-          path: ${{env.DOTNET_ROOT}}/dist
+          name: published_web_app
+          path: ${{env.AZURE_WEBAPP_PACKAGE_PATH}}
 
   deploy:
     permissions:
@@ -51,14 +52,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: "Development"
+      name: "Staging"
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: .net-app
+          name: published_web_app
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
