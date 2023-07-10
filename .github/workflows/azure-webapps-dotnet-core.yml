@@ -34,10 +34,10 @@ jobs:
             ${{ runner.os }}-nuget-
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release ${{env.DOTNET_ROOT}}/Infrastructure/WebAPI/WebAPI.csproj
+        run: dotnet build -c Release ${{env.DOTNET_ROOT}}/Infrastructure/WebAPI/WebAPI.csproj
 
       - name: dotnet publish
-        run: dotnet publish ${{env.DOTNET_ROOT}}/Infrastructure/WebAPI/WebAPI.csproj -c Release -o ${{env.DOTNET_ROOT}}/dist
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/dist
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
