@@ -8,6 +8,10 @@ public class DotEnvSecrets : IDotEnvSecrets
         // Caminho base para o arquivo appsettings.json
         var basePath = Path.GetDirectoryName(typeof(DotEnvSecrets).Assembly.Location);
 
+        // Verifica se arquivo .env existe
+        if (!File.Exists(Path.Combine(basePath!, ".env")))
+            throw new FileNotFoundException("Arquivo .env não encontrado.");
+
         // Carrega informações de ambiente (.env)
         DotNetEnv.Env.Load(Path.Combine(basePath!, ".env"));
     }
