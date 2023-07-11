@@ -18,11 +18,8 @@ public static class DependencyDomainInjection
         services.AddHttpContextAccessor();
         services.AddScoped<IHashService, HashService>();
         services.AddScoped<ITokenAuthenticationService, TokenAuthenticationService>();
-#if DEBUG
-        services.AddScoped<IStorageFileService, StorageFileService>();
-#else
+        // services.AddScoped<IStorageFileService, StorageFileService>();
         services.AddScoped<IStorageFileService, AzureStorageService>();
-#endif
         #endregion
 
         #region UseCases

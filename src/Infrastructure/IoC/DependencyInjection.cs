@@ -26,15 +26,9 @@ public static class DependencyInjection
         services.AddScoped<IDotEnvSecrets, DotEnvSecrets>();
 
         #region Inicialização do banco de dados
-#if DEBUG
-        services.AddDbContext<ApplicationDbContext>(
-            o => o.UseNpgsql(configuration.GetConnectionString("DefaultConnection"),
-            b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
-#else
         services.AddDbContext<ApplicationDbContext>(
             o => o.UseNpgsql(dotEnvSecrets.GetDatabaseConnectionString(),
             b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
-#endif
         #endregion
 
         #region Serviço de Log 
@@ -52,9 +46,8 @@ public static class DependencyInjection
 
         var smtpConfig = new SmtpConfiguration();
         configuration.GetSection("SmtpConfiguration").Bind(smtpConfig);
-        smtpConfig.Password = configuration.GetSection("SmtpConfiguration:Password").Value;
-        smtpConfig.Username = configuration.GetSection("SmtpConfiguration:Username").Value;
-
+        smtpConfig.Password = dotEnvSecrets.GetSmtpUserPassword();
+        smtpConfig.Username = dotEnvSecrets.GetSmtpUserName();
         services.AddSingleton<IEmailServiceFactory, EmailServiceFactory>();
         services.AddSingleton(sp =>
         {
