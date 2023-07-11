@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using Azure.Identity;
 using Microsoft.Extensions.Configuration;
 
@@ -26,9 +27,21 @@ public static class SettingsConfiguration
         // Adiciona configurações do Azure App Configuration
         builder.AddAzureAppConfiguration(config.GetConnectionString("AppConfig"));
 
+        // Recupera configurações do Azure Key Vault
+        var kvUrl = config.GetConnectionString("KeyVaultConfig:KVUrl");
+        var tenantId = config.GetConnectionString("KeyVaultConfig:TenantId");
+        var clientId = config.GetConnectionString("KeyVaultConfig:ClientId");
+        var clientSecretId = config.GetConnectionString("KeyVaultConfig:ClientSecretId");
+
+        // Cria um novo cliente do Azure Key Vault
+        var client = new SecretClient(
+            new Uri(kvUrl), 
+            new ClientSecretCredential(tenantId, clientId, clientSecretId));
+
         // Adiciona configurações do Azure Key Vault
-        builder.AddAzureKeyVault(new Uri("https://gpickeyvault.vault.azure.net/"),
-            new DefaultAzureCredential());
+        builder.AddAzureKeyVault(
+            client,
+            new AddAzureKeyVaultConfigurationOptions());
 
         // Retorna configurações
         return builder

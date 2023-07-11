@@ -38,14 +38,14 @@ jobs:
       - name: Create env
         run: |
           echo "AZURE_BLOB_STORAGE_CONNECTION_STRING=${{ secrets.AZURE_BLOB_STORAGE_CONNECTION_STRING }}
-          \nAZURE_BLOB_STORAGE_CONTAINER_NAME=${{ secrets.AZURE_BLOB_STORAGE_CONTAINER_NAME }}
-          \nAZURE_POSTGRES_CONNECTION_STRING=${{ secrets.AZURE_POSTGRES_CONNECTION_STRING }}
-          \nJWT_AUDIENCE=${{ secrets.JWT_AUDIENCE }}
-          \nJWT_EXPIRE_IN=${{ secrets.JWT_EXPIRE_IN }}
-          \nJWT_ISSUER=${{ secrets.JWT_ISSUER }}
-          \nJWT_SECRET_KEY=${{ secrets.JWT_SECRET_KEY }}
-          \nSMTP_EMAIL_PASSWORD=${{ secrets.SMTP_EMAIL_PASSWORD }}
-          \nSMTP_EMAIL_USERNAME=${{ secrets.SMTP_EMAIL_USERNAME }}" > src/Infrastructure/WebAPI/.env
+          AZURE_BLOB_STORAGE_CONTAINER_NAME=${{ secrets.AZURE_BLOB_STORAGE_CONTAINER_NAME }}
+          AZURE_POSTGRES_CONNECTION_STRING=${{ secrets.AZURE_POSTGRES_CONNECTION_STRING }}
+          JWT_AUDIENCE=${{ secrets.JWT_AUDIENCE }}
+          JWT_EXPIRE_IN=${{ secrets.JWT_EXPIRE_IN }}
+          JWT_ISSUER=${{ secrets.JWT_ISSUER }}
+          JWT_SECRET_KEY=${{ secrets.JWT_SECRET_KEY }}
+          SMTP_EMAIL_PASSWORD=${{ secrets.SMTP_EMAIL_PASSWORD }}
+          SMTP_EMAIL_USERNAME=${{ secrets.SMTP_EMAIL_USERNAME }}" > src/Infrastructure/WebAPI/.env
 
       - name: Build with dotnet
         run: dotnet build ${{env.PROJECT_PATH}} --configuration Release
