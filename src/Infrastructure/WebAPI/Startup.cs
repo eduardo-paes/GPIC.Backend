@@ -44,6 +44,9 @@ public class Startup
             // Enable Swagger middleware for API documentation in development mode
             app.UseSwagger();
             app.UseSwaggerUI();
+
+            // Show development mode message
+            Console.WriteLine("Development mode");
         }
 
         // Enable HTTP Strict Transport Security (HSTS) headers for secure communication
