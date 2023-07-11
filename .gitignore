@@ -409,3 +409,4 @@ certificate/*
 RemoteFiles
 RemoteFiles/*
 src/Infrastructure/WebAPI/.env
+thunder-tests

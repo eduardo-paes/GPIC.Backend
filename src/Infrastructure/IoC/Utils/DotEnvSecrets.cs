@@ -10,6 +10,9 @@ public class DotEnvSecrets : IDotEnvSecrets
 
         // Carrega informações de ambiente (.env)
         DotNetEnv.Env.Load(Path.Combine(basePath!, ".env"));
+
+        // Testa se o arquivo .env foi carregado
+        Console.WriteLine(DotNetEnv.Env.GetString("TESTE"));
     }
 
     public string GetBlobStorageConnectionString() => DotNetEnv.Env.GetString("AZURE_BLOB_STORAGE_CONNECTION_STRING");
