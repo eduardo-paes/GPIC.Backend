@@ -1,16 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Version>0.0.1</Version>
+    <UserSecretsId>79c87183-6835-4ae0-a335-44ce6534c967</UserSecretsId>
   </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\Adapters\Adapters.csproj" />
     <ProjectReference Include="..\..\Domain\Domain.csproj" />
     <ProjectReference Include="..\Persistence\Persistence.csproj" />
     <ProjectReference Include="..\Services\Services.csproj" />
   </ItemGroup>
+
   <ItemGroup>
     <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
     <None Remove="Swashbuckle.AspNetCore" />
@@ -23,9 +27,14 @@
     <None Remove="Serilog.Expressions" />
     <None Remove="Serilog.Settings.Configuration" />
   </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="AspNetCoreRateLimit" Version="5.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.2.2" />
+    <PackageReference Include="Azure.Identity" Version="1.9.0" />
+    <PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="7.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
@@ -39,4 +48,5 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.5" />
     <PackageReference Include="Serilog.Sinks.Seq" Version="5.2.3-dev-00262" />
   </ItemGroup>
+
 </Project>

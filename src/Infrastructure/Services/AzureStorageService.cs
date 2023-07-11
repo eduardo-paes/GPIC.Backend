@@ -13,14 +13,14 @@ namespace Infrastructure.Services
         private readonly string?[] _allowedExtensions;
         private readonly long _maxFileSizeInBytes;
 
-        public AzureStorageService(IConfiguration configuration, IDotEnvSecrets dotEnvSecrets)
+        public AzureStorageService(IConfiguration configuration)
         {
             // Verifica se o container de armazenamento de arquivos foi configurado
-            _container = dotEnvSecrets.GetBlobStorageContainerName()
+            _container = configuration.GetSection("StorageFile:ContainerName").Value
                 ?? throw new Exception("O container de armazenamento de arquivos não foi configurado.");
 
             // Verifica se a string de conexão foi configurada
-            _connectionString = dotEnvSecrets.GetBlobStorageConnectionString()
+            _connectionString = configuration.GetSection("StorageFile:ConnectionString").Value
                 ?? throw new Exception("A string de conexão não foi configurada.");
 
             // Verifica se as extensões de arquivos permitidas foram configuradas

@@ -5,18 +5,19 @@ using Domain.Interfaces.Services;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 
 namespace Infrastructure.Services;
 public class TokenAuthenticationService : ITokenAuthenticationService
 {
     #region Global Scope
-    private readonly IDotEnvSecrets _dotEnvSecrets;
+    private readonly IConfiguration _configuration;
     private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public TokenAuthenticationService(IHttpContextAccessor httpContextAccessor, IDotEnvSecrets dotEnvSecrets)
+    public TokenAuthenticationService(IHttpContextAccessor httpContextAccessor, IConfiguration configuration)
     {
         _httpContextAccessor = httpContextAccessor;
-        _dotEnvSecrets = dotEnvSecrets;
+        _configuration = configuration;
     }
     #endregion
 
@@ -44,22 +45,22 @@ public class TokenAuthenticationService : ITokenAuthenticationService
         };
 
         // Gerar chave privada para assinar o token
-        var privateKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_dotEnvSecrets.GetJwtSecret()
+        var privateKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("Jwt:Secret").Value
             ?? throw new Exception("Chave secreta não informada.")));
 
         // Gerar a assinatura digital
         var credentials = new SigningCredentials(privateKey, SecurityAlgorithms.HmacSha256);
 
         // Tempo de expiração do token
-        var expireIn = int.Parse(_dotEnvSecrets.GetJwtExpirationTime() ?? "10");
+        var expireIn = int.Parse(_configuration.GetSection("Jwt:ExpireIn").Value ?? "10");
 
         // Definir o tempo de expiração
         var expiration = DateTime.UtcNow.AddMinutes(expireIn);
 
         // Gerar o Token
         var token = new JwtSecurityToken(
-            issuer: _dotEnvSecrets.GetJwtIssuer() ?? throw new Exception("Emissor do token não informado."),
-            audience: _dotEnvSecrets.GetJwtAudience() ?? throw new Exception("Público do token não informado."),
+            issuer: _configuration.GetSection("Jwt:Issuer").Value ?? throw new Exception("Emissor do token não informado."),
+            audience: _configuration.GetSection("Jwt:Audience").Value ?? throw new Exception("Público do token não informado."),
             claims: claims,
             expires: expiration,
             signingCredentials: credentials);

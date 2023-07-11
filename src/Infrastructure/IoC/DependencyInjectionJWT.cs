@@ -9,9 +9,11 @@ public static class DependencyInjectionJWT
 {
     public static IServiceCollection AddInfrastructureJWT(this IServiceCollection services)
     {
-        // Carrega informações de ambiente (.env)
-        var dotEnvSecrets = new DotEnvSecrets();
-        services.AddSingleton(dotEnvSecrets);
+        // Carrega informações de ambiente (appsettings.json)
+        var configuration = SettingsConfiguration.GetConfiguration();
+        var validIssuer = configuration.GetSection("Jwt:Issuer").Value;
+        var validAudience = configuration.GetSection("Jwt:Audience").Value;
+        var issuerSigningKey = configuration.GetSection("Jwt:Secret").Value;
 
         /// Informar o tipo de autenticação;
         /// Definir o modelo de desafio de autenticação.
@@ -32,9 +34,9 @@ public static class DependencyInjectionJWT
                 ValidateLifetime = true,
                 ValidateIssuerSigningKey = true,
                 /// Valores válidos
-                ValidIssuer = dotEnvSecrets.GetJwtIssuer(),
-                ValidAudience = dotEnvSecrets.GetJwtAudience(),
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(dotEnvSecrets.GetJwtSecret())),
+                ValidIssuer = validIssuer,
+                ValidAudience = validAudience,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(issuerSigningKey!)),
                 /// Se não fizer isso ele vai inserir + 5min em cima
                 /// do que foi definido na geração do Token.
                 ClockSkew = TimeSpan.Zero

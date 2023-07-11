@@ -3,16 +3,12 @@ using Domain.Interfaces.Repositories;
 using Infrastructure.IoC.Utils;
 using Infrastructure.Persistence.Context;
 using Infrastructure.Persistence.Repositories;
-using Infrastructure.Services;
 using Infrastructure.Services.Email.Configs;
 using Infrastructure.Services.Email.Factories;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Serilog;
 
 namespace Infrastructure.IoC;
@@ -24,20 +20,10 @@ public static class DependencyInjection
         IConfiguration configuration = SettingsConfiguration.GetConfiguration();
         services.AddSingleton(configuration);
 
-        // Carrega informações de ambiente (.env)
-        var dotEnvSecrets = new DotEnvSecrets();
-        services.AddScoped<IDotEnvSecrets, DotEnvSecrets>();
-
         #region Inicialização do banco de dados
-#if !DEBUG
         services.AddDbContext<ApplicationDbContext>(
             o => o.UseNpgsql(configuration.GetConnectionString("DefaultConnection"),
             b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
-#else
-        services.AddDbContext<ApplicationDbContext>(
-            o => o.UseNpgsql(dotEnvSecrets.GetDatabaseConnectionString(),
-            b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
-#endif
         #endregion
 
         #region Serviço de Log 
@@ -52,10 +38,12 @@ public static class DependencyInjection
         #endregion
 
         #region Serviço de E-mail
+
         var smtpConfig = new SmtpConfiguration();
         configuration.GetSection("SmtpConfiguration").Bind(smtpConfig);
-        smtpConfig.Password = dotEnvSecrets.GetSmtpUserPassword();
-        smtpConfig.Username = dotEnvSecrets.GetSmtpUserName();
+        smtpConfig.Password = configuration.GetSection("SmtpConfiguration:Password").Value;
+        smtpConfig.Username = configuration.GetSection("SmtpConfiguration:Username").Value;
+
         services.AddSingleton<IEmailServiceFactory, EmailServiceFactory>();
         services.AddSingleton(sp =>
         {
