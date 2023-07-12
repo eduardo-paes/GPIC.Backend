@@ -58,6 +58,9 @@ jobs:
       - name: dotnet publish
         run: dotnet publish ${{env.PROJECT_PATH}} -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
+      - name: Copy XML documentation file
+        run: cp ${GITHUB_WORKSPACE}/${{env.PROJECT_PATH}}/bin/Release/net7.0/*.xml ${{env.DOTNET_ROOT}}/myapp/
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
