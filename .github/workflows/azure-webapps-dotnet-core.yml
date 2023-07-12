@@ -54,13 +54,13 @@ jobs:
         run: echo "ASPNETCORE_ENVIRONMENT=${{ env.ASPNETCORE_ENVIRONMENT }}" >> $GITHUB_ENV
 
       - name: Build with dotnet
-        run: dotnet build ${{env.PROJECT_PATH}} --configuration Release
+        run: dotnet build ${{env.PROJECT_PATH}} --configuration Release -o ${{env.DOTNET_ROOT}}/dist
 
       - name: Dotnet publish
         run: dotnet publish ${{env.PROJECT_PATH}} -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Copy XML documentation file
-        run: cp ${{env.WEBAPI_PATH}}/bin/Release/net7.0/*.xml ${{env.DOTNET_ROOT}}/myapp/
+        run: cp ${{env.DOTNET_ROOT}}/dist/*.xml ${{env.DOTNET_ROOT}}/myapp/
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
