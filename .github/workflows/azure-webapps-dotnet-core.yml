@@ -5,6 +5,7 @@ env:
   AZURE_WEBAPP_PACKAGE_PATH: "."
   DOTNET_VERSION: "7.0"
   PROJECT_PATH: "src/Infrastructure/WebAPI/WebAPI.csproj"
+  ASPNETCORE_ENVIRONMENT: Development
 
 on:
   push:
@@ -49,7 +50,7 @@ jobs:
           TEST_SECRETS=${{ secrets.TESTE }}" > src/Infrastructure/WebAPI/.env
 
       - name: Set environment variable
-        run: echo "ASPNETCORE_ENVIRONMENT=Development" >> $GITHUB_ENV
+        run: echo "ASPNETCORE_ENVIRONMENT=${{ env.ASPNETCORE_ENVIRONMENT }}" >> $GITHUB_ENV
 
       - name: Build with dotnet
         run: dotnet build ${{env.PROJECT_PATH}} --configuration Release
