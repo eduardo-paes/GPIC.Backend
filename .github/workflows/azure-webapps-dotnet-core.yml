@@ -5,6 +5,7 @@ env:
   AZURE_WEBAPP_PACKAGE_PATH: "."
   DOTNET_VERSION: "7.0"
   PROJECT_PATH: "src/Infrastructure/WebAPI/WebAPI.csproj"
+  WEBAPI_PATH: "src/Infrastructure/WebAPI/"
   ASPNETCORE_ENVIRONMENT: Development
 
 on:
@@ -55,8 +56,11 @@ jobs:
       - name: Build with dotnet
         run: dotnet build ${{env.PROJECT_PATH}} --configuration Release
 
-      - name: dotnet publish
+      - name: Dotnet publish
         run: dotnet publish ${{env.PROJECT_PATH}} -c Release -o ${{env.DOTNET_ROOT}}/myapp
+
+      - name: Copy XML documentation file
+        run: cp ${{env.WEBAPI_PATH}}/bin/Release/net7.0/*.xml ${{env.DOTNET_ROOT}}/myapp/
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
