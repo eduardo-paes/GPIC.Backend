@@ -32,7 +32,11 @@ namespace Domain.UseCases
 
             // Salva arquivo no repositório e atualiza atributo DocUrl
             if (input.File != null)
-                input.DocUrl = await _storageFileService.UploadFileAsync(input.File);
+                entity.DocUrl = await _storageFileService.UploadFileAsync(input.File);
+
+            // Atualiza descrição do edital
+            if (input.Description != null)
+                entity.Description = input.Description;
 
             // Cria entidade
             entity = await _repository.Create(entity);
