@@ -54,10 +54,10 @@ namespace Adapters.PresenterController
             return _mapper.Map<DetailedReadSubAreaResponse>(result);
         }
 
-        public async Task<IQueryable<IResponse>> GetSubAreasByArea(Guid? areaId, int skip, int take)
+        public async Task<IEnumerable<IResponse>> GetSubAreasByArea(Guid? areaId, int skip, int take)
         {
             var result = await _getSubAreasByArea.Execute(areaId, skip, take);
-            return _mapper.Map<IQueryable<ResumedReadSubAreaResponse>>(result);
+            return _mapper.Map<IEnumerable<ResumedReadSubAreaResponse>>(result);
         }
 
         public async Task<IResponse> Update(Guid? id, IRequest request)

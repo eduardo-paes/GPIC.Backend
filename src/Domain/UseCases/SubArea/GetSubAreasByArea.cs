@@ -2,6 +2,7 @@ using Domain.Contracts.SubArea;
 using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
+using Domain.Validation;
 
 namespace Domain.UseCases
 {
@@ -19,6 +20,7 @@ namespace Domain.UseCases
 
         public async Task<IQueryable<ResumedReadSubAreaOutput>> Execute(Guid? areaId, int skip, int take)
         {
+            UseCaseException.NotInformedParam(areaId is null, nameof(areaId));
             var entities = await _subAreaRepository.GetSubAreasByArea(areaId, skip, take);
             return _mapper.Map<IEnumerable<ResumedReadSubAreaOutput>>(entities).AsQueryable();
         }
