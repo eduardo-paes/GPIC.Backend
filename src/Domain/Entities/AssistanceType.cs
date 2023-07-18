@@ -6,7 +6,7 @@ namespace Domain.Entities
     /// <summary>
     /// Tipo de Bolsa de Assistência Estudantil
     /// </summary>
-    public class TypeAssistance : Entity
+    public class AssistanceType : Entity
     {
         private string? _name;
         public string? Name
@@ -40,13 +40,13 @@ namespace Domain.Entities
             }
         }
 
-        public TypeAssistance(string? name, string? description)
+        public AssistanceType(string? name, string? description)
         {
             Name = name;
             Description = description;
         }
 
-        public TypeAssistance(Guid? id, string? name, string? description)
+        public AssistanceType(Guid? id, string? name, string? description)
         {
             Id = id;
             Name = name;
@@ -56,6 +56,6 @@ namespace Domain.Entities
         /// <summary>
         /// Constructor to dbcontext EF instancing.
         /// </summary>
-        public TypeAssistance() { }
+        public AssistanceType() { }
     }
 }

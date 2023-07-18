@@ -1,17 +1,17 @@
 ﻿using AutoMapper;
-using Adapters.Gateways.TypeAssistance;
-using Domain.Contracts.TypeAssistance;
+using Adapters.Gateways.AssistanceType;
+using Domain.Contracts.AssistanceType;
 
 namespace Adapters.Mappings
 {
-    public class TypeAssistanceMappings : Profile
+    public class AssistanceTypeMappings : Profile
     {
-        public TypeAssistanceMappings()
+        public AssistanceTypeMappings()
         {
-            CreateMap<CreateTypeAssistanceInput, CreateTypeAssistanceRequest>().ReverseMap();
-            CreateMap<UpdateTypeAssistanceInput, UpdateTypeAssistanceRequest>().ReverseMap();
-            CreateMap<ResumedReadTypeAssistanceOutput, ResumedReadTypeAssistanceResponse>().ReverseMap();
-            CreateMap<DetailedReadTypeAssistanceOutput, DetailedReadTypeAssistanceResponse>().ReverseMap();
+            CreateMap<CreateAssistanceTypeInput, CreateAssistanceTypeRequest>().ReverseMap();
+            CreateMap<UpdateAssistanceTypeInput, UpdateAssistanceTypeRequest>().ReverseMap();
+            CreateMap<ResumedReadAssistanceTypeOutput, ResumedReadAssistanceTypeResponse>().ReverseMap();
+            CreateMap<DetailedReadAssistanceTypeOutput, DetailedReadAssistanceTypeResponse>().ReverseMap();
         }
     }
 }

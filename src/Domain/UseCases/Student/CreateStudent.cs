@@ -57,7 +57,7 @@ namespace Domain.UseCases
                 input.CampusId,
                 input.CourseId,
                 input.StartYear,
-                input.TypeAssistanceId);
+                input.AssistanceTypeId);
 
             // Verifica se já existe um usuário com o e-mail informado
             var user = await _userRepository.GetUserByEmail(input.Email);

@@ -5,35 +5,35 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Repositories
 {
-    public class TypeAssistanceRepository : ITypeAssistanceRepository
+    public class AssistanceTypeRepository : IAssistanceTypeRepository
     {
         #region Global Scope
         private readonly ApplicationDbContext _context;
-        public TypeAssistanceRepository(ApplicationDbContext context) => _context = context;
+        public AssistanceTypeRepository(ApplicationDbContext context) => _context = context;
         #endregion
 
         #region Public Methods
-        public async Task<TypeAssistance> Create(TypeAssistance model)
+        public async Task<AssistanceType> Create(AssistanceType model)
         {
             _context.Add(model);
             await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<IEnumerable<TypeAssistance>> GetAll(int skip, int take) => await _context.TypeAssistances
+        public async Task<IEnumerable<AssistanceType>> GetAll(int skip, int take) => await _context.AssistanceTypes
             .Skip(skip)
             .Take(take)
             .AsAsyncEnumerable()
             .OrderBy(x => x.Name)
             .ToListAsync();
 
-        public async Task<TypeAssistance?> GetById(Guid? id) =>
-            await _context.TypeAssistances
+        public async Task<AssistanceType?> GetById(Guid? id) =>
+            await _context.AssistanceTypes
                 .IgnoreQueryFilters()
                 .AsAsyncEnumerable()
                 .FirstOrDefaultAsync(x => x.Id == id);
 
-        public async Task<TypeAssistance> Delete(Guid? id)
+        public async Task<AssistanceType> Delete(Guid? id)
         {
             var model = await GetById(id)
                 ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
@@ -41,17 +41,17 @@ namespace Infrastructure.Persistence.Repositories
             return await Update(model);
         }
 
-        public async Task<TypeAssistance> Update(TypeAssistance model)
+        public async Task<AssistanceType> Update(AssistanceType model)
         {
             _context.Update(model);
             await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<TypeAssistance?> GetTypeAssistanceByName(string name)
+        public async Task<AssistanceType?> GetAssistanceTypeByName(string name)
         {
             string loweredName = name.ToLower();
-            var entities = await _context.TypeAssistances
+            var entities = await _context.AssistanceTypes
                 .Where(x => x.Name!.ToLower() == loweredName)
                 .AsAsyncEnumerable()
                 .ToListAsync();

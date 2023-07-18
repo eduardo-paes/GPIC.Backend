@@ -1,4 +1,4 @@
-using Domain.Contracts.TypeAssistance;
+using Domain.Contracts.AssistanceType;
 using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
@@ -6,19 +6,19 @@ using Domain.Validation;
 
 namespace Domain.UseCases
 {
-    public class DeleteTypeAssistance : IDeleteTypeAssistance
+    public class DeleteAssistanceType : IDeleteAssistanceType
     {
         #region Global Scope
-        private readonly ITypeAssistanceRepository _repository;
+        private readonly IAssistanceTypeRepository _repository;
         private readonly IMapper _mapper;
-        public DeleteTypeAssistance(ITypeAssistanceRepository repository, IMapper mapper)
+        public DeleteAssistanceType(IAssistanceTypeRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
         #endregion
 
-        public async Task<DetailedReadTypeAssistanceOutput> Execute(Guid? id)
+        public async Task<DetailedReadAssistanceTypeOutput> Execute(Guid? id)
         {
             // Verifica se o id foi informado
             UseCaseException.NotInformedParam(id is null, nameof(id));
@@ -27,7 +27,7 @@ namespace Domain.UseCases
             var model = await _repository.Delete(id);
 
             // Retorna o tipo de programa removido
-            return _mapper.Map<DetailedReadTypeAssistanceOutput>(model);
+            return _mapper.Map<DetailedReadAssistanceTypeOutput>(model);
         }
     }
 }

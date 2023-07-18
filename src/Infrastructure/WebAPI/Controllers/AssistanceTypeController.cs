@@ -1,4 +1,4 @@
-using Adapters.Gateways.TypeAssistance;
+using Adapters.Gateways.AssistanceType;
 using Adapters.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,17 +11,17 @@ namespace Infrastructure.WebAPI.Controllers
     [ApiController]
     [Route("Api/[controller]")]
     [Authorize]
-    public class TypeAssistanceController : ControllerBase
+    public class AssistanceTypeController : ControllerBase
     {
         #region Global Scope
-        private readonly ITypeAssistancePresenterController _service;
-        private readonly ILogger<TypeAssistanceController> _logger;
+        private readonly IAssistanceTypePresenterController _service;
+        private readonly ILogger<AssistanceTypeController> _logger;
         /// <summary>
         /// Construtor do Controller de Bolsa de Assistência.
         /// </summary>
         /// <param name="service"></param>
         /// <param name="logger"></param>
-        public TypeAssistanceController(ITypeAssistancePresenterController service, ILogger<TypeAssistanceController> logger)
+        public AssistanceTypeController(IAssistanceTypePresenterController service, ILogger<AssistanceTypeController> logger)
         {
             _service = service;
             _logger = logger;
@@ -36,7 +36,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna bolsa de assistência correspondente</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<DetailedReadTypeAssistanceResponse>> GetById(Guid? id)
+        public async Task<ActionResult<DetailedReadAssistanceTypeResponse>> GetById(Guid? id)
         {
             if (id == null)
             {
@@ -66,7 +66,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna todas as bolsas de assitência ativas</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<ResumedReadTypeAssistanceResponse>>> GetAll(int skip = 0, int take = 50)
+        public async Task<ActionResult<IEnumerable<ResumedReadAssistanceTypeResponse>>> GetAll(int skip = 0, int take = 50)
         {
             var models = await _service.GetAll(skip, take);
             if (models == null)
@@ -88,11 +88,11 @@ namespace Infrastructure.WebAPI.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadTypeAssistanceResponse>> Create([FromBody] CreateTypeAssistanceRequest request)
+        public async Task<ActionResult<DetailedReadAssistanceTypeResponse>> Create([FromBody] CreateAssistanceTypeRequest request)
         {
             try
             {
-                var model = await _service.Create(request) as DetailedReadTypeAssistanceResponse;
+                var model = await _service.Create(request) as DetailedReadAssistanceTypeResponse;
                 _logger.LogInformation("Bolsa de Assistência criado: {id}", model?.Id);
                 return Ok(model);
             }
@@ -111,11 +111,11 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna bolsa de assistência atualizado</response>
         [HttpPut("{id}")]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadTypeAssistanceResponse>> Update(Guid? id, [FromBody] UpdateTypeAssistanceRequest request)
+        public async Task<ActionResult<DetailedReadAssistanceTypeResponse>> Update(Guid? id, [FromBody] UpdateAssistanceTypeRequest request)
         {
             try
             {
-                var model = await _service.Update(id, request) as DetailedReadTypeAssistanceResponse;
+                var model = await _service.Update(id, request) as DetailedReadAssistanceTypeResponse;
                 _logger.LogInformation("Bolsa de Assistência atualizado: {id}", model?.Id);
                 return Ok(model);
             }
@@ -134,7 +134,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna bolsa de assistência removido</response>
         [HttpDelete("{id}")]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadTypeAssistanceResponse>> Delete(Guid? id)
+        public async Task<ActionResult<DetailedReadAssistanceTypeResponse>> Delete(Guid? id)
         {
             if (id == null)
             {
@@ -145,7 +145,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _service.Delete(id.Value) as DetailedReadTypeAssistanceResponse;
+                var model = await _service.Delete(id.Value) as DetailedReadAssistanceTypeResponse;
                 _logger.LogInformation("Bolsa de Assistência removido: {id}", model?.Id);
                 return Ok(model);
             }

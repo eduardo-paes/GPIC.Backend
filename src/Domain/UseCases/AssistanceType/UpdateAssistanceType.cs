@@ -1,4 +1,4 @@
-using Domain.Contracts.TypeAssistance;
+using Domain.Contracts.AssistanceType;
 using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
@@ -6,19 +6,19 @@ using Domain.Validation;
 
 namespace Domain.UseCases
 {
-    public class UpdateTypeAssistance : IUpdateTypeAssistance
+    public class UpdateAssistanceType : IUpdateAssistanceType
     {
         #region Global Scope
-        private readonly ITypeAssistanceRepository _repository;
+        private readonly IAssistanceTypeRepository _repository;
         private readonly IMapper _mapper;
-        public UpdateTypeAssistance(ITypeAssistanceRepository repository, IMapper mapper)
+        public UpdateAssistanceType(IAssistanceTypeRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
         #endregion
 
-        public async Task<DetailedReadTypeAssistanceOutput> Execute(Guid? id, UpdateTypeAssistanceInput input)
+        public async Task<DetailedReadAssistanceTypeOutput> Execute(Guid? id, UpdateAssistanceTypeInput input)
         {
             // Verifica se o id foi informado
             UseCaseException.NotInformedParam(id is null, nameof(id));
@@ -28,7 +28,7 @@ namespace Domain.UseCases
 
             // Recupera entidade que será atualizada
             var entity = await _repository.GetById(id)
-                ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.TypeAssistance));
+                ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.AssistanceType));
 
             // Verifica se a entidade foi excluída
             UseCaseException.BusinessRuleViolation(entity.DeletedAt != null,
@@ -37,7 +37,7 @@ namespace Domain.UseCases
             // Verifica se o nome já está sendo usado
             UseCaseException.BusinessRuleViolation(
                 !string.Equals(entity.Name, input.Name, StringComparison.OrdinalIgnoreCase)
-                    && await _repository.GetTypeAssistanceByName(input.Name!) != null,
+                    && await _repository.GetAssistanceTypeByName(input.Name!) != null,
                 "Já existe um Bolsa de Assistência para o nome informado.");
 
             // Atualiza atributos permitidos
@@ -46,7 +46,7 @@ namespace Domain.UseCases
 
             // Salva entidade atualizada no banco
             var model = await _repository.Update(entity);
-            return _mapper.Map<DetailedReadTypeAssistanceOutput>(model);
+            return _mapper.Map<DetailedReadAssistanceTypeOutput>(model);
         }
     }
 }

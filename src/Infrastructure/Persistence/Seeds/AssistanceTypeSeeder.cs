@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Persistence.Seeds
 {
-    public static class TypeAssistanceSeeder
+    public static class AssistanceTypeSeeder
     {
         public static void Seed(MigrationBuilder builder)
         {
@@ -12,16 +12,16 @@ namespace Persistence.Seeds
             foreach (string lines in File.ReadAllLines(file))
             {
                 parts = lines.Split(';');
-                AddTypeAssistance(builder, new TypeAssistance(Guid.NewGuid(), parts[0], parts[1]));
+                AddAssistanceType(builder, new AssistanceType(Guid.NewGuid(), parts[0], parts[1]));
             }
         }
 
-        private static void AddTypeAssistance(MigrationBuilder builder, TypeAssistance sas)
+        private static void AddAssistanceType(MigrationBuilder builder, AssistanceType sas)
         {
             if (sas?.Id == null || sas?.Name == null)
                 return;
             builder.InsertData(
-                table: "TypeAssistances",
+                table: "AssistanceTypes",
                 columns: new[] { "Id", "DeletedAt", "Name", "Description" },
                 values: new object[,]
                 {

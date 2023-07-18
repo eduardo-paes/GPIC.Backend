@@ -289,15 +289,15 @@ namespace Domain.Entities
         /// <summary>
         /// Tipo de Bolsa de Assistência Estudantil do aluno
         /// </summary>
-        private Guid? _typeAssistanceId;
-        public Guid? TypeAssistanceId
+        private Guid? _assistanceTypeId;
+        public Guid? AssistanceTypeId
         {
-            get { return _typeAssistanceId; }
+            get { return _assistanceTypeId; }
             set
             {
                 EntityExceptionValidation.When(value == null,
                     ExceptionMessageFactory.Required("Tipo de Bolsa de Assistência Estudantil do aluno"));
-                _typeAssistanceId = value;
+                _assistanceTypeId = value;
             }
         }
 
@@ -321,7 +321,7 @@ namespace Domain.Entities
         public virtual User? User { get; }
         public virtual Campus? Campus { get; }
         public virtual Course? Course { get; }
-        public virtual TypeAssistance? TypeAssistance { get; }
+        public virtual AssistanceType? AssistanceType { get; }
         #endregion
 
         #region Constructors
@@ -362,7 +362,7 @@ namespace Domain.Entities
             CampusId = campusId;
             CourseId = courseId;
             StartYear = startYear;
-            TypeAssistanceId = studentAssistanceProgramId;
+            AssistanceTypeId = studentAssistanceProgramId;
         }
 
         /// <summary>

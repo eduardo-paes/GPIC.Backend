@@ -8,7 +8,7 @@ namespace Domain.Contracts.Project
         public string? KeyWord2 { get; set; }
         public string? KeyWord3 { get; set; }
         public bool IsScholarshipCandidate { get; set; }
-        public bool IsProductivityFellow { get; set; }
+        // public bool IsProductivityFellow { get; set; }
         public string? Objective { get; set; }
         public string? Methodology { get; set; }
         public string? ExpectedResults { get; set; }
@@ -41,14 +41,14 @@ namespace Domain.Contracts.Project
         public int? SoftwareRegistration { get; set; }
         #endregion
 
-        #region Critérios de Avaliação
-        public int? APIndex { get; set; }
-        public int? Qualification { get; set; }
-        public int? ProjectProposalObjectives { get; set; }
-        public int? AcademicScientificProductionCoherence { get; set; }
-        public int? ProposalMethodologyAdaptation { get; set; }
-        public int? EffectiveContributionToResearch { get; set; }
-        #endregion
+        // #region Critérios de Avaliação
+        // public int? APIndex { get; set; }
+        // public int? Qualification { get; set; }
+        // public int? ProjectProposalObjectives { get; set; }
+        // public int? AcademicScientificProductionCoherence { get; set; }
+        // public int? ProposalMethodologyAdaptation { get; set; }
+        // public int? EffectiveContributionToResearch { get; set; }
+        // #endregion
 
         #region Resultados da Avaliação
         public int? Status { get; set; }

@@ -38,7 +38,7 @@ namespace Persistence.EntitiesConfiguration
             builder.Property(p => p.PatentLetter).HasDefaultValue(0);
             builder.Property(p => p.PatentDeposit).HasDefaultValue(0);
             builder.Property(p => p.SoftwareRegistration).HasDefaultValue(0);
-            builder.Property(p => p.StudentId).IsRequired();
+            builder.Property(p => p.StudentId);
             builder.Property(p => p.ProgramTypeId).IsRequired();
             builder.Property(p => p.ProfessorId).IsRequired();
             builder.Property(p => p.SubAreaId).IsRequired();

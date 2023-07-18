@@ -1,4 +1,4 @@
-using Domain.Contracts.TypeAssistance;
+using Domain.Contracts.AssistanceType;
 using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
@@ -6,23 +6,23 @@ using Domain.Validation;
 
 namespace Domain.UseCases
 {
-    public class GetTypeAssistanceById : IGetTypeAssistanceById
+    public class GetAssistanceTypeById : IGetAssistanceTypeById
     {
         #region Global Scope
-        private readonly ITypeAssistanceRepository _repository;
+        private readonly IAssistanceTypeRepository _repository;
         private readonly IMapper _mapper;
-        public GetTypeAssistanceById(ITypeAssistanceRepository repository, IMapper mapper)
+        public GetAssistanceTypeById(IAssistanceTypeRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
         #endregion
 
-        public async Task<DetailedReadTypeAssistanceOutput> Execute(Guid? id)
+        public async Task<DetailedReadAssistanceTypeOutput> Execute(Guid? id)
         {
             UseCaseException.NotInformedParam(id is null, nameof(id));
             var entity = await _repository.GetById(id);
-            return _mapper.Map<DetailedReadTypeAssistanceOutput>(entity);
+            return _mapper.Map<DetailedReadAssistanceTypeOutput>(entity);
         }
     }
 }

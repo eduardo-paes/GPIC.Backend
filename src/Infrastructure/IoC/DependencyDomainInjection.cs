@@ -31,6 +31,14 @@ public static class DependencyDomainInjection
         services.AddScoped<IUpdateArea, UpdateArea>();
         #endregion
 
+        #region AssistanceType
+        services.AddScoped<ICreateAssistanceType, CreateAssistanceType>();
+        services.AddScoped<IDeleteAssistanceType, DeleteAssistanceType>();
+        services.AddScoped<IGetAssistanceTypeById, GetAssistanceTypeById>();
+        services.AddScoped<IGetAssistanceTypes, GetAssistanceTypes>();
+        services.AddScoped<IUpdateAssistanceType, UpdateAssistanceType>();
+        #endregion
+
         #region Auth
         services.AddScoped<IConfirmEmail, ConfirmEmail>();
         services.AddScoped<IForgotPassword, ForgotPassword>();
@@ -111,14 +119,6 @@ public static class DependencyDomainInjection
         services.AddScoped<IUpdateStudent, UpdateStudent>();
         #endregion
 
-        #region TypeAssistance
-        services.AddScoped<ICreateTypeAssistance, CreateTypeAssistance>();
-        services.AddScoped<IDeleteTypeAssistance, DeleteTypeAssistance>();
-        services.AddScoped<IGetTypeAssistanceById, GetTypeAssistanceById>();
-        services.AddScoped<IGetTypeAssistances, GetTypeAssistances>();
-        services.AddScoped<IUpdateTypeAssistance, UpdateTypeAssistance>();
-        #endregion
-
         #region StudentDocuments
         // services.AddScoped<ICreateStudentDocuments, CreateStudentDocuments>();
         // services.AddScoped<IDeleteStudentDocuments, DeleteStudentDocuments>();
@@ -149,6 +149,7 @@ public static class DependencyDomainInjection
 
         #region Contract Mappers
         services.AddAutoMapper(typeof(AreaMappings));
+        services.AddAutoMapper(typeof(AssistanceTypeMappings));
         services.AddAutoMapper(typeof(CampusMappings));
         services.AddAutoMapper(typeof(CourseMappings));
         services.AddAutoMapper(typeof(MainAreaMappings));
@@ -157,7 +158,6 @@ public static class DependencyDomainInjection
         services.AddAutoMapper(typeof(ProgramTypeMappings));
         services.AddAutoMapper(typeof(ProjectEvaluationMappings));
         services.AddAutoMapper(typeof(ProjectMappings));
-        services.AddAutoMapper(typeof(TypeAssistanceMappings));
         services.AddAutoMapper(typeof(StudentDocumentsMappings));
         services.AddAutoMapper(typeof(StudentMappings));
         services.AddAutoMapper(typeof(SubAreaMappings));

@@ -27,7 +27,7 @@ namespace Adapters.Gateways.Student
         public Guid? CampusId { get; set; }
         public Guid? CourseId { get; set; }
         public string? StartYear { get; set; }
-        public Guid? TypeAssistanceId { get; set; }
+        public Guid? AssistanceTypeId { get; set; }
         #endregion
 
         #region Optional Properties

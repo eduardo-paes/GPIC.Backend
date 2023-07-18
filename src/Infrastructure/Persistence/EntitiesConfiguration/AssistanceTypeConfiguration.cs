@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.EntitiesConfiguration
 {
-    public class TypeAssistanceConfiguration : IEntityTypeConfiguration<TypeAssistance>
+    public class AssistanceTypeConfiguration : IEntityTypeConfiguration<AssistanceType>
     {
-        public void Configure(EntityTypeBuilder<TypeAssistance> builder)
+        public void Configure(EntityTypeBuilder<AssistanceType> builder)
         {
-            builder.ToTable("TypeAssistances");
+            builder.ToTable("AssistanceTypes");
             builder.HasKey(t => t.Id);
             builder.Property(p => p.Id).ValueGeneratedOnAdd();
             builder.Property(p => p.Name).HasMaxLength(300).IsRequired();

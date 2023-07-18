@@ -10,6 +10,7 @@ public static class DependencyAdaptersInjection
     {
         #region PresenterControllers
         services.AddScoped<IAreaPresenterController, AreaPresenterController>();
+        services.AddScoped<IAssistanceTypePresenterController, AssistanceTypePresenterController>();
         services.AddScoped<IAuthPresenterController, AuthPresenterController>();
         services.AddScoped<ICampusPresenterController, CampusPresenterController>();
         services.AddScoped<ICoursePresenterController, CoursePresenterController>();
@@ -19,7 +20,6 @@ public static class DependencyAdaptersInjection
         services.AddScoped<IProgramTypePresenterController, ProgramTypePresenterController>();
         // services.AddScoped<IProjectEvaluationPresenterController, ProjectEvaluationPresenterController>();
         services.AddScoped<IProjectPresenterController, ProjectPresenterController>();
-        services.AddScoped<ITypeAssistancePresenterController, TypeAssistancePresenterController>();
         // services.AddScoped<IStudentDocumentsPresenterController, StudentDocumentsPresenterController>();
         services.AddScoped<IStudentPresenterController, StudentPresenterController>();
         services.AddScoped<ISubAreaPresenterController, SubAreaPresenterController>();
@@ -28,6 +28,7 @@ public static class DependencyAdaptersInjection
 
         #region Gateways Mappers
         services.AddAutoMapper(typeof(AreaMappings));
+        services.AddAutoMapper(typeof(AssistanceTypeMappings));
         services.AddAutoMapper(typeof(AuthMappings));
         services.AddAutoMapper(typeof(CampusMappings));
         services.AddAutoMapper(typeof(CourseMappings));
@@ -37,7 +38,6 @@ public static class DependencyAdaptersInjection
         services.AddAutoMapper(typeof(ProgramTypeMappings));
         services.AddAutoMapper(typeof(ProjectEvaluationMapping));
         services.AddAutoMapper(typeof(ProjectMappings));
-        services.AddAutoMapper(typeof(TypeAssistanceMappings));
         services.AddAutoMapper(typeof(StudentDocumentsMappings));
         services.AddAutoMapper(typeof(StudentMappings));
         services.AddAutoMapper(typeof(SubAreaMappings));

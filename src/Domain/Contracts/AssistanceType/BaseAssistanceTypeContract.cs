@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Contracts.TypeAssistance
+namespace Domain.Contracts.AssistanceType
 {
-    public abstract class BaseTypeAssistanceContract
+    public abstract class BaseAssistanceTypeContract
     {
         [Required]
         public string? Name { get; set; }

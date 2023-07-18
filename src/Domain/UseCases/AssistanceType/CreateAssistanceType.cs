@@ -1,4 +1,4 @@
-using Domain.Contracts.TypeAssistance;
+using Domain.Contracts.AssistanceType;
 using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
@@ -6,33 +6,33 @@ using Domain.Validation;
 
 namespace Domain.UseCases
 {
-    public class CreateTypeAssistance : ICreateTypeAssistance
+    public class CreateAssistanceType : ICreateAssistanceType
     {
         #region Global Scope
-        private readonly ITypeAssistanceRepository _repository;
+        private readonly IAssistanceTypeRepository _repository;
         private readonly IMapper _mapper;
-        public CreateTypeAssistance(ITypeAssistanceRepository repository, IMapper mapper)
+        public CreateAssistanceType(IAssistanceTypeRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
         #endregion
 
-        public async Task<DetailedReadTypeAssistanceOutput> Execute(CreateTypeAssistanceInput input)
+        public async Task<DetailedReadAssistanceTypeOutput> Execute(CreateAssistanceTypeInput input)
         {
             // Verifica se nome foi informado
             UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.Name), nameof(input.Name));
 
             // Verifica se já existe um tipo de programa com o nome indicado
-            var entity = await _repository.GetTypeAssistanceByName(input.Name!);
+            var entity = await _repository.GetAssistanceTypeByName(input.Name!);
             UseCaseException.BusinessRuleViolation(entity != null,
                 "Já existe um Tipo de Programa para o nome informado.");
 
             // Cria entidade
-            entity = await _repository.Create(_mapper.Map<Entities.TypeAssistance>(input));
+            entity = await _repository.Create(_mapper.Map<Entities.AssistanceType>(input));
 
             // Salva entidade no banco
-            return _mapper.Map<DetailedReadTypeAssistanceOutput>(entity);
+            return _mapper.Map<DetailedReadAssistanceTypeOutput>(entity);
         }
     }
 }
