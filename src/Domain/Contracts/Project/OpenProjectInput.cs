@@ -8,7 +8,7 @@ namespace Domain.Contracts.Project
         public string? KeyWord2 { get; set; }
         public string? KeyWord3 { get; set; }
         public bool IsScholarshipCandidate { get; set; }
-        public bool IsProductivityFellow { get; set; } // Manter?
+        // public bool IsProductivityFellow { get; set; } // Manter?
         public string? Objective { get; set; }
         public string? Methodology { get; set; }
         public string? ExpectedResults { get; set; }

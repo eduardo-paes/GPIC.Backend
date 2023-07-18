@@ -33,28 +33,28 @@ namespace Domain.UseCases.Project
             if (project.Status == EProjectStatus.Opened)
             {
                 // Verifica se todos os campos do projeto foram preenchidos
-                UseCaseException.NotInformedParam(project.WorkType1 is null, nameof(project.WorkType1));
-                UseCaseException.NotInformedParam(project.WorkType2 is null, nameof(project.WorkType2));
-                UseCaseException.NotInformedParam(project.IndexedConferenceProceedings is null, nameof(project.IndexedConferenceProceedings));
-                UseCaseException.NotInformedParam(project.NotIndexedConferenceProceedings is null, nameof(project.NotIndexedConferenceProceedings));
-                UseCaseException.NotInformedParam(project.CompletedBook is null, nameof(project.CompletedBook));
-                UseCaseException.NotInformedParam(project.OrganizedBook is null, nameof(project.OrganizedBook));
-                UseCaseException.NotInformedParam(project.BookChapters is null, nameof(project.BookChapters));
-                UseCaseException.NotInformedParam(project.BookTranslations is null, nameof(project.BookTranslations));
-                UseCaseException.NotInformedParam(project.ParticipationEditorialCommittees is null, nameof(project.ParticipationEditorialCommittees));
-                UseCaseException.NotInformedParam(project.FullComposerSoloOrchestraAllTracks is null, nameof(project.FullComposerSoloOrchestraAllTracks));
-                UseCaseException.NotInformedParam(project.FullComposerSoloOrchestraCompilation is null, nameof(project.FullComposerSoloOrchestraCompilation));
-                UseCaseException.NotInformedParam(project.ChamberOrchestraInterpretation is null, nameof(project.ChamberOrchestraInterpretation));
-                UseCaseException.NotInformedParam(project.IndividualAndCollectiveArtPerformances is null, nameof(project.IndividualAndCollectiveArtPerformances));
-                UseCaseException.NotInformedParam(project.ScientificCulturalArtisticCollectionsCuratorship is null, nameof(project.ScientificCulturalArtisticCollectionsCuratorship));
-                UseCaseException.NotInformedParam(project.PatentLetter is null, nameof(project.PatentLetter));
-                UseCaseException.NotInformedParam(project.PatentDeposit is null, nameof(project.PatentDeposit));
-                UseCaseException.NotInformedParam(project.SoftwareRegistration is null, nameof(project.SoftwareRegistration));
+                project.WorkType1 ??= 0;
+                project.WorkType2 ??= 0;
+                project.IndexedConferenceProceedings ??= 0;
+                project.NotIndexedConferenceProceedings ??= 0;
+                project.CompletedBook ??= 0;
+                project.OrganizedBook ??= 0;
+                project.BookChapters ??= 0;
+                project.BookTranslations ??= 0;
+                project.ParticipationEditorialCommittees ??= 0;
+                project.FullComposerSoloOrchestraAllTracks ??= 0;
+                project.FullComposerSoloOrchestraCompilation ??= 0;
+                project.ChamberOrchestraInterpretation ??= 0;
+                project.IndividualAndCollectiveArtPerformances ??= 0;
+                project.ScientificCulturalArtisticCollectionsCuratorship ??= 0;
+                project.PatentLetter ??= 0;
+                project.PatentDeposit ??= 0;
+                project.SoftwareRegistration ??= 0;
 
                 // Altera o status do projeto para submetido
                 project.Status = EProjectStatus.Submitted;
                 project.StatusDescription = EProjectStatus.Submitted.GetDescription();
-                project.SubmissionDate = DateTime.Now;
+                project.SubmissionDate = DateTime.UtcNow;
 
                 // Salva alterações no banco de dados
                 await _projectRepository.Update(project);

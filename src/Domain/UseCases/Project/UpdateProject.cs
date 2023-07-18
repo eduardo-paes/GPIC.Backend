@@ -46,28 +46,25 @@ public class UpdateProject : IUpdateProject
         // Verifica se o projeto está aberto
         if (project!.Status == EProjectStatus.Opened)
         {
-            // Mapeia input para entidade e realiza validação dos campos informados
-            var entity = _mapper.Map<Entities.Project>(input);
-
             // Verifica se a nova Subárea existe
-            if (entity.SubAreaId != project.SubAreaId)
+            if (input.SubAreaId != project.SubAreaId)
             {
-                _ = await _subAreaRepository.GetById(entity.SubAreaId)
+                _ = await _subAreaRepository.GetById(input.SubAreaId)
                     ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.SubArea));
             }
 
             // Verifica se o novo Tipo de Programa existe
-            if (entity.ProgramTypeId != project.ProgramTypeId)
+            if (input.ProgramTypeId != project.ProgramTypeId)
             {
-                _ = await _programTypeRepository.GetById(entity.ProgramTypeId)
+                _ = await _programTypeRepository.GetById(input.ProgramTypeId)
                     ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.ProgramType));
             }
 
             // Caso tenha sido informado algum aluno no processo de abertura do projeto
-            if (entity.StudentId.HasValue && entity.StudentId != project.StudentId)
+            if (input.StudentId.HasValue && input.StudentId != project.StudentId)
             {
                 // Verifica se o aluno existe
-                var student = await _studentRepository.GetById(entity.StudentId)
+                var student = await _studentRepository.GetById(input.StudentId)
                     ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Student));
 
                 // Verifica se o aluno já está em um projeto
@@ -76,38 +73,38 @@ public class UpdateProject : IUpdateProject
             }
 
             // Atualiza campos permitidos
-            project.Title = entity.Title;
-            project.KeyWord1 = entity.KeyWord1;
-            project.KeyWord2 = entity.KeyWord2;
-            project.KeyWord3 = entity.KeyWord3;
-            project.IsScholarshipCandidate = entity.IsScholarshipCandidate;
-            project.Objective = entity.Objective;
-            project.Methodology = entity.Methodology;
-            project.ExpectedResults = entity.ExpectedResults;
-            project.ActivitiesExecutionSchedule = entity.ActivitiesExecutionSchedule;
-            project.WorkType1 = entity.WorkType1;
-            project.WorkType2 = entity.WorkType2;
-            project.IndexedConferenceProceedings = entity.IndexedConferenceProceedings;
-            project.NotIndexedConferenceProceedings = entity.NotIndexedConferenceProceedings;
-            project.CompletedBook = entity.CompletedBook;
-            project.OrganizedBook = entity.OrganizedBook;
-            project.BookChapters = entity.BookChapters;
-            project.BookTranslations = entity.BookTranslations;
-            project.ParticipationEditorialCommittees = entity.ParticipationEditorialCommittees;
-            project.FullComposerSoloOrchestraAllTracks = entity.FullComposerSoloOrchestraAllTracks;
-            project.FullComposerSoloOrchestraCompilation = entity.FullComposerSoloOrchestraCompilation;
-            project.ChamberOrchestraInterpretation = entity.ChamberOrchestraInterpretation;
-            project.IndividualAndCollectiveArtPerformances = entity.IndividualAndCollectiveArtPerformances;
-            project.ScientificCulturalArtisticCollectionsCuratorship = entity.ScientificCulturalArtisticCollectionsCuratorship;
-            project.PatentLetter = entity.PatentLetter;
-            project.PatentDeposit = entity.PatentDeposit;
-            project.SoftwareRegistration = entity.SoftwareRegistration;
-            project.ProgramTypeId = entity.ProgramTypeId;
-            project.StudentId = entity.StudentId;
-            project.SubAreaId = entity.SubAreaId;
+            project.Title = input.Title;
+            project.KeyWord1 = input.KeyWord1;
+            project.KeyWord2 = input.KeyWord2;
+            project.KeyWord3 = input.KeyWord3;
+            project.IsScholarshipCandidate = input.IsScholarshipCandidate;
+            project.Objective = input.Objective;
+            project.Methodology = input.Methodology;
+            project.ExpectedResults = input.ExpectedResults;
+            project.ActivitiesExecutionSchedule = input.ActivitiesExecutionSchedule;
+            project.WorkType1 = input.WorkType1;
+            project.WorkType2 = input.WorkType2;
+            project.IndexedConferenceProceedings = input.IndexedConferenceProceedings;
+            project.NotIndexedConferenceProceedings = input.NotIndexedConferenceProceedings;
+            project.CompletedBook = input.CompletedBook;
+            project.OrganizedBook = input.OrganizedBook;
+            project.BookChapters = input.BookChapters;
+            project.BookTranslations = input.BookTranslations;
+            project.ParticipationEditorialCommittees = input.ParticipationEditorialCommittees;
+            project.FullComposerSoloOrchestraAllTracks = input.FullComposerSoloOrchestraAllTracks;
+            project.FullComposerSoloOrchestraCompilation = input.FullComposerSoloOrchestraCompilation;
+            project.ChamberOrchestraInterpretation = input.ChamberOrchestraInterpretation;
+            project.IndividualAndCollectiveArtPerformances = input.IndividualAndCollectiveArtPerformances;
+            project.ScientificCulturalArtisticCollectionsCuratorship = input.ScientificCulturalArtisticCollectionsCuratorship;
+            project.PatentLetter = input.PatentLetter;
+            project.PatentDeposit = input.PatentDeposit;
+            project.SoftwareRegistration = input.SoftwareRegistration;
+            project.ProgramTypeId = input.ProgramTypeId;
+            project.StudentId = input.StudentId;
+            project.SubAreaId = input.SubAreaId;
 
             // Atualiza o projeto
-            project = await _projectRepository.Update(entity);
+            await _projectRepository.Update(project);
 
             // Mapeia o projeto para o retorno e retorna
             return _mapper.Map<ResumedReadProjectOutput>(project);
