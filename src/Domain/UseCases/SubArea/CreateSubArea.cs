@@ -2,8 +2,7 @@ using Domain.Contracts.SubArea;
 using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
-using System.Threading.Tasks;
-using System;
+using Domain.Validation;
 
 namespace Domain.UseCases
 {
@@ -24,17 +23,19 @@ namespace Domain.UseCases
         public async Task<DetailedReadSubAreaOutput> Execute(CreateSubAreaInput input)
         {
             var entity = await _subAreaRepository.GetByCode(input.Code);
-            if (entity != null)
-                throw new Exception($"Já existe uma Subárea para o código {input.Code}");
+            UseCaseException.BusinessRuleViolation(entity != null,
+                "Já existe uma Subárea para o código informado.");
 
             // Verifica id da área
-            if (input.AreaId == null)
-                throw new Exception("O Id da Área não pode ser vazio.");
+            UseCaseException.NotInformedParam(input.AreaId == null, nameof(input.AreaId));
 
             // Valida se existe área
-            var area = await _areaRepository.GetById(input.AreaId) ?? throw new Exception("A Área informada não existe.");
-            if (area.DeletedAt != null)
-                throw new Exception("A Área informada está inativa.");
+            var area = await _areaRepository.GetById(input.AreaId)
+                ?? throw UseCaseException.NotFoundEntityByParams(nameof(Entities.Area));
+
+            // Verifica se área está ativa
+            UseCaseException.BusinessRuleViolation(area.DeletedAt != null,
+                "A Área informada está inativa.");
 
             // Cria nova área
             entity = await _subAreaRepository.Create(_mapper.Map<Domain.Entities.SubArea>(input));

@@ -2,6 +2,7 @@ using Domain.Contracts.Student;
 using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
+using Domain.Validation;
 
 namespace Domain.UseCases
 {
@@ -22,22 +23,23 @@ namespace Domain.UseCases
         public async Task<DetailedReadStudentOutput> Execute(Guid? id)
         {
             // Verifica se o id foi informado
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
+            UseCaseException.NotInformedParam(id is null, nameof(id));
 
             // Verifica se o estudante existe
-            var student = await _studentRepository.GetById(id) ?? throw new Exception("Estudante não encontrado para o Id informado.");
+            var student = await _studentRepository.GetById(id)
+                ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Student));
 
             // Verifica se o usuário existe
-            _ = await _userRepository.GetById(student.UserId) ?? throw new Exception("Usuário não encontrado para o Id informado.");
+            _ = await _userRepository.GetById(student.UserId)
+                ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.User));
 
             // Remove o estudante
             student = await _studentRepository.Delete(id);
-            if (student == null)
-                throw new Exception("O estudante não pôde ser removido.");
+            UseCaseException.BusinessRuleViolation(student == null, "O estudante não pôde ser removido.");
 
             // Remove o usuário
-            _ = await _userRepository.Delete(student.UserId) ?? throw new Exception("O usuário não pôde ser removido.");
+            _ = await _userRepository.Delete(student?.UserId)
+                ?? throw UseCaseException.BusinessRuleViolation("O usuário não pôde ser removido.");
 
             // Retorna o estudante removido
             return _mapper.Map<DetailedReadStudentOutput>(student);

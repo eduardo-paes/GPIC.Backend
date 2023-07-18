@@ -24,7 +24,7 @@ namespace Domain.UseCases
         public async Task<DetailedReadNoticeOutput> Execute(CreateNoticeInput input)
         {
             // Mapeia input para entidade
-            var entity = _mapper.Map<Entities.Notice>(input);
+            var entity = new Entities.Notice(input.StartDate, input.FinalDate, input.AppealStartDate, input.AppealFinalDate, input.SuspensionYears, input.SendingDocumentationDeadline);
 
             // Verifica se já existe um edital para o período indicado
             var projectFound = await _repository.GetNoticeByPeriod((DateTime)input.StartDate!, (DateTime)input.FinalDate!);

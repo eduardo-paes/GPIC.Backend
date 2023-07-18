@@ -2,8 +2,6 @@ using Domain.Contracts.SubArea;
 using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
-using System.Threading.Tasks;
-using System;
 
 namespace Domain.UseCases
 {
@@ -22,7 +20,8 @@ namespace Domain.UseCases
         public async Task<DetailedReadSubAreaOutput> Execute(Guid? id, UpdateSubAreaInput input)
         {
             // Recupera entidade que será atualizada
-            var entity = await _subAreaRepository.GetById(id) ?? throw new Exception("Subárea não encontrada.");
+            var entity = await _subAreaRepository.GetById(id)
+                ?? throw Validation.UseCaseException.NotFoundEntityById(nameof(Entities.SubArea));
 
             // Atualiza atributos permitidos
             entity.Name = input.Name;

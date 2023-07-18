@@ -32,8 +32,11 @@ namespace Domain.UseCases
             var area = await _mainAreaRepository.GetById(model.MainAreaId);
             UseCaseException.BusinessRuleViolation(area?.DeletedAt != null, "The informed Main Area is inactive.");
 
+            // Mapeia input para entidade
+            var newEntity = new Entities.Area(model.MainAreaId, model.Name, model.Code);
+
             // Cria nova área
-            entity = await _areaRepository.Create(_mapper.Map<Domain.Entities.Area>(model));
+            entity = await _areaRepository.Create(newEntity);
             return _mapper.Map<DetailedReadAreaOutput>(entity);
         }
     }

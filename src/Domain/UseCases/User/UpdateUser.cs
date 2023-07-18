@@ -31,7 +31,7 @@ namespace Domain.UseCases
 
             // Busca usuário pelo id informado
             var user = await _repository.GetById(userClaims.Id)
-                ?? throw new Exception("Nenhum usuário encontrato para o id informado.");
+                ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.User));
 
             // Atualiza atributos permitidos
             user.Name = input.Name;

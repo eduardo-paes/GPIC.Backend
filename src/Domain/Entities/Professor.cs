@@ -63,11 +63,10 @@ namespace Domain.Entities
         #endregion
 
         #region Constructors
-        public Professor(string? siapeEnrollment, long identifyLattes, Guid? userId)
+        public Professor(string? siapeEnrollment, long identifyLattes)
         {
             SIAPEEnrollment = siapeEnrollment;
             IdentifyLattes = identifyLattes;
-            UserId = userId;
         }
 
         /// <summary>

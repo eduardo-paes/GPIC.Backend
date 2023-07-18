@@ -3,6 +3,7 @@ using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
 using Domain.Entities.Enums;
+using Domain.Validation;
 
 namespace Domain.UseCases
 {
@@ -21,15 +22,15 @@ namespace Domain.UseCases
         public async Task<DetailedReadStudentOutput> Execute(Guid? id, UpdateStudentInput input)
         {
             // Verifica se o id foi informado
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
+            UseCaseException.NotInformedParam(id is null, nameof(id));
 
             // Recupera entidade que será atualizada
-            var student = await _studentRepository.GetById(id) ?? throw new Exception("Nenhum estudante encontrado para o Id informado.");
+            var student = await _studentRepository.GetById(id)
+                ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Student));
 
             // Verifica se a entidade foi excluída
-            if (student.DeletedAt != null)
-                throw new Exception("O estudante informado já foi excluído.");
+            UseCaseException.BusinessRuleViolation(student.DeletedAt != null,
+                "O estudante informado já foi excluído.");
 
             // Atualiza atributos permitidos
             student.BirthDate = input.BirthDate;

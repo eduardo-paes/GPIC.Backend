@@ -21,25 +21,23 @@ namespace Domain.UseCases
         public async Task<DetailedReadProgramTypeOutput> Execute(Guid? id, UpdateProgramTypeInput input)
         {
             // Verifica se o id foi informado
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
+            UseCaseException.NotInformedParam(id is null, nameof(id));
 
             // Verifica se nome foi informado
             UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.Name), nameof(input.Name));
 
             // Recupera entidade que será atualizada
-            var entity = await _repository.GetById(id) ?? throw new Exception("Tipo de Programa não encontrado.");
+            var entity = await _repository.GetById(id)
+                ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.ProgramType));
 
             // Verifica se a entidade foi excluída
-            if (entity.DeletedAt != null)
-                throw new Exception("O Tipo de Programa informado já foi excluído.");
+            UseCaseException.BusinessRuleViolation(entity.DeletedAt != null, "O Tipo de Programa informado já foi excluído.");
 
             // Verifica se o nome já está sendo usado
-            if (!string.Equals(entity.Name, input.Name, StringComparison.OrdinalIgnoreCase)
-                && await _repository.GetProgramTypeByName(input.Name!) != null)
-            {
-                throw new Exception("Já existe um Tipo de Programa para o nome informado.");
-            }
+            UseCaseException.BusinessRuleViolation(
+                !string.Equals(entity.Name, input.Name, StringComparison.OrdinalIgnoreCase)
+                    && await _repository.GetProgramTypeByName(input.Name!) != null,
+                "Já existe um Tipo de Programa para o nome informado.");
 
             // Atualiza atributos permitidos
             entity.Name = input.Name;

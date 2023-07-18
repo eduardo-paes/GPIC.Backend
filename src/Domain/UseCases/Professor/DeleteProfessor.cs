@@ -2,6 +2,7 @@ using Domain.Contracts.Professor;
 using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
+using Domain.Validation;
 
 namespace Domain.UseCases
 {
@@ -22,25 +23,23 @@ namespace Domain.UseCases
         public async Task<DetailedReadProfessorOutput> Execute(Guid? id)
         {
             // Verifica se o id foi informado
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
+            UseCaseException.NotInformedParam(id is null, nameof(id));
 
             // Verifica se o professor existe
             var professor = await _professorRepository.GetById(id)
-                ?? throw new Exception("Professor não encontrado para o Id informado.");
+                ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Professor));
 
             // Verifica se o usuário existe
             _ = await _userRepository.GetById(professor.UserId)
-                ?? throw new Exception("Usuário não encontrado para o Id informado.");
+                ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.User));
 
             // Remove o professor
             professor = await _professorRepository.Delete(id);
-            if (professor == null)
-                throw new Exception("O professor não pôde ser removido.");
+            UseCaseException.BusinessRuleViolation(professor == null, "O professor não pôde ser removido.");
 
             // Remove o usuário
-            _ = await _userRepository.Delete(professor.UserId)
-                ?? throw new Exception("O usuário não pôde ser removido.");
+            _ = await _userRepository.Delete(professor?.UserId)
+                ?? throw UseCaseException.BusinessRuleViolation("O usuário não pôde ser removido.");
 
             // Retorna o professor removido
             return _mapper.Map<DetailedReadProfessorOutput>(professor);

@@ -115,6 +115,21 @@ namespace Domain.Entities
         #endregion
 
         #region Constructors
+        public Notice(DateTime? startDate,
+            DateTime? finalDate,
+            DateTime? appealStartDate,
+            DateTime? appealFinalDate,
+            int? suspensionYears,
+            int? sendingDocumentationDeadline)
+        {
+            StartDate = startDate;
+            FinalDate = finalDate;
+            AppealStartDate = appealStartDate;
+            AppealFinalDate = appealFinalDate;
+            SuspensionYears = suspensionYears;
+            SendingDocumentationDeadline = sendingDocumentationDeadline;
+        }
+
         /// <summary>
         /// Constructor to dbcontext EF instancing.
         /// </summary>

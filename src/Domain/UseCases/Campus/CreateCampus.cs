@@ -26,10 +26,11 @@ namespace Domain.UseCases
             // Verifica se já existe um edital para o período indicado
             var entity = await _repository.GetCampusByName(input.Name!);
             if (entity != null)
-                throw new Exception("Já existe um Campus para o nome informado.");
+                throw UseCaseException.BusinessRuleViolation("Já existe um Campus para o nome informado.");
 
             // Cria entidade
-            entity = await _repository.Create(_mapper.Map<Entities.Campus>(input));
+            var newEntity = new Entities.Campus(input.Name);
+            entity = await _repository.Create(newEntity);
 
             // Salva entidade no banco
             return _mapper.Map<DetailedReadCampusOutput>(entity);

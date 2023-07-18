@@ -2,6 +2,7 @@ using AutoMapper;
 using Domain.Contracts.User;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.UseCases;
+using Domain.Validation;
 
 namespace Domain.UseCases
 {
@@ -20,12 +21,11 @@ namespace Domain.UseCases
         public async Task<UserReadOutput> Execute(Guid? id)
         {
             // Verifica se id é nulo
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
+            UseCaseException.NotInformedParam(id is null, nameof(id));
 
             // Encontra usuário pelo Id e o desativa
             var user = await _repository.GetById(id)
-                ?? throw new Exception("Nenhum usuário encontrato para o id informado.");
+                ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.User));
             user.DeactivateEntity();
 
             // Atualiza usuário

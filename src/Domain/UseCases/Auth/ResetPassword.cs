@@ -2,6 +2,7 @@ using Domain.Contracts.Auth;
 using Domain.Interfaces.UseCases;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
+using Domain.Validation;
 
 namespace Domain.UseCases
 {
@@ -20,31 +21,28 @@ namespace Domain.UseCases
         public async Task<string> Execute(UserResetPasswordInput input)
         {
             // Verifica se o id do usuário é nulo
-            if (input.Id == null)
-                throw new ArgumentNullException(nameof(input.Id), "Id do usuário não informado.");
+            UseCaseException.NotInformedParam(input.Id == null, nameof(input.Id));
 
             // Verifica se a senha é nula
-            else if (input.Password == null)
-                throw new ArgumentNullException(nameof(input.Password), "Senha não informada.");
+            UseCaseException.NotInformedParam(input.Password == null, nameof(input.Password));
 
             // Verifica se o token é nulo
-            else if (input.Token == null)
-                throw new ArgumentNullException(nameof(input.Token), "Token não informado.");
+            UseCaseException.NotInformedParam(input.Token == null, nameof(input.Token));
 
             // Busca o usuário pelo id
             var entity = await _userRepository.GetById(input.Id)
-                ?? throw new Exception("Nenhum usuário encontrato para o id informado.");
+                ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.User));
 
             // Verifica se o token de validação é nulo
             if (string.IsNullOrEmpty(entity.ResetPasswordToken))
-                throw new Exception("Solicitação de atualização de senha não permitido.");
+                throw UseCaseException.BusinessRuleViolation("Solicitação de atualização de senha não permitido.");
 
             // Verifica se o token de validação é igual ao token informado
-            input.Password = _hashService.HashPassword(input.Password);
+            input.Password = _hashService.HashPassword(input.Password!);
 
             // Atualiza a senha do usuário
-            if (!entity.UpdatePassword(input.Password, input.Token))
-                throw new Exception("Token de validação inválido.");
+            if (!entity.UpdatePassword(input.Password, input.Token!))
+                throw UseCaseException.BusinessRuleViolation("Token de validação inválido.");
 
             // Salva as alterações
             await _userRepository.Update(entity);

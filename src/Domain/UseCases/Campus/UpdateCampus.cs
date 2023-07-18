@@ -21,8 +21,7 @@ namespace Domain.UseCases
         public async Task<DetailedReadCampusOutput> Execute(Guid? id, UpdateCampusInput input)
         {
             // Verifica se o id foi informado
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
+            UseCaseException.NotInformedParam(id is null, nameof(id));
 
             // Verifica se nome foi informado
             UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.Name), nameof(input.Name));
@@ -32,11 +31,11 @@ namespace Domain.UseCases
 
             // Verifica se a entidade foi excluída
             if (entity.DeletedAt != null)
-                throw new Exception("O Campus informado já foi excluído.");
+                throw UseCaseException.BusinessRuleViolation("O Campus informado já foi excluído.");
 
             // Verifica se o nome já está sendo usado
             if (!string.Equals(entity.Name, input.Name, StringComparison.OrdinalIgnoreCase) && await _repository.GetCampusByName(input.Name!) != null)
-                throw new Exception("Já existe um Campus para o nome informado.");
+                throw UseCaseException.BusinessRuleViolation("Já existe um Campus para o nome informado.");
 
             // Atualiza atributos permitidos
             entity.Name = input.Name;

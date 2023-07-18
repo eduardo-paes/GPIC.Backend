@@ -26,7 +26,7 @@ namespace Domain.UseCases
             // Verifica se já existe um tipo de programa com o nome indicado
             var entity = await _repository.GetProgramTypeByName(input.Name!);
             if (entity != null)
-                throw new Exception("Já existe um Tipo de Programa para o nome informado.");
+                throw UseCaseException.BusinessRuleViolation("Já existe um Tipo de Programa para o nome informado.");
 
             // Cria entidade
             entity = await _repository.Create(_mapper.Map<Entities.ProgramType>(input));

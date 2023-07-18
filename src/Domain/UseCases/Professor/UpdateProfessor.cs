@@ -2,6 +2,7 @@ using Domain.Contracts.Professor;
 using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
+using Domain.Validation;
 
 namespace Domain.UseCases
 {
@@ -20,16 +21,15 @@ namespace Domain.UseCases
         public async Task<DetailedReadProfessorOutput> Execute(Guid? id, UpdateProfessorInput input)
         {
             // Verifica se o id foi informado
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
+            UseCaseException.NotInformedParam(id is null, nameof(id));
 
             // Recupera entidade que será atualizada
             var professor = await _professorRepository.GetById(id)
-                ?? throw new Exception("Nenhum professor encontrado para o Id informado.");
+                ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Professor));
 
             // Verifica se a entidade foi excluída
             if (professor.DeletedAt != null)
-                throw new Exception("O professor informado já foi excluído.");
+                throw UseCaseException.BusinessRuleViolation("O professor informado já foi excluído.");
 
             // Atualiza atributos permitidos
             professor.IdentifyLattes = input.IdentifyLattes;

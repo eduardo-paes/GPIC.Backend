@@ -1,6 +1,7 @@
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
 using Domain.Interfaces.UseCases;
+using Domain.Validation;
 
 namespace Domain.UseCases
 {
@@ -19,12 +20,11 @@ namespace Domain.UseCases
         public async Task<string> Execute(string? email)
         {
             // Verifica se o email é nulo
-            if (string.IsNullOrEmpty(email))
-                throw new ArgumentNullException(nameof(email), "Email não informado.");
+            UseCaseException.NotInformedParam(string.IsNullOrEmpty(email), nameof(email));
 
             // Busca usuário pelo email
             var user = await _userRepository.GetUserByEmail(email)
-                ?? throw new Exception("Nenhum usuário encontrado para o email informado.");
+                ?? throw UseCaseException.NotFoundEntityByParams(nameof(Entities.User));
 
             // Gera token de recuperação de senha
             user.GenerateResetPasswordToken();
@@ -37,7 +37,7 @@ namespace Domain.UseCases
 
             // Verifica se o token foi gerado
             if (string.IsNullOrEmpty(user.ResetPasswordToken))
-                throw new Exception("Token não gerado.");
+                throw UseCaseException.BusinessRuleViolation("Token não gerado.");
 
             // Retorna token
             return "Token de recuperação gerado e enviado por e-mail com sucesso.";

@@ -2,6 +2,7 @@ using Domain.Contracts.Course;
 using Domain.Interfaces.UseCases;
 using AutoMapper;
 using Domain.Interfaces.Repositories;
+using Domain.Validation;
 
 namespace Domain.UseCases
 {
@@ -20,8 +21,7 @@ namespace Domain.UseCases
         public async Task<DetailedReadCourseOutput> Execute(Guid? id)
         {
             // Verifica se o id foi informado
-            if (id == null)
-                throw new ArgumentNullException(nameof(id));
+            UseCaseException.NotInformedParam(id is null, nameof(id));
 
             // Remove a entidade
             var model = await _repository.Delete(id);
