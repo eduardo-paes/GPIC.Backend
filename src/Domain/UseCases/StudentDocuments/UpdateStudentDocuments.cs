@@ -42,7 +42,7 @@ namespace Domain.UseCases
             UseCaseException.BusinessRuleViolation(
                 studentDocuments!.Project?.Status != Entities.Enums.EProjectStatus.DocumentAnalysis
                     || studentDocuments!.Project?.Status != Entities.Enums.EProjectStatus.Pending,
-                "The project is not in the documents presentation phase.");
+                "O projeto não está na fase de apresentação de documentos.");
 
             // Atualiza entidade a partir do input informado
             studentDocuments!.AgencyNumber = input.AgencyNumber;
@@ -79,9 +79,9 @@ namespace Domain.UseCases
                 if (file is null) return;
                 await _storageFileService.UploadFileAsync(file, url);
             }
-            catch
+            catch (Exception ex)
             {
-                throw;
+                throw UseCaseException.BusinessRuleViolation($"Erro ao salvar arquivos na nuvem.\n{ex}");
             }
         }
     }

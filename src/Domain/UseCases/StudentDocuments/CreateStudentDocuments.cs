@@ -40,7 +40,7 @@ namespace Domain.UseCases
         {
             // Verifica se já há documentos para o projeto informado
             var documents = await _studentDocumentRepository.GetByProjectId(input.ProjectId!);
-            UseCaseException.BusinessRuleViolation(documents is null, "Student documents already exist for the indicated project.");
+            UseCaseException.BusinessRuleViolation(documents is null, "Já existem documentos do aluno para o projeto indicado.");
 
             // Verifica se o projeto existe
             var project = await _projectRepository.GetById(input.ProjectId!);
@@ -49,7 +49,7 @@ namespace Domain.UseCases
             // Verifica se o projeto se encontra em situação de submissão de documentos
             UseCaseException.BusinessRuleViolation(
                 project?.Status != Entities.Enums.EProjectStatus.DocumentAnalysis,
-                "The project is not in the documents presentation phase.");
+                "O projeto não está na fase de apresentação de documentos.");
 
             // Cria entidade a partir do input informado
             var entity = new Entities.StudentDocuments(input.ProjectId, input.AgencyNumber, input.AccountNumber);
@@ -59,7 +59,7 @@ namespace Domain.UseCases
             {
                 // Verifica se foi informado a autorização dos pais
                 UseCaseException.BusinessRuleViolation(input.ParentalAuthorization is null,
-                    "Parental authorization must be provided for underage students.");
+                    "A autorização dos pais deve ser fornecida para alunos menores de idade.");
 
                 // Salva autorização dos pais
                 entity.ParentalAuthorization = await TryToSaveFileInCloud(input.ParentalAuthorization!);
@@ -88,12 +88,12 @@ namespace Domain.UseCases
                 _urlFiles.Add(url);
                 return url;
             }
-            catch
+            catch (Exception ex)
             {
                 // Caso dê erro, remove da nuvem os arquivos que foram salvos
                 foreach (var url in _urlFiles)
                     await _storageFileService.DeleteFile(url);
-                throw;
+                throw UseCaseException.BusinessRuleViolation($"Erro ao salvar arquivos na nuvem.\n{ex}");
             }
         }
     }
