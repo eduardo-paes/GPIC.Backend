@@ -494,17 +494,17 @@ namespace Domain.Tests.Entities
         }
 
         [Fact]
-        public void SetAppealDescription_ValidAppealDescription_SetsAppealDescription()
+        public void SetAppealObservation_ValidAppealObservation_SetsAppealObservation()
         {
             // Arrange
             var project = MockValidProject();
             var appealDescription = "Sample appeal description.";
 
             // Act
-            project.AppealDescription = appealDescription;
+            project.AppealObservation = appealDescription;
 
             // Assert
-            project.AppealDescription.Should().Be(appealDescription);
+            project.AppealObservation.Should().Be(appealDescription);
         }
 
         [Fact]
@@ -512,7 +512,7 @@ namespace Domain.Tests.Entities
         {
             // Arrange
             var project = MockValidProject();
-            var submissionDate = new DateTime(2023, 5, 30);
+            var submissionDate = DateTime.UtcNow;
 
             // Act
             project.SubmissionDate = submissionDate;
@@ -526,7 +526,7 @@ namespace Domain.Tests.Entities
         {
             // Arrange
             var project = MockValidProject();
-            var resubmissionDate = new DateTime(2023, 6, 10);
+            var resubmissionDate = DateTime.UtcNow;
 
             // Act
             project.ResubmissionDate = resubmissionDate;
@@ -540,7 +540,7 @@ namespace Domain.Tests.Entities
         {
             // Arrange
             var project = MockValidProject();
-            var cancellationDate = new DateTime(2023, 6, 15);
+            var cancellationDate = DateTime.UtcNow;
 
             // Act
             project.CancellationDate = cancellationDate;

@@ -20,20 +20,20 @@ namespace Domain.UseCases
         }
         #endregion
 
-        public async Task<DetailedReadAreaOutput> Execute(CreateAreaInput model)
+        public async Task<DetailedReadAreaOutput> Execute(CreateAreaInput input)
         {
-            var entity = await _areaRepository.GetByCode(model.Code);
-            UseCaseException.BusinessRuleViolation(entity != null, $"There is already a Main Area for the code {model.Code}.");
+            var entity = await _areaRepository.GetByCode(input.Code);
+            UseCaseException.BusinessRuleViolation(entity != null, $"Já existe uma área principal para o código {input.Code}.");
 
             // Verifica id da área princial
-            UseCaseException.NotInformedParam(model.MainAreaId == null, nameof(model.MainAreaId));
+            UseCaseException.NotInformedParam(input.MainAreaId == null, nameof(input.MainAreaId));
 
             // Valida se existe área principal
-            var area = await _mainAreaRepository.GetById(model.MainAreaId);
-            UseCaseException.BusinessRuleViolation(area?.DeletedAt != null, "The informed Main Area is inactive.");
+            var area = await _mainAreaRepository.GetById(input.MainAreaId);
+            UseCaseException.BusinessRuleViolation(area?.DeletedAt != null, "A Área Principal informada está inativa.");
 
             // Mapeia input para entidade
-            var newEntity = new Entities.Area(model.MainAreaId, model.Name, model.Code);
+            var newEntity = new Entities.Area(input.MainAreaId, input.Code, input.Name);
 
             // Cria nova área
             entity = await _areaRepository.Create(newEntity);

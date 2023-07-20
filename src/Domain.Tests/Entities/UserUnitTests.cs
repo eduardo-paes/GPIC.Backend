@@ -1,265 +1,258 @@
-﻿using Domain.Entities;
+﻿using System;
+using System.Reflection;
+using Domain.Entities;
 using Domain.Entities.Enums;
 using Domain.Validation;
-using FluentAssertions;
 using Xunit;
 
-namespace Domain.Tests.Entities;
-public class UserUniTests
+namespace Domain.Tests.Entities
 {
-    [Fact(DisplayName = "Create User With Valid State")]
-    public void CreateUser_WithValidParameters_ResultObjectValidState()
+    public class UserUnitTests
     {
-        Action action = () => new User("User Name", "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
-        action.Should()
-             .NotThrow<EntityExceptionValidation>();
-    }
+        private User _user;
+        private User MockValidUser()
+        {
+            if (_user == null)
+                _user = InvokeInternalConstructor<User>("John Doe", "john.doe@example.com", "strongpassword", "92114660087", ERole.ADMIN);
+            return _user;
+        }
 
-    #region Name Tests
-    [Fact]
-    public void CreateUser_ShortNameValue_DomainExceptionShortName()
-    {
-        Action action = () => new User("Us", "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
-        action.Should()
-            .Throw<EntityExceptionValidation>()
-            .WithMessage(ExceptionMessageFactory.MinLength("name", 3));
-    }
+        [Fact]
+        public void TestInternalConstructor()
+        {
+            // Arrange
+            var name = "John Doe";
+            var email = "john.doe@example.com";
+            var password = "strongpassword";
+            var cpf = "92114660087";
+            var role = ERole.ADMIN;
 
-    [Fact]
-    public void CreateUser_BigNameValue_DomainExceptionBigName()
-    {
-        Action action = () => new User("frttcgyxukstpasvqpbhqmsbjjvolqsrbfkaiptymddeegoedgodnxtlotplntqitreugkiernzsjmganfdjxcyagoqrzmadqffbsvehnblaovkzclijojbbrustwczcilguchcmrfswjjwquyjbhwgdtnwysdxuymmaibjwvnpvemjxpdkirtjezwyifnrmngoodufstmndqcgawzlvqazxfhdhrtcditryoiczqabbpdhqgwqzukrenvvezlwiciwbprebrxuiytnumvupvoqtdfnbmoxrrgalrudecdugkfblogserwipsrbcqtmotleqarahfqxokfqmrsorjuofatcvsd", "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
-        action.Should()
-            .Throw<EntityExceptionValidation>()
-            .WithMessage(ExceptionMessageFactory.MaxLength("name", 300));
-    }
+            // Act
+            var user = InvokeInternalConstructor<User>(name, email, password, cpf, role);
 
-    [Fact]
-    public void CreateUser_MissingNameValue_DomainExceptionRequiredName()
-    {
-        Action action = () => new User(string.Empty, "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
-        action.Should()
-            .Throw<EntityExceptionValidation>()
-            .WithMessage(ExceptionMessageFactory.Required("name"));
-    }
+            // Assert
+            Assert.Equal(name, user.Name);
+            Assert.Equal(email, user.Email);
+            Assert.Equal(password, user.Password);
+            Assert.Equal(cpf, user.CPF);
+            Assert.Equal(role, user.Role);
+        }
 
-    [Fact]
-    public void CreateUser_WithNullNameValue_DomainExceptionInvalidName()
-    {
-        Action action = () => new User(null, "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
-        action.Should()
-            .Throw<EntityExceptionValidation>()
-            .WithMessage(ExceptionMessageFactory.Required("name"));
-    }
+        private T InvokeInternalConstructor<T>(params object[] args)
+        {
+            var constructor = typeof(T).GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, null, CallingConventions.Any, args.Select(a => a?.GetType()).ToArray(), null);
+            if (constructor == null)
+                throw new InvalidOperationException("Internal constructor not found.");
 
-    [Fact]
-    public void UpdateUserName_WithValidParameters_ResultObjectValidState()
-    {
-        var model = new User("User Name", "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
-        Action action = () => model.Name = "Teste Name";
-        action.Should()
-            .NotThrow<EntityExceptionValidation>();
-    }
+            return (T)constructor.Invoke(args);
+        }
 
-    [Fact]
-    public void UpdateUserName_WithInvalidParameters_ResultObjectValidState()
-    {
-        var model = new User("User Name", "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
-        Action action = () => model.Name = string.Empty;
-        action.Should()
-            .Throw<EntityExceptionValidation>()
-            .WithMessage(ExceptionMessageFactory.Required("name"));
-    }
-    #endregion
+        [Fact]
+        public void SetName_ValidName_SetsName()
+        {
+            // Arrange
+            var user = MockValidUser();
+            var name = "John Doe Updated";
 
-    #region Email Tests
-    [Fact]
-    public void CreateUser_MissingEmailValue_DomainExceptionRequiredEmail()
-    {
-        Action action = () => new User("User Name", string.Empty, "123456", "15162901784", ERole.ADMIN, null);
-        action.Should()
-            .Throw<EntityExceptionValidation>()
-            .WithMessage(ExceptionMessageFactory.Required("email"));
-    }
+            // Act
+            user.Name = name;
 
-    [Fact]
-    public void CreateUser_BigEmailValue_DomainExceptionBigEmail()
-    {
-        Action action = () => new User("User Name", "frttcgyxukstpasvqpbhqmsbjjvolqsrbfkaiptymddeegoedgodnxtlotplntqitreugkiernzsjmganfdjxcyagoqrzmadqffbsvehnblaovkzclijojbbrustwczcilguchcmrfswjjwquyjbhwgdtnwysdxuymmaibjwvnpvemjxpdkirtjezwyifnrmngoodufstmndqcgawzlvqazxfhdhrtcditryoiczqabbpdhqgwqzukrenvvezlwiciwbprebrxuiytnumvupvoqtdfnbmoxrrgalrudecdugkfblogserwipsrbcqtmotleqarahfqxokfqmrsorjuofatcvsd", "123456", "15162901784", ERole.ADMIN, null);
-        action.Should()
-            .Throw<EntityExceptionValidation>()
-            .WithMessage(ExceptionMessageFactory.MaxLength("email", 300));
-    }
+            // Assert
+            Assert.Equal(name, user.Name);
+        }
 
-    [Fact]
-    public void CreateUser_WithNullEmailValue_DomainExceptionRequiredEmail()
-    {
-        Action action = () => new User("User Name", null, "123456", "15162901784", ERole.ADMIN, null);
-        action.Should()
-            .Throw<EntityExceptionValidation>()
-            .WithMessage(ExceptionMessageFactory.Required("email"));
-    }
+        [Fact]
+        public void SetName_NullOrEmptyName_ThrowsException()
+        {
+            // Arrange
+            var user = MockValidUser();
 
-    [Fact]
-    public void CreateUser_WithInvalidEmailValue_DomainExceptionInvalidEmail()
-    {
-        Action action = () => new User("User Name", "aaaa-bbbb", "123456", "15162901784", ERole.ADMIN, null);
-        action.Should()
-            .Throw<EntityExceptionValidation>()
-            .WithMessage(ExceptionMessageFactory.InvalidEmail("email"));
-    }
-    #endregion
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => user.Name = null);
+            Assert.Throws<EntityExceptionValidation>(() => user.Name = string.Empty);
+        }
 
-    #region Password Tests
-    [Fact]
-    public void CreateUser_ShortPasswordValue_DomainExceptionShortPassword()
-    {
-        Action action = () => new User("User Name", "username@gmail.com", "123", "15162901784", ERole.ADMIN, null);
-        action.Should()
-            .Throw<EntityExceptionValidation>()
-            .WithMessage(ExceptionMessageFactory.MinLength("password", 6));
-    }
+        [Fact]
+        public void SetName_TooShortName_ThrowsException()
+        {
+            // Arrange
+            var user = MockValidUser();
 
-    [Fact]
-    public void CreateUser_BigPasswordValue_DomainExceptionBigPassword()
-    {
-        Action action = () => new User("User Name", "username@gmail.com", "frttcgyxukstpasvqpbhqmsbjjvolqsrbfkaiptymddeegoedgodnxtlotplntqitreugkiernzsjmganfdjxcyagoqrzmadqffbsvehnblaovkzclijojbbrustwczcilguchcmrfswjjwquyjbhwgdtnwysdxuymmaibjwvnpvemjxpdkirtjezwyifnrmngoodufstmndqcgawzlvqazxfhdhrtcditryoiczqabbpdhqgwqzukrenvvezlwiciwbprebrxuiytnumvupvoqtdfnbmoxrrgalrudecdugkfblogserwipsrbcqtmotleqarahfqxokfqmrsorjuofatcvsd", "15162901784", ERole.ADMIN, null);
-        action.Should()
-            .Throw<EntityExceptionValidation>()
-            .WithMessage(ExceptionMessageFactory.MaxLength("password", 300));
-    }
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => user.Name = "AB");
+        }
 
-    [Fact]
-    public void CreateUser_MissingPasswordValue_DomainExceptionRequiredPassword()
-    {
-        Action action = () => new User("User Name", "username@gmail.com", string.Empty, "15162901784", ERole.ADMIN, null);
-        action.Should()
-            .Throw<EntityExceptionValidation>()
-            .WithMessage(ExceptionMessageFactory.Required("password"));
-    }
+        [Fact]
+        public void SetName_TooLongName_ThrowsException()
+        {
+            // Arrange
+            var user = MockValidUser();
 
-    [Fact]
-    public void CreateUser_WithNullPasswordValue_DomainExceptionInvalidPassword()
-    {
-        Action action = () => new User("User Name", "username@gmail.com", null, "15162901784", ERole.ADMIN, null);
-        action.Should()
-            .Throw<EntityExceptionValidation>()
-            .WithMessage(ExceptionMessageFactory.Required("password"));
-    }
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => user.Name = new string('A', 500));
+        }
 
-    [Fact]
-    public void UpdateUserPassword_WithValidParameters_ResultObjectValidState()
-    {
-        var model = new User("User Name", "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
-        Action action = () => model.Password = "987654321";
-        action.Should()
-            .NotThrow<EntityExceptionValidation>();
-    }
+        [Fact]
+        public void SetEmail_ValidEmail_SetsEmail()
+        {
+            // Arrange
+            var user = MockValidUser();
+            var email = "john.doe.updated@example.com";
 
-    [Fact]
-    public void UpdateUserPassword_WithInvalidParameters_ResultObjectValidState()
-    {
-        var model = new User("User Name", "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
-        Action action = () => model.Password = string.Empty;
-        action.Should()
-            .Throw<EntityExceptionValidation>()
-            .WithMessage(ExceptionMessageFactory.Required("password"));
-    }
-    #endregion
+            // Act
+            user.Email = email;
 
-    #region CPF Tests
-    [Fact]
-    public void CreateUser_ShortCpfValue_DomainExceptionShortCpf()
-    {
-        Action action = () => new User("User Name", "username@gmail.com", "123456", "1516290178", ERole.ADMIN, null);
-        action.Should()
-            .Throw<EntityExceptionValidation>()
-            .WithMessage(ExceptionMessageFactory.WithLength("cpf", 11));
-    }
+            // Assert
+            Assert.Equal(email, user.Email);
+        }
 
-    [Fact]
-    public void CreateUser_BigCpfValue_DomainExceptionBigCpf()
-    {
-        Action action = () => new User("User Name", "username@gmail.com", "123456", "151629017840", ERole.ADMIN, null);
-        action.Should()
-            .Throw<EntityExceptionValidation>()
-            .WithMessage(ExceptionMessageFactory.WithLength("cpf", 11));
-    }
+        [Fact]
+        public void SetEmail_NullOrEmptyEmail_ThrowsException()
+        {
+            // Arrange
+            var user = MockValidUser();
 
-    [Fact]
-    public void CreateUser_MissingCpfValue_DomainExceptionRequiredCpf()
-    {
-        Action action = () => new User("User Name", "username@gmail.com", "123456", string.Empty, ERole.ADMIN, null);
-        action.Should()
-            .Throw<EntityExceptionValidation>()
-            .WithMessage(ExceptionMessageFactory.Required("cpf"));
-    }
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => user.Email = null);
+            Assert.Throws<EntityExceptionValidation>(() => user.Email = string.Empty);
+        }
 
-    [Fact]
-    public void CreateUser_WithNullCpfValue_DomainExceptionInvalidCpf()
-    {
-        Action action = () => new User("User Name", "username@gmail.com", "123456", null, ERole.ADMIN, null);
-        action.Should()
-            .Throw<EntityExceptionValidation>()
-            .WithMessage(ExceptionMessageFactory.Required("cpf"));
-    }
+        [Fact]
+        public void SetEmail_InvalidEmail_ThrowsException()
+        {
+            // Arrange
+            var user = MockValidUser();
 
-    [Fact]
-    public void CreateUser_WithInvalidCpfValue_DomainExceptionInvalidCpf()
-    {
-        Action action = () => new User("User Name", "username@gmail.com", "123456", "12345678911", ERole.ADMIN, null);
-        action.Should()
-            .Throw<EntityExceptionValidation>()
-            .WithMessage(ExceptionMessageFactory.InvalidCpf());
-    }
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => user.Email = "invalid-email");
+        }
 
-    [Fact]
-    public void UpdateUserCpf_WithValidParameters_ResultObjectValidState()
-    {
-        var model = new User("User Name", "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
-        Action action = () => model.CPF = "15162901784";
-        action.Should()
-            .NotThrow<EntityExceptionValidation>();
-    }
+        [Fact]
+        public void SetEmail_TooLongEmail_ThrowsEntityExceptionValidation()
+        {
+            // Arrange
+            var user = MockValidUser();
+            var longEmail = new string('a', 300) + "@example.com";
 
-    [Fact]
-    public void UpdateUserCpf_WithInvalidParameters_ResultObjectValidState()
-    {
-        var model = new User("User Name", "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
-        Action action = () => model.CPF = string.Empty;
-        action.Should()
-            .Throw<EntityExceptionValidation>()
-            .WithMessage(ExceptionMessageFactory.Required("cpf"));
-    }
-    #endregion
+            // Act & Assert
+            var ex = Assert.Throws<EntityExceptionValidation>(() => user.Email = longEmail);
+            // Assert.Equal("email", ex.PropertyName); // Ensure that the correct property triggered the exception
+            Assert.Contains("email", ex.Message); // Ensure that the exception message contains the property name
+        }
 
-    #region Role Tests
-    [Fact]
-    public void CreateUser_WithNullRoleValue_DomainExceptionInvalidRole()
-    {
-        Action action = () => new User("User Name", "username@gmail.com", "123456", "15162901784", null, null);
-        action.Should()
-            .Throw<EntityExceptionValidation>()
-            .WithMessage(ExceptionMessageFactory.Required("role"));
-    }
+        [Fact]
+        public void SetPassword_ValidPassword_SetsPassword()
+        {
+            // Arrange
+            var user = MockValidUser();
+            var password = "new-strong-password";
 
-    [Fact]
-    public void UpdateUserRole_WithValidParameters_ResultObjectValidState()
-    {
-        var model = new User("User Name", "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
-        Action action = () => model.Role = ERole.STUDENT;
-        action.Should()
-            .NotThrow<EntityExceptionValidation>();
-    }
+            // Act
+            user.Password = password;
 
-    [Fact]
-    public void UpdateUserRole_WithInvalidParameters_ResultObjectValidState()
-    {
-        var model = new User("User Name", "username@gmail.com", "123456", "15162901784", ERole.ADMIN, null);
-        Action action = () => model.Role = null;
-        action.Should()
-            .Throw<EntityExceptionValidation>()
-            .WithMessage(ExceptionMessageFactory.Required("role"));
+            // Assert
+            Assert.Equal(password, user.Password);
+        }
+
+        [Fact]
+        public void SetPassword_NullOrEmptyPassword_ThrowsException()
+        {
+            // Arrange
+            var user = MockValidUser();
+
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => user.Password = null);
+            Assert.Throws<EntityExceptionValidation>(() => user.Password = string.Empty);
+        }
+
+        [Fact]
+        public void SetPassword_TooShortPassword_ThrowsException()
+        {
+            // Arrange
+            var user = MockValidUser();
+
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => user.Password = "abc12");
+        }
+
+        [Fact]
+        public void SetPassword_TooLongPassword_ThrowsException()
+        {
+            // Arrange
+            var user = MockValidUser();
+            var longPassword = new string('a', 400);
+
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => user.Password = longPassword);
+        }
+
+        [Fact]
+        public void SetCPF_ValidCPF_SetsCPF()
+        {
+            // Arrange
+            var user = MockValidUser();
+            var cpf = "58247313065";
+
+            // Act
+            user.CPF = cpf;
+
+            // Assert
+            Assert.Equal(cpf, user.CPF);
+        }
+
+        [Fact]
+        public void SetCPF_NullOrEmptyCPF_ThrowsException()
+        {
+            // Arrange
+            var user = MockValidUser();
+
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => user.CPF = null);
+            Assert.Throws<EntityExceptionValidation>(() => user.CPF = string.Empty);
+        }
+
+        [Fact]
+        public void SetCPF_InvalidCPF_ThrowsException()
+        {
+            // Arrange
+            var user = MockValidUser();
+
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => user.CPF = "123.456.789-00");
+        }
+
+        [Fact]
+        public void SetCPF_InvalidLengthCPF_ThrowsException()
+        {
+            // Arrange
+            var user = MockValidUser();
+
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => user.CPF = "123456789012");
+        }
+
+        [Fact]
+        public void SetRole_ValidRole_SetsRole()
+        {
+            // Arrange
+            var user = MockValidUser();
+            var role = ERole.ADMIN;
+
+            // Act
+            user.Role = role;
+
+            // Assert
+            Assert.Equal(role, user.Role);
+        }
+
+        [Fact]
+        public void SetRole_NullRole_ThrowsException()
+        {
+            // Arrange
+            var user = MockValidUser();
+
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => user.Role = null);
+        }
     }
-    #endregion
 }

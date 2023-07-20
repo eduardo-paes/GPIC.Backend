@@ -15,7 +15,7 @@ namespace Domain.Tests.Entities
         {
             // Arrange
             var notice = MockValidNotice();
-            var startDate = DateTime.Now;
+            var startDate = DateTime.UtcNow;
 
             // Act
             notice.StartDate = startDate;
@@ -39,7 +39,7 @@ namespace Domain.Tests.Entities
         {
             // Arrange
             var notice = MockValidNotice();
-            var finalDate = DateTime.Now;
+            var finalDate = DateTime.UtcNow;
 
             // Act
             notice.FinalDate = finalDate;
@@ -63,7 +63,7 @@ namespace Domain.Tests.Entities
         {
             // Arrange
             var notice = MockValidNotice();
-            var appealStartDate = DateTime.Now;
+            var appealStartDate = DateTime.UtcNow;
 
             // Act
             notice.AppealStartDate = appealStartDate;
@@ -87,7 +87,7 @@ namespace Domain.Tests.Entities
         {
             // Arrange
             var notice = MockValidNotice();
-            var appealFinalDate = DateTime.Now;
+            var appealFinalDate = DateTime.UtcNow;
 
             // Act
             notice.AppealFinalDate = appealFinalDate;

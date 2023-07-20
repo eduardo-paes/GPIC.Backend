@@ -42,6 +42,7 @@ namespace Domain.Tests.UseCases.Area
             // Arrange
             var input = new CreateAreaInput
             {
+                Name = "Area Name",
                 Code = "areaCode0",
                 MainAreaId = Guid.NewGuid(),
             };
@@ -72,6 +73,7 @@ namespace Domain.Tests.UseCases.Area
             // Arrange
             var input = new CreateAreaInput
             {
+                Name = "Area Name",
                 Code = "existingCode2",
                 MainAreaId = Guid.NewGuid(),
             };
@@ -94,6 +96,7 @@ namespace Domain.Tests.UseCases.Area
             // Arrange
             var input = new CreateAreaInput
             {
+                Name = "Area Name",
                 Code = "areaCode1",
                 MainAreaId = null,
             };
@@ -112,6 +115,7 @@ namespace Domain.Tests.UseCases.Area
             // Arrange
             var input = new CreateAreaInput
             {
+                Name = "Area Name",
                 Code = "areaCode2",
                 MainAreaId = Guid.NewGuid(),
             };

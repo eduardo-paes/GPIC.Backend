@@ -27,8 +27,7 @@ namespace Domain.Tests.Entities
             campusId: Guid.NewGuid(),
             courseId: Guid.NewGuid(),
             startYear: "2022",
-            studentAssistanceProgramId: Guid.NewGuid(),
-            userId: Guid.NewGuid()
+            studentAssistanceProgramId: Guid.NewGuid()
         );
 
         [Fact]
@@ -36,7 +35,7 @@ namespace Domain.Tests.Entities
         {
             // Arrange
             var student = MockValidStudent();
-            var birthDate = DateTime.Now.AddDays(-1);
+            var birthDate = DateTime.UtcNow.AddDays(-1);
 
             // Act
             student.BirthDate = birthDate;
@@ -62,7 +61,7 @@ namespace Domain.Tests.Entities
             var student = MockValidStudent();
 
             // Act & Assert
-            Assert.Throws<EntityExceptionValidation>(() => student.BirthDate = DateTime.Now.AddDays(1));
+            Assert.Throws<EntityExceptionValidation>(() => student.BirthDate = DateTime.UtcNow.AddDays(1));
         }
 
         [Fact]
@@ -129,7 +128,7 @@ namespace Domain.Tests.Entities
         {
             // Arrange
             var student = MockValidStudent();
-            var dispatchDate = DateTime.Now.AddDays(-1);
+            var dispatchDate = DateTime.UtcNow.AddDays(-1);
 
             // Act
             student.DispatchDate = dispatchDate;
@@ -155,7 +154,7 @@ namespace Domain.Tests.Entities
             var student = MockValidStudent();
 
             // Act & Assert
-            Assert.Throws<EntityExceptionValidation>(() => student.DispatchDate = DateTime.Now.AddDays(1));
+            Assert.Throws<EntityExceptionValidation>(() => student.DispatchDate = DateTime.UtcNow.AddDays(1));
         }
 
         [Fact]
