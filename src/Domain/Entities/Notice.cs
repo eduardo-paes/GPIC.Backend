@@ -88,7 +88,7 @@ namespace Domain.Entities
 
         private int? _sendingDocumentationDeadline;
         /// <summary>
-        /// Prazo para envio da documentação.
+        /// Prazo para envio da documentação em dias.
         /// </summary>
         public int? SendingDocumentationDeadline
         {

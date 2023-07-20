@@ -106,9 +106,9 @@ public static class DependencyDomainInjection
         #endregion
 
         #region ProjectEvaluation
-        // services.AddScoped<IEvaluateAppealProject, EvaluateAppealProject>();
-        // services.AddScoped<IEvaluateSubmissionProject, EvaluateSubmissionProject>();
-        // services.AddScoped<IGetEvaluationByProjectId, GetEvaluationByProjectId>();
+        services.AddScoped<IEvaluateAppealProject, EvaluateAppealProject>();
+        services.AddScoped<IEvaluateSubmissionProject, EvaluateSubmissionProject>();
+        services.AddScoped<IGetEvaluationByProjectId, GetEvaluationByProjectId>();
         #endregion
 
         #region Student

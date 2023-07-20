@@ -58,10 +58,12 @@ namespace Domain.UseCases.ProjectEvaluation
                 "Notice isn't in the appeal stage.");
 
             // Verifica se o status da avaliação foi informado.
-            UseCaseException.NotInformedParam(input.AppealEvaluationStatus is null, nameof(input.AppealEvaluationStatus));
+            UseCaseException.NotInformedParam(input.AppealEvaluationStatus is null,
+                nameof(input.AppealEvaluationStatus));
 
             // Verifica se descrição da avaliação foi informada.
-            UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.AppealEvaluationDescription), nameof(input.AppealEvaluationDescription));
+            UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.AppealEvaluationDescription),
+                nameof(input.AppealEvaluationDescription));
 
             // Atualiza a avaliação do recurso.
             projectEvaluation!.AppealEvaluatorId = user.Id;
@@ -74,11 +76,12 @@ namespace Domain.UseCases.ProjectEvaluation
             // Atualiza avaliação do projeto.
             await _projectEvaluationRepository.Update(projectEvaluation);
 
-            // TODO: Se projeto foi aceito, adiciona prazo para envio da documentação.
+            // Se projeto foi aceito, adiciona prazo para envio da documentação.
             if ((EProjectStatus)input.AppealEvaluationStatus == EProjectStatus.Accepted)
             {
                 project.Status = EProjectStatus.DocumentAnalysis;
                 project.StatusDescription = EProjectStatus.DocumentAnalysis.GetDescription();
+                project.SendingDocumentationDeadline = DateTime.Now.AddDays(project.Notice?.SendingDocumentationDeadline ?? 30);
             }
             else
             {

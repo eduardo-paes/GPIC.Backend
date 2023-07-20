@@ -50,6 +50,7 @@ namespace Persistence.EntitiesConfiguration
             builder.Property(p => p.ResubmissionDate);
             builder.Property(p => p.CancellationDate);
             builder.Property(p => p.CancellationReason);
+            builder.Property(p => p.SendingDocumentationDeadline);
             builder.Property(p => p.DeletedAt);
 
             builder.HasOne(a => a.Student)

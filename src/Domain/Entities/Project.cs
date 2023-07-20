@@ -519,6 +519,11 @@ namespace Domain.Entities
         /// Razão de cancelamento do projeto, preenchido pelo professor.
         /// </summary>
         public string? CancellationReason { get; set; }
+
+        /// <summary>
+        /// Data limite para envio de documentos.
+        /// </summary>
+        public DateTime SendingDocumentationDeadline { get; set; }
         #endregion
         #endregion
 

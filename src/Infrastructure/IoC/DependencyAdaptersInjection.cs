@@ -18,7 +18,7 @@ public static class DependencyAdaptersInjection
         services.AddScoped<INoticePresenterController, NoticePresenterController>();
         services.AddScoped<IProfessorPresenterController, ProfessorPresenterController>();
         services.AddScoped<IProgramTypePresenterController, ProgramTypePresenterController>();
-        // services.AddScoped<IProjectEvaluationPresenterController, ProjectEvaluationPresenterController>();
+        services.AddScoped<IProjectEvaluationPresenterController, ProjectEvaluationPresenterController>();
         services.AddScoped<IProjectPresenterController, ProjectPresenterController>();
         // services.AddScoped<IStudentDocumentsPresenterController, StudentDocumentsPresenterController>();
         services.AddScoped<IStudentPresenterController, StudentPresenterController>();

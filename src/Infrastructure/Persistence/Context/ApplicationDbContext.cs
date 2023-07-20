@@ -25,6 +25,7 @@ namespace Infrastructure.Persistence.Context
             Notices = Set<Notice>();
             Professors = Set<Professor>();
             Projects = Set<Project>();
+            ProjectEvaluations = Set<ProjectEvaluation>();
             ProgramTypes = Set<ProgramType>();
             AssistanceTypes = Set<AssistanceType>();
             Students = Set<Student>();
@@ -40,6 +41,7 @@ namespace Infrastructure.Persistence.Context
         public DbSet<Notice> Notices { get; set; }
         public DbSet<Professor> Professors { get; set; }
         public DbSet<Project> Projects { get; set; }
+        public DbSet<ProjectEvaluation> ProjectEvaluations { get; set; }
         public DbSet<ProgramType> ProgramTypes { get; set; }
         public DbSet<AssistanceType> AssistanceTypes { get; set; }
         public DbSet<Student> Students { get; set; }

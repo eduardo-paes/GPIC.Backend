@@ -34,13 +34,14 @@ namespace Domain.UseCases.ProjectEvaluation
             var user = _tokenAuthenticationService.GetUserAuthenticatedClaims();
 
             // Verifica se o usuário logado é um avaliador.
-            UseCaseException.BusinessRuleViolation(user.Role != ERole.ADMIN.GetDescription() || user.Role != ERole.PROFESSOR.GetDescription(),
-                "User is not an evaluator.");
+            UseCaseException.BusinessRuleViolation(user.Role != ERole.ADMIN.GetDescription()
+                    || user.Role != ERole.PROFESSOR.GetDescription(),
+                "O usuário não é um avaliador.");
 
             // Verifica se já existe alguma avaliação para o projeto.
             var projectEvaluation = await _projectEvaluationRepository.GetByProjectId(input.ProjectId);
             UseCaseException.BusinessRuleViolation(projectEvaluation != null,
-                "Project already evaluated.");
+                "Projeto já avaliado.");
 
             // Busca projeto pelo Id.
             var project = await _projectRepository.GetById(input.ProjectId)
@@ -48,21 +49,23 @@ namespace Domain.UseCases.ProjectEvaluation
 
             // Verifica se o avaliador é o professor orientador do projeto.
             UseCaseException.BusinessRuleViolation(project.ProfessorId == user.Id,
-                    "Evaluator is the project advisor.");
+                    "Avaliador é o orientador do projeto.");
 
             // Verifica se o projeto está na fase de submissão.
             UseCaseException.BusinessRuleViolation(project.Status != EProjectStatus.Submitted,
-                "Project is not in the submission phase.");
+                "O projeto não está em fase de submissão.");
 
             // Verifica se o edital ainda está aberto.
             UseCaseException.BusinessRuleViolation(project.Notice?.StartDate > DateTime.Now || project.Notice?.FinalDate < DateTime.Now,
-                "Notice is closed.");
+                "Edital encerrado.");
 
             // Verifica se o status da avaliação foi informado.
-            UseCaseException.NotInformedParam(input.SubmissionEvaluationStatus is null, nameof(input.SubmissionEvaluationStatus));
+            UseCaseException.NotInformedParam(input.SubmissionEvaluationStatus is null,
+                nameof(input.SubmissionEvaluationStatus));
 
             // Verifica se a descrição da avaliação foi informada.
-            UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.SubmissionEvaluationDescription), nameof(input.SubmissionEvaluationDescription));
+            UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.SubmissionEvaluationDescription),
+                nameof(input.SubmissionEvaluationDescription));
 
             // Atribui informações de avaliação.
             input.SubmissionEvaluationDate = DateTime.Now;
@@ -74,11 +77,12 @@ namespace Domain.UseCases.ProjectEvaluation
             // Adiciona avaliação do projeto.
             await _projectEvaluationRepository.Create(projectEvaluation);
 
-            // TODO: Se projeto foi aceito, adiciona prazo para envio da documentação.
+            // Se projeto foi aceito, adiciona prazo para envio da documentação.
             if (projectEvaluation.SubmissionEvaluationStatus == EProjectStatus.Accepted)
             {
                 project.Status = EProjectStatus.DocumentAnalysis;
                 project.StatusDescription = EProjectStatus.DocumentAnalysis.GetDescription();
+                project.SendingDocumentationDeadline = DateTime.Now.AddDays(project.Notice?.SendingDocumentationDeadline ?? 30);
             }
             else
             {
