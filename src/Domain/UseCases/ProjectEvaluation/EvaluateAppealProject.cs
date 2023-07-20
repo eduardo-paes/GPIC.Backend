@@ -54,7 +54,7 @@ namespace Domain.UseCases.ProjectEvaluation
                 "Project is not in the evaluation phase.");
 
             // Verifica se o edital está na fase de recurso.
-            UseCaseException.BusinessRuleViolation(projectEvaluation?.Project?.Notice?.AppealStartDate > DateTime.Now || projectEvaluation?.Project?.Notice?.AppealFinalDate < DateTime.Now,
+            UseCaseException.BusinessRuleViolation(projectEvaluation?.Project?.Notice?.AppealStartDate > DateTime.UtcNow || projectEvaluation?.Project?.Notice?.AppealFinalDate < DateTime.UtcNow,
                 "Notice isn't in the appeal stage.");
 
             // Verifica se o status da avaliação foi informado.
@@ -67,7 +67,7 @@ namespace Domain.UseCases.ProjectEvaluation
 
             // Atualiza a avaliação do recurso.
             projectEvaluation!.AppealEvaluatorId = user.Id;
-            projectEvaluation.AppealEvaluationDate = DateTime.Now;
+            projectEvaluation.AppealEvaluationDate = DateTime.UtcNow;
 
             // Atualiza a descrição e o status da avaliação do recurso.
             projectEvaluation.AppealEvaluationDescription = input.AppealEvaluationDescription;
@@ -81,7 +81,7 @@ namespace Domain.UseCases.ProjectEvaluation
             {
                 project.Status = EProjectStatus.DocumentAnalysis;
                 project.StatusDescription = EProjectStatus.DocumentAnalysis.GetDescription();
-                project.SendingDocumentationDeadline = DateTime.Now.AddDays(project.Notice?.SendingDocumentationDeadline ?? 30);
+                project.SendingDocumentationDeadline = DateTime.UtcNow.AddDays(project.Notice?.SendingDocumentationDeadline ?? 30);
             }
             else
             {

@@ -21,9 +21,9 @@ namespace Domain.Entities
             {
                 EntityExceptionValidation.When(value == default,
                     ExceptionMessageFactory.Required("Data de Nascimento"));
-                EntityExceptionValidation.When(value >= DateTime.Now,
-                    ExceptionMessageFactory.LessThan("Data de Nascimento", DateTime.Now.ToString("dd/MM/yyyy")));
-                _birthDate = value;
+                EntityExceptionValidation.When(value >= DateTime.UtcNow,
+                    ExceptionMessageFactory.LessThan("Data de Nascimento", DateTime.UtcNow.ToString("dd/MM/yyyy")));
+                _birthDate = value.ToUniversalTime();
             }
         }
 
@@ -70,10 +70,10 @@ namespace Domain.Entities
             {
                 EntityExceptionValidation.When(value == default,
                     ExceptionMessageFactory.Required("Data Expedição da identidade"));
-                EntityExceptionValidation.When(value >= DateTime.Now,
+                EntityExceptionValidation.When(value >= DateTime.UtcNow,
                     ExceptionMessageFactory.LessThan("Data Expedição da identidade",
-                    DateTime.Now.ToString("dd/MM/yyyy")));
-                _dispatchDate = value;
+                    DateTime.UtcNow.ToString("dd/MM/yyyy")));
+                _dispatchDate = value.ToUniversalTime();
             }
         }
 

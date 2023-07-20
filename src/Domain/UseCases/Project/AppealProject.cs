@@ -40,7 +40,7 @@ namespace Domain.UseCases.Project
                 project.Status = EProjectStatus.Evaluation;
                 project.StatusDescription = EProjectStatus.Evaluation.GetDescription();
                 project.AppealObservation = appealDescription;
-                project.ResubmissionDate = DateTime.Now;
+                project.ResubmissionDate = DateTime.UtcNow;
 
                 // Salva alterações no banco de dados
                 await _projectRepository.Update(project);

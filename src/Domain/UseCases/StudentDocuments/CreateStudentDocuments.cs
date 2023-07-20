@@ -55,7 +55,7 @@ namespace Domain.UseCases
             var entity = new Entities.StudentDocuments(input.ProjectId, input.AgencyNumber, input.AccountNumber);
 
             // Verifica se o aluno é menor de idade
-            if (project?.Student?.BirthDate > DateTime.Now.AddYears(-18))
+            if (project?.Student?.BirthDate > DateTime.UtcNow.AddYears(-18))
             {
                 // Verifica se foi informado a autorização dos pais
                 UseCaseException.BusinessRuleViolation(input.ParentalAuthorization is null,

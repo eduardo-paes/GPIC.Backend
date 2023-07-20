@@ -62,7 +62,7 @@ namespace Domain.Entities
             {
                 EntityExceptionValidation.When(value is null,
                     ExceptionMessageFactory.Required(nameof(SubmissionEvaluationDate)));
-                _submissionEvaluationDate = value;
+                _submissionEvaluationDate = value.HasValue ? value.Value.ToUniversalTime() : null;
             }
         }
 
@@ -104,7 +104,12 @@ namespace Domain.Entities
         /// <summary>
         /// Data da avaliação do recurso.
         /// </summary>
-        public DateTime? AppealEvaluationDate { get; set; }
+        private DateTime? _appealEvaluationDate;
+        public DateTime? AppealEvaluationDate
+        {
+            get { return _appealEvaluationDate; }
+            set { _appealEvaluationDate = value.HasValue ? value.Value.ToUniversalTime() : null; }
+        }
 
         /// <summary>
         /// Status da avaliação do recurso.
@@ -124,7 +129,12 @@ namespace Domain.Entities
         /// <summary>
         /// Data da avaliação da documentação do projeto.
         /// </summary>
-        public DateTime? DocumentsEvaluationDate { get; set; }
+        private DateTime? _documentsEvaluationDate;
+        public DateTime? DocumentsEvaluationDate
+        {
+            get { return _documentsEvaluationDate; }
+            set { _documentsEvaluationDate = value.HasValue ? value.Value.ToUniversalTime() : null; }
+        }
 
         /// <summary>
         /// Nota da avaliação da documentação do projeto.

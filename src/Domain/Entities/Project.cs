@@ -503,17 +503,32 @@ namespace Domain.Entities
         /// <summary>
         /// Data de submissão do projeto na plataforma.
         /// </summary>
-        public DateTime? SubmissionDate { get; set; }
+        private DateTime? _submissionDate;
+        public DateTime? SubmissionDate
+        {
+            get { return _submissionDate; }
+            set { _submissionDate = value.HasValue ? value.Value.ToUniversalTime() : null; }
+        }
 
         /// <summary>
         /// Data de ressubmissão do projeto na plataforma.
         /// </summary>
-        public DateTime? ResubmissionDate { get; set; }
+        private DateTime? _resubmissionDate;
+        public DateTime? ResubmissionDate
+        {
+            get { return _resubmissionDate; }
+            set { _resubmissionDate = value.HasValue ? value.Value.ToUniversalTime() : null; }
+        }
 
         /// <summary>
         /// Data de cancelamento do projeto.
         /// </summary>
-        public DateTime? CancellationDate { get; set; }
+        private DateTime? _cancellationDate;
+        public DateTime? CancellationDate
+        {
+            get { return _cancellationDate; }
+            set { _cancellationDate = value.HasValue ? value.Value.ToUniversalTime() : null; }
+        }
 
         /// <summary>
         /// Razão de cancelamento do projeto, preenchido pelo professor.
@@ -523,7 +538,12 @@ namespace Domain.Entities
         /// <summary>
         /// Data limite para envio de documentos.
         /// </summary>
-        public DateTime SendingDocumentationDeadline { get; set; }
+        private DateTime? _sendingDocumentationDeadline;
+        public DateTime? SendingDocumentationDeadline
+        {
+            get { return _sendingDocumentationDeadline; }
+            set { _sendingDocumentationDeadline = value.HasValue ? value.Value.ToUniversalTime() : null; }
+        }
         #endregion
         #endregion
 

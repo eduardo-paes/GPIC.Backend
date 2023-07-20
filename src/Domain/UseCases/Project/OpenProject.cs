@@ -43,7 +43,7 @@ public class OpenProject : IOpenProject
             ?? throw new ArgumentException("Edital não encontrado.");
 
         // Verifica se o período do edital é válido
-        if (notice.StartDate > DateTime.Now || notice.FinalDate < DateTime.Now)
+        if (notice.StartDate > DateTime.UtcNow || notice.FinalDate < DateTime.UtcNow)
             throw new ArgumentException("Fora do período de inscrição no edital.");
 
         // Verifica se a Subárea existe

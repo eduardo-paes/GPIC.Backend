@@ -103,7 +103,7 @@ namespace Domain.Entities
             get => _parentalAuthorization;
             set
             {
-                if (Project?.Student?.BirthDate >= DateTime.Now.AddYears(-18))
+                if (Project?.Student?.BirthDate >= DateTime.UtcNow.AddYears(-18))
                 {
                     EntityExceptionValidation.When(value is null,
                         ExceptionMessageFactory.Required(nameof(_parentalAuthorization)));
