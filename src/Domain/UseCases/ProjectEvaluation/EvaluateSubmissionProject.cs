@@ -67,12 +67,35 @@ namespace Domain.UseCases.ProjectEvaluation
             UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.SubmissionEvaluationDescription),
                 nameof(input.SubmissionEvaluationDescription));
 
-            // Atribui informações de avaliação.
-            input.SubmissionEvaluationDate = DateTime.UtcNow;
-            input.SubmissionEvaluatorId = user.Id;
-
             // Mapeia dados de entrada para entidade.
-            projectEvaluation = _mapper.Map<Entities.ProjectEvaluation>(input);
+            projectEvaluation = new Entities.ProjectEvaluation(input.ProjectId,
+                input.IsProductivityFellow,
+                user.Id, // Id do avaliador logado.
+                TryCastEnum<EProjectStatus>(input.SubmissionEvaluationStatus),
+                DateTime.UtcNow,
+                input.SubmissionEvaluationDescription,
+                input.FoundWorkType1,
+                input.FoundWorkType2,
+                input.FoundIndexedConferenceProceedings,
+                input.FoundNotIndexedConferenceProceedings,
+                input.FoundCompletedBook,
+                input.FoundOrganizedBook,
+                input.FoundBookChapters,
+                input.FoundBookTranslations,
+                input.FoundParticipationEditorialCommittees,
+                input.FoundFullComposerSoloOrchestraAllTracks,
+                input.FoundFullComposerSoloOrchestraCompilation,
+                input.FoundChamberOrchestraInterpretation,
+                input.FoundIndividualAndCollectiveArtPerformances,
+                input.FoundScientificCulturalArtisticCollectionsCuratorship,
+                input.FoundPatentLetter,
+                input.FoundPatentDeposit,
+                input.FoundSoftwareRegistration,
+                TryCastEnum<EQualification>(input.Qualification),
+                TryCastEnum<EScore>(input.ProjectProposalObjectives),
+                TryCastEnum<EScore>(input.AcademicScientificProductionCoherence),
+                TryCastEnum<EScore>(input.ProposalMethodologyAdaptation),
+                TryCastEnum<EScore>(input.EffectiveContributionToResearch));
 
             // Adiciona avaliação do projeto.
             await _projectEvaluationRepository.Create(projectEvaluation);
@@ -95,6 +118,25 @@ namespace Domain.UseCases.ProjectEvaluation
 
             // Mapeia dados de saída e retorna.
             return _mapper.Map<DetailedReadProjectOutput>(output);
+        }
+
+        /// <summary>
+        /// Tenta converter um objeto para um tipo Enum.
+        /// </summary>
+        /// <param name="value">Valor a ser convertido.</param>
+        /// <typeparam name="T">Tipo para o qual ser convertido.</typeparam>
+        /// <returns>Objeto com tipo convertido.</returns>
+        private static T TryCastEnum<T>(object? value)
+        {
+            try
+            {
+                UseCaseException.NotInformedParam(value is null, typeof(T).ToString());
+                return (T)Enum.Parse(typeof(T), value?.ToString()!);
+            }
+            catch (Exception)
+            {
+                throw UseCaseException.BusinessRuleViolation($"Não foi possível converter o valor {value} para o tipo {typeof(T)}.");
+            }
         }
     }
 }

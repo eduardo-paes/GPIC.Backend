@@ -36,6 +36,11 @@ namespace Domain.UseCases.Project
             // Verifica se o projeto está em recurso
             if (project.Status == EProjectStatus.Rejected)
             {
+                // Verifica se o edital está na fase de recurso.
+                UseCaseException.BusinessRuleViolation(project.Notice?.AppealStartDate > DateTime.UtcNow
+                    || project.Notice?.AppealFinalDate < DateTime.UtcNow,
+                    "O Edital não está na fase de Recurso.");
+
                 // Altera o status do projeto para submetido
                 project.Status = EProjectStatus.Evaluation;
                 project.StatusDescription = EProjectStatus.Evaluation.GetDescription();
