@@ -522,17 +522,17 @@ namespace Domain.Tests.Entities
         }
 
         [Fact]
-        public void SetResubmissionDate_ValidResubmissionDate_SetsResubmissionDate()
+        public void SetAppealDate_ValidAppealDate_SetsAppealDate()
         {
             // Arrange
             var project = MockValidProject();
             var resubmissionDate = DateTime.UtcNow;
 
             // Act
-            project.ResubmissionDate = resubmissionDate;
+            project.AppealDate = resubmissionDate;
 
             // Assert
-            project.ResubmissionDate.Should().Be(resubmissionDate);
+            project.AppealDate.Should().Be(resubmissionDate);
         }
 
         [Fact]

@@ -23,7 +23,7 @@ namespace Infrastructure.Persistence.EntitiesConfiguration
             builder.Property(p => p.FinalReportDeadline).IsRequired();
             builder.Property(p => p.SuspensionYears).IsRequired();
             builder.Property(p => p.DocUrl).HasMaxLength(300);
-            builder.Property(p => p.CreatedAt).HasDefaultValueSql("getdate()").IsRequired();
+            builder.Property(p => p.CreatedAt).HasDefaultValueSql("now() at time zone 'utc'").IsRequired();
             builder.Property(p => p.DeletedAt);
 
             builder.HasQueryFilter(x => x.DeletedAt == null);
