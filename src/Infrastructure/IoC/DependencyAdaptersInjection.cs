@@ -10,6 +10,7 @@ public static class DependencyAdaptersInjection
     {
         #region PresenterControllers
         services.AddScoped<IAreaPresenterController, AreaPresenterController>();
+        services.AddScoped<IActivityPresenterController, ActivityPresenterController>();
         services.AddScoped<IAssistanceTypePresenterController, AssistanceTypePresenterController>();
         services.AddScoped<IAuthPresenterController, AuthPresenterController>();
         services.AddScoped<ICampusPresenterController, CampusPresenterController>();
@@ -28,6 +29,7 @@ public static class DependencyAdaptersInjection
 
         #region Gateways Mappers
         services.AddAutoMapper(typeof(AreaMappings));
+        services.AddAutoMapper(typeof(ActivityMappings));
         services.AddAutoMapper(typeof(AssistanceTypeMappings));
         services.AddAutoMapper(typeof(AuthMappings));
         services.AddAutoMapper(typeof(CampusMappings));
