@@ -9,36 +9,71 @@ namespace Domain.Entities
     public class Notice : Entity
     {
         #region Properties
-        private DateTime? _startDate;
+        #region Registration Dates
+        private DateTime? _registrationStartDate;
         /// <summary>
-        /// Data de início do edital.
+        /// Data de início das inscrições dos projetos.
         /// </summary>
-        public DateTime? StartDate
+        public DateTime? RegistrationStartDate
         {
-            get => _startDate;
+            get => _registrationStartDate;
             set
             {
                 EntityExceptionValidation.When(!value.HasValue,
-                    ExceptionMessageFactory.Invalid(nameof(StartDate)));
-                _startDate = value.HasValue ? value.Value.ToUniversalTime() : null;
+                    ExceptionMessageFactory.Invalid("Data de início das inscrições dos projetos"));
+                _registrationStartDate = value.HasValue ? value.Value.ToUniversalTime() : null;
             }
         }
 
-        private DateTime? _finalDate;
+        private DateTime? _registrationEndDate;
         /// <summary>
-        /// Data de término do edital.
+        /// Data de término das inscrições dos projetos.
         /// </summary>
-        public DateTime? FinalDate
+        public DateTime? RegistrationEndDate
         {
-            get => _finalDate;
+            get => _registrationEndDate;
             set
             {
                 EntityExceptionValidation.When(!value.HasValue,
-                    ExceptionMessageFactory.Invalid(nameof(FinalDate)));
-                _finalDate = value.HasValue ? value.Value.ToUniversalTime() : null;
+                    ExceptionMessageFactory.Invalid("Data de término das inscrições dos projetos"));
+                _registrationEndDate = value.HasValue ? value.Value.ToUniversalTime() : null;
+            }
+        }
+        #endregion
+
+        #region Evaluation Dates
+        /// <summary>
+        /// Data de início das avaliações dos projetos.
+        /// </summary>
+        private DateTime? _evaluationStartDate;
+        public DateTime? EvaluationStartDate
+        {
+            get => _evaluationStartDate;
+            set
+            {
+                EntityExceptionValidation.When(!value.HasValue,
+                    ExceptionMessageFactory.Invalid("Data de início das avaliações dos projetos"));
+                _evaluationStartDate = value.HasValue ? value.Value.ToUniversalTime() : null;
             }
         }
 
+        /// <summary>
+        /// Data de término das avaliações dos projetos.
+        /// </summary>
+        private DateTime? _evaluationEndDate;
+        public DateTime? EvaluationEndDate
+        {
+            get => _evaluationEndDate;
+            set
+            {
+                EntityExceptionValidation.When(!value.HasValue,
+                    ExceptionMessageFactory.Invalid("Data de término das avaliações dos projetos"));
+                _evaluationEndDate = value.HasValue ? value.Value.ToUniversalTime() : null;
+            }
+        }
+        #endregion
+
+        #region Appeal Dates
         private DateTime? _appealStartDate;
         /// <summary>
         /// Data de início do período de recurso.
@@ -49,25 +84,90 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(!value.HasValue,
-                    ExceptionMessageFactory.Invalid(nameof(AppealStartDate)));
+                    ExceptionMessageFactory.Invalid("Data de início do período de recurso"));
                 _appealStartDate = value.HasValue ? value.Value.ToUniversalTime() : null;
             }
         }
 
-        private DateTime? _appealFinalDate;
+        private DateTime? _appealEndDate;
         /// <summary>
         /// Data de término do período de recurso.
         /// </summary>
-        public DateTime? AppealFinalDate
+        public DateTime? AppealEndDate
         {
-            get => _appealFinalDate;
+            get => _appealEndDate;
             set
             {
                 EntityExceptionValidation.When(!value.HasValue,
-                    ExceptionMessageFactory.Invalid(nameof(AppealFinalDate)));
-                _appealFinalDate = value.HasValue ? value.Value.ToUniversalTime() : null;
+                    ExceptionMessageFactory.Invalid("Data de término do período de recurso"));
+                _appealEndDate = value.HasValue ? value.Value.ToUniversalTime() : null;
             }
         }
+        #endregion
+
+        #region Sending Documentation Dates
+        /// <summary>
+        /// Data de início para entrega de documentação dos bolsistas.
+        /// </summary>
+        private DateTime? _sendingDocsStartDate;
+        public DateTime? SendingDocsStartDate
+        {
+            get => _sendingDocsStartDate;
+            set
+            {
+                EntityExceptionValidation.When(!value.HasValue,
+                    ExceptionMessageFactory.Invalid("Data de início para entrega de documentação dos bolsistas"));
+                _sendingDocsStartDate = value.HasValue ? value.Value.ToUniversalTime() : null;
+            }
+        }
+
+        /// <summary>
+        /// Data de término para entrega de documentação dos bolsistas.
+        /// </summary>
+        private DateTime? _sendingDocsEndDate;
+        public DateTime? SendingDocsEndDate
+        {
+            get => _sendingDocsEndDate;
+            set
+            {
+                EntityExceptionValidation.When(!value.HasValue,
+                    ExceptionMessageFactory.Invalid("Data de término para entrega de documentação dos bolsistas"));
+                _sendingDocsEndDate = value.HasValue ? value.Value.ToUniversalTime() : null;
+            }
+        }
+        #endregion
+
+        #region Report Sending Dates
+        /// <summary>
+        /// Prazo de entrega do relatório parcial (Data fim).
+        /// </summary>
+        private DateTime? _partialReportDeadline;
+        public DateTime? PartialReportDeadline
+        {
+            get => _partialReportDeadline;
+            set
+            {
+                EntityExceptionValidation.When(!value.HasValue,
+                    ExceptionMessageFactory.Invalid("Prazo de entrega do relatório parcial"));
+                _partialReportDeadline = value.HasValue ? value.Value.ToUniversalTime() : null;
+            }
+        }
+
+        /// <summary>
+        /// Prazo de entrega do relatório final (Data fim).
+        /// </summary>
+        private DateTime? _finalReportDeadline;
+        public DateTime? FinalReportDeadline
+        {
+            get => _finalReportDeadline;
+            set
+            {
+                EntityExceptionValidation.When(!value.HasValue,
+                    ExceptionMessageFactory.Invalid("Prazo de entrega do relatório final"));
+                _finalReportDeadline = value.HasValue ? value.Value.ToUniversalTime() : null;
+            }
+        }
+        #endregion
 
         private int? _suspensionYears;
         /// <summary>
@@ -79,55 +179,49 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(!value.HasValue,
-                    ExceptionMessageFactory.Required(nameof(SuspensionYears)));
+                    ExceptionMessageFactory.Required("Anos de suspensão do orientador"));
                 EntityExceptionValidation.When(value < 0,
-                    ExceptionMessageFactory.Invalid(nameof(SuspensionYears)));
+                    ExceptionMessageFactory.Invalid("Anos de suspensão do orientador"));
                 _suspensionYears = value;
             }
         }
-
-        private int? _sendingDocumentationDeadline;
-        /// <summary>
-        /// Prazo para envio da documentação em dias.
-        /// </summary>
-        public int? SendingDocumentationDeadline
-        {
-            get => _sendingDocumentationDeadline;
-            set
-            {
-                EntityExceptionValidation.When(!value.HasValue,
-                    ExceptionMessageFactory.Required(nameof(SuspensionYears)));
-                EntityExceptionValidation.When(value < 0,
-                    ExceptionMessageFactory.Invalid(nameof(SuspensionYears)));
-                _sendingDocumentationDeadline = value;
-            }
-        }
-
-        /// <summary>
-        /// Descrição do edital
-        /// </summary>
-        public string? Description { get; set; }
 
         /// <summary>
         /// URL do edital
         /// </summary>
         public string? DocUrl { get; set; }
+
+        /// <summary>
+        /// Data de criação do edital
+        /// </summary>
+        public DateTime? CreatedAt { get; protected set; }
         #endregion
 
         #region Constructors
-        public Notice(DateTime? startDate,
-            DateTime? finalDate,
+        public Notice(DateTime? registrationStartDate,
+            DateTime? registrationEndDate,
+            DateTime? evaluationStartDate,
+            DateTime? evaluationEndDate,
             DateTime? appealStartDate,
             DateTime? appealFinalDate,
-            int? suspensionYears,
-            int? sendingDocumentationDeadline)
+            DateTime? sendingDocsStartDate,
+            DateTime? sendingDocsEndDate,
+            DateTime? partialReportDeadline,
+            DateTime? finalReportDeadline,
+            int? suspensionYears)
         {
-            StartDate = startDate;
-            FinalDate = finalDate;
+            RegistrationStartDate = registrationStartDate;
+            RegistrationEndDate = registrationEndDate;
+            EvaluationStartDate = evaluationStartDate;
+            EvaluationEndDate = evaluationEndDate;
             AppealStartDate = appealStartDate;
-            AppealFinalDate = appealFinalDate;
+            AppealEndDate = appealFinalDate;
+            SendingDocsStartDate = sendingDocsStartDate;
+            SendingDocsEndDate = sendingDocsEndDate;
             SuspensionYears = suspensionYears;
-            SendingDocumentationDeadline = sendingDocumentationDeadline;
+            PartialReportDeadline = partialReportDeadline;
+            FinalReportDeadline = finalReportDeadline;
+            CreatedAt = DateTime.UtcNow;
         }
 
         /// <summary>

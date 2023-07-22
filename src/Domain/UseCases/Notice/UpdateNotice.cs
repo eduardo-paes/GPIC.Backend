@@ -38,13 +38,17 @@ namespace Domain.UseCases
                 entity.DocUrl = await _storageFileService.UploadFileAsync(input.File, entity.DocUrl);
 
             // Atualiza atributos permitidos
-            entity.StartDate = input.StartDate ?? entity.StartDate;
-            entity.FinalDate = input.FinalDate ?? entity.FinalDate;
+            entity.RegistrationStartDate = input.RegistrationStartDate ?? entity.RegistrationStartDate;
+            entity.RegistrationEndDate = input.RegistrationEndDate ?? entity.RegistrationEndDate;
+            entity.EvaluationStartDate = input.EvaluationStartDate ?? entity.EvaluationStartDate;
+            entity.EvaluationEndDate = input.EvaluationEndDate ?? entity.EvaluationEndDate;
             entity.AppealStartDate = input.AppealStartDate ?? entity.AppealStartDate;
-            entity.AppealFinalDate = input.AppealFinalDate ?? entity.AppealFinalDate;
+            entity.AppealEndDate = input.AppealEndDate ?? entity.AppealEndDate;
+            entity.SendingDocsStartDate = input.SendingDocsStartDate ?? entity.SendingDocsStartDate;
+            entity.SendingDocsEndDate = input.SendingDocsEndDate ?? entity.SendingDocsEndDate;
+            entity.PartialReportDeadline = input.PartialReportDeadline ?? entity.PartialReportDeadline;
+            entity.FinalReportDeadline = input.FinalReportDeadline ?? entity.FinalReportDeadline;
             entity.SuspensionYears = input.SuspensionYears ?? entity.SuspensionYears;
-            entity.SendingDocumentationDeadline = input.SendingDocumentationDeadline ?? entity.SendingDocumentationDeadline;
-            entity.Description = input.Description ?? entity.Description;
 
             // Salva entidade atualizada no banco
             await _repository.Update(entity);

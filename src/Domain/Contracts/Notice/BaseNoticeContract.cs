@@ -5,17 +5,27 @@ namespace Domain.Contracts.Notice
     public abstract class BaseNoticeContract
     {
         [Required]
-        public DateTime? StartDate { get; set; }
+        public DateTime? RegistrationStartDate { get; set; }
         [Required]
-        public DateTime? FinalDate { get; set; }
+        public DateTime? RegistrationEndDate { get; set; }
+        [Required]
+        public DateTime? EvaluationStartDate { get; set; }
+        [Required]
+        public DateTime? EvaluationEndDate { get; set; }
         [Required]
         public DateTime? AppealStartDate { get; set; }
         [Required]
-        public DateTime? AppealFinalDate { get; set; }
+        public DateTime? AppealEndDate { get; set; }
+        [Required]
+        public DateTime? SendingDocsStartDate { get; set; }
+        [Required]
+        public DateTime? SendingDocsEndDate { get; set; }
+        [Required]
+        public DateTime? PartialReportDeadline { get; set; }
+        [Required]
+        public DateTime? FinalReportDeadline { get; set; }
         [Required]
         public int? SuspensionYears { get; set; }
-        [Required]
-        public int? SendingDocumentationDeadline { get; set; }
 
         public string? Description { get; set; }
         public string? DocUrl { get; set; }

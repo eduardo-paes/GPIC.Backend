@@ -513,11 +513,11 @@ namespace Domain.Entities
         /// <summary>
         /// Data de ressubmissão do projeto na plataforma.
         /// </summary>
-        private DateTime? _resubmissionDate;
-        public DateTime? ResubmissionDate
+        private DateTime? _appealDate;
+        public DateTime? AppealDate
         {
-            get { return _resubmissionDate; }
-            set { _resubmissionDate = value.HasValue ? value.Value.ToUniversalTime() : null; }
+            get { return _appealDate; }
+            set { _appealDate = value.HasValue ? value.Value.ToUniversalTime() : null; }
         }
 
         /// <summary>
@@ -534,16 +534,6 @@ namespace Domain.Entities
         /// Razão de cancelamento do projeto, preenchido pelo professor.
         /// </summary>
         public string? CancellationReason { get; set; }
-
-        /// <summary>
-        /// Data limite para envio de documentos.
-        /// </summary>
-        private DateTime? _sendingDocumentationDeadline;
-        public DateTime? SendingDocumentationDeadline
-        {
-            get { return _sendingDocumentationDeadline; }
-            set { _sendingDocumentationDeadline = value.HasValue ? value.Value.ToUniversalTime() : null; }
-        }
         #endregion
         #endregion
 
@@ -597,7 +587,7 @@ namespace Domain.Entities
             StatusDescription = statusDescription;
             AppealObservation = appealDescription;
             SubmissionDate = submitionDate;
-            ResubmissionDate = ressubmissionDate;
+            AppealDate = ressubmissionDate;
             CancellationDate = cancellationDate;
             CancellationReason = cancellationReason;
         }

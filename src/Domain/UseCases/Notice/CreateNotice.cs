@@ -24,19 +24,27 @@ namespace Domain.UseCases
         public async Task<DetailedReadNoticeOutput> Execute(CreateNoticeInput input)
         {
             // Mapeia input para entidade
-            var entity = new Entities.Notice(input.StartDate, input.FinalDate, input.AppealStartDate, input.AppealFinalDate, input.SuspensionYears, input.SendingDocumentationDeadline);
+            var entity = new Entities.Notice(
+                input.RegistrationStartDate,
+                input.RegistrationEndDate,
+                input.EvaluationStartDate,
+                input.EvaluationEndDate,
+                input.AppealStartDate,
+                input.AppealEndDate,
+                input.SendingDocsStartDate,
+                input.SendingDocsEndDate,
+                input.PartialReportDeadline,
+                input.FinalReportDeadline,
+                input.SuspensionYears
+            );
 
             // Verifica se já existe um edital para o período indicado
-            var projectFound = await _repository.GetNoticeByPeriod((DateTime)input.StartDate!, (DateTime)input.FinalDate!);
+            var projectFound = await _repository.GetNoticeByPeriod((DateTime)input.RegistrationStartDate!, (DateTime)input.RegistrationEndDate!);
             UseCaseException.BusinessRuleViolation(projectFound != null, "A notice already exists for the indicated period.");
 
             // Salva arquivo no repositório e atualiza atributo DocUrl
             if (input.File != null)
                 entity.DocUrl = await _storageFileService.UploadFileAsync(input.File);
-
-            // Atualiza descrição do edital
-            if (input.Description != null)
-                entity.Description = input.Description;
 
             // Cria entidade
             entity = await _repository.Create(entity);

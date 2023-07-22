@@ -25,7 +25,7 @@ namespace Infrastructure.Persistence.Repositories
             .Skip(skip)
             .Take(take)
             .AsAsyncEnumerable()
-            .OrderByDescending(x => x.StartDate)
+            .OrderByDescending(x => x.RegistrationStartDate)
             .ToListAsync();
 
         public async Task<Notice?> GetById(Guid? id) =>
@@ -55,9 +55,9 @@ namespace Infrastructure.Persistence.Repositories
             var finalDate = end.ToUniversalTime();
 
             var entities = await _context.Notices
-                .Where(x => (x.StartDate <= startDate && x.FinalDate >= finalDate)
-                || (x.StartDate <= finalDate && x.FinalDate >= finalDate)
-                || (x.StartDate <= startDate && x.FinalDate >= startDate))
+                .Where(x => (x.RegistrationStartDate <= startDate && x.RegistrationEndDate >= finalDate)
+                || (x.RegistrationStartDate <= finalDate && x.RegistrationEndDate >= finalDate)
+                || (x.RegistrationStartDate <= startDate && x.RegistrationEndDate >= startDate))
                 .AsAsyncEnumerable()
                 .ToListAsync();
             return entities.FirstOrDefault();

@@ -56,7 +56,7 @@ namespace Domain.UseCases.ProjectEvaluation
                 "O projeto não está em fase de submissão.");
 
             // Verifica se o edital ainda está aberto.
-            UseCaseException.BusinessRuleViolation(project.Notice?.StartDate > DateTime.UtcNow || project.Notice?.FinalDate < DateTime.UtcNow,
+            UseCaseException.BusinessRuleViolation(project.Notice?.RegistrationStartDate > DateTime.UtcNow || project.Notice?.RegistrationEndDate < DateTime.UtcNow,
                 "Edital encerrado.");
 
             // Verifica se o status da avaliação foi informado.
@@ -105,7 +105,6 @@ namespace Domain.UseCases.ProjectEvaluation
             {
                 project.Status = EProjectStatus.DocumentAnalysis;
                 project.StatusDescription = EProjectStatus.DocumentAnalysis.GetDescription();
-                project.SendingDocumentationDeadline = DateTime.UtcNow.AddDays(project.Notice?.SendingDocumentationDeadline ?? 30);
             }
             else
             {
