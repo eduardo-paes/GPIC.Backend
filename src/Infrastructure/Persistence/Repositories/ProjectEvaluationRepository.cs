@@ -20,10 +20,10 @@ namespace Infrastructure.Persistence.Repositories
         public async Task<ProjectEvaluation?> GetById(Guid? id)
         {
             return await _context.ProjectEvaluations
-                .Include(x => x.ProjectId)
-                .Include(x => x.SubmissionEvaluatorId)
-                .Include(x => x.AppealEvaluatorId)
-                .Include(x => x.DocumentsEvaluatorId)
+                .Include(x => x.Project)
+                .Include(x => x.SubmissionEvaluator)
+                .Include(x => x.AppealEvaluator)
+                .Include(x => x.DocumentsEvaluator)
                 .IgnoreQueryFilters()
                 .AsAsyncEnumerable()
                 .FirstOrDefaultAsync(x => x.Id == id)
@@ -33,10 +33,10 @@ namespace Infrastructure.Persistence.Repositories
         public async Task<ProjectEvaluation?> GetByProjectId(Guid? projectId)
         {
             return await _context.ProjectEvaluations
-                .Include(x => x.ProjectId)
-                .Include(x => x.SubmissionEvaluatorId)
-                .Include(x => x.AppealEvaluatorId)
-                .Include(x => x.DocumentsEvaluatorId)
+                .Include(x => x.Project)
+                .Include(x => x.SubmissionEvaluator)
+                .Include(x => x.AppealEvaluator)
+                .Include(x => x.DocumentsEvaluator)
                 .IgnoreQueryFilters()
                 .AsAsyncEnumerable()
                 .FirstOrDefaultAsync(x => x.ProjectId == projectId)
