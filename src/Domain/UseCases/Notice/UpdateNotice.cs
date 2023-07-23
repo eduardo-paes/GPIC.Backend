@@ -12,20 +12,11 @@ namespace Domain.UseCases
         #region Global Scope
         private readonly INoticeRepository _repository;
         private readonly IStorageFileService _storageFileService;
-        private readonly IActivityTypeRepository _activityTypeRepository;
-        private readonly IActivityRepository _activityRepository;
         private readonly IMapper _mapper;
-        public UpdateNotice(
-            INoticeRepository repository,
-            IStorageFileService storageFileService,
-            IActivityTypeRepository activityTypeRepository,
-            IActivityRepository activityRepository,
-            IMapper mapper)
+        public UpdateNotice(INoticeRepository repository, IStorageFileService storageFileService, IMapper mapper)
         {
             _repository = repository;
             _storageFileService = storageFileService;
-            _activityTypeRepository = activityTypeRepository;
-            _activityRepository = activityRepository;
             _mapper = mapper;
         }
         #endregion
@@ -36,125 +27,34 @@ namespace Domain.UseCases
             UseCaseException.NotInformedParam(id == null, nameof(id));
 
             // Recupera entidade que será atualizada
-            var notice = await _repository.GetById(id)
+            var entity = await _repository.GetById(id)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Notice));
 
             // Verifica se a entidade foi excluída
-            UseCaseException.BusinessRuleViolation(notice.DeletedAt != null, "The notice entered has already been deleted.");
+            UseCaseException.BusinessRuleViolation(entity.DeletedAt != null, "The notice entered has already been deleted.");
 
             // Salva arquivo no repositório e atualiza atributo DocUrl
             if (input.File != null)
-                notice.DocUrl = await _storageFileService.UploadFileAsync(input.File, notice.DocUrl);
+                entity.DocUrl = await _storageFileService.UploadFileAsync(input.File, entity.DocUrl);
 
             // Atualiza atributos permitidos
-            notice.RegistrationStartDate = input.RegistrationStartDate ?? notice.RegistrationStartDate;
-            notice.RegistrationEndDate = input.RegistrationEndDate ?? notice.RegistrationEndDate;
-            notice.EvaluationStartDate = input.EvaluationStartDate ?? notice.EvaluationStartDate;
-            notice.EvaluationEndDate = input.EvaluationEndDate ?? notice.EvaluationEndDate;
-            notice.AppealStartDate = input.AppealStartDate ?? notice.AppealStartDate;
-            notice.AppealEndDate = input.AppealEndDate ?? notice.AppealEndDate;
-            notice.SendingDocsStartDate = input.SendingDocsStartDate ?? notice.SendingDocsStartDate;
-            notice.SendingDocsEndDate = input.SendingDocsEndDate ?? notice.SendingDocsEndDate;
-            notice.PartialReportDeadline = input.PartialReportDeadline ?? notice.PartialReportDeadline;
-            notice.FinalReportDeadline = input.FinalReportDeadline ?? notice.FinalReportDeadline;
-            notice.SuspensionYears = input.SuspensionYears ?? notice.SuspensionYears;
-
-            // Converte as atividades para entidades antes de prosseguir 
-            // com a atualização no banco, apenas para fins de validação.
-            foreach (var activityType in input.Activities!)
-            {
-                // Converte atividades para entidades
-                foreach (var activity in activityType.Activities!)
-                    _ = new Entities.Activity(activity.Name, activity.Points, activity.Limits, Guid.Empty);
-
-                // Converte tipo de atividade para entidade
-                _ = new Entities.ActivityType(activityType.Name, activityType.Unity, Guid.Empty);
-            }
+            entity.RegistrationStartDate = input.RegistrationStartDate ?? entity.RegistrationStartDate;
+            entity.RegistrationEndDate = input.RegistrationEndDate ?? entity.RegistrationEndDate;
+            entity.EvaluationStartDate = input.EvaluationStartDate ?? entity.EvaluationStartDate;
+            entity.EvaluationEndDate = input.EvaluationEndDate ?? entity.EvaluationEndDate;
+            entity.AppealStartDate = input.AppealStartDate ?? entity.AppealStartDate;
+            entity.AppealEndDate = input.AppealEndDate ?? entity.AppealEndDate;
+            entity.SendingDocsStartDate = input.SendingDocsStartDate ?? entity.SendingDocsStartDate;
+            entity.SendingDocsEndDate = input.SendingDocsEndDate ?? entity.SendingDocsEndDate;
+            entity.PartialReportDeadline = input.PartialReportDeadline ?? entity.PartialReportDeadline;
+            entity.FinalReportDeadline = input.FinalReportDeadline ?? entity.FinalReportDeadline;
+            entity.SuspensionYears = input.SuspensionYears ?? entity.SuspensionYears;
 
             // Salva entidade atualizada no banco
-            await _repository.Update(notice);
-
-            // Recupera atividades do edital
-            var noticeActivities = (await _activityTypeRepository.GetByNoticeId(notice.Id)).ToList();
-
-            // Atualiza atividades
-            foreach (var activityType in input.Activities)
-            {
-                // Verifica se o tipo de atividade é novo
-                if (activityType.Id is null)
-                {
-                    // Cria tipo de atividade
-                    var activityTypeEntity = new Entities.ActivityType(activityType.Name, activityType.Unity, notice.Id);
-
-                    // Salva tipo de atividade no banco
-                    await _activityTypeRepository.Create(activityTypeEntity);
-
-                    // Cria atividades
-                    foreach (var activity in activityType.Activities!)
-                    {
-                        // Cria atividade
-                        var activityEntity = new Entities.Activity(activity.Name, activity.Points, activity.Limits, activityTypeEntity.Id);
-
-                        // Salva atividade no banco
-                        await _activityRepository.Create(activityEntity);
-                    }
-                }
-                else
-                {
-                    // Verifica se o tipo de atividade foi excluído
-                    var activityTypeEntity = noticeActivities.Find(x => x.Id == activityType.Id)
-                        ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.ActivityType));
-
-                    // Atualiza tipo de atividade
-                    activityTypeEntity.Name = activityType.Name;
-                    activityTypeEntity.Unity = activityType.Unity;
-
-                    // Atualiza atividades
-                    foreach (var activity in activityType.Activities!)
-                    {
-                        // Verifica se a atividade foi excluída
-                        var activityEntity = activityTypeEntity.Activities!.FirstOrDefault(x => x.Id == activity.Id)
-                            ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Activity));
-
-                        // Atualiza atividade
-                        activityEntity.Name = activity.Name;
-                        activityEntity.Points = activity.Points;
-                        activityEntity.Limits = activity.Limits;
-
-                        // Salva atividade atualizada no banco
-                        await _activityRepository.Update(activityEntity);
-
-                        // Remove atividade da lista de atividades do tipo de atividade
-                        activityTypeEntity.Activities!.Remove(activityEntity);
-                    }
-
-                    // Salva tipo de atividade atualizado no banco
-                    await _activityTypeRepository.Update(activityTypeEntity);
-
-                    // Remove tipo de atividade da lista de tipos de atividades do edital
-                    noticeActivities.Remove(activityTypeEntity);
-                }
-            }
-
-            // Verifica se existem tipos de atividades que foram excluídos
-            foreach (var activityTypeToRemove in noticeActivities)
-            {
-                foreach (var activityToRemove in activityTypeToRemove.Activities!)
-                {
-                    // Verifica se a atividade foi excluída
-                    var activityEntity = activityTypeToRemove.Activities!.FirstOrDefault(x => x.Id == activityToRemove.Id)
-                        ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Activity));
-
-                    // Remove atividade do banco
-                    await _activityRepository.Delete(activityEntity.Id);
-                }
-
-                // Remove tipo de atividade do banco
-                await _activityTypeRepository.Delete(activityTypeToRemove.Id);
-            }
+            await _repository.Update(entity);
 
             // Retorna entidade atualizada
-            return _mapper.Map<DetailedReadNoticeOutput>(notice);
+            return _mapper.Map<DetailedReadNoticeOutput>(entity);
         }
     }
 }

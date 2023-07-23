@@ -18,8 +18,7 @@ namespace Infrastructure.Persistence.Context
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
             Areas = Set<Area>();
-            Activities = Set<Activity>();
-            ActivityTypes = Set<ActivityType>();
+            AssistanceScholarships = Set<AssistanceType>();
             Campuses = Set<Campus>();
             Courses = Set<Course>();
             MainAreas = Set<MainArea>();
@@ -35,8 +34,7 @@ namespace Infrastructure.Persistence.Context
         }
 
         public DbSet<Area> Areas { get; set; }
-        public DbSet<Activity> Activities { get; set; }
-        public DbSet<ActivityType> ActivityTypes { get; set; }
+        public DbSet<AssistanceType> AssistanceScholarships { get; set; }
         public DbSet<Campus> Campuses { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<MainArea> MainAreas { get; set; }
