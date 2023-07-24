@@ -53,6 +53,7 @@ namespace Domain.Entities
         }
 
         public virtual Notice? Notice { get; }
+        public virtual IList<Activity>? Activities { get; }
         #endregion
 
         #region Constructors

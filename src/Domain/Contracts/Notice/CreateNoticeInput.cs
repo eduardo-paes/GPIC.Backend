@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Domain.Contracts.Activity;
+using Microsoft.AspNetCore.Http;
 
 namespace Domain.Contracts.Notice;
 public class CreateNoticeInput : BaseNoticeContract

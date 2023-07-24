@@ -1,4 +1,5 @@
-﻿using Adapters.Gateways.Base;
+﻿using Adapters.Gateways.Activity;
+using Adapters.Gateways.Base;
 using Domain.Contracts.Notice;
 using Microsoft.AspNetCore.Http;
 

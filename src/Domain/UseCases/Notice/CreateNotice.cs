@@ -12,11 +12,20 @@ namespace Domain.UseCases
         #region Global Scope
         private readonly INoticeRepository _repository;
         private readonly IStorageFileService _storageFileService;
+        private readonly IActivityTypeRepository _activityTypeRepository;
+        private readonly IActivityRepository _activityRepository;
         private readonly IMapper _mapper;
-        public CreateNotice(INoticeRepository repository, IStorageFileService storageFileService, IMapper mapper)
+        public CreateNotice(
+            INoticeRepository repository,
+            IStorageFileService storageFileService,
+            IActivityTypeRepository activityTypeRepository,
+            IActivityRepository activityRepository,
+            IMapper mapper)
         {
             _repository = repository;
             _storageFileService = storageFileService;
+            _activityTypeRepository = activityTypeRepository;
+            _activityRepository = activityRepository;
             _mapper = mapper;
         }
         #endregion
@@ -28,7 +37,7 @@ namespace Domain.UseCases
                 "As atividades devem ser informadas.");
 
             // Mapeia input para entidade
-            var entity = new Entities.Notice(
+            var notice = new Entities.Notice(
                 input.RegistrationStartDate,
                 input.RegistrationEndDate,
                 input.EvaluationStartDate,
@@ -48,13 +57,40 @@ namespace Domain.UseCases
 
             // Salva arquivo no repositório e atualiza atributo DocUrl
             if (input.File != null)
-                entity.DocUrl = await _storageFileService.UploadFileAsync(input.File);
+                notice.DocUrl = await _storageFileService.UploadFileAsync(input.File);
 
-            // Cria entidade
-            entity = await _repository.Create(entity);
+            // Converte as atividades para entidades antes de prosseguir 
+            // com o cadastro no banco, apenas para fins de validação.
+            foreach (var activityType in input.Activities!)
+            {
+                // Converte atividades para entidades
+                foreach (var activity in activityType.Activities!)
+                    _ = new Entities.Activity(activity.Name, activity.Points, activity.Limits, Guid.Empty);
+
+                // Converte tipo de atividade para entidade
+                _ = new Entities.ActivityType(activityType.Name, activityType.Unity, Guid.Empty);
+            }
+
+            // Cria edital no banco
+            notice = await _repository.Create(notice);
+
+            // Salva atividades no banco
+            foreach (var activityType in input.Activities!)
+            {
+                // Salva tipo de atividade no banco
+                var activityTypeEntity = new Entities.ActivityType(activityType.Name, activityType.Unity, notice.Id);
+                activityTypeEntity = await _activityTypeRepository.Create(activityTypeEntity);
+
+                // Salva atividades no banco
+                foreach (var activity in activityType.Activities!)
+                {
+                    var activityEntity = new Entities.Activity(activity.Name, activity.Points, activity.Limits, activityTypeEntity.Id);
+                    await _activityRepository.Create(activityEntity);
+                }
+            }
 
             // Salva entidade no banco
-            return _mapper.Map<DetailedReadNoticeOutput>(entity);
+            return _mapper.Map<DetailedReadNoticeOutput>(notice);
         }
     }
 }

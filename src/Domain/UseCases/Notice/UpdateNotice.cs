@@ -13,11 +13,20 @@ namespace Domain.UseCases
         #region Global Scope
         private readonly INoticeRepository _repository;
         private readonly IStorageFileService _storageFileService;
+        private readonly IActivityTypeRepository _activityTypeRepository;
+        private readonly IActivityRepository _activityRepository;
         private readonly IMapper _mapper;
-        public UpdateNotice(INoticeRepository repository, IStorageFileService storageFileService, IMapper mapper)
+        public UpdateNotice(
+            INoticeRepository repository,
+            IStorageFileService storageFileService,
+            IActivityTypeRepository activityTypeRepository,
+            IActivityRepository activityRepository,
+            IMapper mapper)
         {
             _repository = repository;
             _storageFileService = storageFileService;
+            _activityTypeRepository = activityTypeRepository;
+            _activityRepository = activityRepository;
             _mapper = mapper;
         }
         #endregion
@@ -32,7 +41,7 @@ namespace Domain.UseCases
                 "As atividades devem ser informadas.");
 
             // Recupera entidade que será atualizada
-            var entity = await _repository.GetById(id)
+            var notice = await _repository.GetById(id)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Notice));
 
             // Verifica se a entidade foi excluída
@@ -40,20 +49,32 @@ namespace Domain.UseCases
 
             // Salva arquivo no repositório e atualiza atributo DocUrl
             if (input.File != null)
-                entity.DocUrl = await _storageFileService.UploadFileAsync(input.File, entity.DocUrl);
+                notice.DocUrl = await _storageFileService.UploadFileAsync(input.File, notice.DocUrl);
 
             // Atualiza atributos permitidos
-            entity.RegistrationStartDate = input.RegistrationStartDate ?? entity.RegistrationStartDate;
-            entity.RegistrationEndDate = input.RegistrationEndDate ?? entity.RegistrationEndDate;
-            entity.EvaluationStartDate = input.EvaluationStartDate ?? entity.EvaluationStartDate;
-            entity.EvaluationEndDate = input.EvaluationEndDate ?? entity.EvaluationEndDate;
-            entity.AppealStartDate = input.AppealStartDate ?? entity.AppealStartDate;
-            entity.AppealEndDate = input.AppealEndDate ?? entity.AppealEndDate;
-            entity.SendingDocsStartDate = input.SendingDocsStartDate ?? entity.SendingDocsStartDate;
-            entity.SendingDocsEndDate = input.SendingDocsEndDate ?? entity.SendingDocsEndDate;
-            entity.PartialReportDeadline = input.PartialReportDeadline ?? entity.PartialReportDeadline;
-            entity.FinalReportDeadline = input.FinalReportDeadline ?? entity.FinalReportDeadline;
-            entity.SuspensionYears = input.SuspensionYears ?? entity.SuspensionYears;
+            notice.RegistrationStartDate = input.RegistrationStartDate ?? notice.RegistrationStartDate;
+            notice.RegistrationEndDate = input.RegistrationEndDate ?? notice.RegistrationEndDate;
+            notice.EvaluationStartDate = input.EvaluationStartDate ?? notice.EvaluationStartDate;
+            notice.EvaluationEndDate = input.EvaluationEndDate ?? notice.EvaluationEndDate;
+            notice.AppealStartDate = input.AppealStartDate ?? notice.AppealStartDate;
+            notice.AppealEndDate = input.AppealEndDate ?? notice.AppealEndDate;
+            notice.SendingDocsStartDate = input.SendingDocsStartDate ?? notice.SendingDocsStartDate;
+            notice.SendingDocsEndDate = input.SendingDocsEndDate ?? notice.SendingDocsEndDate;
+            notice.PartialReportDeadline = input.PartialReportDeadline ?? notice.PartialReportDeadline;
+            notice.FinalReportDeadline = input.FinalReportDeadline ?? notice.FinalReportDeadline;
+            notice.SuspensionYears = input.SuspensionYears ?? notice.SuspensionYears;
+
+            // Converte as atividades para entidades antes de prosseguir 
+            // com a atualização no banco, apenas para fins de validação.
+            foreach (var activityType in input.Activities!)
+            {
+                // Converte atividades para entidades
+                foreach (var activity in activityType.Activities!)
+                    _ = new Entities.Activity(activity.Name, activity.Points, activity.Limits, Guid.Empty);
+
+                // Converte tipo de atividade para entidade
+                _ = new Entities.ActivityType(activityType.Name, activityType.Unity, Guid.Empty);
+            }
 
             // Salva entidade atualizada no banco
             await _repository.Update(notice);
@@ -65,7 +86,7 @@ namespace Domain.UseCases
             await HandleActivityType(input.Activities!, noticeActivities, notice.Id);
 
             // Retorna entidade atualizada
-            return _mapper.Map<DetailedReadNoticeOutput>(entity);
+            return _mapper.Map<DetailedReadNoticeOutput>(notice);
         }
 
         /// <summary>
