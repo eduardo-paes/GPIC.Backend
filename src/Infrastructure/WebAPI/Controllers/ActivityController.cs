@@ -1,4 +1,5 @@
 using Adapters.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Infrastructure.WebAPI.Controllers
@@ -8,6 +9,7 @@ namespace Infrastructure.WebAPI.Controllers
     /// </summary>
     [ApiController]
     [Route("api/v1/[controller]")]
+    [Authorize]
     public class ActivityController : ControllerBase
     {
         private readonly IActivityPresenterController _activityPresenterController;
@@ -28,8 +30,10 @@ namespace Infrastructure.WebAPI.Controllers
         /// </summary>
         /// <returns>Lista de atividades mais recentes.</returns>
         /// <response code="200">Retorna a lista de atividades mais recentes.</response>
-        /// <response code="500">Erro interno do servidor.</response>
+        /// <response code="400">Requisição incorreta.</response>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetLastNoticeActivities()
         {
             try
@@ -51,9 +55,11 @@ namespace Infrastructure.WebAPI.Controllers
         /// <param name="noticeId">Id do edital.</param>
         /// <returns>Lista de atividades.</returns>
         /// <response code="200">Retorna a lista de atividades.</response>
-        /// <response code="500">Erro interno do servidor.</response>
+        /// <response code="400">Requisição incorreta.</response>
         [HttpGet]
         [Route("notice/{noticeId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetActivitiesByNoticeId(Guid? noticeId)
         {
             try
