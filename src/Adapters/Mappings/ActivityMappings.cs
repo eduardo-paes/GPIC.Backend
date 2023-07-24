@@ -8,17 +8,19 @@ namespace Adapters.Mappings
     {
         public ActivityMappings()
         {
-            CreateMap<CreateActivityInput, CreateActivityRequest>();
+            CreateMap<CreateActivityInput, CreateActivityRequest>().ReverseMap();
             CreateMap<CreateActivityTypeInput, CreateActivityTypeRequest>()
-                .ForMember(dest => dest.Activities, opt => opt.MapFrom(src => src.Activities));
-
-            CreateMap<UpdateActivityInput, UpdateActivityRequest>();
+                .ForMember(dest => dest.Activities, opt => opt.MapFrom(src => src.Activities))
+                .ReverseMap();
+            CreateMap<UpdateActivityInput, UpdateActivityRequest>().ReverseMap();
             CreateMap<UpdateActivityTypeInput, UpdateActivityTypeRequest>()
-                .ForMember(dest => dest.Activities, opt => opt.MapFrom(src => src.Activities));
-
-            CreateMap<ActivityOutput, ActivityResponse>();
+                .ForMember(dest => dest.Activities, opt => opt.MapFrom(src => src.Activities))
+                .ForPath(dest => dest.Activities, opt => opt.MapFrom(src => src.Activities))
+                .ReverseMap();
+            CreateMap<ActivityOutput, ActivityResponse>().ReverseMap();
             CreateMap<ActivityTypeOutput, ActivityTypeResponse>()
-                .ForMember(dest => dest.Activities, opt => opt.MapFrom(src => src.Activities));
+                .ForMember(dest => dest.Activities, opt => opt.MapFrom(src => src.Activities))
+                .ReverseMap();
         }
     }
 }

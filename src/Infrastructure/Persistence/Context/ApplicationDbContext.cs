@@ -15,24 +15,7 @@ namespace Infrastructure.Persistence.Context
         ///     <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see> for more information and examples.
         /// </remarks>
         /// <param name="options">The options for this context.</param>
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-        {
-            Areas = Set<Area>();
-            Activities = Set<Activity>();
-            ActivityTypes = Set<ActivityType>();
-            Campuses = Set<Campus>();
-            Courses = Set<Course>();
-            MainAreas = Set<MainArea>();
-            Notices = Set<Notice>();
-            Professors = Set<Professor>();
-            Projects = Set<Project>();
-            ProjectEvaluations = Set<ProjectEvaluation>();
-            ProgramTypes = Set<ProgramType>();
-            AssistanceTypes = Set<AssistanceType>();
-            Students = Set<Student>();
-            SubAreas = Set<SubArea>();
-            Users = Set<User>();
-        }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public DbSet<Area> Areas { get; set; }
         public DbSet<Activity> Activities { get; set; }
@@ -56,5 +39,7 @@ namespace Infrastructure.Persistence.Context
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseLazyLoadingProxies();
     }
 }

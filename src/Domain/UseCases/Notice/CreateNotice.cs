@@ -33,7 +33,8 @@ namespace Domain.UseCases
         public async Task<DetailedReadNoticeOutput> Execute(CreateNoticeInput input)
         {
             // Verifica se atividades foram informadas
-            UseCaseException.BusinessRuleViolation(input.Activities == null, "As atividades devem ser informadas.");
+            UseCaseException.BusinessRuleViolation(input.Activities == null || input.Activities.Count == 0,
+                "As atividades devem ser informadas.");
 
             // Mapeia input para entidade
             var notice = new Entities.Notice(
@@ -51,8 +52,8 @@ namespace Domain.UseCases
             );
 
             // Verifica se já existe um edital para o período indicado
-            var projectFound = await _repository.GetNoticeByPeriod((DateTime)input.RegistrationStartDate!, (DateTime)input.RegistrationEndDate!);
-            UseCaseException.BusinessRuleViolation(projectFound != null, "Já existe um Edital para o período indicado.");
+            var noticeFound = await _repository.GetNoticeByPeriod((DateTime)input.RegistrationStartDate!, (DateTime)input.RegistrationEndDate!);
+            UseCaseException.BusinessRuleViolation(noticeFound != null, "Já existe um Edital para o período indicado.");
 
             // Salva arquivo no repositório e atualiza atributo DocUrl
             if (input.File != null)

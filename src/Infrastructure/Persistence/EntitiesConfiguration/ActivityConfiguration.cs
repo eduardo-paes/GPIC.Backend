@@ -20,7 +20,7 @@ namespace Persistence.EntitiesConfiguration
             builder.Property(p => p.DeletedAt);
 
             builder.HasOne(a => a.ActivityType)
-                .WithMany()
+                .WithMany(t => t.Activities)
                 .HasForeignKey(a => a.ActivityTypeId);
 
             builder.HasQueryFilter(x => x.DeletedAt == null);

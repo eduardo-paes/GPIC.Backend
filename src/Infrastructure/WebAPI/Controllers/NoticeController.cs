@@ -88,7 +88,7 @@ namespace Infrastructure.WebAPI.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadNoticeResponse>> Create([FromForm] CreateNoticeRequest request)
+        public async Task<ActionResult<DetailedReadNoticeResponse>> Create([FromBody] CreateNoticeRequest request)
         {
             try
             {
@@ -111,7 +111,7 @@ namespace Infrastructure.WebAPI.Controllers
         /// <response code="200">Retorna edital atualizado</response>
         [HttpPut("{id}")]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadNoticeResponse>> Update(Guid? id, [FromForm] UpdateNoticeRequest request)
+        public async Task<ActionResult<DetailedReadNoticeResponse>> Update(Guid? id, [FromBody] UpdateNoticeRequest request)
         {
             try
             {

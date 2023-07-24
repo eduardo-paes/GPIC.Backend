@@ -37,17 +37,27 @@ namespace Infrastructure.Persistence.Repositories
                 ?? throw new Exception($"Nenhum tipo de atividade encontrado para o id {id}");
         }
 
-        public async Task<IEnumerable<ActivityType>> GetByNoticeId(Guid? noticeId)
+        public async Task<IList<ActivityType>> GetByNoticeId(Guid? noticeId)
         {
-            return await _context.ActivityTypes
-                .Include(x => x.Notice)
+            var activityTypes = await _context.ActivityTypes
                 .Include(x => x.Activities)
                 .Where(x => x.NoticeId == noticeId)
                 .ToListAsync()
                 ?? throw new Exception("Nenhum tipo de atividade encontrado.");
+
+            // Force loading of the Activities collection for each ActivityType
+            foreach (var activityType in activityTypes)
+            {
+                // Explicitly load the Activities collection
+                await _context.Entry(activityType)
+                    .Collection(x => x.Activities!)
+                    .LoadAsync();
+            }
+
+            return activityTypes;
         }
 
-        public async Task<IEnumerable<ActivityType>> GetLastNoticeActivities()
+        public async Task<IList<ActivityType>> GetLastNoticeActivities()
         {
             var lastNoticeId = await _context.Notices
                 .AsAsyncEnumerable()
