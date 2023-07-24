@@ -9,7 +9,7 @@ namespace Infrastructure.WebAPI.Controllers
     /// Controller de Campus.
     /// </summary>
     [ApiController]
-    [Route("Api/[controller]")]
+    [Route("api/v1/[controller]")]
     [Authorize]
     public class CampusController : ControllerBase
     {

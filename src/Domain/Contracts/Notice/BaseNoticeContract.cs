@@ -28,6 +28,5 @@ namespace Domain.Contracts.Notice
         public int? SuspensionYears { get; set; }
 
         public string? Description { get; set; }
-        public string? DocUrl { get; set; }
     }
 }

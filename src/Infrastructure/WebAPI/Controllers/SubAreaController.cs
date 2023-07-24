@@ -9,7 +9,7 @@ namespace Infrastructure.WebAPI.Controllers
     /// Controller de Sub Área.
     /// </summary>
     [ApiController]
-    [Route("Api/[controller]")]
+    [Route("api/v1/[controller]")]
     [Authorize]
     public class SubAreaController : ControllerBase
     {

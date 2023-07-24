@@ -2,6 +2,7 @@ using Adapters.Gateways.Base;
 using Adapters.Gateways.Notice;
 using Adapters.Interfaces;
 using AutoMapper;
+using Domain.Contracts.Activity;
 using Domain.Contracts.Notice;
 using Domain.Interfaces.UseCases;
 
@@ -17,7 +18,13 @@ namespace Adapters.PresenterController
         private readonly IGetNoticeById _getNoticeById;
         private readonly IMapper _mapper;
 
-        public NoticePresenterController(ICreateNotice createNotice, IUpdateNotice updateNotice, IDeleteNotice deleteNotice, IGetNotices getNotices, IGetNoticeById getNoticeById, IMapper mapper)
+        public NoticePresenterController(
+            ICreateNotice createNotice,
+            IUpdateNotice updateNotice,
+            IDeleteNotice deleteNotice,
+            IGetNotices getNotices,
+            IGetNoticeById getNoticeById,
+            IMapper mapper)
         {
             _createNotice = createNotice;
             _updateNotice = updateNotice;
@@ -30,8 +37,7 @@ namespace Adapters.PresenterController
 
         public async Task<IResponse> Create(IRequest request)
         {
-            var dto = request as CreateNoticeRequest;
-            var input = _mapper.Map<CreateNoticeInput>(dto);
+            var input = _mapper.Map<CreateNoticeInput>(request as CreateNoticeRequest);
             var result = await _createNotice.Execute(input);
             return _mapper.Map<DetailedReadNoticeResponse>(result);
         }
@@ -56,8 +62,7 @@ namespace Adapters.PresenterController
 
         public async Task<IResponse> Update(Guid? id, IRequest request)
         {
-            var dto = request as UpdateNoticeRequest;
-            var input = _mapper.Map<UpdateNoticeInput>(dto);
+            var input = _mapper.Map<UpdateNoticeInput>(request as UpdateNoticeRequest);
             var result = await _updateNotice.Execute(id, input);
             return _mapper.Map<DetailedReadNoticeResponse>(result);
         }

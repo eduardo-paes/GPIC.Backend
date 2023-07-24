@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebAPI.Controllers
+namespace Infrastructure.WebAPI.Controllers
 {
     /// <summary>
     /// Controller de validação.
     /// </summary>
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class Version : ControllerBase
     {
         /// <summary>

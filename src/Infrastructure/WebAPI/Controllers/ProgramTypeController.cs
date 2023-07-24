@@ -9,7 +9,7 @@ namespace Infrastructure.WebAPI.Controllers
     /// Controller de Tipo de Programa.
     /// </summary>
     [ApiController]
-    [Route("Api/[controller]")]
+    [Route("api/v1/[controller]")]
     [Authorize]
     public class ProgramTypeController : ControllerBase
     {

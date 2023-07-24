@@ -9,7 +9,7 @@ namespace Infrastructure.WebAPI.Controllers
     /// Controller de Bolsa de Assistência.
     /// </summary>
     [ApiController]
-    [Route("Api/[controller]")]
+    [Route("api/v1/[controller]")]
     [Authorize]
     public class AssistanceTypeController : ControllerBase
     {
