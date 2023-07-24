@@ -9,7 +9,7 @@ namespace Infrastructure.WebAPI.Controllers
     /// Controller de Autenticação.
     /// </summary>
     [ApiController]
-    [Route("Api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class AuthController : ControllerBase
     {
         #region Global Scope

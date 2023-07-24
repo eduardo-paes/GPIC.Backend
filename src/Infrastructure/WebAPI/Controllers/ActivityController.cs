@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Adapters.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebAPI.Controllers
+namespace Infrastructure.WebAPI.Controllers
 {
     /// <summary>
     /// Controller responsável por gerenciar as atividades.

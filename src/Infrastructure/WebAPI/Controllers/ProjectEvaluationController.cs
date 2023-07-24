@@ -10,7 +10,7 @@ namespace Infrastructure.WebAPI.Controllers
     /// Controller de projetos.
     /// </summary>
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [Authorize]
     public class ProjectEvaluationController : ControllerBase
     {
