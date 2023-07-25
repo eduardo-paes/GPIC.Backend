@@ -8,32 +8,6 @@ public class EvaluateSubmissionProjectInput
     public string? SubmissionEvaluationDescription { get; set; }
     #endregion
 
-    #region (Resultados) Produção Científica - Trabalhos Publicados
-    public int? FoundWorkType1 { get; set; }
-    public int? FoundWorkType2 { get; set; }
-    public int? FoundIndexedConferenceProceedings { get; set; }
-    public int? FoundNotIndexedConferenceProceedings { get; set; }
-    public int? FoundCompletedBook { get; set; }
-    public int? FoundOrganizedBook { get; set; }
-    public int? FoundBookChapters { get; set; }
-    public int? FoundBookTranslations { get; set; }
-    public int? FoundParticipationEditorialCommittees { get; set; }
-    #endregion
-
-    #region (Resultados) Produção Artístca e Cultural - Produção Apresentada
-    public int? FoundFullComposerSoloOrchestraAllTracks { get; set; }
-    public int? FoundFullComposerSoloOrchestraCompilation { get; set; }
-    public int? FoundChamberOrchestraInterpretation { get; set; }
-    public int? FoundIndividualAndCollectiveArtPerformances { get; set; }
-    public int? FoundScientificCulturalArtisticCollectionsCuratorship { get; set; }
-    #endregion
-
-    #region (Resultados) Produção Técnica - Produtos Registrados
-    public int? FoundPatentLetter { get; set; }
-    public int? FoundPatentDeposit { get; set; }
-    public int? FoundSoftwareRegistration { get; set; }
-    #endregion
-
     #region Critérios de Avaliação
     public int? Qualification { get; set; }
     public int? ProjectProposalObjectives { get; set; }

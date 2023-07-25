@@ -49,14 +49,14 @@ namespace Domain.UseCases.ProjectEvaluation
 
             // Verifica se o avaliador é o professor orientador do projeto.
             UseCaseException.BusinessRuleViolation(project.ProfessorId == user.Id,
-                    "Avaliador é o orientador do projeto.");
+                "Avaliador é o orientador do projeto.");
 
             // Verifica se o projeto está na fase de submissão.
             UseCaseException.BusinessRuleViolation(project.Status != EProjectStatus.Submitted,
                 "O projeto não está em fase de submissão.");
 
-            // Verifica se o edital ainda está aberto.
-            UseCaseException.BusinessRuleViolation(project.Notice?.RegistrationStartDate > DateTime.UtcNow || project.Notice?.RegistrationEndDate < DateTime.UtcNow,
+            // Verifica se o edital está em fase de avaliação.
+            UseCaseException.BusinessRuleViolation(project.Notice?.EvaluationStartDate > DateTime.UtcNow || project.Notice?.EvaluationEndDate < DateTime.UtcNow,
                 "Edital encerrado.");
 
             // Verifica se o status da avaliação foi informado.
@@ -67,6 +67,8 @@ namespace Domain.UseCases.ProjectEvaluation
             UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.SubmissionEvaluationDescription),
                 nameof(input.SubmissionEvaluationDescription));
 
+            // TODO: Processar atividades do projeto e calcular pontuação.
+
             // Mapeia dados de entrada para entidade.
             projectEvaluation = new Entities.ProjectEvaluation(input.ProjectId,
                 input.IsProductivityFellow,
@@ -74,28 +76,12 @@ namespace Domain.UseCases.ProjectEvaluation
                 TryCastEnum<EProjectStatus>(input.SubmissionEvaluationStatus),
                 DateTime.UtcNow,
                 input.SubmissionEvaluationDescription,
-                input.FoundWorkType1,
-                input.FoundWorkType2,
-                input.FoundIndexedConferenceProceedings,
-                input.FoundNotIndexedConferenceProceedings,
-                input.FoundCompletedBook,
-                input.FoundOrganizedBook,
-                input.FoundBookChapters,
-                input.FoundBookTranslations,
-                input.FoundParticipationEditorialCommittees,
-                input.FoundFullComposerSoloOrchestraAllTracks,
-                input.FoundFullComposerSoloOrchestraCompilation,
-                input.FoundChamberOrchestraInterpretation,
-                input.FoundIndividualAndCollectiveArtPerformances,
-                input.FoundScientificCulturalArtisticCollectionsCuratorship,
-                input.FoundPatentLetter,
-                input.FoundPatentDeposit,
-                input.FoundSoftwareRegistration,
                 TryCastEnum<EQualification>(input.Qualification),
                 TryCastEnum<EScore>(input.ProjectProposalObjectives),
                 TryCastEnum<EScore>(input.AcademicScientificProductionCoherence),
                 TryCastEnum<EScore>(input.ProposalMethodologyAdaptation),
-                TryCastEnum<EScore>(input.EffectiveContributionToResearch));
+                TryCastEnum<EScore>(input.EffectiveContributionToResearch),
+                0);
 
             // Adiciona avaliação do projeto.
             await _projectEvaluationRepository.Create(projectEvaluation);

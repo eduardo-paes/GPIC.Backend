@@ -147,146 +147,6 @@ namespace Domain.Entities
         public virtual User? DocumentsEvaluator { get; }
         #endregion Informações Gerais da Avaliação
 
-        #region (Resultados) Produção Científica - Trabalhos Publicados
-        public int? FoundWorkType1
-        {
-            get => FoundWorkType1;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundWorkType1)));
-        }
-
-        public int? FoundWorkType2
-        {
-            get => FoundWorkType2;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundWorkType2)));
-        }
-
-        public int? FoundIndexedConferenceProceedings
-        {
-            get => FoundIndexedConferenceProceedings;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundIndexedConferenceProceedings)));
-        }
-
-        public int? FoundNotIndexedConferenceProceedings
-        {
-            get => FoundNotIndexedConferenceProceedings;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundNotIndexedConferenceProceedings)));
-        }
-
-        public int? FoundCompletedBook
-        {
-            get => FoundCompletedBook;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundCompletedBook)));
-        }
-
-        public int? FoundOrganizedBook
-        {
-            get => FoundOrganizedBook;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundOrganizedBook)));
-        }
-
-        public int? FoundBookChapters
-        {
-            get => FoundBookChapters;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundBookChapters)));
-        }
-
-        public int? FoundBookTranslations
-        {
-            get => FoundBookTranslations;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundBookTranslations)));
-        }
-
-        public int? FoundParticipationEditorialCommittees
-        {
-            get => FoundParticipationEditorialCommittees;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundParticipationEditorialCommittees)));
-        }
-        #endregion
-
-        #region (Resultados) Produção Artístca e Cultural - Produção Apresentada
-        /// <summary>
-        /// Autoria ou coautoria de CD ou DVD publicado como compositor ou intérprete principal (solo, duo ou regência) em todas as faixas.
-        /// </summary>
-        public int? FoundFullComposerSoloOrchestraAllTracks
-        {
-            get => FoundFullComposerSoloOrchestraAllTracks;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundFullComposerSoloOrchestraAllTracks)));
-        }
-
-        /// <summary>
-        /// Autoria ou coautoria de CD ou DVD publicado como compositor ou intérprete principal (solo, duo ou regência) em coletânea (sem participação em todas as faixas).
-        /// </summary>
-        public int? FoundFullComposerSoloOrchestraCompilation
-        {
-            get => FoundFullComposerSoloOrchestraCompilation;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundFullComposerSoloOrchestraCompilation)));
-        }
-
-        /// <summary>
-        /// Participação em CD ou DVD como intérprete em grupo de câmara ou orquestra.
-        /// </summary>
-        public int? FoundChamberOrchestraInterpretation
-        {
-            get => FoundChamberOrchestraInterpretation;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundChamberOrchestraInterpretation)));
-        }
-
-        /// <summary>
-        /// Apresentações individuais e coletivas no campo das artes.
-        /// </summary>
-        public int? FoundIndividualAndCollectiveArtPerformances
-        {
-            get => FoundIndividualAndCollectiveArtPerformances;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundIndividualAndCollectiveArtPerformances)));
-        }
-
-        /// <summary>
-        /// Curadoria de coleções ou exposições científicas, culturais e artísticas.
-        /// </summary>
-        public int? FoundScientificCulturalArtisticCollectionsCuratorship
-        {
-            get => FoundScientificCulturalArtisticCollectionsCuratorship;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundScientificCulturalArtisticCollectionsCuratorship)));
-        }
-        #endregion
-
-        #region (Resultados) Produção Técnica - Produtos Registrados
-        public int? FoundPatentLetter
-        {
-            get => FoundPatentLetter;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundPatentLetter)));
-        }
-
-        public int? FoundPatentDeposit
-        {
-            get => FoundPatentDeposit;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundPatentDeposit)));
-        }
-
-        public int? FoundSoftwareRegistration
-        {
-            get => FoundSoftwareRegistration;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundSoftwareRegistration)));
-        }
-        #endregion
-
         #region Critérios de Avaliação
         /// <summary>
         /// Pontuação Total (Índice AP).
@@ -362,28 +222,12 @@ namespace Domain.Entities
             EProjectStatus? submissionEvaluationStatus,
             DateTime? submissionEvaluationDate,
             string? submissionEvaluationDescription,
-            int? foundWorkType1,
-            int? foundWorkType2,
-            int? foundIndexedConferenceProceedings,
-            int? foundNotIndexedConferenceProceedings,
-            int? foundCompletedBook,
-            int? foundOrganizedBook,
-            int? foundBookChapters,
-            int? foundBookTranslations,
-            int? foundParticipationEditorialCommittees,
-            int? foundFullComposerSoloOrchestraAllTracks,
-            int? foundFullComposerSoloOrchestraCompilation,
-            int? foundChamberOrchestraInterpretation,
-            int? foundIndividualAndCollectiveArtPerformances,
-            int? foundScientificCulturalArtisticCollectionsCuratorship,
-            int? foundPatentLetter,
-            int? foundPatentDeposit,
-            int? foundSoftwareRegistration,
             EQualification? qualification,
             EScore? projectProposalObjectives,
             EScore? academicScientificProductionCoherence,
             EScore? proposalMethodologyAdaptation,
-            EScore? effectiveContributionToResearch)
+            EScore? effectiveContributionToResearch,
+            double apIndex)
         {
             ProjectId = projectId;
             IsProductivityFellow = isProductivityFellow;
@@ -391,74 +235,13 @@ namespace Domain.Entities
             SubmissionEvaluationStatus = submissionEvaluationStatus;
             SubmissionEvaluationDate = submissionEvaluationDate;
             SubmissionEvaluationDescription = submissionEvaluationDescription;
-            FoundWorkType1 = foundWorkType1;
-            FoundWorkType2 = foundWorkType2;
-            FoundIndexedConferenceProceedings = foundIndexedConferenceProceedings;
-            FoundNotIndexedConferenceProceedings = foundNotIndexedConferenceProceedings;
-            FoundCompletedBook = foundCompletedBook;
-            FoundOrganizedBook = foundOrganizedBook;
-            FoundBookChapters = foundBookChapters;
-            FoundBookTranslations = foundBookTranslations;
-            FoundParticipationEditorialCommittees = foundParticipationEditorialCommittees;
-            FoundFullComposerSoloOrchestraAllTracks = foundFullComposerSoloOrchestraAllTracks;
-            FoundFullComposerSoloOrchestraCompilation = foundFullComposerSoloOrchestraCompilation;
-            FoundChamberOrchestraInterpretation = foundChamberOrchestraInterpretation;
-            FoundIndividualAndCollectiveArtPerformances = foundIndividualAndCollectiveArtPerformances;
-            FoundScientificCulturalArtisticCollectionsCuratorship = foundScientificCulturalArtisticCollectionsCuratorship;
-            FoundPatentLetter = foundPatentLetter;
-            FoundPatentDeposit = foundPatentDeposit;
-            FoundSoftwareRegistration = foundSoftwareRegistration;
             Qualification = qualification;
             ProjectProposalObjectives = projectProposalObjectives;
             AcademicScientificProductionCoherence = academicScientificProductionCoherence;
             ProposalMethodologyAdaptation = proposalMethodologyAdaptation;
             EffectiveContributionToResearch = effectiveContributionToResearch;
-            CalculateAPIndex();
+            APIndex = apIndex;
         }
         #endregion
-
-        /// <summary>
-        /// Multiplica o valor pela pontuação e retorna o valor ou o limite, o que for menor.
-        /// </summary>
-        /// <param name="value">Valor</param>
-        /// <param name="limit">Limite</param>
-        /// <param name="points">Pontuação</param>
-        /// <returns>Valor multiplicado</returns>
-        private static double MultiplyValue(int? value, int? limit, double points)
-        {
-            if (!value.HasValue) return 0;
-            var total = value.Value * points;
-            return total > limit ? limit.Value : total;
-        }
-
-        /// <summary>
-        /// Pontuação das Atividades (Índice AP) Edital PIBIC.
-        /// </summary>
-        private void CalculateAPIndex()
-        {
-            APIndex = 0;
-
-            // Produção Científica - Trabalhos Publicados
-            APIndex += MultiplyValue(FoundWorkType1, null, 10);
-            APIndex += MultiplyValue(FoundWorkType2, 20, 4);
-            APIndex += MultiplyValue(FoundIndexedConferenceProceedings, 12, 3);
-            APIndex += MultiplyValue(FoundNotIndexedConferenceProceedings, 12, 2);
-            APIndex += MultiplyValue(FoundCompletedBook, null, 8);
-            APIndex += MultiplyValue(FoundOrganizedBook, 12, 2);
-            APIndex += MultiplyValue(FoundBookChapters, 12, 2);
-            APIndex += MultiplyValue(FoundBookTranslations, 12, 2);
-            APIndex += MultiplyValue(FoundParticipationEditorialCommittees, 1, 0.25);
-
-            // Produção Artístca e Cultural - Produção Apresentada
-            APIndex += MultiplyValue(FoundFullComposerSoloOrchestraAllTracks, null, 8);
-            APIndex += MultiplyValue(FoundChamberOrchestraInterpretation, 12, 2);
-            APIndex += MultiplyValue(FoundIndividualAndCollectiveArtPerformances, 12, 2);
-            APIndex += MultiplyValue(FoundScientificCulturalArtisticCollectionsCuratorship, 6, 2);
-
-            // Produção Técnica - Produtos Registrados
-            APIndex += MultiplyValue(FoundPatentLetter, null, 10);
-            APIndex += MultiplyValue(FoundPatentDeposit, null, 5);
-            APIndex += MultiplyValue(FoundSoftwareRegistration, null, 0.5);
-        }
     }
 }

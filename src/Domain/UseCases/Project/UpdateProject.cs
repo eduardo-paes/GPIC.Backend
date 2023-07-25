@@ -72,6 +72,8 @@ public class UpdateProject : IUpdateProject
                 UseCaseException.BusinessRuleViolation(studentProjects.Any(), "Student is already on a project.");
             }
 
+            // TODO: Inserir atualização das atividades (ProjectActivities)
+
             // Atualiza campos permitidos
             project.Title = input.Title;
             project.KeyWord1 = input.KeyWord1;
@@ -82,23 +84,6 @@ public class UpdateProject : IUpdateProject
             project.Methodology = input.Methodology;
             project.ExpectedResults = input.ExpectedResults;
             project.ActivitiesExecutionSchedule = input.ActivitiesExecutionSchedule;
-            project.WorkType1 = input.WorkType1;
-            project.WorkType2 = input.WorkType2;
-            project.IndexedConferenceProceedings = input.IndexedConferenceProceedings;
-            project.NotIndexedConferenceProceedings = input.NotIndexedConferenceProceedings;
-            project.CompletedBook = input.CompletedBook;
-            project.OrganizedBook = input.OrganizedBook;
-            project.BookChapters = input.BookChapters;
-            project.BookTranslations = input.BookTranslations;
-            project.ParticipationEditorialCommittees = input.ParticipationEditorialCommittees;
-            project.FullComposerSoloOrchestraAllTracks = input.FullComposerSoloOrchestraAllTracks;
-            project.FullComposerSoloOrchestraCompilation = input.FullComposerSoloOrchestraCompilation;
-            project.ChamberOrchestraInterpretation = input.ChamberOrchestraInterpretation;
-            project.IndividualAndCollectiveArtPerformances = input.IndividualAndCollectiveArtPerformances;
-            project.ScientificCulturalArtisticCollectionsCuratorship = input.ScientificCulturalArtisticCollectionsCuratorship;
-            project.PatentLetter = input.PatentLetter;
-            project.PatentDeposit = input.PatentDeposit;
-            project.SoftwareRegistration = input.SoftwareRegistration;
             project.ProgramTypeId = input.ProgramTypeId;
             project.StudentId = input.StudentId;
             project.SubAreaId = input.SubAreaId;
@@ -111,7 +96,7 @@ public class UpdateProject : IUpdateProject
         }
         else
         {
-            throw UseCaseException.BusinessRuleViolation("The project is not at a stage that allows for changes.");
+            throw UseCaseException.BusinessRuleViolation("O projeto não está em um estágio que permita mudanças.");
         }
     }
 }
