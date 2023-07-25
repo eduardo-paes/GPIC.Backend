@@ -22,25 +22,7 @@ namespace Persistence.EntitiesConfiguration
             builder.Property(p => p.DocumentsEvaluationDate);
             builder.Property(p => p.DocumentsEvaluationDescription);
 
-            builder.Property(p => p.FoundWorkType1).HasDefaultValue(0);
-            builder.Property(p => p.FoundWorkType2).HasDefaultValue(0);
-            builder.Property(p => p.FoundIndexedConferenceProceedings).HasDefaultValue(0);
-            builder.Property(p => p.FoundNotIndexedConferenceProceedings).HasDefaultValue(0);
-            builder.Property(p => p.FoundCompletedBook).HasDefaultValue(0);
-            builder.Property(p => p.FoundOrganizedBook).HasDefaultValue(0);
-            builder.Property(p => p.FoundBookChapters).HasDefaultValue(0);
-            builder.Property(p => p.FoundBookTranslations).HasDefaultValue(0);
-            builder.Property(p => p.FoundParticipationEditorialCommittees).HasDefaultValue(0);
-            builder.Property(p => p.FoundFullComposerSoloOrchestraAllTracks).HasDefaultValue(0);
-            builder.Property(p => p.FoundFullComposerSoloOrchestraCompilation).HasDefaultValue(0);
-            builder.Property(p => p.FoundChamberOrchestraInterpretation).HasDefaultValue(0);
-            builder.Property(p => p.FoundIndividualAndCollectiveArtPerformances).HasDefaultValue(0);
-            builder.Property(p => p.FoundScientificCulturalArtisticCollectionsCuratorship).HasDefaultValue(0);
-            builder.Property(p => p.FoundPatentLetter).HasDefaultValue(0);
-            builder.Property(p => p.FoundPatentDeposit).HasDefaultValue(0);
-            builder.Property(p => p.FoundSoftwareRegistration).HasDefaultValue(0);
             builder.Property(p => p.APIndex).HasDefaultValue(0);
-
             builder.Property(p => p.Qualification).IsRequired();
             builder.Property(p => p.ProjectProposalObjectives).IsRequired();
             builder.Property(p => p.AcademicScientificProductionCoherence).IsRequired();
