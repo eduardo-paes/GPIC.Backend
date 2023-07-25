@@ -33,6 +33,10 @@ namespace Domain.UseCases.Project
             UseCaseException.BusinessRuleViolation(project.Notice?.RegistrationStartDate > DateTime.UtcNow || project.Notice?.RegistrationEndDate < DateTime.UtcNow,
                 "O edital não está na fase de inscrição.");
 
+            // Verifica se aluno está preenchido
+            UseCaseException.BusinessRuleViolation(project.StudentId is null,
+                "O projeto não possui aluno vinculado.");
+
             // Verifica se o projeto está aberto
             if (project.Status == EProjectStatus.Opened)
             {

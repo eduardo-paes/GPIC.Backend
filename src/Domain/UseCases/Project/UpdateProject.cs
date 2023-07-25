@@ -15,6 +15,8 @@ public class UpdateProject : IUpdateProject
     private readonly INoticeRepository _noticeRepository;
     private readonly ISubAreaRepository _subAreaRepository;
     private readonly IProgramTypeRepository _programTypeRepository;
+    private readonly IActivityTypeRepository _activityTypeRepository;
+    private readonly IProjectActivityRepository _projectActivityRepository;
     private readonly IMapper _mapper;
     public UpdateProject(IProjectRepository projectRepository,
         IStudentRepository studentRepository,
@@ -22,6 +24,8 @@ public class UpdateProject : IUpdateProject
         INoticeRepository noticeRepository,
         ISubAreaRepository subAreaRepository,
         IProgramTypeRepository programTypeRepository,
+        IActivityTypeRepository activityTypeRepository,
+        IProjectActivityRepository projectActivityRepository,
         IMapper mapper)
     {
         _projectRepository = projectRepository;
@@ -30,6 +34,8 @@ public class UpdateProject : IUpdateProject
         _noticeRepository = noticeRepository;
         _subAreaRepository = subAreaRepository;
         _programTypeRepository = programTypeRepository;
+        _activityTypeRepository = activityTypeRepository;
+        _projectActivityRepository = projectActivityRepository;
         _mapper = mapper;
     }
     #endregion
@@ -42,6 +48,10 @@ public class UpdateProject : IUpdateProject
         // Verifica se o projeto existe
         var project = await _projectRepository.GetById(id)
             ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Project));
+
+        // Verifica se o edital está no período de inscrições
+        if (project.Notice!.RegistrationStartDate > DateTime.UtcNow || project.Notice?.RegistrationEndDate < DateTime.UtcNow)
+            throw UseCaseException.BusinessRuleViolation("Fora do período de inscrição no edital.");
 
         // Verifica se o projeto está aberto
         if (project!.Status == EProjectStatus.Opened)
@@ -72,8 +82,6 @@ public class UpdateProject : IUpdateProject
                 UseCaseException.BusinessRuleViolation(studentProjects.Any(), "Student is already on a project.");
             }
 
-            // TODO: Inserir atualização das atividades (ProjectActivities)
-
             // Atualiza campos permitidos
             project.Title = input.Title;
             project.KeyWord1 = input.KeyWord1;
@@ -88,8 +96,47 @@ public class UpdateProject : IUpdateProject
             project.StudentId = input.StudentId;
             project.SubAreaId = input.SubAreaId;
 
+            // Verifica se foram informadas atividades
+            if (input.Activities?.Any() != true)
+                throw UseCaseException.BusinessRuleViolation("Atividades não informadas.");
+
+            // Obtém atividades do Edital
+            var noticeActivities = await _activityTypeRepository.GetByNoticeId(project.Notice!.Id);
+
+            // Obtém atividades do projeto
+            var projectActivities = await _projectActivityRepository.GetByProjectId(project.Id);
+
+            // Valida se todas as atividades do projeto foram informadas corretamente
+            var updateProjectActivities = new List<Entities.ProjectActivity>();
+            foreach (var activityType in noticeActivities)
+            {
+                // Verifica se as atividades que o professor informou existem no edital 
+                // e se todas as atividades do edital foram informadas.
+                foreach (var activity in activityType.Activities!)
+                {
+                    // Verifica se professor informou valor para essa atividade do edital
+                    var inputActivity = input.Activities!.FirstOrDefault(x => x.ActivityId == activity.Id)
+                        ?? throw UseCaseException.BusinessRuleViolation($"Não foi informado valor para a atividade {activity.Name}.");
+
+                    // Obtém atividade do projeto
+                    var updateProjectActivity = projectActivities.FirstOrDefault(x => x.ActivityId == activity.Id);
+
+                    // Atualiza valores da entidade
+                    updateProjectActivity!.InformedActivities = inputActivity.InformedActivities;
+
+                    // Atualiza atividade do projeto no banco de dados
+                    await _projectActivityRepository.Update(updateProjectActivity);
+                }
+            }
+
             // Atualiza o projeto
             await _projectRepository.Update(project);
+
+            // Atualiza atividades do projeto no banco
+            foreach (var projectActivity in updateProjectActivities)
+            {
+                await _projectActivityRepository.Update(projectActivity);
+            }
 
             // Mapeia o projeto para o retorno e retorna
             return _mapper.Map<ResumedReadProjectOutput>(project);

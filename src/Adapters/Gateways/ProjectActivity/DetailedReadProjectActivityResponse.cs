@@ -1,5 +1,5 @@
-﻿namespace Domain.Contracts.ProjectActivity;
-public class DetailedReadProjectActivityOutput : BaseProjectActivityContract
+﻿namespace Adapters.Gateways.ProjectActivity;
+public class DetailedReadProjectActivityResponse : BaseProjectActivity
 {
     public Guid? Id { get; set; }
     public Guid? ProjectId { get; set; }

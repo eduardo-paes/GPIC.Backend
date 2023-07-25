@@ -21,7 +21,7 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
-                    ExceptionMessageFactory.Invalid(nameof(value)));
+                    ExceptionMessageFactory.Invalid(nameof(Title)));
                 _title = value;
             }
         }
@@ -33,9 +33,9 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
-                    ExceptionMessageFactory.Invalid(nameof(value)));
+                    ExceptionMessageFactory.Invalid(nameof(KeyWord1)));
                 EntityExceptionValidation.When(value!.Length > 100,
-                    ExceptionMessageFactory.MaxLength(nameof(value), 100));
+                    ExceptionMessageFactory.MaxLength(nameof(KeyWord1), 100));
                 _keyWord1 = value;
             }
         }
@@ -47,9 +47,9 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
-                    ExceptionMessageFactory.Invalid(nameof(value)));
+                    ExceptionMessageFactory.Invalid(nameof(KeyWord2)));
                 EntityExceptionValidation.When(value!.Length > 100,
-                    ExceptionMessageFactory.MaxLength(nameof(value), 100));
+                    ExceptionMessageFactory.MaxLength(nameof(KeyWord2), 100));
                 _keyWord2 = value;
             }
         }
@@ -61,9 +61,9 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
-                    ExceptionMessageFactory.Invalid(nameof(value)));
+                    ExceptionMessageFactory.Invalid(nameof(KeyWord3)));
                 EntityExceptionValidation.When(value!.Length > 100,
-                    ExceptionMessageFactory.MaxLength(nameof(value), 100));
+                    ExceptionMessageFactory.MaxLength(nameof(KeyWord3), 100));
                 _keyWord3 = value;
             }
         }
@@ -83,9 +83,9 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
-                    ExceptionMessageFactory.Invalid(nameof(value)));
+                    ExceptionMessageFactory.Invalid(nameof(Objective)));
                 EntityExceptionValidation.When(value?.Length > 1500,
-                    ExceptionMessageFactory.MaxLength(nameof(value), 1500));
+                    ExceptionMessageFactory.MaxLength(nameof(Objective), 1500));
                 _objective = value;
             }
         }
@@ -100,9 +100,9 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
-                    ExceptionMessageFactory.Invalid(nameof(value)));
+                    ExceptionMessageFactory.Invalid(nameof(Methodology)));
                 EntityExceptionValidation.When(value?.Length > 1500,
-                    ExceptionMessageFactory.MaxLength(nameof(value), 1500));
+                    ExceptionMessageFactory.MaxLength(nameof(Methodology), 1500));
                 _methodology = value;
             }
         }
@@ -117,9 +117,9 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
-                    ExceptionMessageFactory.Invalid(nameof(value)));
+                    ExceptionMessageFactory.Invalid(nameof(ExpectedResults)));
                 EntityExceptionValidation.When(value?.Length > 1500,
-                    ExceptionMessageFactory.MaxLength(nameof(value), 1500));
+                    ExceptionMessageFactory.MaxLength(nameof(ExpectedResults), 1500));
                 _expectedResults = value;
             }
         }
@@ -134,7 +134,7 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
-                    ExceptionMessageFactory.Invalid(nameof(value)));
+                    ExceptionMessageFactory.Invalid(nameof(ActivitiesExecutionSchedule)));
                 _activitiesExecutionSchedule = value;
             }
         }
@@ -151,7 +151,7 @@ namespace Domain.Entities
             {
                 {
                     EntityExceptionValidation.When(value == null,
-                        ExceptionMessageFactory.Required(nameof(value)));
+                        ExceptionMessageFactory.Required(nameof(ProgramTypeId)));
                     _programTypeId = value;
                 }
             }
@@ -165,7 +165,7 @@ namespace Domain.Entities
             {
                 {
                     EntityExceptionValidation.When(value == null,
-                        ExceptionMessageFactory.Required(nameof(value)));
+                        ExceptionMessageFactory.Required(nameof(ProfessorId)));
                     _professorId = value;
                 }
             }
@@ -179,7 +179,7 @@ namespace Domain.Entities
             {
                 {
                     EntityExceptionValidation.When(value == null,
-                        ExceptionMessageFactory.Required(nameof(value)));
+                        ExceptionMessageFactory.Required(nameof(SubAreaId)));
                     _subAreaId = value;
                 }
             }
@@ -193,7 +193,7 @@ namespace Domain.Entities
             {
                 {
                     EntityExceptionValidation.When(value == null,
-                        ExceptionMessageFactory.Required(nameof(value)));
+                        ExceptionMessageFactory.Required(nameof(NoticeId)));
                     _noticeId = value;
                 }
             }

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Contracts.ProjectActivity;
-public abstract class BaseProjectActivityContract
+namespace Adapters.Gateways.ProjectActivity;
+public abstract class BaseProjectActivity
 {
     [Required]
     public Guid? ActivityId { get; set; }

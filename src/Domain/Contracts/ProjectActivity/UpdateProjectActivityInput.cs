@@ -1,8 +1,8 @@
-﻿namespace Domain.Contracts.ProjectActivity
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Domain.Contracts.ProjectActivity;
+public class UpdateProjectActivityInput : BaseProjectActivityContract
 {
-    public class UpdateProjectActivityInput : BaseProjectActivityContract
-    {
-        public int? InformedActivities { get; set; }
-        public int? FoundActivities { get; set; }
-    }
+    [Required]
+    public Guid? ProjectId { get; set; }
 }

@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using Adapters.Gateways.Notice;
 using Domain.Contracts.Notice;
-using Domain.Contracts.Activity;
-using Adapters.Gateways.Activity;
 
 namespace Adapters.Mappings;
 public class NoticeMappings : Profile

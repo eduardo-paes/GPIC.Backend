@@ -1,5 +1,5 @@
-using Adapters.Gateways.ProjectEvaluation;
 using AutoMapper;
+using Adapters.Gateways.ProjectEvaluation;
 using Domain.Contracts.ProjectEvaluation;
 
 namespace Adapters.Mappings
