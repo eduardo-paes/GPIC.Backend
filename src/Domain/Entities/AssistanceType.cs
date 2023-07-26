@@ -56,6 +56,6 @@ namespace Domain.Entities
         /// <summary>
         /// Constructor to dbcontext EF instancing.
         /// </summary>
-        public AssistanceType() { }
+        protected AssistanceType() { }
     }
 }

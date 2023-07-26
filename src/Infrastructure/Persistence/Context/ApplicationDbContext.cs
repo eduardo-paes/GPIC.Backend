@@ -27,6 +27,7 @@ namespace Infrastructure.Persistence.Context
         public DbSet<Professor> Professors { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<ProjectEvaluation> ProjectEvaluations { get; set; }
+        public DbSet<ProjectActivity> ProjectActivities { get; set; }
         public DbSet<ProgramType> ProgramTypes { get; set; }
         public DbSet<AssistanceType> AssistanceTypes { get; set; }
         public DbSet<Student> Students { get; set; }

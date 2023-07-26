@@ -8,8 +8,12 @@ namespace Adapters.Mappings
     {
         public ProjectMappings()
         {
-            CreateMap<OpenProjectInput, OpenProjectRequest>().ReverseMap();
-            CreateMap<UpdateProjectInput, UpdateProjectRequest>().ReverseMap();
+            CreateMap<OpenProjectInput, OpenProjectRequest>()
+                .ForMember(dest => dest.Activities, opt => opt.MapFrom(src => src.Activities))
+                .ReverseMap();
+            CreateMap<UpdateProjectInput, UpdateProjectRequest>()
+                .ForMember(dest => dest.Activities, opt => opt.MapFrom(src => src.Activities))
+                .ReverseMap();
             CreateMap<ResumedReadProjectOutput, ResumedReadProjectResponse>().ReverseMap();
             CreateMap<DetailedReadProjectOutput, DetailedReadProjectResponse>().ReverseMap();
         }

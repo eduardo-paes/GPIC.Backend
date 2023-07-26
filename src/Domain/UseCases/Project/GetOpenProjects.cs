@@ -31,7 +31,7 @@ namespace Domain.UseCases.Project
 
             // Se o usuário não estiver autenticado, lança uma exceção.
             UseCaseException.BusinessRuleViolation(userClaims == null || userClaims.Role == null,
-                "Not authorized user.");
+                "Usuário não autorizado.");
 
             // Obtém o tipo de usuário.
             var userRole = Enum.Parse<ERole>(userClaims?.Role!);
@@ -57,7 +57,7 @@ namespace Domain.UseCases.Project
 
             // Se o usuário não for nenhum dos tipos acima, lança uma exceção.
             else
-                throw UseCaseException.BusinessRuleViolation("Not authorized user.");
+                throw UseCaseException.BusinessRuleViolation("Usuário não autorizado.");
 
             // Mapeia a lista de projetos para uma lista de projetos resumidos e retorna.
             return _mapper.Map<IList<ResumedReadProjectOutput>>(projects);

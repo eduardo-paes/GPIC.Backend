@@ -29,28 +29,17 @@ namespace Domain.UseCases.Project
             var project = await _projectRepository.GetById(projectId!.Value)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Project));
 
+            // Verifica se edital está em fase de inscrição
+            UseCaseException.BusinessRuleViolation(project.Notice?.RegistrationStartDate > DateTime.UtcNow || project.Notice?.RegistrationEndDate < DateTime.UtcNow,
+                "O edital não está na fase de inscrição.");
+
+            // Verifica se aluno está preenchido
+            UseCaseException.BusinessRuleViolation(project.StudentId is null,
+                "O projeto não possui aluno vinculado.");
+
             // Verifica se o projeto está aberto
             if (project.Status == EProjectStatus.Opened)
             {
-                // Verifica se todos os campos do projeto foram preenchidos
-                project.WorkType1 ??= 0;
-                project.WorkType2 ??= 0;
-                project.IndexedConferenceProceedings ??= 0;
-                project.NotIndexedConferenceProceedings ??= 0;
-                project.CompletedBook ??= 0;
-                project.OrganizedBook ??= 0;
-                project.BookChapters ??= 0;
-                project.BookTranslations ??= 0;
-                project.ParticipationEditorialCommittees ??= 0;
-                project.FullComposerSoloOrchestraAllTracks ??= 0;
-                project.FullComposerSoloOrchestraCompilation ??= 0;
-                project.ChamberOrchestraInterpretation ??= 0;
-                project.IndividualAndCollectiveArtPerformances ??= 0;
-                project.ScientificCulturalArtisticCollectionsCuratorship ??= 0;
-                project.PatentLetter ??= 0;
-                project.PatentDeposit ??= 0;
-                project.SoftwareRegistration ??= 0;
-
                 // Altera o status do projeto para submetido
                 project.Status = EProjectStatus.Submitted;
                 project.StatusDescription = EProjectStatus.Submitted.GetDescription();
@@ -64,7 +53,7 @@ namespace Domain.UseCases.Project
             }
             else
             {
-                throw UseCaseException.BusinessRuleViolation("The project is not at a stage that allows submission.");
+                throw UseCaseException.BusinessRuleViolation("Usuário não autorizado.");
             }
         }
     }

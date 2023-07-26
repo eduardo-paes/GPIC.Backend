@@ -38,6 +38,6 @@ namespace Domain.Entities
         /// <summary>
         /// Constructor to dbcontext EF instancing.
         /// </summary>
-        public Course() { }
+        protected Course() { }
     }
 }

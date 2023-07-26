@@ -1,5 +1,5 @@
-using Adapters.Gateways.Activity;
 using AutoMapper;
+using Adapters.Gateways.Activity;
 using Domain.Contracts.Activity;
 
 namespace Adapters.Mappings

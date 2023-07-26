@@ -227,7 +227,7 @@ namespace Domain.Entities
         /// <summary>
         /// Constructor to dbcontext EF instancing.
         /// </summary>
-        public Notice() { }
+        protected Notice() { }
         #endregion
     }
 }
