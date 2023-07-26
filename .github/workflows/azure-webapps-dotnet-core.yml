@@ -47,8 +47,7 @@ jobs:
           JWT_ISSUER=${{ secrets.JWT_ISSUER }}
           JWT_SECRET_KEY=${{ secrets.JWT_SECRET_KEY }}
           SMTP_EMAIL_PASSWORD=${{ secrets.SMTP_EMAIL_PASSWORD }}
-          SMTP_EMAIL_USERNAME=${{ secrets.SMTP_EMAIL_USERNAME }}
-          TEST_SECRETS=${{ secrets.TESTE }}" > src/Infrastructure/WebAPI/.env
+          SMTP_EMAIL_USERNAME=${{ secrets.SMTP_EMAIL_USERNAME }}" > src/Infrastructure/WebAPI/.env
 
       - name: Set environment variable
         run: echo "ASPNETCORE_ENVIRONMENT=${{ env.ASPNETCORE_ENVIRONMENT }}" >> $GITHUB_ENV
