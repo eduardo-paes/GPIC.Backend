@@ -10,6 +10,7 @@ namespace Adapters.Mappings
         {
             CreateMap<CreateProjectActivityInput, CreateProjectActivityRequest>().ReverseMap();
             CreateMap<UpdateProjectActivityInput, UpdateProjectActivityRequest>().ReverseMap();
+            CreateMap<EvaluateProjectActivityInput, EvaluateProjectActivityRequest>().ReverseMap();
             CreateMap<ResumedReadProjectActivityOutput, ResumedReadProjectActivityResponse>().ReverseMap();
             CreateMap<DetailedReadProjectActivityOutput, DetailedReadProjectActivityResponse>().ReverseMap();
         }

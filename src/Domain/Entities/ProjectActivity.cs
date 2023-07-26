@@ -84,5 +84,27 @@ namespace Domain.Entities
         /// </summary>
         protected ProjectActivity() { }
         #endregion
+
+        #region Methods
+        /// <summary>
+        /// Calcula a pontuação da Atividade.
+        /// </summary>
+        /// <returns>Total obtido com o cálculo.</returns>
+        public double CalculatePoints()
+        {
+            // Verifica se a Atividade está preenchida para calcular a pontuação.
+            EntityExceptionValidation.When(Activity is null,
+                ExceptionMessageFactory.BusinessRuleViolation("Atividade não informada, não é possível calcular a pontuação."));
+
+            // A pontuação é calculada multiplicando a quantidade de atividades encontradas pela pontuação da atividade.
+            double points = Activity!.Points!.Value * FoundActivities!.Value;
+
+            // Verifica se limite foi informado, caso não tenha sido, utiliza o valor máximo do tipo.
+            double limits = Activity!.Limits.HasValue ? (double)Activity.Limits.Value : double.MaxValue;
+
+            // Se a pontuação calculada for maior que o limite da atividade, retorna o limite da atividade, caso contrário, retorna a pontuação calculada.
+            return limits < points ? limits : points;
+        }
+        #endregion
     }
 }

@@ -8,9 +8,13 @@ namespace Adapters.Mappings
     {
         public ProjectEvaluationMapping()
         {
-            CreateMap<EvaluateAppealProjectInput, EvaluateAppealProjectRequest>();
-            CreateMap<EvaluateSubmissionProjectInput, EvaluateSubmissionProjectRequest>();
-            CreateMap<DetailedReadProjectEvaluationResponse, DetailedReadProjectEvaluationOutput>();
+            CreateMap<EvaluateAppealProjectInput, EvaluateAppealProjectRequest>()
+                .ReverseMap();
+            CreateMap<EvaluateSubmissionProjectInput, EvaluateSubmissionProjectRequest>()
+                .ForMember(dest => dest.Activities, opt => opt.MapFrom(src => src.Activities))
+                .ReverseMap();
+            CreateMap<DetailedReadProjectEvaluationResponse, DetailedReadProjectEvaluationOutput>()
+                .ReverseMap();
         }
     }
 }

@@ -154,6 +154,11 @@ namespace Domain.Entities
         public double APIndex { get; set; }
 
         /// <summary>
+        /// Pontuação Total Final.
+        /// </summary>
+        public double FinalScore { get; set; }
+
+        /// <summary>
         /// Titulação do Orientador.
         /// Doutor (2); Mestre (1).
         /// </summary>
@@ -241,6 +246,20 @@ namespace Domain.Entities
             ProposalMethodologyAdaptation = proposalMethodologyAdaptation;
             EffectiveContributionToResearch = effectiveContributionToResearch;
             APIndex = apIndex;
+        }
+        #endregion
+
+        #region Methods
+        /// <summary>
+        /// Calcula a pontuação final do projeto considerando todos os critérios.
+        /// </summary>
+        public void CalculateFinalScore()
+        {
+            FinalScore = (double)Qualification!
+                + (double)ProjectProposalObjectives!
+                + (double)AcademicScientificProductionCoherence!
+                + (double)ProposalMethodologyAdaptation!
+                + (double)EffectiveContributionToResearch!;
         }
         #endregion
     }

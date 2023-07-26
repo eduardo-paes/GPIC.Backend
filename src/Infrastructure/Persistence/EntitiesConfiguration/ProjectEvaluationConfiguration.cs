@@ -23,6 +23,7 @@ namespace Persistence.EntitiesConfiguration
             builder.Property(p => p.DocumentsEvaluationDescription);
 
             builder.Property(p => p.APIndex).HasDefaultValue(0);
+            builder.Property(p => p.FinalScore).HasDefaultValue(0);
             builder.Property(p => p.Qualification).IsRequired();
             builder.Property(p => p.ProjectProposalObjectives).IsRequired();
             builder.Property(p => p.AcademicScientificProductionCoherence).IsRequired();

@@ -15,15 +15,21 @@ namespace Domain.UseCases.ProjectEvaluation
         private readonly IMapper _mapper;
         private readonly IProjectRepository _projectRepository;
         private readonly ITokenAuthenticationService _tokenAuthenticationService;
+        private readonly IProjectActivityRepository _projectActivityRepository;
+        private readonly IActivityTypeRepository _activityTypeRepository;
         private readonly IProjectEvaluationRepository _projectEvaluationRepository;
         public EvaluateSubmissionProject(IMapper mapper,
             IProjectRepository projectRepository,
             ITokenAuthenticationService tokenAuthenticationService,
+            IProjectActivityRepository projectActivityRepository,
+            IActivityTypeRepository activityTypeRepository,
             IProjectEvaluationRepository projectEvaluationRepository)
         {
             _mapper = mapper;
             _projectRepository = projectRepository;
             _tokenAuthenticationService = tokenAuthenticationService;
+            _projectActivityRepository = projectActivityRepository;
+            _activityTypeRepository = activityTypeRepository;
             _projectEvaluationRepository = projectEvaluationRepository;
         }
         #endregion
@@ -67,8 +73,6 @@ namespace Domain.UseCases.ProjectEvaluation
             UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.SubmissionEvaluationDescription),
                 nameof(input.SubmissionEvaluationDescription));
 
-            // TODO: Processar atividades do projeto e calcular pontuação.
-
             // Mapeia dados de entrada para entidade.
             projectEvaluation = new Entities.ProjectEvaluation(input.ProjectId,
                 input.IsProductivityFellow,
@@ -82,6 +86,41 @@ namespace Domain.UseCases.ProjectEvaluation
                 TryCastEnum<EScore>(input.ProposalMethodologyAdaptation),
                 TryCastEnum<EScore>(input.EffectiveContributionToResearch),
                 0);
+
+            // Obtém atividades do Edital
+            var noticeActivities = await _activityTypeRepository.GetByNoticeId(project.Notice!.Id);
+
+            // Obtém atividades do projeto
+            var projectActivities = await _projectActivityRepository.GetByProjectId(project.Id);
+
+            // Valida se todas as atividades do projeto foram informadas corretamente
+            var updateProjectActivities = new List<Entities.ProjectActivity>();
+            foreach (var activityType in noticeActivities)
+            {
+                // Verifica se as atividades que o professor informou existem no edital 
+                // e se todas as atividades do edital foram informadas.
+                foreach (var activity in activityType.Activities!)
+                {
+                    // Verifica se professor informou valor para essa atividade do edital
+                    var inputActivity = input.Activities!.FirstOrDefault(x => x.ActivityId == activity.Id)
+                        ?? throw UseCaseException.BusinessRuleViolation($"Não foi informado valor para a atividade {activity.Name}.");
+
+                    // Obtém atividade do projeto
+                    var updateProjectActivity = projectActivities.FirstOrDefault(x => x.ActivityId == activity.Id);
+
+                    // Atualiza valores da entidade
+                    updateProjectActivity!.FoundActivities = inputActivity.FoundActivities;
+
+                    // Calcula pontuação da atividade
+                    projectEvaluation.APIndex += updateProjectActivity.CalculatePoints();
+
+                    // Atualiza atividade do projeto no banco de dados
+                    await _projectActivityRepository.Update(updateProjectActivity);
+                }
+            }
+
+            // Calcula pontuação da avaliação
+            projectEvaluation.CalculateFinalScore();
 
             // Adiciona avaliação do projeto.
             await _projectEvaluationRepository.Create(projectEvaluation);
