@@ -79,14 +79,16 @@ namespace Domain.UseCases.ProjectEvaluation
             // Se projeto foi aceito, adiciona prazo para envio da documentação.
             if ((EProjectStatus)input.AppealEvaluationStatus == EProjectStatus.Accepted)
             {
-                project.Status = EProjectStatus.DocumentAnalysis;
-                project.StatusDescription = EProjectStatus.DocumentAnalysis.GetDescription();
+                project.Status = EProjectStatus.Accepted;
+                project.StatusDescription = EProjectStatus.Accepted.GetDescription();
             }
             else
             {
-                project.Status = EProjectStatus.Rejected;
-                project.StatusDescription = EProjectStatus.Rejected.GetDescription();
+                project.Status = EProjectStatus.Canceled;
+                project.StatusDescription = EProjectStatus.Canceled.GetDescription();
             }
+
+            // TODO: Informar ao professor o resultado da avaliação.
 
             // Atualiza projeto.
             var output = await _projectRepository.Update(project);

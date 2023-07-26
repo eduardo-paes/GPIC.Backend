@@ -69,10 +69,6 @@ namespace Domain.UseCases.ProjectEvaluation
             UseCaseException.NotInformedParam(input.SubmissionEvaluationStatus is null,
                 nameof(input.SubmissionEvaluationStatus));
 
-            // Verifica se a descrição da avaliação foi informada.
-            UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.SubmissionEvaluationDescription),
-                nameof(input.SubmissionEvaluationDescription));
-
             // Mapeia dados de entrada para entidade.
             projectEvaluation = new Entities.ProjectEvaluation(input.ProjectId,
                 input.IsProductivityFellow,
@@ -128,14 +124,16 @@ namespace Domain.UseCases.ProjectEvaluation
             // Se projeto foi aceito, adiciona prazo para envio da documentação.
             if (projectEvaluation.SubmissionEvaluationStatus == EProjectStatus.Accepted)
             {
-                project.Status = EProjectStatus.DocumentAnalysis;
-                project.StatusDescription = EProjectStatus.DocumentAnalysis.GetDescription();
+                project.Status = EProjectStatus.Accepted;
+                project.StatusDescription = EProjectStatus.Accepted.GetDescription();
             }
             else
             {
                 project.Status = EProjectStatus.Rejected;
                 project.StatusDescription = EProjectStatus.Rejected.GetDescription();
             }
+
+            // TODO: Informar ao professor o resultado da avaliação.
 
             // Atualiza projeto.
             var output = await _projectRepository.Update(project);

@@ -239,13 +239,17 @@ namespace Domain.Entities
             SubmissionEvaluatorId = submissionEvaluatorId;
             SubmissionEvaluationStatus = submissionEvaluationStatus;
             SubmissionEvaluationDate = submissionEvaluationDate;
-            SubmissionEvaluationDescription = submissionEvaluationDescription;
             Qualification = qualification;
             ProjectProposalObjectives = projectProposalObjectives;
             AcademicScientificProductionCoherence = academicScientificProductionCoherence;
             ProposalMethodologyAdaptation = proposalMethodologyAdaptation;
             EffectiveContributionToResearch = effectiveContributionToResearch;
             APIndex = apIndex;
+
+            // Define a descrição da avaliação da submissão.
+            SubmissionEvaluationDescription = submissionEvaluationStatus == EProjectStatus.Accepted
+                ? EProjectStatus.Accepted.GetDescription()
+                : submissionEvaluationDescription;
         }
         #endregion
 
