@@ -22,10 +22,10 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<IEnumerable<Professor>> GetAll(int skip, int take) => await _context.Professors
             .Include(x => x.User)
+            .OrderBy(x => x.User!.Name)
+            .AsAsyncEnumerable()
             .Skip(skip)
             .Take(take)
-            .AsAsyncEnumerable()
-            .OrderBy(x => x.User?.Name)
             .ToListAsync();
 
         public async Task<Professor?> GetById(Guid? id) =>
@@ -49,6 +49,12 @@ namespace Infrastructure.Persistence.Repositories
             await _context.SaveChangesAsync();
             return model;
         }
+
+        public async Task<IEnumerable<Professor>> GetAllActiveProfessors() => await _context.Professors
+            .Include(x => x.User)
+            .AsAsyncEnumerable()
+            .Where(x => x.SuspensionEndDate < DateTime.UtcNow || x.SuspensionEndDate == null)
+            .ToListAsync();
         #endregion
     }
 }

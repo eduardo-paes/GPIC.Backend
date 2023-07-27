@@ -20,6 +20,7 @@ namespace Infrastructure.Persistence.EntitiesConfiguration
             builder.Property(p => p.UserId)
                 .IsRequired();
             builder.Property(p => p.DeletedAt);
+            builder.Property(p => p.SuspensionEndDate);
 
             builder.HasOne(a => a.User)
                 .WithOne()
