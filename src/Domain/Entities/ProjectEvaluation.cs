@@ -1,12 +1,11 @@
 using Domain.Entities.Enums;
+using Domain.Entities.Primitives;
 using Domain.Validation;
 
 namespace Domain.Entities
 {
-    public class ProjectEvaluation
+    public class ProjectEvaluation : Entity
     {
-        public Guid? Id { get; protected set; }
-
         #region Properties
         #region Informações Gerais da Avaliação
         private Guid? _projectId;
