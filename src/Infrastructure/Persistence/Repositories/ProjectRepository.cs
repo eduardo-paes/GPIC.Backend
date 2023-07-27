@@ -36,11 +36,12 @@ namespace Infrastructure.Persistence.Repositories
         public async Task<Project?> GetById(Guid? id)
         {
             return await _context.Projects
+                .Include(x => x.Notice)
+                .Include(x => x.SubArea)
                 .Include(x => x.Student)
                 .Include(x => x.Professor)
-                .Include(x => x.SubArea)
                 .Include(x => x.ProgramType)
-                .Include(x => x.Notice)
+                .Include(x => x.Professor!.User)
                 .IgnoreQueryFilters()
                 .AsAsyncEnumerable()
                 .FirstOrDefaultAsync(x => x.Id == id)

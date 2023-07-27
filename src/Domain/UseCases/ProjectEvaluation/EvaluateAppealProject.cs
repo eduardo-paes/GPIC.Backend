@@ -14,15 +14,18 @@ namespace Domain.UseCases.ProjectEvaluation
         #region Global Scope
         private readonly IMapper _mapper;
         private readonly IProjectRepository _projectRepository;
+        private readonly IEmailService _emailService;
         private readonly ITokenAuthenticationService _tokenAuthenticationService;
         private readonly IProjectEvaluationRepository _projectEvaluationRepository;
         public EvaluateAppealProject(IMapper mapper,
             IProjectRepository projectRepository,
+            IEmailService emailService,
             ITokenAuthenticationService tokenAuthenticationService,
             IProjectEvaluationRepository projectEvaluationRepository)
         {
             _mapper = mapper;
             _projectRepository = projectRepository;
+            _emailService = emailService;
             _tokenAuthenticationService = tokenAuthenticationService;
             _projectEvaluationRepository = projectEvaluationRepository;
         }
@@ -88,7 +91,13 @@ namespace Domain.UseCases.ProjectEvaluation
                 project.StatusDescription = EProjectStatus.Canceled.GetDescription();
             }
 
-            // TODO: Informar ao professor o resultado da avaliação.
+            // Informa ao professor o resultado da avaliação.
+            await _emailService.SendProjectNotificationEmail(
+                project.Professor!.User!.Email,
+                project.Professor!.User!.Name,
+                project.Title,
+                project.StatusDescription,
+                projectEvaluation.SubmissionEvaluationDescription);
 
             // Atualiza projeto.
             var output = await _projectRepository.Update(project);

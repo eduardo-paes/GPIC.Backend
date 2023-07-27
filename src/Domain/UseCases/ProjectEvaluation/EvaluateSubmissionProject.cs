@@ -17,12 +17,14 @@ namespace Domain.UseCases.ProjectEvaluation
         private readonly ITokenAuthenticationService _tokenAuthenticationService;
         private readonly IProjectActivityRepository _projectActivityRepository;
         private readonly IActivityTypeRepository _activityTypeRepository;
+        private readonly IEmailService _emailService;
         private readonly IProjectEvaluationRepository _projectEvaluationRepository;
         public EvaluateSubmissionProject(IMapper mapper,
             IProjectRepository projectRepository,
             ITokenAuthenticationService tokenAuthenticationService,
             IProjectActivityRepository projectActivityRepository,
             IActivityTypeRepository activityTypeRepository,
+            IEmailService emailService,
             IProjectEvaluationRepository projectEvaluationRepository)
         {
             _mapper = mapper;
@@ -30,6 +32,7 @@ namespace Domain.UseCases.ProjectEvaluation
             _tokenAuthenticationService = tokenAuthenticationService;
             _projectActivityRepository = projectActivityRepository;
             _activityTypeRepository = activityTypeRepository;
+            _emailService = emailService;
             _projectEvaluationRepository = projectEvaluationRepository;
         }
         #endregion
@@ -133,7 +136,13 @@ namespace Domain.UseCases.ProjectEvaluation
                 project.StatusDescription = EProjectStatus.Rejected.GetDescription();
             }
 
-            // TODO: Informar ao professor o resultado da avaliação.
+            // Informa ao professor o resultado da avaliação.
+            await _emailService.SendProjectNotificationEmail(
+                project.Professor!.User!.Email,
+                project.Professor!.User!.Name,
+                project.Title,
+                project.StatusDescription,
+                projectEvaluation.SubmissionEvaluationDescription);
 
             // Atualiza projeto.
             var output = await _projectRepository.Update(project);
