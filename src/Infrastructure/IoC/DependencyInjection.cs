@@ -58,6 +58,8 @@ public static class DependencyInjection
 
         #region Repositórios
         services.AddScoped<IAreaRepository, AreaRepository>();
+        services.AddScoped<IActivityRepository, ActivityRepository>();
+        services.AddScoped<IActivityTypeRepository, ActivityTypeRepository>();
         services.AddScoped<IAssistanceTypeRepository, AssistanceTypeRepository>();
         services.AddScoped<ICampusRepository, CampusRepository>();
         services.AddScoped<ICourseRepository, CourseRepository>();
@@ -66,6 +68,7 @@ public static class DependencyInjection
         services.AddScoped<IProfessorRepository, ProfessorRepository>();
         services.AddScoped<IProgramTypeRepository, ProgramTypeRepository>();
         services.AddScoped<IProjectRepository, ProjectRepository>();
+        services.AddScoped<IProjectActivityRepository, ProjectActivityRepository>();
         services.AddScoped<IProjectEvaluationRepository, ProjectEvaluationRepository>();
         services.AddScoped<IStudentRepository, StudentRepository>();
         services.AddScoped<ISubAreaRepository, SubAreaRepository>();

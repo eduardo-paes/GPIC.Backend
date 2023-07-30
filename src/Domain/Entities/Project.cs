@@ -21,7 +21,7 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
-                    ExceptionMessageFactory.Invalid(nameof(value)));
+                    ExceptionMessageFactory.Invalid(nameof(Title)));
                 _title = value;
             }
         }
@@ -33,9 +33,9 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
-                    ExceptionMessageFactory.Invalid(nameof(value)));
+                    ExceptionMessageFactory.Invalid(nameof(KeyWord1)));
                 EntityExceptionValidation.When(value!.Length > 100,
-                    ExceptionMessageFactory.MaxLength(nameof(value), 100));
+                    ExceptionMessageFactory.MaxLength(nameof(KeyWord1), 100));
                 _keyWord1 = value;
             }
         }
@@ -47,9 +47,9 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
-                    ExceptionMessageFactory.Invalid(nameof(value)));
+                    ExceptionMessageFactory.Invalid(nameof(KeyWord2)));
                 EntityExceptionValidation.When(value!.Length > 100,
-                    ExceptionMessageFactory.MaxLength(nameof(value), 100));
+                    ExceptionMessageFactory.MaxLength(nameof(KeyWord2), 100));
                 _keyWord2 = value;
             }
         }
@@ -61,9 +61,9 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
-                    ExceptionMessageFactory.Invalid(nameof(value)));
+                    ExceptionMessageFactory.Invalid(nameof(KeyWord3)));
                 EntityExceptionValidation.When(value!.Length > 100,
-                    ExceptionMessageFactory.MaxLength(nameof(value), 100));
+                    ExceptionMessageFactory.MaxLength(nameof(KeyWord3), 100));
                 _keyWord3 = value;
             }
         }
@@ -83,9 +83,9 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
-                    ExceptionMessageFactory.Invalid(nameof(value)));
+                    ExceptionMessageFactory.Invalid(nameof(Objective)));
                 EntityExceptionValidation.When(value?.Length > 1500,
-                    ExceptionMessageFactory.MaxLength(nameof(value), 1500));
+                    ExceptionMessageFactory.MaxLength(nameof(Objective), 1500));
                 _objective = value;
             }
         }
@@ -100,9 +100,9 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
-                    ExceptionMessageFactory.Invalid(nameof(value)));
+                    ExceptionMessageFactory.Invalid(nameof(Methodology)));
                 EntityExceptionValidation.When(value?.Length > 1500,
-                    ExceptionMessageFactory.MaxLength(nameof(value), 1500));
+                    ExceptionMessageFactory.MaxLength(nameof(Methodology), 1500));
                 _methodology = value;
             }
         }
@@ -117,9 +117,9 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
-                    ExceptionMessageFactory.Invalid(nameof(value)));
+                    ExceptionMessageFactory.Invalid(nameof(ExpectedResults)));
                 EntityExceptionValidation.When(value?.Length > 1500,
-                    ExceptionMessageFactory.MaxLength(nameof(value), 1500));
+                    ExceptionMessageFactory.MaxLength(nameof(ExpectedResults), 1500));
                 _expectedResults = value;
             }
         }
@@ -134,286 +134,8 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(string.IsNullOrWhiteSpace(value),
-                    ExceptionMessageFactory.Invalid(nameof(value)));
+                    ExceptionMessageFactory.Invalid(nameof(ActivitiesExecutionSchedule)));
                 _activitiesExecutionSchedule = value;
-            }
-        }
-        #endregion
-
-        #region Produção Científica - Trabalhos Publicados
-        private int? _workType1;
-        /// <summary>
-        /// Periódicos indexados nas bases do tipo 1 ou constantes na base QUALIS do estrato superior (A1, A2 e B1) (1).
-        /// </summary>
-        public int? WorkType1
-        {
-            get => _workType1;
-            set
-            {
-                value ??= 0;
-                EntityExceptionValidation.When(value < 0,
-                    ExceptionMessageFactory.Invalid(nameof(value)));
-                _workType1 = value;
-            }
-        }
-
-        private int? _workType2;
-        /// <summary>
-        /// Periódicos indexados nas bases do tipo 2 ou constantes na base QUALIS do estrato inferior (B2, B3, B4, B5) (2).
-        /// </summary>
-        public int? WorkType2
-        {
-            get => _workType2;
-            set
-            {
-                value ??= 0;
-                EntityExceptionValidation.When(value < 0,
-                    ExceptionMessageFactory.Invalid(nameof(value)));
-                _workType2 = value;
-            }
-        }
-
-        private int? _indexedConferenceProceedings;
-        /// <summary>
-        /// Anais de Congressos indexados (3a).
-        /// </summary>
-        public int? IndexedConferenceProceedings
-        {
-            get => _indexedConferenceProceedings;
-            set
-            {
-                value ??= 0;
-                EntityExceptionValidation.When(value < 0,
-                    ExceptionMessageFactory.Invalid(nameof(value)));
-                _indexedConferenceProceedings = value;
-            }
-        }
-
-        private int? _notIndexedConferenceProceedings;
-        /// <summary>
-        /// Anais de Congressos não indexados (3b).
-        /// </summary>
-        public int? NotIndexedConferenceProceedings
-        {
-            get => _notIndexedConferenceProceedings;
-            set
-            {
-                value ??= 0;
-                EntityExceptionValidation.When(value < 0,
-                    ExceptionMessageFactory.Invalid(nameof(value)));
-                _notIndexedConferenceProceedings = value;
-            }
-        }
-
-        private int? _completedBook;
-        /// <summary>
-        /// Livros - Completos
-        /// </summary>
-        public int? CompletedBook
-        {
-            get => _completedBook;
-            set
-            {
-                value ??= 0;
-                EntityExceptionValidation.When(value < 0,
-                    ExceptionMessageFactory.Invalid(nameof(value)));
-                _completedBook = value;
-            }
-        }
-
-        private int? _organizedBook;
-        /// <summary>
-        /// Livros - Organizados
-        /// </summary>
-        public int? OrganizedBook
-        {
-            get => _organizedBook;
-            set
-            {
-                value ??= 0;
-                EntityExceptionValidation.When(value < 0,
-                    ExceptionMessageFactory.Invalid(nameof(value)));
-                _organizedBook = value;
-            }
-        }
-
-        private int? _bookChapters;
-        /// <summary>
-        /// Livros - Capítulos
-        /// </summary>
-        public int? BookChapters
-        {
-            get => _bookChapters;
-            set
-            {
-                value ??= 0;
-                EntityExceptionValidation.When(value < 0,
-                    ExceptionMessageFactory.Invalid(nameof(value)));
-                _bookChapters = value;
-            }
-        }
-
-        private int? _bookTranslations;
-        /// <summary>
-        /// Livros - Tradução
-        /// </summary>
-        public int? BookTranslations
-        {
-            get => _bookTranslations;
-            set
-            {
-                value ??= 0;
-                EntityExceptionValidation.When(value < 0,
-                    ExceptionMessageFactory.Invalid(nameof(value)));
-                _bookTranslations = value;
-            }
-        }
-
-        private int? _participationEditorialCommittees;
-        /// <summary>
-        /// Participação em comissão editorial de editoras e instituições acadêmicas.
-        /// </summary>
-        public int? ParticipationEditorialCommittees
-        {
-            get => _participationEditorialCommittees;
-            set
-            {
-                value ??= 0;
-                EntityExceptionValidation.When(value < 0,
-                    ExceptionMessageFactory.Invalid(nameof(value)));
-                _participationEditorialCommittees = value;
-            }
-        }
-        #endregion
-
-        #region Produção Artístca e Cultural - Produção Apresentada
-        private int? _fullComposerSoloOrchestraAllTracks;
-        /// <summary>
-        /// Autoria ou coautoria de CD ou DVD publicado como compositor ou intérprete principal (solo, duo ou regência) em todas as faixas.
-        /// </summary>
-        public int? FullComposerSoloOrchestraAllTracks
-        {
-            get => _fullComposerSoloOrchestraAllTracks;
-            set
-            {
-                value ??= 0;
-                EntityExceptionValidation.When(value < 0,
-                    ExceptionMessageFactory.Invalid(nameof(value)));
-                _fullComposerSoloOrchestraAllTracks = value;
-            }
-        }
-
-        private int? _fullComposerSoloOrchestraCompilation;
-        /// <summary>
-        /// Autoria ou coautoria de CD ou DVD publicado como compositor ou intérprete principal (solo, duo ou regência) em coletânea (sem participação em todas as faixas).
-        /// </summary>
-        public int? FullComposerSoloOrchestraCompilation
-        {
-            get => _fullComposerSoloOrchestraCompilation;
-            set
-            {
-                value ??= 0;
-                EntityExceptionValidation.When(value < 0,
-                    ExceptionMessageFactory.Invalid(nameof(value)));
-                _fullComposerSoloOrchestraCompilation = value;
-            }
-        }
-
-        private int? _chamberOrchestraInterpretation;
-        /// <summary>
-        /// Participação em CD ou DVD como intérprete em grupo de câmara ou orquestra.
-        /// </summary>
-        public int? ChamberOrchestraInterpretation
-        {
-            get => _chamberOrchestraInterpretation;
-            set
-            {
-                value ??= 0;
-                EntityExceptionValidation.When(value < 0,
-                    ExceptionMessageFactory.Invalid(nameof(value)));
-                _chamberOrchestraInterpretation = value;
-            }
-        }
-
-        private int? _individualAndCollectiveArtPerformances;
-        /// <summary>
-        /// Apresentações individuais e coletivas no campo das artes.
-        /// </summary>
-        public int? IndividualAndCollectiveArtPerformances
-        {
-            get => _individualAndCollectiveArtPerformances;
-            set
-            {
-                value ??= 0;
-                EntityExceptionValidation.When(value < 0,
-                    ExceptionMessageFactory.Invalid(nameof(value)));
-                _individualAndCollectiveArtPerformances = value;
-            }
-        }
-
-        private int? _scientificCulturalArtisticCollectionsCuratorship;
-        /// <summary>
-        /// Curadoria de coleções ou exposições científicas, culturais e artísticas.
-        /// </summary>
-        public int? ScientificCulturalArtisticCollectionsCuratorship
-        {
-            get => _scientificCulturalArtisticCollectionsCuratorship;
-            set
-            {
-                value ??= 0;
-                EntityExceptionValidation.When(value < 0,
-                    ExceptionMessageFactory.Invalid(nameof(value)));
-                _scientificCulturalArtisticCollectionsCuratorship = value;
-            }
-        }
-        #endregion
-
-        #region Produção Técnica - Produtos Registrados
-        private int? _patentLetter;
-        /// <summary>
-        /// Carta patente com titularidade do CEFET/RJ.
-        /// </summary>
-        public int? PatentLetter
-        {
-            get => _patentLetter;
-            set
-            {
-                value ??= 0;
-                EntityExceptionValidation.When(value < 0,
-                    ExceptionMessageFactory.Invalid(nameof(value)));
-                _patentLetter = value;
-            }
-        }
-
-        private int? _patentDeposit;
-        /// <summary>
-        /// Depósito de patente com titularidade do CEFET/RJ.
-        /// </summary>
-        public int? PatentDeposit
-        {
-            get => _patentDeposit;
-            set
-            {
-                value ??= 0;
-                EntityExceptionValidation.When(value < 0,
-                    ExceptionMessageFactory.Invalid(nameof(value)));
-                _patentDeposit = value;
-            }
-        }
-
-        private int? _softwareRegistration;
-        /// <summary>
-        /// Registro de Software.
-        /// </summary>
-        public int? SoftwareRegistration
-        {
-            get => _softwareRegistration;
-            set
-            {
-                value ??= 0;
-                EntityExceptionValidation.When(value < 0,
-                    ExceptionMessageFactory.Invalid(nameof(value)));
-                _softwareRegistration = value;
             }
         }
         #endregion
@@ -429,7 +151,7 @@ namespace Domain.Entities
             {
                 {
                     EntityExceptionValidation.When(value == null,
-                        ExceptionMessageFactory.Required(nameof(value)));
+                        ExceptionMessageFactory.Required(nameof(ProgramTypeId)));
                     _programTypeId = value;
                 }
             }
@@ -443,7 +165,7 @@ namespace Domain.Entities
             {
                 {
                     EntityExceptionValidation.When(value == null,
-                        ExceptionMessageFactory.Required(nameof(value)));
+                        ExceptionMessageFactory.Required(nameof(ProfessorId)));
                     _professorId = value;
                 }
             }
@@ -457,7 +179,7 @@ namespace Domain.Entities
             {
                 {
                     EntityExceptionValidation.When(value == null,
-                        ExceptionMessageFactory.Required(nameof(value)));
+                        ExceptionMessageFactory.Required(nameof(SubAreaId)));
                     _subAreaId = value;
                 }
             }
@@ -471,7 +193,7 @@ namespace Domain.Entities
             {
                 {
                     EntityExceptionValidation.When(value == null,
-                        ExceptionMessageFactory.Required(nameof(value)));
+                        ExceptionMessageFactory.Required(nameof(NoticeId)));
                     _noticeId = value;
                 }
             }
@@ -482,6 +204,7 @@ namespace Domain.Entities
         public virtual Student? Student { get; }
         public virtual SubArea? SubArea { get; }
         public virtual Notice? Notice { get; }
+        public virtual IList<ProjectActivity>? ProjectActivities { get; }
         #endregion
 
         #region Informações de Controle
@@ -538,18 +261,12 @@ namespace Domain.Entities
         #endregion
 
         #region Constructors
-        public Project(string title, string keyWord1, string keyWord2, string keyWord3, bool isScholarshipCandidate,
-                       string objective, string methodology, string expectedResults, string activitiesExecutionSchedule,
-                       int? workType1, int? workType2, int? indexedConferenceProceedings, int? notIndexedConferenceProceedings,
-                       int? completedBook, int? organizedBook, int? bookChapters, int? bookTranslations,
-                       int? participationEditorialCommittees, int? fullComposerSoloOrchestraAllTracks,
-                       int? fullComposerSoloOrchestraCompilation, int? chamberOrchestraInterpretation,
-                       int? individualAndCollectiveArtPerformances, int? scientificCulturalArtisticCollectionsCuratorship,
-                       int? patentLetter, int? patentDeposit, int? softwareRegistration,
-                       Guid studentId, Guid programTypeId, Guid professorId, Guid subAreaId, Guid noticeId,
-                       EProjectStatus? status, string statusDescription, string appealDescription,
+        public Project(string? title, string? keyWord1, string? keyWord2, string? keyWord3, bool isScholarshipCandidate,
+                       string? objective, string? methodology, string? expectedResults, string? activitiesExecutionSchedule,
+                       Guid? studentId, Guid? programTypeId, Guid? professorId, Guid? subAreaId, Guid? noticeId,
+                       EProjectStatus? status, string? statusDescription, string? appealDescription,
                        DateTime? submitionDate, DateTime? ressubmissionDate, DateTime? cancellationDate,
-                       string cancellationReason)
+                       string? cancellationReason)
         {
             // Inicializar as propriedades
             Title = title;
@@ -561,23 +278,6 @@ namespace Domain.Entities
             Methodology = methodology;
             ExpectedResults = expectedResults;
             ActivitiesExecutionSchedule = activitiesExecutionSchedule;
-            WorkType1 = workType1;
-            WorkType2 = workType2;
-            IndexedConferenceProceedings = indexedConferenceProceedings;
-            NotIndexedConferenceProceedings = notIndexedConferenceProceedings;
-            CompletedBook = completedBook;
-            OrganizedBook = organizedBook;
-            BookChapters = bookChapters;
-            BookTranslations = bookTranslations;
-            ParticipationEditorialCommittees = participationEditorialCommittees;
-            FullComposerSoloOrchestraAllTracks = fullComposerSoloOrchestraAllTracks;
-            FullComposerSoloOrchestraCompilation = fullComposerSoloOrchestraCompilation;
-            ChamberOrchestraInterpretation = chamberOrchestraInterpretation;
-            IndividualAndCollectiveArtPerformances = individualAndCollectiveArtPerformances;
-            ScientificCulturalArtisticCollectionsCuratorship = scientificCulturalArtisticCollectionsCuratorship;
-            PatentLetter = patentLetter;
-            PatentDeposit = patentDeposit;
-            SoftwareRegistration = softwareRegistration;
             StudentId = studentId;
             ProgramTypeId = programTypeId;
             ProfessorId = professorId;
@@ -595,7 +295,7 @@ namespace Domain.Entities
         /// <summary>
         /// Constructor to dbcontext EF instancing.
         /// </summary>
-        public Project() { }
+        protected Project() { }
         #endregion
     }
 }

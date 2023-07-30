@@ -1,9 +1,11 @@
 using Domain.Interfaces.Services;
 using Domain.Interfaces.UseCases;
+using Domain.Interfaces.UseCases.ActivityType;
 using Domain.Interfaces.UseCases.Project;
 using Domain.Interfaces.UseCases.ProjectEvaluation;
 using Domain.Mappings;
 using Domain.UseCases;
+using Domain.UseCases.ActivityType;
 using Domain.UseCases.Project;
 using Domain.UseCases.ProjectEvaluation;
 using Infrastructure.Services;
@@ -29,6 +31,11 @@ public static class DependencyDomainInjection
         services.AddScoped<IGetAreaById, GetAreaById>();
         services.AddScoped<IGetAreasByMainArea, GetAreasByMainArea>();
         services.AddScoped<IUpdateArea, UpdateArea>();
+        #endregion
+
+        #region ActivityType
+        services.AddScoped<IGetActivitiesByNoticeId, GetActivitiesByNoticeId>();
+        services.AddScoped<IGetLastNoticeActivities, GetLastNoticeActivities>();
         #endregion
 
         #region AssistanceType
@@ -149,6 +156,7 @@ public static class DependencyDomainInjection
 
         #region Contract Mappers
         services.AddAutoMapper(typeof(AreaMappings));
+        services.AddAutoMapper(typeof(ActivityMappings));
         services.AddAutoMapper(typeof(AssistanceTypeMappings));
         services.AddAutoMapper(typeof(CampusMappings));
         services.AddAutoMapper(typeof(CourseMappings));

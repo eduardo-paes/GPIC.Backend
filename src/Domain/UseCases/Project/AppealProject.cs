@@ -55,7 +55,7 @@ namespace Domain.UseCases.Project
             }
             else
             {
-                throw UseCaseException.BusinessRuleViolation("The project is not at a stage that allows appeal.");
+                throw UseCaseException.BusinessRuleViolation("O projeto não está em uma fase que permita recurso.");
             }
         }
     }

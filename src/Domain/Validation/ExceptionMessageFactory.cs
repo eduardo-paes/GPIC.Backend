@@ -9,4 +9,5 @@ public static class ExceptionMessageFactory
     public static string InvalidEmail(string prop) => $"Valor inválido para ({prop}). O email fornecido não é válido.";
     public static string InvalidCpf() => "Valor de CPF inválido. A sequência numérica não é um CPF válido de acordo com a lógica do governo.";
     public static string LessThan(string prop, string value) => $"O valor de ({prop}) não pode ser menor que {value}.";
+    public static string BusinessRuleViolation(string message) => message;
 }

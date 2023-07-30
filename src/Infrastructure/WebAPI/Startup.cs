@@ -1,5 +1,6 @@
 using AspNetCoreRateLimit;
 using Infrastructure.IoC;
+using Infrastructure.WebAPI.Middleware;
 
 namespace Infrastructure.WebAPI;
 
@@ -60,6 +61,9 @@ public class Startup
             // Show development mode message
             Console.WriteLine("Development mode");
         }
+
+        // UseExceptionHandler for non-development environments
+        app.UseMiddleware<ExceptionHandlingMiddleware>();
 
         // Enable HTTP Strict Transport Security (HSTS) headers for secure communication
         app.UseHsts();

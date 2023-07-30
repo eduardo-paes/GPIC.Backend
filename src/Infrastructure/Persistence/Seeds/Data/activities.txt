@@ -1,0 +1,15 @@
+001;Periódicos indexados nas bases do tipo 1 ou constrantes na base QUALIS A1 a A4;10;NULL
+001;Periódicos indexados nas bases do tipo 2 ou constrantes na base QUALIS B1 e B2;6;30
+001;Periódicos constantes na base QUALIS B3 e B4;4;20
+001;Anais de Congressos;3;12
+001;Livros Completo;12;NULL
+001;Livros Organizado;6;36
+001;Livros Capítulo;5;30
+001;Livros Tradução;4;24
+001;Participação em comissão editorial de editoras e instituições acadêmicas;2;8
+002;Autoria, coautoria, curadoria, direção de produções artísticas e culturais demostradas publicamente por meios típicos e característicos das áreas de artes visuais, dança, música, teatro, fotografia, cinema e afins - participação completa em todo trabalho;8;NULL
+002;Autoria, coautoria, curadoria, direção de produções artísticas e culturais demostradas publicamente por meios típicos e característicos das áreas de artes visuais, dança, música, teatro, fotografia, cinema e afins - participação parcial no trabalho;1.5;4.5
+002;Composição ou Apresentação individual ou coletiva;2;12
+003;Carta patente com titularidade do CEFET/RJ;15;NULL
+003;Depósito de patente com titularidade do CEFET/RJ;7.5;NULL
+003;Registro de Software;1;2

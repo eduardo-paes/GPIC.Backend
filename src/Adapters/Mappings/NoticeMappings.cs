@@ -2,16 +2,18 @@
 using Adapters.Gateways.Notice;
 using Domain.Contracts.Notice;
 
-namespace Adapters.Mappings
+namespace Adapters.Mappings;
+public class NoticeMappings : Profile
 {
-    public class NoticeMappings : Profile
+    public NoticeMappings()
     {
-        public NoticeMappings()
-        {
-            CreateMap<CreateNoticeInput, CreateNoticeRequest>().ReverseMap();
-            CreateMap<UpdateNoticeInput, UpdateNoticeRequest>().ReverseMap();
-            CreateMap<ResumedReadNoticeOutput, ResumedReadNoticeResponse>().ReverseMap();
-            CreateMap<DetailedReadNoticeOutput, DetailedReadNoticeResponse>().ReverseMap();
-        }
+        CreateMap<CreateNoticeInput, CreateNoticeRequest>()
+            .ForMember(dest => dest.Activities, opt => opt.MapFrom(src => src.Activities))
+            .ReverseMap();
+        CreateMap<UpdateNoticeInput, UpdateNoticeRequest>()
+            .ForMember(dest => dest.Activities, opt => opt.MapFrom(src => src.Activities))
+            .ReverseMap();
+        CreateMap<ResumedReadNoticeOutput, ResumedReadNoticeResponse>().ReverseMap();
+        CreateMap<DetailedReadNoticeOutput, DetailedReadNoticeResponse>().ReverseMap();
     }
 }

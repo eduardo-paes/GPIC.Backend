@@ -35,7 +35,7 @@ namespace Domain.UseCases.ProjectEvaluation
 
             // Verifica se o usuário logado é um avaliador.
             UseCaseException.BusinessRuleViolation(user.Role != ERole.ADMIN.GetDescription() || user.Role != ERole.PROFESSOR.GetDescription(),
-                "User is not an evaluator.");
+                "O usuário não é um avaliador.");
 
             // Busca avaliação do projeto pelo Id.
             var projectEvaluation = await _projectEvaluationRepository.GetByProjectId(input.ProjectId)
@@ -47,15 +47,15 @@ namespace Domain.UseCases.ProjectEvaluation
 
             // Verifica se o avaliador é o professor orientador do projeto.
             UseCaseException.BusinessRuleViolation(projectEvaluation.Project?.ProfessorId == user.Id,
-                "Evaluator is the project advisor.");
+                "Avaliador é o orientador do projeto.");
 
             // Verifica se o projeto está na fase de recurso.
             UseCaseException.BusinessRuleViolation(projectEvaluation.Project?.Status != EProjectStatus.Evaluation,
-                "Project is not in the evaluation phase.");
+                "Projeto não está em fase de avaliação.");
 
             // Verifica se o edital está na fase de recurso.
             UseCaseException.BusinessRuleViolation(projectEvaluation?.Project?.Notice?.AppealStartDate > DateTime.UtcNow || projectEvaluation?.Project?.Notice?.AppealEndDate < DateTime.UtcNow,
-                "Notice isn't in the appeal stage.");
+                "O edital não está na fase de recurso.");
 
             // Verifica se o status da avaliação foi informado.
             UseCaseException.NotInformedParam(input.AppealEvaluationStatus is null,
