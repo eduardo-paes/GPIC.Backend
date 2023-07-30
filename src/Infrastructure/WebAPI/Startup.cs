@@ -27,6 +27,18 @@ public class Startup
         // Configuração do JWT
         services.AddInfrastructureJWT();
 
+        // Configuração do CORS
+        services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(
+                policy =>
+                {
+                    policy.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+                });
+        });
+
         // Permite que rotas sejam acessíveis em lowercase
         services.AddRouting(options => options.LowercaseUrls = true);
     }
