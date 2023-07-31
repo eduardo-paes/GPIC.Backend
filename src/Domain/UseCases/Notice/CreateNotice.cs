@@ -14,18 +14,24 @@ namespace Domain.UseCases
         private readonly IStorageFileService _storageFileService;
         private readonly IActivityTypeRepository _activityTypeRepository;
         private readonly IActivityRepository _activityRepository;
+        private readonly IProfessorRepository _professorRepository;
+        private readonly IEmailService _emailService;
         private readonly IMapper _mapper;
         public CreateNotice(
             INoticeRepository repository,
             IStorageFileService storageFileService,
             IActivityTypeRepository activityTypeRepository,
             IActivityRepository activityRepository,
+            IProfessorRepository professorRepository,
+            IEmailService emailService,
             IMapper mapper)
         {
             _repository = repository;
             _storageFileService = storageFileService;
             _activityTypeRepository = activityTypeRepository;
             _activityRepository = activityRepository;
+            _professorRepository = professorRepository;
+            _emailService = emailService;
             _mapper = mapper;
         }
         #endregion
@@ -87,6 +93,21 @@ namespace Domain.UseCases
                     var activityEntity = new Entities.Activity(activity.Name, activity.Points, activity.Limits, activityTypeEntity.Id);
                     await _activityRepository.Create(activityEntity);
                 }
+            }
+
+            // Obtém professores ativos
+            var professors = await _professorRepository.GetAllActiveProfessors();
+
+            // Envia email de notificação para todos os professores ativos
+            foreach (var professor in professors)
+            {
+                // Envia email de notificação
+                await _emailService.SendNoticeEmail(
+                    professor.User!.Email,
+                    professor.User!.Name,
+                    notice.RegistrationStartDate,
+                    notice.RegistrationEndDate,
+                    notice.DocUrl);
             }
 
             // Salva entidade no banco

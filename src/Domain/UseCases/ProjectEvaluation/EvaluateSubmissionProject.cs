@@ -17,12 +17,14 @@ namespace Domain.UseCases.ProjectEvaluation
         private readonly ITokenAuthenticationService _tokenAuthenticationService;
         private readonly IProjectActivityRepository _projectActivityRepository;
         private readonly IActivityTypeRepository _activityTypeRepository;
+        private readonly IEmailService _emailService;
         private readonly IProjectEvaluationRepository _projectEvaluationRepository;
         public EvaluateSubmissionProject(IMapper mapper,
             IProjectRepository projectRepository,
             ITokenAuthenticationService tokenAuthenticationService,
             IProjectActivityRepository projectActivityRepository,
             IActivityTypeRepository activityTypeRepository,
+            IEmailService emailService,
             IProjectEvaluationRepository projectEvaluationRepository)
         {
             _mapper = mapper;
@@ -30,6 +32,7 @@ namespace Domain.UseCases.ProjectEvaluation
             _tokenAuthenticationService = tokenAuthenticationService;
             _projectActivityRepository = projectActivityRepository;
             _activityTypeRepository = activityTypeRepository;
+            _emailService = emailService;
             _projectEvaluationRepository = projectEvaluationRepository;
         }
         #endregion
@@ -68,10 +71,6 @@ namespace Domain.UseCases.ProjectEvaluation
             // Verifica se o status da avaliação foi informado.
             UseCaseException.NotInformedParam(input.SubmissionEvaluationStatus is null,
                 nameof(input.SubmissionEvaluationStatus));
-
-            // Verifica se a descrição da avaliação foi informada.
-            UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.SubmissionEvaluationDescription),
-                nameof(input.SubmissionEvaluationDescription));
 
             // Mapeia dados de entrada para entidade.
             projectEvaluation = new Entities.ProjectEvaluation(input.ProjectId,
@@ -128,14 +127,22 @@ namespace Domain.UseCases.ProjectEvaluation
             // Se projeto foi aceito, adiciona prazo para envio da documentação.
             if (projectEvaluation.SubmissionEvaluationStatus == EProjectStatus.Accepted)
             {
-                project.Status = EProjectStatus.DocumentAnalysis;
-                project.StatusDescription = EProjectStatus.DocumentAnalysis.GetDescription();
+                project.Status = EProjectStatus.Accepted;
+                project.StatusDescription = EProjectStatus.Accepted.GetDescription();
             }
             else
             {
                 project.Status = EProjectStatus.Rejected;
                 project.StatusDescription = EProjectStatus.Rejected.GetDescription();
             }
+
+            // Informa ao professor o resultado da avaliação.
+            await _emailService.SendProjectNotificationEmail(
+                project.Professor!.User!.Email,
+                project.Professor!.User!.Name,
+                project.Title,
+                project.StatusDescription,
+                projectEvaluation.SubmissionEvaluationDescription);
 
             // Atualiza projeto.
             var output = await _projectRepository.Update(project);

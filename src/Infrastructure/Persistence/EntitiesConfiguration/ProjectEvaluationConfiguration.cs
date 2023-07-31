@@ -47,6 +47,8 @@ namespace Persistence.EntitiesConfiguration
             builder.HasOne(a => a.DocumentsEvaluator)
                 .WithMany()
                 .HasForeignKey(a => a.DocumentsEvaluatorId);
+
+            builder.HasQueryFilter(x => x.DeletedAt == null);
         }
     }
 }

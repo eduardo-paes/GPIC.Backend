@@ -1,12 +1,11 @@
 using Domain.Entities.Enums;
+using Domain.Entities.Primitives;
 using Domain.Validation;
 
 namespace Domain.Entities
 {
-    public class ProjectEvaluation
+    public class ProjectEvaluation : Entity
     {
-        public Guid? Id { get; protected set; }
-
         #region Properties
         #region Informações Gerais da Avaliação
         private Guid? _projectId;
@@ -239,13 +238,17 @@ namespace Domain.Entities
             SubmissionEvaluatorId = submissionEvaluatorId;
             SubmissionEvaluationStatus = submissionEvaluationStatus;
             SubmissionEvaluationDate = submissionEvaluationDate;
-            SubmissionEvaluationDescription = submissionEvaluationDescription;
             Qualification = qualification;
             ProjectProposalObjectives = projectProposalObjectives;
             AcademicScientificProductionCoherence = academicScientificProductionCoherence;
             ProposalMethodologyAdaptation = proposalMethodologyAdaptation;
             EffectiveContributionToResearch = effectiveContributionToResearch;
             APIndex = apIndex;
+
+            // Define a descrição da avaliação da submissão.
+            SubmissionEvaluationDescription = submissionEvaluationStatus == EProjectStatus.Accepted
+                ? EProjectStatus.Accepted.GetDescription()
+                : submissionEvaluationDescription;
         }
         #endregion
 

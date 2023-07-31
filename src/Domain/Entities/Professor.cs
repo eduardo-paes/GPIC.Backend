@@ -59,6 +59,19 @@ namespace Domain.Entities
             }
         }
 
+        /// <summary>
+        /// Data de início da suspensão do professor
+        /// </summary>
+        private DateTime? _suspensionEndDate;
+        public DateTime? SuspensionEndDate
+        {
+            get => _suspensionEndDate;
+            set
+            {
+                _suspensionEndDate = value.HasValue ? value.Value.ToUniversalTime() : null;
+            }
+        }
+
         public virtual User? User { get; }
         #endregion
 
