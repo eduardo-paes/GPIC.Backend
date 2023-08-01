@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Domain.Contracts.Campus;
 using Domain.Entities;
+using Domain.UseCases.Ports.Campus;
 
 namespace Domain.Mappings
 {
@@ -8,10 +8,10 @@ namespace Domain.Mappings
     {
         public CampusMappings()
         {
-            CreateMap<Campus, CreateCampusInput>().ReverseMap();
-            CreateMap<Campus, UpdateCampusInput>().ReverseMap();
-            CreateMap<Campus, ResumedReadCampusOutput>().ReverseMap();
-            CreateMap<Campus, DetailedReadCampusOutput>().ReverseMap();
+            _ = CreateMap<Campus, CreateCampusInput>().ReverseMap();
+            _ = CreateMap<Campus, UpdateCampusInput>().ReverseMap();
+            _ = CreateMap<Campus, ResumedReadCampusOutput>().ReverseMap();
+            _ = CreateMap<Campus, DetailedReadCampusOutput>().ReverseMap();
         }
     }
 }

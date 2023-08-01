@@ -1,53 +1,55 @@
-using Infrastructure.IoC.Utils;
+using System.Text;
+using IoC.Utils;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 
-namespace Infrastructure.IoC;
-public static class DependencyInjectionJWT
+namespace IoC
 {
-    public static IServiceCollection AddInfrastructureJWT(this IServiceCollection services)
+    public static class DependencyInjectionJWT
     {
-        // Carrega informações de ambiente (.env)
-        var dotEnvSecrets = new DotEnvSecrets();
-        services.AddSingleton(dotEnvSecrets);
-
-        /// Informar o tipo de autenticação;
-        /// Definir o modelo de desafio de autenticação.
-        services.AddAuthentication(opt =>
+        public static IServiceCollection AddInfrastructureJWT(this IServiceCollection services)
         {
-            opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        })
+            // Carrega informações de ambiente (.env)
+            DotEnvSecrets dotEnvSecrets = new();
+            _ = services.AddSingleton(dotEnvSecrets);
 
-        /// Habilita a autenticação JWT usando o esquema e desafio definidos;
-        /// Validar o token.
-        .AddJwtBearer(options =>
-        {
-            options.TokenValidationParameters = new TokenValidationParameters
+            /// Informar o tipo de autenticação;
+            /// Definir o modelo de desafio de autenticação.
+            _ = services.AddAuthentication(opt =>
             {
-                ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidateLifetime = true,
-                ValidateIssuerSigningKey = true,
-                /// Valores válidos
-                ValidIssuer = dotEnvSecrets.GetJwtIssuer(),
-                ValidAudience = dotEnvSecrets.GetJwtAudience(),
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(dotEnvSecrets.GetJwtSecret())),
-                /// Se não fizer isso ele vai inserir + 5min em cima
-                /// do que foi definido na geração do Token.
-                ClockSkew = TimeSpan.Zero
-            };
-        });
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
 
-        /// Define as políticas de autorização
-        services.AddAuthorization(options =>
-        {
-            options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("ADMIN"));
-            options.AddPolicy("RequireProfessorRole", policy => policy.RequireRole("PROFESSOR"));
-            options.AddPolicy("RequireStudentRole", policy => policy.RequireRole("STUDENT"));
-        });
-        return services;
+            /// Habilita a autenticação JWT usando o esquema e desafio definidos;
+            /// Validar o token.
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    /// Valores válidos
+                    ValidIssuer = dotEnvSecrets.GetJwtIssuer(),
+                    ValidAudience = dotEnvSecrets.GetJwtAudience(),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(dotEnvSecrets.GetJwtSecret())),
+                    /// Se não fizer isso ele vai inserir + 5min em cima
+                    /// do que foi definido na geração do Token.
+                    ClockSkew = TimeSpan.Zero
+                };
+            });
+
+            /// Define as políticas de autorização
+            _ = services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequireAdminRole", policy => policy.RequireRole("ADMIN"));
+                options.AddPolicy("RequireProfessorRole", policy => policy.RequireRole("PROFESSOR"));
+                options.AddPolicy("RequireStudentRole", policy => policy.RequireRole("STUDENT"));
+            });
+            return services;
+        }
     }
 }

@@ -3,17 +3,20 @@ using Domain.Interfaces.Repositories;
 using Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Persistence.Repositories
+namespace Persistence.Repositories
 {
     public class ProjectEvaluationRepository : IProjectEvaluationRepository
     {
         private readonly ApplicationDbContext _context;
-        public ProjectEvaluationRepository(ApplicationDbContext context) => _context = context;
+        public ProjectEvaluationRepository(ApplicationDbContext context)
+        {
+            _context = context;
+        }
 
         public async Task<ProjectEvaluation> Create(ProjectEvaluation model)
         {
-            _context.Add(model);
-            await _context.SaveChangesAsync();
+            _ = _context.Add(model);
+            _ = await _context.SaveChangesAsync();
             return model;
         }
 
@@ -45,8 +48,8 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<ProjectEvaluation> Update(ProjectEvaluation model)
         {
-            _context.Update(model);
-            await _context.SaveChangesAsync();
+            _ = _context.Update(model);
+            _ = await _context.SaveChangesAsync();
             return model;
         }
     }

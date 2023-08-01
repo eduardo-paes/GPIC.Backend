@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using Domain.Contracts.Course;
 using Domain.Entities;
+using Domain.Ports.Course;
+using Domain.UseCases.Ports.Course;
 
 namespace Domain.Mappings
 {
@@ -8,10 +9,10 @@ namespace Domain.Mappings
     {
         public CourseMappings()
         {
-            CreateMap<Course, CreateCourseInput>().ReverseMap();
-            CreateMap<Course, UpdateCourseInput>().ReverseMap();
-            CreateMap<Course, ResumedReadCourseOutput>().ReverseMap();
-            CreateMap<Course, DetailedReadCourseOutput>().ReverseMap();
+            _ = CreateMap<Course, CreateCourseInput>().ReverseMap();
+            _ = CreateMap<Course, UpdateCourseInput>().ReverseMap();
+            _ = CreateMap<Course, ResumedReadCourseOutput>().ReverseMap();
+            _ = CreateMap<Course, DetailedReadCourseOutput>().ReverseMap();
         }
     }
 }

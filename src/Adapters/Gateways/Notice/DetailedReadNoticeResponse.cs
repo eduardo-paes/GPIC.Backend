@@ -1,5 +1,7 @@
 ﻿using Adapters.Gateways.Base;
-using Domain.Contracts.Notice;
+using Domain.UseCases.Ports.Notice;
 
-namespace Adapters.Gateways.Notice;
-public class DetailedReadNoticeResponse : DetailedReadNoticeOutput, IResponse { }
+namespace Adapters.Gateways.Notice
+{
+    public class DetailedReadNoticeResponse : DetailedReadNoticeOutput, IResponse { }
+}

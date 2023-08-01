@@ -3,7 +3,7 @@ using Adapters.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Infrastructure.WebAPI.Controllers
+namespace WebAPI.Controllers
 {
     /// <summary>
     /// Controller de Usuário.
@@ -26,7 +26,7 @@ namespace Infrastructure.WebAPI.Controllers
             _service = service;
             _logger = logger;
         }
-        #endregion
+        #endregion Global Scope
 
         /// <summary>
         /// Busca usuário pelo id.
@@ -47,7 +47,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _service.GetUserById(id);
+                UserReadResponse model = await _service.GetUserById(id);
                 _logger.LogInformation("Usuário encontrado para o id {id}.", id);
                 return Ok(model);
             }
@@ -68,7 +68,7 @@ namespace Infrastructure.WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<UserReadResponse>>> GetAllActive(int skip = 0, int take = 50)
         {
-            var models = await _service.GetActiveUsers(skip, take);
+            IEnumerable<UserReadResponse> models = await _service.GetActiveUsers(skip, take);
             if (models == null)
             {
                 const string msg = "Nenhum usuário encontrado.";
@@ -89,7 +89,7 @@ namespace Infrastructure.WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<UserReadResponse>>> GetAllInactive(int skip = 0, int take = 50)
         {
-            var models = await _service.GetInactiveUsers(skip, take);
+            IEnumerable<UserReadResponse> models = await _service.GetInactiveUsers(skip, take);
             if (models == null)
             {
                 const string msg = "Nenhum usuário encontrado.";
@@ -113,7 +113,7 @@ namespace Infrastructure.WebAPI.Controllers
             try
             {
                 // Atualiza o usuário e retorna o usuário atualizado
-                var model = await _service.UpdateUser(request);
+                UserReadResponse? model = await _service.UpdateUser(request);
 
                 _logger.LogInformation("Usuário atualizado: {id}", model?.Id);
                 return Ok(model);
@@ -145,7 +145,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _service.ActivateUser(id.Value);
+                UserReadResponse? model = await _service.ActivateUser(id.Value);
                 _logger.LogInformation("Usuário ativado: {id}", model?.Id);
                 return Ok(model);
             }
@@ -176,7 +176,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _service.DeactivateUser(id.Value);
+                UserReadResponse? model = await _service.DeactivateUser(id.Value);
                 _logger.LogInformation("Usuário desativado: {id}", model?.Id);
                 return Ok(model);
             }

@@ -14,6 +14,8 @@ namespace Domain.Interfaces.Repositories
         /// <summary>
         /// Permite a busca de todos os projetos abertos.
         /// </summary>
+        /// <param name="skip"></param>
+        /// <param name="take"></param>
         /// <param name="isClosed">Filtra por projetos encerrados.</param>
         /// <returns>Retorna todos os projetos.</returns>
         Task<IEnumerable<Project>> GetProjects(int skip, int take, bool isClosed = false);
@@ -21,6 +23,8 @@ namespace Domain.Interfaces.Repositories
         /// <summary>
         /// Permite a busca dos projetos associados ao aluno.
         /// </summary>
+        /// <param name="skip"></param>
+        /// <param name="take"></param>
         /// <param name="id">Id do aluno.</param>
         /// <param name="isClosed">Filtra por projetos encerrados.</param>
         /// <returns>Retorna os projetos do aluno.</returns>
@@ -29,6 +33,8 @@ namespace Domain.Interfaces.Repositories
         /// <summary>
         /// Permite a busca dos projetos associados ao professor.
         /// </summary>
+        /// <param name="skip"></param>
+        /// <param name="take"></param>
         /// <param name="id">Id do professor.</param>
         /// <param name="isClosed">Filtra por projetos encerrados.</param>
         /// <returns>Retorna os projetos do professor.</returns>

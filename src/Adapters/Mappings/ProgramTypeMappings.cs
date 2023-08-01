@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using Adapters.Gateways.ProgramType;
-using Domain.Contracts.ProgramType;
+﻿using Adapters.Gateways.ProgramType;
+using AutoMapper;
+using Domain.UseCases.Ports.ProgramType;
 
 namespace Adapters.Mappings
 {
@@ -8,10 +8,10 @@ namespace Adapters.Mappings
     {
         public ProgramTypeMappings()
         {
-            CreateMap<CreateProgramTypeInput, CreateProgramTypeRequest>().ReverseMap();
-            CreateMap<UpdateProgramTypeInput, UpdateProgramTypeRequest>().ReverseMap();
-            CreateMap<ResumedReadProgramTypeOutput, ResumedReadProgramTypeResponse>().ReverseMap();
-            CreateMap<DetailedReadProgramTypeOutput, DetailedReadProgramTypeResponse>().ReverseMap();
+            _ = CreateMap<CreateProgramTypeInput, CreateProgramTypeRequest>().ReverseMap();
+            _ = CreateMap<UpdateProgramTypeInput, UpdateProgramTypeRequest>().ReverseMap();
+            _ = CreateMap<ResumedReadProgramTypeOutput, ResumedReadProgramTypeResponse>().ReverseMap();
+            _ = CreateMap<DetailedReadProgramTypeOutput, DetailedReadProgramTypeResponse>().ReverseMap();
         }
     }
 }

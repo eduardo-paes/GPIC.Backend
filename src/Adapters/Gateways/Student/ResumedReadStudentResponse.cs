@@ -1,5 +1,7 @@
 using Adapters.Gateways.Base;
-using Domain.Contracts.Student;
+using Domain.UseCases.Ports.Student;
 
-namespace Adapters.Gateways.Student;
-public class ResumedReadStudentResponse : ResumedReadStudentOutput, IResponse { }
+namespace Adapters.Gateways.Student
+{
+    public class ResumedReadStudentResponse : ResumedReadStudentOutput, IResponse { }
+}

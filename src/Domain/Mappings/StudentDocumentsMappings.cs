@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Domain.Contracts.StudentDocuments;
 using Domain.Entities;
+using Domain.UseCases.Ports.StudentDocuments;
 
 namespace Domain.Mappings
 {
@@ -8,8 +8,8 @@ namespace Domain.Mappings
     {
         public StudentDocumentsMappings()
         {
-            CreateMap<StudentDocuments, ResumedReadStudentDocumentsOutput>().ReverseMap();
-            CreateMap<StudentDocuments, DetailedReadStudentDocumentsOutput>().ReverseMap();
+            _ = CreateMap<StudentDocuments, ResumedReadStudentDocumentsOutput>().ReverseMap();
+            _ = CreateMap<StudentDocuments, DetailedReadStudentDocumentsOutput>().ReverseMap();
         }
     }
 }

@@ -1,177 +1,202 @@
 using Domain.Interfaces.Services;
-using Domain.Interfaces.UseCases;
-using Domain.Interfaces.UseCases.ActivityType;
-using Domain.Interfaces.UseCases.Project;
-using Domain.Interfaces.UseCases.ProjectEvaluation;
 using Domain.Mappings;
 using Domain.UseCases;
-using Domain.UseCases.ActivityType;
-using Domain.UseCases.Project;
-using Domain.UseCases.ProjectEvaluation;
-using Infrastructure.Services;
+using Domain.UseCases.Interactors.ActivityType;
+using Domain.UseCases.Interactors.Area;
+using Domain.UseCases.Interactors.AssistanceType;
+using Domain.UseCases.Interactors.Auth;
+using Domain.UseCases.Interactors.Campus;
+using Domain.UseCases.Interactors.Course;
+using Domain.UseCases.Interactors.MainArea;
+using Domain.UseCases.Interactors.Notice;
+using Domain.UseCases.Interactors.Professor;
+using Domain.UseCases.Interactors.ProgramType;
+using Domain.UseCases.Interactors.Project;
+using Domain.UseCases.Interactors.ProjectEvaluation;
+using Domain.UseCases.Interactors.Student;
+using Domain.UseCases.Interactors.SubArea;
+using Domain.UseCases.Interactors.User;
+using Domain.UseCases.Interfaces.ActivityType;
+using Domain.UseCases.Interfaces.Area;
+using Domain.UseCases.Interfaces.AssistanceType;
+using Domain.UseCases.Interfaces.Auth;
+using Domain.UseCases.Interfaces.Campus;
+using Domain.UseCases.Interfaces.Course;
+using Domain.UseCases.Interfaces.MainArea;
+using Domain.UseCases.Interfaces.Notice;
+using Domain.UseCases.Interfaces.Professor;
+using Domain.UseCases.Interfaces.ProgramType;
+using Domain.UseCases.Interfaces.Project;
+using Domain.UseCases.Interfaces.ProjectEvaluation;
+using Domain.UseCases.Interfaces.Student;
+using Domain.UseCases.Interfaces.SubArea;
+using Domain.UseCases.Interfaces.User;
 using Microsoft.Extensions.DependencyInjection;
+using Services;
 
-namespace Infrastructure.IoC;
-public static class DependencyDomainInjection
+namespace IoC
 {
-    public static IServiceCollection AddDomain(this IServiceCollection services)
+    public static class DependencyDomainInjection
     {
-        #region External Services
-        services.AddHttpContextAccessor();
-        services.AddScoped<IHashService, HashService>();
-        services.AddScoped<ITokenAuthenticationService, TokenAuthenticationService>();
-        // services.AddScoped<IStorageFileService, StorageFileService>();
-        services.AddScoped<IStorageFileService, AzureStorageService>();
-        #endregion
+        public static IServiceCollection AddDomain(this IServiceCollection services)
+        {
+            #region External Services
+            _ = services.AddHttpContextAccessor();
+            _ = services.AddScoped<IHashService, HashService>();
+            _ = services.AddScoped<ITokenAuthenticationService, TokenAuthenticationService>();
+            // services.AddScoped<IStorageFileService, StorageFileService>();
+            _ = services.AddScoped<IStorageFileService, AzureStorageService>();
+            #endregion External Services
 
-        #region UseCases
-        #region Area
-        services.AddScoped<ICreateArea, CreateArea>();
-        services.AddScoped<IDeleteArea, DeleteArea>();
-        services.AddScoped<IGetAreaById, GetAreaById>();
-        services.AddScoped<IGetAreasByMainArea, GetAreasByMainArea>();
-        services.AddScoped<IUpdateArea, UpdateArea>();
-        #endregion
+            #region UseCases
+            #region Area
+            _ = services.AddScoped<ICreateArea, CreateArea>();
+            _ = services.AddScoped<IDeleteArea, DeleteArea>();
+            _ = services.AddScoped<IGetAreaById, GetAreaById>();
+            _ = services.AddScoped<IGetAreasByMainArea, GetAreasByMainArea>();
+            _ = services.AddScoped<IUpdateArea, UpdateArea>();
+            #endregion Area
 
-        #region ActivityType
-        services.AddScoped<IGetActivitiesByNoticeId, GetActivitiesByNoticeId>();
-        services.AddScoped<IGetLastNoticeActivities, GetLastNoticeActivities>();
-        #endregion
+            #region ActivityType
+            _ = services.AddScoped<IGetActivitiesByNoticeId, GetActivitiesByNoticeId>();
+            _ = services.AddScoped<IGetLastNoticeActivities, GetLastNoticeActivities>();
+            #endregion ActivityType
 
-        #region AssistanceType
-        services.AddScoped<ICreateAssistanceType, CreateAssistanceType>();
-        services.AddScoped<IDeleteAssistanceType, DeleteAssistanceType>();
-        services.AddScoped<IGetAssistanceTypeById, GetAssistanceTypeById>();
-        services.AddScoped<IGetAssistanceTypes, GetAssistanceTypes>();
-        services.AddScoped<IUpdateAssistanceType, UpdateAssistanceType>();
-        #endregion
+            #region AssistanceType
+            _ = services.AddScoped<ICreateAssistanceType, CreateAssistanceType>();
+            _ = services.AddScoped<IDeleteAssistanceType, DeleteAssistanceType>();
+            _ = services.AddScoped<IGetAssistanceTypeById, GetAssistanceTypeById>();
+            _ = services.AddScoped<IGetAssistanceTypes, GetAssistanceTypes>();
+            _ = services.AddScoped<IUpdateAssistanceType, UpdateAssistanceType>();
+            #endregion AssistanceType
 
-        #region Auth
-        services.AddScoped<IConfirmEmail, ConfirmEmail>();
-        services.AddScoped<IForgotPassword, ForgotPassword>();
-        services.AddScoped<ILogin, Login>();
-        services.AddScoped<IResetPassword, ResetPassword>();
-        #endregion
+            #region Auth
+            _ = services.AddScoped<IConfirmEmail, ConfirmEmail>();
+            _ = services.AddScoped<IForgotPassword, ForgotPassword>();
+            _ = services.AddScoped<ILogin, Login>();
+            _ = services.AddScoped<IResetPassword, ResetPassword>();
+            #endregion Auth
 
-        #region Campus
-        services.AddScoped<ICreateCampus, CreateCampus>();
-        services.AddScoped<IDeleteCampus, DeleteCampus>();
-        services.AddScoped<IGetCampusById, GetCampusById>();
-        services.AddScoped<IGetCampuses, GetCampuses>();
-        services.AddScoped<IUpdateCampus, UpdateCampus>();
-        #endregion
+            #region Campus
+            _ = services.AddScoped<ICreateCampus, CreateCampus>();
+            _ = services.AddScoped<IDeleteCampus, DeleteCampus>();
+            _ = services.AddScoped<IGetCampusById, GetCampusById>();
+            _ = services.AddScoped<IGetCampuses, GetCampuses>();
+            _ = services.AddScoped<IUpdateCampus, UpdateCampus>();
+            #endregion Campus
 
-        #region Course
-        services.AddScoped<ICreateCourse, CreateCourse>();
-        services.AddScoped<IDeleteCourse, DeleteCourse>();
-        services.AddScoped<IGetCourseById, GetCourseById>();
-        services.AddScoped<IGetCourses, GetCourses>();
-        services.AddScoped<IUpdateCourse, UpdateCourse>();
-        #endregion
+            #region Course
+            _ = services.AddScoped<ICreateCourse, CreateCourse>();
+            _ = services.AddScoped<IDeleteCourse, DeleteCourse>();
+            _ = services.AddScoped<IGetCourseById, GetCourseById>();
+            _ = services.AddScoped<IGetCourses, GetCourses>();
+            _ = services.AddScoped<IUpdateCourse, UpdateCourse>();
+            #endregion Course
 
-        #region MainArea
-        services.AddScoped<ICreateMainArea, CreateMainArea>();
-        services.AddScoped<IDeleteMainArea, DeleteMainArea>();
-        services.AddScoped<IGetMainAreaById, GetMainAreaById>();
-        services.AddScoped<IGetMainAreas, GetMainAreas>();
-        services.AddScoped<IUpdateMainArea, UpdateMainArea>();
-        #endregion
+            #region MainArea
+            _ = services.AddScoped<ICreateMainArea, CreateMainArea>();
+            _ = services.AddScoped<IDeleteMainArea, DeleteMainArea>();
+            _ = services.AddScoped<IGetMainAreaById, GetMainAreaById>();
+            _ = services.AddScoped<IGetMainAreas, GetMainAreas>();
+            _ = services.AddScoped<IUpdateMainArea, UpdateMainArea>();
+            #endregion MainArea
 
-        #region Notice
-        services.AddScoped<ICreateNotice, CreateNotice>();
-        services.AddScoped<IDeleteNotice, DeleteNotice>();
-        services.AddScoped<IGetNoticeById, GetNoticeById>();
-        services.AddScoped<IGetNotices, GetNotices>();
-        services.AddScoped<IUpdateNotice, UpdateNotice>();
-        #endregion
+            #region Notice
+            _ = services.AddScoped<ICreateNotice, CreateNotice>();
+            _ = services.AddScoped<IDeleteNotice, DeleteNotice>();
+            _ = services.AddScoped<IGetNoticeById, GetNoticeById>();
+            _ = services.AddScoped<IGetNotices, GetNotices>();
+            _ = services.AddScoped<IUpdateNotice, UpdateNotice>();
+            #endregion Notice
 
-        #region Professor
-        services.AddScoped<ICreateProfessor, CreateProfessor>();
-        services.AddScoped<IDeleteProfessor, DeleteProfessor>();
-        services.AddScoped<IGetProfessorById, GetProfessorById>();
-        services.AddScoped<IGetProfessors, GetProfessors>();
-        services.AddScoped<IUpdateProfessor, UpdateProfessor>();
-        #endregion
+            #region Professor
+            _ = services.AddScoped<ICreateProfessor, CreateProfessor>();
+            _ = services.AddScoped<IDeleteProfessor, DeleteProfessor>();
+            _ = services.AddScoped<IGetProfessorById, GetProfessorById>();
+            _ = services.AddScoped<IGetProfessors, GetProfessors>();
+            _ = services.AddScoped<IUpdateProfessor, UpdateProfessor>();
+            #endregion Professor
 
-        #region ProgramType
-        services.AddScoped<ICreateProgramType, CreateProgramType>();
-        services.AddScoped<IDeleteProgramType, DeleteProgramType>();
-        services.AddScoped<IGetProgramTypeById, GetProgramTypeById>();
-        services.AddScoped<IGetProgramTypes, GetProgramTypes>();
-        services.AddScoped<IUpdateProgramType, UpdateProgramType>();
-        #endregion
+            #region ProgramType
+            _ = services.AddScoped<ICreateProgramType, CreateProgramType>();
+            _ = services.AddScoped<IDeleteProgramType, DeleteProgramType>();
+            _ = services.AddScoped<IGetProgramTypeById, GetProgramTypeById>();
+            _ = services.AddScoped<IGetProgramTypes, GetProgramTypes>();
+            _ = services.AddScoped<IUpdateProgramType, UpdateProgramType>();
+            #endregion ProgramType
 
-        #region Project
-        services.AddScoped<IAppealProject, AppealProject>();
-        services.AddScoped<ICancelProject, CancelProject>();
-        services.AddScoped<IGetClosedProjects, GetClosedProjects>();
-        services.AddScoped<IGetOpenProjects, GetOpenProjects>();
-        services.AddScoped<IGetProjectById, GetProjectById>();
-        services.AddScoped<IOpenProject, OpenProject>();
-        services.AddScoped<ISubmitProject, SubmitProject>();
-        services.AddScoped<IUpdateProject, UpdateProject>();
-        #endregion
+            #region Project
+            _ = services.AddScoped<IAppealProject, AppealProject>();
+            _ = services.AddScoped<ICancelProject, CancelProject>();
+            _ = services.AddScoped<IGetClosedProjects, GetClosedProjects>();
+            _ = services.AddScoped<IGetOpenProjects, GetOpenProjects>();
+            _ = services.AddScoped<IGetProjectById, GetProjectById>();
+            _ = services.AddScoped<IOpenProject, OpenProject>();
+            _ = services.AddScoped<ISubmitProject, SubmitProject>();
+            _ = services.AddScoped<IUpdateProject, UpdateProject>();
+            #endregion Project
 
-        #region ProjectEvaluation
-        services.AddScoped<IEvaluateAppealProject, EvaluateAppealProject>();
-        services.AddScoped<IEvaluateSubmissionProject, EvaluateSubmissionProject>();
-        services.AddScoped<IGetEvaluationByProjectId, GetEvaluationByProjectId>();
-        #endregion
+            #region ProjectEvaluation
+            _ = services.AddScoped<IEvaluateAppealProject, EvaluateAppealProject>();
+            _ = services.AddScoped<IEvaluateSubmissionProject, EvaluateSubmissionProject>();
+            _ = services.AddScoped<IGetEvaluationByProjectId, GetEvaluationByProjectId>();
+            #endregion ProjectEvaluation
 
-        #region Student
-        services.AddScoped<ICreateStudent, CreateStudent>();
-        services.AddScoped<IDeleteStudent, DeleteStudent>();
-        services.AddScoped<IGetStudentById, GetStudentById>();
-        services.AddScoped<IGetStudents, GetStudents>();
-        services.AddScoped<IUpdateStudent, UpdateStudent>();
-        #endregion
+            #region Student
+            _ = services.AddScoped<ICreateStudent, CreateStudent>();
+            _ = services.AddScoped<IDeleteStudent, DeleteStudent>();
+            _ = services.AddScoped<IGetStudentById, GetStudentById>();
+            _ = services.AddScoped<IGetStudents, GetStudents>();
+            _ = services.AddScoped<IUpdateStudent, UpdateStudent>();
+            #endregion Student
 
-        #region StudentDocuments
-        // services.AddScoped<ICreateStudentDocuments, CreateStudentDocuments>();
-        // services.AddScoped<IDeleteStudentDocuments, DeleteStudentDocuments>();
-        // services.AddScoped<IGetStudentDocumentsByProjectId, GetStudentDocumentsByProjectId>();
-        // services.AddScoped<IGetStudentDocumentsByStudentId, GetStudentDocumentsByStudentId>();
-        // services.AddScoped<IUpdateStudentDocuments, UpdateStudentDocuments>();
-        // services.AddScoped<ICreateStudentDocuments, CreateStudentDocuments>();
-        #endregion
+            #region StudentDocuments
+            // services.AddScoped<ICreateStudentDocuments, CreateStudentDocuments>();
+            // services.AddScoped<IDeleteStudentDocuments, DeleteStudentDocuments>();
+            // services.AddScoped<IGetStudentDocumentsByProjectId, GetStudentDocumentsByProjectId>();
+            // services.AddScoped<IGetStudentDocumentsByStudentId, GetStudentDocumentsByStudentId>();
+            // services.AddScoped<IUpdateStudentDocuments, UpdateStudentDocuments>();
+            // services.AddScoped<ICreateStudentDocuments, CreateStudentDocuments>();
+            #endregion StudentDocuments
 
-        #region SubArea
-        services.AddScoped<ICreateSubArea, CreateSubArea>();
-        services.AddScoped<IDeleteSubArea, DeleteSubArea>();
-        services.AddScoped<IGetSubAreaById, GetSubAreaById>();
-        services.AddScoped<IGetSubAreasByArea, GetSubAreasByArea>();
-        services.AddScoped<IUpdateSubArea, UpdateSubArea>();
-        #endregion
+            #region SubArea
+            _ = services.AddScoped<ICreateSubArea, CreateSubArea>();
+            _ = services.AddScoped<IDeleteSubArea, DeleteSubArea>();
+            _ = services.AddScoped<IGetSubAreaById, GetSubAreaById>();
+            _ = services.AddScoped<IGetSubAreasByArea, GetSubAreasByArea>();
+            _ = services.AddScoped<IUpdateSubArea, UpdateSubArea>();
+            #endregion SubArea
 
-        #region User
-        services.AddScoped<IActivateUser, ActivateUser>();
-        services.AddScoped<IDeactivateUser, DeactivateUser>();
-        services.AddScoped<IGetActiveUsers, GetActiveUsers>();
-        services.AddScoped<IGetInactiveUsers, GetInactiveUsers>();
-        services.AddScoped<IGetUserById, GetUserById>();
-        services.AddScoped<IUpdateUser, UpdateUser>();
-        #endregion
+            #region User
+            _ = services.AddScoped<IActivateUser, ActivateUser>();
+            _ = services.AddScoped<IDeactivateUser, DeactivateUser>();
+            _ = services.AddScoped<IGetActiveUsers, GetActiveUsers>();
+            _ = services.AddScoped<IGetInactiveUsers, GetInactiveUsers>();
+            _ = services.AddScoped<IGetUserById, GetUserById>();
+            _ = services.AddScoped<IUpdateUser, UpdateUser>();
+            #endregion User
 
-        #endregion
+            #endregion UseCases
 
-        #region Contract Mappers
-        services.AddAutoMapper(typeof(AreaMappings));
-        services.AddAutoMapper(typeof(ActivityMappings));
-        services.AddAutoMapper(typeof(AssistanceTypeMappings));
-        services.AddAutoMapper(typeof(CampusMappings));
-        services.AddAutoMapper(typeof(CourseMappings));
-        services.AddAutoMapper(typeof(MainAreaMappings));
-        services.AddAutoMapper(typeof(NoticeMappings));
-        services.AddAutoMapper(typeof(ProfessorMappings));
-        services.AddAutoMapper(typeof(ProgramTypeMappings));
-        services.AddAutoMapper(typeof(ProjectEvaluationMappings));
-        services.AddAutoMapper(typeof(ProjectMappings));
-        services.AddAutoMapper(typeof(StudentDocumentsMappings));
-        services.AddAutoMapper(typeof(StudentMappings));
-        services.AddAutoMapper(typeof(SubAreaMappings));
-        services.AddAutoMapper(typeof(UserMappings));
-        #endregion
+            #region Contract Mappers
+            _ = services.AddAutoMapper(typeof(AreaMappings));
+            _ = services.AddAutoMapper(typeof(ActivityMappings));
+            _ = services.AddAutoMapper(typeof(AssistanceTypeMappings));
+            _ = services.AddAutoMapper(typeof(CampusMappings));
+            _ = services.AddAutoMapper(typeof(CourseMappings));
+            _ = services.AddAutoMapper(typeof(MainAreaMappings));
+            _ = services.AddAutoMapper(typeof(NoticeMappings));
+            _ = services.AddAutoMapper(typeof(ProfessorMappings));
+            _ = services.AddAutoMapper(typeof(ProgramTypeMappings));
+            _ = services.AddAutoMapper(typeof(ProjectEvaluationMappings));
+            _ = services.AddAutoMapper(typeof(ProjectMappings));
+            _ = services.AddAutoMapper(typeof(StudentDocumentsMappings));
+            _ = services.AddAutoMapper(typeof(StudentMappings));
+            _ = services.AddAutoMapper(typeof(SubAreaMappings));
+            _ = services.AddAutoMapper(typeof(UserMappings));
+            #endregion Contract Mappers
 
-        return services;
+            return services;
+        }
     }
 }

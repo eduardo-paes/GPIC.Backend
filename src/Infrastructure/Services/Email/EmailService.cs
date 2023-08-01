@@ -2,134 +2,146 @@ using System.Net;
 using System.Net.Mail;
 using Domain.Interfaces.Services;
 
-namespace Infrastructure.Services.Email;
-public class EmailService : IEmailService
+namespace Services.Email
 {
-    #region Global Scope
-    private readonly string? _smtpServer;
-    private readonly int _smtpPort;
-    private readonly string? _smtpUsername;
-    private readonly string? _smtpPassword;
-    private readonly string? _currentDirectory;
-
-    public EmailService(string? smtpServer, int smtpPort, string? smtpUsername, string? smtpPassword)
+    public class EmailService : IEmailService
     {
-        _smtpServer = smtpServer;
-        _smtpPort = smtpPort;
-        _smtpUsername = smtpUsername;
-        _smtpPassword = smtpPassword;
-        _currentDirectory = Path.GetDirectoryName(typeof(EmailService).Assembly.Location);
-    }
-    #endregion
+        #region Global Scope
+        private readonly string? _smtpServer;
+        private readonly int _smtpPort;
+        private readonly string? _smtpUsername;
+        private readonly string? _smtpPassword;
+        private readonly string? _currentDirectory;
 
-    public async Task<bool> SendConfirmationEmail(string? email, string? name, string? token)
-    {
-        // Verifica se os parâmetros são nulos ou vazios
-        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(token))
-            throw new Exception("Parâmetros inválidos. Email, nome e token são obrigatórios.");
+        public EmailService(string? smtpServer, int smtpPort, string? smtpUsername, string? smtpPassword)
+        {
+            _smtpServer = smtpServer;
+            _smtpPort = smtpPort;
+            _smtpUsername = smtpUsername;
+            _smtpPassword = smtpPassword;
+            _currentDirectory = Path.GetDirectoryName(typeof(EmailService).Assembly.Location);
+        }
+        #endregion Global Scope
 
-        // Lê mensagem do template em html salvo localmente
-        string template = await File.ReadAllTextAsync(Path.Combine(_currentDirectory!, "Email/Templates/ConfirmEmail.html"));
-
-        // Gera mensagem de envio
-        const string subject = "Confirmação de Cadastro";
-        string body = template.Replace("#USER_NAME#", name).Replace("#USER_TOKEN#", token);
-
-        // Tentativa de envio de email
-        await SendEmailAsync(email, subject, body);
-        return true;
-    }
-
-    public async Task<bool> SendResetPasswordEmail(string? email, string? name, string? token)
-    {
-        // Verifica se os parâmetros são nulos ou vazios
-        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(token))
-            throw new Exception("Parâmetros inválidos. Email, nome e token são obrigatórios.");
-
-        // Lê mensagem do template em html salvo localmente
-        string template = await File.ReadAllTextAsync(Path.Combine(_currentDirectory!, "Email/Templates/ResetPassword.html"));
-
-        // Gera mensagem de envio
-        const string subject = "Recuperação de Senha";
-        string body = template.Replace("#USER_NAME#", name).Replace("#USER_TOKEN#", token);
-
-        // Tentativa de envio de email
-        await SendEmailAsync(email, subject, body);
-        return true;
-    }
-
-    public async Task SendNoticeEmail(string? email, string? name, DateTime? registrationStartDate, DateTime? registrationEndDate, string? noticeUrl)
-    {
-        // Verifica se os parâmetros são nulos ou vazios
-        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(name) || registrationStartDate == null || registrationEndDate == null || string.IsNullOrEmpty(noticeUrl))
-            throw new Exception("Parâmetros inválidos. Email, nome, data de início e fim das inscrições e url do edital são obrigatórios.");
-
-        // Lê mensagem do template em html salvo localmente
-        string template = await File.ReadAllTextAsync(Path.Combine(_currentDirectory!, "Email/Templates/NewEdital.html"));
-
-        // Gera mensagem de envio
-        const string subject = "Novo Edital";
-        string body = template
-            .Replace("#PROFESSOR_NAME#", name)
-            .Replace("#START_DATE#", registrationStartDate.Value.ToString("dd/MM/yyyy"))
-            .Replace("#END_DATE#", registrationEndDate.Value.ToString("dd/MM/yyyy"))
-            .Replace("#NOTICE_URL#", noticeUrl);
-
-        // Tentativa de envio de email
-        await SendEmailAsync(email, subject, body);
-    }
-
-    public async Task SendProjectNotificationEmail(string? email, string? name, string? projectTitle, string? status, string? description)
-    {
-        // Verifica se os parâmetros são nulos ou vazios
-        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(projectTitle) || string.IsNullOrEmpty(status) || string.IsNullOrEmpty(description))
-            throw new Exception("Parâmetros inválidos. Email, título do projeto, status e descrição são obrigatórios.");
-
-        // Lê mensagem do template em html salvo localmente
-        string template = await File.ReadAllTextAsync(Path.Combine(_currentDirectory!, "Email/Templates/ProjectStatusChange.html"));
-
-        // Gera mensagem de envio
-        const string subject = "Alteração de Status de Projeto";
-        string body = template
-            .Replace("#PROFESSOR_NAME#", name)
-            .Replace("#PROJECT_TITLE#", projectTitle)
-            .Replace("#PROJECT_STATUS#", status)
-            .Replace("#PROJECT_DESCRIPTION#", description);
-
-        // Tentativa de envio de email
-        await SendEmailAsync(email, subject, body);
-    }
-
-    #region Private Methods
-    public async Task SendEmailAsync(string email, string subject, string message)
-    {
-        try
+        public async Task<bool> SendConfirmationEmail(string? email, string? name, string? token)
         {
             // Verifica se os parâmetros são nulos ou vazios
-            if (_smtpServer == null || _smtpUsername == null || _smtpPassword == null)
-                throw new Exception("Parâmetros de configuração de email não foram encontrados.");
-
-            // Cria objeto de mensagem
-            var mc = new MailMessage(_smtpUsername, email)
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(token))
             {
-                Subject = subject,
-                Body = message,
-                IsBodyHtml = true
-            };
+                throw new Exception("Parâmetros inválidos. Email, nome e token são obrigatórios.");
+            }
 
-            // Envia mensagem
-            using var smtpClient = new SmtpClient(_smtpServer, _smtpPort);
-            smtpClient.Timeout = 1000000;
-            smtpClient.EnableSsl = true;
-            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtpClient.UseDefaultCredentials = false;
-            smtpClient.Credentials = new NetworkCredential(_smtpUsername, _smtpPassword);
-            await smtpClient.SendMailAsync(mc);
+            // Lê mensagem do template em html salvo localmente
+            string template = await File.ReadAllTextAsync(Path.Combine(_currentDirectory!, "Email/Templates/ConfirmEmail.html"));
+
+            // Gera mensagem de envio
+            const string subject = "Confirmação de Cadastro";
+            string body = template.Replace("#USER_NAME#", name).Replace("#USER_TOKEN#", token);
+
+            // Tentativa de envio de email
+            await SendEmailAsync(email, subject, body);
+            return true;
         }
-        catch (Exception ex)
+
+        public async Task<bool> SendResetPasswordEmail(string? email, string? name, string? token)
         {
-            throw new Exception($"Não foi possível enviar o email de notificação de novo edital. {ex.Message}");
+            // Verifica se os parâmetros são nulos ou vazios
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(token))
+            {
+                throw new Exception("Parâmetros inválidos. Email, nome e token são obrigatórios.");
+            }
+
+            // Lê mensagem do template em html salvo localmente
+            string template = await File.ReadAllTextAsync(Path.Combine(_currentDirectory!, "Email/Templates/ResetPassword.html"));
+
+            // Gera mensagem de envio
+            const string subject = "Recuperação de Senha";
+            string body = template.Replace("#USER_NAME#", name).Replace("#USER_TOKEN#", token);
+
+            // Tentativa de envio de email
+            await SendEmailAsync(email, subject, body);
+            return true;
         }
+
+        public async Task SendNoticeEmail(string? email, string? name, DateTime? registrationStartDate, DateTime? registrationEndDate, string? noticeUrl)
+        {
+            // Verifica se os parâmetros são nulos ou vazios
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(name) || registrationStartDate == null || registrationEndDate == null || string.IsNullOrEmpty(noticeUrl))
+            {
+                throw new Exception("Parâmetros inválidos. Email, nome, data de início e fim das inscrições e url do edital são obrigatórios.");
+            }
+
+            // Lê mensagem do template em html salvo localmente
+            string template = await File.ReadAllTextAsync(Path.Combine(_currentDirectory!, "Email/Templates/NewEdital.html"));
+
+            // Gera mensagem de envio
+            const string subject = "Novo Edital";
+            string body = template
+                .Replace("#PROFESSOR_NAME#", name)
+                .Replace("#START_DATE#", registrationStartDate.Value.ToString("dd/MM/yyyy"))
+                .Replace("#END_DATE#", registrationEndDate.Value.ToString("dd/MM/yyyy"))
+                .Replace("#NOTICE_URL#", noticeUrl);
+
+            // Tentativa de envio de email
+            await SendEmailAsync(email, subject, body);
+        }
+
+        public async Task SendProjectNotificationEmail(string? email, string? name, string? projectTitle, string? status, string? description)
+        {
+            // Verifica se os parâmetros são nulos ou vazios
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(projectTitle) || string.IsNullOrEmpty(status) || string.IsNullOrEmpty(description))
+            {
+                throw new Exception("Parâmetros inválidos. Email, título do projeto, status e descrição são obrigatórios.");
+            }
+
+            // Lê mensagem do template em html salvo localmente
+            string template = await File.ReadAllTextAsync(Path.Combine(_currentDirectory!, "Email/Templates/ProjectStatusChange.html"));
+
+            // Gera mensagem de envio
+            const string subject = "Alteração de Status de Projeto";
+            string body = template
+                .Replace("#PROFESSOR_NAME#", name)
+                .Replace("#PROJECT_TITLE#", projectTitle)
+                .Replace("#PROJECT_STATUS#", status)
+                .Replace("#PROJECT_DESCRIPTION#", description);
+
+            // Tentativa de envio de email
+            await SendEmailAsync(email, subject, body);
+        }
+
+        #region Private Methods
+        public async Task SendEmailAsync(string email, string subject, string message)
+        {
+            try
+            {
+                // Verifica se os parâmetros são nulos ou vazios
+                if (_smtpServer == null || _smtpUsername == null || _smtpPassword == null)
+                {
+                    throw new Exception("Parâmetros de configuração de email não foram encontrados.");
+                }
+
+                // Cria objeto de mensagem
+                MailMessage mc = new(_smtpUsername, email)
+                {
+                    Subject = subject,
+                    Body = message,
+                    IsBodyHtml = true
+                };
+
+                // Envia mensagem
+                using SmtpClient smtpClient = new(_smtpServer, _smtpPort);
+                smtpClient.Timeout = 1000000;
+                smtpClient.EnableSsl = true;
+                smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtpClient.UseDefaultCredentials = false;
+                smtpClient.Credentials = new NetworkCredential(_smtpUsername, _smtpPassword);
+                await smtpClient.SendMailAsync(mc);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Não foi possível enviar o email de notificação de novo edital. {ex.Message}");
+            }
+        }
+        #endregion Private Methods
     }
-    #endregion
 }

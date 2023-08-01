@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using Adapters.Gateways.User;
-using Domain.Contracts.User;
+﻿using Adapters.Gateways.User;
+using AutoMapper;
+using Domain.UseCases.Ports.User;
 
 namespace Adapters.Mappings
 {
@@ -8,8 +8,8 @@ namespace Adapters.Mappings
     {
         public UserMappings()
         {
-            CreateMap<UserReadOutput, UserReadResponse>().ReverseMap();
-            CreateMap<UserUpdateInput, UserUpdateRequest>().ReverseMap();
+            _ = CreateMap<UserReadOutput, UserReadResponse>().ReverseMap();
+            _ = CreateMap<UserUpdateInput, UserUpdateRequest>().ReverseMap();
         }
     }
 }

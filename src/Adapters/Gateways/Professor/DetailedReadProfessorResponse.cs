@@ -12,6 +12,6 @@ namespace Adapters.Gateways.Professor
         #region Required Properties
         public string? SIAPEEnrollment { get; set; }
         public long IdentifyLattes { get; set; }
-        #endregion
+        #endregion Required Properties
     }
 }

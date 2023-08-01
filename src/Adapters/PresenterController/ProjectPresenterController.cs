@@ -1,8 +1,8 @@
 using Adapters.Gateways.Project;
 using Adapters.Interfaces;
 using AutoMapper;
-using Domain.Contracts.Project;
-using Domain.Interfaces.UseCases.Project;
+using Domain.UseCases.Interfaces.Project;
+using Domain.UseCases.Ports.Project;
 
 namespace Adapters.PresenterController
 {
@@ -40,55 +40,55 @@ namespace Adapters.PresenterController
             _submitProject = submitProject;
             _mapper = mapper;
         }
-        #endregion
+        #endregion Global Scope
 
         public async Task<ResumedReadProjectResponse> AppealProject(Guid? projectId, string? appealDescription)
         {
-            var output = await _appealProject.Execute(projectId, appealDescription);
+            ResumedReadProjectOutput output = await _appealProject.Execute(projectId, appealDescription);
             return _mapper.Map<ResumedReadProjectResponse>(output);
         }
 
         public async Task<ResumedReadProjectResponse> CancelProject(Guid? id, string? observation)
         {
-            var output = await _cancelProject.Execute(id, observation);
+            ResumedReadProjectOutput output = await _cancelProject.Execute(id, observation);
             return _mapper.Map<ResumedReadProjectResponse>(output);
         }
 
         public async Task<IList<ResumedReadProjectResponse>> GetClosedProjects(int skip, int take, bool onlyMyProjects = true)
         {
-            var output = await _getClosedProjects.Execute(skip, take, onlyMyProjects);
+            IList<ResumedReadProjectOutput> output = await _getClosedProjects.Execute(skip, take, onlyMyProjects);
             return _mapper.Map<IList<ResumedReadProjectResponse>>(output);
         }
 
         public async Task<IList<ResumedReadProjectResponse>> GetOpenProjects(int skip, int take, bool onlyMyProjects = true)
         {
-            var output = await _getOpenProjects.Execute(skip, take, onlyMyProjects);
+            IList<ResumedReadProjectOutput> output = await _getOpenProjects.Execute(skip, take, onlyMyProjects);
             return _mapper.Map<IList<ResumedReadProjectResponse>>(output);
         }
 
         public async Task<DetailedReadProjectResponse> GetProjectById(Guid? id)
         {
-            var output = await _getProjectById.Execute(id);
+            DetailedReadProjectOutput output = await _getProjectById.Execute(id);
             return _mapper.Map<DetailedReadProjectResponse>(output);
         }
 
         public async Task<ResumedReadProjectResponse> OpenProject(OpenProjectRequest request)
         {
-            var input = _mapper.Map<OpenProjectInput>(request);
-            var output = await _openProject.Execute(input);
+            OpenProjectInput input = _mapper.Map<OpenProjectInput>(request);
+            ResumedReadProjectOutput output = await _openProject.Execute(input);
             return _mapper.Map<ResumedReadProjectResponse>(output);
         }
 
         public async Task<ResumedReadProjectResponse> SubmitProject(Guid? projectId)
         {
-            var output = await _submitProject.Execute(projectId);
+            ResumedReadProjectOutput output = await _submitProject.Execute(projectId);
             return _mapper.Map<ResumedReadProjectResponse>(output);
         }
 
         public async Task<ResumedReadProjectResponse> UpdateProject(Guid? id, UpdateProjectRequest request)
         {
-            var input = _mapper.Map<UpdateProjectInput>(request);
-            var output = await _updateProject.Execute(id, input);
+            UpdateProjectInput input = _mapper.Map<UpdateProjectInput>(request);
+            ResumedReadProjectOutput output = await _updateProject.Execute(id, input);
             return _mapper.Map<ResumedReadProjectResponse>(output);
         }
     }

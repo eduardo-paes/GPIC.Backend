@@ -2,7 +2,7 @@ using Adapters.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Infrastructure.WebAPI.Controllers
+namespace WebAPI.Controllers
 {
     /// <summary>
     /// Controller responsável por gerenciar as atividades.
@@ -38,7 +38,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var result = await _activityPresenterController.GetLastNoticeActivities();
+                IEnumerable<Adapters.Gateways.Activity.ActivityTypeResponse> result = await _activityPresenterController.GetLastNoticeActivities();
                 _logger.LogInformation("Atividades encontradas.");
                 return Ok(result);
             }
@@ -64,7 +64,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var result = await _activityPresenterController.GetActivitiesByNoticeId(noticeId);
+                IEnumerable<Adapters.Gateways.Activity.ActivityTypeResponse> result = await _activityPresenterController.GetActivitiesByNoticeId(noticeId);
                 _logger.LogInformation("Atividades encontradas para o edital {noticeId}.", noticeId);
                 return Ok(result);
             }

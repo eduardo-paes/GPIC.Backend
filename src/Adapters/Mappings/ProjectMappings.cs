@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using Adapters.Gateways.Project;
-using Domain.Contracts.Project;
+﻿using Adapters.Gateways.Project;
+using AutoMapper;
+using Domain.UseCases.Ports.Project;
 
 namespace Adapters.Mappings
 {
@@ -8,14 +8,14 @@ namespace Adapters.Mappings
     {
         public ProjectMappings()
         {
-            CreateMap<OpenProjectInput, OpenProjectRequest>()
+            _ = CreateMap<OpenProjectInput, OpenProjectRequest>()
                 .ForMember(dest => dest.Activities, opt => opt.MapFrom(src => src.Activities))
                 .ReverseMap();
-            CreateMap<UpdateProjectInput, UpdateProjectRequest>()
+            _ = CreateMap<UpdateProjectInput, UpdateProjectRequest>()
                 .ForMember(dest => dest.Activities, opt => opt.MapFrom(src => src.Activities))
                 .ReverseMap();
-            CreateMap<ResumedReadProjectOutput, ResumedReadProjectResponse>().ReverseMap();
-            CreateMap<DetailedReadProjectOutput, DetailedReadProjectResponse>().ReverseMap();
+            _ = CreateMap<ResumedReadProjectOutput, ResumedReadProjectResponse>().ReverseMap();
+            _ = CreateMap<DetailedReadProjectOutput, DetailedReadProjectResponse>().ReverseMap();
         }
     }
 }

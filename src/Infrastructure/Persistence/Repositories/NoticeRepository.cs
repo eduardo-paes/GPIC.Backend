@@ -4,39 +4,47 @@ using Domain.Interfaces.Repositories;
 using Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Persistence.Repositories
+namespace Persistence.Repositories
 {
     public class NoticeRepository : INoticeRepository
     {
         #region Global Scope
         private readonly ApplicationDbContext _context;
-        public NoticeRepository(ApplicationDbContext context) => _context = context;
-        #endregion
+        public NoticeRepository(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+        #endregion Global Scope
 
         #region Public Methods
         public async Task<Notice> Create(Notice model)
         {
-            _context.Add(model);
-            await _context.SaveChangesAsync();
+            _ = _context.Add(model);
+            _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<IEnumerable<Notice>> GetAll(int skip, int take) => await _context.Notices
+        public async Task<IEnumerable<Notice>> GetAll(int skip, int take)
+        {
+            return await _context.Notices
             .Skip(skip)
             .Take(take)
             .AsAsyncEnumerable()
             .OrderByDescending(x => x.RegistrationStartDate)
             .ToListAsync();
+        }
 
-        public async Task<Notice?> GetById(Guid? id) =>
-            await _context.Notices
+        public async Task<Notice?> GetById(Guid? id)
+        {
+            return await _context.Notices
                 .IgnoreQueryFilters()
                 .AsAsyncEnumerable()
                 .FirstOrDefaultAsync(x => x.Id == id);
+        }
 
         public async Task<Notice> Delete(Guid? id)
         {
-            var model = await GetById(id)
+            Notice model = await GetById(id)
                 ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
             return await Update(model);
@@ -44,17 +52,17 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<Notice> Update(Notice model)
         {
-            _context.Update(model);
-            await _context.SaveChangesAsync();
+            _ = _context.Update(model);
+            _ = await _context.SaveChangesAsync();
             return model;
         }
 
         public async Task<Notice?> GetNoticeByPeriod(DateTime start, DateTime end)
         {
-            var startDate = start.ToUniversalTime();
-            var finalDate = end.ToUniversalTime();
+            DateTime startDate = start.ToUniversalTime();
+            DateTime finalDate = end.ToUniversalTime();
 
-            var entities = await _context.Notices
+            List<Notice> entities = await _context.Notices
                 .Where(x => (x.RegistrationStartDate <= startDate && x.RegistrationEndDate >= finalDate)
                 || (x.RegistrationStartDate <= finalDate && x.RegistrationEndDate >= finalDate)
                 || (x.RegistrationStartDate <= startDate && x.RegistrationEndDate >= startDate))
@@ -62,6 +70,6 @@ namespace Infrastructure.Persistence.Repositories
                 .ToListAsync();
             return entities.FirstOrDefault();
         }
-        #endregion
+        #endregion Public Methods
     }
 }

@@ -13,6 +13,8 @@
         /// <summary>
         /// Busca todas as entidades ativas.
         /// </summary>
+        /// <param name="skip"></param>
+        /// <param name="take"></param>
         /// <returns>Lista de entidades ativas.</returns>
         Task<IEnumerable<T>> GetAll(int skip, int take);
 

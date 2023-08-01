@@ -1,6 +1,7 @@
-﻿using AutoMapper;
-using Adapters.Gateways.Course;
-using Domain.Contracts.Course;
+﻿using Adapters.Gateways.Course;
+using AutoMapper;
+using Domain.Ports.Course;
+using Domain.UseCases.Ports.Course;
 
 namespace Adapters.Mappings
 {
@@ -8,10 +9,10 @@ namespace Adapters.Mappings
     {
         public CourseMappings()
         {
-            CreateMap<CreateCourseInput, CreateCourseRequest>().ReverseMap();
-            CreateMap<UpdateCourseInput, UpdateCourseRequest>().ReverseMap();
-            CreateMap<ResumedReadCourseOutput, ResumedReadCourseResponse>().ReverseMap();
-            CreateMap<DetailedReadCourseOutput, DetailedReadCourseResponse>().ReverseMap();
+            _ = CreateMap<CreateCourseInput, CreateCourseRequest>().ReverseMap();
+            _ = CreateMap<UpdateCourseInput, UpdateCourseRequest>().ReverseMap();
+            _ = CreateMap<ResumedReadCourseOutput, ResumedReadCourseResponse>().ReverseMap();
+            _ = CreateMap<DetailedReadCourseOutput, DetailedReadCourseResponse>().ReverseMap();
         }
     }
 }

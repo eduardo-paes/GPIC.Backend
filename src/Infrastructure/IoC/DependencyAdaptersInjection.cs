@@ -1,52 +1,54 @@
-﻿using Adapters.Mappings;
-using Adapters.Interfaces;
+﻿using Adapters.Interfaces;
+using Adapters.Mappings;
 using Adapters.PresenterController;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Infrastructure.IoC;
-public static class DependencyAdaptersInjection
+namespace IoC
 {
-    public static IServiceCollection AddAdapters(this IServiceCollection services)
+    public static class DependencyAdaptersInjection
     {
-        #region PresenterControllers
-        services.AddScoped<IAreaPresenterController, AreaPresenterController>();
-        services.AddScoped<IActivityPresenterController, ActivityPresenterController>();
-        services.AddScoped<IAssistanceTypePresenterController, AssistanceTypePresenterController>();
-        services.AddScoped<IAuthPresenterController, AuthPresenterController>();
-        services.AddScoped<ICampusPresenterController, CampusPresenterController>();
-        services.AddScoped<ICoursePresenterController, CoursePresenterController>();
-        services.AddScoped<IMainAreaPresenterController, MainAreaPresenterController>();
-        services.AddScoped<INoticePresenterController, NoticePresenterController>();
-        services.AddScoped<IProfessorPresenterController, ProfessorPresenterController>();
-        services.AddScoped<IProgramTypePresenterController, ProgramTypePresenterController>();
-        services.AddScoped<IProjectEvaluationPresenterController, ProjectEvaluationPresenterController>();
-        services.AddScoped<IProjectPresenterController, ProjectPresenterController>();
-        // services.AddScoped<IStudentDocumentsPresenterController, StudentDocumentsPresenterController>();
-        services.AddScoped<IStudentPresenterController, StudentPresenterController>();
-        services.AddScoped<ISubAreaPresenterController, SubAreaPresenterController>();
-        services.AddScoped<IUserPresenterController, UserPresenterController>();
-        #endregion
+        public static IServiceCollection AddAdapters(this IServiceCollection services)
+        {
+            #region PresenterControllers
+            _ = services.AddScoped<IAreaPresenterController, AreaPresenterController>();
+            _ = services.AddScoped<IActivityPresenterController, ActivityPresenterController>();
+            _ = services.AddScoped<IAssistanceTypePresenterController, AssistanceTypePresenterController>();
+            _ = services.AddScoped<IAuthPresenterController, AuthPresenterController>();
+            _ = services.AddScoped<ICampusPresenterController, CampusPresenterController>();
+            _ = services.AddScoped<ICoursePresenterController, CoursePresenterController>();
+            _ = services.AddScoped<IMainAreaPresenterController, MainAreaPresenterController>();
+            _ = services.AddScoped<INoticePresenterController, NoticePresenterController>();
+            _ = services.AddScoped<IProfessorPresenterController, ProfessorPresenterController>();
+            _ = services.AddScoped<IProgramTypePresenterController, ProgramTypePresenterController>();
+            _ = services.AddScoped<IProjectEvaluationPresenterController, ProjectEvaluationPresenterController>();
+            _ = services.AddScoped<IProjectPresenterController, ProjectPresenterController>();
+            // services.AddScoped<IStudentDocumentsPresenterController, StudentDocumentsPresenterController>();
+            _ = services.AddScoped<IStudentPresenterController, StudentPresenterController>();
+            _ = services.AddScoped<ISubAreaPresenterController, SubAreaPresenterController>();
+            _ = services.AddScoped<IUserPresenterController, UserPresenterController>();
+            #endregion PresenterControllers
 
-        #region Gateways Mappers
-        services.AddAutoMapper(typeof(AreaMappings));
-        services.AddAutoMapper(typeof(ActivityMappings));
-        services.AddAutoMapper(typeof(AssistanceTypeMappings));
-        services.AddAutoMapper(typeof(AuthMappings));
-        services.AddAutoMapper(typeof(CampusMappings));
-        services.AddAutoMapper(typeof(CourseMappings));
-        services.AddAutoMapper(typeof(MainAreaMappings));
-        services.AddAutoMapper(typeof(NoticeMappings));
-        services.AddAutoMapper(typeof(ProfessorMappings));
-        services.AddAutoMapper(typeof(ProgramTypeMappings));
-        services.AddAutoMapper(typeof(ProjectEvaluationMapping));
-        services.AddAutoMapper(typeof(ProjectMappings));
-        services.AddAutoMapper(typeof(ProjectActivityMappings));
-        services.AddAutoMapper(typeof(StudentDocumentsMappings));
-        services.AddAutoMapper(typeof(StudentMappings));
-        services.AddAutoMapper(typeof(SubAreaMappings));
-        services.AddAutoMapper(typeof(UserMappings));
-        #endregion
+            #region Gateways Mappers
+            _ = services.AddAutoMapper(typeof(AreaMappings));
+            _ = services.AddAutoMapper(typeof(ActivityMappings));
+            _ = services.AddAutoMapper(typeof(AssistanceTypeMappings));
+            _ = services.AddAutoMapper(typeof(AuthMappings));
+            _ = services.AddAutoMapper(typeof(CampusMappings));
+            _ = services.AddAutoMapper(typeof(CourseMappings));
+            _ = services.AddAutoMapper(typeof(MainAreaMappings));
+            _ = services.AddAutoMapper(typeof(NoticeMappings));
+            _ = services.AddAutoMapper(typeof(ProfessorMappings));
+            _ = services.AddAutoMapper(typeof(ProgramTypeMappings));
+            _ = services.AddAutoMapper(typeof(ProjectEvaluationMapping));
+            _ = services.AddAutoMapper(typeof(ProjectMappings));
+            _ = services.AddAutoMapper(typeof(ProjectActivityMappings));
+            _ = services.AddAutoMapper(typeof(StudentDocumentsMappings));
+            _ = services.AddAutoMapper(typeof(StudentMappings));
+            _ = services.AddAutoMapper(typeof(SubAreaMappings));
+            _ = services.AddAutoMapper(typeof(UserMappings));
+            #endregion Gateways Mappers
 
-        return services;
+            return services;
+        }
     }
 }

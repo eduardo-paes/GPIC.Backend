@@ -4,30 +4,33 @@ using Domain.Interfaces.Repositories;
 using Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Persistence.Repositories
+namespace Persistence.Repositories
 {
     public class ProjectRepository : IProjectRepository
     {
         private readonly ApplicationDbContext _context;
-        public ProjectRepository(ApplicationDbContext context) => _context = context;
+        public ProjectRepository(ApplicationDbContext context)
+        {
+            _context = context;
+        }
 
         public async Task<Project> Create(Project model)
         {
-            _context.Add(model);
-            await _context.SaveChangesAsync();
+            _ = _context.Add(model);
+            _ = await _context.SaveChangesAsync();
             return model;
         }
 
         public async Task<Project> Update(Project model)
         {
-            _context.Update(model);
-            await _context.SaveChangesAsync();
+            _ = _context.Update(model);
+            _ = await _context.SaveChangesAsync();
             return model;
         }
 
         public async Task<Project> Delete(Guid? id)
         {
-            var model = await GetById(id)
+            Project model = await GetById(id)
                 ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
             return await Update(model);
@@ -50,9 +53,8 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<IEnumerable<Project>> GetProfessorProjects(int skip, int take, Guid? id, bool isClosed = false)
         {
-            if (isClosed)
-            {
-                return await _context.Projects
+            return isClosed
+                ? await _context.Projects
                     .Include(x => x.Student)
                     .Include(x => x.Professor)
                     .Include(x => x.SubArea)
@@ -65,10 +67,8 @@ namespace Infrastructure.Persistence.Repositories
                             || x.Status == EProjectStatus.Canceled))
                     .Skip(skip)
                     .Take(take)
-                    .ToListAsync();
-            }
-
-            return await _context.Projects
+                    .ToListAsync()
+                : (IEnumerable<Project>)await _context.Projects
                 .Include(x => x.Student)
                 .Include(x => x.Professor)
                 .Include(x => x.SubArea)
@@ -86,9 +86,8 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<IEnumerable<Project>> GetProjects(int skip, int take, bool isClosed = false)
         {
-            if (isClosed)
-            {
-                return await _context.Projects
+            return isClosed
+                ? await _context.Projects
                     .Include(x => x.Student)
                     .Include(x => x.Professor)
                     .Include(x => x.SubArea)
@@ -96,13 +95,11 @@ namespace Infrastructure.Persistence.Repositories
                     .Include(x => x.Notice)
                     .IgnoreQueryFilters()
                     .AsAsyncEnumerable()
-                    .Where(x => x.Status == EProjectStatus.Closed || x.Status == EProjectStatus.Canceled)
+                    .Where(x => x.Status is EProjectStatus.Closed or EProjectStatus.Canceled)
                     .Skip(skip)
                     .Take(take)
-                    .ToListAsync();
-            }
-
-            return await _context.Projects
+                    .ToListAsync()
+                : (IEnumerable<Project>)await _context.Projects
                 .Include(x => x.Student)
                 .Include(x => x.Professor)
                 .Include(x => x.SubArea)
@@ -110,7 +107,7 @@ namespace Infrastructure.Persistence.Repositories
                 .Include(x => x.Notice)
                 .IgnoreQueryFilters()
                 .AsAsyncEnumerable()
-                .Where(x => x.Status != EProjectStatus.Closed && x.Status != EProjectStatus.Canceled)
+                .Where(x => x.Status is not EProjectStatus.Closed and not EProjectStatus.Canceled)
                 .Skip(skip)
                 .Take(take)
                 .ToListAsync();
@@ -118,9 +115,8 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<IEnumerable<Project>> GetStudentProjects(int skip, int take, Guid? id, bool isClosed = false)
         {
-            if (isClosed)
-            {
-                return await _context.Projects
+            return isClosed
+                ? await _context.Projects
                     .Include(x => x.Student)
                     .Include(x => x.Professor)
                     .Include(x => x.SubArea)
@@ -133,10 +129,8 @@ namespace Infrastructure.Persistence.Repositories
                             || x.Status == EProjectStatus.Canceled))
                     .Skip(skip)
                     .Take(take)
-                    .ToListAsync();
-            }
-
-            return await _context.Projects
+                    .ToListAsync()
+                : (IEnumerable<Project>)await _context.Projects
                 .Include(x => x.Student)
                 .Include(x => x.Professor)
                 .Include(x => x.SubArea)

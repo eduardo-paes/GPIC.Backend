@@ -2,8 +2,8 @@ using Adapters.Gateways.Base;
 using Adapters.Gateways.ProgramType;
 using Adapters.Interfaces;
 using AutoMapper;
-using Domain.Contracts.ProgramType;
-using Domain.Interfaces.UseCases;
+using Domain.UseCases.Interfaces.ProgramType;
+using Domain.UseCases.Ports.ProgramType;
 
 namespace Adapters.PresenterController
 {
@@ -26,39 +26,39 @@ namespace Adapters.PresenterController
             _getProgramTypeById = getProgramTypeById;
             _mapper = mapper;
         }
-        #endregion
+        #endregion Global Scope
 
         public async Task<IResponse> Create(IRequest request)
         {
-            var dto = request as CreateProgramTypeRequest;
-            var input = _mapper.Map<CreateProgramTypeInput>(dto);
-            var result = await _createProgramType.Execute(input);
+            CreateProgramTypeRequest? dto = request as CreateProgramTypeRequest;
+            CreateProgramTypeInput input = _mapper.Map<CreateProgramTypeInput>(dto);
+            DetailedReadProgramTypeOutput result = await _createProgramType.Execute(input);
             return _mapper.Map<DetailedReadProgramTypeResponse>(result);
         }
 
         public async Task<IResponse> Delete(Guid? id)
         {
-            var result = await _deleteProgramType.Execute(id);
+            DetailedReadProgramTypeOutput result = await _deleteProgramType.Execute(id);
             return _mapper.Map<DetailedReadProgramTypeResponse>(result);
         }
 
         public async Task<IEnumerable<IResponse>> GetAll(int skip, int take)
         {
-            var result = await _getProgramTypes.Execute(skip, take);
+            IQueryable<ResumedReadProgramTypeOutput> result = await _getProgramTypes.Execute(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadProgramTypeResponse>>(result);
         }
 
         public async Task<IResponse> GetById(Guid? id)
         {
-            var result = await _getProgramTypeById.Execute(id);
+            DetailedReadProgramTypeOutput result = await _getProgramTypeById.Execute(id);
             return _mapper.Map<DetailedReadProgramTypeResponse>(result);
         }
 
         public async Task<IResponse> Update(Guid? id, IRequest request)
         {
-            var dto = request as UpdateProgramTypeRequest;
-            var input = _mapper.Map<UpdateProgramTypeInput>(dto);
-            var result = await _updateProgramType.Execute(id, input);
+            UpdateProgramTypeRequest? dto = request as UpdateProgramTypeRequest;
+            UpdateProgramTypeInput input = _mapper.Map<UpdateProgramTypeInput>(dto);
+            DetailedReadProgramTypeOutput result = await _updateProgramType.Execute(id, input);
             return _mapper.Map<DetailedReadProgramTypeResponse>(result);
         }
     }

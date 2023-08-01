@@ -1,7 +1,7 @@
 using Domain.Interfaces.Services;
-using Infrastructure.Services.Email.Configs;
+using Services.Email.Configs;
 
-namespace Infrastructure.Services.Email.Factories
+namespace Services.Email.Factories
 {
     public interface IEmailServiceFactory
     {

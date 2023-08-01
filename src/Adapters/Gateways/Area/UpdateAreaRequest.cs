@@ -1,5 +1,7 @@
 ﻿using Adapters.Gateways.Base;
-using Domain.Contracts.Area;
+using Domain.Ports.Area;
 
-namespace Adapters.Gateways.Area;
-public class UpdateAreaRequest : UpdateAreaInput, IRequest { }
+namespace Adapters.Gateways.Area
+{
+    public class UpdateAreaRequest : UpdateAreaInput, IRequest { }
+}

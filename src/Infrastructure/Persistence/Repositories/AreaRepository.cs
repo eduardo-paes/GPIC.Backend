@@ -3,29 +3,37 @@ using Domain.Interfaces.Repositories;
 using Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Persistence.Repositories
+namespace Persistence.Repositories
 {
     public class AreaRepository : IAreaRepository
     {
         #region Global Scope
         private readonly ApplicationDbContext _context;
-        public AreaRepository(ApplicationDbContext context) => _context = context;
-        #endregion
+        public AreaRepository(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+        #endregion Global Scope
 
         #region Public Methods
         public async Task<Area> Create(Area model)
         {
-            _context.Add(model);
-            await _context.SaveChangesAsync();
+            _ = _context.Add(model);
+            _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<Area?> GetByCode(string? code) => await _context.Areas
+        public async Task<Area?> GetByCode(string? code)
+        {
+            return await _context.Areas
             .Where(x => x.Code == code)
             .ToAsyncEnumerable()
             .FirstOrDefaultAsync();
+        }
 
-        public async Task<IEnumerable<Area>> GetAreasByMainArea(Guid? mainAreaId, int skip, int take) => await _context.Areas
+        public async Task<IEnumerable<Area>> GetAreasByMainArea(Guid? mainAreaId, int skip, int take)
+        {
+            return await _context.Areas
             .Where(x => x.MainAreaId == mainAreaId)
             .Skip(skip)
             .Take(take)
@@ -33,6 +41,7 @@ namespace Infrastructure.Persistence.Repositories
             .AsAsyncEnumerable()
             .OrderBy(x => x.Name)
             .ToListAsync();
+        }
 
         public async Task<Area?> GetById(Guid? id)
         {
@@ -46,7 +55,7 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<Area> Delete(Guid? id)
         {
-            var model = await GetById(id)
+            Area model = await GetById(id)
                 ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
             return await Update(model);
@@ -54,8 +63,8 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<Area> Update(Area model)
         {
-            _context.Update(model);
-            await _context.SaveChangesAsync();
+            _ = _context.Update(model);
+            _ = await _context.SaveChangesAsync();
             return model;
         }
 
@@ -63,6 +72,6 @@ namespace Infrastructure.Persistence.Repositories
         {
             throw new NotImplementedException();
         }
-        #endregion
+        #endregion Public Methods
     }
 }

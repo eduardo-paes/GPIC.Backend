@@ -3,25 +3,28 @@ using Domain.Interfaces.Repositories;
 using Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Persistence.Repositories
+namespace Persistence.Repositories
 {
     public class ActivityTypeRepository : IActivityTypeRepository
     {
         #region Global Scope
         private readonly ApplicationDbContext _context;
-        public ActivityTypeRepository(ApplicationDbContext context) => _context = context;
-        #endregion
+        public ActivityTypeRepository(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+        #endregion Global Scope
 
         public async Task<ActivityType> Create(ActivityType model)
         {
-            _context.Add(model);
-            await _context.SaveChangesAsync();
+            _ = _context.Add(model);
+            _ = await _context.SaveChangesAsync();
             return model;
         }
 
         public async Task<ActivityType> Delete(Guid? id)
         {
-            var model = await GetById(id)
+            ActivityType model = await GetById(id)
                 ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
             return await Update(model);
@@ -39,14 +42,14 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<IList<ActivityType>> GetByNoticeId(Guid? noticeId)
         {
-            var activityTypes = await _context.ActivityTypes
+            List<ActivityType> activityTypes = await _context.ActivityTypes
                 .Include(x => x.Activities)
                 .Where(x => x.NoticeId == noticeId)
                 .ToListAsync()
                 ?? throw new Exception("Nenhum tipo de atividade encontrado.");
 
             // Force loading of the Activities collection for each ActivityType
-            foreach (var activityType in activityTypes)
+            foreach (ActivityType? activityType in activityTypes)
             {
                 // Explicitly load the Activities collection
                 await _context.Entry(activityType)
@@ -59,7 +62,7 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<IList<ActivityType>> GetLastNoticeActivities()
         {
-            var lastNoticeId = await _context.Notices
+            Guid lastNoticeId = await _context.Notices
                 .AsAsyncEnumerable()
                 .OrderByDescending(x => x.CreatedAt)
                 .Select(x => x.Id)
@@ -70,16 +73,19 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<ActivityType> Update(ActivityType model)
         {
-            _context.Update(model);
-            await _context.SaveChangesAsync();
+            _ = _context.Update(model);
+            _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<IEnumerable<ActivityType>> GetAll(int skip, int take) => await _context.ActivityTypes
+        public async Task<IEnumerable<ActivityType>> GetAll(int skip, int take)
+        {
+            return await _context.ActivityTypes
             .Skip(skip)
             .Take(take)
             .AsAsyncEnumerable()
             .OrderBy(x => x.Name)
             .ToListAsync();
+        }
     }
 }

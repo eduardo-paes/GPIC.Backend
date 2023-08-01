@@ -1,6 +1,6 @@
 using AspNetCoreRateLimit;
-using Infrastructure.IoC;
-using Infrastructure.WebAPI.Middleware;
+using IoC;
+using WebAPI.Middlewares;
 
 namespace WebAPI
 {

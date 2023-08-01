@@ -1,5 +1,7 @@
 using Adapters.Gateways.Base;
-using Domain.Contracts.Project;
+using Domain.UseCases.Ports.Project;
 
-namespace Adapters.Gateways.Project;
-public class DetailedReadProjectResponse : DetailedReadProjectOutput, IResponse { }
+namespace Adapters.Gateways.Project
+{
+    public class DetailedReadProjectResponse : DetailedReadProjectOutput, IResponse { }
+}

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Domain.Contracts.Notice;
 using Domain.Entities;
+using Domain.UseCases.Ports.Notice;
 
 namespace Domain.Mappings
 {
@@ -8,10 +8,10 @@ namespace Domain.Mappings
     {
         public NoticeMappings()
         {
-            CreateMap<Notice, CreateNoticeInput>().ReverseMap();
-            CreateMap<Notice, UpdateNoticeInput>().ReverseMap();
-            CreateMap<Notice, ResumedReadNoticeOutput>().ReverseMap();
-            CreateMap<Notice, DetailedReadNoticeOutput>().ReverseMap();
+            _ = CreateMap<Notice, CreateNoticeInput>().ReverseMap();
+            _ = CreateMap<Notice, UpdateNoticeInput>().ReverseMap();
+            _ = CreateMap<Notice, ResumedReadNoticeOutput>().ReverseMap();
+            _ = CreateMap<Notice, DetailedReadNoticeOutput>().ReverseMap();
         }
     }
 }

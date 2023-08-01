@@ -1,6 +1,6 @@
-using AutoMapper;
 using Adapters.Gateways.ProjectEvaluation;
-using Domain.Contracts.ProjectEvaluation;
+using AutoMapper;
+using Domain.UseCases.Ports.ProjectEvaluation;
 
 namespace Adapters.Mappings
 {
@@ -8,12 +8,12 @@ namespace Adapters.Mappings
     {
         public ProjectEvaluationMapping()
         {
-            CreateMap<EvaluateAppealProjectInput, EvaluateAppealProjectRequest>()
+            _ = CreateMap<EvaluateAppealProjectInput, EvaluateAppealProjectRequest>()
                 .ReverseMap();
-            CreateMap<EvaluateSubmissionProjectInput, EvaluateSubmissionProjectRequest>()
+            _ = CreateMap<EvaluateSubmissionProjectInput, EvaluateSubmissionProjectRequest>()
                 .ForMember(dest => dest.Activities, opt => opt.MapFrom(src => src.Activities))
                 .ReverseMap();
-            CreateMap<DetailedReadProjectEvaluationResponse, DetailedReadProjectEvaluationOutput>()
+            _ = CreateMap<DetailedReadProjectEvaluationResponse, DetailedReadProjectEvaluationOutput>()
                 .ReverseMap();
         }
     }

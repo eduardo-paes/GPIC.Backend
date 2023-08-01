@@ -3,7 +3,7 @@ using Adapters.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Infrastructure.WebAPI.Controllers
+namespace WebAPI.Controllers
 {
     /// <summary>
     /// Controller de Área.
@@ -26,7 +26,7 @@ namespace Infrastructure.WebAPI.Controllers
             _service = service;
             _logger = logger;
         }
-        #endregion
+        #endregion Global Scope
 
         /// <summary>
         /// Busca área pelo id.
@@ -49,7 +49,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _service.GetById(id);
+                Adapters.Gateways.Base.IResponse model = await _service.GetById(id);
                 _logger.LogInformation("Método ({MethodName}) executado. Retorno: Id = {id}", id);
                 return Ok(model);
             }
@@ -81,7 +81,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var models = await _service.GetAreasByMainArea(mainAreaId, skip, take);
+                IEnumerable<Adapters.Gateways.Base.IResponse> models = await _service.GetAreasByMainArea(mainAreaId, skip, take);
                 if (models == null)
                 {
                     const string msg = "Nenhuma Área encontrada.";
@@ -112,7 +112,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _service.Create(request) as DetailedReadAreaResponse;
+                DetailedReadAreaResponse? model = await _service.Create(request) as DetailedReadAreaResponse;
                 _logger.LogInformation("Método finalizado, retorno: Id = {id}", model?.Id);
                 return Ok(model);
             }
@@ -135,7 +135,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _service.Update(id, request) as DetailedReadAreaResponse;
+                DetailedReadAreaResponse? model = await _service.Update(id, request) as DetailedReadAreaResponse;
                 _logger.LogInformation("Área atualizada: {id}", model?.Id);
                 return Ok(model);
             }
@@ -165,7 +165,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _service.Delete(id.Value) as DetailedReadAreaResponse;
+                DetailedReadAreaResponse? model = await _service.Delete(id.Value) as DetailedReadAreaResponse;
                 _logger.LogInformation("Área removida: {id}", model?.Id);
                 return Ok(model);
             }

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Domain.Contracts.MainArea;
 using Domain.Entities;
+using Domain.UseCases.Ports.MainArea;
 
 namespace Domain.Mappings
 {
@@ -8,10 +8,10 @@ namespace Domain.Mappings
     {
         public MainAreaMappings()
         {
-            CreateMap<MainArea, CreateMainAreaInput>().ReverseMap();
-            CreateMap<MainArea, UpdateMainAreaInput>().ReverseMap();
-            CreateMap<MainArea, ResumedReadMainAreaOutput>().ReverseMap();
-            CreateMap<MainArea, DetailedMainAreaOutput>().ReverseMap();
+            _ = CreateMap<MainArea, CreateMainAreaInput>().ReverseMap();
+            _ = CreateMap<MainArea, UpdateMainAreaInput>().ReverseMap();
+            _ = CreateMap<MainArea, ResumedReadMainAreaOutput>().ReverseMap();
+            _ = CreateMap<MainArea, DetailedMainAreaOutput>().ReverseMap();
         }
     }
 }

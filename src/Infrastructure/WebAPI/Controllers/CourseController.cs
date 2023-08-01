@@ -3,7 +3,7 @@ using Adapters.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Infrastructure.WebAPI.Controllers
+namespace WebAPI.Controllers
 {
     /// <summary>
     /// Controller de Curso.
@@ -26,7 +26,7 @@ namespace Infrastructure.WebAPI.Controllers
             _service = service;
             _logger = logger;
         }
-        #endregion
+        #endregion Global Scope
 
         /// <summary>
         /// Busca curso pelo id.
@@ -47,7 +47,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _service.GetById(id);
+                Adapters.Gateways.Base.IResponse model = await _service.GetById(id);
                 _logger.LogInformation("Curso encontrado para o id {id}.", id);
                 return Ok(model);
             }
@@ -68,7 +68,7 @@ namespace Infrastructure.WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<ResumedReadCourseResponse>>> GetAll(int skip = 0, int take = 50)
         {
-            var models = await _service.GetAll(skip, take);
+            IEnumerable<Adapters.Gateways.Base.IResponse> models = await _service.GetAll(skip, take);
             if (models == null)
             {
                 const string msg = "Nenhum Curso encontrado.";
@@ -92,7 +92,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _service.Create(request) as DetailedReadCourseResponse;
+                DetailedReadCourseResponse? model = await _service.Create(request) as DetailedReadCourseResponse;
                 _logger.LogInformation("Curso criado: {id}", model?.Id);
                 return Ok(model);
             }
@@ -115,7 +115,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _service.Update(id, request) as DetailedReadCourseResponse;
+                DetailedReadCourseResponse? model = await _service.Update(id, request) as DetailedReadCourseResponse;
                 _logger.LogInformation("Curso atualizado: {id}", model?.Id);
                 return Ok(model);
             }
@@ -145,7 +145,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _service.Delete(id.Value) as DetailedReadCourseResponse;
+                DetailedReadCourseResponse? model = await _service.Delete(id.Value) as DetailedReadCourseResponse;
                 _logger.LogInformation("Curso removido: {id}", model?.Id);
                 return Ok(model);
             }

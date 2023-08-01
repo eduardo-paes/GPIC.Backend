@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using Adapters.Gateways.Campus;
-using Domain.Contracts.Campus;
+﻿using Adapters.Gateways.Campus;
+using AutoMapper;
+using Domain.UseCases.Ports.Campus;
 
 namespace Adapters.Mappings
 {
@@ -8,10 +8,10 @@ namespace Adapters.Mappings
     {
         public CampusMappings()
         {
-            CreateMap<CreateCampusInput, CreateCampusRequest>().ReverseMap();
-            CreateMap<UpdateCampusInput, UpdateCampusRequest>().ReverseMap();
-            CreateMap<ResumedReadCampusOutput, ResumedReadCampusResponse>().ReverseMap();
-            CreateMap<DetailedReadCampusOutput, DetailedReadCampusResponse>().ReverseMap();
+            _ = CreateMap<CreateCampusInput, CreateCampusRequest>().ReverseMap();
+            _ = CreateMap<UpdateCampusInput, UpdateCampusRequest>().ReverseMap();
+            _ = CreateMap<ResumedReadCampusOutput, ResumedReadCampusResponse>().ReverseMap();
+            _ = CreateMap<DetailedReadCampusOutput, DetailedReadCampusResponse>().ReverseMap();
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Adapters.Gateways.Base;
-using Domain.Contracts.ProgramType;
+using Domain.UseCases.Ports.ProgramType;
 
-namespace Adapters.Gateways.ProgramType;
-public class DetailedReadProgramTypeResponse : DetailedReadProgramTypeOutput, IResponse { }
+namespace Adapters.Gateways.ProgramType
+{
+    public class DetailedReadProgramTypeResponse : DetailedReadProgramTypeOutput, IResponse { }
+}

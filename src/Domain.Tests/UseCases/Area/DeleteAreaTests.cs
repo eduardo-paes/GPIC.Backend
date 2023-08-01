@@ -1,13 +1,13 @@
+using System;
+using System.Threading.Tasks;
 using AutoMapper;
-using Domain.Contracts.Area;
-using Domain.Interfaces.Repositories;
-using Domain.Interfaces.UseCases;
+using Domain.Ports.Area;
 using Domain.UseCases;
+using Domain.UseCases.Interfaces.Repositories;
+using Domain.UseCases.Interfaces.UseCases;
 using Domain.Validation;
 using Moq;
 using NUnit.Framework;
-using System;
-using System.Threading.Tasks;
 
 namespace Domain.Tests.UseCases.Area
 {

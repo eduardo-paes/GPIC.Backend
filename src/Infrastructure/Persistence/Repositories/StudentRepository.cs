@@ -1,46 +1,53 @@
-﻿// using System.Data.Entity;
-using Domain.Entities;
+﻿using Domain.Entities;
 using Domain.Interfaces.Repositories;
 using Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Persistence.Repositories
+namespace Persistence.Repositories
 {
     public class StudentRepository : IStudentRepository
     {
         #region Global Scope
         private readonly ApplicationDbContext _context;
-        public StudentRepository(ApplicationDbContext context) => _context = context;
-        #endregion
+        public StudentRepository(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+        #endregion Global Scope
 
         #region Public Methods
         public async Task<Student> Create(Student model)
         {
-            _context.Add(model);
-            await _context.SaveChangesAsync();
+            _ = _context.Add(model);
+            _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<IEnumerable<Student>> GetAll(int skip, int take) => await _context.Students
+        public async Task<IEnumerable<Student>> GetAll(int skip, int take)
+        {
+            return await _context.Students
             .Include(x => x.User)
             .Skip(skip)
             .Take(take)
             .AsAsyncEnumerable()
             .OrderBy(x => x.User?.Name)
             .ToListAsync();
+        }
 
-        public async Task<Student?> GetById(Guid? id) =>
-            await _context.Students
+        public async Task<Student?> GetById(Guid? id)
+        {
+            return await _context.Students
                 .Include(x => x.User)
                 .Include(x => x.Campus)
                 .Include(x => x.Course)
                 .IgnoreQueryFilters()
                 .AsAsyncEnumerable()
                 .FirstOrDefaultAsync(x => x.Id == id);
+        }
 
         public async Task<Student> Delete(Guid? id)
         {
-            var model = await GetById(id)
+            Student model = await GetById(id)
                 ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
             return await Update(model);
@@ -48,10 +55,10 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<Student> Update(Student model)
         {
-            _context.Update(model);
-            await _context.SaveChangesAsync();
+            _ = _context.Update(model);
+            _ = await _context.SaveChangesAsync();
             return model;
         }
-        #endregion
+        #endregion Public Methods
     }
 }

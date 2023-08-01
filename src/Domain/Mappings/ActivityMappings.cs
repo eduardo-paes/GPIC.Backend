@@ -1,6 +1,7 @@
 using AutoMapper;
-using Domain.Contracts.Activity;
 using Domain.Entities;
+using Domain.Ports.Activity;
+using Domain.UseCases.Ports.Activity;
 
 namespace Domain.Mappings
 {
@@ -8,13 +9,13 @@ namespace Domain.Mappings
     {
         public ActivityMappings()
         {
-            CreateMap<Activity, BaseActivity>();
-            CreateMap<Activity, ActivityOutput>()
+            _ = CreateMap<Activity, BaseActivity>();
+            _ = CreateMap<Activity, ActivityOutput>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.DeletedAt, opt => opt.MapFrom(src => src.DeletedAt));
 
-            CreateMap<ActivityType, BaseActivityType>();
-            CreateMap<ActivityType, ActivityTypeOutput>()
+            _ = CreateMap<ActivityType, BaseActivityType>();
+            _ = CreateMap<ActivityType, ActivityTypeOutput>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.DeletedAt, opt => opt.MapFrom(src => src.DeletedAt))
                 .ForMember(dest => dest.Activities, opt => opt.MapFrom(src => src.Activities));

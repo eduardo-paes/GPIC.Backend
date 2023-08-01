@@ -1,9 +1,9 @@
-using Adapters.Gateways.Base;
 using Adapters.Gateways.AssistanceType;
+using Adapters.Gateways.Base;
 using Adapters.Interfaces;
 using AutoMapper;
-using Domain.Contracts.AssistanceType;
-using Domain.Interfaces.UseCases;
+using Domain.UseCases.Interfaces.AssistanceType;
+using Domain.UseCases.Ports.AssistanceType;
 
 namespace Adapters.PresenterController
 {
@@ -31,39 +31,39 @@ namespace Adapters.PresenterController
             _getAssistanceTypeById = getAssistanceTypeById;
             _mapper = mapper;
         }
-        #endregion
+        #endregion Global Scope
 
         public async Task<IResponse> Create(IRequest request)
         {
-            var dto = request as CreateAssistanceTypeRequest;
-            var input = _mapper.Map<CreateAssistanceTypeInput>(dto);
-            var result = await _createAssistanceType.Execute(input);
+            CreateAssistanceTypeRequest? dto = request as CreateAssistanceTypeRequest;
+            CreateAssistanceTypeInput input = _mapper.Map<CreateAssistanceTypeInput>(dto);
+            DetailedReadAssistanceTypeOutput result = await _createAssistanceType.Execute(input);
             return _mapper.Map<DetailedReadAssistanceTypeResponse>(result);
         }
 
         public async Task<IResponse> Delete(Guid? id)
         {
-            var result = await _deleteAssistanceType.Execute(id);
+            DetailedReadAssistanceTypeOutput result = await _deleteAssistanceType.Execute(id);
             return _mapper.Map<DetailedReadAssistanceTypeResponse>(result);
         }
 
         public async Task<IEnumerable<IResponse>> GetAll(int skip, int take)
         {
-            var result = await _getAssistanceTypes.Execute(skip, take);
+            IQueryable<ResumedReadAssistanceTypeOutput> result = await _getAssistanceTypes.Execute(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadAssistanceTypeResponse>>(result);
         }
 
         public async Task<IResponse> GetById(Guid? id)
         {
-            var result = await _getAssistanceTypeById.Execute(id);
+            DetailedReadAssistanceTypeOutput result = await _getAssistanceTypeById.Execute(id);
             return _mapper.Map<DetailedReadAssistanceTypeResponse>(result);
         }
 
         public async Task<IResponse> Update(Guid? id, IRequest request)
         {
-            var dto = request as UpdateAssistanceTypeRequest;
-            var input = _mapper.Map<UpdateAssistanceTypeInput>(dto);
-            var result = await _updateAssistanceType.Execute(id, input);
+            UpdateAssistanceTypeRequest? dto = request as UpdateAssistanceTypeRequest;
+            UpdateAssistanceTypeInput input = _mapper.Map<UpdateAssistanceTypeInput>(dto);
+            DetailedReadAssistanceTypeOutput result = await _updateAssistanceType.Execute(id, input);
             return _mapper.Map<DetailedReadAssistanceTypeResponse>(result);
         }
     }

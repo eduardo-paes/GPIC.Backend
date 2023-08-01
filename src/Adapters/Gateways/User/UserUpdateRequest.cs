@@ -1,5 +1,7 @@
 ﻿using Adapters.Gateways.Base;
-using Domain.Contracts.User;
+using Domain.UseCases.Ports.User;
 
-namespace Adapters.Gateways.User;
-public class UserUpdateRequest : UserUpdateInput, IRequest { }
+namespace Adapters.Gateways.User
+{
+    public class UserUpdateRequest : UserUpdateInput, IRequest { }
+}
