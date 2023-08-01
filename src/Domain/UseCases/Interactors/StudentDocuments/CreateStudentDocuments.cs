@@ -44,11 +44,11 @@ namespace Domain.UseCases
 
             // Verifica se o projeto existe
             var project = await _projectRepository.GetById(input.ProjectId!);
-            UseCaseException.NotFoundEntityById(project is null, nameof(project));
+            UseCaseException.NotFoundEntityById(project is null, nameof(Entities.Project));
 
-            // Verifica se o projeto se encontra em situação de submissão de documentos
+            // Verifica se o projeto se encontra em situação de submissão de documentos (Aceito)
             UseCaseException.BusinessRuleViolation(
-                project?.Status != Entities.Enums.EProjectStatus.DocumentAnalysis,
+                project?.Status != Entities.Enums.EProjectStatus.Accepted,
                 "O projeto não está na fase de apresentação de documentos.");
 
             // Cria entidade a partir do input informado

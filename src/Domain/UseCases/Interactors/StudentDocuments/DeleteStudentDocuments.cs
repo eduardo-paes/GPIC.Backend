@@ -26,6 +26,8 @@ namespace Domain.UseCases.Interactors.StudentDocuments
             // Remove a entidade
             Entities.StudentDocuments model = await _repository.Delete(id);
 
+            // TODO: Verificar se seria preciso remover os documentos do aluno caso fosse removido o registro de documentos do aluno
+
             // Retorna o tipo de programa removido
             return _mapper.Map<DetailedReadStudentDocumentsOutput>(model);
         }

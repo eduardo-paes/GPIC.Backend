@@ -38,9 +38,9 @@ namespace Domain.UseCases.Interactors.StudentDocuments
             Entities.StudentDocuments? studentDocuments = await _studentDocumentRepository.GetById(id!);
             UseCaseException.NotFoundEntityById(studentDocuments is not null, nameof(studentDocuments));
 
-            // Verifica se o projeto se encontra em situação de submissão de documentos
+            // Verifica se o projeto se encontra em situação de submissão de documentos (Aceito ou Pendente do envio de documentação)
             UseCaseException.BusinessRuleViolation(
-                studentDocuments!.Project?.Status is not Entities.Enums.EProjectStatus.DocumentAnalysis
+                studentDocuments!.Project?.Status is not Entities.Enums.EProjectStatus.Accepted
                     and not Entities.Enums.EProjectStatus.Pending,
                 "O projeto não está na fase de apresentação de documentos.");
 
@@ -76,12 +76,10 @@ namespace Domain.UseCases.Interactors.StudentDocuments
         {
             try
             {
-                if (file is null)
+                if (file is not null)
                 {
-                    return;
+                    _ = await _storageFileService.UploadFileAsync(file, url);
                 }
-
-                _ = await _storageFileService.UploadFileAsync(file, url);
             }
             catch (Exception ex)
             {

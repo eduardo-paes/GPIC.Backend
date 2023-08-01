@@ -13,7 +13,7 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(value is null,
-                    ExceptionMessageFactory.Required(nameof(_projectId)));
+                    ExceptionMessageFactory.Required(nameof(ProjectId)));
                 _projectId = value;
             }
         }
@@ -29,7 +29,7 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(value is null,
-                    ExceptionMessageFactory.Required(nameof(_identityDocument)));
+                    ExceptionMessageFactory.Required(nameof(IdentityDocument)));
                 _identityDocument = value;
             }
         }
@@ -44,7 +44,7 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(value is null,
-                    ExceptionMessageFactory.Required(nameof(_cpf)));
+                    ExceptionMessageFactory.Required(nameof(CPF)));
                 _cpf = value;
             }
         }
@@ -59,7 +59,7 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(value is null,
-                    ExceptionMessageFactory.Required(nameof(_photo3x4)));
+                    ExceptionMessageFactory.Required(nameof(Photo3x4)));
                 _photo3x4 = value;
             }
         }
@@ -74,7 +74,7 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(value is null,
-                    ExceptionMessageFactory.Required(nameof(_schoolHistory)));
+                    ExceptionMessageFactory.Required(nameof(SchoolHistory)));
                 _schoolHistory = value;
             }
         }
@@ -89,7 +89,7 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(value is null,
-                    ExceptionMessageFactory.Required(nameof(_scholarCommitmentAgreement)));
+                    ExceptionMessageFactory.Required(nameof(ScholarCommitmentAgreement)));
                 _scholarCommitmentAgreement = value;
             }
         }
@@ -106,12 +106,12 @@ namespace Domain.Entities
                 if (Project?.Student?.BirthDate >= DateTime.UtcNow.AddYears(-18))
                 {
                     EntityExceptionValidation.When(value is null,
-                        ExceptionMessageFactory.Required(nameof(_parentalAuthorization)));
+                        ExceptionMessageFactory.Required(nameof(ParentalAuthorization)));
                 }
                 _parentalAuthorization = value;
             }
         }
-        #endregion
+        #endregion Documents
 
         #region BankData
         private string? _agencyNumber;
@@ -124,9 +124,9 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(value is null,
-                    ExceptionMessageFactory.Required(nameof(_agencyNumber)));
+                    ExceptionMessageFactory.Required(nameof(AgencyNumber)));
                 EntityExceptionValidation.When(long.TryParse(value, out long tmp) && tmp <= 0,
-                    ExceptionMessageFactory.Invalid(ExceptionMessageFactory.Invalid(nameof(_agencyNumber))));
+                    ExceptionMessageFactory.Invalid(ExceptionMessageFactory.Invalid(nameof(AgencyNumber))));
                 _agencyNumber = value;
             }
         }
@@ -141,9 +141,9 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(value is null,
-                    ExceptionMessageFactory.Required(nameof(_accountNumber)));
+                    ExceptionMessageFactory.Required(nameof(AccountNumber)));
                 EntityExceptionValidation.When(long.TryParse(value, out long tmp) && tmp <= 0,
-                    ExceptionMessageFactory.Invalid(ExceptionMessageFactory.Invalid(nameof(_accountNumber))));
+                    ExceptionMessageFactory.Invalid(ExceptionMessageFactory.Invalid(nameof(AccountNumber))));
                 _accountNumber = value;
             }
         }
@@ -158,14 +158,14 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(value is null,
-                    ExceptionMessageFactory.Required(nameof(_accountOpeningProof)));
+                    ExceptionMessageFactory.Required(nameof(AccountOpeningProof)));
                 _accountOpeningProof = value;
             }
         }
-        #endregion
+        #endregion BankData
 
         public virtual Project? Project { get; }
-        #endregion
+        #endregion Properties
 
         /// <summary>
         /// Constructor to dbcontext EF instancing.

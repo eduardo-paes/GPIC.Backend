@@ -20,6 +20,7 @@ namespace Infrastructure.Persistence.Context
         public DbSet<Area> Areas { get; set; }
         public DbSet<Activity> Activities { get; set; }
         public DbSet<ActivityType> ActivityTypes { get; set; }
+        public DbSet<AssistanceType> AssistanceTypes { get; set; }
         public DbSet<Campus> Campuses { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<MainArea> MainAreas { get; set; }
@@ -29,8 +30,8 @@ namespace Infrastructure.Persistence.Context
         public DbSet<ProjectEvaluation> ProjectEvaluations { get; set; }
         public DbSet<ProjectActivity> ProjectActivities { get; set; }
         public DbSet<ProgramType> ProgramTypes { get; set; }
-        public DbSet<AssistanceType> AssistanceTypes { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<StudentDocuments> StudentDocuments { get; set; }
         public DbSet<SubArea> SubAreas { get; set; }
         public DbSet<User> Users { get; set; }
 
