@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Domain.Entities;
-using Domain.Ports.Area;
 using Domain.UseCases.Ports.Area;
 
 namespace Domain.Mappings

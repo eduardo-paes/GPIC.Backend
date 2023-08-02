@@ -2,7 +2,6 @@ using Adapters.Gateways.Area;
 using Adapters.Gateways.Base;
 using Adapters.Interfaces;
 using AutoMapper;
-using Domain.Ports.Area;
 using Domain.UseCases.Interfaces.Area;
 using Domain.UseCases.Ports.Area;
 

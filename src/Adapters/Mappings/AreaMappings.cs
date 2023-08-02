@@ -1,6 +1,5 @@
 ﻿using Adapters.Gateways.Area;
 using AutoMapper;
-using Domain.Ports.Area;
 using Domain.UseCases.Ports.Area;
 
 namespace Adapters.Mappings

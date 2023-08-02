@@ -1,6 +1,5 @@
 using AutoMapper;
 using Domain.Interfaces.Repositories;
-using Domain.Ports.Area;
 using Domain.UseCases.Interfaces.Area;
 using Domain.UseCases.Ports.Area;
 using Domain.Validation;
