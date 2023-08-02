@@ -1,7 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Domain.UseCases.Ports.Area;
+using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Ports.Area
+namespace Domain.UseCases.Ports.Area
 {
     public class UpdateAreaInput : BaseAreaContract
     {
