@@ -57,7 +57,8 @@ namespace Domain.UseCases.Interactors.Student
                 model.CampusId,
                 model.CourseId,
                 model.StartYear,
-                model.AssistanceTypeId);
+                model.AssistanceTypeId,
+                model.RegistrationCode);
 
             // Verifica se já existe um usuário com o e-mail informado
             Entities.User? user = await _userRepository.GetUserByEmail(model.Email);

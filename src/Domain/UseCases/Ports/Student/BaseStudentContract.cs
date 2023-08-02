@@ -6,6 +6,8 @@ namespace Domain.UseCases.Ports.Student
     {
         #region Required Properties
         [Required]
+        public string? RegistrationCode { get; set; }
+        [Required]
         public DateTime BirthDate { get; set; }
         [Required]
         public long RG { get; set; }
