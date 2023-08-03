@@ -102,7 +102,7 @@ namespace Domain.UseCases
             foreach (var professor in professors)
             {
                 // Envia email de notificação
-                await _emailService.SendNoticeEmail(
+                await _emailService.SendNoticeEmailAsync(
                     professor.User!.Email,
                     professor.User!.Name,
                     notice.RegistrationStartDate,

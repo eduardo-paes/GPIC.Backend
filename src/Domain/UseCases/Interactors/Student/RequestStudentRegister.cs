@@ -31,7 +31,7 @@ namespace Domain.UseCases.Interactors.Student
             UseCaseException.BusinessRuleViolation(user is not null, "Email já cadastrado.");
 
             // Solicita o registro do usuário
-            await _emailService.SendRequestStudentRegisterEmail(email!);
+            await _emailService.SendRequestStudentRegisterEmailAsync(email!);
 
             // Retorna resultado
             return "Solicitação de registro enviada com sucesso.";

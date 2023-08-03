@@ -33,7 +33,7 @@ namespace Domain.UseCases.Interactors.Auth
             await _userRepository.Update(user);
 
             // Envia email de recuperação de senha
-            await _emailService.SendResetPasswordEmail(user.Email, user.Name, user.ResetPasswordToken);
+            await _emailService.SendResetPasswordEmailAsync(user.Email, user.Name, user.ResetPasswordToken);
 
             // Verifica se o token foi gerado
             if (string.IsNullOrEmpty(user.ResetPasswordToken))

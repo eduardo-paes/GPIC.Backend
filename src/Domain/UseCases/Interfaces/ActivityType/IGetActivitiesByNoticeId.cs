@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.ActivityType
 {
     public interface IGetActivitiesByNoticeId
     {
-        Task<IEnumerable<ActivityTypeOutput>> GetActivitiesByNoticeId(Guid? id);
+        Task<IEnumerable<ActivityTypeOutput>> ExecuteAsync(Guid? id);
     }
 }

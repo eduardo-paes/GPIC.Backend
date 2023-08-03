@@ -137,7 +137,7 @@ namespace Domain.UseCases.Interactors.ProjectEvaluation
             }
 
             // Informa ao professor o resultado da avaliação.
-            await _emailService.SendProjectNotificationEmail(
+            await _emailService.SendProjectNotificationEmailAsync(
                 project.Professor!.User!.Email,
                 project.Professor!.User!.Name,
                 project.Title,

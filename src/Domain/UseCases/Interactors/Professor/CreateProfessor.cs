@@ -61,7 +61,7 @@ namespace Domain.UseCases
             UseCaseException.BusinessRuleViolation(entity == null, "Não foi possível criar o professor.");
 
             // Envia e-mail de confirmação
-            await _emailService.SendConfirmationEmail(user?.Email, user?.Name, user?.ValidationCode);
+            await _emailService.SendConfirmationEmailAsync(user?.Email, user?.Name, user?.ValidationCode);
 
             // Salva entidade no banco
             return _mapper.Map<DetailedReadProfessorOutput>(entity);

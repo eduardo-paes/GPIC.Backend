@@ -101,7 +101,7 @@ namespace Domain.UseCases.Interactors.Student
                 "Não foi possível criar o estudante.");
 
             // Envia e-mail de confirmação
-            _ = await _emailService.SendConfirmationEmail(user?.Email, user?.Name, user?.ValidationCode);
+            await _emailService.SendConfirmationEmailAsync(user?.Email, user?.Name, user?.ValidationCode);
 
             // Salva entidade no banco
             return _mapper.Map<DetailedReadStudentOutput>(entity);

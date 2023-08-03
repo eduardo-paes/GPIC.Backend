@@ -26,7 +26,7 @@ namespace Services.Email
         }
         #endregion Global Scope
 
-        public async Task<bool> SendConfirmationEmail(string? email, string? name, string? token)
+        public async Task SendConfirmationEmailAsync(string? email, string? name, string? token)
         {
             // Verifica se os parâmetros são nulos ou vazios
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(token))
@@ -43,10 +43,9 @@ namespace Services.Email
 
             // Tentativa de envio de email
             await SendEmailAsync(email, subject, body);
-            return true;
         }
 
-        public async Task<bool> SendResetPasswordEmail(string? email, string? name, string? token)
+        public async Task SendResetPasswordEmailAsync(string? email, string? name, string? token)
         {
             // Verifica se os parâmetros são nulos ou vazios
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(token))
@@ -63,10 +62,9 @@ namespace Services.Email
 
             // Tentativa de envio de email
             await SendEmailAsync(email, subject, body);
-            return true;
         }
 
-        public async Task SendNoticeEmail(string? email, string? name, DateTime? registrationStartDate, DateTime? registrationEndDate, string? noticeUrl)
+        public async Task SendNoticeEmailAsync(string? email, string? name, DateTime? registrationStartDate, DateTime? registrationEndDate, string? noticeUrl)
         {
             // Verifica se os parâmetros são nulos ou vazios
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(name) || registrationStartDate == null || registrationEndDate == null || string.IsNullOrEmpty(noticeUrl))
@@ -89,7 +87,7 @@ namespace Services.Email
             await SendEmailAsync(email, subject, body);
         }
 
-        public async Task SendProjectNotificationEmail(string? email, string? name, string? projectTitle, string? status, string? description)
+        public async Task SendProjectNotificationEmailAsync(string? email, string? name, string? projectTitle, string? status, string? description)
         {
             // Verifica se os parâmetros são nulos ou vazios
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(projectTitle) || string.IsNullOrEmpty(status) || string.IsNullOrEmpty(description))
@@ -112,7 +110,7 @@ namespace Services.Email
             await SendEmailAsync(email, subject, body);
         }
 
-        public async Task SendRequestStudentRegisterEmail(string? email)
+        public async Task SendRequestStudentRegisterEmailAsync(string? email)
         {
             // Verifica se os parâmetros são nulos ou vazios
             if (string.IsNullOrEmpty(email))

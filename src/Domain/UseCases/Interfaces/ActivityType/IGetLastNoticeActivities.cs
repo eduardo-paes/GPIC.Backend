@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.ActivityType
 {
     public interface IGetLastNoticeActivities
     {
-        Task<IEnumerable<ActivityTypeOutput>> GetLastNoticeActivities();
+        Task<IEnumerable<ActivityTypeOutput>> ExecuteAsync();
     }
 }
