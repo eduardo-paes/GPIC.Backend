@@ -81,7 +81,6 @@ namespace Services
             return new UserLoginOutput()
             {
                 Token = new JwtSecurityTokenHandler().WriteToken(token),
-                Expiration = expiration
             };
         }
 
