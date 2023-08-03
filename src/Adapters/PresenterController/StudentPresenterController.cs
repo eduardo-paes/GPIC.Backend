@@ -16,9 +16,10 @@ namespace Adapters.PresenterController
         private readonly IGetStudents _getStudents;
         private readonly IGetStudentById _getStudentById;
         private readonly IGetStudentByRegistrationCode _getStudentByRegistrationCode;
+        private readonly IRequestStudentRegister _requestStudentRegister;
         private readonly IMapper _mapper;
 
-        public StudentPresenterController(ICreateStudent createStudent, IUpdateStudent updateStudent, IDeleteStudent deleteStudent, IGetStudents getStudents, IGetStudentById getStudentById, IGetStudentByRegistrationCode getStudentByRegistrationCode, IMapper mapper)
+        public StudentPresenterController(ICreateStudent createStudent, IUpdateStudent updateStudent, IDeleteStudent deleteStudent, IGetStudents getStudents, IGetStudentById getStudentById, IGetStudentByRegistrationCode getStudentByRegistrationCode, IRequestStudentRegister requestStudentRegister, IMapper mapper)
         {
             _createStudent = createStudent;
             _updateStudent = updateStudent;
@@ -26,6 +27,7 @@ namespace Adapters.PresenterController
             _getStudents = getStudents;
             _getStudentById = getStudentById;
             _getStudentByRegistrationCode = getStudentByRegistrationCode;
+            _requestStudentRegister = requestStudentRegister;
             _mapper = mapper;
         }
         #endregion Global Scope
@@ -68,6 +70,11 @@ namespace Adapters.PresenterController
             UpdateStudentInput input = _mapper.Map<UpdateStudentInput>(dto);
             DetailedReadStudentOutput result = await _updateStudent.Execute(id, input);
             return _mapper.Map<DetailedReadStudentResponse>(result);
+        }
+
+        public async Task<string?> RequestStudentRegister(string? email)
+        {
+            return await _requestStudentRegister.Execute(email);
         }
     }
 }

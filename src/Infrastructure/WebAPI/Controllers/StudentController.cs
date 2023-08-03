@@ -88,6 +88,35 @@ namespace WebAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Solicita registro de Estudante através do e-mail.
+        /// </summary>
+        /// <param name="email">E-mail do estudante</param>
+        /// <returns>Informa se o envio do e-mail foi bem sucedido</returns>
+        /// <response code="200">E-mail enviado com sucesso</response>
+        [HttpGet("RequestRegister/{email}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<string?>> RequestStudentRegister(string? email)
+        {
+            if (email == null)
+            {
+                const string msg = "A matrícula informada não pode ser nula.";
+                _logger.LogWarning(msg);
+                return BadRequest(msg);
+            }
+
+            try
+            {
+                string? message = await _service.RequestStudentRegister(email);
+                _logger.LogInformation("{message}.", message);
+                return Ok(message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Ocorreu um erro: {ErrorMessage}", ex.Message);
+                return NotFound(ex.Message);
+            }
+        }
 
         /// <summary>
         /// Busca todas os Estudante ativos.

@@ -1,10 +1,11 @@
 using Domain.Interfaces.Services;
+using Microsoft.Extensions.Configuration;
 using Services.Email.Configs;
 
 namespace Services.Email.Factories
 {
     public interface IEmailServiceFactory
     {
-        IEmailService Create(SmtpConfiguration configuration);
+        IEmailService Create(SmtpConfiguration settings, IConfiguration configuration);
     }
 }

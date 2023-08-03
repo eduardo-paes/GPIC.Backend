@@ -53,7 +53,7 @@ namespace IoC
             _ = services.AddSingleton(sp =>
             {
                 IEmailServiceFactory factory = sp.GetRequiredService<IEmailServiceFactory>();
-                return factory.Create(smtpConfig);
+                return factory.Create(smtpConfig, configuration);
             });
             #endregion Serviço de E-mail
 

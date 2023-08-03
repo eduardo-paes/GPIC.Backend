@@ -1,6 +1,7 @@
 using System.Net;
 using System.Net.Mail;
 using Domain.Interfaces.Services;
+using Microsoft.Extensions.Configuration;
 
 namespace Services.Email
 {
@@ -12,14 +13,16 @@ namespace Services.Email
         private readonly string? _smtpUsername;
         private readonly string? _smtpPassword;
         private readonly string? _currentDirectory;
+        private readonly string? _siteUrl;
 
-        public EmailService(string? smtpServer, int smtpPort, string? smtpUsername, string? smtpPassword)
+        public EmailService(string? smtpServer, int smtpPort, string? smtpUsername, string? smtpPassword, IConfiguration configuration)
         {
             _smtpServer = smtpServer;
             _smtpPort = smtpPort;
             _smtpUsername = smtpUsername;
             _smtpPassword = smtpPassword;
             _currentDirectory = Path.GetDirectoryName(typeof(EmailService).Assembly.Location);
+            _siteUrl = configuration.GetSection("SiteUrl").Value;
         }
         #endregion Global Scope
 
@@ -104,6 +107,26 @@ namespace Services.Email
                 .Replace("#PROJECT_TITLE#", projectTitle)
                 .Replace("#PROJECT_STATUS#", status)
                 .Replace("#PROJECT_DESCRIPTION#", description);
+
+            // Tentativa de envio de email
+            await SendEmailAsync(email, subject, body);
+        }
+
+        public async Task SendRequestStudentRegisterEmail(string? email)
+        {
+            // Verifica se os parâmetros são nulos ou vazios
+            if (string.IsNullOrEmpty(email))
+            {
+                throw new Exception("Parâmetros inválidos. Email é obrigatório.");
+            }
+
+            // Lê mensagem do template em html salvo localmente
+            string template = await File.ReadAllTextAsync(Path.Combine(_currentDirectory!, "Email/Templates/RequestStudentRegister.html"));
+
+            // Gera mensagem de envio
+            const string subject = "Solicitação de Registro";
+            string body = template
+                .Replace("#REGISTRATION_LINK#", _siteUrl);
 
             // Tentativa de envio de email
             await SendEmailAsync(email, subject, body);

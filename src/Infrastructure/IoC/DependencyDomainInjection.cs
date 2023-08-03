@@ -151,6 +151,7 @@ namespace IoC
             _ = services.AddScoped<IGetStudents, GetStudents>();
             _ = services.AddScoped<IUpdateStudent, UpdateStudent>();
             _ = services.AddScoped<IGetStudentByRegistrationCode, GetStudentByRegistrationCode>();
+            _ = services.AddScoped<IRequestStudentRegister, RequestStudentRegister>();
             #endregion Student
 
             #region StudentDocuments

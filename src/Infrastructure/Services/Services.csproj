@@ -22,6 +22,15 @@
     <None Update="Email\Templates\ConfirmEmail.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Email\Templates\NewEdital.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Email\Templates\ProjectStatusChange.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Email\Templates\RequestStudentRegister.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Email\Templates\ResetPassword.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

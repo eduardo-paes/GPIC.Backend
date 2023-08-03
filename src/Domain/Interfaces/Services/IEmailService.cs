@@ -6,5 +6,6 @@ namespace Domain.Interfaces.Services
         Task<bool> SendResetPasswordEmail(string? email, string? name, string? token);
         Task SendNoticeEmail(string? email, string? name, DateTime? registrationStartDate, DateTime? registrationEndDate, string? noticeUrl);
         Task SendProjectNotificationEmail(string? email, string? name, string? projectTitle, string? status, string? description);
+        Task SendRequestStudentRegisterEmail(string? email);
     }
 }
