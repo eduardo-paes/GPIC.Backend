@@ -1,5 +1,7 @@
 using Adapters.Gateways.Base;
-using Domain.Contracts.AssistanceType;
+using Domain.UseCases.Ports.AssistanceType;
 
-namespace Adapters.Gateways.AssistanceType;
-public class ResumedReadAssistanceTypeResponse : ResumedReadAssistanceTypeOutput, IResponse { }
+namespace Adapters.Gateways.AssistanceType
+{
+    public class ResumedReadAssistanceTypeResponse : ResumedReadAssistanceTypeOutput, IResponse { }
+}

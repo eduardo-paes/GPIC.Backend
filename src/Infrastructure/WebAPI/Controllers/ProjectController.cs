@@ -3,7 +3,7 @@ using Adapters.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Infrastructure.WebAPI.Controllers
+namespace WebAPI.Controllers
 {
     /// <summary>
     /// Controller de projetos.
@@ -29,7 +29,7 @@ namespace Infrastructure.WebAPI.Controllers
             _service = service;
             _logger = logger;
         }
-        #endregion
+        #endregion Global Scope
 
         /// <summary>
         /// Busca projeto pelo id.
@@ -51,7 +51,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _service.GetProjectById(id);
+                DetailedReadProjectResponse model = await _service.GetProjectById(id);
                 _logger.LogInformation("Projeto encontrado para o id {id}.", id);
                 return Ok(model);
             }
@@ -75,7 +75,7 @@ namespace Infrastructure.WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<ResumedReadProjectResponse>>> GetOpenProjects(int skip = 0, int take = 50, bool onlyMyProjects = true)
         {
-            var models = await _service.GetOpenProjects(skip, take, onlyMyProjects);
+            IList<ResumedReadProjectResponse> models = await _service.GetOpenProjects(skip, take, onlyMyProjects);
             if (models == null)
             {
                 const string msg = "Nenhum Projeto encontrado.";
@@ -99,7 +99,7 @@ namespace Infrastructure.WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<ResumedReadProjectResponse>>> GetClosedProjects(int skip = 0, int take = 50, bool onlyMyProjects = true)
         {
-            var models = await _service.GetClosedProjects(skip, take, onlyMyProjects);
+            IList<ResumedReadProjectResponse> models = await _service.GetClosedProjects(skip, take, onlyMyProjects);
             if (models == null)
             {
                 const string msg = "Nenhum Projeto encontrado.";
@@ -124,7 +124,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _service.OpenProject(request);
+                ResumedReadProjectResponse? model = await _service.OpenProject(request);
                 _logger.LogInformation("Projeto aberto: {id}", model?.Id);
                 return Ok(model);
             }
@@ -149,7 +149,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _service.UpdateProject(id, request);
+                ResumedReadProjectResponse? model = await _service.UpdateProject(id, request);
                 _logger.LogInformation("Projeto atualizado: {id}", model?.Id);
                 return Ok(model);
             }
@@ -181,7 +181,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _service.CancelProject(id.Value, observation);
+                ResumedReadProjectResponse? model = await _service.CancelProject(id.Value, observation);
                 _logger.LogInformation("Projeto removido: {id}", model?.Id);
                 return Ok(model);
             }
@@ -213,7 +213,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _service.AppealProject(id.Value, appealDescription);
+                ResumedReadProjectResponse? model = await _service.AppealProject(id.Value, appealDescription);
                 _logger.LogInformation("Recurso do Projeto: {id}", model?.Id);
                 return Ok(model);
             }
@@ -244,7 +244,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _service.SubmitProject(id.Value);
+                ResumedReadProjectResponse? model = await _service.SubmitProject(id.Value);
                 _logger.LogInformation("Submissão do Projeto: {id}", model?.Id);
                 return Ok(model);
             }

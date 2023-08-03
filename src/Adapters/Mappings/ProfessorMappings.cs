@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using Adapters.Gateways.Professor;
-using Domain.Contracts.Professor;
+﻿using Adapters.Gateways.Professor;
+using AutoMapper;
+using Domain.UseCases.Ports.Professor;
 
 namespace Adapters.Mappings
 {
@@ -8,10 +8,10 @@ namespace Adapters.Mappings
     {
         public ProfessorMappings()
         {
-            CreateMap<CreateProfessorInput, CreateProfessorRequest>().ReverseMap();
-            CreateMap<UpdateProfessorInput, UpdateProfessorRequest>().ReverseMap();
-            CreateMap<ResumedReadProfessorOutput, ResumedReadProfessorResponse>().ReverseMap();
-            CreateMap<DetailedReadProfessorOutput, DetailedReadProfessorResponse>()
+            _ = CreateMap<CreateProfessorInput, CreateProfessorRequest>().ReverseMap();
+            _ = CreateMap<UpdateProfessorInput, UpdateProfessorRequest>().ReverseMap();
+            _ = CreateMap<ResumedReadProfessorOutput, ResumedReadProfessorResponse>().ReverseMap();
+            _ = CreateMap<DetailedReadProfessorOutput, DetailedReadProfessorResponse>()
                 .ForMember(dest => dest.User,
                     opt => opt.MapFrom(src => src.User))
                 .ReverseMap();

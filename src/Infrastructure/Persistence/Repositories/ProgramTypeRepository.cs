@@ -4,60 +4,68 @@ using Domain.Interfaces.Repositories;
 using Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Persistence.Repositories
+namespace Persistence.Repositories
 {
     public class ProgramTypeRepository : IProgramTypeRepository
     {
         #region Global Scope
         private readonly ApplicationDbContext _context;
-        public ProgramTypeRepository(ApplicationDbContext context) => _context = context;
-        #endregion
+        public ProgramTypeRepository(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+        #endregion Global Scope
 
         #region Public Methods
-        public async Task<ProgramType> Create(ProgramType model)
+        public async Task<ProgramType> CreateAsync(ProgramType model)
         {
-            _context.Add(model);
-            await _context.SaveChangesAsync();
+            _ = _context.Add(model);
+            _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<IEnumerable<ProgramType>> GetAll(int skip, int take) => await _context.ProgramTypes
+        public async Task<IEnumerable<ProgramType>> GetAllAsync(int skip, int take)
+        {
+            return await _context.ProgramTypes
             .Skip(skip)
             .Take(take)
             .AsAsyncEnumerable()
             .OrderBy(x => x.Name)
             .ToListAsync();
+        }
 
-        public async Task<ProgramType?> GetById(Guid? id) =>
-            await _context.ProgramTypes
+        public async Task<ProgramType?> GetByIdAsync(Guid? id)
+        {
+            return await _context.ProgramTypes
                 .IgnoreQueryFilters()
                 .AsAsyncEnumerable()
                 .FirstOrDefaultAsync(x => x.Id == id);
-
-        public async Task<ProgramType> Delete(Guid? id)
-        {
-            var model = await GetById(id)
-                ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
-            model.DeactivateEntity();
-            return await Update(model);
         }
 
-        public async Task<ProgramType> Update(ProgramType model)
+        public async Task<ProgramType> DeleteAsync(Guid? id)
         {
-            _context.Update(model);
-            await _context.SaveChangesAsync();
+            ProgramType model = await GetByIdAsync(id)
+                ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
+            model.DeactivateEntity();
+            return await UpdateAsync(model);
+        }
+
+        public async Task<ProgramType> UpdateAsync(ProgramType model)
+        {
+            _ = _context.Update(model);
+            _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<ProgramType?> GetProgramTypeByName(string name)
+        public async Task<ProgramType?> GetProgramTypeByNameAsync(string name)
         {
-            string loweredName = name.ToLower();
-            var entities = await _context.ProgramTypes
-                .Where(x => x.Name!.ToLower() == loweredName)
+            string loweredName = name.ToLower(System.Globalization.CultureInfo.CurrentCulture);
+            List<ProgramType> entities = await _context.ProgramTypes
+                .Where(x => x.Name!.ToLower(System.Globalization.CultureInfo.CurrentCulture) == loweredName)
                 .AsAsyncEnumerable()
                 .ToListAsync();
             return entities.FirstOrDefault();
         }
-        #endregion
+        #endregion Public Methods
     }
 }

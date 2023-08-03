@@ -5,6 +5,6 @@ namespace Domain.Interfaces.Repositories
 {
     public interface INoticeRepository : IGenericCRUDRepository<Notice>
     {
-        Task<Notice?> GetNoticeByPeriod(DateTime start, DateTime end);
+        Task<Notice?> GetNoticeByPeriodAsync(DateTime start, DateTime end);
     }
 }

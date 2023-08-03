@@ -1,5 +1,7 @@
 ﻿using Adapters.Gateways.Base;
-using Domain.Contracts.Professor;
+using Domain.UseCases.Ports.Professor;
 
-namespace Adapters.Gateways.Professor;
-public class CreateProfessorRequest : CreateProfessorInput, IRequest { }
+namespace Adapters.Gateways.Professor
+{
+    public class CreateProfessorRequest : CreateProfessorInput, IRequest { }
+}

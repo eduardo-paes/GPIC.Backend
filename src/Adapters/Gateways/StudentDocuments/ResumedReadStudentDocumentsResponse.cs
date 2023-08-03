@@ -1,5 +1,7 @@
 using Adapters.Gateways.Base;
-using Domain.Contracts.StudentDocuments;
+using Domain.UseCases.Ports.StudentDocuments;
 
-namespace Adapters.Gateways.StudentDocuments;
-public class ResumedReadStudentDocumentsResponse : ResumedReadStudentDocumentsOutput, IResponse { }
+namespace Adapters.Gateways.StudentDocuments
+{
+    public class ResumedReadStudentDocumentsResponse : ResumedReadStudentDocumentsOutput, IResponse { }
+}

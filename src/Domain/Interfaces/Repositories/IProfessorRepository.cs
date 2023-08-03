@@ -5,6 +5,6 @@ namespace Domain.Interfaces.Repositories
 {
     public interface IProfessorRepository : IGenericCRUDRepository<Professor>
     {
-        Task<IEnumerable<Professor>> GetAllActiveProfessors();
+        Task<IEnumerable<Professor>> GetAllActiveProfessorsAsync();
     }
 }

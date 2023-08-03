@@ -3,7 +3,7 @@ using Adapters.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Infrastructure.WebAPI.Controllers
+namespace WebAPI.Controllers
 {
     /// <summary>
     /// Controller de Autenticação.
@@ -25,7 +25,7 @@ namespace Infrastructure.WebAPI.Controllers
             _authService = authService;
             _logger = logger;
         }
-        #endregion
+        #endregion Global Scope
 
         /// <summary>
         /// Realiza a confirmação do e-mail do usuário através do token de validação fornecido e do E-mail do usuário.
@@ -40,7 +40,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var result = await _authService.ConfirmEmail(email, token);
+                string result = await _authService.ConfirmEmail(email, token);
                 _logger.LogInformation("Resultado: {Result}", result);
                 return Ok(result);
             }
@@ -64,7 +64,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var result = await _authService.ForgotPassword(email);
+                string result = await _authService.ForgotPassword(email);
                 _logger.LogInformation("Resultado: {Result}", result);
                 return Ok(result);
             }
@@ -87,7 +87,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _authService.Login(request);
+                UserLoginResponse model = await _authService.Login(request);
                 _logger.LogInformation("Login realizado pelo usuário: {email}.", request.Email);
                 return Ok(model);
             }
@@ -110,7 +110,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var result = await _authService.ResetPassword(request);
+                string result = await _authService.ResetPassword(request);
                 _logger.LogInformation("Resultado: {Result}", result);
                 return Ok(result);
             }

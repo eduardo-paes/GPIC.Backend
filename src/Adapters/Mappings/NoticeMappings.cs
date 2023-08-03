@@ -1,19 +1,21 @@
-﻿using AutoMapper;
-using Adapters.Gateways.Notice;
-using Domain.Contracts.Notice;
+﻿using Adapters.Gateways.Notice;
+using AutoMapper;
+using Domain.UseCases.Ports.Notice;
 
-namespace Adapters.Mappings;
-public class NoticeMappings : Profile
+namespace Adapters.Mappings
 {
-    public NoticeMappings()
+    public class NoticeMappings : Profile
     {
-        CreateMap<CreateNoticeInput, CreateNoticeRequest>()
-            .ForMember(dest => dest.Activities, opt => opt.MapFrom(src => src.Activities))
-            .ReverseMap();
-        CreateMap<UpdateNoticeInput, UpdateNoticeRequest>()
-            .ForMember(dest => dest.Activities, opt => opt.MapFrom(src => src.Activities))
-            .ReverseMap();
-        CreateMap<ResumedReadNoticeOutput, ResumedReadNoticeResponse>().ReverseMap();
-        CreateMap<DetailedReadNoticeOutput, DetailedReadNoticeResponse>().ReverseMap();
+        public NoticeMappings()
+        {
+            _ = CreateMap<CreateNoticeInput, CreateNoticeRequest>()
+                .ForMember(dest => dest.Activities, opt => opt.MapFrom(src => src.Activities))
+                .ReverseMap();
+            _ = CreateMap<UpdateNoticeInput, UpdateNoticeRequest>()
+                .ForMember(dest => dest.Activities, opt => opt.MapFrom(src => src.Activities))
+                .ReverseMap();
+            _ = CreateMap<ResumedReadNoticeOutput, ResumedReadNoticeResponse>().ReverseMap();
+            _ = CreateMap<DetailedReadNoticeOutput, DetailedReadNoticeResponse>().ReverseMap();
+        }
     }
 }

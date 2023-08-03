@@ -12,6 +12,9 @@ namespace Infrastructure.Persistence.EntitiesConfiguration
             builder.HasKey(t => t.Id);
             builder.Property(p => p.Id)
                 .ValueGeneratedOnAdd();
+            builder.Property(p => p.RegistrationCode)
+                .IsRequired()
+                .HasMaxLength(20);
             builder.Property(p => p.BirthDate)
                 .IsRequired();
             builder.Property(p => p.RG)

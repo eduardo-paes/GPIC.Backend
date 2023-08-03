@@ -1,5 +1,5 @@
-﻿using Adapters.Gateways.MainArea;
-using Adapters.Gateways.Base;
+﻿using Adapters.Gateways.Base;
+using Adapters.Gateways.MainArea;
 
 namespace Adapters.Gateways.Area
 {

@@ -5,6 +5,6 @@ namespace Domain.Interfaces.Repositories
 {
     public interface ICampusRepository : IGenericCRUDRepository<Campus>
     {
-        Task<Campus?> GetCampusByName(string name);
+        Task<Campus?> GetCampusByNameAsync(string name);
     }
 }

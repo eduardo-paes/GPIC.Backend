@@ -2,14 +2,14 @@
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Infrastructure.IoC
+namespace IoC
 {
     public static class DependencyInjectionSwagger
     {
         public static IServiceCollection AddInfrastructureSwagger(this IServiceCollection services)
         {
-            services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen(c =>
+            _ = services.AddEndpointsApiExplorer();
+            _ = services.AddSwaggerGen(c =>
             {
                 // Adiciona documentação com Swagger
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -49,7 +49,7 @@ namespace Infrastructure.IoC
                    }
                 });
             });
-            services.AddSingleton<SwaggerGenerator>();
+            _ = services.AddSingleton<SwaggerGenerator>();
             return services;
         }
     }

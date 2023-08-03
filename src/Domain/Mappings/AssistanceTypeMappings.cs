@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Domain.Contracts.AssistanceType;
 using Domain.Entities;
+using Domain.UseCases.Ports.AssistanceType;
 
 namespace Domain.Mappings
 {
@@ -8,10 +8,10 @@ namespace Domain.Mappings
     {
         public AssistanceTypeMappings()
         {
-            CreateMap<AssistanceType, CreateAssistanceTypeInput>().ReverseMap();
-            CreateMap<AssistanceType, UpdateAssistanceTypeInput>().ReverseMap();
-            CreateMap<AssistanceType, ResumedReadAssistanceTypeOutput>().ReverseMap();
-            CreateMap<AssistanceType, DetailedReadAssistanceTypeOutput>().ReverseMap();
+            _ = CreateMap<AssistanceType, CreateAssistanceTypeInput>().ReverseMap();
+            _ = CreateMap<AssistanceType, UpdateAssistanceTypeInput>().ReverseMap();
+            _ = CreateMap<AssistanceType, ResumedReadAssistanceTypeOutput>().ReverseMap();
+            _ = CreateMap<AssistanceType, DetailedReadAssistanceTypeOutput>().ReverseMap();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Domain.Contracts.ProgramType;
 using Domain.Entities;
+using Domain.UseCases.Ports.ProgramType;
 
 namespace Domain.Mappings
 {
@@ -8,10 +8,10 @@ namespace Domain.Mappings
     {
         public ProgramTypeMappings()
         {
-            CreateMap<ProgramType, CreateProgramTypeInput>().ReverseMap();
-            CreateMap<ProgramType, UpdateProgramTypeInput>().ReverseMap();
-            CreateMap<ProgramType, ResumedReadProgramTypeOutput>().ReverseMap();
-            CreateMap<ProgramType, DetailedReadProgramTypeOutput>().ReverseMap();
+            _ = CreateMap<ProgramType, CreateProgramTypeInput>().ReverseMap();
+            _ = CreateMap<ProgramType, UpdateProgramTypeInput>().ReverseMap();
+            _ = CreateMap<ProgramType, ResumedReadProgramTypeOutput>().ReverseMap();
+            _ = CreateMap<ProgramType, DetailedReadProgramTypeOutput>().ReverseMap();
         }
     }
 }

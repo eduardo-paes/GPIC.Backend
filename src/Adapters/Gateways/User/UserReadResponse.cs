@@ -1,5 +1,7 @@
 ﻿using Adapters.Gateways.Base;
-using Domain.Contracts.User;
+using Domain.UseCases.Ports.User;
 
-namespace Adapters.Gateways.User;
-public class UserReadResponse : UserReadOutput, IResponse { }
+namespace Adapters.Gateways.User
+{
+    public class UserReadResponse : UserReadOutput, IResponse { }
+}

@@ -1,5 +1,7 @@
 ﻿using Adapters.Gateways.Base;
-using Domain.Contracts.Campus;
+using Domain.UseCases.Ports.Campus;
 
-namespace Adapters.Gateways.Campus;
-public class UpdateCampusRequest : UpdateCampusInput, IRequest { }
+namespace Adapters.Gateways.Campus
+{
+    public class UpdateCampusRequest : UpdateCampusInput, IRequest { }
+}

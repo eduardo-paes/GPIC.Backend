@@ -1,8 +1,8 @@
 using Adapters.Gateways.User;
 using Adapters.Interfaces;
 using AutoMapper;
-using Domain.Contracts.User;
-using Domain.Interfaces.UseCases;
+using Domain.UseCases.Interfaces.User;
+using Domain.UseCases.Ports.User;
 
 namespace Adapters.PresenterController
 {
@@ -32,42 +32,42 @@ namespace Adapters.PresenterController
             _updateUser = updateUser;
             _mapper = mapper;
         }
-        #endregion
+        #endregion Global Scope
 
         public async Task<UserReadResponse> ActivateUser(Guid? id)
         {
-            var result = await _activateUser.Execute(id);
+            UserReadOutput result = await _activateUser.ExecuteAsync(id);
             return _mapper.Map<UserReadResponse>(result);
         }
 
         public async Task<UserReadResponse> DeactivateUser(Guid? id)
         {
-            var result = await _deactivateUser.Execute(id);
+            UserReadOutput result = await _deactivateUser.ExecuteAsync(id);
             return _mapper.Map<UserReadResponse>(result);
         }
 
         public async Task<IEnumerable<UserReadResponse>> GetActiveUsers(int skip, int take)
         {
-            var result = await _getActiveUsers.Execute(skip, take);
+            IEnumerable<UserReadOutput> result = await _getActiveUsers.ExecuteAsync(skip, take);
             return _mapper.Map<IEnumerable<UserReadResponse>>(result);
         }
 
         public async Task<IEnumerable<UserReadResponse>> GetInactiveUsers(int skip, int take)
         {
-            var result = await _getInactiveUsers.Execute(skip, take);
+            IEnumerable<UserReadOutput> result = await _getInactiveUsers.ExecuteAsync(skip, take);
             return _mapper.Map<IEnumerable<UserReadResponse>>(result);
         }
 
         public async Task<UserReadResponse> GetUserById(Guid? id)
         {
-            var result = await _getUserById.Execute(id);
+            UserReadOutput result = await _getUserById.ExecuteAsync(id);
             return _mapper.Map<UserReadResponse>(result);
         }
 
         public async Task<UserReadResponse> UpdateUser(UserUpdateRequest request)
         {
-            var input = _mapper.Map<UserUpdateInput>(request);
-            var result = await _updateUser.Execute(input);
+            UserUpdateInput input = _mapper.Map<UserUpdateInput>(request);
+            UserReadOutput result = await _updateUser.ExecuteAsync(input);
             return _mapper.Map<UserReadResponse>(result);
         }
     }

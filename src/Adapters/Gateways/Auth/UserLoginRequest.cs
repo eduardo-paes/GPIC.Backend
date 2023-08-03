@@ -1,5 +1,7 @@
 ﻿using Adapters.Gateways.Base;
-using Domain.Contracts.Auth;
+using Domain.UseCases.Ports.Auth;
 
-namespace Adapters.Gateways.Auth;
-public class UserLoginRequest : UserLoginInput, IRequest { }
+namespace Adapters.Gateways.Auth
+{
+    public class UserLoginRequest : UserLoginInput, IRequest { }
+}

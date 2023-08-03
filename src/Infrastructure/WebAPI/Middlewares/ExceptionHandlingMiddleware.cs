@@ -1,7 +1,7 @@
 using System.Net;
 using System.Text.Json;
 
-namespace Infrastructure.WebAPI.Middleware
+namespace WebAPI.Middlewares
 {
     /// <summary>
     /// Middleware para tratamento de exceções.

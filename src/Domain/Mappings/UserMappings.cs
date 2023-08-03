@@ -1,7 +1,6 @@
-﻿using System;
-using AutoMapper;
-using Domain.Contracts.User;
+﻿using AutoMapper;
 using Domain.Entities;
+using Domain.UseCases.Ports.User;
 
 namespace Domain.Mappings
 {
@@ -9,8 +8,8 @@ namespace Domain.Mappings
     {
         public UserMappings()
         {
-            CreateMap<User, UserReadOutput>().ReverseMap();
-            CreateMap<User, UserUpdateInput>().ReverseMap();
+            _ = CreateMap<User, UserReadOutput>().ReverseMap();
+            _ = CreateMap<User, UserUpdateInput>().ReverseMap();
         }
     }
 }

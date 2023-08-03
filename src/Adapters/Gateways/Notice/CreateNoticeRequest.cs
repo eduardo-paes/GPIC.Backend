@@ -1,11 +1,13 @@
 ﻿using Adapters.Gateways.Activity;
 using Adapters.Gateways.Base;
-using Domain.Contracts.Notice;
+using Domain.UseCases.Ports.Notice;
 using Microsoft.AspNetCore.Http;
 
-namespace Adapters.Gateways.Notice;
-public class CreateNoticeRequest : BaseNoticeContract, IRequest
+namespace Adapters.Gateways.Notice
 {
-    public IFormFile? File { get; set; }
-    public IList<CreateActivityTypeRequest>? Activities { get; set; }
+    public class CreateNoticeRequest : BaseNoticeContract, IRequest
+    {
+        public IFormFile? File { get; set; }
+        public IList<CreateActivityTypeRequest>? Activities { get; set; }
+    }
 }

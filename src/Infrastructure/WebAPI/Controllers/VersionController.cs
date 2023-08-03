@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Infrastructure.WebAPI.Controllers
+namespace WebAPI.Controllers
 {
     /// <summary>
     /// Controller de validação.
@@ -13,6 +13,9 @@ namespace Infrastructure.WebAPI.Controllers
         /// Retorna a versão da API.
         /// </summary>
         [HttpGet]
-        public IActionResult Get() => Ok(GetType()?.Assembly?.GetName()?.Version?.ToString() ?? "Versão não identificada.");
+        public IActionResult Get()
+        {
+            return Ok(GetType()?.Assembly?.GetName()?.Version?.ToString() ?? "Versão não identificada.");
+        }
     }
 }

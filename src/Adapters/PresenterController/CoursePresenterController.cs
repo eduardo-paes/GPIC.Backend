@@ -2,8 +2,9 @@ using Adapters.Gateways.Base;
 using Adapters.Gateways.Course;
 using Adapters.Interfaces;
 using AutoMapper;
-using Domain.Contracts.Course;
-using Domain.Interfaces.UseCases;
+using Domain.Ports.Course;
+using Domain.UseCases.Interfaces.Course;
+using Domain.UseCases.Ports.Course;
 
 namespace Adapters.PresenterController
 {
@@ -26,39 +27,39 @@ namespace Adapters.PresenterController
             _getCourseById = getCourseById;
             _mapper = mapper;
         }
-        #endregion
+        #endregion Global Scope
 
         public async Task<IResponse> Create(IRequest request)
         {
-            var dto = request as CreateCourseRequest;
-            var input = _mapper.Map<CreateCourseInput>(dto);
-            var result = await _createCourse.Execute(input);
+            CreateCourseRequest? dto = request as CreateCourseRequest;
+            CreateCourseInput input = _mapper.Map<CreateCourseInput>(dto);
+            DetailedReadCourseOutput result = await _createCourse.ExecuteAsync(input);
             return _mapper.Map<DetailedReadCourseResponse>(result);
         }
 
         public async Task<IResponse> Delete(Guid? id)
         {
-            var result = await _deleteCourse.Execute(id);
+            DetailedReadCourseOutput result = await _deleteCourse.ExecuteAsync(id);
             return _mapper.Map<DetailedReadCourseResponse>(result);
         }
 
         public async Task<IEnumerable<IResponse>> GetAll(int skip, int take)
         {
-            var result = await _getCourses.Execute(skip, take);
+            IQueryable<ResumedReadCourseOutput> result = await _getCourses.ExecuteAsync(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadCourseResponse>>(result);
         }
 
         public async Task<IResponse> GetById(Guid? id)
         {
-            var result = await _getCourseById.Execute(id);
+            DetailedReadCourseOutput result = await _getCourseById.ExecuteAsync(id);
             return _mapper.Map<DetailedReadCourseResponse>(result);
         }
 
         public async Task<IResponse> Update(Guid? id, IRequest request)
         {
-            var dto = request as UpdateCourseRequest;
-            var input = _mapper.Map<UpdateCourseInput>(dto);
-            var result = await _updateCourse.Execute(id, input);
+            UpdateCourseRequest? dto = request as UpdateCourseRequest;
+            UpdateCourseInput input = _mapper.Map<UpdateCourseInput>(dto);
+            DetailedReadCourseOutput result = await _updateCourse.ExecuteAsync(id, input);
             return _mapper.Map<DetailedReadCourseResponse>(result);
         }
     }

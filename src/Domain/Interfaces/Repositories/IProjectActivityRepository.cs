@@ -1,8 +1,10 @@
 using Domain.Entities;
 using Domain.Interfaces.Repositories.Bases;
 
-namespace Domain.Interfaces.Repositories;
-public interface IProjectActivityRepository : IGenericCRUDRepository<ProjectActivity>
+namespace Domain.Interfaces.Repositories
 {
-    Task<IList<ProjectActivity>> GetByProjectId(Guid? projectId);
+    public interface IProjectActivityRepository : IGenericCRUDRepository<ProjectActivity>
+    {
+        Task<IList<ProjectActivity>> GetByProjectIdAsync(Guid? projectId);
+    }
 }

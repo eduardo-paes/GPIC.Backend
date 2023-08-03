@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using Adapters.Gateways.Area;
-using Domain.Contracts.Area;
+﻿using Adapters.Gateways.Area;
+using AutoMapper;
+using Domain.UseCases.Ports.Area;
 
 namespace Adapters.Mappings
 {
@@ -8,10 +8,10 @@ namespace Adapters.Mappings
     {
         public AreaMappings()
         {
-            CreateMap<CreateAreaInput, CreateAreaRequest>().ReverseMap();
-            CreateMap<UpdateAreaInput, UpdateAreaRequest>().ReverseMap();
-            CreateMap<ResumedReadAreaOutput, ResumedReadAreaResponse>().ReverseMap();
-            CreateMap<DetailedReadAreaOutput, DetailedReadAreaResponse>()
+            _ = CreateMap<CreateAreaInput, CreateAreaRequest>().ReverseMap();
+            _ = CreateMap<UpdateAreaInput, UpdateAreaRequest>().ReverseMap();
+            _ = CreateMap<ResumedReadAreaOutput, ResumedReadAreaResponse>().ReverseMap();
+            _ = CreateMap<DetailedReadAreaOutput, DetailedReadAreaResponse>()
                 .ForMember(dest => dest.MainArea, opt => opt.MapFrom(src => src.MainArea))
                 .ReverseMap();
         }

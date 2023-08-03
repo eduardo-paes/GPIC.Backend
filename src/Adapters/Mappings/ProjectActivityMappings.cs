@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using Adapters.Gateways.ProjectActivity;
-using Domain.Contracts.ProjectActivity;
+﻿using Adapters.Gateways.ProjectActivity;
+using AutoMapper;
+using Domain.UseCases.Ports.ProjectActivity;
 
 namespace Adapters.Mappings
 {
@@ -8,11 +8,11 @@ namespace Adapters.Mappings
     {
         public ProjectActivityMappings()
         {
-            CreateMap<CreateProjectActivityInput, CreateProjectActivityRequest>().ReverseMap();
-            CreateMap<UpdateProjectActivityInput, UpdateProjectActivityRequest>().ReverseMap();
-            CreateMap<EvaluateProjectActivityInput, EvaluateProjectActivityRequest>().ReverseMap();
-            CreateMap<ResumedReadProjectActivityOutput, ResumedReadProjectActivityResponse>().ReverseMap();
-            CreateMap<DetailedReadProjectActivityOutput, DetailedReadProjectActivityResponse>().ReverseMap();
+            _ = CreateMap<CreateProjectActivityInput, CreateProjectActivityRequest>().ReverseMap();
+            _ = CreateMap<UpdateProjectActivityInput, UpdateProjectActivityRequest>().ReverseMap();
+            _ = CreateMap<EvaluateProjectActivityInput, EvaluateProjectActivityRequest>().ReverseMap();
+            _ = CreateMap<ResumedReadProjectActivityOutput, ResumedReadProjectActivityResponse>().ReverseMap();
+            _ = CreateMap<DetailedReadProjectActivityOutput, DetailedReadProjectActivityResponse>().ReverseMap();
         }
     }
 }

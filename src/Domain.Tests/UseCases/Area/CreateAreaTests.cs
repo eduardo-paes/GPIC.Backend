@@ -1,13 +1,13 @@
+using System;
+using System.Threading.Tasks;
 using AutoMapper;
-using Domain.Contracts.Area;
-using Domain.Interfaces.Repositories;
-using Domain.Interfaces.UseCases;
+using Domain.Ports.Area;
 using Domain.UseCases;
+using Domain.UseCases.Interfaces.Repositories;
+using Domain.UseCases.Interfaces.UseCases;
 using Domain.Validation;
 using Moq;
 using NUnit.Framework;
-using System;
-using System.Threading.Tasks;
 
 namespace Domain.Tests.UseCases.Area
 {
@@ -56,7 +56,7 @@ namespace Domain.Tests.UseCases.Area
             _mapperMock.Setup(m => m.Map<DetailedReadAreaOutput>(areaEntity)).Returns(detailedOutput);
 
             // Act
-            var result = await _createArea.Execute(input);
+            var result = await _createArea.ExecuteAsync(input);
 
             // Assert
             Assert.IsNotNull(result);
@@ -83,7 +83,7 @@ namespace Domain.Tests.UseCases.Area
             _areaRepositoryMock.Setup(r => r.GetByCode(input.Code)).ReturnsAsync(existingArea);
 
             // Act & Assert
-            Assert.ThrowsAsync<UseCaseException>(async () => await _createArea.Execute(input));
+            Assert.ThrowsAsync<UseCaseException>(async () => await _createArea.ExecuteAsync(input));
             _areaRepositoryMock.Verify(r => r.GetByCode(input.Code), Times.Once);
             _mainAreaRepositoryMock.Verify(r => r.GetById(It.IsAny<Guid>()), Times.Never);
             _areaRepositoryMock.Verify(r => r.Create(It.IsAny<Domain.Entities.Area>()), Times.Never);
@@ -102,7 +102,7 @@ namespace Domain.Tests.UseCases.Area
             };
 
             // Act & Assert
-            Assert.ThrowsAsync<UseCaseException>(async () => await _createArea.Execute(input));
+            Assert.ThrowsAsync<UseCaseException>(async () => await _createArea.ExecuteAsync(input));
             _areaRepositoryMock.Verify(r => r.GetByCode(It.IsAny<string>()), Times.Once);
             _mainAreaRepositoryMock.Verify(r => r.GetById(It.IsAny<Guid>()), Times.Never);
             _areaRepositoryMock.Verify(r => r.Create(It.IsAny<Domain.Entities.Area>()), Times.Never);
@@ -125,7 +125,7 @@ namespace Domain.Tests.UseCases.Area
             _mainAreaRepositoryMock.Setup(r => r.GetById(input.MainAreaId)).ReturnsAsync(inactiveMainArea);
 
             // Act & Assert
-            Assert.ThrowsAsync<UseCaseException>(async () => await _createArea.Execute(input));
+            Assert.ThrowsAsync<UseCaseException>(async () => await _createArea.ExecuteAsync(input));
             _areaRepositoryMock.Verify(r => r.GetByCode(input.Code), Times.Once);
             _mainAreaRepositoryMock.Verify(r => r.GetById(input.MainAreaId), Times.Once);
             _areaRepositoryMock.Verify(r => r.Create(It.IsAny<Domain.Entities.Area>()), Times.Never);

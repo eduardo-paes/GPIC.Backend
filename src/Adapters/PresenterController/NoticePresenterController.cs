@@ -2,9 +2,8 @@ using Adapters.Gateways.Base;
 using Adapters.Gateways.Notice;
 using Adapters.Interfaces;
 using AutoMapper;
-using Domain.Contracts.Activity;
-using Domain.Contracts.Notice;
-using Domain.Interfaces.UseCases;
+using Domain.UseCases.Interfaces.Notice;
+using Domain.UseCases.Ports.Notice;
 
 namespace Adapters.PresenterController
 {
@@ -33,37 +32,37 @@ namespace Adapters.PresenterController
             _getNoticeById = getNoticeById;
             _mapper = mapper;
         }
-        #endregion
+        #endregion Global Scope
 
         public async Task<IResponse> Create(IRequest request)
         {
-            var input = _mapper.Map<CreateNoticeInput>(request as CreateNoticeRequest);
-            var result = await _createNotice.Execute(input);
+            CreateNoticeInput input = _mapper.Map<CreateNoticeInput>(request as CreateNoticeRequest);
+            DetailedReadNoticeOutput result = await _createNotice.ExecuteAsync(input);
             return _mapper.Map<DetailedReadNoticeResponse>(result);
         }
 
         public async Task<IResponse> Delete(Guid? id)
         {
-            var result = await _deleteNotice.Execute(id);
+            DetailedReadNoticeOutput result = await _deleteNotice.ExecuteAsync(id);
             return _mapper.Map<DetailedReadNoticeResponse>(result);
         }
 
         public async Task<IEnumerable<IResponse>> GetAll(int skip, int take)
         {
-            var result = await _getNotices.Execute(skip, take);
+            IEnumerable<ResumedReadNoticeOutput> result = await _getNotices.ExecuteAsync(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadNoticeResponse>>(result);
         }
 
         public async Task<IResponse> GetById(Guid? id)
         {
-            var result = await _getNoticeById.Execute(id);
+            DetailedReadNoticeOutput result = await _getNoticeById.ExecuteAsync(id);
             return _mapper.Map<DetailedReadNoticeResponse>(result);
         }
 
         public async Task<IResponse> Update(Guid? id, IRequest request)
         {
-            var input = _mapper.Map<UpdateNoticeInput>(request as UpdateNoticeRequest);
-            var result = await _updateNotice.Execute(id, input);
+            UpdateNoticeInput input = _mapper.Map<UpdateNoticeInput>(request as UpdateNoticeRequest);
+            DetailedReadNoticeOutput result = await _updateNotice.ExecuteAsync(id, input);
             return _mapper.Map<DetailedReadNoticeResponse>(result);
         }
     }

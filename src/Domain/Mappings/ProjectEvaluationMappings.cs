@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Domain.Contracts.ProjectEvaluation;
 using Domain.Entities;
+using Domain.UseCases.Ports.ProjectEvaluation;
 
 namespace Domain.Mappings
 {
@@ -8,8 +8,8 @@ namespace Domain.Mappings
     {
         public ProjectEvaluationMappings()
         {
-            CreateMap<ProjectEvaluation, EvaluateSubmissionProjectInput>().ReverseMap();
-            CreateMap<ProjectEvaluation, EvaluateAppealProjectInput>().ReverseMap();
+            _ = CreateMap<ProjectEvaluation, EvaluateSubmissionProjectInput>().ReverseMap();
+            _ = CreateMap<ProjectEvaluation, EvaluateAppealProjectInput>().ReverseMap();
         }
     }
 }

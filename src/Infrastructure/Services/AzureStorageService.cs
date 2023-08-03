@@ -3,7 +3,7 @@ using Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
-namespace Infrastructure.Services
+namespace Services
 {
     public class AzureStorageService : IStorageFileService
     {
@@ -24,61 +24,62 @@ namespace Infrastructure.Services
                 ?? throw new Exception("A string de conexão não foi configurada.");
 
             // Verifica se as extensões de arquivos permitidas foram configuradas
-            var allowedExtensions = configuration.GetSection("StorageFile:AllowedExtensions")
+            IConfigurationSection allowedExtensions = configuration.GetSection("StorageFile:AllowedExtensions")
                 ?? throw new Exception("As extensões de arquivos permitidas não foram configuradas.");
             _allowedExtensions = allowedExtensions.GetChildren().Select(x => x.Value).ToArray();
 
             // Verifica se o tamanho máximo de arquivo foi configurado
-            if (long.TryParse(configuration["StorageFile:MaxFileSizeInBytes"], out long maxFileSizeInBytes))
-                _maxFileSizeInBytes = maxFileSizeInBytes;
-            else
-                throw new Exception("O tamanho máximo de arquivo não foi configurado.");
+            _maxFileSizeInBytes = long.TryParse(configuration["StorageFile:MaxFileSizeInBytes"], out long maxFileSizeInBytes)
+                ? maxFileSizeInBytes
+                : throw new Exception("O tamanho máximo de arquivo não foi configurado.");
         }
-        #endregion
+        #endregion Global Scope
 
-        public async Task DeleteFile(string url)
+        public async Task DeleteFileAsync(string filePath)
         {
             // Cria o cliente do blob
-            var fileName = url.Split("/").LastOrDefault();
+            string? fileName = filePath.Split("/").LastOrDefault();
 
             // Cria o cliente do blob
-            var blobClient = new BlobClient(_connectionString, _container, fileName);
+            BlobClient blobClient = new(_connectionString, _container, fileName);
 
             // Deleta o arquivo
-            await blobClient.DeleteAsync();
+            _ = await blobClient.DeleteAsync();
         }
 
-        public async Task<string> UploadFileAsync(IFormFile file, string? fileName = null)
+        public async Task<string> UploadFileAsync(IFormFile file, string? filePath = null)
         {
             // Remove o arquivo anterior caso já exista
-            if (!string.IsNullOrEmpty(fileName))
+            if (!string.IsNullOrEmpty(filePath))
             {
                 // Deleta o arquivo
-                await DeleteFile(fileName);
+                await DeleteFileAsync(filePath);
 
                 // Utiliza o mesmo nome do arquivo anterior para o arquivo atual
-                fileName = fileName.Split("/").LastOrDefault();
+                filePath = filePath.Split("/").LastOrDefault();
             }
             // Gera um nome único para o arquivo
             else
             {
-                fileName = GenerateFileName(file);
+                filePath = GenerateFileName(file);
             }
 
             // Cria o cliente do blob
-            var blobClient = new BlobClient(_connectionString, _container, fileName);
+            BlobClient blobClient = new(_connectionString, _container, filePath);
 
             // Converte o arquivo para um array de bytes
             byte[] fileBytes;
-            using (var ms = new MemoryStream())
+            using (MemoryStream ms = new())
             {
                 file.CopyTo(ms);
                 fileBytes = ms.ToArray();
             }
 
             // Salva o arquivo
-            using (var stream = new MemoryStream(fileBytes))
-                await blobClient.UploadAsync(stream);
+            using (MemoryStream stream = new(fileBytes))
+            {
+                _ = await blobClient.UploadAsync(stream);
+            }
 
             // Retorna o caminho do arquivo
             return blobClient.Uri.AbsoluteUri;
@@ -88,17 +89,21 @@ namespace Infrastructure.Services
         private string GenerateFileName(IFormFile file, bool onlyPdf = false)
         {
             // Verifica se a extensão do arquivo é permitida
-            var extension = Path.GetExtension(file.FileName);
-            if ((onlyPdf && extension != ".pdf") || (!_allowedExtensions.Contains(extension)))
+            string extension = Path.GetExtension(file.FileName);
+            if ((onlyPdf && extension != ".pdf") || !_allowedExtensions.Contains(extension))
+            {
                 throw new Exception($"A extensão ({extension}) do arquivo não é permitida.");
+            }
 
             // Verifica o tamanho do arquivo
             if (file.Length > _maxFileSizeInBytes)
+            {
                 throw new Exception($"O tamanho do arquivo excede o máximo de {_maxFileSizeInBytes} bytes.");
+            }
 
             // Gera um nome único para o arquivo
             return $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
         }
-        #endregion
+        #endregion Private Methods
     }
 }

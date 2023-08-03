@@ -1,5 +1,7 @@
 ﻿using Adapters.Gateways.Base;
-using Domain.Contracts.SubArea;
+using Domain.UseCases.Ports.SubArea;
 
-namespace Adapters.Gateways.SubArea;
-public class ResumedReadSubAreaResponse : ResumedReadSubAreaOutput, IResponse { }
+namespace Adapters.Gateways.SubArea
+{
+    public class ResumedReadSubAreaResponse : ResumedReadSubAreaOutput, IResponse { }
+}

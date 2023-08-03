@@ -8,33 +8,35 @@
         /// </summary>
         /// <param name="id">Id da entidade.</param>
         /// <returns>Entidade encontrada.</returns>
-        Task<T?> GetById(Guid? id);
+        Task<T?> GetByIdAsync(Guid? id);
 
         /// <summary>
         /// Busca todas as entidades ativas.
         /// </summary>
+        /// <param name="skip"></param>
+        /// <param name="take"></param>
         /// <returns>Lista de entidades ativas.</returns>
-        Task<IEnumerable<T>> GetAll(int skip, int take);
+        Task<IEnumerable<T>> GetAllAsync(int skip, int take);
 
         /// <summary>
         /// Cria entidade conforme parâmetros fornecidos.
         /// </summary>
         /// <param name="model">Parâmetros de criação.</param>
         /// <returns>Entidade criada.</returns>
-        Task<T> Create(T model);
+        Task<T> CreateAsync(T model);
 
         /// <summary>
         /// Remove entidade através do Id informado.
         /// </summary>
         /// <param name="id">Id da entidade a ser removida.</param>
         /// <returns>Entidade removida.</returns>
-        Task<T> Delete(Guid? id);
+        Task<T> DeleteAsync(Guid? id);
 
         /// <summary>
         /// Atualiza entidade conforme parâmetros fornecidos.
         /// </summary>
         /// <param name="model">Parâmetros de atualização.</param>
         /// <returns>Entidade atualizada.</returns>
-        Task<T> Update(T model);
+        Task<T> UpdateAsync(T model);
     }
 }

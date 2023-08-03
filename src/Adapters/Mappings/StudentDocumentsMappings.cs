@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using Adapters.Gateways.StudentDocuments;
-using Domain.Contracts.StudentDocuments;
+﻿using Adapters.Gateways.StudentDocuments;
+using AutoMapper;
+using Domain.UseCases.Ports.StudentDocuments;
 
 namespace Adapters.Mappings
 {
@@ -8,10 +8,11 @@ namespace Adapters.Mappings
     {
         public StudentDocumentsMappings()
         {
-            CreateMap<CreateStudentDocumentsInput, CreateStudentDocumentsRequest>().ReverseMap();
-            CreateMap<UpdateStudentDocumentsInput, UpdateStudentDocumentsRequest>().ReverseMap();
-            CreateMap<ResumedReadStudentDocumentsOutput, ResumedReadStudentDocumentsResponse>().ReverseMap();
-            CreateMap<DetailedReadStudentDocumentsOutput, DetailedReadStudentDocumentsResponse>().ReverseMap();
+            _ = CreateMap<CreateStudentDocumentsInput, CreateStudentDocumentsRequest>().ReverseMap();
+            _ = CreateMap<UpdateStudentDocumentsInput, UpdateStudentDocumentsRequest>().ReverseMap();
+            _ = CreateMap<ResumedReadStudentDocumentsOutput, ResumedReadStudentDocumentsResponse>().ReverseMap();
+            _ = CreateMap<ResumedReadStudentDocumentsOutput, ResumedReadStudentDocumentsResponse>().ReverseMap();
+            _ = CreateMap<DetailedReadStudentDocumentsOutput, DetailedReadStudentDocumentsResponse>().ReverseMap();
         }
     }
 }

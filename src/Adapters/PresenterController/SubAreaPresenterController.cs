@@ -2,8 +2,8 @@ using Adapters.Gateways.Base;
 using Adapters.Gateways.SubArea;
 using Adapters.Interfaces;
 using AutoMapper;
-using Domain.Contracts.SubArea;
-using Domain.Interfaces.UseCases;
+using Domain.UseCases.Interfaces.SubArea;
+using Domain.UseCases.Ports.SubArea;
 
 namespace Adapters.PresenterController
 {
@@ -27,19 +27,19 @@ namespace Adapters.PresenterController
             _getSubAreaById = getSubAreaById;
             _mapper = mapper;
         }
-        #endregion
+        #endregion Global Scope
 
         public async Task<IResponse> Create(IRequest request)
         {
-            var dto = request as CreateSubAreaRequest;
-            var input = _mapper.Map<CreateSubAreaInput>(dto);
-            var result = await _createSubArea.Execute(input);
+            CreateSubAreaRequest? dto = request as CreateSubAreaRequest;
+            CreateSubAreaInput input = _mapper.Map<CreateSubAreaInput>(dto);
+            DetailedReadSubAreaOutput result = await _createSubArea.ExecuteAsync(input);
             return _mapper.Map<DetailedReadSubAreaResponse>(result);
         }
 
         public async Task<IResponse> Delete(Guid? id)
         {
-            var result = await _deleteSubArea.Execute(id);
+            DetailedReadSubAreaOutput result = await _deleteSubArea.ExecuteAsync(id);
             return _mapper.Map<DetailedReadSubAreaResponse>(result);
         }
 
@@ -50,21 +50,21 @@ namespace Adapters.PresenterController
 
         public async Task<IResponse> GetById(Guid? id)
         {
-            var result = await _getSubAreaById.Execute(id);
+            DetailedReadSubAreaOutput result = await _getSubAreaById.ExecuteAsync(id);
             return _mapper.Map<DetailedReadSubAreaResponse>(result);
         }
 
         public async Task<IEnumerable<IResponse>> GetSubAreasByArea(Guid? areaId, int skip, int take)
         {
-            var result = await _getSubAreasByArea.Execute(areaId, skip, take);
+            IQueryable<ResumedReadSubAreaOutput> result = await _getSubAreasByArea.ExecuteAsync(areaId, skip, take);
             return _mapper.Map<IEnumerable<ResumedReadSubAreaResponse>>(result);
         }
 
         public async Task<IResponse> Update(Guid? id, IRequest request)
         {
-            var dto = request as UpdateSubAreaRequest;
-            var input = _mapper.Map<UpdateSubAreaInput>(dto);
-            var result = await _updateSubArea.Execute(id, input);
+            UpdateSubAreaRequest? dto = request as UpdateSubAreaRequest;
+            UpdateSubAreaInput input = _mapper.Map<UpdateSubAreaInput>(dto);
+            DetailedReadSubAreaOutput result = await _updateSubArea.ExecuteAsync(id, input);
             return _mapper.Map<DetailedReadSubAreaResponse>(result);
         }
     }

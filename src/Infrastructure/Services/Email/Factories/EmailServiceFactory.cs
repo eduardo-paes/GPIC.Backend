@@ -1,12 +1,19 @@
 using Domain.Interfaces.Services;
-using Infrastructure.Services.Email.Configs;
+using Services.Email.Configs;
+using Microsoft.Extensions.Configuration;
 
-namespace Infrastructure.Services.Email.Factories;
-public class EmailServiceFactory : IEmailServiceFactory
+namespace Services.Email.Factories
 {
-    public IEmailService Create(SmtpConfiguration configuration) => new EmailService(
-        configuration.Server,
-        configuration.Port,
-        configuration.Username,
-        configuration.Password);
+    public class EmailServiceFactory : IEmailServiceFactory
+    {
+        public IEmailService Create(SmtpConfiguration settings, IConfiguration configuration)
+        {
+            return new EmailService(
+            settings.Server,
+            settings.Port,
+            settings.Username,
+            settings.Password,
+            configuration);
+        }
+    }
 }

@@ -1,4 +1,4 @@
-namespace Infrastructure.Services
+namespace Services
 {
     public interface IDotEnvSecrets
     {

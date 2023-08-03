@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using Adapters.Gateways.AssistanceType;
-using Domain.Contracts.AssistanceType;
+﻿using Adapters.Gateways.AssistanceType;
+using AutoMapper;
+using Domain.UseCases.Ports.AssistanceType;
 
 namespace Adapters.Mappings
 {
@@ -8,10 +8,10 @@ namespace Adapters.Mappings
     {
         public AssistanceTypeMappings()
         {
-            CreateMap<CreateAssistanceTypeInput, CreateAssistanceTypeRequest>().ReverseMap();
-            CreateMap<UpdateAssistanceTypeInput, UpdateAssistanceTypeRequest>().ReverseMap();
-            CreateMap<ResumedReadAssistanceTypeOutput, ResumedReadAssistanceTypeResponse>().ReverseMap();
-            CreateMap<DetailedReadAssistanceTypeOutput, DetailedReadAssistanceTypeResponse>().ReverseMap();
+            _ = CreateMap<CreateAssistanceTypeInput, CreateAssistanceTypeRequest>().ReverseMap();
+            _ = CreateMap<UpdateAssistanceTypeInput, UpdateAssistanceTypeRequest>().ReverseMap();
+            _ = CreateMap<ResumedReadAssistanceTypeOutput, ResumedReadAssistanceTypeResponse>().ReverseMap();
+            _ = CreateMap<DetailedReadAssistanceTypeOutput, DetailedReadAssistanceTypeResponse>().ReverseMap();
         }
     }
 }

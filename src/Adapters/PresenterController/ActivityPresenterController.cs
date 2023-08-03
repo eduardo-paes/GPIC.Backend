@@ -1,7 +1,7 @@
 using Adapters.Gateways.Activity;
 using Adapters.Interfaces;
 using AutoMapper;
-using Domain.Interfaces.UseCases.ActivityType;
+using Domain.UseCases.Interfaces.ActivityType;
 
 namespace Adapters.PresenterController
 {
@@ -22,13 +22,13 @@ namespace Adapters.PresenterController
 
         public async Task<IEnumerable<ActivityTypeResponse>> GetActivitiesByNoticeId(Guid? noticeId)
         {
-            var activityTypes = await _getActivitiesByNoticeId.GetActivitiesByNoticeId(noticeId);
+            IEnumerable<Domain.UseCases.Ports.Activity.ActivityTypeOutput> activityTypes = await _getActivitiesByNoticeId.ExecuteAsync(noticeId);
             return _mapper.Map<IEnumerable<ActivityTypeResponse>>(activityTypes);
         }
 
         public async Task<IEnumerable<ActivityTypeResponse>> GetLastNoticeActivities()
         {
-            var activityTypes = await _getLastNoticeActivities.GetLastNoticeActivities();
+            IEnumerable<Domain.UseCases.Ports.Activity.ActivityTypeOutput> activityTypes = await _getLastNoticeActivities.ExecuteAsync();
             return _mapper.Map<IEnumerable<ActivityTypeResponse>>(activityTypes);
         }
     }

@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using Adapters.Gateways.Auth;
-using Domain.Contracts.Auth;
+﻿using Adapters.Gateways.Auth;
+using AutoMapper;
+using Domain.UseCases.Ports.Auth;
 
 namespace Adapters.Mappings
 {
@@ -8,9 +8,9 @@ namespace Adapters.Mappings
     {
         public AuthMappings()
         {
-            CreateMap<UserLoginInput, UserLoginRequest>().ReverseMap();
-            CreateMap<UserLoginOutput, UserLoginResponse>().ReverseMap();
-            CreateMap<UserResetPasswordInput, UserResetPasswordRequest>().ReverseMap();
+            _ = CreateMap<UserLoginInput, UserLoginRequest>().ReverseMap();
+            _ = CreateMap<UserLoginOutput, UserLoginResponse>().ReverseMap();
+            _ = CreateMap<UserResetPasswordInput, UserResetPasswordRequest>().ReverseMap();
         }
     }
 }

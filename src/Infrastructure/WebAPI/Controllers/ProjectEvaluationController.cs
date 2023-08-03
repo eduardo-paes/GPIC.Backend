@@ -4,7 +4,7 @@ using Adapters.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Infrastructure.WebAPI.Controllers
+namespace WebAPI.Controllers
 {
     /// <summary>
     /// Controller de projetos.
@@ -30,7 +30,7 @@ namespace Infrastructure.WebAPI.Controllers
             _service = service;
             _logger = logger;
         }
-        #endregion
+        #endregion Global Scope
 
         /// <summary>
         /// Busca avaliação do projeto pelo id do projeto.
@@ -52,7 +52,7 @@ namespace Infrastructure.WebAPI.Controllers
 
             try
             {
-                var model = await _service.GetEvaluationByProjectId(projectId);
+                DetailedReadProjectEvaluationResponse model = await _service.GetEvaluationByProjectId(projectId);
                 _logger.LogInformation("Avaliação do projeto encontrado para o id {id}.", projectId);
                 return Ok(model);
             }
@@ -76,7 +76,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _service.EvaluateSubmissionProject(request);
+                DetailedReadProjectResponse? model = await _service.EvaluateSubmissionProject(request);
                 _logger.LogInformation("Avaliação da submissão do projeto {id} realizada.", model?.Id);
                 return Ok(model);
             }
@@ -99,7 +99,7 @@ namespace Infrastructure.WebAPI.Controllers
         {
             try
             {
-                var model = await _service.EvaluateAppealProject(request);
+                DetailedReadProjectResponse? model = await _service.EvaluateAppealProject(request);
                 _logger.LogInformation("Avaliação do recurso do projeto {id} realizada.", model?.Id);
                 return Ok(model);
             }

@@ -2,8 +2,8 @@ using Adapters.Gateways.Base;
 using Adapters.Gateways.Campus;
 using Adapters.Interfaces;
 using AutoMapper;
-using Domain.Contracts.Campus;
-using Domain.Interfaces.UseCases;
+using Domain.UseCases.Interfaces.Campus;
+using Domain.UseCases.Ports.Campus;
 
 namespace Adapters.PresenterController
 {
@@ -26,39 +26,39 @@ namespace Adapters.PresenterController
             _getCampusById = getCampusById;
             _mapper = mapper;
         }
-        #endregion
+        #endregion Global Scope
 
         public async Task<IResponse> Create(IRequest request)
         {
-            var dto = request as CreateCampusRequest;
-            var input = _mapper.Map<CreateCampusInput>(dto);
-            var result = await _createCampus.Execute(input);
+            CreateCampusRequest? dto = request as CreateCampusRequest;
+            CreateCampusInput input = _mapper.Map<CreateCampusInput>(dto);
+            DetailedReadCampusOutput result = await _createCampus.ExecuteAsync(input);
             return _mapper.Map<DetailedReadCampusResponse>(result);
         }
 
         public async Task<IResponse> Delete(Guid? id)
         {
-            var result = await _deleteCampus.Execute(id);
+            DetailedReadCampusOutput result = await _deleteCampus.ExecuteAsync(id);
             return _mapper.Map<DetailedReadCampusResponse>(result);
         }
 
         public async Task<IEnumerable<IResponse>> GetAll(int skip, int take)
         {
-            var result = await _getCampuses.Execute(skip, take);
+            IQueryable<ResumedReadCampusOutput> result = await _getCampuses.ExecuteAsync(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadCampusResponse>>(result);
         }
 
         public async Task<IResponse> GetById(Guid? id)
         {
-            var result = await _getCampusById.Execute(id);
+            DetailedReadCampusOutput result = await _getCampusById.ExecuteAsync(id);
             return _mapper.Map<DetailedReadCampusResponse>(result);
         }
 
         public async Task<IResponse> Update(Guid? id, IRequest request)
         {
-            var dto = request as UpdateCampusRequest;
-            var input = _mapper.Map<UpdateCampusInput>(dto);
-            var result = await _updateCampus.Execute(id, input);
+            UpdateCampusRequest? dto = request as UpdateCampusRequest;
+            UpdateCampusInput input = _mapper.Map<UpdateCampusInput>(dto);
+            DetailedReadCampusOutput result = await _updateCampus.ExecuteAsync(id, input);
             return _mapper.Map<DetailedReadCampusResponse>(result);
         }
     }
