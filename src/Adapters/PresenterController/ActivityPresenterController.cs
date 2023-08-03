@@ -22,13 +22,13 @@ namespace Adapters.PresenterController
 
         public async Task<IEnumerable<ActivityTypeResponse>> GetActivitiesByNoticeId(Guid? noticeId)
         {
-            IEnumerable<Domain.UseCases.Ports.Activity.ActivityTypeOutput> activityTypes = await _getActivitiesByNoticeId.GetActivitiesByNoticeId(noticeId);
+            IEnumerable<Domain.UseCases.Ports.Activity.ActivityTypeOutput> activityTypes = await _getActivitiesByNoticeId.ExecuteAsync(noticeId);
             return _mapper.Map<IEnumerable<ActivityTypeResponse>>(activityTypes);
         }
 
         public async Task<IEnumerable<ActivityTypeResponse>> GetLastNoticeActivities()
         {
-            IEnumerable<Domain.UseCases.Ports.Activity.ActivityTypeOutput> activityTypes = await _getLastNoticeActivities.GetLastNoticeActivities();
+            IEnumerable<Domain.UseCases.Ports.Activity.ActivityTypeOutput> activityTypes = await _getLastNoticeActivities.ExecuteAsync();
             return _mapper.Map<IEnumerable<ActivityTypeResponse>>(activityTypes);
         }
     }
