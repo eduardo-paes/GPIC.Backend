@@ -22,7 +22,7 @@ namespace IoC
             _ = services.AddScoped<IProgramTypePresenterController, ProgramTypePresenterController>();
             _ = services.AddScoped<IProjectEvaluationPresenterController, ProjectEvaluationPresenterController>();
             _ = services.AddScoped<IProjectPresenterController, ProjectPresenterController>();
-            // services.AddScoped<IStudentDocumentsPresenterController, StudentDocumentsPresenterController>();
+            _ = services.AddScoped<IStudentDocumentsPresenterController, StudentDocumentsPresenterController>();
             _ = services.AddScoped<IStudentPresenterController, StudentPresenterController>();
             _ = services.AddScoped<ISubAreaPresenterController, SubAreaPresenterController>();
             _ = services.AddScoped<IUserPresenterController, UserPresenterController>();

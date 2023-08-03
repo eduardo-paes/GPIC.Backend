@@ -59,6 +59,37 @@ namespace WebAPI.Controllers
         }
 
         /// <summary>
+        /// Busca Estudante pelo id.
+        /// </summary>
+        /// <param></param>
+        /// <returns>Estudante correspondente</returns>
+        /// <response code="200">Retorna Estudante correspondente</response>
+        [HttpGet("RegistrationCode/{registrationCode}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<DetailedReadStudentResponse>> GetByRegistrationCode(string? registrationCode)
+        {
+            if (registrationCode == null)
+            {
+                const string msg = "A matrícula informada não pode ser nula.";
+                _logger.LogWarning(msg);
+                return BadRequest(msg);
+            }
+
+            try
+            {
+                Adapters.Gateways.Base.IResponse model = await _service.GetByRegistrationCode(registrationCode);
+                _logger.LogInformation("Estudante encontrado para a matrícula {registrationCode}.", registrationCode);
+                return Ok(model);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Ocorreu um erro: {ErrorMessage}", ex.Message);
+                return NotFound(ex.Message);
+            }
+        }
+
+
+        /// <summary>
         /// Busca todas os Estudante ativos.
         /// </summary>
         /// <param></param>

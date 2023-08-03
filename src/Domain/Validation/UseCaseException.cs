@@ -6,21 +6,26 @@ public class UseCaseException : Exception
     public UseCaseException(string? message, Exception? innerException) : base(message, innerException) { }
 
     public static Exception BusinessRuleViolation(string message) => new UseCaseException(message);
-    public static Exception NotFoundEntityById(string entityName) => new UseCaseException($"Entity ({entityName}) not found by informed id.");
-    public static Exception NotFoundEntityByParams(string entityName) => new UseCaseException($"Entity ({entityName}) not found by informed parameters.");
+    public static Exception NotFoundEntityById(string entityName) => new UseCaseException($"Entidade ({entityName}) não encontrada através do Id informado.");
+    public static Exception NotFoundEntityByParams(string entityName) => new UseCaseException($"Entidade ({entityName}) não encontrada através dos parâmetros informados.");
+
+    public static void NotFoundEntityByParams(bool hasError, string entityName)
+    {
+        if (hasError) throw NotFoundEntityByParams(entityName);
+    }
 
     public static void NotFoundEntityById(bool hasError, string entityName)
     {
-        if (hasError) throw new UseCaseException($"Entity ({entityName}) not found by informed id.");
+        if (hasError) throw NotFoundEntityById(entityName);
     }
 
     public static void BusinessRuleViolation(bool hasError, string message)
     {
-        if (hasError) throw new UseCaseException(message);
+        if (hasError) throw BusinessRuleViolation(message);
     }
 
     public static void NotInformedParam(bool hasError, string paramName)
     {
-        if (hasError) throw new UseCaseException($"Parameter ({paramName}) is required.");
+        if (hasError) throw new UseCaseException($"Parâmetro ({paramName}) é obrigatório.");
     }
 }

@@ -72,6 +72,7 @@ namespace IoC
             _ = services.AddScoped<IProjectActivityRepository, ProjectActivityRepository>();
             _ = services.AddScoped<IProjectEvaluationRepository, ProjectEvaluationRepository>();
             _ = services.AddScoped<IStudentRepository, StudentRepository>();
+            _ = services.AddScoped<IStudentDocumentsRepository, StudentDocumentsRepository>();
             _ = services.AddScoped<ISubAreaRepository, SubAreaRepository>();
             _ = services.AddScoped<IUserRepository, UserRepository>();
             #endregion Repositórios

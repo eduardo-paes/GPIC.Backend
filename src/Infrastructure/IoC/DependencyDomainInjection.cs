@@ -14,6 +14,7 @@ using Domain.UseCases.Interactors.ProgramType;
 using Domain.UseCases.Interactors.Project;
 using Domain.UseCases.Interactors.ProjectEvaluation;
 using Domain.UseCases.Interactors.Student;
+using Domain.UseCases.Interactors.StudentDocuments;
 using Domain.UseCases.Interactors.SubArea;
 using Domain.UseCases.Interactors.User;
 using Domain.UseCases.Interfaces.ActivityType;
@@ -29,6 +30,7 @@ using Domain.UseCases.Interfaces.ProgramType;
 using Domain.UseCases.Interfaces.Project;
 using Domain.UseCases.Interfaces.ProjectEvaluation;
 using Domain.UseCases.Interfaces.Student;
+using Domain.UseCases.Interfaces.StudentDocuments;
 using Domain.UseCases.Interfaces.SubArea;
 using Domain.UseCases.Interfaces.User;
 using Microsoft.Extensions.DependencyInjection;
@@ -148,15 +150,16 @@ namespace IoC
             _ = services.AddScoped<IGetStudentById, GetStudentById>();
             _ = services.AddScoped<IGetStudents, GetStudents>();
             _ = services.AddScoped<IUpdateStudent, UpdateStudent>();
+            _ = services.AddScoped<IGetStudentByRegistrationCode, GetStudentByRegistrationCode>();
             #endregion Student
 
             #region StudentDocuments
-            // services.AddScoped<ICreateStudentDocuments, CreateStudentDocuments>();
-            // services.AddScoped<IDeleteStudentDocuments, DeleteStudentDocuments>();
-            // services.AddScoped<IGetStudentDocumentsByProjectId, GetStudentDocumentsByProjectId>();
-            // services.AddScoped<IGetStudentDocumentsByStudentId, GetStudentDocumentsByStudentId>();
-            // services.AddScoped<IUpdateStudentDocuments, UpdateStudentDocuments>();
-            // services.AddScoped<ICreateStudentDocuments, CreateStudentDocuments>();
+            _ = services.AddScoped<ICreateStudentDocuments, CreateStudentDocuments>();
+            _ = services.AddScoped<IDeleteStudentDocuments, DeleteStudentDocuments>();
+            _ = services.AddScoped<IGetStudentDocumentsByProjectId, GetStudentDocumentsByProjectId>();
+            _ = services.AddScoped<IGetStudentDocumentsByStudentId, GetStudentDocumentsByStudentId>();
+            _ = services.AddScoped<IUpdateStudentDocuments, UpdateStudentDocuments>();
+            _ = services.AddScoped<ICreateStudentDocuments, CreateStudentDocuments>();
             #endregion StudentDocuments
 
             #region SubArea

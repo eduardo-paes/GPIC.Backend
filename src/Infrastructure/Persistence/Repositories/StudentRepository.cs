@@ -59,6 +59,17 @@ namespace Persistence.Repositories
             _ = await _context.SaveChangesAsync();
             return model;
         }
+
+        public async Task<Student?> GetByRegistrationCode(string registrationCode)
+        {
+            return await _context.Students
+                .Include(x => x.User)
+                .Include(x => x.Campus)
+                .Include(x => x.Course)
+                .IgnoreQueryFilters()
+                .AsAsyncEnumerable()
+                .FirstOrDefaultAsync(x => x.RegistrationCode == registrationCode.ToUpper());
+        }
         #endregion Public Methods
     }
 }
