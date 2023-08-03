@@ -14,22 +14,22 @@ namespace Persistence.Repositories
             _context = context;
         }
 
-        public async Task<StudentDocuments> Create(StudentDocuments model)
+        public async Task<StudentDocuments> CreateAsync(StudentDocuments model)
         {
             _ = _context.Add(model);
             _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<StudentDocuments> Delete(Guid? id)
+        public async Task<StudentDocuments> DeleteAsync(Guid? id)
         {
-            StudentDocuments model = await GetById(id)
+            StudentDocuments model = await GetByIdAsync(id)
                 ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
-            return await Update(model);
+            return await UpdateAsync(model);
         }
 
-        public async Task<IEnumerable<StudentDocuments>> GetAll(int skip, int take)
+        public async Task<IEnumerable<StudentDocuments>> GetAllAsync(int skip, int take)
         {
             return await _context.StudentDocuments
                 .Include(x => x.Project)
@@ -40,7 +40,7 @@ namespace Persistence.Repositories
                 .ToListAsync();
         }
 
-        public async Task<StudentDocuments?> GetById(Guid? id)
+        public async Task<StudentDocuments?> GetByIdAsync(Guid? id)
         {
             return await _context.StudentDocuments
                 .Include(x => x.Project)
@@ -50,7 +50,7 @@ namespace Persistence.Repositories
                 ?? throw new Exception($"Nenhum Documento encontrado para o id {id}");
         }
 
-        public async Task<StudentDocuments?> GetByProjectId(Guid? projectId)
+        public async Task<StudentDocuments?> GetByProjectIdAsync(Guid? projectId)
         {
             return await _context.StudentDocuments
                 .Include(x => x.Project)
@@ -60,7 +60,7 @@ namespace Persistence.Repositories
                 ?? throw new Exception($"Nenhum Documento encontrado para o projectId {projectId}");
         }
 
-        public async Task<StudentDocuments?> GetByStudentId(Guid? studentId)
+        public async Task<StudentDocuments?> GetByStudentIdAsync(Guid? studentId)
         {
             return await _context.StudentDocuments
                 .Include(x => x.Project)
@@ -71,7 +71,7 @@ namespace Persistence.Repositories
                 ?? throw new Exception($"Nenhum Documento encontrado para o studentId {studentId}");
         }
 
-        public async Task<StudentDocuments> Update(StudentDocuments model)
+        public async Task<StudentDocuments> UpdateAsync(StudentDocuments model)
         {
             _ = _context.Update(model);
             _ = await _context.SaveChangesAsync();

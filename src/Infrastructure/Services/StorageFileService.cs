@@ -52,7 +52,7 @@ namespace Services
             return filePath;
         }
 
-        public async Task DeleteFile(string filePath)
+        public async Task DeleteFileAsync(string filePath)
         {
             try
             {
@@ -105,7 +105,7 @@ namespace Services
             // Deleta o arquivo se o caminho do arquivo for informado
             else
             {
-                await DeleteFile(filePath);
+                await DeleteFileAsync(filePath);
             }
             return filePath;
         }

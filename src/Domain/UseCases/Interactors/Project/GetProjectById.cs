@@ -22,7 +22,7 @@ namespace Domain.UseCases.Interactors.Project
         public async Task<DetailedReadProjectOutput> ExecuteAsync(Guid? id)
         {
             // Busca projeto pelo Id informado
-            Entities.Project project = await _projectRepository.GetById(id)
+            Entities.Project project = await _projectRepository.GetByIdAsync(id)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Project));
 
             // Mapeia entidade para output e retorna

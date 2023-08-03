@@ -19,7 +19,7 @@ namespace Domain.UseCases.Interactors.MainArea
 
         public async Task<IQueryable<ResumedReadMainAreaOutput>> ExecuteAsync(int skip, int take)
         {
-            IEnumerable<Entities.MainArea> entities = (IEnumerable<Entities.MainArea>)await _repository.GetAll(skip, take);
+            IEnumerable<Entities.MainArea> entities = (IEnumerable<Entities.MainArea>)await _repository.GetAllAsync(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadMainAreaOutput>>(entities).AsQueryable();
         }
     }

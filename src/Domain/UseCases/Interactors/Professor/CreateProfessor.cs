@@ -38,11 +38,11 @@ namespace Domain.UseCases
             UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.Password), nameof(input.Password));
 
             // Verifica se já existe um usuário com o e-mail informado
-            var user = await _userRepository.GetUserByEmail(input.Email);
+            var user = await _userRepository.GetUserByEmailAsync(input.Email);
             UseCaseException.BusinessRuleViolation(user != null, "Já existe um usuário com o e-mail informado.");
 
             // Verifica se já existe um usuário com o CPF informado
-            user = await _userRepository.GetUserByCPF(input.CPF);
+            user = await _userRepository.GetUserByCPFAsync(input.CPF);
             UseCaseException.BusinessRuleViolation(user != null, "Já existe um usuário com o CPF informado.");
 
             // Gera hash da senha
@@ -52,12 +52,12 @@ namespace Domain.UseCases
             user = new Entities.User(input.Name, input.Email, input.Password, input.CPF, Entities.Enums.ERole.PROFESSOR);
 
             // Adiciona usuário no banco
-            user = await _userRepository.Create(user);
+            user = await _userRepository.CreateAsync(user);
             UseCaseException.BusinessRuleViolation(user == null, "Não foi possível criar o usuário.");
 
             // Adiciona professor no banco
             entity.UserId = user?.Id;
-            entity = await _professorRepository.Create(entity);
+            entity = await _professorRepository.CreateAsync(entity);
             UseCaseException.BusinessRuleViolation(entity == null, "Não foi possível criar o professor.");
 
             // Envia e-mail de confirmação

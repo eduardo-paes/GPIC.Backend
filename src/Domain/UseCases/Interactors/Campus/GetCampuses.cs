@@ -19,7 +19,7 @@ namespace Domain.UseCases.Interactors.Campus
 
         public async Task<IQueryable<ResumedReadCampusOutput>> ExecuteAsync(int skip, int take)
         {
-            IEnumerable<Entities.Campus> entities = (IEnumerable<Entities.Campus>)await _repository.GetAll(skip, take);
+            IEnumerable<Entities.Campus> entities = (IEnumerable<Entities.Campus>)await _repository.GetAllAsync(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadCampusOutput>>(entities).AsQueryable();
         }
     }

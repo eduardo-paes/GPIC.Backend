@@ -5,6 +5,6 @@ namespace Domain.Interfaces.Repositories
 {
     public interface IProjectActivityRepository : IGenericCRUDRepository<ProjectActivity>
     {
-        Task<IList<ProjectActivity>> GetByProjectId(Guid? projectId);
+        Task<IList<ProjectActivity>> GetByProjectIdAsync(Guid? projectId);
     }
 }

@@ -17,14 +17,14 @@ namespace Persistence.Repositories
         #endregion Global Scope
 
         #region Public Methods
-        public async Task<Course> Create(Course model)
+        public async Task<Course> CreateAsync(Course model)
         {
             _ = _context.Add(model);
             _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<IEnumerable<Course>> GetAll(int skip, int take)
+        public async Task<IEnumerable<Course>> GetAllAsync(int skip, int take)
         {
             return await _context.Courses
             .Skip(skip)
@@ -34,7 +34,7 @@ namespace Persistence.Repositories
             .ToListAsync();
         }
 
-        public async Task<Course?> GetById(Guid? id)
+        public async Task<Course?> GetByIdAsync(Guid? id)
         {
             return await _context.Courses
                 .IgnoreQueryFilters()
@@ -42,22 +42,22 @@ namespace Persistence.Repositories
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<Course> Delete(Guid? id)
+        public async Task<Course> DeleteAsync(Guid? id)
         {
-            Course model = await GetById(id)
+            Course model = await GetByIdAsync(id)
                 ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
-            return await Update(model);
+            return await UpdateAsync(model);
         }
 
-        public async Task<Course> Update(Course model)
+        public async Task<Course> UpdateAsync(Course model)
         {
             _ = _context.Update(model);
             _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<Course?> GetCourseByName(string name)
+        public async Task<Course?> GetCourseByNameAsync(string name)
         {
             string loweredName = name.ToLower(System.Globalization.CultureInfo.CurrentCulture);
             List<Course> entities = await _context.Courses

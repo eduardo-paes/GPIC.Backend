@@ -24,7 +24,7 @@ namespace Domain.UseCases.Interactors.Area
             UseCaseException.NotInformedParam(id is null, nameof(id));
 
             // Recupera entidade que será atualizada
-            Entities.Area entity = await _repository.GetById(id)
+            Entities.Area entity = await _repository.GetByIdAsync(id)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.MainArea));
 
             // Atualiza atributos permitidos
@@ -33,7 +33,7 @@ namespace Domain.UseCases.Interactors.Area
             entity.MainAreaId = input.MainAreaId;
 
             // Salva entidade atualizada no banco
-            Entities.Area model = await _repository.Update(entity);
+            Entities.Area model = await _repository.UpdateAsync(entity);
             return _mapper.Map<DetailedReadAreaOutput>(model);
         }
     }

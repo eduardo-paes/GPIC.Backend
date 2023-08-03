@@ -30,7 +30,7 @@ namespace Domain.UseCases.Interactors.Auth
             UseCaseException.NotInformedParam(input.Token == null, nameof(input.Token));
 
             // Busca o usuário pelo id
-            Entities.User entity = await _userRepository.GetById(input.Id)
+            Entities.User entity = await _userRepository.GetByIdAsync(input.Id)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.User));
 
             // Verifica se o token de validação é nulo
@@ -49,7 +49,7 @@ namespace Domain.UseCases.Interactors.Auth
             }
 
             // Salva as alterações
-            _ = await _userRepository.Update(entity);
+            _ = await _userRepository.UpdateAsync(entity);
 
             // Retorna o resultado
             return "Senha atualizada com sucesso.";

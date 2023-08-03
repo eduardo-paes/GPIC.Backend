@@ -13,14 +13,14 @@ namespace Persistence.Repositories
             _context = context;
         }
 
-        public async Task<ProjectActivity> Create(ProjectActivity model)
+        public async Task<ProjectActivity> CreateAsync(ProjectActivity model)
         {
             _ = _context.Add(model);
             _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<IEnumerable<ProjectActivity>> GetAll(int skip, int take)
+        public async Task<IEnumerable<ProjectActivity>> GetAllAsync(int skip, int take)
         {
             return await _context.ProjectActivities
                 .Skip(skip)
@@ -29,7 +29,7 @@ namespace Persistence.Repositories
                 .ToListAsync();
         }
 
-        public async Task<ProjectActivity?> GetById(Guid? id)
+        public async Task<ProjectActivity?> GetByIdAsync(Guid? id)
         {
             return await _context.ProjectActivities
                 .IgnoreQueryFilters()
@@ -37,22 +37,22 @@ namespace Persistence.Repositories
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<ProjectActivity> Delete(Guid? id)
+        public async Task<ProjectActivity> DeleteAsync(Guid? id)
         {
-            ProjectActivity model = await GetById(id)
+            ProjectActivity model = await GetByIdAsync(id)
                 ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
-            return await Update(model);
+            return await UpdateAsync(model);
         }
 
-        public async Task<ProjectActivity> Update(ProjectActivity model)
+        public async Task<ProjectActivity> UpdateAsync(ProjectActivity model)
         {
             _ = _context.Update(model);
             _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<IList<ProjectActivity>> GetByProjectId(Guid? projectId)
+        public async Task<IList<ProjectActivity>> GetByProjectIdAsync(Guid? projectId)
         {
             return await _context.ProjectActivities
                 .AsAsyncEnumerable()

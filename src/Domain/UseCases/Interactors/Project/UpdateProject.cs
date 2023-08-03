@@ -47,7 +47,7 @@ namespace Domain.UseCases.Interactors.Project
             UseCaseException.NotInformedParam(id is null, nameof(id));
 
             // Verifica se o projeto existe
-            Entities.Project project = await _projectRepository.GetById(id)
+            Entities.Project project = await _projectRepository.GetByIdAsync(id)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Project));
 
             // Verifica se o edital está no período de inscrições
@@ -62,14 +62,14 @@ namespace Domain.UseCases.Interactors.Project
                 // Verifica se a nova Subárea existe
                 if (input.SubAreaId != project.SubAreaId)
                 {
-                    _ = await _subAreaRepository.GetById(input.SubAreaId)
+                    _ = await _subAreaRepository.GetByIdAsync(input.SubAreaId)
                         ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.SubArea));
                 }
 
                 // Verifica se o novo Tipo de Programa existe
                 if (input.ProgramTypeId != project.ProgramTypeId)
                 {
-                    _ = await _programTypeRepository.GetById(input.ProgramTypeId)
+                    _ = await _programTypeRepository.GetByIdAsync(input.ProgramTypeId)
                         ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.ProgramType));
                 }
 
@@ -77,11 +77,11 @@ namespace Domain.UseCases.Interactors.Project
                 if (input.StudentId.HasValue && input.StudentId != project.StudentId)
                 {
                     // Verifica se o aluno existe
-                    Entities.Student student = await _studentRepository.GetById(input.StudentId)
+                    Entities.Student student = await _studentRepository.GetByIdAsync(input.StudentId)
                         ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Student));
 
                     // Verifica se o aluno já está em um projeto
-                    IEnumerable<Entities.Project> studentProjects = await _projectRepository.GetStudentProjects(0, 1, student.Id);
+                    IEnumerable<Entities.Project> studentProjects = await _projectRepository.GetStudentProjectsAsync(0, 1, student.Id);
                     UseCaseException.BusinessRuleViolation(studentProjects.Any(), "Student is already on a project.");
                 }
 
@@ -106,10 +106,10 @@ namespace Domain.UseCases.Interactors.Project
                 }
 
                 // Obtém atividades do Edital
-                IList<Entities.ActivityType> noticeActivities = await _activityTypeRepository.GetByNoticeId(project.Notice!.Id);
+                IList<Entities.ActivityType> noticeActivities = await _activityTypeRepository.GetByNoticeIdAsync(project.Notice!.Id);
 
                 // Obtém atividades do projeto
-                IList<Entities.ProjectActivity> projectActivities = await _projectActivityRepository.GetByProjectId(project.Id);
+                IList<Entities.ProjectActivity> projectActivities = await _projectActivityRepository.GetByProjectIdAsync(project.Id);
 
                 // Valida se todas as atividades do projeto foram informadas corretamente
                 List<Entities.ProjectActivity> updateProjectActivities = new();
@@ -130,17 +130,17 @@ namespace Domain.UseCases.Interactors.Project
                         updateProjectActivity!.InformedActivities = inputActivity.InformedActivities;
 
                         // Atualiza atividade do projeto no banco de dados
-                        _ = await _projectActivityRepository.Update(updateProjectActivity);
+                        _ = await _projectActivityRepository.UpdateAsync(updateProjectActivity);
                     }
                 }
 
                 // Atualiza o projeto
-                _ = await _projectRepository.Update(project);
+                _ = await _projectRepository.UpdateAsync(project);
 
                 // Atualiza atividades do projeto no banco
                 foreach (Entities.ProjectActivity projectActivity in updateProjectActivities)
                 {
-                    _ = await _projectActivityRepository.Update(projectActivity);
+                    _ = await _projectActivityRepository.UpdateAsync(projectActivity);
                 }
 
                 // Mapeia o projeto para o retorno e retorna

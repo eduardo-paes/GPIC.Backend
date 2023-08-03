@@ -21,7 +21,7 @@ namespace Domain.UseCases.Interactors.Area
         public async Task<IQueryable<ResumedReadAreaOutput>> ExecuteAsync(Guid? mainAreaId, int skip, int take)
         {
             UseCaseException.NotInformedParam(mainAreaId is null, nameof(mainAreaId));
-            IEnumerable<Entities.Area> entities = (IEnumerable<Entities.Area>)await _repository.GetAreasByMainArea(mainAreaId, skip, take);
+            IEnumerable<Entities.Area> entities = (IEnumerable<Entities.Area>)await _repository.GetAreasByMainAreaAsync(mainAreaId, skip, take);
             return _mapper.Map<IEnumerable<ResumedReadAreaOutput>>(entities).AsQueryable();
         }
     }

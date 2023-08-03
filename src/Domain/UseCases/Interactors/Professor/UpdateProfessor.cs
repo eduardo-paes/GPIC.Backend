@@ -24,7 +24,7 @@ namespace Domain.UseCases.Interactors.Professor
             UseCaseException.NotInformedParam(id is null, nameof(id));
 
             // Recupera entidade que será atualizada
-            Entities.Professor professor = await _professorRepository.GetById(id)
+            Entities.Professor professor = await _professorRepository.GetByIdAsync(id)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Professor));
 
             // Verifica se a entidade foi excluída
@@ -38,7 +38,7 @@ namespace Domain.UseCases.Interactors.Professor
             professor.SIAPEEnrollment = model.SIAPEEnrollment;
 
             // Atualiza professor com as informações fornecidas
-            professor = await _professorRepository.Update(professor);
+            professor = await _professorRepository.UpdateAsync(professor);
 
             // Salva entidade atualizada no banco
             return _mapper.Map<DetailedReadProfessorOutput>(professor);

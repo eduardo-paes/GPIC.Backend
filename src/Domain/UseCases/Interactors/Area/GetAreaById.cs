@@ -23,7 +23,7 @@ namespace Domain.UseCases.Interactors.Area
             // Verifica se Id foi informado.
             UseCaseException.NotInformedParam(id is null, nameof(id));
 
-            Entities.Area? entity = await _repository.GetById(id);
+            Entities.Area? entity = await _repository.GetByIdAsync(id);
             return _mapper.Map<DetailedReadAreaOutput>(entity);
         }
     }

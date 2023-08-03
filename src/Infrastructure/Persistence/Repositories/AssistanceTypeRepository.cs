@@ -16,14 +16,14 @@ namespace Persistence.Repositories
         #endregion Global Scope
 
         #region Public Methods
-        public async Task<AssistanceType> Create(AssistanceType model)
+        public async Task<AssistanceType> CreateAsync(AssistanceType model)
         {
             _ = _context.Add(model);
             _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<IEnumerable<AssistanceType>> GetAll(int skip, int take)
+        public async Task<IEnumerable<AssistanceType>> GetAllAsync(int skip, int take)
         {
             return await _context.AssistanceTypes
             .Skip(skip)
@@ -33,7 +33,7 @@ namespace Persistence.Repositories
             .ToListAsync();
         }
 
-        public async Task<AssistanceType?> GetById(Guid? id)
+        public async Task<AssistanceType?> GetByIdAsync(Guid? id)
         {
             return await _context.AssistanceTypes
                 .IgnoreQueryFilters()
@@ -41,22 +41,22 @@ namespace Persistence.Repositories
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<AssistanceType> Delete(Guid? id)
+        public async Task<AssistanceType> DeleteAsync(Guid? id)
         {
-            AssistanceType model = await GetById(id)
+            AssistanceType model = await GetByIdAsync(id)
                 ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
-            return await Update(model);
+            return await UpdateAsync(model);
         }
 
-        public async Task<AssistanceType> Update(AssistanceType model)
+        public async Task<AssistanceType> UpdateAsync(AssistanceType model)
         {
             _ = _context.Update(model);
             _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<AssistanceType?> GetAssistanceTypeByName(string name)
+        public async Task<AssistanceType?> GetAssistanceTypeByNameAsync(string name)
         {
             string loweredName = name.ToLower(System.Globalization.CultureInfo.CurrentCulture);
             List<AssistanceType> entities = await _context.AssistanceTypes

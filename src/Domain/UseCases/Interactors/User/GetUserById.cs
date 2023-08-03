@@ -24,7 +24,7 @@ namespace Domain.UseCases.Interactors.User
             UseCaseException.NotInformedParam(id is null, nameof(id));
 
             // Busca usuário pelo id informado
-            Entities.User entity = await _repository.GetById(id)
+            Entities.User entity = await _repository.GetByIdAsync(id)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.User));
 
             // Retorna usuário encontrado

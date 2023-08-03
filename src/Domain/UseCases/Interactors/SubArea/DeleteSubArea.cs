@@ -24,7 +24,7 @@ namespace Domain.UseCases.Interactors.SubArea
             UseCaseException.NotInformedParam(id is null, nameof(id));
 
             // Remove a entidade
-            Entities.SubArea model = await _repository.Delete(id);
+            Entities.SubArea model = await _repository.DeleteAsync(id);
 
             // Retorna o entidade removido
             return _mapper.Map<DetailedReadSubAreaOutput>(model);

@@ -23,7 +23,7 @@ namespace Domain.UseCases.Interactors.Project
         public async Task<ResumedReadProjectOutput> ExecuteAsync(Guid? id, string? observation)
         {
             // Verifica se o projeto existe
-            Entities.Project project = await _projectRepository.GetById(id)
+            Entities.Project project = await _projectRepository.GetByIdAsync(id)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Project));
 
             // Verifica se o projeto já não foi cancelado ou está encerrado
@@ -38,7 +38,7 @@ namespace Domain.UseCases.Interactors.Project
             project.CancellationDate = DateTime.UtcNow;
 
             // Atualiza projeto
-            project = await _projectRepository.Update(project);
+            project = await _projectRepository.UpdateAsync(project);
 
             // Mapeia entidade para output e retorna
             return _mapper.Map<ResumedReadProjectOutput>(project);

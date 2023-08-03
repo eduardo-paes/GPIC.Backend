@@ -17,14 +17,14 @@ namespace Persistence.Repositories
         #endregion Global Scope
 
         #region Public Methods
-        public async Task<ProgramType> Create(ProgramType model)
+        public async Task<ProgramType> CreateAsync(ProgramType model)
         {
             _ = _context.Add(model);
             _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<IEnumerable<ProgramType>> GetAll(int skip, int take)
+        public async Task<IEnumerable<ProgramType>> GetAllAsync(int skip, int take)
         {
             return await _context.ProgramTypes
             .Skip(skip)
@@ -34,7 +34,7 @@ namespace Persistence.Repositories
             .ToListAsync();
         }
 
-        public async Task<ProgramType?> GetById(Guid? id)
+        public async Task<ProgramType?> GetByIdAsync(Guid? id)
         {
             return await _context.ProgramTypes
                 .IgnoreQueryFilters()
@@ -42,22 +42,22 @@ namespace Persistence.Repositories
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<ProgramType> Delete(Guid? id)
+        public async Task<ProgramType> DeleteAsync(Guid? id)
         {
-            ProgramType model = await GetById(id)
+            ProgramType model = await GetByIdAsync(id)
                 ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
-            return await Update(model);
+            return await UpdateAsync(model);
         }
 
-        public async Task<ProgramType> Update(ProgramType model)
+        public async Task<ProgramType> UpdateAsync(ProgramType model)
         {
             _ = _context.Update(model);
             _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<ProgramType?> GetProgramTypeByName(string name)
+        public async Task<ProgramType?> GetProgramTypeByNameAsync(string name)
         {
             string loweredName = name.ToLower(System.Globalization.CultureInfo.CurrentCulture);
             List<ProgramType> entities = await _context.ProgramTypes

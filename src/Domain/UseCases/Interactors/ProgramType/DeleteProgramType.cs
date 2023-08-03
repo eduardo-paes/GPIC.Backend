@@ -24,7 +24,7 @@ namespace Domain.UseCases.Interactors.ProgramType
             UseCaseException.NotInformedParam(id is null, nameof(id));
 
             // Remove a entidade
-            Entities.ProgramType model = await _repository.Delete(id);
+            Entities.ProgramType model = await _repository.DeleteAsync(id);
 
             // Retorna o tipo de programa removido
             return _mapper.Map<DetailedReadProgramTypeOutput>(model);

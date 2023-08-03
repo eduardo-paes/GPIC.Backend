@@ -26,19 +26,19 @@ namespace Domain.UseCases.Interactors.Student
             UseCaseException.NotInformedParam(id is null, nameof(id));
 
             // Verifica se o estudante existe
-            Entities.Student? student = await _studentRepository.GetById(id)
+            Entities.Student? student = await _studentRepository.GetByIdAsync(id)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Student));
 
             // Verifica se o usuário existe
-            _ = await _userRepository.GetById(student.UserId)
+            _ = await _userRepository.GetByIdAsync(student.UserId)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.User));
 
             // Remove o estudante
-            student = await _studentRepository.Delete(id);
+            student = await _studentRepository.DeleteAsync(id);
             UseCaseException.BusinessRuleViolation(student == null, "O estudante não pôde ser removido.");
 
             // Remove o usuário
-            _ = await _userRepository.Delete(student?.UserId)
+            _ = await _userRepository.DeleteAsync(student?.UserId)
                 ?? throw UseCaseException.BusinessRuleViolation("O usuário não pôde ser removido.");
 
             // Retorna o estudante removido

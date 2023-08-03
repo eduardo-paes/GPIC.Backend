@@ -22,7 +22,7 @@ namespace Domain.UseCases.Interactors.MainArea
         {
             UseCaseException.NotInformedParam(id is null, nameof(id));
 
-            Entities.MainArea? entity = await _repository.GetById(id);
+            Entities.MainArea? entity = await _repository.GetByIdAsync(id);
             return _mapper.Map<DetailedMainAreaOutput>(entity);
         }
     }

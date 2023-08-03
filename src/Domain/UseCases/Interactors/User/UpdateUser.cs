@@ -30,7 +30,7 @@ namespace Domain.UseCases.Interactors.User
             UseCaseException.NotInformedParam(userClaims.Id is null, nameof(userClaims.Id));
 
             // Busca usuário pelo id informado
-            Entities.User user = await _repository.GetById(userClaims.Id)
+            Entities.User user = await _repository.GetByIdAsync(userClaims.Id)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.User));
 
             // Atualiza atributos permitidos
@@ -38,7 +38,7 @@ namespace Domain.UseCases.Interactors.User
             user.CPF = input.CPF;
 
             // Salva usuário atualizado no banco
-            Entities.User entity = await _repository.Update(user);
+            Entities.User entity = await _repository.UpdateAsync(user);
             return _mapper.Map<UserReadOutput>(entity);
         }
     }

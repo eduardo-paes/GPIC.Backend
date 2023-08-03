@@ -41,11 +41,11 @@ namespace Domain.UseCases.Interactors.ProjectEvaluation
                 "O usuário não é um avaliador.");
 
             // Busca avaliação do projeto pelo Id.
-            Entities.ProjectEvaluation? projectEvaluation = await _projectEvaluationRepository.GetByProjectId(input.ProjectId)
+            Entities.ProjectEvaluation? projectEvaluation = await _projectEvaluationRepository.GetByProjectIdAsync(input.ProjectId)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.ProjectEvaluation));
 
             // Recupera projeto pelo Id.
-            Entities.Project project = await _projectRepository.GetById(input.ProjectId)
+            Entities.Project project = await _projectRepository.GetByIdAsync(input.ProjectId)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Project));
 
             // Verifica se o avaliador é o professor orientador do projeto.
@@ -77,7 +77,7 @@ namespace Domain.UseCases.Interactors.ProjectEvaluation
             projectEvaluation.AppealEvaluationStatus = (EProjectStatus)input.AppealEvaluationStatus!;
 
             // Atualiza avaliação do projeto.
-            _ = await _projectEvaluationRepository.Update(projectEvaluation);
+            _ = await _projectEvaluationRepository.UpdateAsync(projectEvaluation);
 
             // Se projeto foi aceito, adiciona prazo para envio da documentação.
             if ((EProjectStatus)input.AppealEvaluationStatus == EProjectStatus.Accepted)
@@ -100,7 +100,7 @@ namespace Domain.UseCases.Interactors.ProjectEvaluation
                 projectEvaluation.SubmissionEvaluationDescription);
 
             // Atualiza projeto.
-            Entities.Project output = await _projectRepository.Update(project);
+            Entities.Project output = await _projectRepository.UpdateAsync(project);
 
             // Mapeia dados de saída e retorna.
             return _mapper.Map<DetailedReadProjectOutput>(output);

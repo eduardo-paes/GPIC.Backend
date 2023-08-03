@@ -27,7 +27,7 @@ namespace Domain.UseCases.Interactors.Notice
             UseCaseException.NotInformedParam(id == null, nameof(id));
 
             // Remove a entidade
-            Entities.Notice entity = await _repository.Delete(id);
+            Entities.Notice entity = await _repository.DeleteAsync(id);
 
             // Deleta o arquivo do edital
             if (!string.IsNullOrEmpty(entity.DocUrl))

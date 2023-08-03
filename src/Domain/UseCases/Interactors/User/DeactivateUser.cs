@@ -24,12 +24,12 @@ namespace Domain.UseCases.Interactors.User
             UseCaseException.NotInformedParam(id is null, nameof(id));
 
             // Encontra usuário pelo Id e o desativa
-            Entities.User user = await _repository.GetById(id)
+            Entities.User user = await _repository.GetByIdAsync(id)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.User));
             user.DeactivateEntity();
 
             // Atualiza usuário
-            Entities.User entity = await _repository.Update(user);
+            Entities.User entity = await _repository.UpdateAsync(user);
             return _mapper.Map<UserReadOutput>(entity);
         }
     }

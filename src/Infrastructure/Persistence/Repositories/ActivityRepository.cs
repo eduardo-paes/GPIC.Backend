@@ -13,14 +13,14 @@ namespace Persistence.Repositories
             _context = context;
         }
 
-        public async Task<Activity> Create(Activity model)
+        public async Task<Activity> CreateAsync(Activity model)
         {
             _ = _context.Add(model);
             _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<IEnumerable<Activity>> GetAll(int skip, int take)
+        public async Task<IEnumerable<Activity>> GetAllAsync(int skip, int take)
         {
             return await _context.Activities
             .Skip(skip)
@@ -30,7 +30,7 @@ namespace Persistence.Repositories
             .ToListAsync();
         }
 
-        public async Task<Activity?> GetById(Guid? id)
+        public async Task<Activity?> GetByIdAsync(Guid? id)
         {
             return await _context.Activities
                 .IgnoreQueryFilters()
@@ -38,15 +38,15 @@ namespace Persistence.Repositories
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<Activity> Delete(Guid? id)
+        public async Task<Activity> DeleteAsync(Guid? id)
         {
-            Activity model = await GetById(id)
+            Activity model = await GetByIdAsync(id)
                 ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
-            return await Update(model);
+            return await UpdateAsync(model);
         }
 
-        public async Task<Activity> Update(Activity model)
+        public async Task<Activity> UpdateAsync(Activity model)
         {
             _ = _context.Update(model);
             _ = await _context.SaveChangesAsync();

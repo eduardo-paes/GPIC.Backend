@@ -24,7 +24,7 @@ namespace Domain.UseCases.Interactors.StudentDocuments
             UseCaseException.NotInformedParam(id is null, nameof(id));
 
             // Remove a entidade
-            Entities.StudentDocuments model = await _repository.Delete(id);
+            Entities.StudentDocuments model = await _repository.DeleteAsync(id);
 
             // TODO: Verificar se seria preciso remover os documentos do aluno caso fosse removido o registro de documentos do aluno
 

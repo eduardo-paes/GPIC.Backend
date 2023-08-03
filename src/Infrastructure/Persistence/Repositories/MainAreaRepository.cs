@@ -17,14 +17,14 @@ namespace Persistence.Repositories
         #endregion Global Scope
 
         #region Public Methods
-        public async Task<MainArea> Create(MainArea model)
+        public async Task<MainArea> CreateAsync(MainArea model)
         {
             _ = _context.Add(model);
             _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<MainArea?> GetByCode(string? code)
+        public async Task<MainArea?> GetByCodeAsync(string? code)
         {
             return await _context.MainAreas
             .Where(x => x.Code == code)
@@ -32,7 +32,7 @@ namespace Persistence.Repositories
             .FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<MainArea>> GetAll(int skip, int take)
+        public async Task<IEnumerable<MainArea>> GetAllAsync(int skip, int take)
         {
             return await _context.MainAreas
             .Skip(skip)
@@ -42,7 +42,7 @@ namespace Persistence.Repositories
             .ToListAsync();
         }
 
-        public async Task<MainArea?> GetById(Guid? id)
+        public async Task<MainArea?> GetByIdAsync(Guid? id)
         {
             return await _context.MainAreas
                 .IgnoreQueryFilters()
@@ -50,15 +50,15 @@ namespace Persistence.Repositories
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<MainArea> Delete(Guid? id)
+        public async Task<MainArea> DeleteAsync(Guid? id)
         {
-            MainArea model = await GetById(id)
+            MainArea model = await GetByIdAsync(id)
                 ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
-            return await Update(model);
+            return await UpdateAsync(model);
         }
 
-        public async Task<MainArea> Update(MainArea model)
+        public async Task<MainArea> UpdateAsync(MainArea model)
         {
             _ = _context.Update(model);
             _ = await _context.SaveChangesAsync();

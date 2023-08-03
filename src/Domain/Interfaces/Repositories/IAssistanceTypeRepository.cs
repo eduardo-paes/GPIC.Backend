@@ -5,6 +5,6 @@ namespace Domain.Interfaces.Repositories
 {
     public interface IAssistanceTypeRepository : IGenericCRUDRepository<AssistanceType>
     {
-        Task<AssistanceType?> GetAssistanceTypeByName(string name);
+        Task<AssistanceType?> GetAssistanceTypeByNameAsync(string name);
     }
 }

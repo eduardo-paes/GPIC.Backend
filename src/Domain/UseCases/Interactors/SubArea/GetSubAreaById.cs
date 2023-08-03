@@ -19,7 +19,7 @@ namespace Domain.UseCases.Interactors.SubArea
 
         public async Task<DetailedReadSubAreaOutput> ExecuteAsync(Guid? id)
         {
-            Entities.SubArea? entity = await _subAreaRepository.GetById(id);
+            Entities.SubArea? entity = await _subAreaRepository.GetByIdAsync(id);
             return _mapper.Map<DetailedReadSubAreaOutput>(entity);
         }
     }

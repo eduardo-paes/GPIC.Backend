@@ -15,22 +15,22 @@ namespace Persistence.Repositories
         }
         #endregion Global Scope
 
-        public async Task<ActivityType> Create(ActivityType model)
+        public async Task<ActivityType> CreateAsync(ActivityType model)
         {
             _ = _context.Add(model);
             _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<ActivityType> Delete(Guid? id)
+        public async Task<ActivityType> DeleteAsync(Guid? id)
         {
-            ActivityType model = await GetById(id)
+            ActivityType model = await GetByIdAsync(id)
                 ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
-            return await Update(model);
+            return await UpdateAsync(model);
         }
 
-        public async Task<ActivityType?> GetById(Guid? id)
+        public async Task<ActivityType?> GetByIdAsync(Guid? id)
         {
             return await _context.ActivityTypes
                 .Include(x => x.Notice)
@@ -40,7 +40,7 @@ namespace Persistence.Repositories
                 ?? throw new Exception($"Nenhum tipo de atividade encontrado para o id {id}");
         }
 
-        public async Task<IList<ActivityType>> GetByNoticeId(Guid? noticeId)
+        public async Task<IList<ActivityType>> GetByNoticeIdAsync(Guid? noticeId)
         {
             List<ActivityType> activityTypes = await _context.ActivityTypes
                 .Include(x => x.Activities)
@@ -60,7 +60,7 @@ namespace Persistence.Repositories
             return activityTypes;
         }
 
-        public async Task<IList<ActivityType>> GetLastNoticeActivities()
+        public async Task<IList<ActivityType>> GetLastNoticeActivitiesAsync()
         {
             Guid lastNoticeId = await _context.Notices
                 .AsAsyncEnumerable()
@@ -68,17 +68,17 @@ namespace Persistence.Repositories
                 .Select(x => x.Id)
                 .FirstOrDefaultAsync()
                 ?? throw new Exception("Nenhum Edital encontrado.");
-            return await GetByNoticeId(lastNoticeId);
+            return await GetByNoticeIdAsync(lastNoticeId);
         }
 
-        public async Task<ActivityType> Update(ActivityType model)
+        public async Task<ActivityType> UpdateAsync(ActivityType model)
         {
             _ = _context.Update(model);
             _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<IEnumerable<ActivityType>> GetAll(int skip, int take)
+        public async Task<IEnumerable<ActivityType>> GetAllAsync(int skip, int take)
         {
             return await _context.ActivityTypes
             .Skip(skip)

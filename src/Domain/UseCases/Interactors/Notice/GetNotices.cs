@@ -19,7 +19,7 @@ namespace Domain.UseCases.Interactors.Notice
 
         public async Task<IEnumerable<ResumedReadNoticeOutput>> ExecuteAsync(int skip, int take)
         {
-            IEnumerable<Entities.Notice> entities = (IEnumerable<Entities.Notice>)await _repository.GetAll(skip, take);
+            IEnumerable<Entities.Notice> entities = (IEnumerable<Entities.Notice>)await _repository.GetAllAsync(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadNoticeOutput>>(entities);
         }
     }

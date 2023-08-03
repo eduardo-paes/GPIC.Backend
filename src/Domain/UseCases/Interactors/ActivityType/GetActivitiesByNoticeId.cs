@@ -19,7 +19,7 @@ namespace Domain.UseCases.Interactors.ActivityType
         async Task<IEnumerable<ActivityTypeOutput>> IGetActivitiesByNoticeId.ExecuteAsync(Guid? id)
         {
             // Obtém os tipos de atividades do edital
-            IList<Entities.ActivityType> activityTypes = (IList<Entities.ActivityType>)await _activityTypeRepository.GetByNoticeId(id);
+            IList<Entities.ActivityType> activityTypes = (IList<Entities.ActivityType>)await _activityTypeRepository.GetByNoticeIdAsync(id);
 
             // Mapeia os tipos de atividades para o output
             _ = _mapper.Map<IEnumerable<ActivityTypeOutput>>(activityTypes);

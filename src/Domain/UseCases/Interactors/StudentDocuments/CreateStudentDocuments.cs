@@ -39,11 +39,11 @@ namespace Domain.UseCases
         public async Task<DetailedReadStudentDocumentsOutput> ExecuteAsync(CreateStudentDocumentsInput input)
         {
             // Verifica se já há documentos para o projeto informado
-            var documents = await _studentDocumentRepository.GetByProjectId(input.ProjectId!);
+            var documents = await _studentDocumentRepository.GetByProjectIdAsync(input.ProjectId!);
             UseCaseException.BusinessRuleViolation(documents is null, "Já existem documentos do aluno para o projeto indicado.");
 
             // Verifica se o projeto existe
-            var project = await _projectRepository.GetById(input.ProjectId!);
+            var project = await _projectRepository.GetByIdAsync(input.ProjectId!);
             UseCaseException.NotFoundEntityById(project is null, nameof(Entities.Project));
 
             // Verifica se o projeto se encontra em situação de submissão de documentos (Aceito)
@@ -74,7 +74,7 @@ namespace Domain.UseCases
             entity.AccountOpeningProof = await TryToSaveFileInCloud(input.AccountOpeningProof!);
 
             // Cria entidade
-            entity = await _studentDocumentRepository.Create(entity);
+            entity = await _studentDocumentRepository.CreateAsync(entity);
 
             // Salva entidade no banco
             return _mapper.Map<DetailedReadStudentDocumentsOutput>(entity);

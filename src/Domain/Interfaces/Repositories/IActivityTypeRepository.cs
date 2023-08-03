@@ -5,7 +5,7 @@ namespace Domain.Interfaces.Repositories
 {
     public interface IActivityTypeRepository : IGenericCRUDRepository<ActivityType>
     {
-        Task<IList<ActivityType>> GetByNoticeId(Guid? noticeId);
-        Task<IList<ActivityType>> GetLastNoticeActivities();
+        Task<IList<ActivityType>> GetByNoticeIdAsync(Guid? noticeId);
+        Task<IList<ActivityType>> GetLastNoticeActivitiesAsync();
     }
 }

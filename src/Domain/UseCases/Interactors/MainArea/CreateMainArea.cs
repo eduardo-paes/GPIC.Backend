@@ -21,13 +21,13 @@ namespace Domain.UseCases.Interactors.MainArea
         public async Task<DetailedMainAreaOutput> ExecuteAsync(CreateMainAreaInput model)
         {
             // Validação de código da Área
-            Entities.MainArea? entity = await _repository.GetByCode(model.Code);
+            Entities.MainArea? entity = await _repository.GetByCodeAsync(model.Code);
             if (entity != null)
             {
                 throw UseCaseException.BusinessRuleViolation($"Já existe uma Área Principal para o código {model.Code}");
             }
 
-            entity = await _repository.Create(_mapper.Map<Entities.MainArea>(model));
+            entity = await _repository.CreateAsync(_mapper.Map<Entities.MainArea>(model));
             return _mapper.Map<DetailedMainAreaOutput>(entity);
         }
     }

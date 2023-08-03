@@ -27,7 +27,7 @@ namespace Domain.UseCases.Interactors.Campus
             UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.Name), nameof(input.Name));
 
             // Recupera entidade que será atualizada
-            Entities.Campus entity = await _repository.GetById(id) ?? throw new Exception("Campus não encontrado.");
+            Entities.Campus entity = await _repository.GetByIdAsync(id) ?? throw new Exception("Campus não encontrado.");
 
             // Verifica se a entidade foi excluída
             if (entity.DeletedAt != null)
@@ -36,7 +36,7 @@ namespace Domain.UseCases.Interactors.Campus
             }
 
             // Verifica se o nome já está sendo usado
-            if (!string.Equals(entity.Name, input.Name, StringComparison.OrdinalIgnoreCase) && await _repository.GetCampusByName(input.Name!) != null)
+            if (!string.Equals(entity.Name, input.Name, StringComparison.OrdinalIgnoreCase) && await _repository.GetCampusByNameAsync(input.Name!) != null)
             {
                 throw UseCaseException.BusinessRuleViolation("Já existe um Campus para o nome informado.");
             }
@@ -45,7 +45,7 @@ namespace Domain.UseCases.Interactors.Campus
             entity.Name = input.Name;
 
             // Salva entidade atualizada no banco
-            Entities.Campus model = await _repository.Update(entity);
+            Entities.Campus model = await _repository.UpdateAsync(entity);
             return _mapper.Map<DetailedReadCampusOutput>(model);
         }
     }

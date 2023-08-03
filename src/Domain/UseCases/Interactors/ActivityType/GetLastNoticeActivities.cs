@@ -18,7 +18,7 @@ namespace Domain.UseCases.Interactors.ActivityType
         async Task<IEnumerable<ActivityTypeOutput>> IGetLastNoticeActivities.ExecuteAsync()
         {
             // Obtém os tipos de atividades do último edital
-            IList<Entities.ActivityType> activityTypes = (IList<Entities.ActivityType>)await _activityTypeRepository.GetLastNoticeActivities();
+            IList<Entities.ActivityType> activityTypes = (IList<Entities.ActivityType>)await _activityTypeRepository.GetLastNoticeActivitiesAsync();
 
             // Mapeia os tipos de atividades para o output
             _ = _mapper.Map<IEnumerable<ActivityTypeOutput>>(activityTypes);

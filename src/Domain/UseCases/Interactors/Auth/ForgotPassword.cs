@@ -23,14 +23,14 @@ namespace Domain.UseCases.Interactors.Auth
             UseCaseException.NotInformedParam(string.IsNullOrEmpty(email), nameof(email));
 
             // Busca usuário pelo email
-            var user = await _userRepository.GetUserByEmail(email)
+            var user = await _userRepository.GetUserByEmailAsync(email)
                 ?? throw UseCaseException.NotFoundEntityByParams(nameof(Entities.User));
 
             // Gera token de recuperação de senha
             user.GenerateResetPasswordToken();
 
             // Salva alterações
-            await _userRepository.Update(user);
+            await _userRepository.UpdateAsync(user);
 
             // Envia email de recuperação de senha
             await _emailService.SendResetPasswordEmailAsync(user.Email, user.Name, user.ResetPasswordToken);

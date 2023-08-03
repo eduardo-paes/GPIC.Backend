@@ -26,7 +26,7 @@ namespace Domain.UseCases.Interactors.Project
             UseCaseException.NotInformedParam(projectId is null, nameof(projectId));
 
             // Verifica se o projeto existe
-            Entities.Project project = await _projectRepository.GetById(projectId!.Value)
+            Entities.Project project = await _projectRepository.GetByIdAsync(projectId!.Value)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Project));
 
             // Verifica se edital está em fase de inscrição
@@ -46,7 +46,7 @@ namespace Domain.UseCases.Interactors.Project
                 project.SubmissionDate = DateTime.UtcNow;
 
                 // Salva alterações no banco de dados
-                _ = await _projectRepository.Update(project);
+                _ = await _projectRepository.UpdateAsync(project);
 
                 // Mapeia entidade para output e retorna
                 return _mapper.Map<ResumedReadProjectOutput>(project);

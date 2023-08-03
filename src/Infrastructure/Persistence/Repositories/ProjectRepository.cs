@@ -14,29 +14,29 @@ namespace Persistence.Repositories
             _context = context;
         }
 
-        public async Task<Project> Create(Project model)
+        public async Task<Project> CreateAsync(Project model)
         {
             _ = _context.Add(model);
             _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<Project> Update(Project model)
+        public async Task<Project> UpdateAsync(Project model)
         {
             _ = _context.Update(model);
             _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<Project> Delete(Guid? id)
+        public async Task<Project> DeleteAsync(Guid? id)
         {
-            Project model = await GetById(id)
+            Project model = await GetByIdAsync(id)
                 ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
-            return await Update(model);
+            return await UpdateAsync(model);
         }
 
-        public async Task<Project?> GetById(Guid? id)
+        public async Task<Project?> GetByIdAsync(Guid? id)
         {
             return await _context.Projects
                 .Include(x => x.Notice)
@@ -51,7 +51,7 @@ namespace Persistence.Repositories
                 ?? throw new Exception($"Nenhum Projeto encontrado para o id {id}");
         }
 
-        public async Task<IEnumerable<Project>> GetProfessorProjects(int skip, int take, Guid? id, bool isClosed = false)
+        public async Task<IEnumerable<Project>> GetProfessorProjectsAsync(int skip, int take, Guid? id, bool isClosed = false)
         {
             return isClosed
                 ? await _context.Projects
@@ -84,7 +84,7 @@ namespace Persistence.Repositories
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Project>> GetProjects(int skip, int take, bool isClosed = false)
+        public async Task<IEnumerable<Project>> GetProjectsAsync(int skip, int take, bool isClosed = false)
         {
             return isClosed
                 ? await _context.Projects
@@ -113,7 +113,7 @@ namespace Persistence.Repositories
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Project>> GetStudentProjects(int skip, int take, Guid? id, bool isClosed = false)
+        public async Task<IEnumerable<Project>> GetStudentProjectsAsync(int skip, int take, Guid? id, bool isClosed = false)
         {
             return isClosed
                 ? await _context.Projects

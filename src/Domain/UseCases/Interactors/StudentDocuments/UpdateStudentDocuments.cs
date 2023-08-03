@@ -35,7 +35,7 @@ namespace Domain.UseCases.Interactors.StudentDocuments
             UseCaseException.NotInformedParam(id is null, nameof(id));
 
             // Verifica se já foram enviados documentos para o projeto informado
-            Entities.StudentDocuments? studentDocuments = await _studentDocumentRepository.GetById(id!);
+            Entities.StudentDocuments? studentDocuments = await _studentDocumentRepository.GetByIdAsync(id!);
             UseCaseException.NotFoundEntityById(studentDocuments is not null, nameof(studentDocuments));
 
             // Verifica se o projeto se encontra em situação de submissão de documentos (Aceito ou Pendente do envio de documentação)
@@ -58,14 +58,14 @@ namespace Domain.UseCases.Interactors.StudentDocuments
             await TryToSaveFileInCloud(model.AccountOpeningProof!, studentDocuments.AccountOpeningProof);
 
             // Atualiza entidade
-            studentDocuments = await _studentDocumentRepository.Update(studentDocuments);
+            studentDocuments = await _studentDocumentRepository.UpdateAsync(studentDocuments);
 
             // Se o projeto está no status de pendente, atualiza para o status de análise de documentos
             if (studentDocuments.Project?.Status == Entities.Enums.EProjectStatus.Pending)
             {
-                Entities.Project? project = await _projectRepository.GetById(studentDocuments.ProjectId);
+                Entities.Project? project = await _projectRepository.GetByIdAsync(studentDocuments.ProjectId);
                 project!.Status = Entities.Enums.EProjectStatus.DocumentAnalysis;
-                _ = await _projectRepository.Update(project);
+                _ = await _projectRepository.UpdateAsync(project);
             }
 
             // Retorna entidade atualizada

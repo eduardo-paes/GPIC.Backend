@@ -24,7 +24,7 @@ namespace Domain.UseCases.Interactors.MainArea
             UseCaseException.NotInformedParam(id is null, nameof(id));
 
             // Remove a entidade
-            Entities.MainArea model = await _repository.Delete(id);
+            Entities.MainArea model = await _repository.DeleteAsync(id);
 
             // Retorna o edital removido
             return _mapper.Map<DetailedMainAreaOutput>(model);

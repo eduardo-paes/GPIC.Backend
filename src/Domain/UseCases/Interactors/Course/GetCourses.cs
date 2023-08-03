@@ -19,7 +19,7 @@ namespace Domain.UseCases.Interactors.Course
 
         public async Task<IQueryable<ResumedReadCourseOutput>> ExecuteAsync(int skip, int take)
         {
-            IEnumerable<Entities.Course> entities = await _repository.GetAll(skip, take);
+            IEnumerable<Entities.Course> entities = await _repository.GetAllAsync(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadCourseOutput>>(entities).AsQueryable();
         }
     }

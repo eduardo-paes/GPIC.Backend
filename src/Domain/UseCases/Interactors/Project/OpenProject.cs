@@ -68,7 +68,7 @@ namespace Domain.UseCases.Interactors.Project
                 null);
 
             // Verifica se Edital existe
-            Entities.Notice notice = await _noticeRepository.GetById(project.NoticeId)
+            Entities.Notice notice = await _noticeRepository.GetByIdAsync(project.NoticeId)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Notice));
 
             // Verifica se o período do edital é válido
@@ -78,26 +78,26 @@ namespace Domain.UseCases.Interactors.Project
             }
 
             // Verifica se a Subárea existe
-            _ = await _subAreaRepository.GetById(project.SubAreaId)
+            _ = await _subAreaRepository.GetByIdAsync(project.SubAreaId)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.SubArea));
 
             // Verifica se o Tipo de Programa existe
-            _ = await _programTypeRepository.GetById(project.ProgramTypeId)
+            _ = await _programTypeRepository.GetByIdAsync(project.ProgramTypeId)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.ProgramType));
 
             // Verifica se o Professor existe
-            _ = await _professorRepository.GetById(project.ProfessorId)
+            _ = await _professorRepository.GetByIdAsync(project.ProfessorId)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Professor));
 
             // Caso tenha sido informado algum aluno no processo de abertura do projeto
             if (project.StudentId.HasValue)
             {
                 // Verifica se o aluno existe
-                Entities.Student student = await _studentRepository.GetById(project.StudentId)
+                Entities.Student student = await _studentRepository.GetByIdAsync(project.StudentId)
                     ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Student));
 
                 // Verifica se o aluno já está em um projeto
-                IEnumerable<Entities.Project> studentProjects = await _projectRepository.GetStudentProjects(0, 1, student.Id);
+                IEnumerable<Entities.Project> studentProjects = await _projectRepository.GetStudentProjectsAsync(0, 1, student.Id);
                 if (studentProjects.Any())
                 {
                     throw UseCaseException.BusinessRuleViolation("Aluno já está em um projeto.");
@@ -111,7 +111,7 @@ namespace Domain.UseCases.Interactors.Project
             }
 
             // Obtém atividades do Edital
-            IList<Entities.ActivityType> noticeActivities = await _activityTypeRepository.GetByNoticeId(notice.Id);
+            IList<Entities.ActivityType> noticeActivities = await _activityTypeRepository.GetByNoticeIdAsync(notice.Id);
 
             // Valida se todas as atividades do projeto foram informadas corretamente
             List<Entities.ProjectActivity> newProjectActivities = new();
@@ -135,13 +135,13 @@ namespace Domain.UseCases.Interactors.Project
             }
 
             // Cria o projeto
-            project = await _projectRepository.Create(project);
+            project = await _projectRepository.CreateAsync(project);
 
             // Cria as atividades do projeto
             foreach (Entities.ProjectActivity projectActivity in newProjectActivities)
             {
                 projectActivity.ProjectId = project.Id;
-                _ = await _projectActivityRepository.Create(projectActivity);
+                _ = await _projectActivityRepository.CreateAsync(projectActivity);
             }
 
             // Mapeia o projeto para o retorno e retorna

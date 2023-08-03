@@ -10,7 +10,7 @@ namespace Domain.Interfaces.Repositories
         /// <param name="skip"></param>
         /// <param name="take"></param>
         /// <returns>Usuários encontrados.</returns>
-        Task<IEnumerable<User>> GetActiveUsers(int skip, int take);
+        Task<IEnumerable<User>> GetActiveUsersAsync(int skip, int take);
 
         /// <summary>
         /// Retorna usuários inativos no sistema.
@@ -18,35 +18,35 @@ namespace Domain.Interfaces.Repositories
         /// <param name="skip"></param>
         /// <param name="take"></param>
         /// <returns>Usuários encontrados.</returns>
-        Task<IEnumerable<User>> GetInactiveUsers(int skip, int take);
+        Task<IEnumerable<User>> GetInactiveUsersAsync(int skip, int take);
 
         /// <summary>
         /// Recupera usuário através do Id informado.
         /// </summary>
         /// <param name="id">Id do usuário.</param>
         /// <returns>Usuário encontrado.</returns>
-        Task<User?> GetById(Guid? id);
+        Task<User?> GetByIdAsync(Guid? id);
 
         /// <summary>
         /// Atualiza usuário utilizando os parâmetros informados.
         /// </summary>
         /// <param name="user">Parâmetros de atualização do usuário.</param>
         /// <returns>Usuário atualizado.</returns>
-        Task<User> Update(User user);
+        Task<User> UpdateAsync(User user);
 
         /// <summary>
         /// Realiza a criação do usuário utilizando os parâmetros informados.
         /// </summary>
         /// <param name="user">Parâmetros de criação do usuário.</param>
         /// <returns>Usuário criado.</returns>
-        Task<User> Create(User user);
+        Task<User> CreateAsync(User user);
 
         /// <summary>
         /// Realiza a remoção do usuário utilizando o id informado.
         /// </summary>
         /// <param name="id">Id do usuário.</param>
         /// <returns>Usuário removido.</returns>
-        Task<User> Delete(Guid? id);
+        Task<User> DeleteAsync(Guid? id);
 
         /// <summary>
         /// Retorna usuário com o Email informado.
@@ -54,7 +54,7 @@ namespace Domain.Interfaces.Repositories
         /// </summary>
         /// <param name="email">Email do usuário.</param>
         /// <returns>Usuário encontrado.</returns>
-        Task<User?> GetUserByEmail(string? email);
+        Task<User?> GetUserByEmailAsync(string? email);
 
         /// <summary>
         /// Retorna usuário com o CPF informado.
@@ -62,6 +62,6 @@ namespace Domain.Interfaces.Repositories
         /// </summary>
         /// <param name="cpf">CPF do usuário.</param>
         /// <returns>Usuário encontrado.</returns>
-        Task<User?> GetUserByCPF(string? cpf);
+        Task<User?> GetUserByCPFAsync(string? cpf);
     }
 }

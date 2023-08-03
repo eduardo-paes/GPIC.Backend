@@ -21,7 +21,7 @@ namespace Domain.UseCases.Interactors.Student
         public async Task<DetailedReadStudentOutput> ExecuteAsync(Guid? id)
         {
             UseCaseException.NotInformedParam(id is null, nameof(id));
-            Entities.Student? entity = await _repository.GetById(id);
+            Entities.Student? entity = await _repository.GetByIdAsync(id);
             return _mapper.Map<DetailedReadStudentOutput>(entity);
         }
     }

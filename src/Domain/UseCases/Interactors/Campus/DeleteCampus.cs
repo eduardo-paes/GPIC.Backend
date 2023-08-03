@@ -24,7 +24,7 @@ namespace Domain.UseCases.Interactors.Campus
             UseCaseException.NotInformedParam(id is null, nameof(id));
 
             // Remove a entidade
-            Entities.Campus model = await _repository.Delete(id);
+            Entities.Campus model = await _repository.DeleteAsync(id);
 
             // Retorna o curso removido
             return _mapper.Map<DetailedReadCampusOutput>(model);

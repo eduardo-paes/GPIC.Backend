@@ -24,13 +24,13 @@ namespace Domain.UseCases
             UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.Name), nameof(input.Name));
 
             // Verifica se já existe um edital para o período indicado
-            var entity = await _repository.GetCampusByName(input.Name!);
+            var entity = await _repository.GetCampusByNameAsync(input.Name!);
             if (entity != null)
                 throw UseCaseException.BusinessRuleViolation("Já existe um Campus para o nome informado.");
 
             // Cria entidade
             var newEntity = new Entities.Campus(input.Name);
-            entity = await _repository.Create(newEntity);
+            entity = await _repository.CreateAsync(newEntity);
 
             // Salva entidade no banco
             return _mapper.Map<DetailedReadCampusOutput>(entity);

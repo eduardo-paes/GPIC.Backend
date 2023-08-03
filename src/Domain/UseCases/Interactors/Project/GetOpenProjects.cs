@@ -42,22 +42,22 @@ namespace Domain.UseCases.Interactors.Project
             // Se o usuário for um professor, retorna apenas os seus projetos.
             if (userRole == ERole.PROFESSOR)
             {
-                projects = (IEnumerable<Entities.Project>)await _projectRepository.GetProfessorProjects(skip, take, userClaims?.Id);
+                projects = (IEnumerable<Entities.Project>)await _projectRepository.GetProfessorProjectsAsync(skip, take, userClaims?.Id);
             }
 
             // Se o usuário for um aluno, retorna apenas os seus projetos.
             else if (userRole == ERole.STUDENT)
             {
-                projects = (IEnumerable<Entities.Project>)await _projectRepository.GetStudentProjects(skip, take, userClaims?.Id);
+                projects = (IEnumerable<Entities.Project>)await _projectRepository.GetStudentProjectsAsync(skip, take, userClaims?.Id);
             }
 
             // Se o usuário for um administrador, permite a busca apenas pelo seu ID.
             else
             {
                 projects = userRole == ERole.ADMIN && onlyMyProjects
-                    ? (IEnumerable<Entities.Project>)await _projectRepository.GetProfessorProjects(skip, take, userClaims?.Id)
+                    ? (IEnumerable<Entities.Project>)await _projectRepository.GetProfessorProjectsAsync(skip, take, userClaims?.Id)
                     : userRole == ERole.ADMIN && !onlyMyProjects
-                                    ? (IEnumerable<Entities.Project>)await _projectRepository.GetProjects(skip, take)
+                                    ? (IEnumerable<Entities.Project>)await _projectRepository.GetProjectsAsync(skip, take)
                                     : throw UseCaseException.BusinessRuleViolation("Usuário não autorizado.");
             }
 

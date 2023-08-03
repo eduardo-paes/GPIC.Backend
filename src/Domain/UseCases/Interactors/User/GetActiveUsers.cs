@@ -19,7 +19,7 @@ namespace Domain.UseCases.Interactors.User
 
         public async Task<IEnumerable<UserReadOutput>> ExecuteAsync(int skip, int take)
         {
-            IEnumerable<Entities.User> entities = (IEnumerable<Entities.User>)await _repository.GetActiveUsers(skip, take);
+            IEnumerable<Entities.User> entities = (IEnumerable<Entities.User>)await _repository.GetActiveUsersAsync(skip, take);
             return _mapper.Map<IEnumerable<UserReadOutput>>(entities).AsQueryable();
         }
     }

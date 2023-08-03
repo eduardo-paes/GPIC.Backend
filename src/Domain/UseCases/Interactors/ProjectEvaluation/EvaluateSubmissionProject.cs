@@ -48,12 +48,12 @@ namespace Domain.UseCases.Interactors.ProjectEvaluation
                 "O usuário não é um avaliador.");
 
             // Verifica se já existe alguma avaliação para o projeto.
-            Entities.ProjectEvaluation? projectEvaluation = await _projectEvaluationRepository.GetByProjectId(input.ProjectId);
+            Entities.ProjectEvaluation? projectEvaluation = await _projectEvaluationRepository.GetByProjectIdAsync(input.ProjectId);
             UseCaseException.BusinessRuleViolation(projectEvaluation != null,
                 "Projeto já avaliado.");
 
             // Busca projeto pelo Id.
-            Entities.Project project = await _projectRepository.GetById(input.ProjectId)
+            Entities.Project project = await _projectRepository.GetByIdAsync(input.ProjectId)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Project));
 
             // Verifica se o avaliador é o professor orientador do projeto.
@@ -87,10 +87,10 @@ namespace Domain.UseCases.Interactors.ProjectEvaluation
                 0);
 
             // Obtém atividades do Edital
-            IList<Entities.ActivityType> noticeActivities = (IList<Entities.ActivityType>)await _activityTypeRepository.GetByNoticeId(project.Notice!.Id);
+            IList<Entities.ActivityType> noticeActivities = (IList<Entities.ActivityType>)await _activityTypeRepository.GetByNoticeIdAsync(project.Notice!.Id);
 
             // Obtém atividades do projeto
-            IList<Entities.ProjectActivity> projectActivities = await _projectActivityRepository.GetByProjectId(project.Id);
+            IList<Entities.ProjectActivity> projectActivities = await _projectActivityRepository.GetByProjectIdAsync(project.Id);
 
             // Valida se todas as atividades do projeto foram informadas corretamente
             List<Entities.ProjectActivity> updateProjectActivities = new();
@@ -114,7 +114,7 @@ namespace Domain.UseCases.Interactors.ProjectEvaluation
                     projectEvaluation.APIndex += updateProjectActivity.CalculatePoints();
 
                     // Atualiza atividade do projeto no banco de dados
-                    _ = await _projectActivityRepository.Update(updateProjectActivity);
+                    _ = await _projectActivityRepository.UpdateAsync(updateProjectActivity);
                 }
             }
 
@@ -122,7 +122,7 @@ namespace Domain.UseCases.Interactors.ProjectEvaluation
             projectEvaluation.CalculateFinalScore();
 
             // Adiciona avaliação do projeto.
-            _ = await _projectEvaluationRepository.Create(projectEvaluation);
+            _ = await _projectEvaluationRepository.CreateAsync(projectEvaluation);
 
             // Se projeto foi aceito, adiciona prazo para envio da documentação.
             if (projectEvaluation.SubmissionEvaluationStatus == EProjectStatus.Accepted)
@@ -145,7 +145,7 @@ namespace Domain.UseCases.Interactors.ProjectEvaluation
                 projectEvaluation.SubmissionEvaluationDescription);
 
             // Atualiza projeto.
-            Entities.Project output = await _projectRepository.Update(project);
+            Entities.Project output = await _projectRepository.UpdateAsync(project);
 
             // Mapeia dados de saída e retorna.
             return _mapper.Map<DetailedReadProjectOutput>(output);

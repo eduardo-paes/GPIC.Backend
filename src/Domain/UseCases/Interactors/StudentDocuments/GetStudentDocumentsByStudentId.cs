@@ -26,7 +26,7 @@ namespace Domain.UseCases.Interactors.StudentDocuments
             UseCaseException.NotInformedParam(studentId is null, nameof(studentId));
 
             // Busca documentos do estudante pelo id do projeto
-            Entities.StudentDocuments? entity = await _repository.GetByStudentId(studentId);
+            Entities.StudentDocuments? entity = await _repository.GetByStudentIdAsync(studentId);
 
             // Retorna entidade mapeada
             return _mapper.Map<ResumedReadStudentDocumentsOutput>(entity);

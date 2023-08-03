@@ -10,6 +10,6 @@ namespace Domain.Interfaces.Repositories
         /// </summary>
         /// <param name="registrationCode">Código de matrícula</param>
         /// <returns>Aluno encontrado</returns>
-        Task<Student?> GetByRegistrationCode(string registrationCode);
+        Task<Student?> GetByRegistrationCodeAsync(string registrationCode);
     }
 }

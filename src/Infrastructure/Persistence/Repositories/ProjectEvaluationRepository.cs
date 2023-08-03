@@ -13,14 +13,14 @@ namespace Persistence.Repositories
             _context = context;
         }
 
-        public async Task<ProjectEvaluation> Create(ProjectEvaluation model)
+        public async Task<ProjectEvaluation> CreateAsync(ProjectEvaluation model)
         {
             _ = _context.Add(model);
             _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<ProjectEvaluation?> GetById(Guid? id)
+        public async Task<ProjectEvaluation?> GetByIdAsync(Guid? id)
         {
             return await _context.ProjectEvaluations
                 .Include(x => x.Project)
@@ -33,7 +33,7 @@ namespace Persistence.Repositories
                 ?? throw new Exception($"Nenhuma avaliação encontrada para o id {id}");
         }
 
-        public async Task<ProjectEvaluation?> GetByProjectId(Guid? projectId)
+        public async Task<ProjectEvaluation?> GetByProjectIdAsync(Guid? projectId)
         {
             return await _context.ProjectEvaluations
                 .Include(x => x.Project)
@@ -46,7 +46,7 @@ namespace Persistence.Repositories
                 ?? throw new Exception($"Nenhuma avaliação encontrada para o ProjectId {projectId}");
         }
 
-        public async Task<ProjectEvaluation> Update(ProjectEvaluation model)
+        public async Task<ProjectEvaluation> UpdateAsync(ProjectEvaluation model)
         {
             _ = _context.Update(model);
             _ = await _context.SaveChangesAsync();

@@ -27,7 +27,7 @@ namespace Domain.UseCases.Interactors.AssistanceType
             UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.Name), nameof(input.Name));
 
             // Recupera entidade que será atualizada
-            Entities.AssistanceType entity = await _repository.GetById(id)
+            Entities.AssistanceType entity = await _repository.GetByIdAsync(id)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.AssistanceType));
 
             // Verifica se a entidade foi excluída
@@ -37,7 +37,7 @@ namespace Domain.UseCases.Interactors.AssistanceType
             // Verifica se o nome já está sendo usado
             UseCaseException.BusinessRuleViolation(
                 !string.Equals(entity.Name, input.Name, StringComparison.OrdinalIgnoreCase)
-                    && await _repository.GetAssistanceTypeByName(input.Name!) != null,
+                    && await _repository.GetAssistanceTypeByNameAsync(input.Name!) != null,
                 "Já existe um Bolsa de Assistência para o nome informado.");
 
             // Atualiza atributos permitidos
@@ -45,7 +45,7 @@ namespace Domain.UseCases.Interactors.AssistanceType
             entity.Description = input.Description;
 
             // Salva entidade atualizada no banco
-            Entities.AssistanceType model = await _repository.Update(entity);
+            Entities.AssistanceType model = await _repository.UpdateAsync(entity);
             return _mapper.Map<DetailedReadAssistanceTypeOutput>(model);
         }
     }

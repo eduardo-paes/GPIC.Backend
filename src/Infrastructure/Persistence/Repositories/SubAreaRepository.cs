@@ -16,14 +16,14 @@ namespace Persistence.Repositories
         #endregion Global Scope
 
         #region Public Methods
-        public async Task<SubArea> Create(SubArea model)
+        public async Task<SubArea> CreateAsync(SubArea model)
         {
             _ = _context.Add(model);
             _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<SubArea?> GetByCode(string? code)
+        public async Task<SubArea?> GetByCodeAsync(string? code)
         {
             return await _context.SubAreas
             .Where(x => x.Code == code)
@@ -33,7 +33,7 @@ namespace Persistence.Repositories
             .FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<SubArea>> GetSubAreasByArea(Guid? areaId, int skip, int take)
+        public async Task<IEnumerable<SubArea>> GetSubAreasByAreaAsync(Guid? areaId, int skip, int take)
         {
             return await _context.SubAreas
             .Where(x => x.AreaId == areaId)
@@ -46,7 +46,7 @@ namespace Persistence.Repositories
             .ToListAsync();
         }
 
-        public async Task<SubArea?> GetById(Guid? id)
+        public async Task<SubArea?> GetByIdAsync(Guid? id)
         {
             return await _context.SubAreas
                 .Include(x => x.Area)
@@ -56,22 +56,22 @@ namespace Persistence.Repositories
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<SubArea> Delete(Guid? id)
+        public async Task<SubArea> DeleteAsync(Guid? id)
         {
-            SubArea model = await GetById(id)
+            SubArea model = await GetByIdAsync(id)
                 ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
-            return await Update(model);
+            return await UpdateAsync(model);
         }
 
-        public async Task<SubArea> Update(SubArea model)
+        public async Task<SubArea> UpdateAsync(SubArea model)
         {
             _ = _context.Update(model);
             _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public Task<IEnumerable<SubArea>> GetAll(int skip, int take)
+        public Task<IEnumerable<SubArea>> GetAllAsync(int skip, int take)
         {
             throw new NotImplementedException();
         }

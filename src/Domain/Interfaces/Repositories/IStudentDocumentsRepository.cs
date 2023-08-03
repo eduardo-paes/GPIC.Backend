@@ -5,7 +5,7 @@ namespace Domain.Interfaces.Repositories
 {
     public interface IStudentDocumentsRepository : IGenericCRUDRepository<StudentDocuments>
     {
-        Task<StudentDocuments?> GetByProjectId(Guid? projectId);
-        Task<StudentDocuments?> GetByStudentId(Guid? studentId);
+        Task<StudentDocuments?> GetByProjectIdAsync(Guid? projectId);
+        Task<StudentDocuments?> GetByStudentIdAsync(Guid? studentId);
     }
 }

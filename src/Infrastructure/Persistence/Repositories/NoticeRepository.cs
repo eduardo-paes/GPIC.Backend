@@ -17,14 +17,14 @@ namespace Persistence.Repositories
         #endregion Global Scope
 
         #region Public Methods
-        public async Task<Notice> Create(Notice model)
+        public async Task<Notice> CreateAsync(Notice model)
         {
             _ = _context.Add(model);
             _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<IEnumerable<Notice>> GetAll(int skip, int take)
+        public async Task<IEnumerable<Notice>> GetAllAsync(int skip, int take)
         {
             return await _context.Notices
             .Skip(skip)
@@ -34,7 +34,7 @@ namespace Persistence.Repositories
             .ToListAsync();
         }
 
-        public async Task<Notice?> GetById(Guid? id)
+        public async Task<Notice?> GetByIdAsync(Guid? id)
         {
             return await _context.Notices
                 .IgnoreQueryFilters()
@@ -42,22 +42,22 @@ namespace Persistence.Repositories
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<Notice> Delete(Guid? id)
+        public async Task<Notice> DeleteAsync(Guid? id)
         {
-            Notice model = await GetById(id)
+            Notice model = await GetByIdAsync(id)
                 ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
-            return await Update(model);
+            return await UpdateAsync(model);
         }
 
-        public async Task<Notice> Update(Notice model)
+        public async Task<Notice> UpdateAsync(Notice model)
         {
             _ = _context.Update(model);
             _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<Notice?> GetNoticeByPeriod(DateTime start, DateTime end)
+        public async Task<Notice?> GetNoticeByPeriodAsync(DateTime start, DateTime end)
         {
             DateTime startDate = start.ToUniversalTime();
             DateTime finalDate = end.ToUniversalTime();

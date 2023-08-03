@@ -25,7 +25,7 @@ namespace Domain.UseCases.Interactors.ProjectEvaluation
             UseCaseException.NotInformedParam(projectId is null, nameof(projectId));
 
             // Obtém a avaliação do projeto pelo Id do projeto.
-            Entities.ProjectEvaluation? entity = await _repository.GetByProjectId(projectId);
+            Entities.ProjectEvaluation? entity = await _repository.GetByProjectIdAsync(projectId);
 
             // Converte e retorna o resultado.
             return _mapper.Map<DetailedReadProjectEvaluationOutput>(entity);

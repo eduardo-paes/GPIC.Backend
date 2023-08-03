@@ -35,7 +35,7 @@ namespace Services
         }
         #endregion Global Scope
 
-        public async Task DeleteFile(string filePath)
+        public async Task DeleteFileAsync(string filePath)
         {
             // Cria o cliente do blob
             string? fileName = filePath.Split("/").LastOrDefault();
@@ -53,7 +53,7 @@ namespace Services
             if (!string.IsNullOrEmpty(filePath))
             {
                 // Deleta o arquivo
-                await DeleteFile(filePath);
+                await DeleteFileAsync(filePath);
 
                 // Utiliza o mesmo nome do arquivo anterior para o arquivo atual
                 filePath = filePath.Split("/").LastOrDefault();

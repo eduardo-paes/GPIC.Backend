@@ -19,7 +19,7 @@ namespace Domain.UseCases.Interactors.Professor
 
         public async Task<IQueryable<ResumedReadProfessorOutput>> ExecuteAsync(int skip, int take)
         {
-            IEnumerable<Entities.Professor> entities = (IEnumerable<Entities.Professor>)await _repository.GetAll(skip, take);
+            IEnumerable<Entities.Professor> entities = (IEnumerable<Entities.Professor>)await _repository.GetAllAsync(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadProfessorOutput>>(entities).AsQueryable();
         }
     }

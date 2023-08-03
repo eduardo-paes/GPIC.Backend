@@ -24,14 +24,14 @@ namespace Domain.UseCases.Interactors.ProgramType
             UseCaseException.NotInformedParam(string.IsNullOrEmpty(model.Name), nameof(model.Name));
 
             // Verifica se já existe um tipo de programa com o nome indicado
-            Entities.ProgramType? entity = await _repository.GetProgramTypeByName(model.Name!);
+            Entities.ProgramType? entity = await _repository.GetProgramTypeByNameAsync(model.Name!);
             if (entity != null)
             {
                 throw UseCaseException.BusinessRuleViolation("Já existe um Tipo de Programa para o nome informado.");
             }
 
             // Cria entidade
-            entity = await _repository.Create(_mapper.Map<Entities.ProgramType>(model));
+            entity = await _repository.CreateAsync(_mapper.Map<Entities.ProgramType>(model));
 
             // Salva entidade no banco
             return _mapper.Map<DetailedReadProgramTypeOutput>(entity);

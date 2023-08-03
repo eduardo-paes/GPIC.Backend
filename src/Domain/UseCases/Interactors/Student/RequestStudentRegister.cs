@@ -25,7 +25,7 @@ namespace Domain.UseCases.Interactors.Student
             UseCaseException.BusinessRuleViolation(!ValidateStudentEmail(email!), "Email inválido.");
 
             // Verifica se o email já está cadastrado
-            var user = await _userRepository.GetUserByEmail(email!);
+            var user = await _userRepository.GetUserByEmailAsync(email!);
 
             // Se o usuário já existe, lança uma exceção
             UseCaseException.BusinessRuleViolation(user is not null, "Email já cadastrado.");

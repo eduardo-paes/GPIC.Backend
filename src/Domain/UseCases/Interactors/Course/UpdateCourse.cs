@@ -27,7 +27,7 @@ namespace Domain.UseCases.Interactors.Course
             UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.Name), nameof(input.Name));
 
             // Recupera entidade que será atualizada
-            Entities.Course entity = await _repository.GetById(id) ??
+            Entities.Course entity = await _repository.GetByIdAsync(id) ??
                 throw UseCaseException.NotFoundEntityById(nameof(Entities.Course));
 
             // Verifica se a entidade foi excluída
@@ -37,7 +37,7 @@ namespace Domain.UseCases.Interactors.Course
             }
 
             // Verifica se o nome já está sendo usado
-            if (!string.Equals(entity.Name, input.Name, StringComparison.OrdinalIgnoreCase) && await _repository.GetCourseByName(input.Name!) != null)
+            if (!string.Equals(entity.Name, input.Name, StringComparison.OrdinalIgnoreCase) && await _repository.GetCourseByNameAsync(input.Name!) != null)
             {
                 throw UseCaseException.BusinessRuleViolation("Já existe um Curso para o nome informado.");
             }
@@ -46,7 +46,7 @@ namespace Domain.UseCases.Interactors.Course
             entity.Name = input.Name;
 
             // Salva entidade atualizada no banco
-            Entities.Course model = await _repository.Update(entity);
+            Entities.Course model = await _repository.UpdateAsync(entity);
             return _mapper.Map<DetailedReadCourseOutput>(model);
         }
     }

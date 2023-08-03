@@ -25,7 +25,7 @@ namespace Domain.UseCases.Interactors.Student
             UseCaseException.NotInformedParam(id is null, nameof(id));
 
             // Recupera entidade que será atualizada
-            Entities.Student student = await _studentRepository.GetById(id)
+            Entities.Student student = await _studentRepository.GetByIdAsync(id)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Student));
 
             // Verifica se a entidade foi excluída
@@ -55,7 +55,7 @@ namespace Domain.UseCases.Interactors.Student
             student.Gender = (EGender)model.Gender;
 
             // Atualiza estudante com as informações fornecidas
-            student = await _studentRepository.Update(student);
+            student = await _studentRepository.UpdateAsync(student);
 
             // Salva entidade atualizada no banco
             return _mapper.Map<DetailedReadStudentOutput>(student);

@@ -22,7 +22,7 @@ namespace Domain.UseCases.Interactors.Course
         {
             UseCaseException.NotInformedParam(id is null, nameof(id));
 
-            Entities.Course? entity = await _repository.GetById(id);
+            Entities.Course? entity = await _repository.GetByIdAsync(id);
             return _mapper.Map<DetailedReadCourseOutput>(entity);
         }
     }

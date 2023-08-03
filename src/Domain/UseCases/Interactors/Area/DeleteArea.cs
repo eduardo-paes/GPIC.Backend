@@ -24,7 +24,7 @@ namespace Domain.UseCases.Interactors.Area
             UseCaseException.NotInformedParam(id == null, nameof(id));
 
             // Remove a entidade
-            Entities.Area model = await _repository.Delete(id);
+            Entities.Area model = await _repository.DeleteAsync(id);
 
             // Retorna a área removida
             return _mapper.Map<DetailedReadAreaOutput>(model);

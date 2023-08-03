@@ -29,7 +29,7 @@ namespace Domain.UseCases.Interactors.Auth
             UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.Password), nameof(input.Password));
 
             // Busca usuário pelo email
-            Entities.User entity = await _userRepository.GetUserByEmail(input.Email)
+            Entities.User entity = await _userRepository.GetUserByEmailAsync(input.Email)
                 ?? throw UseCaseException.NotFoundEntityByParams(nameof(Entities.User));
 
             // Verifica se o usuário está confirmado

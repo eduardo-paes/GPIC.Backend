@@ -16,14 +16,14 @@ namespace Persistence.Repositories
         #endregion Global Scope
 
         #region Public Methods
-        public async Task<Student> Create(Student model)
+        public async Task<Student> CreateAsync(Student model)
         {
             _ = _context.Add(model);
             _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<IEnumerable<Student>> GetAll(int skip, int take)
+        public async Task<IEnumerable<Student>> GetAllAsync(int skip, int take)
         {
             return await _context.Students
             .Include(x => x.User)
@@ -34,7 +34,7 @@ namespace Persistence.Repositories
             .ToListAsync();
         }
 
-        public async Task<Student?> GetById(Guid? id)
+        public async Task<Student?> GetByIdAsync(Guid? id)
         {
             return await _context.Students
                 .Include(x => x.User)
@@ -45,22 +45,22 @@ namespace Persistence.Repositories
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<Student> Delete(Guid? id)
+        public async Task<Student> DeleteAsync(Guid? id)
         {
-            Student model = await GetById(id)
+            Student model = await GetByIdAsync(id)
                 ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
-            return await Update(model);
+            return await UpdateAsync(model);
         }
 
-        public async Task<Student> Update(Student model)
+        public async Task<Student> UpdateAsync(Student model)
         {
             _ = _context.Update(model);
             _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<Student?> GetByRegistrationCode(string registrationCode)
+        public async Task<Student?> GetByRegistrationCodeAsync(string registrationCode)
         {
             return await _context.Students
                 .Include(x => x.User)

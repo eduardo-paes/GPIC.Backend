@@ -20,7 +20,7 @@ namespace Domain.UseCases.Interactors.SubArea
         public async Task<DetailedReadSubAreaOutput> ExecuteAsync(Guid? id, UpdateSubAreaInput input)
         {
             // Recupera entidade que será atualizada
-            Entities.SubArea entity = await _subAreaRepository.GetById(id)
+            Entities.SubArea entity = await _subAreaRepository.GetByIdAsync(id)
                 ?? throw Validation.UseCaseException.NotFoundEntityById(nameof(Entities.SubArea));
 
             // Atualiza atributos permitidos
@@ -29,7 +29,7 @@ namespace Domain.UseCases.Interactors.SubArea
             entity.AreaId = input.AreaId;
 
             // Salva entidade atualizada no banco
-            Entities.SubArea model = await _subAreaRepository.Update(entity);
+            Entities.SubArea model = await _subAreaRepository.UpdateAsync(entity);
             return _mapper.Map<DetailedReadSubAreaOutput>(model);
         }
     }

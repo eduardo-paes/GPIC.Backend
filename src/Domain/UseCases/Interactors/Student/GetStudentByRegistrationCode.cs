@@ -22,7 +22,7 @@ namespace Domain.UseCases.Interactors.Student
             UseCaseException.NotInformedParam(string.IsNullOrEmpty(registrationCode), "Matrícula");
 
             // Busca o aluno pelo código de matrícula
-            var student = await _studentRepository.GetByRegistrationCode(registrationCode!);
+            var student = await _studentRepository.GetByRegistrationCodeAsync(registrationCode!);
 
             // Verifica se o aluno foi encontrado
             UseCaseException.NotFoundEntityByParams(student is null, nameof(Entities.Student));

@@ -21,7 +21,7 @@ namespace Domain.UseCases.Interactors.AssistanceType
         public async Task<DetailedReadAssistanceTypeOutput> ExecuteAsync(Guid? id)
         {
             UseCaseException.NotInformedParam(id is null, nameof(id));
-            Entities.AssistanceType? entity = await _repository.GetById(id);
+            Entities.AssistanceType? entity = await _repository.GetByIdAsync(id);
             return _mapper.Map<DetailedReadAssistanceTypeOutput>(entity);
         }
     }

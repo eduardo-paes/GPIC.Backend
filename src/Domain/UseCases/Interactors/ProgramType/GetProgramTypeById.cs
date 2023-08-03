@@ -21,7 +21,7 @@ namespace Domain.UseCases.Interactors.ProgramType
         public async Task<DetailedReadProgramTypeOutput> ExecuteAsync(Guid? id)
         {
             UseCaseException.NotInformedParam(id is null, nameof(id));
-            Entities.ProgramType? entity = await _repository.GetById(id);
+            Entities.ProgramType? entity = await _repository.GetByIdAsync(id);
             return _mapper.Map<DetailedReadProgramTypeOutput>(entity);
         }
     }

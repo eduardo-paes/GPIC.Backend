@@ -30,7 +30,7 @@ namespace Domain.UseCases.Interactors.Project
                 nameof(appealDescription));
 
             // Verifica se o projeto existe
-            Entities.Project project = await _projectRepository.GetById(projectId!.Value)
+            Entities.Project project = await _projectRepository.GetByIdAsync(projectId!.Value)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Project));
 
             // Verifica se o projeto está em recurso
@@ -48,7 +48,7 @@ namespace Domain.UseCases.Interactors.Project
                 project.AppealDate = DateTime.UtcNow;
 
                 // Salva alterações no banco de dados
-                _ = await _projectRepository.Update(project);
+                _ = await _projectRepository.UpdateAsync(project);
 
                 // Retorna o projeto
                 return _mapper.Map<ResumedReadProjectOutput>(project);

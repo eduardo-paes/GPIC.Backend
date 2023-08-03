@@ -5,6 +5,6 @@ namespace Domain.Interfaces.Repositories
 {
     public interface ICourseRepository : IGenericCRUDRepository<Course>
     {
-        Task<Course?> GetCourseByName(string name);
+        Task<Course?> GetCourseByNameAsync(string name);
     }
 }

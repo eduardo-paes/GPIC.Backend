@@ -17,14 +17,14 @@ namespace Persistence.Repositories
         #endregion Global Scope
 
         #region Public Methods
-        public async Task<Campus> Create(Campus model)
+        public async Task<Campus> CreateAsync(Campus model)
         {
             _ = _context.Add(model);
             _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<IEnumerable<Campus>> GetAll(int skip, int take)
+        public async Task<IEnumerable<Campus>> GetAllAsync(int skip, int take)
         {
             return await _context.Campuses
             .Skip(skip)
@@ -34,7 +34,7 @@ namespace Persistence.Repositories
             .ToListAsync();
         }
 
-        public async Task<Campus?> GetById(Guid? id)
+        public async Task<Campus?> GetByIdAsync(Guid? id)
         {
             return await _context.Campuses
             .IgnoreQueryFilters()
@@ -42,22 +42,22 @@ namespace Persistence.Repositories
             .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<Campus> Delete(Guid? id)
+        public async Task<Campus> DeleteAsync(Guid? id)
         {
-            Campus model = await GetById(id)
+            Campus model = await GetByIdAsync(id)
                 ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
             model.DeactivateEntity();
-            return await Update(model);
+            return await UpdateAsync(model);
         }
 
-        public async Task<Campus> Update(Campus model)
+        public async Task<Campus> UpdateAsync(Campus model)
         {
             _ = _context.Update(model);
             _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<Campus?> GetCampusByName(string name)
+        public async Task<Campus?> GetCampusByNameAsync(string name)
         {
             string loweredName = name.ToLower(System.Globalization.CultureInfo.CurrentCulture);
             List<Campus> entities = await _context.Campuses

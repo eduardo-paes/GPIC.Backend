@@ -23,14 +23,14 @@ namespace Domain.UseCases.Interactors.Auth
             UseCaseException.NotInformedParam(string.IsNullOrEmpty(token), nameof(token));
 
             // Busca usuário pelo email informado
-            var user = await _userRepository.GetUserByEmail(email)
+            var user = await _userRepository.GetUserByEmailAsync(email)
                 ?? throw UseCaseException.NotFoundEntityByParams(nameof(Entities.User));
 
             // Confirma usuário
             user.ConfirmUserEmail(token!);
 
             // Atualiza usuário
-            await _userRepository.Update(user);
+            await _userRepository.UpdateAsync(user);
 
             // Retorna mensagem de sucesso
             return "Usuário confirmado com sucesso.";

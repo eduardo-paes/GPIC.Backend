@@ -19,7 +19,7 @@ namespace Domain.UseCases.Interactors.ProgramType
 
         public async Task<IQueryable<ResumedReadProgramTypeOutput>> ExecuteAsync(int skip, int take)
         {
-            IEnumerable<Entities.ProgramType> entities = (IEnumerable<Entities.ProgramType>)await _repository.GetAll(skip, take);
+            IEnumerable<Entities.ProgramType> entities = (IEnumerable<Entities.ProgramType>)await _repository.GetAllAsync(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadProgramTypeOutput>>(entities).AsQueryable();
         }
     }

@@ -19,7 +19,7 @@ namespace Domain.UseCases.Interactors.AssistanceType
 
         public async Task<IQueryable<ResumedReadAssistanceTypeOutput>> ExecuteAsync(int skip, int take)
         {
-            IEnumerable<Entities.AssistanceType> entities = (IEnumerable<Entities.AssistanceType>)await _repository.GetAll(skip, take);
+            IEnumerable<Entities.AssistanceType> entities = (IEnumerable<Entities.AssistanceType>)await _repository.GetAllAsync(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadAssistanceTypeOutput>>(entities).AsQueryable();
         }
     }

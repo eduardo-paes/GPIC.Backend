@@ -20,7 +20,7 @@ namespace Domain.UseCases.Interactors.MainArea
         public async Task<DetailedMainAreaOutput> ExecuteAsync(Guid? id, UpdateMainAreaInput input)
         {
             // Recupera entidade que será atualizada
-            Entities.MainArea entity = await _repository.GetById(id)
+            Entities.MainArea entity = await _repository.GetByIdAsync(id)
                 ?? throw Validation.UseCaseException.BusinessRuleViolation("Área Principal não encontrada.");
 
             // Atualiza atributos permitidos
@@ -28,7 +28,7 @@ namespace Domain.UseCases.Interactors.MainArea
             entity.Code = input.Code;
 
             // Salva entidade atualizada no banco
-            Entities.MainArea model = await _repository.Update(entity);
+            Entities.MainArea model = await _repository.UpdateAsync(entity);
             return _mapper.Map<DetailedMainAreaOutput>(model);
         }
     }

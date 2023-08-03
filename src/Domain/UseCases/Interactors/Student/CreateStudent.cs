@@ -61,22 +61,22 @@ namespace Domain.UseCases.Interactors.Student
                 model.RegistrationCode);
 
             // Verifica se já existe um usuário com o e-mail informado
-            Entities.User? user = await _userRepository.GetUserByEmail(model.Email);
+            Entities.User? user = await _userRepository.GetUserByEmailAsync(model.Email);
             UseCaseException.BusinessRuleViolation(user != null,
                 "Já existe um usuário com o e-mail informado.");
 
             // Verifica se já existe um usuário com o CPF informado
-            user = await _userRepository.GetUserByCPF(model.CPF);
+            user = await _userRepository.GetUserByCPFAsync(model.CPF);
             UseCaseException.BusinessRuleViolation(user != null,
                 "Já existe um usuário com o CPF informado.");
 
             // Verifica se curso informado existe
-            Entities.Course? course = await _courseRepository.GetById(model.CourseId);
+            Entities.Course? course = await _courseRepository.GetByIdAsync(model.CourseId);
             UseCaseException.BusinessRuleViolation(course == null || course.DeletedAt != null,
                 "Curso informado não existe.");
 
             // Verifica se campus informado existe
-            Entities.Campus? campus = await _campusRepository.GetById(model.CampusId);
+            Entities.Campus? campus = await _campusRepository.GetByIdAsync(model.CampusId);
             UseCaseException.BusinessRuleViolation(campus == null || campus.DeletedAt != null,
                 "Campus informado não existe.");
 
@@ -90,13 +90,13 @@ namespace Domain.UseCases.Interactors.Student
             user = new Entities.User(model.Name, model.Email, model.Password, model.CPF, ERole.STUDENT);
 
             // Adiciona usuário no banco
-            user = await _userRepository.Create(user);
+            user = await _userRepository.CreateAsync(user);
             UseCaseException.BusinessRuleViolation(user == null,
                 "Não foi possível criar o usuário.");
 
             // Adiciona estudante no banco
             entity.UserId = user?.Id;
-            entity = await _studentRepository.Create(entity);
+            entity = await _studentRepository.CreateAsync(entity);
             UseCaseException.BusinessRuleViolation(entity == null,
                 "Não foi possível criar o estudante.");
 

@@ -58,7 +58,7 @@ namespace Domain.UseCases
             );
 
             // Verifica se já existe um edital para o período indicado
-            var noticeFound = await _repository.GetNoticeByPeriod((DateTime)input.RegistrationStartDate!, (DateTime)input.RegistrationEndDate!);
+            var noticeFound = await _repository.GetNoticeByPeriodAsync((DateTime)input.RegistrationStartDate!, (DateTime)input.RegistrationEndDate!);
             UseCaseException.BusinessRuleViolation(noticeFound != null, "Já existe um Edital para o período indicado.");
 
             // Salva arquivo no repositório e atualiza atributo DocUrl
@@ -78,25 +78,25 @@ namespace Domain.UseCases
             }
 
             // Cria edital no banco
-            notice = await _repository.Create(notice);
+            notice = await _repository.CreateAsync(notice);
 
             // Salva atividades no banco
             foreach (var activityType in input.Activities!)
             {
                 // Salva tipo de atividade no banco
                 var activityTypeEntity = new Entities.ActivityType(activityType.Name, activityType.Unity, notice.Id);
-                activityTypeEntity = await _activityTypeRepository.Create(activityTypeEntity);
+                activityTypeEntity = await _activityTypeRepository.CreateAsync(activityTypeEntity);
 
                 // Salva atividades no banco
                 foreach (var activity in activityType.Activities!)
                 {
                     var activityEntity = new Entities.Activity(activity.Name, activity.Points, activity.Limits, activityTypeEntity.Id);
-                    await _activityRepository.Create(activityEntity);
+                    await _activityRepository.CreateAsync(activityEntity);
                 }
             }
 
             // Obtém professores ativos
-            var professors = await _professorRepository.GetAllActiveProfessors();
+            var professors = await _professorRepository.GetAllActiveProfessorsAsync();
 
             // Envia email de notificação para todos os professores ativos
             foreach (var professor in professors)

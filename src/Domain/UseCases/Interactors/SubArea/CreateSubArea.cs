@@ -22,7 +22,7 @@ namespace Domain.UseCases
 
         public async Task<DetailedReadSubAreaOutput> ExecuteAsync(CreateSubAreaInput input)
         {
-            var entity = await _subAreaRepository.GetByCode(input.Code);
+            var entity = await _subAreaRepository.GetByCodeAsync(input.Code);
             UseCaseException.BusinessRuleViolation(entity != null,
                 "Já existe uma Subárea para o código informado.");
 
@@ -30,7 +30,7 @@ namespace Domain.UseCases
             UseCaseException.NotInformedParam(input.AreaId == null, nameof(input.AreaId));
 
             // Valida se existe área
-            var area = await _areaRepository.GetById(input.AreaId)
+            var area = await _areaRepository.GetByIdAsync(input.AreaId)
                 ?? throw UseCaseException.NotFoundEntityByParams(nameof(Entities.Area));
 
             // Verifica se área está ativa
@@ -38,7 +38,7 @@ namespace Domain.UseCases
                 "A Área informada está inativa.");
 
             // Cria nova área
-            entity = await _subAreaRepository.Create(_mapper.Map<Domain.Entities.SubArea>(input));
+            entity = await _subAreaRepository.CreateAsync(_mapper.Map<Domain.Entities.SubArea>(input));
             return _mapper.Map<DetailedReadSubAreaOutput>(entity);
         }
     }

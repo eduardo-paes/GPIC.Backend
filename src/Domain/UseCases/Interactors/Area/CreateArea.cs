@@ -22,21 +22,21 @@ namespace Domain.UseCases
 
         public async Task<DetailedReadAreaOutput> ExecuteAsync(CreateAreaInput input)
         {
-            var entity = await _areaRepository.GetByCode(input.Code);
+            var entity = await _areaRepository.GetByCodeAsync(input.Code);
             UseCaseException.BusinessRuleViolation(entity != null, $"Já existe uma área principal para o código {input.Code}.");
 
             // Verifica id da área princial
             UseCaseException.NotInformedParam(input.MainAreaId == null, nameof(input.MainAreaId));
 
             // Valida se existe área principal
-            var area = await _mainAreaRepository.GetById(input.MainAreaId);
+            var area = await _mainAreaRepository.GetByIdAsync(input.MainAreaId);
             UseCaseException.BusinessRuleViolation(area?.DeletedAt != null, "A Área Principal informada está inativa.");
 
             // Mapeia input para entidade
             var newEntity = new Entities.Area(input.MainAreaId, input.Code, input.Name);
 
             // Cria nova área
-            entity = await _areaRepository.Create(newEntity);
+            entity = await _areaRepository.CreateAsync(newEntity);
             return _mapper.Map<DetailedReadAreaOutput>(entity);
         }
     }

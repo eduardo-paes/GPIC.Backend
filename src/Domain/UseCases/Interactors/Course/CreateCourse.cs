@@ -25,7 +25,7 @@ namespace Domain.UseCases.Interactors.Course
             UseCaseException.NotInformedParam(string.IsNullOrEmpty(model.Name), nameof(model.Name));
 
             // Verifica se já existe um edital para o período indicado
-            Entities.Course? entity = await _repository.GetCourseByName(model.Name!);
+            Entities.Course? entity = await _repository.GetCourseByNameAsync(model.Name!);
             if (entity != null)
             {
                 throw UseCaseException.BusinessRuleViolation("Já existe um Curso para o nome informado.");
@@ -33,7 +33,7 @@ namespace Domain.UseCases.Interactors.Course
 
             // Cria entidade
             Entities.Course newEntity = new(model.Name);
-            entity = await _repository.Create(newEntity);
+            entity = await _repository.CreateAsync(newEntity);
 
             // Salva entidade no banco
             return _mapper.Map<DetailedReadCourseOutput>(entity);

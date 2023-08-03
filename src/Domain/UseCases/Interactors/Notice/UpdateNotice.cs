@@ -42,7 +42,7 @@ namespace Domain.UseCases.Interactors.Notice
                 "As atividades devem ser informadas.");
 
             // Recupera entidade que será atualizada
-            Entities.Notice notice = await _repository.GetById(id)
+            Entities.Notice notice = await _repository.GetByIdAsync(id)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Entities.Notice));
 
             // Verifica se a entidade foi excluída
@@ -82,10 +82,10 @@ namespace Domain.UseCases.Interactors.Notice
             }
 
             // Salva entidade atualizada no banco
-            _ = await _repository.Update(notice);
+            _ = await _repository.UpdateAsync(notice);
 
             // Recupera atividades do edital
-            IList<Entities.ActivityType> noticeActivities = await _activityTypeRepository.GetByNoticeId(notice.Id);
+            IList<Entities.ActivityType> noticeActivities = await _activityTypeRepository.GetByNoticeIdAsync(notice.Id);
 
             // Atualiza atividades
             await HandleActivityType(model.Activities!, noticeActivities, notice.Id);
@@ -114,7 +114,7 @@ namespace Domain.UseCases.Interactors.Notice
                     activityType = new Entities.ActivityType(newActivityType.Name, newActivityType.Unity, noticeId);
 
                     // Salva tipo de atividade no banco
-                    _ = await _activityTypeRepository.Create(activityType);
+                    _ = await _activityTypeRepository.CreateAsync(activityType);
 
                     // Cria atividades
                     await HandleActivity(newActivityType.Activities!, new List<Entities.Activity>(), activityType.Id);
@@ -128,7 +128,7 @@ namespace Domain.UseCases.Interactors.Notice
                     activityType.Unity = newActivityType.Unity;
 
                     // Salva tipo de atividade atualizado no banco
-                    _ = await _activityTypeRepository.Update(activityType);
+                    _ = await _activityTypeRepository.UpdateAsync(activityType);
 
                     // Atualiza atividades
                     await HandleActivity(newActivityType.Activities!, activityType.Activities!, activityType.Id);
@@ -143,7 +143,7 @@ namespace Domain.UseCases.Interactors.Notice
             foreach (Entities.ActivityType activityTypeToRemove in oldActivityTypes)
             {
                 // Remove tipo de atividade do banco
-                _ = await _activityTypeRepository.Delete(activityTypeToRemove.Id);
+                _ = await _activityTypeRepository.DeleteAsync(activityTypeToRemove.Id);
             }
         }
 
@@ -168,7 +168,7 @@ namespace Domain.UseCases.Interactors.Notice
                     activity = new Entities.Activity(newActivity.Name, newActivity.Points, newActivity.Limits, activityTypeId);
 
                     // Salva atividade no banco
-                    _ = await _activityRepository.Create(activity);
+                    _ = await _activityRepository.CreateAsync(activity);
                 }
 
                 // Se o tipo de atividade existir, atualiza
@@ -180,7 +180,7 @@ namespace Domain.UseCases.Interactors.Notice
                     activity.Limits = newActivity.Limits;
 
                     // Salva atividade atualizada no banco
-                    _ = await _activityRepository.Update(activity);
+                    _ = await _activityRepository.UpdateAsync(activity);
 
                     // Remove atividade da lista de atividades do tipo de atividade
                     _ = oldActivities.Remove(activity);
@@ -192,7 +192,7 @@ namespace Domain.UseCases.Interactors.Notice
             foreach (Entities.Activity activityToRemove in oldActivities)
             {
                 // Remove atividade do banco
-                _ = await _activityRepository.Delete(activityToRemove.Id);
+                _ = await _activityRepository.DeleteAsync(activityToRemove.Id);
             }
         }
     }
