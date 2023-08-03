@@ -92,7 +92,7 @@ namespace Domain.UseCases
             {
                 // Caso dê erro, remove da nuvem os arquivos que foram salvos
                 foreach (var url in _urlFiles)
-                    await _storageFileService.DeleteFile(url);
+                    await _storageFileService.DeleteFileAsync(url);
                 throw UseCaseException.BusinessRuleViolation($"Erro ao salvar arquivos na nuvem.\n{ex}");
             }
         }

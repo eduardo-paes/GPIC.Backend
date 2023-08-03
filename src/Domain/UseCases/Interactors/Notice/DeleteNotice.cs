@@ -32,7 +32,7 @@ namespace Domain.UseCases.Interactors.Notice
             // Deleta o arquivo do edital
             if (!string.IsNullOrEmpty(entity.DocUrl))
             {
-                await _storageFileService.DeleteFile(entity.DocUrl);
+                await _storageFileService.DeleteFileAsync(entity.DocUrl);
             }
 
             // Retorna o edital removido

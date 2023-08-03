@@ -16,6 +16,6 @@ namespace Domain.Interfaces.Services
         /// Deleta um arquivo
         /// </summary>
         /// <param name="filePath">Caminho completo até o arquivo</param>
-        Task DeleteFile(string filePath);
+        Task DeleteFileAsync(string filePath);
     }
 }
