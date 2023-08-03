@@ -32,25 +32,25 @@ namespace Adapters.PresenterController
         {
             CreateProgramTypeRequest? dto = request as CreateProgramTypeRequest;
             CreateProgramTypeInput input = _mapper.Map<CreateProgramTypeInput>(dto);
-            DetailedReadProgramTypeOutput result = await _createProgramType.Execute(input);
+            DetailedReadProgramTypeOutput result = await _createProgramType.ExecuteAsync(input);
             return _mapper.Map<DetailedReadProgramTypeResponse>(result);
         }
 
         public async Task<IResponse> Delete(Guid? id)
         {
-            DetailedReadProgramTypeOutput result = await _deleteProgramType.Execute(id);
+            DetailedReadProgramTypeOutput result = await _deleteProgramType.ExecuteAsync(id);
             return _mapper.Map<DetailedReadProgramTypeResponse>(result);
         }
 
         public async Task<IEnumerable<IResponse>> GetAll(int skip, int take)
         {
-            IQueryable<ResumedReadProgramTypeOutput> result = await _getProgramTypes.Execute(skip, take);
+            IQueryable<ResumedReadProgramTypeOutput> result = await _getProgramTypes.ExecuteAsync(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadProgramTypeResponse>>(result);
         }
 
         public async Task<IResponse> GetById(Guid? id)
         {
-            DetailedReadProgramTypeOutput result = await _getProgramTypeById.Execute(id);
+            DetailedReadProgramTypeOutput result = await _getProgramTypeById.ExecuteAsync(id);
             return _mapper.Map<DetailedReadProgramTypeResponse>(result);
         }
 
@@ -58,7 +58,7 @@ namespace Adapters.PresenterController
         {
             UpdateProgramTypeRequest? dto = request as UpdateProgramTypeRequest;
             UpdateProgramTypeInput input = _mapper.Map<UpdateProgramTypeInput>(dto);
-            DetailedReadProgramTypeOutput result = await _updateProgramType.Execute(id, input);
+            DetailedReadProgramTypeOutput result = await _updateProgramType.ExecuteAsync(id, input);
             return _mapper.Map<DetailedReadProgramTypeResponse>(result);
         }
     }

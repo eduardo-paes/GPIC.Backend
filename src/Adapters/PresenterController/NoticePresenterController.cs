@@ -37,32 +37,32 @@ namespace Adapters.PresenterController
         public async Task<IResponse> Create(IRequest request)
         {
             CreateNoticeInput input = _mapper.Map<CreateNoticeInput>(request as CreateNoticeRequest);
-            DetailedReadNoticeOutput result = await _createNotice.Execute(input);
+            DetailedReadNoticeOutput result = await _createNotice.ExecuteAsync(input);
             return _mapper.Map<DetailedReadNoticeResponse>(result);
         }
 
         public async Task<IResponse> Delete(Guid? id)
         {
-            DetailedReadNoticeOutput result = await _deleteNotice.Execute(id);
+            DetailedReadNoticeOutput result = await _deleteNotice.ExecuteAsync(id);
             return _mapper.Map<DetailedReadNoticeResponse>(result);
         }
 
         public async Task<IEnumerable<IResponse>> GetAll(int skip, int take)
         {
-            IEnumerable<ResumedReadNoticeOutput> result = await _getNotices.Execute(skip, take);
+            IEnumerable<ResumedReadNoticeOutput> result = await _getNotices.ExecuteAsync(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadNoticeResponse>>(result);
         }
 
         public async Task<IResponse> GetById(Guid? id)
         {
-            DetailedReadNoticeOutput result = await _getNoticeById.Execute(id);
+            DetailedReadNoticeOutput result = await _getNoticeById.ExecuteAsync(id);
             return _mapper.Map<DetailedReadNoticeResponse>(result);
         }
 
         public async Task<IResponse> Update(Guid? id, IRequest request)
         {
             UpdateNoticeInput input = _mapper.Map<UpdateNoticeInput>(request as UpdateNoticeRequest);
-            DetailedReadNoticeOutput result = await _updateNotice.Execute(id, input);
+            DetailedReadNoticeOutput result = await _updateNotice.ExecuteAsync(id, input);
             return _mapper.Map<DetailedReadNoticeResponse>(result);
         }
     }

@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.Professor
 {
     public interface IGetProfessors
     {
-        Task<IQueryable<ResumedReadProfessorOutput>> Execute(int skip, int take);
+        Task<IQueryable<ResumedReadProfessorOutput>> ExecuteAsync(int skip, int take);
     }
 }

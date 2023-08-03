@@ -41,7 +41,7 @@ namespace Domain.UseCases.Interactors.Project
         }
         #endregion Global Scope
 
-        public async Task<ResumedReadProjectOutput> Execute(OpenProjectInput input)
+        public async Task<ResumedReadProjectOutput> ExecuteAsync(OpenProjectInput input)
         {
             // Mapeia input para entidade e realiza validação dos campos informados
             Entities.Project project = new(

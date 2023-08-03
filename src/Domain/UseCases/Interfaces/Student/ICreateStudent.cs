@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.Student
 {
     public interface ICreateStudent
     {
-        Task<DetailedReadStudentOutput> Execute(CreateStudentInput model);
+        Task<DetailedReadStudentOutput> ExecuteAsync(CreateStudentInput model);
     }
 }

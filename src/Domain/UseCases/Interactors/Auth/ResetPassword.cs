@@ -18,7 +18,7 @@ namespace Domain.UseCases.Interactors.Auth
         }
         #endregion Global Scope
 
-        public async Task<string> Execute(UserResetPasswordInput input)
+        public async Task<string> ExecuteAsync(UserResetPasswordInput input)
         {
             // Verifica se o id do usuário é nulo
             UseCaseException.NotInformedParam(input.Id == null, nameof(input.Id));

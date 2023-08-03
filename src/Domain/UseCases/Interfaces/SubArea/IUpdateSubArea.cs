@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.SubArea
 {
     public interface IUpdateSubArea
     {
-        Task<DetailedReadSubAreaOutput> Execute(Guid? id, UpdateSubAreaInput input);
+        Task<DetailedReadSubAreaOutput> ExecuteAsync(Guid? id, UpdateSubAreaInput input);
     }
 }

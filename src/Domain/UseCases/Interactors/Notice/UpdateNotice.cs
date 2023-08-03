@@ -32,7 +32,7 @@ namespace Domain.UseCases.Interactors.Notice
         }
         #endregion Global Scope
 
-        public async Task<DetailedReadNoticeOutput> Execute(Guid? id, UpdateNoticeInput model)
+        public async Task<DetailedReadNoticeOutput> ExecuteAsync(Guid? id, UpdateNoticeInput model)
         {
             // Verifica se o id foi informado
             UseCaseException.NotInformedParam(id == null, nameof(id));

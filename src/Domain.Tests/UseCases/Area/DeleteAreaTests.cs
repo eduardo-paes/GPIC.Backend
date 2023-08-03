@@ -48,7 +48,7 @@ namespace Domain.Tests.UseCases.Area
             Guid? id = _areaId;
 
             // Act
-            var result = await _deleteArea.Execute(id);
+            var result = await _deleteArea.ExecuteAsync(id);
 
             // Assert
             Assert.AreEqual(_mappedOutput, result);
@@ -63,7 +63,7 @@ namespace Domain.Tests.UseCases.Area
             Guid? id = null;
 
             // Act & Assert
-            Assert.ThrowsAsync<UseCaseException>(async () => await _deleteArea.Execute(id));
+            Assert.ThrowsAsync<UseCaseException>(async () => await _deleteArea.ExecuteAsync(id));
             _areaRepositoryMock.Verify(r => r.Delete(It.IsAny<Guid>()), Times.Never);
             _mapperMock.Verify(m => m.Map<DetailedReadAreaOutput>(It.IsAny<Domain.Entities.Area>()), Times.Never);
         }

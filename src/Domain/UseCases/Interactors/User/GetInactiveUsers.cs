@@ -17,7 +17,7 @@ namespace Domain.UseCases.Interactors.User
         }
         #endregion Global Scope
 
-        public async Task<IEnumerable<UserReadOutput>> Execute(int skip, int take)
+        public async Task<IEnumerable<UserReadOutput>> ExecuteAsync(int skip, int take)
         {
             IEnumerable<Entities.User> entities = (IEnumerable<Entities.User>)await _repository.GetInactiveUsers(skip, take);
             return _mapper.Map<IEnumerable<UserReadOutput>>(entities).AsQueryable();

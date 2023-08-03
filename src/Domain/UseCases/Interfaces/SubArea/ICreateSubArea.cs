@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.SubArea
 {
     public interface ICreateSubArea
     {
-        Task<DetailedReadSubAreaOutput> Execute(CreateSubAreaInput model);
+        Task<DetailedReadSubAreaOutput> ExecuteAsync(CreateSubAreaInput model);
     }
 }

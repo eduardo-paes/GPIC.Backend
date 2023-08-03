@@ -44,7 +44,7 @@ namespace Domain.Tests.UseCases.Area
             _mapperMock.Setup(m => m.Map<DetailedReadAreaOutput>(areaEntity)).Returns(detailedOutput);
 
             // Act
-            var result = await _getAreaById.Execute(id);
+            var result = await _getAreaById.ExecuteAsync(id);
 
             // Assert
             Assert.IsNotNull(result);
@@ -60,7 +60,7 @@ namespace Domain.Tests.UseCases.Area
             Guid? id = null;
 
             // Act & Assert
-            Assert.ThrowsAsync<UseCaseException>(async () => await _getAreaById.Execute(id));
+            Assert.ThrowsAsync<UseCaseException>(async () => await _getAreaById.ExecuteAsync(id));
             _areaRepositoryMock.Verify(r => r.GetById(It.IsAny<Guid?>()), Times.Never);
             _mapperMock.Verify(m => m.Map<DetailedReadAreaOutput>(It.IsAny<Domain.Entities.Area>()), Times.Never);
         }

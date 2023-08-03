@@ -19,7 +19,7 @@ namespace Domain.UseCases.Interactors.Course
         }
         #endregion Global Scope
 
-        public async Task<DetailedReadCourseOutput> Execute(CreateCourseInput model)
+        public async Task<DetailedReadCourseOutput> ExecuteAsync(CreateCourseInput model)
         {
             // Verifica se nome foi informado
             UseCaseException.NotInformedParam(string.IsNullOrEmpty(model.Name), nameof(model.Name));

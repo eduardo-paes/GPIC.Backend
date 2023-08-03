@@ -18,7 +18,7 @@ namespace Domain.UseCases.Interactors.AssistanceType
         }
         #endregion Global Scope
 
-        public async Task<DetailedReadAssistanceTypeOutput> Execute(Guid? id)
+        public async Task<DetailedReadAssistanceTypeOutput> ExecuteAsync(Guid? id)
         {
             // Verifica se o id foi informado
             UseCaseException.NotInformedParam(id is null, nameof(id));

@@ -114,7 +114,7 @@ namespace WebAPI.Controllers
             catch (Exception ex)
             {
                 _logger.LogError("Ocorreu um erro: {ErrorMessage}", ex.Message);
-                return NotFound(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
 

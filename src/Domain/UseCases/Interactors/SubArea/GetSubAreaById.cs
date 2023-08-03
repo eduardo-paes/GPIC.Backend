@@ -17,7 +17,7 @@ namespace Domain.UseCases.Interactors.SubArea
         }
         #endregion Global Scope
 
-        public async Task<DetailedReadSubAreaOutput> Execute(Guid? id)
+        public async Task<DetailedReadSubAreaOutput> ExecuteAsync(Guid? id)
         {
             Entities.SubArea? entity = await _subAreaRepository.GetById(id);
             return _mapper.Map<DetailedReadSubAreaOutput>(entity);

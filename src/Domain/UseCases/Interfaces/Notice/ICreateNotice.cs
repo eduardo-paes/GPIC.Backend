@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.Notice
 {
     public interface ICreateNotice
     {
-        Task<DetailedReadNoticeOutput> Execute(CreateNoticeInput model);
+        Task<DetailedReadNoticeOutput> ExecuteAsync(CreateNoticeInput model);
     }
 }

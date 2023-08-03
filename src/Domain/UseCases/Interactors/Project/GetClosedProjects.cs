@@ -24,7 +24,7 @@ namespace Domain.UseCases.Interactors.Project
         }
         #endregion Global Scope
 
-        public async Task<IList<ResumedReadProjectOutput>> Execute(int skip, int take, bool onlyMyProjects = true)
+        public async Task<IList<ResumedReadProjectOutput>> ExecuteAsync(int skip, int take, bool onlyMyProjects = true)
         {
             // Obtém as claims do usuário autenticado.
             Ports.Auth.UserClaimsOutput? userClaims = _tokenAuthenticationService.GetUserAuthenticatedClaims();

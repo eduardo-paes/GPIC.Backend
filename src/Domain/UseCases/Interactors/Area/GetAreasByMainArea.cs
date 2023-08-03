@@ -18,7 +18,7 @@ namespace Domain.UseCases.Interactors.Area
         }
         #endregion Global Scope
 
-        public async Task<IQueryable<ResumedReadAreaOutput>> Execute(Guid? mainAreaId, int skip, int take)
+        public async Task<IQueryable<ResumedReadAreaOutput>> ExecuteAsync(Guid? mainAreaId, int skip, int take)
         {
             UseCaseException.NotInformedParam(mainAreaId is null, nameof(mainAreaId));
             IEnumerable<Entities.Area> entities = (IEnumerable<Entities.Area>)await _repository.GetAreasByMainArea(mainAreaId, skip, take);

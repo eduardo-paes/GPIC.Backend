@@ -18,7 +18,7 @@ namespace Domain.UseCases.Interactors.MainArea
         }
         #endregion Global Scope
 
-        public async Task<DetailedMainAreaOutput> Execute(Guid? id)
+        public async Task<DetailedMainAreaOutput> ExecuteAsync(Guid? id)
         {
             // Verifica se o id foi informado
             UseCaseException.NotInformedParam(id is null, nameof(id));

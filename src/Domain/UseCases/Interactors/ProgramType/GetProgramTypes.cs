@@ -17,7 +17,7 @@ namespace Domain.UseCases.Interactors.ProgramType
         }
         #endregion Global Scope
 
-        public async Task<IQueryable<ResumedReadProgramTypeOutput>> Execute(int skip, int take)
+        public async Task<IQueryable<ResumedReadProgramTypeOutput>> ExecuteAsync(int skip, int take)
         {
             IEnumerable<Entities.ProgramType> entities = (IEnumerable<Entities.ProgramType>)await _repository.GetAll(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadProgramTypeOutput>>(entities).AsQueryable();

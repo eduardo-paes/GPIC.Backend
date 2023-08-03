@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.Auth
 {
     public interface ILogin
     {
-        Task<UserLoginOutput> Execute(UserLoginInput input);
+        Task<UserLoginOutput> ExecuteAsync(UserLoginInput input);
     }
 }

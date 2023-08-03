@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.Project
 {
     public interface IGetProjectById
     {
-        Task<DetailedReadProjectOutput> Execute(Guid? id);
+        Task<DetailedReadProjectOutput> ExecuteAsync(Guid? id);
     }
 }

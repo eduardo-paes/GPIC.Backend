@@ -19,7 +19,7 @@ namespace Domain.UseCases.Interactors.Student
         }
         #endregion Global Scope
 
-        public async Task<DetailedReadStudentOutput> Execute(Guid? id, UpdateStudentInput model)
+        public async Task<DetailedReadStudentOutput> ExecuteAsync(Guid? id, UpdateStudentInput model)
         {
             // Verifica se o id foi informado
             UseCaseException.NotInformedParam(id is null, nameof(id));

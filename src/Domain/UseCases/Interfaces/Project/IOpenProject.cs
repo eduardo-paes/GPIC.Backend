@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.Project
 {
     public interface IOpenProject
     {
-        Task<ResumedReadProjectOutput> Execute(OpenProjectInput input);
+        Task<ResumedReadProjectOutput> ExecuteAsync(OpenProjectInput input);
     }
 }

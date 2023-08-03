@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.AssistanceType
 {
     public interface IUpdateAssistanceType
     {
-        Task<DetailedReadAssistanceTypeOutput> Execute(Guid? id, UpdateAssistanceTypeInput input);
+        Task<DetailedReadAssistanceTypeOutput> ExecuteAsync(Guid? id, UpdateAssistanceTypeInput input);
     }
 }

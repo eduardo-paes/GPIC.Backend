@@ -32,19 +32,19 @@ namespace Adapters.PresenterController
         {
             CreateAreaRequest? dto = request as CreateAreaRequest;
             CreateAreaInput input = _mapper.Map<CreateAreaInput>(dto);
-            DetailedReadAreaOutput result = await _createArea.Execute(input);
+            DetailedReadAreaOutput result = await _createArea.ExecuteAsync(input);
             return _mapper.Map<DetailedReadAreaResponse>(result);
         }
 
         public async Task<IResponse> Delete(Guid? id)
         {
-            DetailedReadAreaOutput result = await _deleteArea.Execute(id);
+            DetailedReadAreaOutput result = await _deleteArea.ExecuteAsync(id);
             return _mapper.Map<DetailedReadAreaResponse>(result);
         }
 
         public async Task<IEnumerable<IResponse>> GetAreasByMainArea(Guid? mainAreaId, int skip, int take)
         {
-            IQueryable<ResumedReadAreaOutput> result = await _getAreasByMainArea.Execute(mainAreaId, skip, take);
+            IQueryable<ResumedReadAreaOutput> result = await _getAreasByMainArea.ExecuteAsync(mainAreaId, skip, take);
             return _mapper.Map<IEnumerable<ResumedReadAreaResponse>>(result);
         }
 
@@ -55,7 +55,7 @@ namespace Adapters.PresenterController
 
         public async Task<IResponse> GetById(Guid? id)
         {
-            DetailedReadAreaOutput result = await _getAreaById.Execute(id);
+            DetailedReadAreaOutput result = await _getAreaById.ExecuteAsync(id);
             return _mapper.Map<DetailedReadAreaResponse>(result);
         }
 
@@ -63,7 +63,7 @@ namespace Adapters.PresenterController
         {
             UpdateAreaRequest? dto = request as UpdateAreaRequest;
             UpdateAreaInput input = _mapper.Map<UpdateAreaInput>(dto);
-            DetailedReadAreaOutput result = await _updateArea.Execute(id, input);
+            DetailedReadAreaOutput result = await _updateArea.ExecuteAsync(id, input);
             return _mapper.Map<DetailedReadAreaResponse>(result);
         }
     }

@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.StudentDocuments
 {
     public interface ICreateStudentDocuments
     {
-        Task<DetailedReadStudentDocumentsOutput> Execute(CreateStudentDocumentsInput model);
+        Task<DetailedReadStudentDocumentsOutput> ExecuteAsync(CreateStudentDocumentsInput model);
     }
 }

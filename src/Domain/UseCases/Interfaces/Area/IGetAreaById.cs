@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.Area
 {
     public interface IGetAreaById
     {
-        Task<DetailedReadAreaOutput> Execute(Guid? id);
+        Task<DetailedReadAreaOutput> ExecuteAsync(Guid? id);
     }
 }

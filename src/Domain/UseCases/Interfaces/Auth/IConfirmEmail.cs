@@ -2,6 +2,6 @@ namespace Domain.UseCases.Interfaces.Auth
 {
     public interface IConfirmEmail
     {
-        Task<string> Execute(string? email, string? token);
+        Task<string> ExecuteAsync(string? email, string? token);
     }
 }

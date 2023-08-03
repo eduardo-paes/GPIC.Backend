@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.AssistanceType
 {
     public interface IGetAssistanceTypes
     {
-        Task<IQueryable<ResumedReadAssistanceTypeOutput>> Execute(int skip, int take);
+        Task<IQueryable<ResumedReadAssistanceTypeOutput>> ExecuteAsync(int skip, int take);
     }
 }

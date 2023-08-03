@@ -20,7 +20,7 @@ namespace Domain.UseCases.Interactors.StudentDocuments
         }
         #endregion Global Scope
 
-        public async Task<ResumedReadStudentDocumentsOutput> Execute(Guid? studentId)
+        public async Task<ResumedReadStudentDocumentsOutput> ExecuteAsync(Guid? studentId)
         {
             // Verifica se o id foi informado
             UseCaseException.NotInformedParam(studentId is null, nameof(studentId));

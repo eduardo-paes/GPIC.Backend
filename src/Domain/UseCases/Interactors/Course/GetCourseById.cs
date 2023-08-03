@@ -18,7 +18,7 @@ namespace Domain.UseCases.Interactors.Course
         }
         #endregion Global Scope
 
-        public async Task<DetailedReadCourseOutput> Execute(Guid? id)
+        public async Task<DetailedReadCourseOutput> ExecuteAsync(Guid? id)
         {
             UseCaseException.NotInformedParam(id is null, nameof(id));
 

@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.Student
 {
     public interface IGetStudentById
     {
-        Task<DetailedReadStudentOutput> Execute(Guid? id);
+        Task<DetailedReadStudentOutput> ExecuteAsync(Guid? id);
     }
 }

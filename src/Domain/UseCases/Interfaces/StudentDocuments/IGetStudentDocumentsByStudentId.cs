@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.StudentDocuments
 {
     public interface IGetStudentDocumentsByStudentId
     {
-        Task<ResumedReadStudentDocumentsOutput> Execute(Guid? studentId);
+        Task<ResumedReadStudentDocumentsOutput> ExecuteAsync(Guid? studentId);
     }
 }

@@ -17,7 +17,7 @@ namespace Domain.UseCases.Interactors.Notice
         }
         #endregion Global Scope
 
-        public async Task<IEnumerable<ResumedReadNoticeOutput>> Execute(int skip, int take)
+        public async Task<IEnumerable<ResumedReadNoticeOutput>> ExecuteAsync(int skip, int take)
         {
             IEnumerable<Entities.Notice> entities = (IEnumerable<Entities.Notice>)await _repository.GetAll(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadNoticeOutput>>(entities);

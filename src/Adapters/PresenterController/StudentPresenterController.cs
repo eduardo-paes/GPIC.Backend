@@ -36,31 +36,31 @@ namespace Adapters.PresenterController
         {
             CreateStudentRequest? dto = request as CreateStudentRequest;
             CreateStudentInput input = _mapper.Map<CreateStudentInput>(dto);
-            DetailedReadStudentOutput result = await _createStudent.Execute(input);
+            DetailedReadStudentOutput result = await _createStudent.ExecuteAsync(input);
             return _mapper.Map<DetailedReadStudentResponse>(result);
         }
 
         public async Task<IResponse> Delete(Guid? id)
         {
-            DetailedReadStudentOutput result = await _deleteStudent.Execute(id);
+            DetailedReadStudentOutput result = await _deleteStudent.ExecuteAsync(id);
             return _mapper.Map<DetailedReadStudentResponse>(result);
         }
 
         public async Task<IEnumerable<IResponse>> GetAll(int skip, int take)
         {
-            IQueryable<ResumedReadStudentOutput> result = await _getStudents.Execute(skip, take);
+            IQueryable<ResumedReadStudentOutput> result = await _getStudents.ExecuteAsync(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadStudentResponse>>(result);
         }
 
         public async Task<IResponse> GetById(Guid? id)
         {
-            DetailedReadStudentOutput result = await _getStudentById.Execute(id);
+            DetailedReadStudentOutput result = await _getStudentById.ExecuteAsync(id);
             return _mapper.Map<DetailedReadStudentResponse>(result);
         }
 
         public async Task<DetailedReadStudentResponse> GetByRegistrationCode(string? registrationCode)
         {
-            DetailedReadStudentOutput result = await _getStudentByRegistrationCode.Execute(registrationCode);
+            DetailedReadStudentOutput result = await _getStudentByRegistrationCode.ExecuteAsync(registrationCode);
             return _mapper.Map<DetailedReadStudentResponse>(result);
         }
 
@@ -68,13 +68,13 @@ namespace Adapters.PresenterController
         {
             UpdateStudentRequest? dto = request as UpdateStudentRequest;
             UpdateStudentInput input = _mapper.Map<UpdateStudentInput>(dto);
-            DetailedReadStudentOutput result = await _updateStudent.Execute(id, input);
+            DetailedReadStudentOutput result = await _updateStudent.ExecuteAsync(id, input);
             return _mapper.Map<DetailedReadStudentResponse>(result);
         }
 
         public async Task<string?> RequestStudentRegister(string? email)
         {
-            return await _requestStudentRegister.Execute(email);
+            return await _requestStudentRegister.ExecuteAsync(email);
         }
     }
 }

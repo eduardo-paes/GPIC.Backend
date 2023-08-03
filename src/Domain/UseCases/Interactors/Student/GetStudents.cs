@@ -17,7 +17,7 @@ namespace Domain.UseCases.Interactors.Student
         }
         #endregion Global Scope
 
-        public async Task<IQueryable<ResumedReadStudentOutput>> Execute(int skip, int take)
+        public async Task<IQueryable<ResumedReadStudentOutput>> ExecuteAsync(int skip, int take)
         {
             IEnumerable<Entities.Student> entities = (IEnumerable<Entities.Student>)await _repository.GetAll(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadStudentOutput>>(entities).AsQueryable();

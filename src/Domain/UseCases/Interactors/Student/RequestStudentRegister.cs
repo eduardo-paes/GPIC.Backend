@@ -16,7 +16,7 @@ namespace Domain.UseCases.Interactors.Student
             _userRepository = userRepository;
         }
 
-        public async Task<string?> Execute(string? email)
+        public async Task<string?> ExecuteAsync(string? email)
         {
             // Verifica se o email foi informado
             UseCaseException.NotInformedParam(string.IsNullOrEmpty(email), "Email");

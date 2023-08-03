@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.StudentDocuments
 {
     public interface IDeleteStudentDocuments
     {
-        Task<DetailedReadStudentDocumentsOutput> Execute(Guid? id);
+        Task<DetailedReadStudentDocumentsOutput> ExecuteAsync(Guid? id);
     }
 }

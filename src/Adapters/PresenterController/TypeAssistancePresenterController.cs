@@ -37,25 +37,25 @@ namespace Adapters.PresenterController
         {
             CreateAssistanceTypeRequest? dto = request as CreateAssistanceTypeRequest;
             CreateAssistanceTypeInput input = _mapper.Map<CreateAssistanceTypeInput>(dto);
-            DetailedReadAssistanceTypeOutput result = await _createAssistanceType.Execute(input);
+            DetailedReadAssistanceTypeOutput result = await _createAssistanceType.ExecuteAsync(input);
             return _mapper.Map<DetailedReadAssistanceTypeResponse>(result);
         }
 
         public async Task<IResponse> Delete(Guid? id)
         {
-            DetailedReadAssistanceTypeOutput result = await _deleteAssistanceType.Execute(id);
+            DetailedReadAssistanceTypeOutput result = await _deleteAssistanceType.ExecuteAsync(id);
             return _mapper.Map<DetailedReadAssistanceTypeResponse>(result);
         }
 
         public async Task<IEnumerable<IResponse>> GetAll(int skip, int take)
         {
-            IQueryable<ResumedReadAssistanceTypeOutput> result = await _getAssistanceTypes.Execute(skip, take);
+            IQueryable<ResumedReadAssistanceTypeOutput> result = await _getAssistanceTypes.ExecuteAsync(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadAssistanceTypeResponse>>(result);
         }
 
         public async Task<IResponse> GetById(Guid? id)
         {
-            DetailedReadAssistanceTypeOutput result = await _getAssistanceTypeById.Execute(id);
+            DetailedReadAssistanceTypeOutput result = await _getAssistanceTypeById.ExecuteAsync(id);
             return _mapper.Map<DetailedReadAssistanceTypeResponse>(result);
         }
 
@@ -63,7 +63,7 @@ namespace Adapters.PresenterController
         {
             UpdateAssistanceTypeRequest? dto = request as UpdateAssistanceTypeRequest;
             UpdateAssistanceTypeInput input = _mapper.Map<UpdateAssistanceTypeInput>(dto);
-            DetailedReadAssistanceTypeOutput result = await _updateAssistanceType.Execute(id, input);
+            DetailedReadAssistanceTypeOutput result = await _updateAssistanceType.ExecuteAsync(id, input);
             return _mapper.Map<DetailedReadAssistanceTypeResponse>(result);
         }
     }

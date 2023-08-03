@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.ProjectEvaluation
 {
     public interface IGetEvaluationByProjectId
     {
-        Task<DetailedReadProjectEvaluationOutput> Execute(Guid? projectId);
+        Task<DetailedReadProjectEvaluationOutput> ExecuteAsync(Guid? projectId);
     }
 }

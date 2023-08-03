@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.AssistanceType
 {
     public interface ICreateAssistanceType
     {
-        Task<DetailedReadAssistanceTypeOutput> Execute(CreateAssistanceTypeInput model);
+        Task<DetailedReadAssistanceTypeOutput> ExecuteAsync(CreateAssistanceTypeInput model);
     }
 }

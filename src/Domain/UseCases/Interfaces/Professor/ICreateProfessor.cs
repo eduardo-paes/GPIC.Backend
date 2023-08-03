@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.Professor
 {
     public interface ICreateProfessor
     {
-        Task<DetailedReadProfessorOutput> Execute(CreateProfessorInput model);
+        Task<DetailedReadProfessorOutput> ExecuteAsync(CreateProfessorInput model);
     }
 }

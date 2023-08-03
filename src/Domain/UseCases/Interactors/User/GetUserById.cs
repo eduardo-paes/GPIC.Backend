@@ -18,7 +18,7 @@ namespace Domain.UseCases.Interactors.User
         }
         #endregion Global Scope
 
-        public async Task<UserReadOutput> Execute(Guid? id)
+        public async Task<UserReadOutput> ExecuteAsync(Guid? id)
         {
             // Verifica se o id informado é nulo
             UseCaseException.NotInformedParam(id is null, nameof(id));

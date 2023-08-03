@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.User
 {
     public interface IGetUserById
     {
-        Task<UserReadOutput> Execute(Guid? id);
+        Task<UserReadOutput> ExecuteAsync(Guid? id);
     }
 }

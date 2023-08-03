@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.Project
 {
     public interface ICancelProject
     {
-        Task<ResumedReadProjectOutput> Execute(Guid? id, string? observation);
+        Task<ResumedReadProjectOutput> ExecuteAsync(Guid? id, string? observation);
     }
 }

@@ -51,7 +51,7 @@ namespace Domain.Tests.UseCases.Area
             _mapperMock.Setup(m => m.Map<DetailedReadAreaOutput>(areaEntity)).Returns(detailedOutput);
 
             // Act
-            var result = await _updateArea.Execute(id, input);
+            var result = await _updateArea.ExecuteAsync(id, input);
 
             // Assert
             Assert.IsNotNull(result);
@@ -74,7 +74,7 @@ namespace Domain.Tests.UseCases.Area
             };
 
             // Act & Assert
-            Assert.ThrowsAsync<UseCaseException>(async () => await _updateArea.Execute(id, input));
+            Assert.ThrowsAsync<UseCaseException>(async () => await _updateArea.ExecuteAsync(id, input));
             _areaRepositoryMock.Verify(r => r.GetById(It.IsAny<Guid?>()), Times.Never);
             _areaRepositoryMock.Verify(r => r.Update(It.IsAny<Domain.Entities.Area>()), Times.Never);
             _mapperMock.Verify(m => m.Map<DetailedReadAreaOutput>(It.IsAny<Domain.Entities.Area>()), Times.Never);
@@ -95,7 +95,7 @@ namespace Domain.Tests.UseCases.Area
             _areaRepositoryMock.Setup(r => r.GetById(id)).ReturnsAsync((Domain.Entities.Area)null);
 
             // Act & Assert
-            Assert.ThrowsAsync<UseCaseException>(async () => await _updateArea.Execute(id, input));
+            Assert.ThrowsAsync<UseCaseException>(async () => await _updateArea.ExecuteAsync(id, input));
             _areaRepositoryMock.Verify(r => r.GetById(id), Times.Once);
             _areaRepositoryMock.Verify(r => r.Update(It.IsAny<Domain.Entities.Area>()), Times.Never);
             _mapperMock.Verify(m => m.Map<DetailedReadAreaOutput>(It.IsAny<Domain.Entities.Area>()), Times.Never);

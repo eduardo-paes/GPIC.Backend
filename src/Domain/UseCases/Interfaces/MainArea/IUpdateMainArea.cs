@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.MainArea
 {
     public interface IUpdateMainArea
     {
-        Task<DetailedMainAreaOutput> Execute(Guid? id, UpdateMainAreaInput input);
+        Task<DetailedMainAreaOutput> ExecuteAsync(Guid? id, UpdateMainAreaInput input);
     }
 }

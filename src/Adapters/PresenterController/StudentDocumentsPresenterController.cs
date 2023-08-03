@@ -35,32 +35,32 @@ namespace Adapters.PresenterController
         public async Task<DetailedReadStudentDocumentsResponse> Create(CreateStudentDocumentsRequest model)
         {
             CreateStudentDocumentsInput input = _mapper.Map<CreateStudentDocumentsInput>(model);
-            DetailedReadStudentDocumentsOutput result = await _createStudentDocuments.Execute(input);
+            DetailedReadStudentDocumentsOutput result = await _createStudentDocuments.ExecuteAsync(input);
             return _mapper.Map<DetailedReadStudentDocumentsResponse>(result);
         }
 
         public async Task<DetailedReadStudentDocumentsResponse> Delete(Guid? id)
         {
-            DetailedReadStudentDocumentsOutput result = await _deleteStudentDocuments.Execute(id);
+            DetailedReadStudentDocumentsOutput result = await _deleteStudentDocuments.ExecuteAsync(id);
             return _mapper.Map<DetailedReadStudentDocumentsResponse>(result);
         }
 
         public async Task<ResumedReadStudentDocumentsResponse> GetByProjectId(Guid? projectId)
         {
-            ResumedReadStudentDocumentsOutput result = await _getStudentDocumentsByProject.Execute(projectId);
+            ResumedReadStudentDocumentsOutput result = await _getStudentDocumentsByProject.ExecuteAsync(projectId);
             return _mapper.Map<ResumedReadStudentDocumentsResponse>(result);
         }
 
         public async Task<ResumedReadStudentDocumentsResponse> GetByStudentId(Guid? studentId)
         {
-            ResumedReadStudentDocumentsOutput result = await _getStudentDocumentsByStudent.Execute(studentId);
+            ResumedReadStudentDocumentsOutput result = await _getStudentDocumentsByStudent.ExecuteAsync(studentId);
             return _mapper.Map<ResumedReadStudentDocumentsResponse>(result);
         }
 
         public async Task<DetailedReadStudentDocumentsResponse> Update(Guid? id, UpdateStudentDocumentsRequest model)
         {
             UpdateStudentDocumentsInput input = _mapper.Map<UpdateStudentDocumentsInput>(model);
-            DetailedReadStudentDocumentsOutput result = await _updateStudentDocuments.Execute(id, input);
+            DetailedReadStudentDocumentsOutput result = await _updateStudentDocuments.ExecuteAsync(id, input);
             return _mapper.Map<DetailedReadStudentDocumentsResponse>(result);
         }
     }

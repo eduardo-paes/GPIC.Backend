@@ -5,6 +5,6 @@ namespace Domain.UseCases.Interfaces.ProjectEvaluation
 {
     public interface IEvaluateSubmissionProject
     {
-        Task<DetailedReadProjectOutput> Execute(EvaluateSubmissionProjectInput input);
+        Task<DetailedReadProjectOutput> ExecuteAsync(EvaluateSubmissionProjectInput input);
     }
 }

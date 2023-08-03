@@ -29,7 +29,7 @@ namespace Domain.UseCases
         }
         #endregion
 
-        public async Task<DetailedReadProfessorOutput> Execute(CreateProfessorInput input)
+        public async Task<DetailedReadProfessorOutput> ExecuteAsync(CreateProfessorInput input)
         {
             // Realiza o map da entidade e a validação dos campos informados
             var entity = new Entities.Professor(input.SIAPEEnrollment, input.IdentifyLattes);

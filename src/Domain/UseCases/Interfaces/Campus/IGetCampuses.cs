@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.Campus
 {
     public interface IGetCampuses
     {
-        Task<IQueryable<ResumedReadCampusOutput>> Execute(int skip, int take);
+        Task<IQueryable<ResumedReadCampusOutput>> ExecuteAsync(int skip, int take);
     }
 }

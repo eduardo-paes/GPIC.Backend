@@ -17,7 +17,7 @@ namespace Domain.UseCases.Interactors.MainArea
         }
         #endregion Global Scope
 
-        public async Task<IQueryable<ResumedReadMainAreaOutput>> Execute(int skip, int take)
+        public async Task<IQueryable<ResumedReadMainAreaOutput>> ExecuteAsync(int skip, int take)
         {
             IEnumerable<Entities.MainArea> entities = (IEnumerable<Entities.MainArea>)await _repository.GetAll(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadMainAreaOutput>>(entities).AsQueryable();

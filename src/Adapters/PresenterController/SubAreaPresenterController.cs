@@ -33,13 +33,13 @@ namespace Adapters.PresenterController
         {
             CreateSubAreaRequest? dto = request as CreateSubAreaRequest;
             CreateSubAreaInput input = _mapper.Map<CreateSubAreaInput>(dto);
-            DetailedReadSubAreaOutput result = await _createSubArea.Execute(input);
+            DetailedReadSubAreaOutput result = await _createSubArea.ExecuteAsync(input);
             return _mapper.Map<DetailedReadSubAreaResponse>(result);
         }
 
         public async Task<IResponse> Delete(Guid? id)
         {
-            DetailedReadSubAreaOutput result = await _deleteSubArea.Execute(id);
+            DetailedReadSubAreaOutput result = await _deleteSubArea.ExecuteAsync(id);
             return _mapper.Map<DetailedReadSubAreaResponse>(result);
         }
 
@@ -50,13 +50,13 @@ namespace Adapters.PresenterController
 
         public async Task<IResponse> GetById(Guid? id)
         {
-            DetailedReadSubAreaOutput result = await _getSubAreaById.Execute(id);
+            DetailedReadSubAreaOutput result = await _getSubAreaById.ExecuteAsync(id);
             return _mapper.Map<DetailedReadSubAreaResponse>(result);
         }
 
         public async Task<IEnumerable<IResponse>> GetSubAreasByArea(Guid? areaId, int skip, int take)
         {
-            IQueryable<ResumedReadSubAreaOutput> result = await _getSubAreasByArea.Execute(areaId, skip, take);
+            IQueryable<ResumedReadSubAreaOutput> result = await _getSubAreasByArea.ExecuteAsync(areaId, skip, take);
             return _mapper.Map<IEnumerable<ResumedReadSubAreaResponse>>(result);
         }
 
@@ -64,7 +64,7 @@ namespace Adapters.PresenterController
         {
             UpdateSubAreaRequest? dto = request as UpdateSubAreaRequest;
             UpdateSubAreaInput input = _mapper.Map<UpdateSubAreaInput>(dto);
-            DetailedReadSubAreaOutput result = await _updateSubArea.Execute(id, input);
+            DetailedReadSubAreaOutput result = await _updateSubArea.ExecuteAsync(id, input);
             return _mapper.Map<DetailedReadSubAreaResponse>(result);
         }
     }

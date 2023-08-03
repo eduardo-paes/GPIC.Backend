@@ -5,6 +5,6 @@ namespace Domain.UseCases.Interfaces.Course
 {
     public interface ICreateCourse
     {
-        Task<DetailedReadCourseOutput> Execute(CreateCourseInput model);
+        Task<DetailedReadCourseOutput> ExecuteAsync(CreateCourseInput model);
     }
 }

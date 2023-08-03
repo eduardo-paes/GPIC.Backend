@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.Course
 {
     public interface IGetCourseById
     {
-        Task<DetailedReadCourseOutput> Execute(Guid? id);
+        Task<DetailedReadCourseOutput> ExecuteAsync(Guid? id);
     }
 }

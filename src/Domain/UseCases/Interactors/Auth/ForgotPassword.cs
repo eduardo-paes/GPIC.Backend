@@ -17,7 +17,7 @@ namespace Domain.UseCases.Interactors.Auth
         }
         #endregion Global Scope
 
-        public async Task<string> Execute(string? email)
+        public async Task<string> ExecuteAsync(string? email)
         {
             // Verifica se o email é nulo
             UseCaseException.NotInformedParam(string.IsNullOrEmpty(email), nameof(email));

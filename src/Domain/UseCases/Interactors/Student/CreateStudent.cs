@@ -36,7 +36,7 @@ namespace Domain.UseCases.Interactors.Student
         }
         #endregion Global Scope
 
-        public async Task<DetailedReadStudentOutput> Execute(CreateStudentInput model)
+        public async Task<DetailedReadStudentOutput> ExecuteAsync(CreateStudentInput model)
         {
             // Realiza o map da entidade e a validação dos campos informados
             // var entity = _mapper.Map<Entities.Student>(input);

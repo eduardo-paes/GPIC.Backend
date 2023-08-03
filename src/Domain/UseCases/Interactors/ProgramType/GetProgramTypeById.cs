@@ -18,7 +18,7 @@ namespace Domain.UseCases.Interactors.ProgramType
         }
         #endregion Global Scope
 
-        public async Task<DetailedReadProgramTypeOutput> Execute(Guid? id)
+        public async Task<DetailedReadProgramTypeOutput> ExecuteAsync(Guid? id)
         {
             UseCaseException.NotInformedParam(id is null, nameof(id));
             Entities.ProgramType? entity = await _repository.GetById(id);

@@ -31,7 +31,7 @@ namespace Domain.UseCases.Interactors.ProjectEvaluation
         }
         #endregion Global Scope
 
-        public async Task<DetailedReadProjectOutput> Execute(EvaluateAppealProjectInput input)
+        public async Task<DetailedReadProjectOutput> ExecuteAsync(EvaluateAppealProjectInput input)
         {
             // Obtém informações do usuário logado.
             Ports.Auth.UserClaimsOutput user = _tokenAuthenticationService.GetUserAuthenticatedClaims();

@@ -19,7 +19,7 @@ namespace Domain.UseCases.Interactors.Project
         }
         #endregion Global Scope
 
-        public async Task<DetailedReadProjectOutput> Execute(Guid? id)
+        public async Task<DetailedReadProjectOutput> ExecuteAsync(Guid? id)
         {
             // Busca projeto pelo Id informado
             Entities.Project project = await _projectRepository.GetById(id)

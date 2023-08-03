@@ -20,7 +20,7 @@ namespace Domain.UseCases
         }
         #endregion
 
-        public async Task<DetailedReadAreaOutput> Execute(CreateAreaInput input)
+        public async Task<DetailedReadAreaOutput> ExecuteAsync(CreateAreaInput input)
         {
             var entity = await _areaRepository.GetByCode(input.Code);
             UseCaseException.BusinessRuleViolation(entity != null, $"Já existe uma área principal para o código {input.Code}.");

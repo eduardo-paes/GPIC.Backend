@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.ProgramType
 {
     public interface IDeleteProgramType
     {
-        Task<DetailedReadProgramTypeOutput> Execute(Guid? id);
+        Task<DetailedReadProgramTypeOutput> ExecuteAsync(Guid? id);
     }
 }

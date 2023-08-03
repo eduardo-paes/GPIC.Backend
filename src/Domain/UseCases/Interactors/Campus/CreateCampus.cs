@@ -18,7 +18,7 @@ namespace Domain.UseCases
         }
         #endregion
 
-        public async Task<DetailedReadCampusOutput> Execute(CreateCampusInput input)
+        public async Task<DetailedReadCampusOutput> ExecuteAsync(CreateCampusInput input)
         {
             // Verifica se nome foi informado
             UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.Name), nameof(input.Name));

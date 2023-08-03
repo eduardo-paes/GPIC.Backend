@@ -21,7 +21,7 @@ namespace Domain.UseCases.Interactors.User
         }
         #endregion Global Scope
 
-        public async Task<UserReadOutput> Execute(UserUpdateInput input)
+        public async Task<UserReadOutput> ExecuteAsync(UserUpdateInput input)
         {
             // Busca as claims do usuário autenticado
             Ports.Auth.UserClaimsOutput userClaims = _tokenAuthenticationService.GetUserAuthenticatedClaims();

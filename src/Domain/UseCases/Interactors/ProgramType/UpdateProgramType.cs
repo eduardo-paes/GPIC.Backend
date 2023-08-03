@@ -18,7 +18,7 @@ namespace Domain.UseCases.Interactors.ProgramType
         }
         #endregion Global Scope
 
-        public async Task<DetailedReadProgramTypeOutput> Execute(Guid? id, UpdateProgramTypeInput input)
+        public async Task<DetailedReadProgramTypeOutput> ExecuteAsync(Guid? id, UpdateProgramTypeInput input)
         {
             // Verifica se o id foi informado
             UseCaseException.NotInformedParam(id is null, nameof(id));

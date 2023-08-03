@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.Notice
 {
     public interface IGetNoticeById
     {
-        Task<DetailedReadNoticeOutput> Execute(Guid? id);
+        Task<DetailedReadNoticeOutput> ExecuteAsync(Guid? id);
     }
 }

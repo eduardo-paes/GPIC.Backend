@@ -20,7 +20,7 @@ namespace Domain.UseCases
         }
         #endregion
 
-        public async Task<DetailedReadSubAreaOutput> Execute(CreateSubAreaInput input)
+        public async Task<DetailedReadSubAreaOutput> ExecuteAsync(CreateSubAreaInput input)
         {
             var entity = await _subAreaRepository.GetByCode(input.Code);
             UseCaseException.BusinessRuleViolation(entity != null,

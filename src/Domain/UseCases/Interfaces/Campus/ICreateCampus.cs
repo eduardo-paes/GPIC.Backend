@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.Campus
 {
     public interface ICreateCampus
     {
-        Task<DetailedReadCampusOutput> Execute(CreateCampusInput model);
+        Task<DetailedReadCampusOutput> ExecuteAsync(CreateCampusInput model);
     }
 }

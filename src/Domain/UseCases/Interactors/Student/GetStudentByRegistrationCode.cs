@@ -16,7 +16,7 @@ namespace Domain.UseCases.Interactors.Student
             _mapper = mapper;
         }
 
-        public async Task<DetailedReadStudentOutput> Execute(string? registrationCode)
+        public async Task<DetailedReadStudentOutput> ExecuteAsync(string? registrationCode)
         {
             // Verifica de a matrícula do aluno foi informada
             UseCaseException.NotInformedParam(string.IsNullOrEmpty(registrationCode), "Matrícula");

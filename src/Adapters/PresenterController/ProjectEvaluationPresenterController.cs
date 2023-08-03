@@ -31,20 +31,20 @@ namespace Adapters.PresenterController
         public async Task<DetailedReadProjectResponse> EvaluateAppealProject(EvaluateAppealProjectRequest request)
         {
             EvaluateAppealProjectInput input = _mapper.Map<EvaluateAppealProjectInput>(request);
-            Domain.UseCases.Ports.Project.DetailedReadProjectOutput output = await _evaluateAppealProject.Execute(input);
+            Domain.UseCases.Ports.Project.DetailedReadProjectOutput output = await _evaluateAppealProject.ExecuteAsync(input);
             return _mapper.Map<DetailedReadProjectResponse>(output);
         }
 
         public async Task<DetailedReadProjectResponse> EvaluateSubmissionProject(EvaluateSubmissionProjectRequest request)
         {
             EvaluateSubmissionProjectInput input = _mapper.Map<EvaluateSubmissionProjectInput>(request);
-            Domain.UseCases.Ports.Project.DetailedReadProjectOutput output = await _evaluateSubmissionProject.Execute(input);
+            Domain.UseCases.Ports.Project.DetailedReadProjectOutput output = await _evaluateSubmissionProject.ExecuteAsync(input);
             return _mapper.Map<DetailedReadProjectResponse>(output);
         }
 
         public async Task<DetailedReadProjectEvaluationResponse> GetEvaluationByProjectId(Guid? projectId)
         {
-            DetailedReadProjectEvaluationOutput output = await _getEvaluationByProjectId.Execute(projectId);
+            DetailedReadProjectEvaluationOutput output = await _getEvaluationByProjectId.ExecuteAsync(projectId);
             return _mapper.Map<DetailedReadProjectEvaluationResponse>(output);
         }
     }

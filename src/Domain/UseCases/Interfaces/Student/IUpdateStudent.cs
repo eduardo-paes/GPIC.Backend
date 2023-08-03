@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.Student
 {
     public interface IUpdateStudent
     {
-        Task<DetailedReadStudentOutput> Execute(Guid? id, UpdateStudentInput model);
+        Task<DetailedReadStudentOutput> ExecuteAsync(Guid? id, UpdateStudentInput model);
     }
 }

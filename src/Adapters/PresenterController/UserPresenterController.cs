@@ -36,38 +36,38 @@ namespace Adapters.PresenterController
 
         public async Task<UserReadResponse> ActivateUser(Guid? id)
         {
-            UserReadOutput result = await _activateUser.Execute(id);
+            UserReadOutput result = await _activateUser.ExecuteAsync(id);
             return _mapper.Map<UserReadResponse>(result);
         }
 
         public async Task<UserReadResponse> DeactivateUser(Guid? id)
         {
-            UserReadOutput result = await _deactivateUser.Execute(id);
+            UserReadOutput result = await _deactivateUser.ExecuteAsync(id);
             return _mapper.Map<UserReadResponse>(result);
         }
 
         public async Task<IEnumerable<UserReadResponse>> GetActiveUsers(int skip, int take)
         {
-            IEnumerable<UserReadOutput> result = await _getActiveUsers.Execute(skip, take);
+            IEnumerable<UserReadOutput> result = await _getActiveUsers.ExecuteAsync(skip, take);
             return _mapper.Map<IEnumerable<UserReadResponse>>(result);
         }
 
         public async Task<IEnumerable<UserReadResponse>> GetInactiveUsers(int skip, int take)
         {
-            IEnumerable<UserReadOutput> result = await _getInactiveUsers.Execute(skip, take);
+            IEnumerable<UserReadOutput> result = await _getInactiveUsers.ExecuteAsync(skip, take);
             return _mapper.Map<IEnumerable<UserReadResponse>>(result);
         }
 
         public async Task<UserReadResponse> GetUserById(Guid? id)
         {
-            UserReadOutput result = await _getUserById.Execute(id);
+            UserReadOutput result = await _getUserById.ExecuteAsync(id);
             return _mapper.Map<UserReadResponse>(result);
         }
 
         public async Task<UserReadResponse> UpdateUser(UserUpdateRequest request)
         {
             UserUpdateInput input = _mapper.Map<UserUpdateInput>(request);
-            UserReadOutput result = await _updateUser.Execute(input);
+            UserReadOutput result = await _updateUser.ExecuteAsync(input);
             return _mapper.Map<UserReadResponse>(result);
         }
     }

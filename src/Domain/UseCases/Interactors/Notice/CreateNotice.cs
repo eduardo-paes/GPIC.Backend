@@ -36,7 +36,7 @@ namespace Domain.UseCases
         }
         #endregion
 
-        public async Task<DetailedReadNoticeOutput> Execute(CreateNoticeInput input)
+        public async Task<DetailedReadNoticeOutput> ExecuteAsync(CreateNoticeInput input)
         {
             // Verifica se atividades foram informadas
             UseCaseException.BusinessRuleViolation(input.Activities == null || input.Activities.Count == 0,

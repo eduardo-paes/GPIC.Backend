@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.ProgramType
 {
     public interface ICreateProgramType
     {
-        Task<DetailedReadProgramTypeOutput> Execute(CreateProgramTypeInput model);
+        Task<DetailedReadProgramTypeOutput> ExecuteAsync(CreateProgramTypeInput model);
     }
 }

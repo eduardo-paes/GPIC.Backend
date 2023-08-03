@@ -18,7 +18,7 @@ namespace Domain.UseCases.Interactors.ProgramType
         }
         #endregion Global Scope
 
-        public async Task<DetailedReadProgramTypeOutput> Execute(CreateProgramTypeInput model)
+        public async Task<DetailedReadProgramTypeOutput> ExecuteAsync(CreateProgramTypeInput model)
         {
             // Verifica se nome foi informado
             UseCaseException.NotInformedParam(string.IsNullOrEmpty(model.Name), nameof(model.Name));

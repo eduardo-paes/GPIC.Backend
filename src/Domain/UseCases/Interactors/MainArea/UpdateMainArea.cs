@@ -17,7 +17,7 @@ namespace Domain.UseCases.Interactors.MainArea
         }
         #endregion Global Scope
 
-        public async Task<DetailedMainAreaOutput> Execute(Guid? id, UpdateMainAreaInput input)
+        public async Task<DetailedMainAreaOutput> ExecuteAsync(Guid? id, UpdateMainAreaInput input)
         {
             // Recupera entidade que será atualizada
             Entities.MainArea entity = await _repository.GetById(id)

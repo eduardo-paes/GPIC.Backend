@@ -32,25 +32,25 @@ namespace Adapters.PresenterController
         {
             CreateCampusRequest? dto = request as CreateCampusRequest;
             CreateCampusInput input = _mapper.Map<CreateCampusInput>(dto);
-            DetailedReadCampusOutput result = await _createCampus.Execute(input);
+            DetailedReadCampusOutput result = await _createCampus.ExecuteAsync(input);
             return _mapper.Map<DetailedReadCampusResponse>(result);
         }
 
         public async Task<IResponse> Delete(Guid? id)
         {
-            DetailedReadCampusOutput result = await _deleteCampus.Execute(id);
+            DetailedReadCampusOutput result = await _deleteCampus.ExecuteAsync(id);
             return _mapper.Map<DetailedReadCampusResponse>(result);
         }
 
         public async Task<IEnumerable<IResponse>> GetAll(int skip, int take)
         {
-            IQueryable<ResumedReadCampusOutput> result = await _getCampuses.Execute(skip, take);
+            IQueryable<ResumedReadCampusOutput> result = await _getCampuses.ExecuteAsync(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadCampusResponse>>(result);
         }
 
         public async Task<IResponse> GetById(Guid? id)
         {
-            DetailedReadCampusOutput result = await _getCampusById.Execute(id);
+            DetailedReadCampusOutput result = await _getCampusById.ExecuteAsync(id);
             return _mapper.Map<DetailedReadCampusResponse>(result);
         }
 
@@ -58,7 +58,7 @@ namespace Adapters.PresenterController
         {
             UpdateCampusRequest? dto = request as UpdateCampusRequest;
             UpdateCampusInput input = _mapper.Map<UpdateCampusInput>(dto);
-            DetailedReadCampusOutput result = await _updateCampus.Execute(id, input);
+            DetailedReadCampusOutput result = await _updateCampus.ExecuteAsync(id, input);
             return _mapper.Map<DetailedReadCampusResponse>(result);
         }
     }

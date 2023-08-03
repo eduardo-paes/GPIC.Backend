@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.AssistanceType
 {
     public interface IGetAssistanceTypeById
     {
-        Task<DetailedReadAssistanceTypeOutput> Execute(Guid? id);
+        Task<DetailedReadAssistanceTypeOutput> ExecuteAsync(Guid? id);
     }
 }

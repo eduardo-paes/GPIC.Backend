@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.Student
 {
     public interface IGetStudents
     {
-        Task<IQueryable<ResumedReadStudentOutput>> Execute(int skip, int take);
+        Task<IQueryable<ResumedReadStudentOutput>> ExecuteAsync(int skip, int take);
     }
 }

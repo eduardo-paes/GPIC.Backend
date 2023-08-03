@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.ProgramType
 {
     public interface IUpdateProgramType
     {
-        Task<DetailedReadProgramTypeOutput> Execute(Guid? id, UpdateProgramTypeInput input);
+        Task<DetailedReadProgramTypeOutput> ExecuteAsync(Guid? id, UpdateProgramTypeInput input);
     }
 }

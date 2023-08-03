@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.User
 {
     public interface IUpdateUser
     {
-        Task<UserReadOutput> Execute(UserUpdateInput input);
+        Task<UserReadOutput> ExecuteAsync(UserUpdateInput input);
     }
 }

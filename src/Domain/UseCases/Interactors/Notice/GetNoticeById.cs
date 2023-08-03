@@ -18,7 +18,7 @@ namespace Domain.UseCases.Interactors.Notice
         }
         #endregion Global Scope
 
-        public async Task<DetailedReadNoticeOutput> Execute(Guid? id)
+        public async Task<DetailedReadNoticeOutput> ExecuteAsync(Guid? id)
         {
             UseCaseException.NotInformedParam(id is null, nameof(id));
 

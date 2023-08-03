@@ -20,7 +20,7 @@ namespace Domain.UseCases.Interactors.Project
         }
         #endregion Global Scope
 
-        public async Task<ResumedReadProjectOutput> Execute(Guid? projectId)
+        public async Task<ResumedReadProjectOutput> ExecuteAsync(Guid? projectId)
         {
             // Verifica se Id foi informado.
             UseCaseException.NotInformedParam(projectId is null, nameof(projectId));

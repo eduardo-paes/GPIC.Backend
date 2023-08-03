@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.SubArea
 {
     public interface IGetSubAreasByArea
     {
-        Task<IQueryable<ResumedReadSubAreaOutput>> Execute(Guid? areaId, int skip, int take);
+        Task<IQueryable<ResumedReadSubAreaOutput>> ExecuteAsync(Guid? areaId, int skip, int take);
     }
 }

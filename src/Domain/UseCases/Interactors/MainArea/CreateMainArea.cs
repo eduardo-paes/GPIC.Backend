@@ -18,7 +18,7 @@ namespace Domain.UseCases.Interactors.MainArea
         }
         #endregion Global Scope
 
-        public async Task<DetailedMainAreaOutput> Execute(CreateMainAreaInput model)
+        public async Task<DetailedMainAreaOutput> ExecuteAsync(CreateMainAreaInput model)
         {
             // Validação de código da Área
             Entities.MainArea? entity = await _repository.GetByCode(model.Code);

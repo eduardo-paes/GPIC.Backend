@@ -18,7 +18,7 @@ namespace Domain.UseCases.Interactors.Professor
         }
         #endregion Global Scope
 
-        public async Task<DetailedReadProfessorOutput> Execute(Guid? id)
+        public async Task<DetailedReadProfessorOutput> ExecuteAsync(Guid? id)
         {
             UseCaseException.NotInformedParam(id is null, nameof(id));
             Entities.Professor? entity = await _repository.GetById(id);

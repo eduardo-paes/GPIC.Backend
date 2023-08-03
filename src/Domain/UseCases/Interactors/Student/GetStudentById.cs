@@ -18,7 +18,7 @@ namespace Domain.UseCases.Interactors.Student
         }
         #endregion Global Scope
 
-        public async Task<DetailedReadStudentOutput> Execute(Guid? id)
+        public async Task<DetailedReadStudentOutput> ExecuteAsync(Guid? id)
         {
             UseCaseException.NotInformedParam(id is null, nameof(id));
             Entities.Student? entity = await _repository.GetById(id);

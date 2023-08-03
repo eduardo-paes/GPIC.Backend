@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.ProgramType
 {
     public interface IGetProgramTypes
     {
-        Task<IQueryable<ResumedReadProgramTypeOutput>> Execute(int skip, int take);
+        Task<IQueryable<ResumedReadProgramTypeOutput>> ExecuteAsync(int skip, int take);
     }
 }

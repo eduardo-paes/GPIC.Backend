@@ -27,25 +27,25 @@ namespace Adapters.PresenterController
 
         public async Task<string> ConfirmEmail(string? email, string? token)
         {
-            return await _confirmUserEmail.Execute(email, token);
+            return await _confirmUserEmail.ExecuteAsync(email, token);
         }
 
         public async Task<string> ForgotPassword(string? email)
         {
-            return await _forgotPassword.Execute(email);
+            return await _forgotPassword.ExecuteAsync(email);
         }
 
         public async Task<UserLoginResponse> Login(UserLoginRequest request)
         {
             return _mapper
             .Map<UserLoginResponse>(await _login
-                .Execute(_mapper
+                .ExecuteAsync(_mapper
                     .Map<UserLoginInput>(request)));
         }
 
         public async Task<string> ResetPassword(UserResetPasswordRequest request)
         {
-            return await _resetPassword.Execute(_mapper.Map<UserResetPasswordInput>(request));
+            return await _resetPassword.ExecuteAsync(_mapper.Map<UserResetPasswordInput>(request));
         }
     }
 }

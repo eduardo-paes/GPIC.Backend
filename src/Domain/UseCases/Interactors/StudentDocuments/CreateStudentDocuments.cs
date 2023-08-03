@@ -36,7 +36,7 @@ namespace Domain.UseCases
         }
         #endregion
 
-        public async Task<DetailedReadStudentDocumentsOutput> Execute(CreateStudentDocumentsInput input)
+        public async Task<DetailedReadStudentDocumentsOutput> ExecuteAsync(CreateStudentDocumentsInput input)
         {
             // Verifica se já há documentos para o projeto informado
             var documents = await _studentDocumentRepository.GetByProjectId(input.ProjectId!);

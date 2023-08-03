@@ -37,25 +37,25 @@ namespace Adapters.PresenterController
         {
             CreateProfessorRequest? dto = request as CreateProfessorRequest;
             CreateProfessorInput input = _mapper.Map<CreateProfessorInput>(dto);
-            DetailedReadProfessorOutput result = await _createProfessor.Execute(input);
+            DetailedReadProfessorOutput result = await _createProfessor.ExecuteAsync(input);
             return _mapper.Map<DetailedReadProfessorResponse>(result);
         }
 
         public async Task<IResponse> Delete(Guid? id)
         {
-            DetailedReadProfessorOutput result = await _deleteProfessor.Execute(id);
+            DetailedReadProfessorOutput result = await _deleteProfessor.ExecuteAsync(id);
             return _mapper.Map<DetailedReadProfessorResponse>(result);
         }
 
         public async Task<IEnumerable<IResponse>> GetAll(int skip, int take)
         {
-            IQueryable<ResumedReadProfessorOutput> result = await _getProfessors.Execute(skip, take);
+            IQueryable<ResumedReadProfessorOutput> result = await _getProfessors.ExecuteAsync(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadProfessorResponse>>(result);
         }
 
         public async Task<IResponse> GetById(Guid? id)
         {
-            DetailedReadProfessorOutput result = await _getProfessorById.Execute(id);
+            DetailedReadProfessorOutput result = await _getProfessorById.ExecuteAsync(id);
             return _mapper.Map<DetailedReadProfessorResponse>(result);
         }
 
@@ -63,7 +63,7 @@ namespace Adapters.PresenterController
         {
             UpdateProfessorRequest? dto = request as UpdateProfessorRequest;
             UpdateProfessorInput input = _mapper.Map<UpdateProfessorInput>(dto);
-            DetailedReadProfessorOutput result = await _updateProfessor.Execute(id, input);
+            DetailedReadProfessorOutput result = await _updateProfessor.ExecuteAsync(id, input);
             return _mapper.Map<DetailedReadProfessorResponse>(result);
         }
     }

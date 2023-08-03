@@ -4,6 +4,6 @@ namespace Domain.UseCases.Interfaces.Auth
 {
     public interface IResetPassword
     {
-        Task<string> Execute(UserResetPasswordInput input);
+        Task<string> ExecuteAsync(UserResetPasswordInput input);
     }
 }

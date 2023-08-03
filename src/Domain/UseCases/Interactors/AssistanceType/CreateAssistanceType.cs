@@ -18,7 +18,7 @@ namespace Domain.UseCases.Interactors.AssistanceType
         }
         #endregion Global Scope
 
-        public async Task<DetailedReadAssistanceTypeOutput> Execute(CreateAssistanceTypeInput model)
+        public async Task<DetailedReadAssistanceTypeOutput> ExecuteAsync(CreateAssistanceTypeInput model)
         {
             // Verifica se nome foi informado
             UseCaseException.NotInformedParam(string.IsNullOrEmpty(model.Name), nameof(model.Name));

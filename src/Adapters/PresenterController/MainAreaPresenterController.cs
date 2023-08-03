@@ -32,25 +32,25 @@ namespace Adapters.PresenterController
         {
             CreateMainAreaRequest? dto = request as CreateMainAreaRequest;
             CreateMainAreaInput input = _mapper.Map<CreateMainAreaInput>(dto);
-            DetailedMainAreaOutput result = await _createMainArea.Execute(input);
+            DetailedMainAreaOutput result = await _createMainArea.ExecuteAsync(input);
             return _mapper.Map<DetailedReadMainAreaResponse>(result);
         }
 
         public async Task<IResponse> Delete(Guid? id)
         {
-            DetailedMainAreaOutput result = await _deleteMainArea.Execute(id);
+            DetailedMainAreaOutput result = await _deleteMainArea.ExecuteAsync(id);
             return _mapper.Map<DetailedReadMainAreaResponse>(result);
         }
 
         public async Task<IEnumerable<IResponse>> GetAll(int skip, int take)
         {
-            IQueryable<ResumedReadMainAreaOutput> result = await _getMainAreas.Execute(skip, take);
+            IQueryable<ResumedReadMainAreaOutput> result = await _getMainAreas.ExecuteAsync(skip, take);
             return _mapper.Map<IEnumerable<ResumedReadMainAreaResponse>>(result);
         }
 
         public async Task<IResponse> GetById(Guid? id)
         {
-            DetailedMainAreaOutput result = await _getMainAreaById.Execute(id);
+            DetailedMainAreaOutput result = await _getMainAreaById.ExecuteAsync(id);
             return _mapper.Map<DetailedReadMainAreaResponse>(result);
         }
 
@@ -58,7 +58,7 @@ namespace Adapters.PresenterController
         {
             UpdateMainAreaRequest? dto = request as UpdateMainAreaRequest;
             UpdateMainAreaInput input = _mapper.Map<UpdateMainAreaInput>(dto);
-            DetailedMainAreaOutput result = await _updateMainArea.Execute(id, input);
+            DetailedMainAreaOutput result = await _updateMainArea.ExecuteAsync(id, input);
             return _mapper.Map<DetailedReadMainAreaResponse>(result);
         }
     }
