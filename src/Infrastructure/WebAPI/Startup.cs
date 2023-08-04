@@ -74,6 +74,14 @@ namespace WebAPI
             // Redirect HTTP requests to HTTPS for secure communication
             _ = app.UseHttpsRedirection();
 
+            // Enable CORS
+            _ = app.UseCors(builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            });
+
             // Enable routing for incoming requests
             _ = app.UseRouting();
 
