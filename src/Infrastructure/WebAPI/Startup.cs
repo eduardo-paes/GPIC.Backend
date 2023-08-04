@@ -16,33 +16,21 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             // Adição dos Controllers
-            _ = services.AddControllers();
+            services.AddControllers();
 
             // Realiza comunicação com os demais Projetos.
-            _ = services.AddInfrastructure();
-            _ = services.AddAdapters();
-            _ = services.AddDomain();
+            services.AddInfrastructure();
+            services.AddAdapters();
+            services.AddDomain();
 
             // Configuração do Swagger
-            _ = services.AddInfrastructureSwagger();
+            services.AddInfrastructureSwagger();
 
             // Configuração do JWT
-            _ = services.AddInfrastructureJWT();
+            services.AddInfrastructureJWT();
 
             // Permite que rotas sejam acessíveis em lowercase
-            _ = services.AddRouting(options => options.LowercaseUrls = true);
-
-            // Configuração do CORS
-            _ = services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(
-                    policy =>
-                    {
-                        _ = policy.AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader();
-                    });
-            });
+            services.AddRouting(options => options.LowercaseUrls = true);
         }
 
         /// <summary>
@@ -55,48 +43,43 @@ namespace WebAPI
             if (env.IsDevelopment())
             {
                 // Show detailed error page in development mode
-                _ = app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage();
 
                 // Enable Swagger middleware for API documentation in development mode
-                _ = app.UseSwagger();
-                _ = app.UseSwaggerUI();
+                app.UseSwagger();
+                app.UseSwaggerUI();
 
                 // Show development mode message
                 Console.WriteLine("Development mode");
             }
 
             // UseExceptionHandler for non-development environments
-            _ = app.UseMiddleware<ExceptionHandlingMiddleware>();
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             // Enable HTTP Strict Transport Security (HSTS) headers for secure communication
-            _ = app.UseHsts();
+            app.UseHsts();
 
             // Redirect HTTP requests to HTTPS for secure communication
-            _ = app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
             // Enable CORS
-            _ = app.UseCors(builder =>
-            {
-                builder.AllowAnyOrigin()
-                       .AllowAnyMethod()
-                       .AllowAnyHeader();
-            });
+            app.UseCors();
 
             // Enable routing for incoming requests
-            _ = app.UseRouting();
+            app.UseRouting();
 
             // Enable authentication for the API
-            _ = app.UseAuthentication();
+            app.UseAuthentication();
 
             // Enable authorization for the API
-            _ = app.UseAuthorization();
+            app.UseAuthorization();
 
             // Apply rate limiting middleware to control the number of requests allowed  
-            _ = app.UseClientRateLimiting();
-            _ = app.UseIpRateLimiting();
+            app.UseClientRateLimiting();
+            app.UseIpRateLimiting();
 
             // Configure API endpoints
-            _ = app.UseEndpoints(endpoints => endpoints.MapControllers());
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }
 }
