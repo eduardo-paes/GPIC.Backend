@@ -32,7 +32,7 @@ namespace IoC
                 b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
             #endregion Inicialização do banco de dados
 
-            #region Serviço de Log 
+            #region Serviço de Log
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(configuration)
                 .CreateLogger();
@@ -41,10 +41,22 @@ namespace IoC
                 _ = loggingBuilder.ClearProviders();
                 _ = loggingBuilder.AddSerilog(Log.Logger, dispose: true);
             });
-            #endregion Serviço de Log 
+            #endregion Serviço de Log
+
+            #region CORS
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    policy =>
+                    {
+                        _ = policy.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                    });
+            });
+            #endregion CORS
 
             #region Serviço de E-mail
-
             SmtpConfiguration smtpConfig = new();
             configuration.GetSection("SmtpConfiguration").Bind(smtpConfig);
             smtpConfig.Password = dotEnvSecrets.GetSmtpUserPassword();
