@@ -1,5 +1,5 @@
-using Adapters.Gateways.Area;
-using Adapters.Interfaces;
+using Application.Interfaces.UseCases.Area;
+using Application.Ports.Area;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,16 +14,33 @@ namespace WebAPI.Controllers
     public class AreaController : ControllerBase
     {
         #region Global Scope
-        private readonly IAreaPresenterController _service;
+        private readonly IGetAreaById _getById;
+        private readonly IGetAreasByMainArea _getAreasByMainArea;
+        private readonly ICreateArea _create;
+        private readonly IUpdateArea _update;
+        private readonly IDeleteArea _delete;
         private readonly ILogger<AreaController> _logger;
         /// <summary>
         /// Construtor do Controller de Área.
         /// </summary>
-        /// <param name="service"></param>
-        /// <param name="logger"></param>
-        public AreaController(IAreaPresenterController service, ILogger<AreaController> logger)
+        /// <param name="getById">Serviço de obtenção de área pelo id.</param>
+        /// <param name="getAreasByMainArea">Serviço de obtenção de todas as áreas ativas da área principal.</param>
+        /// <param name="create">Serviço de criação de área.</param>
+        /// <param name="update">Serviço de atualização de área.</param>
+        /// <param name="delete">Serviço de remoção de área.</param>
+        /// <param name="logger">Serviço de log.</param>
+        public AreaController(IGetAreaById getById,
+            IGetAreasByMainArea getAreasByMainArea,
+            ICreateArea create,
+            IUpdateArea update,
+            IDeleteArea delete,
+            ILogger<AreaController> logger)
         {
-            _service = service;
+            _getById = getById;
+            _getAreasByMainArea = getAreasByMainArea;
+            _create = create;
+            _update = update;
+            _delete = delete;
             _logger = logger;
         }
         #endregion Global Scope
@@ -34,23 +51,29 @@ namespace WebAPI.Controllers
         /// <param></param>
         /// <returns>Área correspondente</returns>
         /// <response code="200">Retorna área correspondente</response>
+        /// <response code="400">Requisição incorreta.</response>
+        /// <response code="401">Usuário não autorizado.</response>
+        /// <response code="404">Nenhuma área encontrada.</response>
         [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<DetailedReadAreaResponse>> GetById(Guid? id)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadAreaOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetById(Guid? id)
         {
-            _logger.LogInformation("Executando ({MethodName}) com os parâmetros: Id = {id}", id);
+            _logger.LogInformation("Executando ({MethodName}) com os parâmetros: Id = {id}", nameof(GetById), id);
 
             if (id == null)
             {
-                const string msg = "O id informado não pode ser nulo.";
-                _logger.LogWarning(msg);
-                return BadRequest(msg);
+                const string errorMessage = "O id informado não pode ser nulo.";
+                _logger.LogWarning(errorMessage);
+                return BadRequest(errorMessage);
             }
 
             try
             {
-                Adapters.Gateways.Base.IResponse model = await _service.GetById(id);
-                _logger.LogInformation("Método ({MethodName}) executado. Retorno: Id = {id}", id);
+                var model = await _getById.ExecuteAsync(id);
+                _logger.LogInformation("Método ({MethodName}) executado. Retorno: Id = {id}", nameof(GetById), id);
                 return Ok(model);
             }
             catch (Exception ex)
@@ -66,30 +89,35 @@ namespace WebAPI.Controllers
         /// <param></param>
         /// <returns>Todas as áreas ativas da área principal</returns>
         /// <response code="200">Retorna todas as áreas ativas da área principal</response>
+        /// <response code="400">Requisição incorreta.</response>
+        /// <response code="401">Usuário não autorizado.</response>
+        /// <response code="404">Nenhuma área encontrada.</response>
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<ResumedReadAreaResponse>>> GetAreasByMainArea(Guid? mainAreaId, int skip = 0, int take = 50)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ResumedReadAreaOutput>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetAreasByMainArea(Guid? mainAreaId, int skip = 0, int take = 50)
         {
             _logger.LogInformation("Executando método com os parâmetros: MainAreaId = {mainAreaId}, Skip = {skip}, Take = {take}", mainAreaId, skip, take);
 
             if (mainAreaId == null)
             {
-                const string msg = "O MainAreaId informado não pode ser nulo.";
-                _logger.LogWarning(msg);
-                return BadRequest(msg);
+                const string errorMessage = "O MainAreaId informado não pode ser nulo.";
+                _logger.LogWarning(errorMessage);
+                return BadRequest(errorMessage);
             }
 
             try
             {
-                IEnumerable<Adapters.Gateways.Base.IResponse> models = await _service.GetAreasByMainArea(mainAreaId, skip, take);
-                if (models == null)
+                var models = await _getAreasByMainArea.ExecuteAsync(mainAreaId, skip, take);
+                if (models == null || !models.Any())
                 {
-                    const string msg = "Nenhuma Área encontrada.";
-                    _logger.LogWarning(msg);
-                    return NotFound(msg);
+                    const string errorMessage = "Nenhuma Área encontrada.";
+                    _logger.LogWarning(errorMessage);
+                    return NotFound(errorMessage);
                 }
-                int count = models.Count();
-                _logger.LogInformation("Método finalizado, retorno: Número de entidades = {count}", count);
+                _logger.LogInformation("Método finalizado, retorno: Número de entidades = {count}", models.Count());
                 return Ok(models);
             }
             catch (Exception ex)
@@ -104,17 +132,19 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <param></param>
         /// <returns>Área criada</returns>
-        /// <response code="200">Retorna área criada</response>
+        /// <response code="201">Retorna área criada</response>
+        /// <response code="400">Requisição incorreta.</response>
         [HttpPost]
         [Authorize(Roles = "ADMIN")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<DetailedReadAreaResponse>> Create([FromBody] CreateAreaRequest request)
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(DetailedReadAreaOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Create([FromBody] CreateAreaInput request)
         {
             try
             {
-                DetailedReadAreaResponse? model = await _service.Create(request) as DetailedReadAreaResponse;
-                _logger.LogInformation("Método finalizado, retorno: Id = {id}", model?.Id);
-                return Ok(model);
+                var createdArea = await _create.ExecuteAsync(request);
+                _logger.LogInformation("Área criada {id}", createdArea?.Id);
+                return CreatedAtAction(nameof(GetById), new { id = createdArea?.Id }, createdArea);
             }
             catch (Exception ex)
             {
@@ -129,13 +159,23 @@ namespace WebAPI.Controllers
         /// <param></param>
         /// <returns>Área atualizada</returns>
         /// <response code="200">Retorna área atualizada</response>
+        /// <response code="400">Requisição incorreta.</response>
+        /// <response code="401">Usuário não autorizado.</response>
         [HttpPut("{id}")]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadAreaResponse>> Update(Guid? id, [FromBody] UpdateAreaRequest request)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadAreaOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<IActionResult> Update(Guid? id, [FromBody] UpdateAreaInput request)
         {
+            if (id == null)
+            {
+                return BadRequest("O id informado não pode ser nulo.");
+            }
+
             try
             {
-                DetailedReadAreaResponse? model = await _service.Update(id, request) as DetailedReadAreaResponse;
+                var model = await _update.ExecuteAsync(id, request);
                 _logger.LogInformation("Área atualizada: {id}", model?.Id);
                 return Ok(model);
             }
@@ -152,20 +192,23 @@ namespace WebAPI.Controllers
         /// <param></param>
         /// <returns>Área removida</returns>
         /// <response code="200">Retorna área removida</response>
+        /// <response code="400">Requisição incorreta.</response>
+        /// <response code="401">Usuário não autorizado.</response>
         [HttpDelete("{id}")]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadAreaResponse>> Delete(Guid? id)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadAreaOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
             {
-                const string msg = "O id informado não pode ser nulo.";
-                _logger.LogWarning(msg);
-                return BadRequest(msg);
+                return BadRequest("O id informado não pode ser nulo.");
             }
 
             try
             {
-                DetailedReadAreaResponse? model = await _service.Delete(id.Value) as DetailedReadAreaResponse;
+                var model = await _delete.ExecuteAsync(id.Value);
                 _logger.LogInformation("Área removida: {id}", model?.Id);
                 return Ok(model);
             }

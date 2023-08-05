@@ -1,9 +1,0 @@
-using Domain.UseCases.Ports.MainArea;
-
-namespace Domain.UseCases.Interfaces.MainArea
-{
-    public interface IUpdateMainArea
-    {
-        Task<DetailedMainAreaOutput> ExecuteAsync(Guid? id, UpdateMainAreaInput input);
-    }
-}

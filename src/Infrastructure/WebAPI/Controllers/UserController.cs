@@ -1,5 +1,5 @@
-using Adapters.Gateways.User;
-using Adapters.Interfaces;
+using Application.Ports.User;
+using Application.Interfaces.UseCases.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,41 +14,71 @@ namespace WebAPI.Controllers
     public class UserController : ControllerBase
     {
         #region Global Scope
-        private readonly IUserPresenterController _service;
+        private readonly IActivateUser _activateUser;
+        private readonly IDeactivateUser _deactivateUser;
+        private readonly IGetActiveUsers _getActiveUsers;
+        private readonly IGetInactiveUsers _getInactiveUsers;
+        private readonly IGetUserById _getUserById;
+        private readonly IUpdateUser _updateUser;
         private readonly ILogger<UserController> _logger;
+
         /// <summary>
         /// Construtor do Controller de Usuário.
         /// </summary>
-        /// <param name="service"></param>
-        /// <param name="logger"></param>
-        public UserController(IUserPresenterController service, ILogger<UserController> logger)
+        /// <param name="activateUser">Ativa usuário.</param>
+        /// <param name="deactivateUser">Desativa usuário.</param>
+        /// <param name="getActiveUsers">Obtém todos os usuários ativos.</param>
+        /// <param name="getInactiveUsers">Obtém todos os usuários inativos.</param>
+        /// <param name="getUserById">Obtém usuário pelo id.</param>
+        /// <param name="updateUser">Atualiza usuário.</param>
+        /// <param name="logger">Logger.</param>
+        public UserController(IActivateUser activateUser,
+            IDeactivateUser deactivateUser,
+            IGetActiveUsers getActiveUsers,
+            IGetInactiveUsers getInactiveUsers,
+            IGetUserById getUserById,
+            IUpdateUser updateUser,
+            ILogger<UserController> logger)
         {
-            _service = service;
+            _activateUser = activateUser;
+            _deactivateUser = deactivateUser;
+            _getActiveUsers = getActiveUsers;
+            _getInactiveUsers = getInactiveUsers;
+            _getUserById = getUserById;
+            _updateUser = updateUser;
             _logger = logger;
         }
         #endregion Global Scope
 
         /// <summary>
-        /// Busca usuário pelo id.
+        /// Obtém usuário pelo id.
         /// </summary>
-        /// <param></param>
-        /// <returns>Todos os usuários ativos</returns>
-        /// <response code="200">Retorna todos os usuários ativos</response>
+        /// <param name="id">Id do usuário.</param>
+        /// <returns>Usuário encontrado.</returns>
+        /// <response code="200">Usuário encontrado.</response>
+        /// <response code="400">Id não informado.</response>
+        /// <response code="401">Usuário não autorizado.</response>
+        /// <response code="404">Usuário não encontrado.</response>
         [HttpGet("{id}", Name = "GetUserById")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<UserReadResponse>>> GetById(Guid? id)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserReadOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<UserReadOutput>> GetById(Guid? id)
         {
             if (id == null)
             {
-                const string msg = "O id informado não pode ser nulo.";
-                _logger.LogWarning(msg);
-                return BadRequest(msg);
+                return BadRequest("O ID informado não pode ser nulo.");
             }
 
             try
             {
-                UserReadResponse model = await _service.GetUserById(id);
-                _logger.LogInformation("Usuário encontrado para o id {id}.", id);
+                var model = await _getUserById.ExecuteAsync(id);
+                if (model == null)
+                {
+                    return NotFound();
+                }
+                _logger.LogInformation("Usuário encontrado para o ID {id}.", id);
                 return Ok(model);
             }
             catch (Exception ex)
@@ -59,62 +89,70 @@ namespace WebAPI.Controllers
         }
 
         /// <summary>
-        /// Busca todos os usuários ativos.
+        /// Obtém todos os usuários ativos.
         /// </summary>
-        /// <param></param>
-        /// <returns>Todos os usuários ativos</returns>
-        /// <response code="200">Retorna todos os usuários ativos</response>
+        /// <param name="skip">Quantidade de registros a serem ignorados.</param>
+        /// <param name="take">Quantidade de registros a serem retornados.</param>
+        /// <returns>Usuários ativos.</returns>
+        /// <response code="200">Usuários encontrados.</response>
+        /// <response code="401">Usuário não autorizado.</response>
+        /// <response code="404">Usuários não encontrados.</response>
         [HttpGet("Active/", Name = "GetAllActiveUsers")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<UserReadResponse>>> GetAllActive(int skip = 0, int take = 50)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<UserReadOutput>))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IEnumerable<UserReadOutput>>> GetAllActive(int skip = 0, int take = 50)
         {
-            IEnumerable<UserReadResponse> models = await _service.GetActiveUsers(skip, take);
-            if (models == null)
+            var models = await _getActiveUsers.ExecuteAsync(skip, take);
+            if (!models.Any())
             {
-                const string msg = "Nenhum usuário encontrado.";
-                _logger.LogWarning(msg);
-                return NotFound(msg);
+                return NotFound("Nenhum usuário encontrado.");
             }
             _logger.LogInformation("Usuários encontrados: {quantidade}", models.Count());
             return Ok(models);
         }
 
         /// <summary>
-        /// Busca todos os usuários inativos.
+        /// Obtém todos os usuários inativos.
         /// </summary>
-        /// <param></param>
-        /// <returns>Todos os usuários inativos</returns>
-        /// <response code="200">Retorna todos os usuários ativos</response>
+        /// <param name="skip">Quantidade de registros a serem ignorados.</param>
+        /// <param name="take">Quantidade de registros a serem retornados.</param>
+        /// <returns>Usuários inativos.</returns>
+        /// <response code="200">Usuários encontrados.</response>
+        /// <response code="401">Usuário não autorizado.</response>
+        /// <response code="404">Usuários não encontrados.</response>
         [HttpGet("Inactive/", Name = "GetAllInactiveUsers")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<UserReadResponse>>> GetAllInactive(int skip = 0, int take = 50)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<UserReadOutput>))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IEnumerable<UserReadOutput>>> GetAllInactive(int skip = 0, int take = 50)
         {
-            IEnumerable<UserReadResponse> models = await _service.GetInactiveUsers(skip, take);
-            if (models == null)
+            var models = await _getInactiveUsers.ExecuteAsync(skip, take);
+            if (!models.Any())
             {
-                const string msg = "Nenhum usuário encontrado.";
-                _logger.LogWarning(msg);
-                return NotFound(msg);
+                return NotFound("Nenhum usuário encontrado.");
             }
             _logger.LogInformation("Usuários encontrados: {quantidade}", models.Count());
             return Ok(models);
         }
 
         /// <summary>
-        /// Realiza atualização do usuário logado.
+        /// Atualiza usuário autenticado.
         /// </summary>
-        /// <param></param>
-        /// <returns>Retorna usuário atualizado</returns>
-        /// <response code="200">Retorna usuário atualizado</response>
-        [HttpPut(Name = "UpdateUser")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<UserReadResponse>> Update([FromBody] UserUpdateRequest request)
+        /// <param name="request">Dados do usuário.</param>
+        /// <returns>Usuário atualizado.</returns>
+        /// <response code="200">Usuário atualizado.</response>
+        /// <response code="400">Dados inválidos.</response>
+        /// <response code="401">Usuário não autorizado.</response>
+        [HttpPut("{userId}", Name = "UpdateUser")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserReadOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<ActionResult<UserReadOutput>> Update([FromBody] UserUpdateInput request)
         {
             try
             {
-                // Atualiza o usuário e retorna o usuário atualizado
-                UserReadResponse? model = await _service.UpdateUser(request);
-
+                var model = await _updateUser.ExecuteAsync(request);
                 _logger.LogInformation("Usuário atualizado: {id}", model?.Id);
                 return Ok(model);
             }
@@ -126,26 +164,30 @@ namespace WebAPI.Controllers
         }
 
         /// <summary>
-        /// Realiza reativação de usário.
+        /// Ativa usuário pelo Id.
         /// </summary>
-        /// <param></param>
-        /// <returns>Retorna usuário reativado</returns>
-        /// <response code="200">Retorna usuário reativado</response>
-        [HttpPut("Active/{id}", Name = "ActivateUser")]
+        /// <param name="userId">Id do usuário.</param>
+        /// <returns>Usuário ativado.</returns>
+        /// <response code="200">Usuário ativado.</response>
+        /// <response code="400">Id não informado.</response>
+        /// <response code="401">Usuário não autorizado.</response>
+        /// <response code="404">Usuário não encontrado.</response>
+        [HttpPut("Active/{userId}", Name = "ActivateUser")]
         [Authorize(Roles = "ADMIN")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<UserReadResponse>> Activate(Guid? id)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserReadOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<UserReadOutput>> Activate(Guid? userId)
         {
-            if (id == null)
+            if (userId == null)
             {
-                const string msg = "O id informado não pode ser nulo.";
-                _logger.LogWarning(msg);
-                return BadRequest(msg);
+                return BadRequest("O ID informado não pode ser nulo.");
             }
 
             try
             {
-                UserReadResponse? model = await _service.ActivateUser(id.Value);
+                var model = await _activateUser.ExecuteAsync(userId.Value);
                 _logger.LogInformation("Usuário ativado: {id}", model?.Id);
                 return Ok(model);
             }
@@ -157,26 +199,30 @@ namespace WebAPI.Controllers
         }
 
         /// <summary>
-        /// Realiza desativação de usário.
+        /// Desativa usuário pelo Id.
         /// </summary>
-        /// <param></param>
-        /// <returns>Retorna usuário desativado</returns>
-        /// <response code="200">Retorna usuário desativado</response>
-        [HttpPut("Inactive/{id}", Name = "DeactivateUser")]
+        /// <param name="userId">Id do usuário.</param>
+        /// <returns>Usuário desativado.</returns>
+        /// <response code="200">Usuário desativado.</response>
+        /// <response code="400">Id não informado.</response>
+        /// <response code="401">Usuário não autorizado.</response>
+        /// <response code="404">Usuário não encontrado.</response>
+        [HttpPut("Inactive/{userId}", Name = "DeactivateUser")]
         [Authorize(Roles = "ADMIN")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<UserReadResponse>> Deactivate(Guid? id)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserReadOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<UserReadOutput>> Deactivate(Guid? userId)
         {
-            if (id == null)
+            if (userId == null)
             {
-                const string msg = "O id informado não pode ser nulo.";
-                _logger.LogWarning(msg);
-                return BadRequest(msg);
+                return BadRequest("O ID informado não pode ser nulo.");
             }
 
             try
             {
-                UserReadResponse? model = await _service.DeactivateUser(id.Value);
+                var model = await _deactivateUser.ExecuteAsync(userId.Value);
                 _logger.LogInformation("Usuário desativado: {id}", model?.Id);
                 return Ok(model);
             }

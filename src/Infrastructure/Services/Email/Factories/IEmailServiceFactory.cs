@@ -1,4 +1,4 @@
-using Domain.Interfaces.Services;
+using Application.Interfaces.Services;
 using Microsoft.Extensions.Configuration;
 using Services.Email.Configs;
 

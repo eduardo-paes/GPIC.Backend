@@ -1,5 +1,5 @@
 using AspNetCoreRateLimit;
-using IoC;
+using Infrastructure.IoC;
 using WebAPI.Middlewares;
 
 namespace WebAPI
@@ -20,8 +20,9 @@ namespace WebAPI
 
             // Realiza comunicação com os demais Projetos.
             services.AddInfrastructure();
-            services.AddAdapters();
-            services.AddDomain();
+            services.AddPersistence();
+            services.AddExternalServices();
+            services.AddApplication();
 
             // Configuração do Swagger
             services.AddInfrastructureSwagger();

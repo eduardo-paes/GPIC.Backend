@@ -1,8 +1,8 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Domain.Interfaces.Services;
-using Domain.UseCases.Ports.Auth;
+using Application.Interfaces.Services;
+using Application.Ports.Auth;
 using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
 
