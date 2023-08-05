@@ -28,7 +28,7 @@
     <ProjectReference Include="..\IoC\IoC.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
-    <ProjectReference Include="..\..\Adapters\Adapters.csproj" />
+    <ProjectReference Include="..\..\Application\Application.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Microsoft.EntityFrameworkCore.Design" />

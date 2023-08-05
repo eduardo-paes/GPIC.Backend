@@ -1,5 +1,7 @@
 using System.Data;
 using System.Net.Mail;
+using System.Security.Cryptography;
+using System.Text;
 using Domain.Entities.Enums;
 using Domain.Entities.Primitives;
 using Domain.Validation;
@@ -87,6 +89,11 @@ namespace Domain.Entities
                 _role = value;
             }
         }
+        public User(bool isConfirmed)
+        {
+            this.IsConfirmed = isConfirmed;
+
+        }
         public bool IsConfirmed { get; private set; }
 
         private string? _validationCode;
@@ -123,7 +130,7 @@ namespace Domain.Entities
         #endregion
 
         #region Constructors
-        internal User(string? name, string? email, string? password, string? cpf, ERole? role)
+        public User(string? name, string? email, string? password, string? cpf, ERole? role)
         {
             Name = name;
             Email = email;
@@ -147,7 +154,7 @@ namespace Domain.Entities
             ValidationCode = GenerateValidationCode();
         }
 
-        internal void ConfirmUserEmail(string validationCode)
+        public void ConfirmUserEmail(string validationCode)
         {
             EntityExceptionValidation.When(IsConfirmed,
                 "O e-mail do usuário já foi confirmado.");
@@ -159,9 +166,9 @@ namespace Domain.Entities
         #endregion
 
         #region Reset Password
-        internal void GenerateResetPasswordToken() => ResetPasswordToken = GenerateValidationCode(6);
+        public void GenerateResetPasswordToken() => ResetPasswordToken = GenerateValidationCode(6);
 
-        internal bool UpdatePassword(string password, string token)
+        public bool UpdatePassword(string password, string token)
         {
             if (ResetPasswordToken?.Equals(token) == true)
             {
@@ -227,10 +234,18 @@ namespace Domain.Entities
 
         private static string GenerateValidationCode(int size = 6)
         {
-            var random = new Random();
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            return new string(Enumerable.Repeat(chars, size)
-                .Select(s => s[random.Next(s.Length)]).ToArray());
+            const string allowedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            using var rng = RandomNumberGenerator.Create();
+            byte[] randomBytes = new byte[size];
+            rng.GetBytes(randomBytes);
+
+            StringBuilder code = new(size);
+            foreach (byte b in randomBytes)
+            {
+                code.Append(allowedCharacters[b % allowedCharacters.Length]);
+            }
+
+            return code.ToString();
         }
         #endregion
     }

@@ -1,4 +1,5 @@
-using Adapters.Interfaces;
+using Application.Interfaces.UseCases.ActivityType;
+using Application.Ports.Activity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,16 +13,21 @@ namespace WebAPI.Controllers
     [Authorize]
     public class ActivityController : ControllerBase
     {
-        private readonly IActivityPresenterController _activityPresenterController;
+        private readonly IGetLastNoticeActivities _getLastNoticeActivities;
+        private readonly IGetActivitiesByNoticeId _getActivitiesByNoticeId;
         private readonly ILogger<ActivityController> _logger;
         /// <summary>
         /// Construtor da classe.
         /// </summary>
-        /// <param name="activityPresenterController"></param>
-        /// <param name="logger"></param>
-        public ActivityController(IActivityPresenterController activityPresenterController, ILogger<ActivityController> logger)
+        /// <param name="getLastNoticeActivities">Serviço de obtenção das últimas atividades em uso pelo edital anterior.</param>
+        /// <param name="getActivitiesByNoticeId">Serviço de obtenção das atividades de um edital.</param>
+        /// <param name="logger">Serviço de log.</param>
+        public ActivityController(IGetLastNoticeActivities getLastNoticeActivities,
+            IGetActivitiesByNoticeId getActivitiesByNoticeId,
+            ILogger<ActivityController> logger)
         {
-            _activityPresenterController = activityPresenterController;
+            _getLastNoticeActivities = getLastNoticeActivities;
+            _getActivitiesByNoticeId = getActivitiesByNoticeId;
             _logger = logger;
         }
 
@@ -31,14 +37,16 @@ namespace WebAPI.Controllers
         /// <returns>Lista de atividades mais recentes.</returns>
         /// <response code="200">Retorna a lista de atividades mais recentes.</response>
         /// <response code="400">Requisição incorreta.</response>
+        /// <response code="401">Usuário não autorizado.</response>
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ActivityOutput>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetLastNoticeActivities()
         {
             try
             {
-                IEnumerable<Adapters.Gateways.Activity.ActivityTypeResponse> result = await _activityPresenterController.GetLastNoticeActivities();
+                var result = await _getLastNoticeActivities.ExecuteAsync();
                 _logger.LogInformation("Atividades encontradas.");
                 return Ok(result);
             }
@@ -56,15 +64,21 @@ namespace WebAPI.Controllers
         /// <returns>Lista de atividades.</returns>
         /// <response code="200">Retorna a lista de atividades.</response>
         /// <response code="400">Requisição incorreta.</response>
-        [HttpGet]
-        [Route("notice/{noticeId}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        /// <response code="401">Usuário não autorizado.</response>
+        [HttpGet("notice/{noticeId}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ActivityOutput>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetActivitiesByNoticeId(Guid? noticeId)
         {
+            if (noticeId == null)
+            {
+                return BadRequest("O ID do edital não pode ser nulo.");
+            }
+
             try
             {
-                IEnumerable<Adapters.Gateways.Activity.ActivityTypeResponse> result = await _activityPresenterController.GetActivitiesByNoticeId(noticeId);
+                var result = await _getActivitiesByNoticeId.ExecuteAsync(noticeId);
                 _logger.LogInformation("Atividades encontradas para o edital {noticeId}.", noticeId);
                 return Ok(result);
             }

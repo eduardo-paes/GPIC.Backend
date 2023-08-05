@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
-using Domain.Interfaces.Services;
+using Application.Interfaces.Services;
 using DZen.Security.Cryptography;
 
 namespace Services

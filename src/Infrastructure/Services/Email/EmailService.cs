@@ -1,6 +1,6 @@
 using System.Net;
 using System.Net.Mail;
-using Domain.Interfaces.Services;
+using Application.Interfaces.Services;
 using Microsoft.Extensions.Configuration;
 
 namespace Services.Email

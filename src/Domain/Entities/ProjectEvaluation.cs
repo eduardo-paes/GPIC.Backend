@@ -15,7 +15,7 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(value is null,
-                    ExceptionMessageFactory.Required(nameof(IsProductivityFellow)));
+                    ExceptionMessageFactory.Required(nameof(ProjectId)));
                 _projectId = value;
             }
         }

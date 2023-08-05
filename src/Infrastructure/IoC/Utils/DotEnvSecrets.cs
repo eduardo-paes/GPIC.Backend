@@ -1,6 +1,6 @@
 using Services;
 
-namespace IoC.Utils
+namespace Infrastructure.IoC.Utils
 {
     public class DotEnvSecrets : IDotEnvSecrets
     {

@@ -1,8 +1,8 @@
-using Adapters.Gateways.Project;
-using Adapters.Gateways.ProjectEvaluation;
-using Adapters.Interfaces;
+using Application.Ports.ProjectEvaluation;
+using Application.Interfaces.UseCases.ProjectEvaluation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Application.Ports.Project;
 
 namespace WebAPI.Controllers
 {
@@ -15,19 +15,26 @@ namespace WebAPI.Controllers
     public class ProjectEvaluationController : ControllerBase
     {
         #region Global Scope
-        private readonly IProjectEvaluationPresenterController _service;
+        private readonly IEvaluateAppealProject _evaluateAppealProject;
+        private readonly IEvaluateSubmissionProject _evaluateSubmissionProject;
+        private readonly IGetEvaluationByProjectId _getEvaluationByProjectId;
         private readonly ILogger<ProjectEvaluationController> _logger;
 
         /// <summary>
         /// Construtor do Controller de projetos.
         /// </summary>
-        /// <param name="service"></param>
-        /// <param name="logger"></param>
-        public ProjectEvaluationController(
-            IProjectEvaluationPresenterController service,
+        /// <param name="evaluateAppealProject">Serviço de avaliação de recurso de projeto.</param>
+        /// <param name="evaluateSubmissionProject">Serviço de avaliação de submissão de projeto.</param>
+        /// <param name="getEvaluationByProjectId">Serviço de obtenção de avaliação de projeto pelo id do projeto.</param>
+        /// <param name="logger">Serviço de log.</param>
+        public ProjectEvaluationController(IEvaluateAppealProject evaluateAppealProject,
+            IEvaluateSubmissionProject evaluateSubmissionProject,
+            IGetEvaluationByProjectId getEvaluationByProjectId,
             ILogger<ProjectEvaluationController> logger)
         {
-            _service = service;
+            _evaluateAppealProject = evaluateAppealProject;
+            _evaluateSubmissionProject = evaluateSubmissionProject;
+            _getEvaluationByProjectId = getEvaluationByProjectId;
             _logger = logger;
         }
         #endregion Global Scope
@@ -38,28 +45,37 @@ namespace WebAPI.Controllers
         /// <param></param>
         /// <returns>Avaliação do projeto correspondente</returns>
         /// <response code="200">Retorna avaliação do projeto correspondente</response>
+        /// <response code="400">Retorna mensagem de erro</response>
+        /// <response code="401">Retorna mensagem de erro</response>
         /// <response code="404">Nenhum avaliação do projeto encontrado.</response>
         [HttpGet("{projectId}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<DetailedReadProjectEvaluationResponse>> GetEvaluationByProjectId(Guid? projectId)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadProjectEvaluationOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<DetailedReadProjectEvaluationOutput>> GetEvaluationByProjectId(Guid? projectId)
         {
             if (projectId == null)
             {
-                const string msg = "O id informado não pode ser nulo.";
-                _logger.LogWarning(msg);
-                return BadRequest(msg);
+                const string errorMessage = "O ID do projeto não pode ser nulo.";
+                _logger.LogWarning(errorMessage);
+                return BadRequest(errorMessage);
             }
 
             try
             {
-                DetailedReadProjectEvaluationResponse model = await _service.GetEvaluationByProjectId(projectId);
-                _logger.LogInformation("Avaliação do projeto encontrado para o id {id}.", projectId);
-                return Ok(model);
+                var evaluation = await _getEvaluationByProjectId.ExecuteAsync(projectId.Value);
+                if (evaluation == null)
+                {
+                    return NotFound();
+                }
+                _logger.LogInformation("Avaliação do projeto encontrada para o ID {id}.", projectId);
+                return Ok(evaluation);
             }
             catch (Exception ex)
             {
                 _logger.LogError("Ocorreu um erro: {ErrorMessage}", ex.Message);
-                return NotFound(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -69,16 +85,20 @@ namespace WebAPI.Controllers
         /// <param name="request"></param>
         /// <returns>Projeto correspondente</returns>
         /// <response code="200">Retorna avaliação do projeto correspondente</response>
+        /// <response code="400">Retorna mensagem de erro</response>
+        /// <response code="401">Retorna mensagem de erro</response>
         [HttpPost("submission")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadProjectOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [Authorize(Roles = "ADMIN, PROFESSOR")]
-        public async Task<ActionResult<DetailedReadProjectResponse>> EvaluateSubmissionProject([FromBody] EvaluateSubmissionProjectRequest request)
+        public async Task<ActionResult<DetailedReadProjectOutput>> EvaluateSubmissionProject([FromBody] EvaluateSubmissionProjectInput request)
         {
             try
             {
-                DetailedReadProjectResponse? model = await _service.EvaluateSubmissionProject(request);
-                _logger.LogInformation("Avaliação da submissão do projeto {id} realizada.", model?.Id);
-                return Ok(model);
+                var evaluatedProject = await _evaluateSubmissionProject.ExecuteAsync(request);
+                _logger.LogInformation("Avaliação da submissão do projeto {id} realizada.", evaluatedProject?.Id);
+                return Ok(evaluatedProject);
             }
             catch (Exception ex)
             {
@@ -93,15 +113,20 @@ namespace WebAPI.Controllers
         /// <param name="request"></param>
         /// <returns>Projeto correspondente</returns>
         /// <response code="200">Retorna avaliação do projeto correspondente</response>
+        /// <response code="400">Retorna mensagem de erro</response>
+        /// <response code="401">Retorna mensagem de erro</response>
         [HttpPut("appeal")]
-        [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadProjectResponse>> EvaluateAppealProjectRequest([FromBody] EvaluateAppealProjectRequest request)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadProjectOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [Authorize(Roles = "ADMIN, PROFESSOR")]
+        public async Task<ActionResult<DetailedReadProjectOutput>> EvaluateAppealProjectRequest([FromBody] EvaluateAppealProjectInput request)
         {
             try
             {
-                DetailedReadProjectResponse? model = await _service.EvaluateAppealProject(request);
-                _logger.LogInformation("Avaliação do recurso do projeto {id} realizada.", model?.Id);
-                return Ok(model);
+                var evaluatedProject = await _evaluateAppealProject.ExecuteAsync(request);
+                _logger.LogInformation("Avaliação do recurso do projeto {id} realizada.", evaluatedProject?.Id);
+                return Ok(evaluatedProject);
             }
             catch (Exception ex)
             {
