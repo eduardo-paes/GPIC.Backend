@@ -7,7 +7,7 @@ using NUnit.Framework;
 using Application.Interfaces.UseCases.Area;
 using Application.UseCases.Area;
 
-namespace Domain.Tests.UseCases.Area
+namespace Application.Tests.UseCases.Area
 {
     [TestFixture]
     public class GetAreaByIdTests
@@ -16,7 +16,7 @@ namespace Domain.Tests.UseCases.Area
         private Mock<IAreaRepository> _areaRepositoryMock;
         private Mock<IMapper> _mapperMock;
 
-        public static Entities.Area MockValidArea() => new(Guid.NewGuid(), "ABC", "Area Name");
+        public static Domain.Entities.Area MockValidArea() => new(Guid.NewGuid(), "ABC", "Area Name");
 
         [SetUp]
         public void Setup()

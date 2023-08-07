@@ -7,7 +7,7 @@ using Domain.Interfaces.Repositories;
 using Moq;
 using NUnit.Framework;
 
-namespace Domain.Tests.UseCases.Area
+namespace Application.Tests.UseCases.Area
 {
     [TestFixture]
     public class DeleteAreaTests

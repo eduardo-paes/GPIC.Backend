@@ -7,7 +7,7 @@ using Moq;
 using NUnit.Framework;
 using Application.UseCases.Area;
 
-namespace Domain.Tests.UseCases.Area
+namespace Application.Tests.UseCases.Area
 {
     [TestFixture]
     public class CreateAreaTests
@@ -17,8 +17,8 @@ namespace Domain.Tests.UseCases.Area
         private Mock<IMainAreaRepository> _mainAreaRepositoryMock;
         private Mock<IMapper> _mapperMock;
 
-        public static Entities.Area MockValidArea() => new(Guid.NewGuid(), "ABC", "Area Name");
-        private static Entities.MainArea MockValidMainArea() => new(Guid.NewGuid(), "ABC", "Main Area Name");
+        public static Domain.Entities.Area MockValidArea() => new(Guid.NewGuid(), "ABC", "Area Name");
+        private static Domain.Entities.MainArea MockValidMainArea() => new(Guid.NewGuid(), "ABC", "Main Area Name");
 
         [SetUp]
         public void Setup()
@@ -48,9 +48,9 @@ namespace Domain.Tests.UseCases.Area
             var areaEntity = MockValidArea();
             var detailedOutput = new DetailedReadAreaOutput();
 
-            _areaRepositoryMock.Setup(r => r.GetByCodeAsync(input.Code)).ReturnsAsync((Entities.Area)null);
+            _areaRepositoryMock.Setup(r => r.GetByCodeAsync(input.Code)).ReturnsAsync((Domain.Entities.Area)null);
             _mainAreaRepositoryMock.Setup(r => r.GetByIdAsync(input.MainAreaId)).ReturnsAsync(MockValidMainArea());
-            _areaRepositoryMock.Setup(r => r.CreateAsync(It.IsAny<Entities.Area>())).ReturnsAsync(areaEntity);
+            _areaRepositoryMock.Setup(r => r.CreateAsync(It.IsAny<Domain.Entities.Area>())).ReturnsAsync(areaEntity);
             _mapperMock.Setup(m => m.Map<DetailedReadAreaOutput>(areaEntity)).Returns(detailedOutput);
 
             // Act
