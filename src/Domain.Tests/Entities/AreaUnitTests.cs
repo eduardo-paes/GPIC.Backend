@@ -7,7 +7,7 @@ using Xunit;
 namespace Domain.Tests.Entities;
 public class AreaUnitTests
 {
-    private Area MockValidArea() => new Area(Guid.NewGuid(), "ABC", "Area Name");
+    private static Area MockValidArea() => new(Guid.NewGuid(), "ABC", "Area Name");
 
     [Fact]
     public void SetMainAreaId_ValidId_SetsMainAreaId()

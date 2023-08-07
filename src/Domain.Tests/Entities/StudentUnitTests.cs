@@ -9,7 +9,7 @@ namespace Domain.Tests.Entities
 {
     public class StudentUnitTests
     {
-        private Student MockValidStudent() => new Student(
+        private static Student MockValidStudent() => new(
             birthDate: new DateTime(2000, 1, 1),
             rg: 123456789,
             issuingAgency: "Agency",
@@ -27,7 +27,8 @@ namespace Domain.Tests.Entities
             campusId: Guid.NewGuid(),
             courseId: Guid.NewGuid(),
             startYear: "2022",
-            studentAssistanceProgramId: Guid.NewGuid()
+            studentAssistanceProgramId: Guid.NewGuid(),
+            registrationCode: "GCOM1234567"
         );
 
         [Fact]

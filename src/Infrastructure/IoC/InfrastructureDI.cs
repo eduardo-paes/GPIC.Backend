@@ -34,6 +34,7 @@ namespace Infrastructure.IoC
             #endregion Serviço de Log
 
             #region CORS
+            // TODO: Definir política de CORS
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(
