@@ -1,7 +1,7 @@
 using AutoMapper;
 using Domain.Entities.Enums;
 using Domain.Interfaces.Repositories;
-using Application.Interfaces.Services;
+using Domain.Interfaces.Services;
 using Application.Interfaces.UseCases.Project;
 using Application.Ports.Project;
 using Application.Validation;
@@ -27,36 +27,33 @@ namespace Application.UseCases.Project
         public async Task<IList<ResumedReadProjectOutput>> ExecuteAsync(int skip, int take, bool onlyMyProjects = true)
         {
             // Obtém as claims do usuário autenticado.
-            var userClaims = _tokenAuthenticationService.GetUserAuthenticatedClaims();
+            var user = _tokenAuthenticationService.GetUserAuthenticatedClaims();
 
             // Se o usuário não estiver autenticado, lança uma exceção.
-            UseCaseException.BusinessRuleViolation(userClaims == null || userClaims.Role == null,
+            UseCaseException.BusinessRuleViolation(user == null || user.Role == null,
                 "Usuário não autorizado.");
-
-            // Obtém o tipo de usuário.
-            ERole userRole = Enum.Parse<ERole>(userClaims?.Role!);
 
             // Obtém a lista de projetos de acordo com o tipo de usuário.
             IEnumerable<Domain.Entities.Project> projects;
 
             // Se o usuário for um professor, retorna apenas os seus projetos.
-            if (userRole == ERole.PROFESSOR)
+            if (user?.Role == ERole.PROFESSOR)
             {
-                projects = await _projectRepository.GetProfessorProjectsAsync(skip, take, userClaims?.Id, true);
+                projects = await _projectRepository.GetProfessorProjectsAsync(skip, take, user?.Id, true);
             }
 
             // Se o usuário for um aluno, retorna apenas os seus projetos.
-            else if (userRole == ERole.STUDENT)
+            else if (user?.Role == ERole.STUDENT)
             {
-                projects = await _projectRepository.GetStudentProjectsAsync(skip, take, userClaims?.Id, true);
+                projects = await _projectRepository.GetStudentProjectsAsync(skip, take, user?.Id, true);
             }
 
             // Se o usuário for um administrador, permite a busca apenas pelo seu ID.
             else
             {
-                projects = userRole == ERole.ADMIN && onlyMyProjects
-                    ? await _projectRepository.GetProfessorProjectsAsync(skip, take, userClaims?.Id, true)
-                    : userRole == ERole.ADMIN && !onlyMyProjects
+                projects = user?.Role == ERole.ADMIN && onlyMyProjects
+                    ? await _projectRepository.GetProfessorProjectsAsync(skip, take, user?.Id, true)
+                    : user?.Role == ERole.ADMIN && !onlyMyProjects
                                     ? await _projectRepository.GetProjectsAsync(skip, take, true)
                                     : throw UseCaseException.BusinessRuleViolation("Usuário não autorizado.");
             }

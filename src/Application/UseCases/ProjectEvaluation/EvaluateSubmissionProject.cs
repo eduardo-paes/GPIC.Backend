@@ -1,7 +1,7 @@
 using AutoMapper;
 using Domain.Entities.Enums;
 using Domain.Interfaces.Repositories;
-using Application.Interfaces.Services;
+using Domain.Interfaces.Services;
 using Application.Interfaces.UseCases.ProjectEvaluation;
 using Application.Ports.Project;
 using Application.Ports.ProjectEvaluation;
@@ -43,8 +43,8 @@ namespace Application.UseCases.ProjectEvaluation
             var user = _tokenAuthenticationService.GetUserAuthenticatedClaims();
 
             // Verifica se o usuário logado é um avaliador.
-            UseCaseException.BusinessRuleViolation(user.Role != ERole.ADMIN.GetDescription()
-                    || user.Role != ERole.PROFESSOR.GetDescription(),
+            UseCaseException.BusinessRuleViolation(user.Role != ERole.ADMIN
+                    || user.Role != ERole.PROFESSOR,
                 "O usuário não é um avaliador.");
 
             // Verifica se já existe alguma avaliação para o projeto.

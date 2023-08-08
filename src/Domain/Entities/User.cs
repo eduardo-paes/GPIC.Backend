@@ -89,11 +89,7 @@ namespace Domain.Entities
                 _role = value;
             }
         }
-        public User(bool isConfirmed)
-        {
-            this.IsConfirmed = isConfirmed;
 
-        }
         public bool IsConfirmed { get; private set; }
 
         private string? _validationCode;
@@ -130,6 +126,13 @@ namespace Domain.Entities
         #endregion
 
         #region Constructors
+        public User(Guid? id, string? name, string? role)
+        {
+            Id = id;
+            Name = name;
+            Role = Enum.Parse<ERole>(role!);
+        }
+
         public User(string? name, string? email, string? password, string? cpf, ERole? role)
         {
             Name = name;
