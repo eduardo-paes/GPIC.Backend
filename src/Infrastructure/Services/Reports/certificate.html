@@ -122,59 +122,29 @@
             <hr />
             <div class="d-flex align-content-start flex-wrap m-0 p-0">
               <strong class="label-text input-text">Nome do Orientado:</strong>
-              <p class="input-text">#NOME_ORIENTADO_1#</p>
+              <p class="input-text">#NOME_ORIENTADO#</p>
             </div>
             <div class="d-flex px-0 py-1">
-              <p class="student-info">Edital de Entrada: #DATA_EDITAL_1#</p>
-              <p class="student-info">Bolsita do: #PIBIC_TIPO_1#</p>
+              <p class="student-info">Edital de Entrada: #DATA_EDITAL#</p>
+              <p class="student-info">Bolsita do: #PIBIC_TIPO#</p>
             </div>
             <div class="d-flex px-0 py-1">
               <p class="student-info">
-                Início da Pesquisa neste edital: #INIP_EDITAL_1#
+                Início da Pesquisa neste edital: #INIP_EDITAL#
               </p>
-              <p class="student-info">Término: #FIMP_EDITAL_1#</p>
-              <p class="student-info">Situação: #SITP_EDITAL_1#</p>
+              <p class="student-info">Término: #FIMP_EDITAL#</p>
+              <p class="student-info">Situação: #SITP_EDITAL#</p>
             </div>
             <div class="d-flex text-start px-0 py-1">
               <p class="student-info">
                 Título do Projeto de Iniciação Cientifica:
-                #TITULO_PROJETO_ALUNO_1#
+                #TITULO_PROJETO_ALUNO#
               </p>
             </div>
             <div class="d-flex text-start px-0 py-1">
               <p class="student-info">
                 Título do Projeto de Pesquisado Orientador:
-                #TITULO_PROJETO_ORIENTADOR_1#
-              </p>
-            </div>
-          </section>
-          <section id="dado-aluno">
-            <hr />
-            <div class="d-flex align-content-start flex-wrap m-0 p-0">
-              <strong class="label-text input-text">Nome do Orientado:</strong>
-              <p class="input-text">#NOME_ORIENTADO_2#</p>
-            </div>
-            <div class="d-flex px-0 py-1">
-              <p class="student-info">Edital de Entrada: #DATA_EDITAL_2#</p>
-              <p class="student-info">Bolsita do: #PIBIC_TIPO_2#</p>
-            </div>
-            <div class="d-flex px-0 py-1">
-              <p class="student-info">
-                Início da Pesquisa neste edital: #INIP_EDITAL_2#
-              </p>
-              <p class="student-info">Término: #FIMP_EDITAL_2#</p>
-              <p class="student-info">Situação: #SITP_EDITAL_2#</p>
-            </div>
-            <div class="d-flex text-start px-0 py-1">
-              <p class="student-info">
-                Título do Projeto de Iniciação Cientifica:
-                #TITULO_PROJETO_ALUNO_2#
-              </p>
-            </div>
-            <div class="d-flex text-start px-0 py-1">
-              <p class="student-info">
-                Título do Projeto de Pesquisado Orientador:
-                #TITULO_PROJETO_ORIENTADOR_2#
+                #TITULO_PROJETO_ORIENTADOR#
               </p>
             </div>
           </section>
@@ -193,7 +163,6 @@
             <div class="d-flex flex-column mt-4">
               <p class="text-center">#NOME_COORDENADOR#</p>
               <p class="text-center">Coordenador COPET</p>
-              <p class="text-center">ASSINATURA</p>
             </div>
           </div>
         </section>
@@ -204,29 +173,5 @@
         </section>
       </div>
     </div>
-
-    <script>
-      // Função para formatar a data no formato desejado (dia da semana, dd de mês de aaaa)
-      function formatDate(date) {
-        const options = {
-          weekday: "long",
-          day: "numeric",
-          month: "long",
-          year: "numeric",
-        };
-        return date.toLocaleDateString("pt-BR", options);
-      }
-
-      // Obtém o elemento onde a data será exibida
-      const dynamicDateElement = document.getElementById("dynamic-date");
-
-      // Obtém a data atual
-      const currentDate = new Date();
-
-      // Formata a data e insere no elemento
-      dynamicDateElement.textContent = `Rio de Janeiro, ${formatDate(
-        currentDate
-      )}`;
-    </script>
   </body>
 </html>
