@@ -28,7 +28,7 @@ namespace Domain.Entities
             get => _identityDocument;
             set
             {
-                EntityExceptionValidation.When(value is null,
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required(nameof(IdentityDocument)));
                 _identityDocument = value;
             }
@@ -43,7 +43,7 @@ namespace Domain.Entities
             get => _cpf;
             set
             {
-                EntityExceptionValidation.When(value is null,
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required(nameof(CPF)));
                 _cpf = value;
             }
@@ -58,7 +58,7 @@ namespace Domain.Entities
             get => _photo3x4;
             set
             {
-                EntityExceptionValidation.When(value is null,
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required(nameof(Photo3x4)));
                 _photo3x4 = value;
             }
@@ -73,7 +73,7 @@ namespace Domain.Entities
             get => _schoolHistory;
             set
             {
-                EntityExceptionValidation.When(value is null,
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required(nameof(SchoolHistory)));
                 _schoolHistory = value;
             }
@@ -88,7 +88,7 @@ namespace Domain.Entities
             get => _scholarCommitmentAgreement;
             set
             {
-                EntityExceptionValidation.When(value is null,
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required(nameof(ScholarCommitmentAgreement)));
                 _scholarCommitmentAgreement = value;
             }
@@ -105,7 +105,7 @@ namespace Domain.Entities
             {
                 if (Project?.Student?.BirthDate >= DateTime.UtcNow.AddYears(-18))
                 {
-                    EntityExceptionValidation.When(value is null,
+                    EntityExceptionValidation.When(string.IsNullOrEmpty(value),
                         ExceptionMessageFactory.Required(nameof(ParentalAuthorization)));
                 }
                 _parentalAuthorization = value;
@@ -123,7 +123,7 @@ namespace Domain.Entities
             get => _agencyNumber;
             set
             {
-                EntityExceptionValidation.When(value is null,
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required(nameof(AgencyNumber)));
                 EntityExceptionValidation.When(long.TryParse(value, out long tmp) && tmp <= 0,
                     ExceptionMessageFactory.Invalid(ExceptionMessageFactory.Invalid(nameof(AgencyNumber))));
@@ -140,7 +140,7 @@ namespace Domain.Entities
             get => _accountNumber;
             set
             {
-                EntityExceptionValidation.When(value is null,
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required(nameof(AccountNumber)));
                 EntityExceptionValidation.When(long.TryParse(value, out long tmp) && tmp <= 0,
                     ExceptionMessageFactory.Invalid(ExceptionMessageFactory.Invalid(nameof(AccountNumber))));
@@ -157,7 +157,7 @@ namespace Domain.Entities
             get => _accountOpeningProof;
             set
             {
-                EntityExceptionValidation.When(value is null,
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required(nameof(AccountOpeningProof)));
                 _accountOpeningProof = value;
             }

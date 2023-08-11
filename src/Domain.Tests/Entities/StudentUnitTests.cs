@@ -2,7 +2,6 @@ using Domain.Entities;
 using Domain.Entities.Enums;
 using Domain.Validation;
 using FluentAssertions;
-using System;
 using Xunit;
 
 namespace Domain.Tests.Entities
@@ -30,6 +29,55 @@ namespace Domain.Tests.Entities
             studentAssistanceProgramId: Guid.NewGuid(),
             registrationCode: "GCOM1234567"
         );
+
+        [Fact]
+        public void SetRegistrationCode_ValidCode_SetsRegistrationCode()
+        {
+            // Arrange
+            var project = MockValidStudent();
+            var registrationCode = "AB123";
+
+            // Act
+            project.RegistrationCode = registrationCode;
+
+            // Assert
+            project.RegistrationCode.Should().Be(registrationCode);
+        }
+
+        [Fact]
+        public void SetRegistrationCode_NullOrEmptyCode_ThrowsException()
+        {
+            // Arrange
+            var project = MockValidStudent();
+
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => project.RegistrationCode = null);
+            Assert.Throws<EntityExceptionValidation>(() => project.RegistrationCode = string.Empty);
+        }
+
+        [Fact]
+        public void SetRegistrationCode_TooLongCode_ThrowsException()
+        {
+            // Arrange
+            var project = MockValidStudent();
+
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => project.RegistrationCode = new string('A', 21));
+        }
+
+        [Fact]
+        public void SetRegistrationCode_SetsToUpperCase()
+        {
+            // Arrange
+            var project = MockValidStudent();
+            var registrationCode = "ab123";
+
+            // Act
+            project.RegistrationCode = registrationCode;
+
+            // Assert
+            project.RegistrationCode.Should().Be("AB123");
+        }
 
         [Fact]
         public void SetBirthDate_ValidDate_SetsBirthDate()

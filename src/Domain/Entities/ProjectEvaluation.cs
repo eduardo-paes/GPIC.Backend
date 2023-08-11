@@ -61,7 +61,7 @@ namespace Domain.Entities
             {
                 EntityExceptionValidation.When(value is null,
                     ExceptionMessageFactory.Required(nameof(SubmissionEvaluationDate)));
-                _submissionEvaluationDate = value.HasValue ? value.Value.ToUniversalTime() : null;
+                _submissionEvaluationDate = value;
             }
         }
 
@@ -89,7 +89,7 @@ namespace Domain.Entities
             get => _submissionEvaluationDescription;
             set
             {
-                EntityExceptionValidation.When(value is null,
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required(nameof(SubmissionEvaluationDescription)));
                 _submissionEvaluationDescription = value;
             }
@@ -107,7 +107,7 @@ namespace Domain.Entities
         public DateTime? AppealEvaluationDate
         {
             get { return _appealEvaluationDate; }
-            set { _appealEvaluationDate = value.HasValue ? value.Value.ToUniversalTime() : null; }
+            set { _appealEvaluationDate = value; }
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace Domain.Entities
         public DateTime? DocumentsEvaluationDate
         {
             get { return _documentsEvaluationDate; }
-            set { _documentsEvaluationDate = value.HasValue ? value.Value.ToUniversalTime() : null; }
+            set { _documentsEvaluationDate = value; }
         }
 
         /// <summary>
@@ -161,55 +161,80 @@ namespace Domain.Entities
         /// Titulação do Orientador.
         /// Doutor (2); Mestre (1).
         /// </summary>
+        private EQualification? _qualification;
         public EQualification? Qualification
         {
-            get => Qualification;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(Qualification)));
+            get => _qualification;
+            set
+            {
+                EntityExceptionValidation.When(value is null,
+                    ExceptionMessageFactory.Required(nameof(Qualification)));
+                _qualification = value;
+            }
         }
 
         /// <summary>
         /// Foco e clareza quanto aos objetivos da proposta de projeto a ser desenvolvido pelo aluno.
         /// Excelente (4); Bom (3); Regular (2); Fraco (1).
         /// </summary>
+        private EScore? _projectProposalObjectives;
         public EScore? ProjectProposalObjectives
         {
-            get => ProjectProposalObjectives;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(ProjectProposalObjectives)));
+            get => _projectProposalObjectives;
+            set
+            {
+                EntityExceptionValidation.When(value is null,
+                    ExceptionMessageFactory.Required(nameof(ProjectProposalObjectives)));
+                _projectProposalObjectives = value;
+            }
         }
 
         /// <summary>
         /// Coerência entre a produção acadêmico-científica do orientador e a proposta de projeto.
         /// Excelente (4); Bom (3); Regular (2); Fraco (1).
         /// </summary>
+        private EScore? _academicScientificProductionCoherence;
         public EScore? AcademicScientificProductionCoherence
         {
-            get => AcademicScientificProductionCoherence;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(AcademicScientificProductionCoherence)));
+            get => _academicScientificProductionCoherence;
+            set
+            {
+                EntityExceptionValidation.When(value is null,
+                    ExceptionMessageFactory.Required(nameof(AcademicScientificProductionCoherence)));
+                _academicScientificProductionCoherence = value;
+            }
         }
 
         /// <summary>
         /// Adequação da metodologia da proposta aos objetivos e ao cronograma de execução.
         /// Excelente (4); Bom (3); Regular (2); Fraco (1).
         /// </summary>
+        private EScore? _proposalMethodologyAdaptation;
         public EScore? ProposalMethodologyAdaptation
         {
-            get => ProposalMethodologyAdaptation;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(ProposalMethodologyAdaptation)));
+            get => _proposalMethodologyAdaptation;
+            set
+            {
+                EntityExceptionValidation.When(value is null,
+                    ExceptionMessageFactory.Required(nameof(ProposalMethodologyAdaptation)));
+                _proposalMethodologyAdaptation = value;
+            }
         }
 
         /// <summary>
         /// Contribuição efetiva da proposta de projeto para formação em pesquisa do aluno.
         /// Excelente (4); Bom (3); Regular (2); Fraco (1).
         /// </summary>
+        private EScore? _effectiveContributionToResearch;
         public EScore? EffectiveContributionToResearch
         {
-            get => EffectiveContributionToResearch;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(EffectiveContributionToResearch)));
+            get => _effectiveContributionToResearch;
+            set
+            {
+                EntityExceptionValidation.When(value is null,
+                    ExceptionMessageFactory.Required(nameof(EffectiveContributionToResearch)));
+                _effectiveContributionToResearch = value;
+            }
         }
         #endregion
         #endregion
@@ -262,7 +287,8 @@ namespace Domain.Entities
                 + (double)ProjectProposalObjectives!
                 + (double)AcademicScientificProductionCoherence!
                 + (double)ProposalMethodologyAdaptation!
-                + (double)EffectiveContributionToResearch!;
+                + (double)EffectiveContributionToResearch!
+                + APIndex;
         }
         #endregion
     }

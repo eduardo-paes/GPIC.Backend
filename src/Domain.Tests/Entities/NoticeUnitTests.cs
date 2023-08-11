@@ -8,7 +8,7 @@ namespace Domain.Tests.Entities
 {
     public class NoticeUnitTests
     {
-        private Notice MockValidNotice() => new Notice(
+        private static Notice MockValidNotice() => new(
             registrationStartDate: DateTime.UtcNow,
             registrationEndDate: DateTime.UtcNow.AddDays(7),
             evaluationStartDate: DateTime.UtcNow.AddDays(8),
