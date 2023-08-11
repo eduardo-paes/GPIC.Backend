@@ -1,6 +1,6 @@
 using AutoMapper;
 using Domain.Interfaces.Repositories;
-using Application.Interfaces.Services;
+using Domain.Interfaces.Services;
 using Application.Interfaces.UseCases.Student;
 using Application.Ports.Student;
 using Application.Validation;

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+
+    <!-- Styles -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .a4-page {
+        width: 21cm;
+        height: 29.7cm;
+        margin: 0 auto;
+        background-color: #ffffff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 1cm;
+      }
+
+      .header-text {
+        font-size: 0.8rem;
+      }
+
+      .label-text {
+        padding-right: 0.5rem;
+      }
+
+      .input-text {
+        margin: 0;
+      }
+
+      .student-info {
+        font-size: small;
+        padding: 0 1rem 0 0;
+        margin: 0;
+      }
+
+      #carimbo {
+        position: absolute;
+        margin-top: -6rem;
+        margin-left: 32.5rem;
+      }
+
+      #data-certificado {
+        width: 100%;
+        margin-top: 8rem;
+      }
+    </style>
+
+    <title>DECLARAÇÃO DE ATIVIDADES DE ORIENTAÇÃO</title>
+  </head>
+  <body>
+    <div class="a4-page">
+      <div class="container text-center">
+        <!-- Cabecalho -->
+        <section id="introducao">
+          <div class="d-flex align-content-start flex-wrap m-0 p-0">
+            <img
+              class="pe-2"
+              src="./logo-cefet.svg"
+              width="80px"
+              height="80px"
+              alt="logo-cefet"
+            />
+            <div>
+              <p class="header-text fw-bold align-baseline text-start m-0 p-0">
+                CENTRO FEDERAL DE EDUCAÇÃO TECNOLÓGICA CELSO SUCKOW DA FONSECA -
+                CEFET/RJ
+              </p>
+              <p class="header-text fw-bold align-baseline text-start m-0 p-0">
+                DIRETORIA DE PESQUISA E PÓS-GRADUAÇÃO
+              </p>
+              <p class="header-text fw-bold align-baseline text-start m-0 p-0">
+                DEPARTAMENTO DE PESQUISA
+              </p>
+              <p class="header-text fw-bold align-baseline text-start m-0 p-0">
+                COORDENADORIA DE PESQUISA E ESTUDOS TECNOLÓGICOS
+              </p>
+            </div>
+          </div>
+          <h4 class="m-4">DECLARAÇÃO DE ATIVIDADES DE ORIENTAÇÃO</h4>
+          <p class="text-start m-0 p-0">
+            A Coordenadoria de Pesquisa e Estudos Tecnológicos declara que o
+            professor/pesquisador abaixo indicado participa do Programa
+            Institucional de Bolsas de Iniciação Científica orientando os alunos
+            indicados sob os respectivos Projetos de Pesquisa.
+          </p>
+        </section>
+
+        <!-- Dados do Orientador -->
+        <section id="dados-orientador">
+          <h6 class="text-start fw-bold mt-4">DADOS DO ORIENTADOR</h6>
+          <div class="d-flex align-content-start flex-wrap m-0 p-0">
+            <p class="label-text input-text">Nome:</p>
+            <p class="input-text">#NOME_ORIENTADOR#</p>
+          </div>
+          <div class="d-flex align-content-start flex-wrap m-0 p-0">
+            <p class="label-text">Departamento Acadêmico:</p>
+            <p>#NOME_DEPARTAMENTO#</p>
+          </div>
+        </section>
+
+        <!-- Dados do Aluno -->
+        <section id="dados-aluno">
+          <h6 class="text-start fw-bold mt-2">DADOS DOS ALUNOS</h6>
+          <section id="dado-aluno">
+            <hr />
+            <div class="d-flex align-content-start flex-wrap m-0 p-0">
+              <strong class="label-text input-text">Nome do Orientado:</strong>
+              <p class="input-text">#NOME_ORIENTADO#</p>
+            </div>
+            <div class="d-flex px-0 py-1">
+              <p class="student-info">Edital de Entrada: #DATA_EDITAL#</p>
+              <p class="student-info">Bolsita do: #PIBIC_TIPO#</p>
+            </div>
+            <div class="d-flex px-0 py-1">
+              <p class="student-info">
+                Início da Pesquisa neste edital: #INIP_EDITAL#
+              </p>
+              <p class="student-info">Término: #FIMP_EDITAL#</p>
+              <p class="student-info">Situação: #SITP_EDITAL#</p>
+            </div>
+            <div class="d-flex text-start px-0 py-1">
+              <p class="student-info">
+                Título do Projeto de Iniciação Cientifica:
+                #TITULO_PROJETO_ALUNO#
+              </p>
+            </div>
+            <div class="d-flex text-start px-0 py-1">
+              <p class="student-info">
+                Título do Projeto de Pesquisado Orientador:
+                #TITULO_PROJETO_ORIENTADOR#
+              </p>
+            </div>
+          </section>
+        </section>
+
+        <!-- Data do Certificado -->
+        <section id="data-certificado">
+          <h6 class="text-start" id="dynamic-date">
+            Rio de Janeiro, #DIA_SEMANA#, #DIA_DATA# de #MES_DATA# de #ANO_DATA#
+          </h6>
+        </section>
+
+        <!-- Assinatura do Coordenador -->
+        <section id="assinatura">
+          <div class="row">
+            <div class="d-flex flex-column mt-4">
+              <p class="text-center">#NOME_COORDENADOR#</p>
+              <p class="text-center">Coordenador COPET</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Carimbo do COPET -->
+        <section id="carimbo">
+          <img src="./carimbo.svg" width="120px" height="120px" alt="carimbo" />
+        </section>
+      </div>
+    </div>
+  </body>
+</html>

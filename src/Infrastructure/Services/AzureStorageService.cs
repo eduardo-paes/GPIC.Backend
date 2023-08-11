@@ -1,5 +1,5 @@
 using Azure.Storage.Blobs;
-using Application.Interfaces.Services;
+using Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 

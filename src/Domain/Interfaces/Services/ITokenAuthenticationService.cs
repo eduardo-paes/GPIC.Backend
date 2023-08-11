@@ -1,6 +1,6 @@
-using Application.Ports.Auth;
+using Domain.Entities;
 
-namespace Application.Interfaces.Services
+namespace Domain.Interfaces.Services
 {
     public interface ITokenAuthenticationService
     {
@@ -11,11 +11,11 @@ namespace Application.Interfaces.Services
         /// <param name="userName">Nome do usuário</param>
         /// <param name="role">Perfil do usuário</param>
         /// <returns>Token de autenticação.</returns>
-        UserLoginOutput GenerateToken(Guid? id, string? userName, string? role);
+        string GenerateToken(Guid? id, string? userName, string? role);
 
         /// <summary>
         /// Retorna as claims do usuário autenticado.
         /// </summary>
-        UserClaimsOutput GetUserAuthenticatedClaims();
+        User GetUserAuthenticatedClaims();
     }
 }

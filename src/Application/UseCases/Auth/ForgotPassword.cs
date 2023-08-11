@@ -1,5 +1,5 @@
 using Domain.Interfaces.Repositories;
-using Application.Interfaces.Services;
+using Domain.Interfaces.Services;
 using Application.Interfaces.UseCases.Auth;
 using Application.Validation;
 

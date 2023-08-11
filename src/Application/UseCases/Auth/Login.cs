@@ -1,5 +1,5 @@
 using Domain.Interfaces.Repositories;
-using Application.Interfaces.Services;
+using Domain.Interfaces.Services;
 using Application.Interfaces.UseCases.Auth;
 using Application.Ports.Auth;
 using Application.Validation;
@@ -39,7 +39,10 @@ namespace Application.UseCases.Auth
             UseCaseException.BusinessRuleViolation(!_hashService.VerifyPassword(input.Password!, entity.Password), "Invalid credentials.");
 
             // Gera o token de autenticação e retorna o resultado
-            return _tokenService.GenerateToken(entity.Id, entity.Name, entity.Role.ToString());
+            return new UserLoginOutput
+            {
+                Token = _tokenService.GenerateToken(entity.Id, entity.Name, entity.Role.ToString())
+            };
         }
     }
 }

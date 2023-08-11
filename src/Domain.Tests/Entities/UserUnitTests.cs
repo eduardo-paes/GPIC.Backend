@@ -9,43 +9,7 @@ namespace Domain.Tests.Entities
 {
     public class UserUnitTests
     {
-        private User _user;
-        private User MockValidUser()
-        {
-            if (_user == null)
-                _user = InvokeInternalConstructor<User>("John Doe", "john.doe@example.com", "strongpassword", "92114660087", ERole.ADMIN);
-            return _user;
-        }
-
-        [Fact]
-        public void TestInternalConstructor()
-        {
-            // Arrange
-            var name = "John Doe";
-            var email = "john.doe@example.com";
-            var password = "strongpassword";
-            var cpf = "92114660087";
-            var role = ERole.ADMIN;
-
-            // Act
-            var user = InvokeInternalConstructor<User>(name, email, password, cpf, role);
-
-            // Assert
-            Assert.Equal(name, user.Name);
-            Assert.Equal(email, user.Email);
-            Assert.Equal(password, user.Password);
-            Assert.Equal(cpf, user.CPF);
-            Assert.Equal(role, user.Role);
-        }
-
-        private T InvokeInternalConstructor<T>(params object[] args)
-        {
-            var constructor = typeof(T).GetConstructor(BindingFlags.NonPublic | BindingFlags.Instance, null, CallingConventions.Any, args.Select(a => a?.GetType()).ToArray(), null);
-            if (constructor == null)
-                throw new InvalidOperationException("Internal constructor not found.");
-
-            return (T)constructor.Invoke(args);
-        }
+        private static User MockValidUser() => new("John Doe", "john.doe@example.com", "strongpassword", "92114660087", ERole.ADMIN);
 
         [Fact]
         public void SetName_ValidName_SetsName()

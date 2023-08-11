@@ -1,15 +1,13 @@
-using System;
-using System.Threading.Tasks;
 using AutoMapper;
-using Domain.Ports.Area;
-using Domain.UseCases;
-using Domain.UseCases.Interfaces.Repositories;
-using Domain.UseCases.Interfaces.UseCases;
-using Domain.Validation;
+using Application.Ports.Area;
+using Application.UseCases.Area;
+using Application.Interfaces.UseCases.Area;
+using Application.Validation;
+using Domain.Interfaces.Repositories;
 using Moq;
 using NUnit.Framework;
 
-namespace Domain.Tests.UseCases.Area
+namespace Application.Tests.UseCases.Area
 {
     [TestFixture]
     public class DeleteAreaTests
@@ -37,7 +35,7 @@ namespace Domain.Tests.UseCases.Area
             _deletedArea = new Domain.Entities.Area(_areaId, "ABC", "Area Name");
             _mappedOutput = new DetailedReadAreaOutput();
 
-            _areaRepositoryMock.Setup(r => r.Delete(_areaId)).ReturnsAsync(_deletedArea);
+            _areaRepositoryMock.Setup(r => r.DeleteAsync(_areaId)).ReturnsAsync(_deletedArea);
             _mapperMock.Setup(m => m.Map<DetailedReadAreaOutput>(_deletedArea)).Returns(_mappedOutput);
         }
 
@@ -52,7 +50,7 @@ namespace Domain.Tests.UseCases.Area
 
             // Assert
             Assert.AreEqual(_mappedOutput, result);
-            _areaRepositoryMock.Verify(r => r.Delete(_areaId), Times.Once);
+            _areaRepositoryMock.Verify(r => r.DeleteAsync(_areaId), Times.Once);
             _mapperMock.Verify(m => m.Map<DetailedReadAreaOutput>(_deletedArea), Times.Once);
         }
 
@@ -64,7 +62,7 @@ namespace Domain.Tests.UseCases.Area
 
             // Act & Assert
             Assert.ThrowsAsync<UseCaseException>(async () => await _deleteArea.ExecuteAsync(id));
-            _areaRepositoryMock.Verify(r => r.Delete(It.IsAny<Guid>()), Times.Never);
+            _areaRepositoryMock.Verify(r => r.DeleteAsync(It.IsAny<Guid>()), Times.Never);
             _mapperMock.Verify(m => m.Map<DetailedReadAreaOutput>(It.IsAny<Domain.Entities.Area>()), Times.Never);
         }
     }

@@ -1,14 +1,13 @@
 using Domain.Entities;
 using Domain.Validation;
 using FluentAssertions;
-using System;
 using Xunit;
 
 namespace Domain.Tests.Entities
 {
     public class ProgramTypeUnitTests
     {
-        private ProgramType MockValidProgramType() => new ProgramType();
+        private static ProgramType MockValidProgramType() => new("Program Name", "Program Description");
 
         [Fact]
         public void SetName_ValidName_SetsName()

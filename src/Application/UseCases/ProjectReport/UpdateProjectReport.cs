@@ -1,6 +1,6 @@
 using AutoMapper;
 using Domain.Interfaces.Repositories;
-using Application.Interfaces.Services;
+using Domain.Interfaces.Services;
 using Application.Interfaces.UseCases.ProjectReport;
 using Application.Ports.ProjectReport;
 using Application.Validation;
@@ -39,6 +39,8 @@ namespace Application.UseCases.ProjectReport
 
             // Obtém usuário logado
             var user = _tokenAuthenticationService.GetUserAuthenticatedClaims();
+
+            // TODO: Verifica se usuário logado pode realizar a operação
 
             // Recupera entidade que será atualizada
             Domain.Entities.ProjectReport report = await _projectReportRepository.GetByIdAsync(id) ??

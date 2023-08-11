@@ -1,4 +1,5 @@
 {
-  "dotnet-test-explorer.testProjectPath": "src/Domain.Tests/Domain.Tests.csproj",
+  // "dotnet-test-explorer.testProjectPath": "src/Domain.Tests/Domain.Tests.csproj",
+  "dotnet-test-explorer.testProjectPath": "src/Application.Tests/Application.Tests.csproj",
   "dotnet.defaultSolution": "src/CopetSystem.API.sln"
 }

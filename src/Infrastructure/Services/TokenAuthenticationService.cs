@@ -1,8 +1,8 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Application.Interfaces.Services;
-using Application.Ports.Auth;
+using Domain.Entities;
+using Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
 
@@ -28,7 +28,7 @@ namespace Services
         /// <param name="userName">Nome do usuário.</param>
         /// <param name="role">Perfil do usuário.</param>
         /// <returns>Token de autenticação.</returns>
-        public UserLoginOutput GenerateToken(Guid? id, string? userName, string? role)
+        public string GenerateToken(Guid? id, string? userName, string? role)
         {
             // Verifica se o id é nulo
             if (id == null)
@@ -51,11 +51,11 @@ namespace Services
             // Declaração do usuário
             Claim[] claims = new[]
             {
-            new Claim(ClaimTypes.Sid, id.Value.ToString()),
-            new Claim(ClaimTypes.Name, userName),
-            new Claim(ClaimTypes.Role, role),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-        };
+                new Claim(ClaimTypes.Sid, id.Value.ToString()),
+                new Claim(ClaimTypes.Name, userName),
+                new Claim(ClaimTypes.Role, role),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            };
 
             // Gerar chave privada para assinar o token
             SymmetricSecurityKey privateKey = new(Encoding.UTF8.GetBytes(_dotEnvSecrets.GetJwtSecret()
@@ -78,17 +78,14 @@ namespace Services
                 expires: expiration,
                 signingCredentials: credentials);
 
-            return new UserLoginOutput()
-            {
-                Token = new JwtSecurityTokenHandler().WriteToken(token),
-            };
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
         /// <summary>
         /// Retorna as claims do usuário autenticado.
         /// </summary>
         /// <returns>Id, Name e Role.</returns>
-        public UserClaimsOutput GetUserAuthenticatedClaims()
+        public User GetUserAuthenticatedClaims()
         {
             // Get the current HttpContext to retrieve the claims principal
             HttpContext? httpContext = _httpContextAccessor.HttpContext;
@@ -111,12 +108,7 @@ namespace Services
             }
 
             // Return the user's claims
-            return new UserClaimsOutput()
-            {
-                Id = Guid.Parse(id),
-                Name = claimsIdentity.FindFirst(ClaimTypes.Name)?.Value,
-                Role = claimsIdentity.FindFirst(ClaimTypes.Role)?.Value
-            };
+            return new User(Guid.Parse(id), claimsIdentity.FindFirst(ClaimTypes.Name)?.Value, claimsIdentity.FindFirst(ClaimTypes.Role)?.Value);
         }
     }
 }
