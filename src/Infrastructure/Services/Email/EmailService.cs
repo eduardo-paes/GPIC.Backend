@@ -178,7 +178,7 @@ namespace Services.Email
             // Envia mensagem
             using SmtpClient smtpClient = new(_smtpServer, _smtpPort);
             smtpClient.Timeout = 1000000;
-            // smtpClient.EnableSsl = true;
+            smtpClient.EnableSsl = true;
             smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtpClient.UseDefaultCredentials = false;
             smtpClient.Credentials = new NetworkCredential(_smtpUsername, _smtpPassword);
