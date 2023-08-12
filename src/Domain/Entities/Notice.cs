@@ -21,7 +21,7 @@ namespace Domain.Entities
             {
                 EntityExceptionValidation.When(!value.HasValue,
                     ExceptionMessageFactory.Invalid("Data de início das inscrições dos projetos"));
-                _registrationStartDate = value.HasValue ? value.Value.ToUniversalTime() : null;
+                _registrationStartDate = value;
             }
         }
 
@@ -36,7 +36,7 @@ namespace Domain.Entities
             {
                 EntityExceptionValidation.When(!value.HasValue,
                     ExceptionMessageFactory.Invalid("Data de término das inscrições dos projetos"));
-                _registrationEndDate = value.HasValue ? value.Value.ToUniversalTime() : null;
+                _registrationEndDate = value;
             }
         }
         #endregion
@@ -53,7 +53,7 @@ namespace Domain.Entities
             {
                 EntityExceptionValidation.When(!value.HasValue,
                     ExceptionMessageFactory.Invalid("Data de início das avaliações dos projetos"));
-                _evaluationStartDate = value.HasValue ? value.Value.ToUniversalTime() : null;
+                _evaluationStartDate = value;
             }
         }
 
@@ -68,7 +68,7 @@ namespace Domain.Entities
             {
                 EntityExceptionValidation.When(!value.HasValue,
                     ExceptionMessageFactory.Invalid("Data de término das avaliações dos projetos"));
-                _evaluationEndDate = value.HasValue ? value.Value.ToUniversalTime() : null;
+                _evaluationEndDate = value;
             }
         }
         #endregion
@@ -85,7 +85,7 @@ namespace Domain.Entities
             {
                 EntityExceptionValidation.When(!value.HasValue,
                     ExceptionMessageFactory.Invalid("Data de início do período de recurso"));
-                _appealStartDate = value.HasValue ? value.Value.ToUniversalTime() : null;
+                _appealStartDate = value;
             }
         }
 
@@ -100,7 +100,7 @@ namespace Domain.Entities
             {
                 EntityExceptionValidation.When(!value.HasValue,
                     ExceptionMessageFactory.Invalid("Data de término do período de recurso"));
-                _appealEndDate = value.HasValue ? value.Value.ToUniversalTime() : null;
+                _appealEndDate = value;
             }
         }
         #endregion
@@ -117,7 +117,7 @@ namespace Domain.Entities
             {
                 EntityExceptionValidation.When(!value.HasValue,
                     ExceptionMessageFactory.Invalid("Data de início para entrega de documentação dos bolsistas"));
-                _sendingDocsStartDate = value.HasValue ? value.Value.ToUniversalTime() : null;
+                _sendingDocsStartDate = value;
             }
         }
 
@@ -132,7 +132,7 @@ namespace Domain.Entities
             {
                 EntityExceptionValidation.When(!value.HasValue,
                     ExceptionMessageFactory.Invalid("Data de término para entrega de documentação dos bolsistas"));
-                _sendingDocsEndDate = value.HasValue ? value.Value.ToUniversalTime() : null;
+                _sendingDocsEndDate = value;
             }
         }
         #endregion
@@ -149,7 +149,7 @@ namespace Domain.Entities
             {
                 EntityExceptionValidation.When(!value.HasValue,
                     ExceptionMessageFactory.Invalid("Prazo de entrega do relatório parcial"));
-                _partialReportDeadline = value.HasValue ? value.Value.ToUniversalTime() : null;
+                _partialReportDeadline = value;
             }
         }
 
@@ -164,7 +164,7 @@ namespace Domain.Entities
             {
                 EntityExceptionValidation.When(!value.HasValue,
                     ExceptionMessageFactory.Invalid("Prazo de entrega do relatório final"));
-                _finalReportDeadline = value.HasValue ? value.Value.ToUniversalTime() : null;
+                _finalReportDeadline = value;
             }
         }
         #endregion

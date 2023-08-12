@@ -13,6 +13,16 @@ namespace Infrastructure.IoC.Utils
             _ = DotNetEnv.Env.Load(Path.Combine(basePath!, ".env"));
         }
 
+        public string GetSeqUrl()
+        {
+            return DotNetEnv.Env.GetString("SEQ_URL");
+        }
+
+        public string GetSeqApiKey()
+        {
+            return DotNetEnv.Env.GetString("SEQ_API_KEY");
+        }
+
         public string GetBlobStorageConnectionString()
         {
             return DotNetEnv.Env.GetString("AZURE_BLOB_STORAGE_CONNECTION_STRING");

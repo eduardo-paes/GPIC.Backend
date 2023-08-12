@@ -68,7 +68,7 @@ namespace Domain.Entities
             get => _suspensionEndDate;
             set
             {
-                _suspensionEndDate = value.HasValue ? value.Value.ToUniversalTime() : null;
+                _suspensionEndDate = value;
             }
         }
 

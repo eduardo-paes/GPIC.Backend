@@ -46,6 +46,8 @@ jobs:
           JWT_EXPIRE_IN=${{ secrets.JWT_EXPIRE_IN }}
           JWT_ISSUER=${{ secrets.JWT_ISSUER }}
           JWT_SECRET_KEY=${{ secrets.JWT_SECRET_KEY }}
+          SEQ_API_KEY=${{ secrets.SEQ_API_KEY }}
+          SEQ_URL=${{ secrets.SEQ_URL }}
           SMTP_EMAIL_PASSWORD=${{ secrets.SMTP_EMAIL_PASSWORD }}
           SMTP_EMAIL_USERNAME=${{ secrets.SMTP_EMAIL_USERNAME }}" > src/Infrastructure/WebAPI/.env
 

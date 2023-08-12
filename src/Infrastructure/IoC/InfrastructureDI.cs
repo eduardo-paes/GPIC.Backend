@@ -25,6 +25,7 @@ namespace Infrastructure.IoC
             #region Serviço de Log
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(configuration)
+                .WriteTo.Seq(dotEnvSecrets.GetSeqUrl(), apiKey: dotEnvSecrets.GetSeqApiKey())
                 .CreateLogger();
             services.AddLogging(loggingBuilder =>
             {

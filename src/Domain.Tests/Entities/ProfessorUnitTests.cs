@@ -8,7 +8,7 @@ namespace Domain.Tests.Entities
 {
     public class ProfessorUnitTests
     {
-        private Professor MockValidProfessor() => new Professor();
+        private static Professor MockValidProfessor() => new();
 
         [Fact]
         public void SetSIAPEEnrollment_ValidSIAPEEnrollment_SetsSIAPEEnrollment()

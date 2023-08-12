@@ -43,7 +43,7 @@ namespace Domain.Entities
             {
                 EntityExceptionValidation.When(value is null,
                     ExceptionMessageFactory.Required(nameof(SendDate)));
-                _sendDate = value.HasValue ? value.Value.ToUniversalTime() : null;
+                _sendDate = value;
             }
         }
 

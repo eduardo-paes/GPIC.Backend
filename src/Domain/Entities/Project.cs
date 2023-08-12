@@ -230,7 +230,7 @@ namespace Domain.Entities
         public DateTime? SubmissionDate
         {
             get { return _submissionDate; }
-            set { _submissionDate = value.HasValue ? value.Value.ToUniversalTime() : null; }
+            set { _submissionDate = value; }
         }
 
         /// <summary>
@@ -240,7 +240,7 @@ namespace Domain.Entities
         public DateTime? AppealDate
         {
             get { return _appealDate; }
-            set { _appealDate = value.HasValue ? value.Value.ToUniversalTime() : null; }
+            set { _appealDate = value; }
         }
 
         /// <summary>
@@ -250,7 +250,7 @@ namespace Domain.Entities
         public DateTime? CancellationDate
         {
             get { return _cancellationDate; }
-            set { _cancellationDate = value.HasValue ? value.Value.ToUniversalTime() : null; }
+            set { _cancellationDate = value; }
         }
 
         /// <summary>
