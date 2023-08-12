@@ -6,11 +6,12 @@ namespace Persistence.Seeds
     {
         public static void Seed(MigrationBuilder migrationBuilder)
         {
+            ActivitiesSeeder.Seed(migrationBuilder);
             AreasSeeder.Seed(migrationBuilder);
+            AssistanceTypeSeeder.Seed(migrationBuilder);
             CampusesSeeder.Seed(migrationBuilder);
             CoursesSeeder.Seed(migrationBuilder);
             ProgramTypesSeeder.Seed(migrationBuilder);
-            AssistanceTypeSeeder.Seed(migrationBuilder);
             UserSeeder.Seed(migrationBuilder);
         }
     }

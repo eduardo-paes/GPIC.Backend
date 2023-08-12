@@ -204,7 +204,6 @@ namespace Domain.Entities
         public virtual Student? Student { get; }
         public virtual SubArea? SubArea { get; }
         public virtual Notice? Notice { get; }
-        public virtual IList<ProjectActivity>? ProjectActivities { get; }
         #endregion
 
         #region Informações de Controle
