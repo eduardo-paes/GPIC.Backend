@@ -42,9 +42,8 @@ namespace Services
                 .Replace("#PIBIC_TIPO#", $"{project?.ProgramType?.Name} / CEFET")
                 .Replace("#INIP_EDITAL#", project?.Notice?.SendingDocsEndDate?.ToString("dd/MM/yyyy"))
                 .Replace("#FIMP_EDITAL#", project?.Notice?.FinalReportDeadline?.ToString("dd/MM/yyyy"))
-                .Replace("#SITP_EDITAL#", studentSituation) // TODO: Pegar essa informação do Projeto?
+                .Replace("#SITP_EDITAL#", studentSituation)
                 .Replace("#TITULO_PROJETO_ALUNO#", project?.Title)
-                // .Replace("#TITULO_PROJETO_ORIENTADOR#", "") // TODO: Verificar se esse campo será inserido no Projeto
                 .Replace("#DIA_SEMANA#", DateTime.Now.DayOfWeek.ToString())
                 .Replace("#DIA_DATA#", DateTime.Now.Day.ToString())
                 .Replace("#MES_DATA#", DateTime.Now.ToString("MMMM"))
