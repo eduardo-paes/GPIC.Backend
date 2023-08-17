@@ -1,5 +1,6 @@
 using Domain.Entities;
 using Domain.Interfaces.Services;
+using Microsoft.Extensions.Configuration;
 using PuppeteerSharp;
 
 namespace Services
@@ -7,15 +8,17 @@ namespace Services
     public class ReportService : IReportService
     {
         private readonly string? _currentDirectory;
-        public ReportService()
+        private readonly string? _outputPath;
+        public ReportService(IConfiguration configuration)
         {
             _currentDirectory = Path.GetDirectoryName(typeof(ReportService).Assembly.Location);
+            _outputPath = configuration["TempPath"];
         }
 
-        public async Task<string> GenerateCertificateAsync(Project project, string cordinatorName)
+        public async Task<string> GenerateCertificateAsync(Project project, string cordinatorName, string fileName)
         {
             // Caminho temporário onde será salvo o arquivo
-            string outputPath = "";
+            string outputPath = Path.Combine(_outputPath!, fileName);
 
             // Obtém o semestre do edital
             string noticeDate;
@@ -41,7 +44,7 @@ namespace Services
                 .Replace("#FIMP_EDITAL#", project?.Notice?.FinalReportDeadline?.ToString("dd/MM/yyyy"))
                 .Replace("#SITP_EDITAL#", studentSituation) // TODO: Pegar essa informação do Projeto?
                 .Replace("#TITULO_PROJETO_ALUNO#", project?.Title)
-                .Replace("#TITULO_PROJETO_ORIENTADOR#", "") // TODO: Verificar se esse campo será inserido no Projeto
+                // .Replace("#TITULO_PROJETO_ORIENTADOR#", "") // TODO: Verificar se esse campo será inserido no Projeto
                 .Replace("#DIA_SEMANA#", DateTime.Now.DayOfWeek.ToString())
                 .Replace("#DIA_DATA#", DateTime.Now.Day.ToString())
                 .Replace("#MES_DATA#", DateTime.Now.ToString("MMMM"))
