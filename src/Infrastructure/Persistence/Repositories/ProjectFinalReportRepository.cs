@@ -6,22 +6,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Repositories
 {
-    public class ProjectReportRepository : IProjectReportRepository
+    public class ProjectFinalReportRepository : IProjectFinalReportRepository
     {
         private readonly ApplicationDbContext _context;
-        public ProjectReportRepository(ApplicationDbContext context)
+        public ProjectFinalReportRepository(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public async Task<ProjectReport> CreateAsync(ProjectReport model)
+        public async Task<ProjectFinalReport> CreateAsync(ProjectFinalReport model)
         {
             _context.Add(model);
             await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<ProjectReport> DeleteAsync(Guid? id)
+        public async Task<ProjectFinalReport> DeleteAsync(Guid? id)
         {
             var model = await GetByIdAsync(id)
                 ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
@@ -29,9 +29,9 @@ namespace Persistence.Repositories
             return await UpdateAsync(model);
         }
 
-        public async Task<IEnumerable<ProjectReport>> GetAllAsync(int skip, int take)
+        public async Task<IEnumerable<ProjectFinalReport>> GetAllAsync(int skip, int take)
         {
-            return await _context.ProjectReports
+            return await _context.ProjectFinalReports
                 .Skip(skip)
                 .Take(take)
                 .AsAsyncEnumerable()
@@ -39,24 +39,24 @@ namespace Persistence.Repositories
                 .ToListAsync();
         }
 
-        public async Task<ProjectReport?> GetByIdAsync(Guid? id)
+        public async Task<ProjectFinalReport?> GetByIdAsync(Guid? id)
         {
-            return await _context.ProjectReports
+            return await _context.ProjectFinalReports
                 .IgnoreQueryFilters()
                 .AsAsyncEnumerable()
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<IList<ProjectReport>?> GetByProjectIdAsync(Guid? projectId)
+        public async Task<IList<ProjectFinalReport>?> GetByProjectIdAsync(Guid? projectId)
         {
-            return await _context.ProjectReports
+            return await _context.ProjectFinalReports
                 .IgnoreQueryFilters()
                 .AsAsyncEnumerable()
                 .Where(x => x.ProjectId == projectId)
                 .ToListAsync();
         }
 
-        public async Task<ProjectReport> UpdateAsync(ProjectReport model)
+        public async Task<ProjectFinalReport> UpdateAsync(ProjectFinalReport model)
         {
             _context.Update(model);
             await _context.SaveChangesAsync();

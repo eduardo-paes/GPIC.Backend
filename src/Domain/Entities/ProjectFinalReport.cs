@@ -1,32 +1,14 @@
-using Domain.Entities.Enums;
 using Domain.Entities.Primitives;
 using Domain.Validation;
 
 namespace Domain.Entities
 {
-    public class ProjectReport : Entity
+    public class ProjectFinalReport : Entity
     {
         /// <summary>
         /// URL do relatório.
         /// </summary>
         public string? ReportUrl { get; set; }
-
-        private EReportType? _reportType;
-        /// <summary>
-        /// Tipo do relatório.
-        /// </summary>
-        public EReportType? ReportType
-        {
-            get { return _reportType; }
-            set
-            {
-                EntityExceptionValidation.When(value == null,
-                    ExceptionMessageFactory.Required(nameof(ReportType)));
-                EntityExceptionValidation.When(!Enum.TryParse<EReportType>(value.ToString(), out var _),
-                    ExceptionMessageFactory.Invalid(nameof(ReportType)));
-                _reportType = value;
-            }
-        }
 
         private DateTime? _sendDate;
         /// <summary>
@@ -76,9 +58,8 @@ namespace Domain.Entities
         public virtual Project? Project { get; set; }
         public virtual User? User { get; set; }
 
-        public ProjectReport(EReportType? reportType, Guid? projectId)
+        public ProjectFinalReport(Guid? projectId)
         {
-            ReportType = reportType;
             SendDate = DateTime.UtcNow;
             ProjectId = projectId;
         }

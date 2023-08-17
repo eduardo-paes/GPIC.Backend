@@ -1,21 +1,21 @@
 using AutoMapper;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
-using Application.Interfaces.UseCases.ProjectReport;
-using Application.Ports.ProjectReport;
+using Application.Interfaces.UseCases.ProjectFinalReport;
+using Application.Ports.ProjectFinalReport;
 using Application.Validation;
 
-namespace Application.UseCases.ProjectReport
+namespace Application.UseCases.ProjectFinalReport
 {
-    public class UpdateProjectReport : IUpdateProjectReport
+    public class UpdateProjectFinalReport : IUpdateProjectFinalReport
     {
         #region Global Scope
-        private readonly IProjectReportRepository _projectReportRepository;
+        private readonly IProjectFinalReportRepository _projectReportRepository;
         private readonly IProjectRepository _projectRepository;
         private readonly IStorageFileService _storageFileService;
         private readonly ITokenAuthenticationService _tokenAuthenticationService;
         private readonly IMapper _mapper;
-        public UpdateProjectReport(IProjectReportRepository projectReportRepository,
+        public UpdateProjectFinalReport(IProjectFinalReportRepository projectReportRepository,
             IProjectRepository projectRepository,
             IStorageFileService storageFileService,
             ITokenAuthenticationService tokenAuthenticationService,
@@ -29,7 +29,7 @@ namespace Application.UseCases.ProjectReport
         }
         #endregion Global Scope
 
-        public async Task<DetailedReadProjectReportOutput> ExecuteAsync(Guid? id, UpdateProjectReportInput input)
+        public async Task<DetailedReadProjectFinalReportOutput> ExecuteAsync(Guid? id, UpdateProjectFinalReportInput input)
         {
             // Verifica se o id foi informado
             UseCaseException.NotInformedParam(id is null, nameof(id));
@@ -43,8 +43,8 @@ namespace Application.UseCases.ProjectReport
             // TODO: Verifica se usuário logado pode realizar a operação
 
             // Recupera entidade que será atualizada
-            Domain.Entities.ProjectReport report = await _projectReportRepository.GetByIdAsync(id) ??
-                throw UseCaseException.NotFoundEntityById(nameof(Domain.Entities.ProjectReport));
+            Domain.Entities.ProjectFinalReport report = await _projectReportRepository.GetByIdAsync(id) ??
+                throw UseCaseException.NotFoundEntityById(nameof(Domain.Entities.ProjectFinalReport));
 
             // Verifica se a entidade foi excluída
             UseCaseException.BusinessRuleViolation(report.DeletedAt != null,
@@ -63,9 +63,7 @@ namespace Application.UseCases.ProjectReport
                 "O projeto informado não está em andamento.");
 
             // Verifica se o relatório está sendo enviado dentro do prazo
-            var isBeforeDeadline = report.ReportType == Domain.Entities.Enums.EReportType.Final
-                ? project.Notice?.FinalReportDeadline < DateTime.UtcNow
-                : project.Notice?.PartialReportDeadline < DateTime.UtcNow;
+            var isBeforeDeadline = project.Notice?.FinalReportDeadline < DateTime.UtcNow;
 
             // Lança exceção caso o relatório esteja sendo enviado fora do prazo
             UseCaseException.BusinessRuleViolation(isBeforeDeadline,
@@ -82,7 +80,7 @@ namespace Application.UseCases.ProjectReport
             await _projectReportRepository.UpdateAsync(report);
 
             // Mapeia entidade para o modelo de saída e retorna
-            return _mapper.Map<DetailedReadProjectReportOutput>(report);
+            return _mapper.Map<DetailedReadProjectFinalReportOutput>(report);
         }
     }
 }

@@ -1,21 +1,21 @@
 using AutoMapper;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
-using Application.Ports.ProjectReport;
-using Application.Interfaces.UseCases.ProjectReport;
+using Application.Ports.ProjectFinalReport;
+using Application.Interfaces.UseCases.ProjectFinalReport;
 using Application.Validation;
 
-namespace Application.UseCases.ProjectReport
+namespace Application.UseCases.ProjectFinalReport
 {
-    public class CreateProjectReport : ICreateProjectReport
+    public class CreateProjectFinalReport : ICreateProjectFinalReport
     {
         #region Global Scope
-        private readonly IProjectReportRepository _projectReportRepository;
+        private readonly IProjectFinalReportRepository _projectReportRepository;
         private readonly IProjectRepository _projectRepository;
         private readonly IStorageFileService _storageFileService;
         private readonly ITokenAuthenticationService _tokenAuthenticationService;
         private readonly IMapper _mapper;
-        public CreateProjectReport(IProjectReportRepository projectReportRepository,
+        public CreateProjectFinalReport(IProjectFinalReportRepository projectReportRepository,
             IProjectRepository projectRepository,
             IStorageFileService storageFileService,
             ITokenAuthenticationService tokenAuthenticationService,
@@ -29,11 +29,10 @@ namespace Application.UseCases.ProjectReport
         }
         #endregion Global Scope
 
-        public async Task<DetailedReadProjectReportOutput> ExecuteAsync(CreateProjectReportInput input)
+        public async Task<DetailedReadProjectFinalReportOutput> ExecuteAsync(CreateProjectFinalReportInput input)
         {
             // Cria entidade a partir do modelo
-            Domain.Entities.ProjectReport report = new(
-                TryCastEnum<Domain.Entities.Enums.EReportType>(input.ReportType),
+            Domain.Entities.ProjectFinalReport report = new(
                 input.ProjectId
             );
 
@@ -53,9 +52,7 @@ namespace Application.UseCases.ProjectReport
                 "O projeto informado não está em andamento.");
 
             // Verifica se o relatório está sendo enviado dentro do prazo
-            var isBeforeDeadline = report.ReportType == Domain.Entities.Enums.EReportType.Final
-                ? project.Notice?.FinalReportDeadline < DateTime.UtcNow
-                : project.Notice?.PartialReportDeadline < DateTime.UtcNow;
+            var isBeforeDeadline = project.Notice?.FinalReportDeadline < DateTime.UtcNow;
 
             // Lança exceção caso o relatório esteja sendo enviado fora do prazo
             UseCaseException.BusinessRuleViolation(isBeforeDeadline,
@@ -74,7 +71,7 @@ namespace Application.UseCases.ProjectReport
             report = await _projectReportRepository.CreateAsync(report);
 
             // Salva entidade no banco
-            return _mapper.Map<DetailedReadProjectReportOutput>(report);
+            return _mapper.Map<DetailedReadProjectFinalReportOutput>(report);
         }
 
         /// <summary>

@@ -29,7 +29,7 @@ namespace Infrastructure.Persistence.Context
         public DbSet<Project> Projects { get; set; }
         public DbSet<ProjectActivity> ProjectActivities { get; set; }
         public DbSet<ProjectEvaluation> ProjectEvaluations { get; set; }
-        public DbSet<ProjectReport> ProjectReports { get; set; }
+        public DbSet<ProjectFinalReport> ProjectFinalReports { get; set; }
         public DbSet<ProgramType> ProgramTypes { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<StudentDocuments> StudentDocuments { get; set; }

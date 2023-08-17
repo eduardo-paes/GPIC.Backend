@@ -1,6 +1,6 @@
-﻿namespace Application.Ports.ProjectReport
+﻿namespace Application.Ports.ProjectFinalReport
 {
-    public class DetailedReadProjectReportOutput : BaseProjectReportContract
+    public class DetailedReadProjectFinalReportOutput : BaseProjectFinalReportContract
     {
         public Guid? Id { get; set; }
         public DateTime? DeletedAt { get; set; }
