@@ -125,6 +125,7 @@ namespace Infrastructure.IoC
             services.AddScoped<IOpenProject, OpenProject>();
             services.AddScoped<ISubmitProject, SubmitProject>();
             services.AddScoped<IUpdateProject, UpdateProject>();
+            services.AddScoped<IGenerateCertificate, GenerateCertificate>();
             #endregion Project
 
             #region ProjectEvaluation
@@ -167,6 +168,8 @@ namespace Infrastructure.IoC
             services.AddScoped<IGetInactiveUsers, GetInactiveUsers>();
             services.AddScoped<IGetUserById, GetUserById>();
             services.AddScoped<IUpdateUser, UpdateUser>();
+            services.AddScoped<IMakeAdmin, MakeAdmin>();
+            services.AddScoped<IMakeCoordinator, MakeCoordinator>();
             #endregion User
 
             #endregion UseCases

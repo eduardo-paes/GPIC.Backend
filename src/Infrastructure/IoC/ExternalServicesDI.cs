@@ -36,6 +36,7 @@ namespace Infrastructure.IoC
             services.AddScoped<IHashService, HashService>();
             services.AddScoped<ITokenAuthenticationService, TokenAuthenticationService>();
             services.AddScoped<IStorageFileService, AzureStorageService>();
+            services.AddScoped<IReportService, ReportService>();
             #endregion Demais Serviços
 
             return services;
