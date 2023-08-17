@@ -256,6 +256,11 @@ namespace Domain.Entities
         /// Razão de cancelamento do projeto, preenchido pelo professor.
         /// </summary>
         public string? CancellationReason { get; set; }
+
+        /// <summary>
+        /// URL do certificado do projeto.
+        /// </summary>
+        public string? CertificateUrl { get; set; }
         #endregion
         #endregion
 
