@@ -15,15 +15,17 @@ namespace Application.UseCases.Project
     {
         private readonly IProjectRepository _projectRepository;
         private readonly INoticeRepository _noticeRepository;
-        private readonly IProjectReportRepository _projectReportRepository;
+        private readonly IProjectFinalReportRepository _projectReportRepository;
         private readonly IProfessorRepository _professorRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IReportService _reportService;
         private readonly IStorageFileService _storageFileService;
         public GenerateCertificate(
             IProjectRepository projectRepository,
             INoticeRepository noticeRepository,
-            IProjectReportRepository projectReportRepository,
+            IProjectFinalReportRepository projectReportRepository,
             IProfessorRepository professorRepository,
+            IUserRepository userRepository,
             IReportService reportService,
             IStorageFileService storageFileService)
         {
@@ -31,6 +33,7 @@ namespace Application.UseCases.Project
             _noticeRepository = noticeRepository;
             _projectReportRepository = projectReportRepository;
             _professorRepository = professorRepository;
+            _userRepository = userRepository;
             _reportService = reportService;
             _storageFileService = storageFileService;
         }
@@ -47,10 +50,14 @@ namespace Application.UseCases.Project
             if (!projects.Any())
                 return "Nenhum projeto em estágio de encerramento encontrado.";
 
+            // Obtém informações do coordenador
+            var coordinator = await _userRepository.GetCoordinatorAsync();
+            if (coordinator is null)
+                return "Nenhum coordenador encontrado.";
+
             // Encerra cada projeto verificando se o mesmo possui relatório final
             foreach (var project in projects)
             {
-
                 // Verifica se o projeto possui relatório final
                 var reports = await _projectReportRepository.GetByProjectIdAsync(project.Id);
 
@@ -75,7 +82,7 @@ namespace Application.UseCases.Project
                     var uniqueName = Guid.NewGuid().ToString() + ".pdf";
 
                     // Gera certificado
-                    var path = await _reportService.GenerateCertificateAsync(project, "", uniqueName);
+                    var path = await _reportService.GenerateCertificateAsync(project, coordinator.Name!, uniqueName);
 
                     // Converte certificado para IFormFile a fim de enviá-lo para nuvem
                     var file = new FormFile(new MemoryStream(File.ReadAllBytes(path)), 0, 0, "certificate", uniqueName);
