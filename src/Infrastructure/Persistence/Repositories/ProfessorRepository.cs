@@ -66,6 +66,15 @@ namespace Persistence.Repositories
             .Where(x => x.SuspensionEndDate < DateTime.UtcNow || x.SuspensionEndDate == null)
             .ToListAsync();
         }
+
+        public async Task<Professor?> GetByUserIdAsync(Guid? userId)
+        {
+            return await _context.Professors
+                .Include(x => x.User)
+                .IgnoreQueryFilters()
+                .AsAsyncEnumerable()
+                .FirstOrDefaultAsync(x => x.UserId == userId);
+        }
         #endregion Public Methods
     }
 }
