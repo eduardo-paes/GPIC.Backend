@@ -20,19 +20,10 @@
     <PackageReference Include="Azure.Storage.Blobs" Version="12.16.0" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="Email\Templates\ConfirmEmail.html">
+    <None Update="Email\Templates\*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Email\Templates\NewEdital.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Email\Templates\ProjectStatusChange.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Email\Templates\RequestStudentRegister.html">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Email\Templates\ResetPassword.html">
+    <None Update="Reports\*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Application.Interfaces.UseCases.Project;
-using Application.Validation;
 using Domain.Entities.Enums;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
-using Microsoft.AspNetCore.Http.Internal;
+using Microsoft.AspNetCore.Http;
 
 namespace Application.UseCases.Project
 {
     public class GenerateCertificate : IGenerateCertificate
     {
+        #region Global Scope
         private readonly IProjectRepository _projectRepository;
         private readonly INoticeRepository _noticeRepository;
         private readonly IProjectFinalReportRepository _projectReportRepository;
@@ -37,9 +33,12 @@ namespace Application.UseCases.Project
             _reportService = reportService;
             _storageFileService = storageFileService;
         }
+        #endregion
 
         public async Task<string> ExecuteAsync()
         {
+            return await TestMethod();
+
             // Busca edital que possui data final de entrega de relatório para o dia anterior
             var notice = await _noticeRepository.GetNoticeEndingAsync();
             if (notice is null)
@@ -100,6 +99,24 @@ namespace Application.UseCases.Project
             }
 
             return "Certificados gerados com sucesso.";
+        }
+
+        private async Task<string> TestMethod()
+        {
+            var project = new Domain.Entities.Project("Project Title", "Keyword 1", "Keyword 2", "Keyword 3", true, "Objective", "Methodology", "Expected Results", "Schedule", Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), EProjectStatus.Opened, "Status Description", "Appeal Observation", DateTime.UtcNow, DateTime.UtcNow, DateTime.UtcNow, "Cancellation Reason");
+            var uniqueName = Guid.NewGuid().ToString() + ".pdf";
+            var path = await _reportService.GenerateCertificateAsync(project, "Eduardo Paes", uniqueName);
+
+            // Converte certificado para IFormFile a fim de enviá-lo para nuvem
+            var file = new FormFile(new MemoryStream(File.ReadAllBytes(path)), 0, 0, "certificate", uniqueName);
+
+            // Envia certificado para nuvem e salva url no projeto
+            var url = await _storageFileService.UploadFileAsync(file);
+
+            // Mostra URL do certificado
+            Console.WriteLine(url);
+
+            return "Certificado gerado com sucesso. Url: " + url;
         }
     }
 }

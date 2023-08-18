@@ -406,7 +406,13 @@ node_modules
 certificate
 certificate/*
 
+storage
+storage/*
+
+temp
+temp/*
+
 RemoteFiles
 RemoteFiles/*
-src/Infrastructure/WebAPI/.env
+**/.env
 thunder-tests

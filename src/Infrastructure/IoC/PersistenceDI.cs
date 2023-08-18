@@ -32,6 +32,7 @@ namespace Infrastructure.IoC
             services.AddScoped<IProfessorRepository, ProfessorRepository>();
             services.AddScoped<IProgramTypeRepository, ProgramTypeRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
+            services.AddScoped<IProjectFinalReportRepository, ProjectFinalReportRepository>();
             services.AddScoped<IProjectActivityRepository, ProjectActivityRepository>();
             services.AddScoped<IProjectEvaluationRepository, ProjectEvaluationRepository>();
             services.AddScoped<IStudentRepository, StudentRepository>();

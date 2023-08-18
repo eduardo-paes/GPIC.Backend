@@ -17,6 +17,8 @@ namespace Services
 
         public async Task<string> GenerateCertificateAsync(Project project, string cordinatorName, string fileName)
         {
+            return await GenerateCertificateTestAsync(fileName);
+
             // Caminho temporário onde será salvo o arquivo
             string outputPath = Path.Combine(_outputPath!, fileName);
 
@@ -60,6 +62,59 @@ namespace Services
 
             // Retorna caminho onde foi salvo o arquivo
             return outputPath;
+        }
+
+        public async Task<string> GenerateCertificateTestAsync(string fileName)
+        {
+            // Caminho temporário onde será salvo o arquivo
+            string outputPath = Path.Combine(_outputPath!, fileName);
+
+            // Obtém o conteúdo do arquivo HTML
+            string template = await File.ReadAllTextAsync(Path.Combine(_currentDirectory!, "Reports/certificate.html"));
+
+            var logoCefet = ConvertSvgToBase64(Path.Combine(_currentDirectory!, "Reports/logo-cefet.svg"));
+            var carimboCefet = ConvertSvgToBase64(Path.Combine(_currentDirectory!, "Reports/carimbo.svg"));
+
+            // Substitui as variáveis do HTML pelos valores do projeto
+            template = template
+                .Replace("#LOGO_CEFET#", logoCefet)
+                .Replace("#CARIMBO_CEFET#", carimboCefet)
+                .Replace("#NOME_ORIENTADOR#", "Luciana Faletti")
+                .Replace("#SUBAREA_PROJETO#", "Engenharia Elétrica")
+                .Replace("#NOME_ORIENTADO#", "Eduardo Paes")
+                .Replace("#DATA_EDITAL#", "2023 / 2")
+                .Replace("#PIBIC_TIPO#", "PIBIC / CEFET")
+                .Replace("#INIP_EDITAL#", "01/01/2023")
+                .Replace("#FIMP_EDITAL#", "01/03/2023")
+                .Replace("#SITP_EDITAL#", "Término do Período de Bolsa")
+                .Replace("#TITULO_PROJETO_ALUNO#", "Teste de Projeto")
+                .Replace("#DIA_SEMANA#", DateTime.Now.DayOfWeek.ToString())
+                .Replace("#DIA_DATA#", DateTime.Now.Day.ToString())
+                .Replace("#MES_DATA#", DateTime.Now.ToString("MMMM"))
+                .Replace("#ANO_DATA#", DateTime.Now.Year.ToString())
+                .Replace("#NOME_COORDENADOR#", "Diego Haddad");
+
+            // Transforma HTML em PDF
+            await new BrowserFetcher().DownloadAsync(BrowserFetcher.DefaultChromiumRevision);
+            var browser = await Puppeteer.LaunchAsync(new LaunchOptions { Headless = true });
+            var page = await browser.NewPageAsync();
+            await page.SetContentAsync(template);
+            await page.PdfAsync(outputPath);
+            await browser.CloseAsync();
+
+            // Mostra caminho onde foi salvo o arquivo
+            Console.WriteLine(outputPath);
+
+            // Retorna caminho onde foi salvo o arquivo
+            return outputPath;
+        }
+
+        private static string ConvertSvgToBase64(string filePath)
+        {
+            byte[] svgBytes = File.ReadAllBytes(filePath);
+            string base64String = Convert.ToBase64String(svgBytes);
+
+            return base64String;
         }
     }
 }
