@@ -63,5 +63,11 @@ namespace Domain.Interfaces.Repositories
         /// <param name="cpf">CPF do usuário.</param>
         /// <returns>Usuário encontrado.</returns>
         Task<User?> GetUserByCPFAsync(string? cpf);
+
+        /// <summary>
+        /// Retorna usuário com permissão de coordenador.
+        /// </summary>
+        /// <returns>Coordenador encontrado.</returns>
+        Task<User?> GetCoordinatorAsync();
     }
 }

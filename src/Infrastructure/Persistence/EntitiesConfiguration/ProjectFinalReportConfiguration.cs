@@ -4,18 +4,16 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.EntitiesConfiguration
 {
-    public class ProjectReportConfiguration : IEntityTypeConfiguration<ProjectReport>
+    public class ProjectFinalReportConfiguration : IEntityTypeConfiguration<ProjectFinalReport>
     {
-        public void Configure(EntityTypeBuilder<ProjectReport> builder)
+        public void Configure(EntityTypeBuilder<ProjectFinalReport> builder)
         {
-            builder.ToTable("ProjectReports");
+            builder.ToTable("ProjectFinalReports");
             builder.HasKey(t => t.Id);
             builder.Property(p => p.Id)
                 .ValueGeneratedOnAdd();
 
             builder.Property(p => p.ReportUrl)
-                .IsRequired();
-            builder.Property(p => p.ReportType)
                 .IsRequired();
             builder.Property(p => p.SendDate)
                 .IsRequired();

@@ -33,6 +33,7 @@ namespace Persistence.EntitiesConfiguration
             builder.Property(p => p.AppealDate);
             builder.Property(p => p.CancellationDate);
             builder.Property(p => p.CancellationReason);
+            builder.Property(p => p.CertificateUrl);
             builder.Property(p => p.DeletedAt);
 
             builder.HasOne(a => a.Student)

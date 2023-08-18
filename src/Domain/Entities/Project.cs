@@ -204,7 +204,6 @@ namespace Domain.Entities
         public virtual Student? Student { get; }
         public virtual SubArea? SubArea { get; }
         public virtual Notice? Notice { get; }
-        public virtual IList<ProjectActivity>? ProjectActivities { get; }
         #endregion
 
         #region Informações de Controle
@@ -257,6 +256,11 @@ namespace Domain.Entities
         /// Razão de cancelamento do projeto, preenchido pelo professor.
         /// </summary>
         public string? CancellationReason { get; set; }
+
+        /// <summary>
+        /// URL do certificado do projeto.
+        /// </summary>
+        public string? CertificateUrl { get; set; }
         #endregion
         #endregion
 

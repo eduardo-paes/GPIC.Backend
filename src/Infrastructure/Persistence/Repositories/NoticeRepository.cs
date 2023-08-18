@@ -70,6 +70,13 @@ namespace Persistence.Repositories
                 .ToListAsync();
             return entities.FirstOrDefault();
         }
+
+        public async Task<Notice?> GetNoticeEndingAsync()
+        {
+            return await _context.Notices
+                .AsAsyncEnumerable()
+                .FirstOrDefaultAsync(x => x.FinalReportDeadline!.Value.Date == DateTime.UtcNow.Date.AddDays(-1));
+        }
         #endregion Public Methods
     }
 }

@@ -123,6 +123,8 @@ namespace Domain.Entities
                 _forgotPasswordToken = value;
             }
         }
+
+        public bool IsCoordinator { get; set; }
         #endregion
 
         #region Constructors

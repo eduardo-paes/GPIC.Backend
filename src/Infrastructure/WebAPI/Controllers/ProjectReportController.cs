@@ -1,5 +1,5 @@
-using Application.Ports.ProjectReport;
-using Application.Interfaces.UseCases.ProjectReport;
+using Application.Ports.ProjectFinalReport;
+using Application.Interfaces.UseCases.ProjectFinalReport;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,15 +11,15 @@ namespace WebAPI.Controllers
     [ApiController]
     [Route("api/v1/[controller]")]
     [Authorize]
-    public class ProjectReportController : ControllerBase
+    public class ProjectFinalReportController : ControllerBase
     {
         #region Global Scope
-        private readonly IGetProjectReportById _getById;
-        private readonly IGetProjectReportsByProjectId _getByProjectId;
-        private readonly ICreateProjectReport _create;
-        private readonly IUpdateProjectReport _update;
-        private readonly IDeleteProjectReport _delete;
-        private readonly ILogger<ProjectReportController> _logger;
+        private readonly IGetProjectFinalReportById _getById;
+        private readonly IGetProjectFinalReportsByProjectId _getByProjectId;
+        private readonly ICreateProjectFinalReport _create;
+        private readonly IUpdateProjectFinalReport _update;
+        private readonly IDeleteProjectFinalReport _delete;
+        private readonly ILogger<ProjectFinalReportController> _logger;
 
         /// <summary>
         /// Construtor do Controller de Relatório de Projeto.
@@ -30,12 +30,12 @@ namespace WebAPI.Controllers
         /// <param name="update">Use Case de atualização de relatório de projeto.</param>
         /// <param name="delete">Use Case de remoção de relatório de projeto.</param>
         /// <param name="logger">Logger.</param>
-        public ProjectReportController(IGetProjectReportById getById,
-            IGetProjectReportsByProjectId getByProjectId,
-            ICreateProjectReport create,
-            IUpdateProjectReport update,
-            IDeleteProjectReport delete,
-            ILogger<ProjectReportController> logger)
+        public ProjectFinalReportController(IGetProjectFinalReportById getById,
+            IGetProjectFinalReportsByProjectId getByProjectId,
+            ICreateProjectFinalReport create,
+            IUpdateProjectFinalReport update,
+            IDeleteProjectFinalReport delete,
+            ILogger<ProjectFinalReportController> logger)
         {
             _getById = getById;
             _getByProjectId = getByProjectId;
@@ -56,11 +56,11 @@ namespace WebAPI.Controllers
         /// <response code="401">Usuário não autorizado.</response>
         /// <response code="404">Relatório de projeto não encontrado.</response>
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(DetailedReadProjectReportOutput), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(DetailedReadProjectFinalReportOutput), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<DetailedReadProjectReportOutput>> GetById(Guid? id)
+        public async Task<ActionResult<DetailedReadProjectFinalReportOutput>> GetById(Guid? id)
         {
             if (id == null)
             {
@@ -94,11 +94,11 @@ namespace WebAPI.Controllers
         /// <response code="401">Usuário não autorizado.</response>
         /// <response code="404">Relatórios de projeto não encontrados.</response>
         [HttpGet("project/{projectId}")]
-        [ProducesResponseType(typeof(IEnumerable<DetailedReadProjectReportOutput>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<DetailedReadProjectFinalReportOutput>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<IEnumerable<DetailedReadProjectReportOutput>>> GetByProjectId(Guid? projectId)
+        public async Task<ActionResult<IEnumerable<DetailedReadProjectFinalReportOutput>>> GetByProjectId(Guid? projectId)
         {
             if (projectId == null)
             {
@@ -131,10 +131,10 @@ namespace WebAPI.Controllers
         /// <response code="400">Dados inválidos.</response>
         /// <response code="401">Usuário não autorizado.</response>
         [HttpPost]
-        [ProducesResponseType(typeof(DetailedReadProjectReportOutput), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(DetailedReadProjectFinalReportOutput), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<ActionResult<DetailedReadProjectReportOutput>> Create([FromBody] CreateProjectReportInput request)
+        public async Task<ActionResult<DetailedReadProjectFinalReportOutput>> Create([FromBody] CreateProjectFinalReportInput request)
         {
             try
             {
@@ -160,11 +160,11 @@ namespace WebAPI.Controllers
         /// <response code="401">Usuário não autorizado.</response>
         /// <response code="404">Relatório de projeto não encontrado.</response>
         [HttpPut("{id}")]
-        [ProducesResponseType(typeof(DetailedReadProjectReportOutput), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(DetailedReadProjectFinalReportOutput), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<DetailedReadProjectReportOutput>> Update(Guid? id, [FromBody] UpdateProjectReportInput request)
+        public async Task<ActionResult<DetailedReadProjectFinalReportOutput>> Update(Guid? id, [FromBody] UpdateProjectFinalReportInput request)
         {
             if (id == null)
             {
@@ -198,11 +198,11 @@ namespace WebAPI.Controllers
         /// <response code="401">Usuário não autorizado.</response>
         /// <response code="404">Relatório de projeto não encontrado.</response>
         [HttpDelete("{id}")]
-        [ProducesResponseType(typeof(DetailedReadProjectReportOutput), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(DetailedReadProjectFinalReportOutput), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<DetailedReadProjectReportOutput>> Delete(Guid? id)
+        public async Task<ActionResult<DetailedReadProjectFinalReportOutput>> Delete(Guid? id)
         {
             if (id == null)
             {

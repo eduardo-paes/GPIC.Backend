@@ -1,6 +1,6 @@
 namespace Application.Ports.Project
 {
-    public class ProjectReportInput
+    public class ProjectFinalReportInput
     {
     }
 }

@@ -2,6 +2,7 @@
 using Infrastructure.IoC.Utils;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using Services;
@@ -10,11 +11,11 @@ namespace Infrastructure.IoC
 {
     public static class InfrastructureDI
     {
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, HostBuilderContext? hostContext = null)
         {
             #region AppSettings e DotEnv
             // Define valores das propriedades de configuração
-            IConfiguration configuration = SettingsConfiguration.GetConfiguration();
+            IConfiguration configuration = SettingsConfiguration.GetConfiguration(hostContext);
             services.AddSingleton(configuration);
 
             // Carrega informações de ambiente (.env)

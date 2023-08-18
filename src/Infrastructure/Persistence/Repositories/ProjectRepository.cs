@@ -145,5 +145,21 @@ namespace Persistence.Repositories
                 .Take(take)
                 .ToListAsync();
         }
+
+        public async Task<IEnumerable<Project>> GetProjectByNoticeAsync(Guid? noticeId)
+        {
+            return await _context.Projects
+                .Include(x => x.Student)
+                .Include(x => x.Student!.User)
+                .Include(x => x.Professor)
+                .Include(x => x.Professor!.User)
+                .Include(x => x.SubArea)
+                .Include(x => x.ProgramType)
+                .Include(x => x.Notice)
+                .IgnoreQueryFilters()
+                .AsAsyncEnumerable()
+                .Where(x => x.NoticeId == noticeId)
+                .ToListAsync();
+        }
     }
 }

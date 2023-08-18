@@ -76,6 +76,11 @@ namespace Persistence.Repositories
         {
             return await _context.Users.FirstOrDefaultAsync(x => x.CPF == cpf);
         }
+
+        public async Task<User?> GetCoordinatorAsync()
+        {
+            return await _context.Users.FirstOrDefaultAsync(x => x.IsCoordinator);
+        }
         #endregion Auth Methods
     }
 }

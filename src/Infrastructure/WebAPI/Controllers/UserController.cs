@@ -20,6 +20,8 @@ namespace WebAPI.Controllers
         private readonly IGetInactiveUsers _getInactiveUsers;
         private readonly IGetUserById _getUserById;
         private readonly IUpdateUser _updateUser;
+        private readonly IMakeAdmin _makeAdmin;
+        private readonly IMakeCoordinator _makeCoordinator;
         private readonly ILogger<UserController> _logger;
 
         /// <summary>
@@ -31,6 +33,8 @@ namespace WebAPI.Controllers
         /// <param name="getInactiveUsers">Obtém todos os usuários inativos.</param>
         /// <param name="getUserById">Obtém usuário pelo id.</param>
         /// <param name="updateUser">Atualiza usuário.</param>
+        /// <param name="makeAdmin">Torna usuário administrador.</param>
+        /// <param name="makeCoordinator">Torna usuário coordenador.</param>
         /// <param name="logger">Logger.</param>
         public UserController(IActivateUser activateUser,
             IDeactivateUser deactivateUser,
@@ -38,6 +42,8 @@ namespace WebAPI.Controllers
             IGetInactiveUsers getInactiveUsers,
             IGetUserById getUserById,
             IUpdateUser updateUser,
+            IMakeAdmin makeAdmin,
+            IMakeCoordinator makeCoordinator,
             ILogger<UserController> logger)
         {
             _activateUser = activateUser;
@@ -46,6 +52,8 @@ namespace WebAPI.Controllers
             _getInactiveUsers = getInactiveUsers;
             _getUserById = getUserById;
             _updateUser = updateUser;
+            _makeAdmin = makeAdmin;
+            _makeCoordinator = makeCoordinator;
             _logger = logger;
         }
         #endregion Global Scope
@@ -225,6 +233,72 @@ namespace WebAPI.Controllers
                 var model = await _deactivateUser.ExecuteAsync(userId.Value);
                 _logger.LogInformation("Usuário desativado: {id}", model?.Id);
                 return Ok(model);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Ocorreu um erro: {ErrorMessage}", ex.Message);
+                return BadRequest(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Torna usuário administrador pelo Id.
+        /// </summary>
+        /// <param name="userId">Id do usuário.</param>
+        /// <returns>Resultado da operação.</returns>
+        /// <response code="200">Usuário administrador.</response>
+        /// <response code="400">Id não informado.</response>
+        /// <response code="401">Usuário não autorizado.</response>
+        [HttpPut("Admin/{userId}", Name = "MakeAdmin")]
+        [Authorize(Roles = "ADMIN")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserReadOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<ActionResult<UserReadOutput>> MakeAdmin(Guid? userId)
+        {
+            if (userId == null)
+            {
+                return BadRequest("O ID informado não pode ser nulo.");
+            }
+
+            try
+            {
+                var result = await _makeAdmin.ExecuteAsync(userId.Value);
+                _logger.LogInformation("Operação realizada: {Resultado}", result);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Ocorreu um erro: {ErrorMessage}", ex.Message);
+                return BadRequest(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Torna usuário coordenador pelo Id.
+        /// </summary>
+        /// <param name="userId">Id do usuário.</param>
+        /// <returns>Resultado da operação.</returns>
+        /// <response code="200">Usuário coordenador.</response>
+        /// <response code="400">Id não informado.</response>
+        /// <response code="401">Usuário não autorizado.</response>
+        [HttpPut("Coordinator/{userId}", Name = "MakeCoordinator")]
+        [Authorize(Roles = "ADMIN")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserReadOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<ActionResult<UserReadOutput>> MakeCoordinator(Guid? userId)
+        {
+            if (userId == null)
+            {
+                return BadRequest("O ID informado não pode ser nulo.");
+            }
+
+            try
+            {
+                var result = await _makeCoordinator.ExecuteAsync(userId.Value);
+                _logger.LogInformation("Operação realizada: {Resultado}", result);
+                return Ok(result);
             }
             catch (Exception ex)
             {

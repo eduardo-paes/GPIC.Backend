@@ -60,5 +60,12 @@ namespace Domain.Interfaces.Repositories
         /// <param name="model">Parâmetros de atualização.</param>
         /// <returns>Projeto atualizado.</returns>
         Task<Project> UpdateAsync(Project model);
+
+        /// <summary>
+        /// Obtém projeto pelo Id do Edital informado.
+        /// </summary>
+        /// <param name="noticeId">Id do Edital.</param>
+        /// <returns>Projetos encontrados.</returns>
+        Task<IEnumerable<Project>> GetProjectByNoticeAsync(Guid? noticeId);
     }
 }

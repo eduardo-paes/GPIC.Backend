@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Application.Ports.ProjectReport
+namespace Application.Ports.ProjectFinalReport
 {
-    public abstract class BaseProjectReportContract
+    public abstract class BaseProjectFinalReportContract
     {
         [Required]
         public int? ReportType { get; set; }
