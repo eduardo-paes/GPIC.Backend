@@ -68,6 +68,11 @@ namespace Services
                 throw new Exception($"O arquivo {filePath} não pode ser excluído.", ex);
             }
         }
+
+        public Task<string> UploadFileAsync(byte[] file, string? filePath)
+        {
+            throw new NotImplementedException();
+        }
         #endregion Public Methods
 
         #region Private Methods

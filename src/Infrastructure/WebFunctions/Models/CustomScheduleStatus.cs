@@ -1,6 +1,6 @@
 namespace WebFunctions.Models
 {
-    public class ScheduleStatus
+    public class CustomScheduleStatus
     {
         public DateTime Last { get; set; }
         public DateTime Next { get; set; }
