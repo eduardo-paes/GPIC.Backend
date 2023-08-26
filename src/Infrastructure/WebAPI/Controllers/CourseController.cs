@@ -56,9 +56,9 @@ namespace WebAPI.Controllers
         /// <response code="401">Usuário não autorizado.</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadCourseOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<DetailedReadCourseOutput>> GetById(Guid? id)
         {
             if (id == null)
@@ -73,7 +73,7 @@ namespace WebAPI.Controllers
                 var course = await _getById.ExecuteAsync(id);
                 if (course == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Curso encontrado para o ID {id}.", id);
                 return Ok(course);
@@ -93,8 +93,8 @@ namespace WebAPI.Controllers
         /// <response code="200">Retorna todas os cursos ativos</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ResumedReadCourseOutput>))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         public async Task<ActionResult<IEnumerable<ResumedReadCourseOutput>>> GetAll(int skip = 0, int take = 50)
         {
             try
@@ -126,8 +126,8 @@ namespace WebAPI.Controllers
         /// <response code="401">Usuário não autorizado.</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(DetailedReadCourseOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedReadCourseOutput>> Create([FromBody] CreateCourseInput request)
         {
@@ -154,8 +154,8 @@ namespace WebAPI.Controllers
         /// <response code="401">Usuário não autorizado.</response>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadCourseOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedReadCourseOutput>> Update(Guid? id, [FromBody] UpdateCourseInput request)
         {
@@ -171,7 +171,7 @@ namespace WebAPI.Controllers
                 var updatedCourse = await _update.ExecuteAsync(id.Value, request);
                 if (updatedCourse == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Curso atualizado: {id}", updatedCourse?.Id);
                 return Ok(updatedCourse);
@@ -193,8 +193,8 @@ namespace WebAPI.Controllers
         /// <response code="401">Usuário não autorizado.</response>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadCourseOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedReadCourseOutput>> Delete(Guid? id)
         {
@@ -210,7 +210,7 @@ namespace WebAPI.Controllers
                 var deletedCourse = await _delete.ExecuteAsync(id.Value);
                 if (deletedCourse == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Curso removido: {id}", deletedCourse?.Id);
                 return Ok(deletedCourse);

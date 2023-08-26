@@ -57,9 +57,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Relatório de projeto não encontrado.</response>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(DetailedReadProjectFinalReportOutput), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<DetailedReadProjectFinalReportOutput>> GetById(Guid? id)
         {
             if (id == null)
@@ -72,7 +72,7 @@ namespace WebAPI.Controllers
                 var model = await _getById.ExecuteAsync(id);
                 if (model == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Relatório de Projeto encontrado para o ID {id}.", id);
                 return Ok(model);
@@ -95,9 +95,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Relatórios de projeto não encontrados.</response>
         [HttpGet("project/{projectId}")]
         [ProducesResponseType(typeof(IEnumerable<DetailedReadProjectFinalReportOutput>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<IEnumerable<DetailedReadProjectFinalReportOutput>>> GetByProjectId(Guid? projectId)
         {
             if (projectId == null)
@@ -110,7 +110,7 @@ namespace WebAPI.Controllers
                 var model = await _getByProjectId.ExecuteAsync(projectId);
                 if (model == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Relatórios de Projeto encontrados para o ID do projeto {projectId}.", projectId);
                 return Ok(model);
@@ -132,8 +132,8 @@ namespace WebAPI.Controllers
         /// <response code="401">Usuário não autorizado.</response>
         [HttpPost]
         [ProducesResponseType(typeof(DetailedReadProjectFinalReportOutput), StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         public async Task<ActionResult<DetailedReadProjectFinalReportOutput>> Create([FromBody] CreateProjectFinalReportInput request)
         {
             try
@@ -161,9 +161,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Relatório de projeto não encontrado.</response>
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(DetailedReadProjectFinalReportOutput), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<DetailedReadProjectFinalReportOutput>> Update(Guid? id, [FromBody] UpdateProjectFinalReportInput request)
         {
             if (id == null)
@@ -176,7 +176,7 @@ namespace WebAPI.Controllers
                 var model = await _update.ExecuteAsync(id.Value, request);
                 if (model == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Relatório de Projeto atualizado: {id}", model?.Id);
                 return Ok(model);
@@ -199,9 +199,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Relatório de projeto não encontrado.</response>
         [HttpDelete("{id}")]
         [ProducesResponseType(typeof(DetailedReadProjectFinalReportOutput), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<DetailedReadProjectFinalReportOutput>> Delete(Guid? id)
         {
             if (id == null)
@@ -214,7 +214,7 @@ namespace WebAPI.Controllers
                 var model = await _delete.ExecuteAsync(id.Value);
                 if (model == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Relatório de Projeto removido: {id}", model?.Id);
                 return Ok(model);

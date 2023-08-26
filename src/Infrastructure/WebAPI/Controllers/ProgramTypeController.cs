@@ -57,9 +57,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Tipo de Programa não encontrado.</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadProgramTypeOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<DetailedReadProgramTypeOutput>> GetById(Guid? id)
         {
             if (id == null)
@@ -74,7 +74,7 @@ namespace WebAPI.Controllers
                 var programType = await _getById.ExecuteAsync(id.Value);
                 if (programType == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Tipo de programa encontrado para o ID {id}.", id);
                 return Ok(programType);
@@ -97,9 +97,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Nenhum tipo de programa encontrado.</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ResumedReadProgramTypeOutput>))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<IEnumerable<ResumedReadProgramTypeOutput>>> GetAll(int skip = 0, int take = 50)
         {
             var programTypes = await _getAll.ExecuteAsync(skip, take);
@@ -122,7 +122,7 @@ namespace WebAPI.Controllers
         /// <response code="400">Requisição incorreta.</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(DetailedReadProgramTypeOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedReadProgramTypeOutput>> Create([FromBody] CreateProgramTypeInput request)
         {
@@ -150,9 +150,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Tipo de Programa não encontrado.</response>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadProgramTypeOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedReadProgramTypeOutput>> Update(Guid? id, [FromBody] UpdateProgramTypeInput request)
         {
@@ -168,7 +168,7 @@ namespace WebAPI.Controllers
                 var updatedProgramType = await _update.ExecuteAsync(id.Value, request);
                 if (updatedProgramType == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Tipo de programa atualizado: {id}", updatedProgramType?.Id);
                 return Ok(updatedProgramType);
@@ -191,9 +191,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Tipo de Programa não encontrado.</response>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadProgramTypeOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedReadProgramTypeOutput>> Delete(Guid? id)
         {
@@ -209,7 +209,7 @@ namespace WebAPI.Controllers
                 var deletedProgramType = await _delete.ExecuteAsync(id.Value);
                 if (deletedProgramType == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Tipo de programa removido: {id}", deletedProgramType?.Id);
                 return Ok(deletedProgramType);

@@ -69,9 +69,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Usuário não encontrado.</response>
         [HttpGet("{id}", Name = "GetUserById")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserReadOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<UserReadOutput>> GetById(Guid? id)
         {
             if (id == null)
@@ -84,7 +84,7 @@ namespace WebAPI.Controllers
                 var model = await _getUserById.ExecuteAsync(id);
                 if (model == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Usuário encontrado para o ID {id}.", id);
                 return Ok(model);
@@ -107,8 +107,8 @@ namespace WebAPI.Controllers
         /// <response code="404">Usuários não encontrados.</response>
         [HttpGet("Active/", Name = "GetAllActiveUsers")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<UserReadOutput>))]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<IEnumerable<UserReadOutput>>> GetAllActive(int skip = 0, int take = 50)
         {
             var models = await _getActiveUsers.ExecuteAsync(skip, take);
@@ -131,8 +131,8 @@ namespace WebAPI.Controllers
         /// <response code="404">Usuários não encontrados.</response>
         [HttpGet("Inactive/", Name = "GetAllInactiveUsers")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<UserReadOutput>))]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<IEnumerable<UserReadOutput>>> GetAllInactive(int skip = 0, int take = 50)
         {
             var models = await _getInactiveUsers.ExecuteAsync(skip, take);
@@ -154,8 +154,8 @@ namespace WebAPI.Controllers
         /// <response code="401">Usuário não autorizado.</response>
         [HttpPut("{userId}", Name = "UpdateUser")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserReadOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         public async Task<ActionResult<UserReadOutput>> Update([FromBody] UserUpdateInput request)
         {
             try
@@ -183,9 +183,9 @@ namespace WebAPI.Controllers
         [HttpPut("Active/{userId}", Name = "ActivateUser")]
         [Authorize(Roles = "ADMIN")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserReadOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<UserReadOutput>> Activate(Guid? userId)
         {
             if (userId == null)
@@ -218,9 +218,9 @@ namespace WebAPI.Controllers
         [HttpPut("Inactive/{userId}", Name = "DeactivateUser")]
         [Authorize(Roles = "ADMIN")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserReadOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<UserReadOutput>> Deactivate(Guid? userId)
         {
             if (userId == null)
@@ -252,8 +252,8 @@ namespace WebAPI.Controllers
         [HttpPut("Admin/{userId}", Name = "MakeAdmin")]
         [Authorize(Roles = "ADMIN")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserReadOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         public async Task<ActionResult<UserReadOutput>> MakeAdmin(Guid? userId)
         {
             if (userId == null)
@@ -285,8 +285,8 @@ namespace WebAPI.Controllers
         [HttpPut("Coordinator/{userId}", Name = "MakeCoordinator")]
         [Authorize(Roles = "ADMIN")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserReadOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         public async Task<ActionResult<UserReadOutput>> MakeCoordinator(Guid? userId)
         {
             if (userId == null)

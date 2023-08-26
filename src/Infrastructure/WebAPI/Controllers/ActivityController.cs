@@ -40,8 +40,8 @@ namespace WebAPI.Controllers
         /// <response code="401">Usuário não autorizado.</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ActivityOutput>))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         public async Task<IActionResult> GetLastNoticeActivities()
         {
             try
@@ -67,8 +67,8 @@ namespace WebAPI.Controllers
         /// <response code="401">Usuário não autorizado.</response>
         [HttpGet("notice/{noticeId}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ActivityOutput>))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         public async Task<IActionResult> GetActivitiesByNoticeId(Guid? noticeId)
         {
             if (noticeId == null)

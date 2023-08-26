@@ -69,9 +69,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Nenhum projeto encontrado.</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadProjectOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<DetailedReadProjectOutput>> GetProjectById(Guid? id)
         {
             if (id == null)
@@ -86,7 +86,7 @@ namespace WebAPI.Controllers
                 var project = await _getProjectById.ExecuteAsync(id.Value);
                 if (project == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Projeto encontrado para o ID {id}.", id);
                 return Ok(project);
@@ -101,9 +101,9 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Busca projetos abertos.
         /// </summary>
-        /// <param name="skip"></param>
-        /// <param name="take"></param>
-        /// <param name="onlyMyProjects"></param>
+        /// <param name="skip">Quantidade de registros a serem ignorados.</param>
+        /// <param name="take">Quantidade de registros a serem retornados.</param>
+        /// <param name="onlyMyProjects">Indica que apenas os projetos relacionados ao usuário serão retornados.</param>
         /// <returns>Projetos abertos do usuário logado.</returns>
         /// <response code="200">Retorna projetos abertos do usuário logado.</response>
         /// <response code="400">Ocorreu um erro ao buscar projetos abertos.</response>
@@ -111,9 +111,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Nenhum projeto encontrado.</response>
         [HttpGet("opened")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ResumedReadProjectOutput>))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<IEnumerable<ResumedReadProjectOutput>>> GetOpenProjects(int skip = 0, int take = 50, bool onlyMyProjects = true)
         {
             var projects = await _getOpenProjects.ExecuteAsync(skip, take, onlyMyProjects);
@@ -130,9 +130,9 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Busca projetos fechados.
         /// </summary>
-        /// <param name="skip"></param>
-        /// <param name="take"></param>
-        /// <param name="onlyMyProjects"></param>
+        /// <param name="skip">Quantidade de registros a serem ignorados.</param>
+        /// <param name="take">Quantidade de registros a serem retornados.</param>
+        /// <param name="onlyMyProjects">Indica que apenas os projetos relacionados ao usuário serão retornados.</param>
         /// <returns>Projetos fechados do usuário logado.</returns>
         /// <response code="200">Retorna projetos fechados do usuário logado.</response>
         /// <response code="400">Ocorreu um erro ao buscar projetos fechados.</response>
@@ -140,9 +140,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Nenhum projeto encontrado.</response>
         [HttpGet("closed")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ResumedReadProjectOutput>))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<IEnumerable<ResumedReadProjectOutput>>> GetClosedProjects(int skip = 0, int take = 50, bool onlyMyProjects = true)
         {
             var projects = await _getClosedProjects.ExecuteAsync(skip, take, onlyMyProjects);
@@ -166,7 +166,7 @@ namespace WebAPI.Controllers
         /// <response code="401">Usuário não autorizado.</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(ResumedReadProjectOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         [Authorize(Roles = "ADMIN, PROFESSOR")]
         public async Task<ActionResult<ResumedReadProjectOutput>> OpenProject([FromBody] OpenProjectInput request)
         {
@@ -186,22 +186,22 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Atualiza projeto.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="request"></param>
+        /// <param name="projectId">Id do projeto</param>
+        /// <param name="request">Informações de atualização do projeto</param>
         /// <returns>Projeto atualizado</returns>
         /// <response code="200">Retorna projeto atualizado</response>
         /// <response code="400">Ocorreu um erro ao atualizar projeto.</response>
         /// <response code="401">Usuário não autorizado.</response>
         /// <response code="404">Nenhum projeto encontrado.</response>
-        [HttpPut("{id}")]
+        [HttpPut("{projectId}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResumedReadProjectOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         [Authorize(Roles = "ADMIN, PROFESSOR")]
-        public async Task<ActionResult<ResumedReadProjectOutput>> UpdateProject(Guid? id, [FromBody] UpdateProjectInput request)
+        public async Task<ActionResult<ResumedReadProjectOutput>> UpdateProject(Guid? projectId, [FromBody] UpdateProjectInput request)
         {
-            if (id == null)
+            if (projectId == null)
             {
                 const string errorMessage = "O ID do projeto não pode ser nulo.";
                 _logger.LogWarning(errorMessage);
@@ -210,10 +210,10 @@ namespace WebAPI.Controllers
 
             try
             {
-                var project = await _updateProject.ExecuteAsync(id.Value, request);
+                var project = await _updateProject.ExecuteAsync(projectId.Value, request);
                 if (project == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Projeto atualizado: {id}", project?.Id);
                 return Ok(project);
@@ -228,22 +228,22 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Cancela projeto.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="observation"></param>
+        /// <param name="projectId">Id do projeto</param>
+        /// <param name="observation">Observação do cancelamento</param>
         /// <returns>Projeto cancelado</returns>
         /// <response code="200">Retorna projeto cancelado</response>
         /// <response code="400">Ocorreu um erro ao cancelar projeto.</response>
         /// <response code="401">Usuário não autorizado.</response>
         /// <response code="404">Projeto não encontrado.</response>
-        [HttpDelete("{id}")]
+        [HttpDelete("{projectId}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResumedReadProjectOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         [Authorize(Roles = "ADMIN, PROFESSOR")]
-        public async Task<ActionResult<ResumedReadProjectOutput>> CancelProject(Guid? id, string? observation)
+        public async Task<ActionResult<ResumedReadProjectOutput>> CancelProject(Guid? projectId, string? observation)
         {
-            if (id == null)
+            if (projectId == null)
             {
                 const string errorMessage = "O ID do projeto não pode ser nulo.";
                 _logger.LogWarning(errorMessage);
@@ -252,10 +252,10 @@ namespace WebAPI.Controllers
 
             try
             {
-                var project = await _cancelProject.ExecuteAsync(id.Value, observation);
+                var project = await _cancelProject.ExecuteAsync(projectId.Value, observation);
                 if (project == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Projeto cancelado: {id}", project?.Id);
                 return Ok(project);
@@ -270,20 +270,20 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Solicita recurso para o projeto.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="appealDescription"></param>
+        /// <param name="projectId">Id do projeto</param>
+        /// <param name="appealDescription">Descrição do recurso</param>
         /// <returns>Projeto com recurso solicitado</returns>
         /// <response code="200">Retorna projeto com recurso solicitado</response>
         /// <response code="400">Ocorreu um erro ao solicitar recurso para o projeto.</response>
         /// <response code="401">Usuário não autorizado.</response>
-        [HttpPut("appeal/{id}")]
+        [HttpPut("appeal/{projectId}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResumedReadProjectOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         [Authorize(Roles = "ADMIN, PROFESSOR")]
-        public async Task<ActionResult<ResumedReadProjectOutput>> AppealProject(Guid? id, string? appealDescription)
+        public async Task<ActionResult<ResumedReadProjectOutput>> AppealProject(Guid? projectId, string? appealDescription)
         {
-            if (id == null)
+            if (projectId == null)
             {
                 const string errorMessage = "O ID do projeto não pode ser nulo.";
                 _logger.LogWarning(errorMessage);
@@ -292,7 +292,7 @@ namespace WebAPI.Controllers
 
             try
             {
-                var project = await _appealProject.ExecuteAsync(id.Value, appealDescription);
+                var project = await _appealProject.ExecuteAsync(projectId.Value, appealDescription);
                 _logger.LogInformation("Recurso do projeto solicitado: {id}", project?.Id);
                 return Ok(project);
             }
@@ -306,19 +306,19 @@ namespace WebAPI.Controllers
         /// <summary>
         /// Submete projeto.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="projectId">Id do projeto</param>
         /// <returns>Projeto submetido</returns>
         /// <response code="200">Retorna projeto submetido</response>
         /// <response code="400">Ocorreu um erro ao submeter projeto.</response>
         /// <response code="401">Usuário não autorizado.</response>
-        [HttpPut("submit/{id}")]
+        [HttpPut("submit/{projectId}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResumedReadProjectOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         [Authorize(Roles = "ADMIN, PROFESSOR")]
-        public async Task<ActionResult<ResumedReadProjectOutput>> SubmitProject(Guid? id)
+        public async Task<ActionResult<ResumedReadProjectOutput>> SubmitProject(Guid? projectId)
         {
-            if (id == null)
+            if (projectId == null)
             {
                 const string errorMessage = "O ID do projeto não pode ser nulo.";
                 _logger.LogWarning(errorMessage);
@@ -327,7 +327,7 @@ namespace WebAPI.Controllers
 
             try
             {
-                var project = await _submitProject.ExecuteAsync(id.Value);
+                var project = await _submitProject.ExecuteAsync(projectId.Value);
                 _logger.LogInformation("Projeto submetido: {id}", project?.Id);
                 return Ok(project);
             }

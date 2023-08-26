@@ -57,9 +57,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Professor não encontrado.</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadProfessorOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<DetailedReadProfessorOutput>> GetById(Guid? id)
         {
             if (id == null)
@@ -74,7 +74,7 @@ namespace WebAPI.Controllers
                 var professor = await _getById.ExecuteAsync(id.Value);
                 if (professor == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Professor encontrado para o ID {id}.", id);
                 return Ok(professor);
@@ -97,9 +97,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Nenhum Professor encontrado.</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ResumedReadProfessorOutput>))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<IEnumerable<ResumedReadProfessorOutput>>> GetAll(int skip = 0, int take = 50)
         {
             var professors = await _getAll.ExecuteAsync(skip, take);
@@ -122,7 +122,7 @@ namespace WebAPI.Controllers
         /// <response code="400">Requisição incorreta.</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(DetailedReadProfessorOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         [AllowAnonymous]
         public async Task<ActionResult<DetailedReadProfessorOutput>> Create([FromBody] CreateProfessorInput request)
         {
@@ -150,9 +150,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Professor não encontrado.</response>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadProfessorOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         [Authorize(Roles = "ADMIN, PROFESSOR")]
         public async Task<ActionResult<DetailedReadProfessorOutput>> Update(Guid? id, [FromBody] UpdateProfessorInput request)
         {
@@ -168,7 +168,7 @@ namespace WebAPI.Controllers
                 var updatedProfessor = await _update.ExecuteAsync(id.Value, request);
                 if (updatedProfessor == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Professor atualizado: {id}", updatedProfessor?.Id);
                 return Ok(updatedProfessor);
@@ -191,9 +191,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Professor não encontrado.</response>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadProfessorOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         [Authorize(Roles = "ADMIN, PROFESSOR")]
         public async Task<ActionResult<DetailedReadProfessorOutput>> Delete(Guid? id)
         {
@@ -209,7 +209,7 @@ namespace WebAPI.Controllers
                 var deletedProfessor = await _delete.ExecuteAsync(id.Value);
                 if (deletedProfessor == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Professor removido: {id}", deletedProfessor?.Id);
                 return Ok(deletedProfessor);

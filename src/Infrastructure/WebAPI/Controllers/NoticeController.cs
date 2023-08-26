@@ -56,9 +56,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Edital não encontrado.</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadNoticeOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<DetailedReadNoticeOutput>> GetById(Guid? id)
         {
             if (id == null)
@@ -73,7 +73,7 @@ namespace WebAPI.Controllers
                 var notice = await _getById.ExecuteAsync(id.Value);
                 if (notice == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Edital encontrado para o ID {id}.", id);
                 return Ok(notice);
@@ -96,9 +96,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Nenhum edital encontrado.</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ResumedReadNoticeOutput>))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<IEnumerable<ResumedReadNoticeOutput>>> GetAll(int skip = 0, int take = 50)
         {
             var notices = await _getAll.ExecuteAsync(skip, take);
@@ -122,8 +122,8 @@ namespace WebAPI.Controllers
         /// <response code="401">Usuário não autorizado.</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(DetailedReadNoticeOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedReadNoticeOutput>> Create([FromForm] CreateNoticeInput request)
         {
@@ -151,9 +151,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Edital não encontrado.</response>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadNoticeOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedReadNoticeOutput>> Update(Guid? id, [FromForm] UpdateNoticeInput request)
         {
@@ -169,7 +169,7 @@ namespace WebAPI.Controllers
                 var updatedNotice = await _update.ExecuteAsync(id.Value, request);
                 if (updatedNotice == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Edital atualizado: {id}", updatedNotice?.Id);
                 return Ok(updatedNotice);
@@ -192,9 +192,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Edital não encontrado.</response>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadNoticeOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedReadNoticeOutput>> Delete(Guid? id)
         {
@@ -210,7 +210,7 @@ namespace WebAPI.Controllers
                 var deletedNotice = await _delete.ExecuteAsync(id.Value);
                 if (deletedNotice == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Edital removido: {id}", deletedNotice?.Id);
                 return Ok(deletedNotice);

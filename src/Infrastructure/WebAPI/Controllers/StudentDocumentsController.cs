@@ -56,9 +56,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Documentos de estudante não encontrados.</response>
         [HttpGet("project/{projectId}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadStudentDocumentsOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<DetailedReadStudentDocumentsOutput>> GetByProjectId(Guid? projectId)
         {
             if (projectId == null)
@@ -71,7 +71,7 @@ namespace WebAPI.Controllers
                 var model = await _getStudentDocumentsByProjectId.ExecuteAsync(projectId);
                 if (model == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Documentos encontrados para o projeto com ID {projectId}.", projectId);
                 return Ok(model);
@@ -93,9 +93,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Documentos de estudante não encontrados.</response>
         [HttpGet("student/{studentId}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadStudentDocumentsOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<DetailedReadStudentDocumentsOutput>> GetByStudentId(Guid? studentId)
         {
             if (studentId == null)
@@ -108,7 +108,7 @@ namespace WebAPI.Controllers
                 var model = await _getStudentDocumentsByStudentId.ExecuteAsync(studentId);
                 if (model == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Documentos encontrados para o estudante com ID {studentId}.", studentId);
                 return Ok(model);
@@ -129,8 +129,8 @@ namespace WebAPI.Controllers
         /// <response code="401">Usuário não autenticado.</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(DetailedReadStudentDocumentsOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         [Authorize(Roles = "ADMIN, STUDENT")]
         public async Task<ActionResult<DetailedReadStudentDocumentsOutput>> Create([FromBody] CreateStudentDocumentsInput request)
         {
@@ -158,9 +158,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Documentos de estudante não encontrados.</response>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadStudentDocumentsOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         [Authorize(Roles = "ADMIN, STUDENT")]
         public async Task<ActionResult<DetailedReadStudentDocumentsOutput>> Update(Guid? id, [FromBody] UpdateStudentDocumentsInput request)
         {
@@ -174,7 +174,7 @@ namespace WebAPI.Controllers
                 var model = await _updateStudentDocuments.ExecuteAsync(id.Value, request);
                 if (model == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Documentos do estudante atualizados: {id}", model?.Id);
                 return Ok(model);
@@ -196,9 +196,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Documentos de estudante não encontrados.</response> 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadStudentDocumentsOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         [Authorize(Roles = "ADMIN, STUDENT")]
         public async Task<ActionResult<DetailedReadStudentDocumentsOutput>> Delete(Guid? id)
         {
@@ -212,7 +212,7 @@ namespace WebAPI.Controllers
                 var model = await _deleteStudentDocuments.ExecuteAsync(id.Value);
                 if (model == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Documentos do estudante removidos: {id}", model?.Id);
                 return Ok(model);

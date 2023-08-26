@@ -57,9 +57,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Sub área não encontrada.</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadSubAreaOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<DetailedReadSubAreaOutput>> GetById(Guid? id)
         {
             if (id == null)
@@ -72,7 +72,7 @@ namespace WebAPI.Controllers
                 var model = await _getSubAreaById.ExecuteAsync(id);
                 if (model == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Sub Área encontrada para o ID {id}.", id);
                 return Ok(model);
@@ -97,9 +97,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Sub áreas não encontradas.</response>
         [HttpGet("area/{areaId}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ResumedReadSubAreaOutput>))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<IEnumerable<ResumedReadSubAreaOutput>>> GetSubAreasByArea(Guid? areaId, int skip = 0, int take = 50)
         {
             if (areaId == null)
@@ -134,8 +134,8 @@ namespace WebAPI.Controllers
         /// <response code="401">Usuário não autorizado.</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(DetailedReadSubAreaOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedReadSubAreaOutput>> Create([FromBody] CreateSubAreaInput request)
         {
@@ -164,9 +164,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Sub área não encontrada.</response>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadSubAreaOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedReadSubAreaOutput>> Update(Guid? id, [FromBody] UpdateSubAreaInput request)
         {
@@ -180,7 +180,7 @@ namespace WebAPI.Controllers
                 var model = await _updateSubArea.ExecuteAsync(id.Value, request);
                 if (model == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Sub Área atualizada: {id}", model?.Id);
                 return Ok(model);
@@ -203,9 +203,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Sub área não encontrada.</response>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadSubAreaOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedReadSubAreaOutput>> Delete(Guid? id)
         {
@@ -219,7 +219,7 @@ namespace WebAPI.Controllers
                 var model = await _deleteSubArea.ExecuteAsync(id.Value);
                 if (model == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Sub Área removida: {id}", model?.Id);
                 return Ok(model);
