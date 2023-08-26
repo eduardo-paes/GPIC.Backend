@@ -65,7 +65,9 @@ namespace Application.UseCases.ProjectFinalReport
                 "Somente o aluno ou o professor orientador do projeto pode fazer alterações no relatório.");
 
             // Verifica se o relatório está sendo enviado dentro do prazo
-            var isBeforeDeadline = project.Notice?.FinalReportDeadline < DateTime.UtcNow;
+            // Relatórios podem ser entregues até 6 meses antes do prazo final
+            var isBeforeDeadline = project.Notice?.FinalReportDeadline <= DateTime.UtcNow
+                && project.Notice?.FinalReportDeadline.Value.AddMonths(-6) >= DateTime.UtcNow;
 
             // Lança exceção caso o relatório esteja sendo enviado fora do prazo
             UseCaseException.BusinessRuleViolation(isBeforeDeadline,
