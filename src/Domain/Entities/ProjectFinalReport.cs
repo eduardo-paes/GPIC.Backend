@@ -63,5 +63,10 @@ namespace Domain.Entities
             SendDate = DateTime.UtcNow;
             ProjectId = projectId;
         }
+
+        /// <summary>
+        /// Constructor to dbcontext EF instancing.
+        /// </summary>
+        protected ProjectFinalReport() { }
     }
 }

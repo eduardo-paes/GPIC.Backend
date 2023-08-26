@@ -47,13 +47,12 @@ namespace Persistence.Repositories
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<IList<ProjectFinalReport>?> GetByProjectIdAsync(Guid? projectId)
+        public async Task<ProjectFinalReport?> GetByProjectIdAsync(Guid? projectId)
         {
             return await _context.ProjectFinalReports
                 .IgnoreQueryFilters()
                 .AsAsyncEnumerable()
-                .Where(x => x.ProjectId == projectId)
-                .ToListAsync();
+                .FirstOrDefaultAsync(x => x.ProjectId == projectId);
         }
 
         public async Task<ProjectFinalReport> UpdateAsync(ProjectFinalReport model)

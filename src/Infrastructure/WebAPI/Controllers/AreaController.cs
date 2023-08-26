@@ -56,9 +56,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Nenhuma área encontrada.</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadAreaOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<IActionResult> GetById(Guid? id)
         {
             _logger.LogInformation("Executando ({MethodName}) com os parâmetros: Id = {id}", nameof(GetById), id);
@@ -94,9 +94,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Nenhuma área encontrada.</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ResumedReadAreaOutput>))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<IActionResult> GetAreasByMainArea(Guid? mainAreaId, int skip = 0, int take = 50)
         {
             _logger.LogInformation("Executando método com os parâmetros: MainAreaId = {mainAreaId}, Skip = {skip}, Take = {take}", mainAreaId, skip, take);
@@ -137,7 +137,7 @@ namespace WebAPI.Controllers
         [HttpPost]
         [Authorize(Roles = "ADMIN")]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(DetailedReadAreaOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         public async Task<IActionResult> Create([FromBody] CreateAreaInput request)
         {
             try
@@ -164,8 +164,8 @@ namespace WebAPI.Controllers
         [HttpPut("{id}")]
         [Authorize(Roles = "ADMIN")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadAreaOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         public async Task<IActionResult> Update(Guid? id, [FromBody] UpdateAreaInput request)
         {
             if (id == null)
@@ -197,8 +197,8 @@ namespace WebAPI.Controllers
         [HttpDelete("{id}")]
         [Authorize(Roles = "ADMIN")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadAreaOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)

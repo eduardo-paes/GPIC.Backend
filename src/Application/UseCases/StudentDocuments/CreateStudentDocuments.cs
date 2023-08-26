@@ -40,7 +40,8 @@ namespace Application.UseCases.StudentDocuments
         {
             // Verifica se já há documentos para o projeto informado
             var documents = await _studentDocumentRepository.GetByProjectIdAsync(input.ProjectId!);
-            UseCaseException.BusinessRuleViolation(documents is null, "Já existem documentos do aluno para o projeto indicado.");
+            UseCaseException.BusinessRuleViolation(documents is null,
+                "Já existem documentos do aluno para o projeto indicado.");
 
             // Verifica se o projeto existe
             var project = await _projectRepository.GetByIdAsync(input.ProjectId!);
@@ -52,7 +53,7 @@ namespace Application.UseCases.StudentDocuments
                 "O projeto não está na fase de apresentação de documentos.");
 
             // Cria entidade a partir do input informado
-            var entity = new Domain.Entities.StudentDocuments(input.ProjectId, input.AgencyNumber, input.AccountNumber);
+            var studentDocument = new Domain.Entities.StudentDocuments(input.ProjectId, input.AgencyNumber, input.AccountNumber);
 
             // Verifica se o aluno é menor de idade
             if (project?.Student?.BirthDate > DateTime.UtcNow.AddYears(-18))
@@ -62,22 +63,28 @@ namespace Application.UseCases.StudentDocuments
                     "A autorização dos pais deve ser fornecida para alunos menores de idade.");
 
                 // Salva autorização dos pais
-                entity.ParentalAuthorization = await TryToSaveFileInCloud(input.ParentalAuthorization!);
+                studentDocument.ParentalAuthorization = await TryToSaveFileInCloud(input.ParentalAuthorization!);
             }
 
             // Salva demais arquivos na nuvem
-            entity.IdentityDocument = await TryToSaveFileInCloud(input.IdentityDocument!);
-            entity.CPF = await TryToSaveFileInCloud(input.CPF!);
-            entity.Photo3x4 = await TryToSaveFileInCloud(input.Photo3x4!);
-            entity.SchoolHistory = await TryToSaveFileInCloud(input.SchoolHistory!);
-            entity.ScholarCommitmentAgreement = await TryToSaveFileInCloud(input.ScholarCommitmentAgreement!);
-            entity.AccountOpeningProof = await TryToSaveFileInCloud(input.AccountOpeningProof!);
+            studentDocument.IdentityDocument = await TryToSaveFileInCloud(input.IdentityDocument!);
+            studentDocument.CPF = await TryToSaveFileInCloud(input.CPF!);
+            studentDocument.Photo3x4 = await TryToSaveFileInCloud(input.Photo3x4!);
+            studentDocument.SchoolHistory = await TryToSaveFileInCloud(input.SchoolHistory!);
+            studentDocument.ScholarCommitmentAgreement = await TryToSaveFileInCloud(input.ScholarCommitmentAgreement!);
+            studentDocument.AccountOpeningProof = await TryToSaveFileInCloud(input.AccountOpeningProof!);
 
             // Cria entidade
-            entity = await _studentDocumentRepository.CreateAsync(entity);
+            studentDocument = await _studentDocumentRepository.CreateAsync(studentDocument);
+
+            // Atualiza status do projeto
+            project!.Status = Domain.Entities.Enums.EProjectStatus.DocumentAnalysis;
+
+            // Salva alterações no banco de dados
+            _ = await _projectRepository.UpdateAsync(project);
 
             // Salva entidade no banco
-            return _mapper.Map<DetailedReadStudentDocumentsOutput>(entity);
+            return _mapper.Map<DetailedReadStudentDocumentsOutput>(studentDocument);
         }
 
         private async Task<string> TryToSaveFileInCloud(IFormFile file)

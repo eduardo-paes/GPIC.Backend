@@ -37,8 +37,6 @@ namespace Application.UseCases.Project
 
         public async Task<string> ExecuteAsync()
         {
-            return await TestMethod();
-
             // Busca edital que possui data final de entrega de relatório para o dia anterior
             var notice = await _noticeRepository.GetNoticeEndingAsync();
             if (notice is null)
@@ -58,10 +56,10 @@ namespace Application.UseCases.Project
             foreach (var project in projects)
             {
                 // Verifica se o projeto possui relatório final
-                var reports = await _projectReportRepository.GetByProjectIdAsync(project.Id);
+                var finalReport = await _projectReportRepository.GetByProjectIdAsync(project.Id);
 
                 // Se não possuir relatório final, não gera certificado e suspende o professor
-                if (reports is null || !reports.Any())
+                if (finalReport is null)
                 {
                     // Suspende professor
                     var professor = await _professorRepository.GetByIdAsync(project.ProfessorId);
@@ -84,10 +82,10 @@ namespace Application.UseCases.Project
                     var path = await _reportService.GenerateCertificateAsync(project, coordinator.Name!, uniqueName);
 
                     // Converte certificado para IFormFile a fim de enviá-lo para nuvem
-                    var file = new FormFile(new MemoryStream(File.ReadAllBytes(path)), 0, 0, "certificate", uniqueName);
+                    var bytes = File.ReadAllBytes(path);
 
                     // Envia certificado para nuvem e salva url no projeto
-                    project.CertificateUrl = await _storageFileService.UploadFileAsync(file);
+                    project.CertificateUrl = await _storageFileService.UploadFileAsync(bytes, path);
 
                     // Encerra projeto
                     project.Status = EProjectStatus.Closed;
@@ -108,10 +106,10 @@ namespace Application.UseCases.Project
             var path = await _reportService.GenerateCertificateAsync(project, "Eduardo Paes", uniqueName);
 
             // Converte certificado para IFormFile a fim de enviá-lo para nuvem
-            var file = new FormFile(new MemoryStream(File.ReadAllBytes(path)), 0, 0, "certificate", uniqueName);
+            var bytes = File.ReadAllBytes(path);
 
             // Envia certificado para nuvem e salva url no projeto
-            var url = await _storageFileService.UploadFileAsync(file);
+            var url = await _storageFileService.UploadFileAsync(bytes, path);
 
             // Mostra URL do certificado
             Console.WriteLine(url);

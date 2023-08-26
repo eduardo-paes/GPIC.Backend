@@ -4,6 +4,8 @@ public static class ExceptionMessageFactory
     public static string MinLength(string prop, int length) => $"O valor de ({prop}) é muito curto. O comprimento mínimo é de {length} caracteres.";
     public static string MaxLength(string prop, int length) => $"O valor de ({prop}) é muito longo. O comprimento máximo é de {length} caracteres.";
     public static string WithLength(string prop, int length) => $"Valor inválido para ({prop}). O número de caracteres deve ser {length}.";
+    public static string MinValue(string prop, int length) => $"O valor de ({prop}) deve ser maior ou igual a {length}.";
+    public static string MaxValue(string prop, int length) => $"O valor de ({prop}) deve ser menor ou igual a {length}.";
     public static string Required(string prop) => $"Valor inválido para ({prop}). {prop} deve ser fornecido.";
     public static string Invalid(string prop) => $"Valor inválido para ({prop}).";
     public static string InvalidEmail(string prop) => $"Valor inválido para ({prop}). O email fornecido não é válido.";

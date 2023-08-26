@@ -10,6 +10,6 @@ namespace Domain.Interfaces.Repositories
         /// </summary>
         /// <param name="projectId">Id do projeto.</param>
         /// <returns>Relatório de projeto encontrado.</returns>
-        Task<IList<ProjectFinalReport>?> GetByProjectIdAsync(Guid? projectId);
+        Task<ProjectFinalReport?> GetByProjectIdAsync(Guid? projectId);
     }
 }

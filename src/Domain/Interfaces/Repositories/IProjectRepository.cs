@@ -12,33 +12,42 @@ namespace Domain.Interfaces.Repositories
         Task<Project?> GetByIdAsync(Guid? id);
 
         /// <summary>
-        /// Permite a busca de todos os projetos abertos.
+        /// Permite a busca de todos os projetos (abertos ou fechados).
         /// </summary>
-        /// <param name="skip"></param>
-        /// <param name="take"></param>
+        /// <param name="skip">Quantidade de registros a serem ignorados.</param>
+        /// <param name="take">Quantidade de registros a serem retornados.</param>
         /// <param name="isClosed">Filtra por projetos encerrados.</param>
         /// <returns>Retorna todos os projetos.</returns>
         Task<IEnumerable<Project>> GetProjectsAsync(int skip, int take, bool isClosed = false);
 
         /// <summary>
-        /// Permite a busca dos projetos associados ao aluno.
+        /// Permite a busca dos projetos (abertos ou fechados) associados ao aluno.
         /// </summary>
-        /// <param name="skip"></param>
-        /// <param name="take"></param>
+        /// <param name="skip">Quantidade de registros a serem ignorados.</param>
+        /// <param name="take">Quantidade de registros a serem retornados.</param>
         /// <param name="id">Id do aluno.</param>
         /// <param name="isClosed">Filtra por projetos encerrados.</param>
         /// <returns>Retorna os projetos do aluno.</returns>
         Task<IEnumerable<Project>> GetStudentProjectsAsync(int skip, int take, Guid? id, bool isClosed = false);
 
         /// <summary>
-        /// Permite a busca dos projetos associados ao professor.
+        /// Permite a busca dos projetos (abertos ou fechados) associados ao professor.
         /// </summary>
-        /// <param name="skip"></param>
-        /// <param name="take"></param>
+        /// <param name="skip">Quantidade de registros a serem ignorados.</param>
+        /// <param name="take">Quantidade de registros a serem retornados.</param>
         /// <param name="id">Id do professor.</param>
         /// <param name="isClosed">Filtra por projetos encerrados.</param>
         /// <returns>Retorna os projetos do professor.</returns>
         Task<IEnumerable<Project>> GetProfessorProjectsAsync(int skip, int take, Guid? id, bool isClosed = false);
+
+        /// <summary>
+        /// Permite a busca dos projetos em avaliação e que não estão associados ao professor.
+        /// </summary>
+        /// <param name="skip">Quantidade de registros a serem ignorados.</param>
+        /// <param name="take">Quantidade de registros a serem retornados.</param>
+        /// <param name="professorId">Id do professor.</param>
+        /// <returns>Retorna os projetos em avaliação.</returns>
+        Task<IEnumerable<Project>> GetProjectsToEvaluateAsync(int skip, int take, Guid? professorId);
 
         /// <summary>
         /// Cria projeto conforme parâmetros fornecidos.

@@ -51,7 +51,7 @@ namespace WebAPI.Controllers
         [AllowAnonymous]
         [HttpPost("ConfirmEmail", Name = "ConfirmEmail")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         public async Task<ActionResult<string>> ConfirmEmail(string? email, string? token)
         {
             try
@@ -78,7 +78,7 @@ namespace WebAPI.Controllers
         [AllowAnonymous]
         [HttpPost("ForgotPassword", Name = "ForgotPassword")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         public async Task<ActionResult<string>> ForgotPassword(string? email)
         {
             try
@@ -104,7 +104,7 @@ namespace WebAPI.Controllers
         [AllowAnonymous]
         [HttpPost("Login", Name = "Login")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserLoginOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         public async Task<ActionResult<UserLoginOutput>> Login([FromBody] UserLoginInput request)
         {
             try
@@ -130,7 +130,7 @@ namespace WebAPI.Controllers
         [AllowAnonymous]
         [HttpPost("ResetPassword", Name = "ResetPassword")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         public async Task<ActionResult<string>> ResetPassword([FromBody] UserResetPasswordInput request)
         {
             try

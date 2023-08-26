@@ -6,7 +6,7 @@ using Domain.Interfaces.Repositories;
 
 namespace Application.UseCases.ProjectFinalReport
 {
-    public class GetProjectFinalReportByProjectId : IGetProjectFinalReportsByProjectId
+    public class GetProjectFinalReportByProjectId : IGetProjectFinalReportByProjectId
     {
         #region Global Scope
         private readonly IProjectFinalReportRepository _repository;
@@ -18,11 +18,11 @@ namespace Application.UseCases.ProjectFinalReport
         }
         #endregion Global Scope
 
-        public async Task<IList<DetailedReadProjectFinalReportOutput>> ExecuteAsync(Guid? projectId)
+        public async Task<DetailedReadProjectFinalReportOutput> ExecuteAsync(Guid? projectId)
         {
             UseCaseException.NotInformedParam(projectId is null, nameof(projectId));
-            var entities = await _repository.GetByProjectIdAsync(projectId);
-            return _mapper.Map<IList<DetailedReadProjectFinalReportOutput>>(entities);
+            var report = await _repository.GetByProjectIdAsync(projectId);
+            return _mapper.Map<DetailedReadProjectFinalReportOutput>(report);
         }
     }
 }

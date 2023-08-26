@@ -14,26 +14,26 @@ namespace Persistence.Repositories
             _context = context;
         }
 
-        public async Task<Project> CreateAsync(Project model)
+        public async Task<Project> CreateAsync(Project project)
         {
-            _ = _context.Add(model);
+            _ = _context.Add(project);
             _ = await _context.SaveChangesAsync();
-            return model;
+            return project;
         }
 
-        public async Task<Project> UpdateAsync(Project model)
+        public async Task<Project> UpdateAsync(Project project)
         {
-            _ = _context.Update(model);
+            _ = _context.Update(project);
             _ = await _context.SaveChangesAsync();
-            return model;
+            return project;
         }
 
         public async Task<Project> DeleteAsync(Guid? id)
         {
-            Project model = await GetByIdAsync(id)
+            Project project = await GetByIdAsync(id)
                 ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
-            model.DeactivateEntity();
-            return await UpdateAsync(model);
+            project.DeactivateEntity();
+            return await UpdateAsync(project);
         }
 
         public async Task<Project?> GetByIdAsync(Guid? id)
@@ -65,6 +65,8 @@ namespace Persistence.Repositories
                     .Where(x => x.StudentId == id
                         && (x.Status == EProjectStatus.Closed
                             || x.Status == EProjectStatus.Canceled))
+                    .OrderByDescending(x => x.Notice?.RegistrationStartDate) // Traz os projetos mais recentes primeiro.
+                    .ThenBy(x => x.Title) // Traz os projetos em ordem alfabética.
                     .Skip(skip)
                     .Take(take)
                     .ToListAsync()
@@ -79,6 +81,8 @@ namespace Persistence.Repositories
                 .Where(x => x.StudentId == id
                     && x.Status != EProjectStatus.Closed
                     && x.Status != EProjectStatus.Canceled)
+                .OrderByDescending(x => x.Notice?.RegistrationStartDate) // Traz os projetos mais recentes primeiro.
+                .ThenBy(x => x.Title) // Traz os projetos em ordem alfabética.
                 .Skip(skip)
                 .Take(take)
                 .ToListAsync();
@@ -96,6 +100,8 @@ namespace Persistence.Repositories
                     .IgnoreQueryFilters()
                     .AsAsyncEnumerable()
                     .Where(x => x.Status is EProjectStatus.Closed or EProjectStatus.Canceled)
+                    .OrderByDescending(x => x.Notice?.RegistrationStartDate) // Traz os projetos mais recentes primeiro.
+                    .ThenBy(x => x.Title) // Traz os projetos em ordem alfabética.
                     .Skip(skip)
                     .Take(take)
                     .ToListAsync()
@@ -108,6 +114,8 @@ namespace Persistence.Repositories
                 .IgnoreQueryFilters()
                 .AsAsyncEnumerable()
                 .Where(x => x.Status is not EProjectStatus.Closed and not EProjectStatus.Canceled)
+                .OrderByDescending(x => x.Notice?.RegistrationStartDate) // Traz os projetos mais recentes primeiro.
+                .ThenBy(x => x.Title) // Traz os projetos em ordem alfabética.
                 .Skip(skip)
                 .Take(take)
                 .ToListAsync();
@@ -127,6 +135,8 @@ namespace Persistence.Repositories
                     .Where(x => x.ProfessorId == id
                         && (x.Status == EProjectStatus.Closed
                             || x.Status == EProjectStatus.Canceled))
+                    .OrderByDescending(x => x.Notice?.RegistrationStartDate) // Traz os projetos mais recentes primeiro.
+                    .ThenBy(x => x.Title) // Traz os projetos em ordem alfabética.
                     .Skip(skip)
                     .Take(take)
                     .ToListAsync()
@@ -141,6 +151,8 @@ namespace Persistence.Repositories
                 .Where(x => x.StudentId == id
                     && x.Status != EProjectStatus.Closed
                     && x.Status != EProjectStatus.Canceled)
+                .OrderByDescending(x => x.Notice?.RegistrationStartDate) // Traz os projetos mais recentes primeiro.
+                .ThenBy(x => x.Title) // Traz os projetos em ordem alfabética.
                 .Skip(skip)
                 .Take(take)
                 .ToListAsync();
@@ -159,6 +171,25 @@ namespace Persistence.Repositories
                 .IgnoreQueryFilters()
                 .AsAsyncEnumerable()
                 .Where(x => x.NoticeId == noticeId)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Project>> GetProjectsToEvaluateAsync(int skip, int take, Guid? professorId)
+        {
+            return await _context.Projects
+                .Include(x => x.Student)
+                .Include(x => x.Professor)
+                .Include(x => x.SubArea)
+                .Include(x => x.ProgramType)
+                .Include(x => x.Notice)
+                .IgnoreQueryFilters()
+                .AsAsyncEnumerable()
+                .Where(x => x.Status is EProjectStatus.Submitted or EProjectStatus.Evaluation or EProjectStatus.DocumentAnalysis
+                    && x.ProfessorId != professorId)
+                .OrderByDescending(x => x.Notice?.RegistrationStartDate) // Traz os projetos mais recentes primeiro.
+                .ThenBy(x => x.Title) // Traz os projetos em ordem alfabética.
+                .Skip(skip)
+                .Take(take)
                 .ToListAsync();
         }
     }

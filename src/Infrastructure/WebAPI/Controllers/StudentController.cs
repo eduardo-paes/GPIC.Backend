@@ -65,9 +65,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Estudante não encontrado.</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadStudentOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<DetailedReadStudentOutput>> GetById(Guid? id)
         {
             if (id == null)
@@ -80,7 +80,7 @@ namespace WebAPI.Controllers
                 var student = await _getStudentById.ExecuteAsync(id.Value);
                 if (student == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Estudante encontrado para o ID {id}.", id);
                 return Ok(student);
@@ -103,9 +103,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Estudante não encontrado.</response>
         [HttpGet("RegistrationCode/{registrationCode}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadStudentOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<DetailedReadStudentOutput>> GetByRegistrationCode(string? registrationCode)
         {
             if (string.IsNullOrWhiteSpace(registrationCode))
@@ -118,7 +118,7 @@ namespace WebAPI.Controllers
                 var student = await _getStudentByRegistrationCode.ExecuteAsync(registrationCode);
                 if (student == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Estudante encontrado para a matrícula {registrationCode}.", registrationCode);
                 return Ok(student);
@@ -141,8 +141,8 @@ namespace WebAPI.Controllers
         /// <response code="500">Ocorreu um erro ao solicitar o registro do estudante.</response>
         [HttpPost("RequestRegister/{email}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [Authorize(Roles = "ADMIN, PROFESSOR")]
         public async Task<ActionResult<string>> RequestStudentRegister(string? email)
@@ -180,9 +180,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Nenhum Estudante encontrado.</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ResumedReadStudentOutput>))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<IEnumerable<ResumedReadStudentOutput>>> GetAll(int skip = 0, int take = 50)
         {
             var students = await _getAllStudents.ExecuteAsync(skip, take);
@@ -203,8 +203,8 @@ namespace WebAPI.Controllers
         /// <response code="400">Requisição incorreta.</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(DetailedReadStudentOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         [AllowAnonymous]
         public async Task<ActionResult<DetailedReadStudentOutput>> Create([FromBody] CreateStudentInput request)
         {
@@ -232,9 +232,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Nenhum Estudante encontrado.</response>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadStudentOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         [Authorize(Roles = "ADMIN, STUDENT")]
         public async Task<ActionResult<DetailedReadStudentOutput>> Update(Guid? id, [FromBody] UpdateStudentInput request)
         {
@@ -248,7 +248,7 @@ namespace WebAPI.Controllers
                 var updatedStudent = await _updateStudent.ExecuteAsync(id.Value, request);
                 if (updatedStudent == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Estudante atualizado: {id}", updatedStudent?.Id);
                 return Ok(updatedStudent);
@@ -271,9 +271,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Retorna mensagem de erro</response>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadStudentOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         [Authorize(Roles = "ADMIN, STUDENT")]
         public async Task<ActionResult<DetailedReadStudentOutput>> Delete(Guid? id)
         {
@@ -287,7 +287,7 @@ namespace WebAPI.Controllers
                 var deletedStudent = await _deleteStudent.ExecuteAsync(id.Value);
                 if (deletedStudent == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Estudante removido: {id}", deletedStudent?.Id);
                 return Ok(deletedStudent);

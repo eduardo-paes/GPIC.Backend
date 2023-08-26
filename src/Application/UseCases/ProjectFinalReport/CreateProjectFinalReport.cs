@@ -51,8 +51,14 @@ namespace Application.UseCases.ProjectFinalReport
             UseCaseException.BusinessRuleViolation(project.Status != Domain.Entities.Enums.EProjectStatus.Started,
                 "O projeto informado não está em andamento.");
 
+            // Somente aluno ou professor do projeto pode fazer inclusão de relatório
+            UseCaseException.BusinessRuleViolation(user.Id != project.StudentId && user.Id != project.ProfessorId,
+                "Somente o aluno ou o professor orientador do projeto pode fazer inclusão de relatório.");
+
             // Verifica se o relatório está sendo enviado dentro do prazo
-            var isBeforeDeadline = project.Notice?.FinalReportDeadline < DateTime.UtcNow;
+            // Relatórios podem ser entregues até 6 meses antes do prazo final
+            var isBeforeDeadline = project.Notice?.FinalReportDeadline <= DateTime.UtcNow
+                && project.Notice?.FinalReportDeadline.Value.AddMonths(-6) >= DateTime.UtcNow;
 
             // Lança exceção caso o relatório esteja sendo enviado fora do prazo
             UseCaseException.BusinessRuleViolation(isBeforeDeadline,

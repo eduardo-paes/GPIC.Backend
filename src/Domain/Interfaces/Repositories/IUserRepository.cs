@@ -7,16 +7,16 @@ namespace Domain.Interfaces.Repositories
         /// <summary>
         /// Retorna usuários ativos no sistema.
         /// </summary>
-        /// <param name="skip"></param>
-        /// <param name="take"></param>
+        /// <param name="skip">Quantidade de registros a serem ignorados.</param>
+        /// <param name="take">Quantidade de registros a serem retornados.</param>
         /// <returns>Usuários encontrados.</returns>
         Task<IEnumerable<User>> GetActiveUsersAsync(int skip, int take);
 
         /// <summary>
         /// Retorna usuários inativos no sistema.
         /// </summary>
-        /// <param name="skip"></param>
-        /// <param name="take"></param>
+        /// <param name="skip">Quantidade de registros a serem ignorados.</param>
+        /// <param name="take">Quantidade de registros a serem retornados.</param>
         /// <returns>Usuários encontrados.</returns>
         Task<IEnumerable<User>> GetInactiveUsersAsync(int skip, int take);
 

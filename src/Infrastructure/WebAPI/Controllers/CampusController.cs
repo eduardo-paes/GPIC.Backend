@@ -55,8 +55,8 @@ namespace WebAPI.Controllers
         /// <response code="404">Campus não encontrado.</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<DetailedReadCampusOutput>> GetById(Guid? id)
         {
             try
@@ -88,8 +88,8 @@ namespace WebAPI.Controllers
         /// <response code="404">Nenhum Campus encontrado.</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<IEnumerable<ResumedReadCampusOutput>>> GetAll(int skip = 0, int take = 50)
         {
             try
@@ -122,8 +122,8 @@ namespace WebAPI.Controllers
         [HttpPost]
         [Authorize(Roles = "ADMIN")]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(DetailedReadCampusOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         public async Task<ActionResult<DetailedReadCampusOutput>> Create([FromBody] CreateCampusInput request)
         {
             try
@@ -152,9 +152,9 @@ namespace WebAPI.Controllers
         [HttpPut("{id}")]
         [Authorize(Roles = "ADMIN")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadCampusOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<DetailedReadCampusOutput>> Update(Guid? id, [FromBody] UpdateCampusInput request)
         {
             if (id == null)
@@ -168,7 +168,7 @@ namespace WebAPI.Controllers
 
                 if (model == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
 
                 _logger.LogInformation("Campus atualizado: {id}", model.Id);
@@ -193,9 +193,9 @@ namespace WebAPI.Controllers
         [HttpDelete("{id}")]
         [Authorize(Roles = "ADMIN")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadCampusOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<DetailedReadCampusOutput>> Remover(Guid? id)
         {
             if (id == null)
@@ -210,7 +210,7 @@ namespace WebAPI.Controllers
                 var model = await _delete.ExecuteAsync(id.Value);
                 if (model == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
 
                 _logger.LogInformation("Campus removido: {id}", model.Id);

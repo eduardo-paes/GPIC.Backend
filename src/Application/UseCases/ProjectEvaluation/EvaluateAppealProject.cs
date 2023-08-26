@@ -40,13 +40,17 @@ namespace Application.UseCases.ProjectEvaluation
             UseCaseException.BusinessRuleViolation(user.Role != ERole.ADMIN || user.Role != ERole.PROFESSOR,
                 "O usuário não é um avaliador.");
 
+            // Verifica se o status da avaliação foi informado.
+            UseCaseException.NotInformedParam(input.AppealEvaluationStatus is null,
+                nameof(input.AppealEvaluationStatus));
+
+            // Verifica se descrição da avaliação foi informada.
+            UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.AppealEvaluationDescription),
+                nameof(input.AppealEvaluationDescription));
+
             // Busca avaliação do projeto pelo Id.
             var projectEvaluation = await _projectEvaluationRepository.GetByProjectIdAsync(input.ProjectId)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Domain.Entities.ProjectEvaluation));
-
-            // Recupera projeto pelo Id.
-            var project = await _projectRepository.GetByIdAsync(input.ProjectId)
-                ?? throw UseCaseException.NotFoundEntityById(nameof(Domain.Entities.Project));
 
             // Verifica se o avaliador é o professor orientador do projeto.
             UseCaseException.BusinessRuleViolation(projectEvaluation.Project?.ProfessorId == user.Id,
@@ -60,13 +64,9 @@ namespace Application.UseCases.ProjectEvaluation
             UseCaseException.BusinessRuleViolation(projectEvaluation?.Project?.Notice?.AppealStartDate > DateTime.UtcNow || projectEvaluation?.Project?.Notice?.AppealEndDate < DateTime.UtcNow,
                 "O edital não está na fase de recurso.");
 
-            // Verifica se o status da avaliação foi informado.
-            UseCaseException.NotInformedParam(input.AppealEvaluationStatus is null,
-                nameof(input.AppealEvaluationStatus));
-
-            // Verifica se descrição da avaliação foi informada.
-            UseCaseException.NotInformedParam(string.IsNullOrEmpty(input.AppealEvaluationDescription),
-                nameof(input.AppealEvaluationDescription));
+            // Recupera projeto pelo Id.
+            var project = await _projectRepository.GetByIdAsync(input.ProjectId)
+                ?? throw UseCaseException.NotFoundEntityById(nameof(Domain.Entities.Project));
 
             // Atualiza a avaliação do recurso.
             projectEvaluation!.AppealEvaluatorId = user.Id;
@@ -97,7 +97,7 @@ namespace Application.UseCases.ProjectEvaluation
                 project.Professor!.User!.Name,
                 project.Title,
                 project.StatusDescription,
-                projectEvaluation.SubmissionEvaluationDescription);
+                projectEvaluation.AppealEvaluationDescription);
 
             // Atualiza projeto.
             var output = await _projectRepository.UpdateAsync(project);

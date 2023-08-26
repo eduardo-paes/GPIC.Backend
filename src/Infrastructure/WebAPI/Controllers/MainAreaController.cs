@@ -56,9 +56,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Área principal não encontrada.</response>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedMainAreaOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<DetailedMainAreaOutput>> GetById(Guid? id)
         {
             if (id == null)
@@ -73,7 +73,7 @@ namespace WebAPI.Controllers
                 var mainArea = await _getById.ExecuteAsync(id.Value);
                 if (mainArea == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Área Principal encontrada para o ID {id}.", id);
                 return Ok(mainArea);
@@ -96,9 +96,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Nenhuma área principal encontrada.</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ResumedReadMainAreaOutput>))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         public async Task<ActionResult<IEnumerable<ResumedReadMainAreaOutput>>> GetAll(int skip = 0, int take = 50)
         {
             var mainAreas = await _getAll.ExecuteAsync(skip, take);
@@ -122,8 +122,8 @@ namespace WebAPI.Controllers
         /// <response code="401">Usuário não autorizado.</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(DetailedMainAreaOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedMainAreaOutput>> Create([FromBody] CreateMainAreaInput request)
         {
@@ -151,9 +151,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Área principal não encontrada.</response>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedMainAreaOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedMainAreaOutput>> Update(Guid? id, [FromBody] UpdateMainAreaInput request)
         {
@@ -169,7 +169,7 @@ namespace WebAPI.Controllers
                 var updatedMainArea = await _update.ExecuteAsync(id.Value, request);
                 if (updatedMainArea == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Área principal atualizada: {id}", updatedMainArea?.Id);
                 return Ok(updatedMainArea);
@@ -192,9 +192,9 @@ namespace WebAPI.Controllers
         /// <response code="404">Área principal não encontrada.</response>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedMainAreaOutput))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<DetailedMainAreaOutput>> Delete(Guid? id)
         {
@@ -210,7 +210,7 @@ namespace WebAPI.Controllers
                 var deletedMainArea = await _delete.ExecuteAsync(id.Value);
                 if (deletedMainArea == null)
                 {
-                    return NotFound();
+                    return NotFound("Nenhum registro encontrado.");
                 }
                 _logger.LogInformation("Área principal removida: {id}", deletedMainArea?.Id);
                 return Ok(deletedMainArea);

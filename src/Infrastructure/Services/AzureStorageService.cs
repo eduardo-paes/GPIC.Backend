@@ -85,6 +85,32 @@ namespace Services
             return blobClient.Uri.AbsoluteUri;
         }
 
+        public async Task<string> UploadFileAsync(byte[] file, string? filePath)
+        {
+            // Remove o arquivo anterior caso já exista
+            if (!string.IsNullOrEmpty(filePath))
+            {
+                // Utiliza o mesmo nome do arquivo anterior para o arquivo atual
+                filePath = filePath.Split("/").LastOrDefault();
+            }
+            else
+            {
+                throw new Exception("O caminho do arquivo não foi informado.");
+            }
+
+            // Cria o cliente do blob
+            BlobClient blobClient = new(_connectionString, _container, filePath);
+
+            // Salva o arquivo
+            using (MemoryStream stream = new(file))
+            {
+                _ = await blobClient.UploadAsync(stream);
+            }
+
+            // Retorna o caminho do arquivo
+            return blobClient.Uri.AbsoluteUri;
+        }
+
         #region Private Methods
         private string GenerateFileName(IFormFile file, bool onlyPdf = false)
         {
