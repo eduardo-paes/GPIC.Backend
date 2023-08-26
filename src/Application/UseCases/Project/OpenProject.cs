@@ -86,8 +86,13 @@ namespace Application.UseCases.Project
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Domain.Entities.ProgramType));
 
             // Verifica se o Professor existe
-            _ = await _professorRepository.GetByIdAsync(project.ProfessorId)
+            var professor = await _professorRepository.GetByIdAsync(project.ProfessorId)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Domain.Entities.Professor));
+
+            // Verifica se o professor está suspenso
+            UseCaseException.BusinessRuleViolation(
+                professor.SuspensionEndDate != null && professor.SuspensionEndDate > DateTime.UtcNow,
+                $"O acesso ao professor está suspenso até {professor.SuspensionEndDate!.Value:dd/MM/yyyy}, devido à pendência na entrega do relatório final em outro projeto.");
 
             // Caso tenha sido informado algum aluno no processo de abertura do projeto
             if (project.StudentId.HasValue)
