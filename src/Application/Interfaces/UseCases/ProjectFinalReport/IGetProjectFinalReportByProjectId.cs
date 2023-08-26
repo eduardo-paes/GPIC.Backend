@@ -2,8 +2,8 @@ using Application.Ports.ProjectFinalReport;
 
 namespace Application.Interfaces.UseCases.ProjectFinalReport
 {
-    public interface IGetProjectFinalReportsByProjectId
+    public interface IGetProjectFinalReportByProjectId
     {
-        Task<IList<DetailedReadProjectFinalReportOutput>> ExecuteAsync(Guid? projectId);
+        Task<DetailedReadProjectFinalReportOutput> ExecuteAsync(Guid? projectId);
     }
 }

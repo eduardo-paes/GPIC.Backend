@@ -56,10 +56,10 @@ namespace Application.UseCases.Project
             foreach (var project in projects)
             {
                 // Verifica se o projeto possui relatório final
-                var reports = await _projectReportRepository.GetByProjectIdAsync(project.Id);
+                var finalReport = await _projectReportRepository.GetByProjectIdAsync(project.Id);
 
                 // Se não possuir relatório final, não gera certificado e suspende o professor
-                if (reports is null || !reports.Any())
+                if (finalReport is null)
                 {
                     // Suspende professor
                     var professor = await _professorRepository.GetByIdAsync(project.ProfessorId);

@@ -32,6 +32,10 @@ using Application.Interfaces.UseCases.StudentDocuments;
 using Application.Interfaces.UseCases.SubArea;
 using Application.Interfaces.UseCases.User;
 using Microsoft.Extensions.DependencyInjection;
+using Application.Interfaces.UseCases.ProjectFinalReport;
+using Application.UseCases.ProjectFinalReport;
+using Application.Interfaces.UseCases.ProjectPartialReport;
+using Application.UseCases.ProjectPartialReport;
 
 namespace Infrastructure.IoC
 {
@@ -135,6 +139,22 @@ namespace Infrastructure.IoC
             services.AddScoped<IEvaluateStudentDocuments, EvaluateStudentDocuments>();
             services.AddScoped<IGetEvaluationByProjectId, GetEvaluationByProjectId>();
             #endregion ProjectEvaluation
+
+            #region ProjectFinalReport
+            services.AddScoped<ICreateProjectFinalReport, CreateProjectFinalReport>();
+            services.AddScoped<IDeleteProjectFinalReport, DeleteProjectFinalReport>();
+            services.AddScoped<IGetProjectFinalReportById, GetProjectFinalReportById>();
+            services.AddScoped<IGetProjectFinalReportByProjectId, GetProjectFinalReportByProjectId>();
+            services.AddScoped<IUpdateProjectFinalReport, UpdateProjectFinalReport>();
+            #endregion ProjectFinalReport
+
+            #region ProjectPartialReport
+            services.AddScoped<ICreateProjectPartialReport, CreateProjectPartialReport>();
+            services.AddScoped<IDeleteProjectPartialReport, DeleteProjectPartialReport>();
+            services.AddScoped<IGetProjectPartialReportById, GetProjectPartialReportById>();
+            services.AddScoped<IGetProjectPartialReportByProjectId, GetProjectPartialReportByProjectId>();
+            services.AddScoped<IUpdateProjectPartialReport, UpdateProjectPartialReport>();
+            #endregion ProjectPartialReport
 
             #region Student
             services.AddScoped<ICreateStudent, CreateStudent>();

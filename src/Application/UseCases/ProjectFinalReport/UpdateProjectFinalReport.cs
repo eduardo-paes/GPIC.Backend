@@ -40,8 +40,6 @@ namespace Application.UseCases.ProjectFinalReport
             // Obtém usuário logado
             var user = _tokenAuthenticationService.GetUserAuthenticatedClaims();
 
-            // TODO: Verifica se usuário logado pode realizar a operação
-
             // Recupera entidade que será atualizada
             Domain.Entities.ProjectFinalReport report = await _projectReportRepository.GetByIdAsync(id) ??
                 throw UseCaseException.NotFoundEntityById(nameof(Domain.Entities.ProjectFinalReport));
@@ -61,6 +59,10 @@ namespace Application.UseCases.ProjectFinalReport
             // Verifica se o projeto está em andamento
             UseCaseException.BusinessRuleViolation(project.Status != Domain.Entities.Enums.EProjectStatus.Started,
                 "O projeto informado não está em andamento.");
+
+            // Somente aluno ou professor do projeto pode fazer alteração no relatório
+            UseCaseException.BusinessRuleViolation(user.Id != project.StudentId && user.Id != project.ProfessorId,
+                "Somente o aluno ou o professor orientador do projeto pode fazer alterações no relatório.");
 
             // Verifica se o relatório está sendo enviado dentro do prazo
             var isBeforeDeadline = project.Notice?.FinalReportDeadline < DateTime.UtcNow;
