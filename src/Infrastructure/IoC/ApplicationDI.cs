@@ -126,6 +126,7 @@ namespace Infrastructure.IoC
             services.AddScoped<ISubmitProject, SubmitProject>();
             services.AddScoped<IUpdateProject, UpdateProject>();
             services.AddScoped<IGenerateCertificate, GenerateCertificate>();
+            services.AddScoped<IGetProjectsToEvaluate, GetProjectsToEvaluate>();
             #endregion Project
 
             #region ProjectEvaluation

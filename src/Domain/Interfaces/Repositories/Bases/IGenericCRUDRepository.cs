@@ -13,8 +13,8 @@
         /// <summary>
         /// Busca todas as entidades ativas.
         /// </summary>
-        /// <param name="skip"></param>
-        /// <param name="take"></param>
+        /// <param name="skip">Quantidade de registros a serem ignorados.</param>
+        /// <param name="take">Quantidade de registros a serem retornados.</param>
         /// <returns>Lista de entidades ativas.</returns>
         Task<IEnumerable<T>> GetAllAsync(int skip, int take);
 
