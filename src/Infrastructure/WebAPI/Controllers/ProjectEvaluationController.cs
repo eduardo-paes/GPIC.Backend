@@ -18,6 +18,7 @@ namespace WebAPI.Controllers
         #region Global Scope
         private readonly IEvaluateAppealProject _evaluateAppealProject;
         private readonly IEvaluateSubmissionProject _evaluateSubmissionProject;
+        private readonly IEvaluateStudentDocuments _evaluateStudentDocuments;
         private readonly IGetEvaluationByProjectId _getEvaluationByProjectId;
         private readonly IGetProjectsToEvaluate _getProjectsToEvaluate;
         private readonly ILogger<ProjectEvaluationController> _logger;
@@ -27,17 +28,20 @@ namespace WebAPI.Controllers
         /// </summary>
         /// <param name="evaluateAppealProject">Serviço de avaliação de recurso de projeto.</param>
         /// <param name="evaluateSubmissionProject">Serviço de avaliação de submissão de projeto.</param>
+        /// <param name="evaluateStudentDocuments">Serviço de avaliação de documentos do estudante.</param>
         /// <param name="getEvaluationByProjectId">Serviço de obtenção de avaliação de projeto pelo id do projeto.</param>
         /// <param name="getProjectsToEvaluate">Serviço de obtenção de projetos para avaliação.</param>
         /// <param name="logger">Serviço de log.</param>
         public ProjectEvaluationController(IEvaluateAppealProject evaluateAppealProject,
             IEvaluateSubmissionProject evaluateSubmissionProject,
+            IEvaluateStudentDocuments evaluateStudentDocuments,
             IGetEvaluationByProjectId getEvaluationByProjectId,
             IGetProjectsToEvaluate getProjectsToEvaluate,
             ILogger<ProjectEvaluationController> logger)
         {
             _evaluateAppealProject = evaluateAppealProject;
             _evaluateSubmissionProject = evaluateSubmissionProject;
+            _evaluateStudentDocuments = evaluateStudentDocuments;
             _getEvaluationByProjectId = getEvaluationByProjectId;
             _getProjectsToEvaluate = getProjectsToEvaluate;
             _logger = logger;
@@ -158,6 +162,34 @@ namespace WebAPI.Controllers
             {
                 var evaluatedProject = await _evaluateAppealProject.ExecuteAsync(request);
                 _logger.LogInformation("Avaliação do recurso do projeto {id} realizada.", evaluatedProject?.Id);
+                return Ok(evaluatedProject);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Ocorreu um erro: {ErrorMessage}", ex.Message);
+                return BadRequest(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Realiza a avaliação dos documentos de um estudante.
+        /// </summary>
+        /// <param name="request">Dados da avaliação.</param>
+        /// <returns>Projeto correspondente</returns>
+        /// <response code="200">Retorna avaliação do projeto correspondente</response>
+        /// <response code="400">Retorna mensagem de erro</response>
+        /// <response code="401">Retorna mensagem de erro</response>
+        [HttpPut("documents")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadProjectOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [Authorize(Roles = "ADMIN, PROFESSOR")]
+        public async Task<ActionResult<DetailedReadProjectOutput>> EvaluateStudentDocuments([FromBody] EvaluateStudentDocumentsInput request)
+        {
+            try
+            {
+                var evaluatedProject = await _evaluateStudentDocuments.ExecuteAsync(request);
+                _logger.LogInformation("Avaliação dos documentos do estudante do projeto {id} realizada.", evaluatedProject?.Id);
                 return Ok(evaluatedProject);
             }
             catch (Exception ex)

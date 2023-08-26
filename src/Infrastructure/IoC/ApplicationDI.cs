@@ -132,6 +132,7 @@ namespace Infrastructure.IoC
             #region ProjectEvaluation
             services.AddScoped<IEvaluateAppealProject, EvaluateAppealProject>();
             services.AddScoped<IEvaluateSubmissionProject, EvaluateSubmissionProject>();
+            services.AddScoped<IEvaluateStudentDocuments, EvaluateStudentDocuments>();
             services.AddScoped<IGetEvaluationByProjectId, GetEvaluationByProjectId>();
             #endregion ProjectEvaluation
 
