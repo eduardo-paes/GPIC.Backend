@@ -23,7 +23,7 @@ namespace Infrastructure.WebFunctions
         /// </summary>
         /// <param name="timer">Informações do timer.</param>
         [Function("GenerateCertificate")]
-        public async Task Run([TimerTrigger("0 0 1 * * *")] CustomTimerInfo timer)
+        public async Task Run([TimerTrigger("0 * * * * *")] CustomTimerInfo timer) // 0 0 1 * * *
         {
             // Informa início da execução
             _logger.LogInformation("Geração de certificados iniciada: {StartDate}", DateTime.Now);
