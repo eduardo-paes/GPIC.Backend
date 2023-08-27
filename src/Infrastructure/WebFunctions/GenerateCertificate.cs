@@ -23,10 +23,10 @@ namespace Infrastructure.WebFunctions
         /// </summary>
         /// <param name="timer">Informações do timer.</param>
         [Function("GenerateCertificate")]
-        public async Task Run([TimerTrigger("0 * * * * *")] CustomTimerInfo timer) // 0 0 1 * * *
+        public async Task Run([TimerTrigger("0 0 1 * * *")] CustomTimerInfo timer)
         {
             // Informa início da execução
-            _logger.LogInformation("Geração de certificados iniciada: {StartDate}", DateTime.Now);
+            _logger.LogInformation("Geração de certificados iniciada.");
 
             // Realiza a geração dos certificados
             var result = await _generateCertificate.ExecuteAsync();
@@ -37,7 +37,7 @@ namespace Infrastructure.WebFunctions
             // Informa próxima execução
             if (timer is not null)
             {
-                _logger.LogInformation("Próxima geração de certificados: {NextExecutionTime}", timer.ScheduleStatus?.Next);
+                _logger.LogInformation("Próxima geração de certificados: {NextExecutionTime}", timer.ScheduleStatus?.Next.ToString("dd/MM/yyyy HH:mm:ss"));
             }
         }
     }
