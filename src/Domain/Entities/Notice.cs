@@ -192,6 +192,15 @@ namespace Domain.Entities
         public string? DocUrl { get; set; }
 
         /// <summary>
+        /// Descrição do edital
+        /// </summary>
+        private string? _description;
+        public string? Description {
+            get => _description;
+            set { _description = value; }
+        }
+
+        /// <summary>
         /// Data de criação do edital
         /// </summary>
         public DateTime? CreatedAt { get; protected set; }
@@ -208,6 +217,7 @@ namespace Domain.Entities
             DateTime? sendingDocsEndDate,
             DateTime? partialReportDeadline,
             DateTime? finalReportDeadline,
+            string? description,
             int? suspensionYears)
         {
             RegistrationStartDate = registrationStartDate;
@@ -221,6 +231,7 @@ namespace Domain.Entities
             SuspensionYears = suspensionYears;
             PartialReportDeadline = partialReportDeadline;
             FinalReportDeadline = finalReportDeadline;
+            Description = description;
             CreatedAt = DateTime.UtcNow;
         }
 

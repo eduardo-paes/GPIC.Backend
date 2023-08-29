@@ -54,6 +54,7 @@ namespace Application.UseCases.Notice
                 input.SendingDocsEndDate,
                 input.PartialReportDeadline,
                 input.FinalReportDeadline,
+                input.Description,
                 input.SuspensionYears
             );
 
