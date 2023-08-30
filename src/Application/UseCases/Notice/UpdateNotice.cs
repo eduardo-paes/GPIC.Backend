@@ -64,6 +64,7 @@ namespace Application.UseCases.Notice
             notice.SendingDocsEndDate = model.SendingDocsEndDate ?? notice.SendingDocsEndDate;
             notice.PartialReportDeadline = model.PartialReportDeadline ?? notice.PartialReportDeadline;
             notice.FinalReportDeadline = model.FinalReportDeadline ?? notice.FinalReportDeadline;
+            notice.Description = model.Description ?? notice.Description;
             notice.SuspensionYears = model.SuspensionYears ?? notice.SuspensionYears;
 
             // Converte as atividades para entidades antes de prosseguir 
