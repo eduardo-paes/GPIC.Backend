@@ -50,7 +50,6 @@ namespace Infrastructure.IoC
             #endregion CORS
 
             #region Rate Limit
-#if DEBUG
             services.AddMemoryCache();
             services.AddInMemoryRateLimiting();
             services.Configure<ClientRateLimitOptions>(configuration.GetSection("IpRateLimiting"));
@@ -58,7 +57,6 @@ namespace Infrastructure.IoC
             services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
             services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
             services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
-#endif
             #endregion Rate Limit
 
             return services;
