@@ -194,11 +194,7 @@ namespace Domain.Entities
         /// <summary>
         /// Descrição do edital
         /// </summary>
-        private string? _description;
-        public string? Description {
-            get => _description;
-            set { _description = value; }
-        }
+        public string? Description { get; set; }
 
         /// <summary>
         /// Data de criação do edital
