@@ -41,13 +41,15 @@ namespace WebAPI
         /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // Enable Swagger middleware for API documentation
+            app.UseSwagger();
+
             if (env.IsDevelopment())
             {
                 // Show detailed error page in development mode
                 app.UseDeveloperExceptionPage();
 
-                // Enable Swagger middleware for API documentation in development mode
-                app.UseSwagger();
+                // Enable Swagger UI in development mode
                 app.UseSwaggerUI();
 
                 // Show development mode message
