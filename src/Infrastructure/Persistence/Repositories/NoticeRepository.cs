@@ -75,7 +75,9 @@ namespace Persistence.Repositories
         {
             return await _context.Notices
                 .AsAsyncEnumerable()
-                .FirstOrDefaultAsync(x => x.FinalReportDeadline!.Value.Date == DateTime.UtcNow.Date.AddDays(-1));
+                .FirstOrDefaultAsync(x =>
+                    x.FinalReportDeadline.HasValue &&
+                    x.FinalReportDeadline.Value.ToUniversalTime().Date == DateTime.UtcNow.Date.AddDays(-1));
         }
         #endregion Public Methods
     }

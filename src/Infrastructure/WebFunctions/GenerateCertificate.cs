@@ -19,11 +19,11 @@ namespace Infrastructure.WebFunctions
         /// Gera os certificados de todos os projetos que estão com a data de expiração vencida.
         /// Encerra os projetos que estão com a data de expiração vencida.
         /// Suspende professores que não entregaram o relatório final.
-        /// Execução diária às 01:00.
+        /// Execução diária às 04:00 UTC, equivalente à 01:00 BRT.
         /// </summary>
         /// <param name="timer">Informações do timer.</param>
         [Function("GenerateCertificate")]
-        public async Task Run([TimerTrigger("0 0 1 * * *")] CustomTimerInfo timer)
+        public async Task Run([TimerTrigger("0 0 4 * * *")] CustomTimerInfo timer)
         {
             // Informa início da execução
             _logger.LogInformation("Geração de certificados iniciada.");
