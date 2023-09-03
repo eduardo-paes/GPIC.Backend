@@ -1,7 +1,6 @@
 using Domain.Entities;
 using Domain.Validation;
 using FluentAssertions;
-using System;
 using Xunit;
 
 namespace Domain.Tests.Entities
@@ -19,6 +18,7 @@ namespace Domain.Tests.Entities
             sendingDocsEndDate: DateTime.UtcNow.AddDays(28),
             partialReportDeadline: DateTime.UtcNow.AddDays(29),
             finalReportDeadline: DateTime.UtcNow.AddDays(35),
+            description: "Edital de teste",
             suspensionYears: 1
         );
 
