@@ -102,6 +102,7 @@ namespace Infrastructure.IoC
             services.AddScoped<IGetNoticeById, GetNoticeById>();
             services.AddScoped<IGetNotices, GetNotices>();
             services.AddScoped<IUpdateNotice, UpdateNotice>();
+            services.AddScoped<IReportDeadlineNotification, ReportDeadlineNotification>();
             #endregion Notice
 
             #region Professor

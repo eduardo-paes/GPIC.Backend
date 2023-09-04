@@ -23,6 +23,9 @@
     <None Update="Email\Templates\*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Email\Templates\Imgs\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Reports\*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

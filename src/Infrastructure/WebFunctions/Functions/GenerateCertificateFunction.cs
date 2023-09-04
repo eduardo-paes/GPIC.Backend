@@ -3,13 +3,13 @@ using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using WebFunctions.Models;
 
-namespace Infrastructure.WebFunctions
+namespace Infrastructure.Functions.WebFunctions
 {
-    public class GenerateCertificate
+    public class GenerateCertificateFunction
     {
-        private readonly ILogger<GenerateCertificate> _logger;
+        private readonly ILogger<GenerateCertificateFunction> _logger;
         private readonly IGenerateCertificate _generateCertificate;
-        public GenerateCertificate(ILogger<GenerateCertificate> logger, IGenerateCertificate generateCertificate)
+        public GenerateCertificateFunction(ILogger<GenerateCertificateFunction> logger, IGenerateCertificate generateCertificate)
         {
             _logger = logger;
             _generateCertificate = generateCertificate;
@@ -28,11 +28,18 @@ namespace Infrastructure.WebFunctions
             // Informa início da execução
             _logger.LogInformation("Geração de certificados iniciada.");
 
-            // Realiza a geração dos certificados
-            var result = await _generateCertificate.ExecuteAsync();
+            try
+            {
+                // Realiza a geração dos certificados
+                string result = await _generateCertificate.ExecuteAsync();
 
-            // Informa fim da execução
-            _logger.LogInformation("Geração de certificados finalizada. Resultado: {Result}", result);
+                // Informa fim da execução
+                _logger.LogInformation("Geração de certificados finalizada. Resultado: {Result}", result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Erro ao executar geração de certificados.", ex);
+            }
 
             // Informa próxima execução
             if (timer is not null)

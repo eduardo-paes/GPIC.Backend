@@ -14,6 +14,7 @@ namespace Services.Email
         private readonly string? _smtpPassword;
         private readonly string? _currentDirectory;
         private readonly string? _siteUrl;
+        private readonly string? _logoGpic;
 
         public EmailService(string? smtpServer, int smtpPort, string? smtpUsername, string? smtpPassword, IConfiguration configuration)
         {
@@ -21,8 +22,9 @@ namespace Services.Email
             _smtpPort = smtpPort;
             _smtpUsername = smtpUsername;
             _smtpPassword = smtpPassword;
-            _currentDirectory = Path.GetDirectoryName(typeof(EmailService).Assembly.Location);
+            _currentDirectory = AppContext.BaseDirectory;
             _siteUrl = configuration.GetSection("SiteUrl").Value;
+            _logoGpic = Convert.ToBase64String(File.ReadAllBytes(Path.Combine(_currentDirectory, "Email/Templates/Imgs/logo-gpic-original.svg")));
         }
         #endregion Global Scope
 
@@ -41,7 +43,10 @@ namespace Services.Email
 
                 // Gera mensagem de envio
                 const string subject = "Confirmação de Cadastro";
-                string body = template.Replace("#USER_NAME#", name).Replace("#USER_TOKEN#", token);
+                string body = template
+                    .Replace("#LOGO_GPIC#", _logoGpic)
+                    .Replace("#USER_NAME#", name)
+                    .Replace("#USER_TOKEN#", token);
 
                 // Tentativa de envio de email
                 await SendEmailAsync(email, subject, body);
@@ -67,7 +72,10 @@ namespace Services.Email
 
                 // Gera mensagem de envio
                 const string subject = "Recuperação de Senha";
-                string body = template.Replace("#USER_NAME#", name).Replace("#USER_TOKEN#", token);
+                string body = template
+                    .Replace("#LOGO_GPIC#", _logoGpic)
+                    .Replace("#USER_NAME#", name)
+                    .Replace("#USER_TOKEN#", token);
 
                 // Tentativa de envio de email
                 await SendEmailAsync(email, subject, body);
@@ -92,6 +100,7 @@ namespace Services.Email
             // Gera mensagem de envio
             const string subject = "Novo Edital";
             string body = template
+                .Replace("#LOGO_GPIC#", _logoGpic)
                 .Replace("#PROFESSOR_NAME#", name)
                 .Replace("#START_DATE#", registrationStartDate.Value.ToString("dd/MM/yyyy"))
                 .Replace("#END_DATE#", registrationEndDate.Value.ToString("dd/MM/yyyy"))
@@ -117,6 +126,7 @@ namespace Services.Email
                 // Gera mensagem de envio
                 const string subject = "Alteração de Status de Projeto";
                 string body = template
+                    .Replace("#LOGO_GPIC#", _logoGpic)
                     .Replace("#PROFESSOR_NAME#", name)
                     .Replace("#PROJECT_TITLE#", projectTitle)
                     .Replace("#PROJECT_STATUS#", status)
@@ -147,6 +157,7 @@ namespace Services.Email
                 // Gera mensagem de envio
                 const string subject = "Solicitação de Registro";
                 string body = template
+                    .Replace("#LOGO_GPIC#", _logoGpic)
                     .Replace("#REGISTRATION_LINK#", _siteUrl);
 
                 // Tentativa de envio de email
@@ -155,6 +166,37 @@ namespace Services.Email
             catch (Exception ex)
             {
                 throw new Exception($"Não foi possível enviar o email de solicitação de cadastro do estudante. {ex.Message}");
+            }
+        }
+
+        public async Task SendNotificationOfReportDeadlineEmailAsync(string? email, string? name, string? projectTitle, string? reportType, DateTime? reportDeadline)
+        {
+            try
+            {
+                // Verifica se os parâmetros são nulos ou vazios
+                if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(projectTitle) || string.IsNullOrEmpty(reportType) || !reportDeadline.HasValue)
+                {
+                    throw new Exception("Parâmetros inválidos. Email, nome, título do projeto, tipo de relatório e prazo de entrega são obrigatórios.");
+                }
+
+                // Lê mensagem do template em html salvo localmente
+                string template = await File.ReadAllTextAsync(Path.Combine(_currentDirectory!, "Email/Templates/NotifyOfReportDeadline.html"));
+
+                // Gera mensagem de envio
+                const string subject = "Entrega de Relatório Próxima";
+                string body = template
+                    .Replace("#LOGO_GPIC#", _logoGpic)
+                    .Replace("#PROFESSOR_NAME#", name)
+                    .Replace("#PROJECT_TITLE#", projectTitle)
+                    .Replace("#REPORT_TYPE#", reportType)
+                    .Replace("#REPORT_DEADLINE#", reportDeadline.Value.ToString("dd/MM/yyyy"));
+
+                // Tentativa de envio de email
+                await SendEmailAsync(email, subject, body);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Não foi possível enviar o email de notificação de prazo de entrega de relatório. {ex.Message}");
             }
         }
 

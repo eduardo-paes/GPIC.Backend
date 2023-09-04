@@ -192,5 +192,29 @@ namespace Persistence.Repositories
                 .Take(take)
                 .ToListAsync();
         }
+
+        public async Task<IEnumerable<Project>> GetProjectsWithCloseReportDueDateAsync()
+        {
+            DateTime nextMonth = DateTime.UtcNow.AddMonths(1);
+            DateTime nextWeek = DateTime.UtcNow.AddDays(7);
+            return await _context.Projects
+                .Include(x => x.Professor)
+                .Include(x => x.Notice)
+                .AsAsyncEnumerable()
+                .Where(x =>
+                    // Contabiliza apenas projetos que estejam no status Iniciado
+                    x.Status is EProjectStatus.Started
+                    && (
+                        // Data de entrega do relatório parcial deverá ocorrer dentro de 1 mês
+                        (x.Notice!.PartialReportDeadline.HasValue && x.Notice.PartialReportDeadline.Value.Date == nextMonth.Date) ||
+                        // Data de entrega do relatório final deverá ocorrer dentro de 1 mês
+                        (x.Notice!.FinalReportDeadline.HasValue && x.Notice.FinalReportDeadline.Value.Date == nextMonth.Date) ||
+                        // Data de entrega do relatório parcial deverá ocorrer dentro de 7 dias
+                        (x.Notice!.PartialReportDeadline.HasValue && x.Notice.PartialReportDeadline.Value.Date == nextWeek.Date) ||
+                        // Data de entrega do relatório final deverá ocorrer dentro de 7 dias
+                        (x.Notice!.FinalReportDeadline.HasValue && x.Notice.FinalReportDeadline.Value.Date == nextWeek.Date)
+                    ))
+                .ToListAsync();
+        }
     }
 }

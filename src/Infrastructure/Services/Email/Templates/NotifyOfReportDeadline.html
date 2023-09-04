@@ -3,17 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
-    <title>Confirmação de Cadastro</title>
+    <title>Entrega de Relatório Próxima</title>
     <style>
       body {
         font-family: Arial, sans-serif;
         color: #444444;
-        /* display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        margin: 0;
-        padding: 0; */
       }
       .container {
         max-width: 37.5rem;
@@ -43,26 +37,40 @@
         font-size: 0.75rem;
         margin: 0;
       }
-      .token {
-        text-align: center;
-      }
-      .token > span {
-        background-color: #ccc;
-        padding: 0.75rem;
+      .cta-button {
+        display: inline-block;
+        background-color: #3e67b1;
+        color: #ffffff;
+        padding: 0.75rem 1.5rem;
+        text-decoration: none;
         border-radius: 0.75rem;
-        font-weight: bold;
+        transition: background-color ease-in-out 0.2s;
+      }
+      .cta-button:hover {
+        background-color: #0f4098;
+      }
+      .box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <h1>Confirmação de Cadastro</h1>
-      <p>Olá <strong>#USER_NAME#</strong>,</p>
-      <p>Seu cadastro foi realizado com sucesso em nosso sistema.</p>
-      <p>Por favor, confirme seu e-mail utilizando o código abaixo:</p>
-      <p class="token">
-        <span>#USER_TOKEN#</span>
+      <h1>Entrega de Relatório Próxima</h1>
+      <p>Olá <strong>#PROFESSOR_NAME#</strong>,</p>
+      <p>
+        Informamos que o <strong>#REPORT_TYPE#</strong> do seu projeto com o
+        título "<strong>#PROJECT_TITLE#</strong>" deverá ser entregue até o dia
+        <strong>#REPORT_DEADLINE#</strong>.
       </p>
+      <p>
+        Acesse a plataforma pelo link abaixo e realize o envio do relatório.
+      </p>
+      <div class="box">
+        <a class="cta-button" href="#PLATFORM_LINK#">Acesse a Aqui</a>
+      </div>
 
       <div>Atenciosamente,</div>
       <img src="data:image/svg+xml;base64,#LOGO_GPIC#" width="200px" />

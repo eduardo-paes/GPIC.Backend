@@ -2,7 +2,6 @@ using Application.Interfaces.UseCases.Project;
 using Domain.Entities.Enums;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
-using Microsoft.AspNetCore.Http;
 
 namespace Application.UseCases.Project
 {
