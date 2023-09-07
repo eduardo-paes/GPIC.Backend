@@ -3,9 +3,9 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <DockerComposeProjectPath>../../docker-compose.dcproj</DockerComposeProjectPath>
     <UserSecretsId>ef326666-1cfa-4625-aae3-41ea85c01828</UserSecretsId>
     <Version>0.0.1</Version>
+    <BuildWithMSBuildOnMono>false</BuildWithMSBuildOnMono>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
@@ -27,8 +27,12 @@
   <ItemGroup>
     <ProjectReference Include="..\IoC\IoC.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+      <ReferenceSourceTarget></ReferenceSourceTarget>
     </ProjectReference>
-    <ProjectReference Include="..\..\Application\Application.csproj" />
+    <ProjectReference Include="..\..\Application\Application.csproj">
+      <ReferenceSourceTarget></ReferenceSourceTarget>
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Remove="Microsoft.EntityFrameworkCore.Design" />

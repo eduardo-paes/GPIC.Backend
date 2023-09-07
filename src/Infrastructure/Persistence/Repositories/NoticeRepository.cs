@@ -27,10 +27,10 @@ namespace Persistence.Repositories
         public async Task<IEnumerable<Notice>> GetAllAsync(int skip, int take)
         {
             return await _context.Notices
+            .OrderByDescending(x => x.RegistrationStartDate)
             .Skip(skip)
             .Take(take)
             .AsAsyncEnumerable()
-            .OrderByDescending(x => x.RegistrationStartDate)
             .ToListAsync();
         }
 
@@ -75,7 +75,9 @@ namespace Persistence.Repositories
         {
             return await _context.Notices
                 .AsAsyncEnumerable()
-                .FirstOrDefaultAsync(x => x.FinalReportDeadline!.Value.Date == DateTime.UtcNow.Date.AddDays(-1));
+                .FirstOrDefaultAsync(x =>
+                    x.FinalReportDeadline.HasValue &&
+                    x.FinalReportDeadline.Value.ToUniversalTime().Date == DateTime.UtcNow.Date.AddDays(-1));
         }
         #endregion Public Methods
     }

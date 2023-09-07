@@ -35,7 +35,8 @@ namespace Infrastructure.IoC
             services.AddHttpContextAccessor();
             services.AddScoped<IHashService, HashService>();
             services.AddScoped<ITokenAuthenticationService, TokenAuthenticationService>();
-            services.AddScoped<IStorageFileService, AzureStorageService>();
+            // services.AddScoped<IStorageFileService, AzureStorageService>();
+            services.AddScoped<IStorageFileService, StorageFileService>();
             services.AddScoped<IReportService, ReportService>();
             #endregion Demais Serviços
 

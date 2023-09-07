@@ -35,10 +35,10 @@ namespace Persistence.Repositories
         public async Task<IEnumerable<MainArea>> GetAllAsync(int skip, int take)
         {
             return await _context.MainAreas
+            .OrderBy(x => x.Name)
             .Skip(skip)
             .Take(take)
             .AsAsyncEnumerable()
-            .OrderBy(x => x.Name)
             .ToListAsync();
         }
 

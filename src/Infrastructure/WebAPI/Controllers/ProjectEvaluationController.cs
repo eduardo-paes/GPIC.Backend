@@ -64,15 +64,23 @@ namespace WebAPI.Controllers
         [Authorize(Roles = "ADMIN, PROFESSOR")]
         public async Task<ActionResult<IEnumerable<DetailedReadProjectOutput>>> GetProjectsToEvaluate(int skip = 0, int take = 50)
         {
-            var projects = await _getProjectsToEvaluate.ExecuteAsync(skip, take);
-            if (projects == null || !projects.Any())
+            try
             {
-                const string errorMessage = "Nenhum projeto para avaliação encontrado.";
-                _logger.LogWarning(errorMessage);
-                return NotFound(errorMessage);
+                var projects = await _getProjectsToEvaluate.ExecuteAsync(skip, take);
+                if (projects == null || !projects.Any())
+                {
+                    const string errorMessage = "Nenhum projeto para avaliação encontrado.";
+                    _logger.LogWarning(errorMessage);
+                    return NotFound(errorMessage);
+                }
+                _logger.LogInformation("Projetos para avaliação encontrados: {quantidade}", projects.Count);
+                return Ok(projects);
             }
-            _logger.LogInformation("Projetos para avaliação encontrados: {quantidade}", projects.Count);
-            return Ok(projects);
+            catch (Exception ex)
+            {
+                _logger.LogError("Ocorreu um erro ao buscar projetos para avaliação: {ErrorMessage}", ex.Message);
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>

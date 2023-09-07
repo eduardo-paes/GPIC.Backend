@@ -32,10 +32,10 @@ namespace Persistence.Repositories
         public async Task<IEnumerable<ProjectFinalReport>> GetAllAsync(int skip, int take)
         {
             return await _context.ProjectFinalReports
+                .OrderByDescending(x => x.SendDate)
                 .Skip(skip)
                 .Take(take)
                 .AsAsyncEnumerable()
-                .OrderBy(x => x.Id)
                 .ToListAsync();
         }
 

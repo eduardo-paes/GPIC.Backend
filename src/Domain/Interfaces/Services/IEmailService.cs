@@ -7,5 +7,6 @@ namespace Domain.Interfaces.Services
         Task SendNoticeEmailAsync(string? email, string? name, DateTime? registrationStartDate, DateTime? registrationEndDate, string? noticeUrl);
         Task SendProjectNotificationEmailAsync(string? email, string? name, string? projectTitle, string? status, string? description);
         Task SendRequestStudentRegisterEmailAsync(string? email);
+        Task SendNotificationOfReportDeadlineEmailAsync(string? email, string? name, string? projectTitle, string? reportType, DateTime? reportDeadline);
     }
 }

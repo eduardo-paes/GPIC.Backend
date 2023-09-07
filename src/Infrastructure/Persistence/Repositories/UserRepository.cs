@@ -25,9 +25,9 @@ namespace Persistence.Repositories
         public async Task<IEnumerable<User>> GetActiveUsersAsync(int skip, int take)
         {
             return await _context.Users
+            .OrderBy(x => x.Name)
             .Skip(skip)
             .Take(take)
-            .OrderBy(x => x.Name)
             .ToListAsync();
         }
 
@@ -37,9 +37,9 @@ namespace Persistence.Repositories
             .IgnoreQueryFilters()
             .AsAsyncEnumerable()
             .Where(x => x.DeletedAt != null)
+            .OrderBy(x => x.Name)
             .Skip(skip)
             .Take(take)
-            .OrderBy(x => x.Name)
             .ToListAsync();
         }
 

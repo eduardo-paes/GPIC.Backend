@@ -398,7 +398,6 @@ FodyWeavers.xsd
 *.sln.iml
 
 volumes
-Migrations
 
 node_modules
 .DS_Store
@@ -412,7 +411,8 @@ storage/*
 temp
 temp/*
 
-RemoteFiles
-RemoteFiles/*
+files
+files/*
+
 **/.env
 thunder-tests

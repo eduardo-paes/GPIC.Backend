@@ -53,7 +53,7 @@ namespace WebAPI
                 app.UseSwaggerUI();
 
                 // Show development mode message
-                Console.WriteLine("Development mode");
+                Console.WriteLine("Swagger is up.");
             }
 
             // UseExceptionHandler for non-development environments

@@ -8,3 +8,9 @@ services:
     environment:
       - ACCEPT_EULA=Y
       - SEQ_LICENSE_KEY=<your-license-key>
+    networks:
+      - gpic-network
+
+networks:
+  gpic-network:
+    driver: bridge

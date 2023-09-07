@@ -76,5 +76,14 @@ namespace Domain.Interfaces.Repositories
         /// <param name="noticeId">Id do Edital.</param>
         /// <returns>Projetos encontrados.</returns>
         Task<IEnumerable<Project>> GetProjectByNoticeAsync(Guid? noticeId);
+
+        /// <summary>
+        /// Obtém projetos que possuem data de entrega de relatório parcial ou final próxima.
+        /// </summary>
+        /// <returns>Projetos encontrados.</returns>
+        /// <remarks>
+        /// A data de entrega de relatório parcial ou final é considerada próxima quando a mesma está a um mês ou 7 dias de distância.
+        /// </remarks>
+        Task<IEnumerable<Project>> GetProjectsWithCloseReportDueDateAsync();
     }
 }

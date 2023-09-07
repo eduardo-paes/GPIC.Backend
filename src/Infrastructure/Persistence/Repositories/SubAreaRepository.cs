@@ -37,12 +37,12 @@ namespace Persistence.Repositories
         {
             return await _context.SubAreas
             .Where(x => x.AreaId == areaId)
-            .Skip(skip)
-            .Take(take)
             .Include(x => x.Area)
             .Include(x => x.Area != null ? x.Area.MainArea : null)
-            .AsAsyncEnumerable()
             .OrderBy(x => x.Name)
+            .AsAsyncEnumerable()
+            .Skip(skip)
+            .Take(take)
             .ToListAsync();
         }
 

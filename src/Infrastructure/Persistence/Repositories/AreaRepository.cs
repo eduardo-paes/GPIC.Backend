@@ -35,11 +35,11 @@ namespace Persistence.Repositories
         {
             return await _context.Areas
             .Where(x => x.MainAreaId == mainAreaId)
+            .OrderBy(x => x.Name)
             .Skip(skip)
             .Take(take)
             .Include(x => x.MainArea)
             .AsAsyncEnumerable()
-            .OrderBy(x => x.Name)
             .ToListAsync();
         }
 

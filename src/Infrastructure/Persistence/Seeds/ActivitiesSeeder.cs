@@ -61,13 +61,13 @@ namespace Persistence.Seeds
                     "AppealStartDate", "AppealEndDate",
                     "SendingDocsStartDate", "SendingDocsEndDate",
                     "PartialReportDeadline", "FinalReportDeadline",
-                    "SuspensionYears", "DocUrl", "CreatedAt"
+                    "SuspensionYears", "DocUrl", "CreatedAt", "Description"
                 },
                 values: new object[,]
                 {
                     {
-                        newNoticeId,
-                        null!,
+                        newNoticeId, // Id
+                        null!, // Deleted At
                         new DateTime(1990, 8, 1).ToUniversalTime(), // Registration Start Date
                         new DateTime(1990, 8, 31).ToUniversalTime(), // Registration End Date
                         new DateTime(1990, 9, 15).ToUniversalTime(), // Evaluation Start Date
@@ -80,7 +80,8 @@ namespace Persistence.Seeds
                         new DateTime(1991, 3, 15).ToUniversalTime(), // Final Report Deadline
                         1, // Suspension Years
                         null!, // Doc URL
-                        DateTime.UtcNow
+                        DateTime.UtcNow, // Created At
+                        "Edital de Inicialização", // Description
                     },
                 },
                 schema: "public");
