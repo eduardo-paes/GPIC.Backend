@@ -28,7 +28,7 @@ namespace Application.UseCases.Project
             var user = _tokenAuthenticationService.GetUserAuthenticatedClaims();
 
             // Verifica se o usuário logado é um professor ou administrador
-            UseCaseException.BusinessRuleViolation(user.Role != ERole.ADMIN || user.Role != ERole.PROFESSOR,
+            UseCaseException.BusinessRuleViolation(user.Role != ERole.ADMIN && user.Role != ERole.PROFESSOR,
                  "Usuário sem permissão para avaliar projetos.");
 
             // Obtém todos os projetos que estão na fase de avaliação (Submitted, Evaluation, DocumentAnalysis)
