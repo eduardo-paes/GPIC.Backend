@@ -412,7 +412,8 @@ storage/*
 temp
 temp/*
 
-RemoteFiles
-RemoteFiles/*
+files
+files/*
+
 **/.env
 thunder-tests
