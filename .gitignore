@@ -398,7 +398,6 @@ FodyWeavers.xsd
 *.sln.iml
 
 volumes
-Migrations
 
 node_modules
 .DS_Store
