@@ -69,9 +69,49 @@ namespace Services
             }
         }
 
-        public Task<string> UploadFileAsync(byte[] file, string? filePath)
+        public async Task<string> UploadFileAsync(byte[] file, string? filePath)
         {
-            throw new NotImplementedException();
+            // Verifica se caminho do arquivo é vazio
+            // FilePath representa aqui o caminho completo do arquivo ou o nome do arquivo
+            // Por exemplo: C:\Users\user\Documents\file.pdf ou file.pdf
+            if (string.IsNullOrEmpty(filePath))
+            {
+                throw new Exception("O caminho do arquivo não pode ser vazio.");
+            }
+
+            // Verifica se a extensão do arquivo é permitida
+            string extension = Path.GetExtension(filePath);
+            if (!_allowedExtensions.Contains(extension))
+            {
+                throw new Exception($"A extensão {extension} do arquivo não é permitida.");
+            }
+
+            // Verifica o tamanho do arquivo
+            if (file.Length > _maxFileSizeInBytes)
+            {
+                throw new Exception($"O tamanho do arquivo excede o máximo de {_maxFileSizeInBytes} bytes.");
+            }
+
+            // Gera um nome único para o arquivo
+            string fileName = $"{Guid.NewGuid()}{Path.GetExtension(filePath)}";
+
+            // Cria o diretório caso não exista
+            string dirPath = Path.Combine(_directory, _folder);
+            if (!Directory.Exists(dirPath))
+            {
+                _ = Directory.CreateDirectory(dirPath);
+            }
+
+            // Gera o caminho do arquivo
+            filePath = Path.Combine(dirPath, fileName);
+
+            // Salva o arquivo
+            using (FileStream stream = new(filePath, FileMode.Create))
+            {
+                await stream.WriteAsync(file);
+            }
+
+            return filePath;
         }
         #endregion Public Methods
 
