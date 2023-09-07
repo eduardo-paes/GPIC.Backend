@@ -28,7 +28,7 @@ Criando as Migrations para criação e atualização das tabelas do banco de dad
 
 ```bash
 cd src/Infrastructure/WebAPI
-dotnet ef migrations add UpdateNoticeDescription --project ../Persistence/Persistence.csproj
+dotnet ef migrations add Initialize --project ../Persistence/Persistence.csproj
 ```
 
 Executando as Migrations:

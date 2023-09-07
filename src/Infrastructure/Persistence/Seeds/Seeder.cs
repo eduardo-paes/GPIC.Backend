@@ -4,7 +4,7 @@ namespace Persistence.Seeds
 {
     static public class Seeder
     {
-        public static void Seed(MigrationBuilder migrationBuilder)
+        public static void Execute(MigrationBuilder migrationBuilder)
         {
             ActivitiesSeeder.Seed(migrationBuilder);
             AreasSeeder.Seed(migrationBuilder);
