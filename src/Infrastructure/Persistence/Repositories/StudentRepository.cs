@@ -27,10 +27,10 @@ namespace Persistence.Repositories
         {
             return await _context.Students
             .Include(x => x.User)
-            .Skip(skip)
-            .Take(take)
             .AsAsyncEnumerable()
             .OrderBy(x => x.User?.Name)
+            .Skip(skip)
+            .Take(take)
             .ToListAsync();
         }
 

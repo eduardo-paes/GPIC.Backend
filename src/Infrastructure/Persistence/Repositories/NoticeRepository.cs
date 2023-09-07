@@ -27,10 +27,10 @@ namespace Persistence.Repositories
         public async Task<IEnumerable<Notice>> GetAllAsync(int skip, int take)
         {
             return await _context.Notices
+            .OrderByDescending(x => x.RegistrationStartDate)
             .Skip(skip)
             .Take(take)
             .AsAsyncEnumerable()
-            .OrderByDescending(x => x.RegistrationStartDate)
             .ToListAsync();
         }
 

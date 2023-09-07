@@ -33,6 +33,7 @@ namespace Persistence.Repositories
         {
             return await _context.StudentDocuments
                 .Include(x => x.Project)
+                .OrderBy(x => x.ProjectId)
                 .IgnoreQueryFilters()
                 .AsAsyncEnumerable()
                 .Skip(skip)
