@@ -35,7 +35,7 @@ namespace Infrastructure.IoC.Utils
 
         public string GetDatabaseConnectionString()
         {
-            return DotNetEnv.Env.GetString("AZURE_POSTGRES_CONNECTION_STRING");
+            return DotNetEnv.Env.GetString("POSTGRES_CONNECTION_STRING");
         }
 
         public string GetSmtpUserName()
@@ -66,6 +66,18 @@ namespace Infrastructure.IoC.Utils
         public string GetJwtExpirationTime()
         {
             return DotNetEnv.Env.GetString("JWT_EXPIRE_IN");
+        }
+
+        public bool ExecuteMigration()
+        {
+            try
+            {
+                return DotNetEnv.Env.GetBool("EXECUTE_MIGRATION");
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

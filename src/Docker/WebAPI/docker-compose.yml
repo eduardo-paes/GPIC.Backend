@@ -4,5 +4,5 @@ services:
   webapi:
     image: ${DOCKER_REGISTRY-}webapi
     build:
-      context: ../
+      context: ../../
       dockerfile: Infrastructure/WebAPI/Dockerfile

@@ -20,6 +20,22 @@ namespace Infrastructure.IoC
                 b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
             #endregion Inicialização do banco de dados
 
+            #region Migração do banco de dados
+            if (dotEnvSecrets.ExecuteMigration())
+            {
+                try
+                {
+                    var dbContext = services.BuildServiceProvider().GetService<ApplicationDbContext>();
+                    dbContext?.Database.Migrate();
+                    Console.WriteLine("Migração realizada com sucesso.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Ocorreu um erro durante a migração do banco de dados. {ex}");
+                }
+            }
+            #endregion Migração do banco de dados
+
             #region Repositórios
             services.AddScoped<IAreaRepository, AreaRepository>();
             services.AddScoped<IActivityRepository, ActivityRepository>();

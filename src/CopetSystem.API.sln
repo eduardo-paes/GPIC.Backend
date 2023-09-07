@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoC", "Infrastructure\IoC\I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "Infrastructure\WebAPI\WebAPI.csproj", "{163219BE-A0D2-41A1-A028-501AAB069BD9}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "Docker\docker-compose.dcproj", "{58DF51E2-67F0-4740-B20B-8DE70C99FE2B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Infrastructure\Services\Services.csproj", "{7555C53A-BADC-49D9-82BE-C4D8587260EB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{10D17198-CD98-48BF-BEF3-A689B668F5E3}"
@@ -47,10 +45,6 @@ Global
 		{163219BE-A0D2-41A1-A028-501AAB069BD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{163219BE-A0D2-41A1-A028-501AAB069BD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{163219BE-A0D2-41A1-A028-501AAB069BD9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{58DF51E2-67F0-4740-B20B-8DE70C99FE2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{58DF51E2-67F0-4740-B20B-8DE70C99FE2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{58DF51E2-67F0-4740-B20B-8DE70C99FE2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{58DF51E2-67F0-4740-B20B-8DE70C99FE2B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7555C53A-BADC-49D9-82BE-C4D8587260EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7555C53A-BADC-49D9-82BE-C4D8587260EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7555C53A-BADC-49D9-82BE-C4D8587260EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
