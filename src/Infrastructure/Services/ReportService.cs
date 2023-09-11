@@ -32,6 +32,10 @@ namespace Services
                 { DayOfWeek.Friday, "Sexta-feira" },
                 { DayOfWeek.Saturday, "Sábado" }
             };
+
+            // Verifica se o caminho temporário existe, não existindo cria
+            if (!Directory.Exists(_outputPath))
+                Directory.CreateDirectory(_outputPath);
         }
 
         public async Task<string> GenerateCertificateAsync(Project project, string cordinatorName, string fileName)
