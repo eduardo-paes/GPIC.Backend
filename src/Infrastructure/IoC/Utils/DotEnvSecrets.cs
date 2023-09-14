@@ -13,6 +13,11 @@ namespace Infrastructure.IoC.Utils
             _ = DotNetEnv.Env.Load(Path.Combine(basePath!, ".env"));
         }
 
+        public string GetFrontEndUrl()
+        {
+            return DotNetEnv.Env.GetString("FRONTEND_URL");
+        }
+
         public string GetSeqUrl()
         {
             return DotNetEnv.Env.GetString("SEQ_URL");

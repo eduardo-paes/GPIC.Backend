@@ -16,14 +16,14 @@ namespace Services.Email
         private readonly string? _siteUrl;
         private readonly string? _logoGpic;
 
-        public EmailService(string? smtpServer, int smtpPort, string? smtpUsername, string? smtpPassword, IConfiguration configuration)
+        public EmailService(string? smtpServer, int smtpPort, string? smtpUsername, string? smtpPassword, string frontEndUrl)
         {
             _smtpServer = smtpServer;
             _smtpPort = smtpPort;
             _smtpUsername = smtpUsername;
             _smtpPassword = smtpPassword;
             _currentDirectory = AppContext.BaseDirectory;
-            _siteUrl = configuration.GetSection("SiteUrl").Value;
+            _siteUrl = frontEndUrl;
             _logoGpic = Convert.ToBase64String(File.ReadAllBytes(Path.Combine(_currentDirectory, "Email/Templates/Imgs/logo-gpic-original.svg")));
         }
         #endregion Global Scope
