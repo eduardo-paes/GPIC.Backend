@@ -35,12 +35,6 @@ namespace Application.UseCases.Auth
             // Envia email de recuperação de senha
             await _emailService.SendResetPasswordEmailAsync(user.Email, user.Name, user.ResetPasswordToken);
 
-            // Verifica se o token foi gerado
-            if (string.IsNullOrEmpty(user.ResetPasswordToken))
-            {
-                throw UseCaseException.BusinessRuleViolation("Token não gerado.");
-            }
-
             // Retorna token
             return "Token de recuperação gerado e enviado por e-mail com sucesso.";
         }
