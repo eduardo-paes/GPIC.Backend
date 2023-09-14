@@ -16,17 +16,13 @@ namespace Application.Tests.UseCases.Campus
             // Arrange
             var repositoryMock = new Mock<ICampusRepository>();
             var mapperMock = new Mock<IMapper>();
-
             var useCase = new DeleteCampus(repositoryMock.Object, mapperMock.Object);
+            var campusId = Guid.NewGuid();
 
-            var campusId = Guid.NewGuid(); // Simule um ID válido
-
-            // Simule o retorno do repositório quando DeleteAsync é chamado
             var deletedCampus = new Domain.Entities.Campus("Deleted Campus");
             repositoryMock.Setup(repo => repo.DeleteAsync(campusId)).ReturnsAsync(deletedCampus);
 
-            // Simule o mapeamento do AutoMapper
-            var detailedReadCampusOutput = new DetailedReadCampusOutput(); // Você pode preencher com dados relevantes
+            var detailedReadCampusOutput = new DetailedReadCampusOutput();
             mapperMock.Setup(mapper => mapper.Map<DetailedReadCampusOutput>(deletedCampus)).Returns(detailedReadCampusOutput);
 
             // Act
@@ -45,9 +41,7 @@ namespace Application.Tests.UseCases.Campus
             // Arrange
             var repositoryMock = new Mock<ICampusRepository>();
             var mapperMock = new Mock<IMapper>();
-
             var useCase = new DeleteCampus(repositoryMock.Object, mapperMock.Object);
-
             Guid? campusId = null;
 
             // Act & Assert
