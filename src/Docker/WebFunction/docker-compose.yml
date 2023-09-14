@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+
+  # Web Functions
+  webfunctions:
+    container_name: webfunctions_gpic
+    image: ${DOCKER_REGISTRY-}webfunctions
+    build:
+      context: ../../
+      dockerfile: Infrastructure/WebFunctions/Dockerfile
+    ports:
+      - "7071:80"
+    volumes:
+      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+    environment:
+      - AzureWebJobsStorage=UseDevelopmentStorage=true
+      - AzureFunctionsJobHost__Logging__Console__IsEnabled=true
+    depends_on:
+      - azurite
+    networks:
+      - gpic-network
+
+  # Azurite - Storage Emulator (Blob, Queue, Table)
+  azurite:
+    container_name: azurite_gpic
+    image: mcr.microsoft.com/azure-storage/azurite
+    ports:
+      - "10000:10000"
+      - "10001:10001"
+      - "10002:10002"
+    environment:
+      - AZURITE_ACCOUNTS=devstoreaccount1:devstoreaccount1Key
+    networks:
+      - gpic-network
