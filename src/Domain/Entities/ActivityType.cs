@@ -62,6 +62,7 @@ namespace Domain.Entities
             Name = name;
             Unity = unity;
             NoticeId = noticeId;
+            Activities = new List<Activity>();
         }
 
         /// <summary>
