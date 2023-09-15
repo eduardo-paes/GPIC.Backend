@@ -65,6 +65,15 @@ namespace Domain.Entities
             Activities = new List<Activity>();
         }
 
+        public ActivityType(Guid? id, string? name, string? unity, Guid? noticeId)
+        {
+            Id = id;
+            Name = name;
+            Unity = unity;
+            NoticeId = noticeId;
+            Activities = new List<Activity>();
+        }
+
         /// <summary>
         /// Constructor to dbcontext EF instancing.
         /// </summary>

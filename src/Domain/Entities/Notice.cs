@@ -231,6 +231,37 @@ namespace Domain.Entities
             CreatedAt = DateTime.UtcNow;
         }
 
+        public Notice(
+            Guid? id,
+            DateTime? registrationStartDate,
+            DateTime? registrationEndDate,
+            DateTime? evaluationStartDate,
+            DateTime? evaluationEndDate,
+            DateTime? appealStartDate,
+            DateTime? appealFinalDate,
+            DateTime? sendingDocsStartDate,
+            DateTime? sendingDocsEndDate,
+            DateTime? partialReportDeadline,
+            DateTime? finalReportDeadline,
+            string? description,
+            int? suspensionYears)
+        {
+            Id = id;
+            RegistrationStartDate = registrationStartDate;
+            RegistrationEndDate = registrationEndDate;
+            EvaluationStartDate = evaluationStartDate;
+            EvaluationEndDate = evaluationEndDate;
+            AppealStartDate = appealStartDate;
+            AppealEndDate = appealFinalDate;
+            SendingDocsStartDate = sendingDocsStartDate;
+            SendingDocsEndDate = sendingDocsEndDate;
+            SuspensionYears = suspensionYears;
+            PartialReportDeadline = partialReportDeadline;
+            FinalReportDeadline = finalReportDeadline;
+            Description = description;
+            CreatedAt = DateTime.UtcNow;
+        }
+
         /// <summary>
         /// Constructor to dbcontext EF instancing.
         /// </summary>

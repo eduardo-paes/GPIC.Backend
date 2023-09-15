@@ -4,6 +4,7 @@ using Domain.Interfaces.Services;
 using Application.Interfaces.UseCases.Notice;
 using Application.Ports.Notice;
 using Application.Validation;
+using Microsoft.Extensions.Logging;
 
 namespace Application.UseCases.Notice
 {
@@ -17,6 +18,7 @@ namespace Application.UseCases.Notice
         private readonly IProfessorRepository _professorRepository;
         private readonly IEmailService _emailService;
         private readonly IMapper _mapper;
+        private readonly ILogger<CreateNotice> _logger;
         public CreateNotice(
             INoticeRepository repository,
             IStorageFileService storageFileService,
@@ -24,7 +26,8 @@ namespace Application.UseCases.Notice
             IActivityRepository activityRepository,
             IProfessorRepository professorRepository,
             IEmailService emailService,
-            IMapper mapper)
+            IMapper mapper,
+            ILogger<CreateNotice> logger)
         {
             _repository = repository;
             _storageFileService = storageFileService;
@@ -33,6 +36,7 @@ namespace Application.UseCases.Notice
             _professorRepository = professorRepository;
             _emailService = emailService;
             _mapper = mapper;
+            _logger = logger;
         }
         #endregion
 
@@ -102,13 +106,20 @@ namespace Application.UseCases.Notice
             // Envia email de notificação para todos os professores ativos
             foreach (var professor in professors)
             {
-                // Envia email de notificação
-                await _emailService.SendNoticeEmailAsync(
-                    professor.User!.Email,
-                    professor.User!.Name,
-                    notice.RegistrationStartDate,
-                    notice.RegistrationEndDate,
-                    notice.DocUrl);
+                try
+                {
+                    // Envia email de notificação
+                    await _emailService.SendNoticeEmailAsync(
+                        professor.User?.Email,
+                        professor.User?.Name,
+                        notice.RegistrationStartDate,
+                        notice.RegistrationEndDate,
+                        notice.DocUrl);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError("Erro ao enviar email de notificação para o professor {0}. Detalhes: {Details}", professor?.User!.Name, ex);
+                }
             }
 
             // Salva entidade no banco

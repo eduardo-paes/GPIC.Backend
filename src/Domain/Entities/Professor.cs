@@ -85,7 +85,7 @@ namespace Domain.Entities
         /// <summary>
         /// Constructor to dbcontext EF instancing.
         /// </summary>
-        public Professor() { }
+        protected Professor() { }
         #endregion
     }
 }
