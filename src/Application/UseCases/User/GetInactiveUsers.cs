@@ -19,6 +19,10 @@ namespace Application.UseCases.User
 
         public async Task<IEnumerable<UserReadOutput>> ExecuteAsync(int skip, int take)
         {
+            // Valida valores de skip e take
+            if (skip < 0 || take < 1)
+                throw new ArgumentException("Parâmetros inválidos.");
+
             IEnumerable<Domain.Entities.User> entities = await _repository.GetInactiveUsersAsync(skip, take);
             return _mapper.Map<IEnumerable<UserReadOutput>>(entities).AsQueryable();
         }

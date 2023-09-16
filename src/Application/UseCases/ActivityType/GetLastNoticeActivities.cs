@@ -14,7 +14,8 @@ namespace Application.UseCases.ActivityType
             _activityTypeRepository = activityTypeRepository;
             _mapper = mapper;
         }
-        async Task<IEnumerable<ActivityTypeOutput>> IGetLastNoticeActivities.ExecuteAsync()
+
+        public async Task<IEnumerable<ActivityTypeOutput>> ExecuteAsync()
         {
             // Obtém os tipos de atividades do último edital
             var activityTypes = await _activityTypeRepository.GetLastNoticeActivitiesAsync();

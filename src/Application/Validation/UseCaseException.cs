@@ -6,6 +6,7 @@ public class UseCaseException : Exception
     public UseCaseException(string? message, Exception? innerException) : base(message, innerException) { }
 
     public static Exception BusinessRuleViolation(string message) => new UseCaseException(message);
+    public static Exception NotValidParam(string message) => new UseCaseException(message);
     public static Exception NotFoundEntityById(string entityName) => new UseCaseException($"Entidade ({entityName}) não encontrada através do Id informado.");
     public static Exception NotFoundEntityByParams(string entityName) => new UseCaseException($"Entidade ({entityName}) não encontrada através dos parâmetros informados.");
 
@@ -27,5 +28,10 @@ public class UseCaseException : Exception
     public static void NotInformedParam(bool hasError, string paramName)
     {
         if (hasError) throw new UseCaseException($"Parâmetro ({paramName}) é obrigatório.");
+    }
+
+    public static void NotValidParam(bool hasError, string paramName)
+    {
+        if (hasError) throw new UseCaseException($"Parâmetro ({paramName}) é inválido.");
     }
 }

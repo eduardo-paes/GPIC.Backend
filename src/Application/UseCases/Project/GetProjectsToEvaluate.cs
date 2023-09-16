@@ -24,6 +24,10 @@ namespace Application.UseCases.Project
 
         public async Task<IList<DetailedReadProjectOutput>> ExecuteAsync(int skip, int take)
         {
+            // Valida valores de skip e take
+            if (skip < 0 || take < 1)
+                throw new ArgumentException("Parâmetros inválidos.");
+
             // Obtém o usuário logado
             var user = _tokenAuthenticationService.GetUserAuthenticatedClaims();
 
