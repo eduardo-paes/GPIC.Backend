@@ -72,7 +72,7 @@ namespace Domain.Entities
             }
         }
 
-        public virtual User? User { get; }
+        public virtual User? User { get; set; }
         #endregion
 
         #region Constructors

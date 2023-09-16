@@ -199,11 +199,11 @@ namespace Domain.Entities
             }
         }
 
-        public virtual ProgramType? ProgramType { get; }
-        public virtual Professor? Professor { get; }
-        public virtual Student? Student { get; }
-        public virtual SubArea? SubArea { get; }
-        public virtual Notice? Notice { get; }
+        public virtual ProgramType? ProgramType { get; set; }
+        public virtual Professor? Professor { get; set; }
+        public virtual Student? Student { get; set; }
+        public virtual SubArea? SubArea { get; set; }
+        public virtual Notice? Notice { get; set; }
         #endregion
 
         #region Informações de Controle
