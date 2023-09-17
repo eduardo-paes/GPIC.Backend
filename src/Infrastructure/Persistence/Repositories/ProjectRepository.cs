@@ -216,5 +216,44 @@ namespace Persistence.Repositories
                     ))
                 .ToListAsync();
         }
+
+        public async Task<string> ClosePendingAndOverdueProjectsAsync()
+        {
+            // Obtém data atual em UTC para comparação
+            DateTime currentDate = DateTime.UtcNow;
+
+            // Obtém projetos pendentes e com o prazo de resolução vencido
+            var projects = await _context.Projects
+                .Include(x => x.Notice)
+                .AsAsyncEnumerable()
+                .Where(x =>
+                    // Projetos abertos e com o prazo de submissão vencido
+                    (x.Status is EProjectStatus.Opened && x.Notice!.RegistrationEndDate < currentDate) ||
+                    // Projetos rejeitados e com o prazo de recurso vencido
+                    (x.Status is EProjectStatus.Rejected && x.Notice!.AppealEndDate < currentDate) ||
+                    // Projetos aprovados e com entrega de documentação do aluno vencida
+                    (x.Status is EProjectStatus.Accepted && x.Notice!.SendingDocsEndDate < currentDate) ||
+                    // Projetos pendentes de documentação e com o prazo de entrega vencido
+                    (x.Status is EProjectStatus.Pending && x.Notice!.SendingDocsEndDate < currentDate))
+                .ToListAsync();
+
+            // Verifica se existem projetos pendentes e com prazo vencido
+            if (projects.Count == 0)
+                return "Nenhum projeto pendente e com prazo vencido foi encontrado.";
+
+            // Atualiza status dos projetos
+            projects.ForEach(x =>
+            {
+                x.Status = EProjectStatus.Canceled;
+                x.StatusDescription = "Projeto cancelado automaticamente por falta de ação dentro do prazo estipulado.";
+            });
+
+            // Atualiza modificações realizadas no banco
+            _context.UpdateRange(projects);
+            _ = await _context.SaveChangesAsync();
+
+            // Retorna mensagem de sucesso
+            return $"{projects.Count} projetos pendentes e com prazo de resolução vencido foram cancelados com sucesso.";
+        }
     }
 }

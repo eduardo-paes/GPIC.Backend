@@ -79,6 +79,15 @@ namespace Domain.Entities
             ActivityTypeId = activityTypeId;
         }
 
+        public Activity(Guid? id, string? name, double? points, double? limits, Guid? activityTypeId)
+        {
+            Id = id;
+            Name = name;
+            Points = points;
+            Limits = limits;
+            ActivityTypeId = activityTypeId;
+        }
+
         /// <summary>
         /// Constructor to dbcontext EF instancing.
         /// </summary>

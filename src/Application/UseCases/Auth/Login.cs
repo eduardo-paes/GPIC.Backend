@@ -33,10 +33,10 @@ namespace Application.UseCases.Auth
                 ?? throw UseCaseException.NotFoundEntityByParams(nameof(Domain.Entities.User));
 
             // Verifica se o usuário está confirmado
-            UseCaseException.BusinessRuleViolation(!entity.IsConfirmed, "User's email has not yet been confirmed.");
+            UseCaseException.BusinessRuleViolation(!entity.IsConfirmed, "O e-mail do usuário ainda não foi confirmado.");
 
             // Verifica se a senha é válida
-            UseCaseException.BusinessRuleViolation(!_hashService.VerifyPassword(input.Password!, entity.Password), "Invalid credentials.");
+            UseCaseException.BusinessRuleViolation(!_hashService.VerifyPassword(input.Password!, entity.Password), "Credenciais inválidas.");
 
             // Gera o token de autenticação e retorna o resultado
             return new UserLoginOutput

@@ -62,6 +62,16 @@ namespace Domain.Entities
             Name = name;
             Unity = unity;
             NoticeId = noticeId;
+            Activities = new List<Activity>();
+        }
+
+        public ActivityType(Guid? id, string? name, string? unity, Guid? noticeId)
+        {
+            Id = id;
+            Name = name;
+            Unity = unity;
+            NoticeId = noticeId;
+            Activities = new List<Activity>();
         }
 
         /// <summary>

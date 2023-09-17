@@ -8,10 +8,28 @@ namespace Domain.Tests.Entities
 {
     public class ProjectUnitTests
     {
-        private static Project MockValidProject()
-        {
-            return new Project("Project Title", "Keyword 1", "Keyword 2", "Keyword 3", true, "Objective", "Methodology", "Expected Results", "Schedule", Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), EProjectStatus.Opened, "Status Description", "Appeal Observation", DateTime.UtcNow, DateTime.UtcNow, DateTime.UtcNow, "Cancellation Reason");
-        }
+        private static Project MockValidProject() => new Project(
+            "Project Title",
+            "Keyword 1",
+            "Keyword 2",
+            "Keyword 3",
+            true,
+            "Objective",
+            "Methodology",
+            "Expected Results",
+            "Schedule",
+            Guid.NewGuid(),
+            Guid.NewGuid(),
+            Guid.NewGuid(),
+            Guid.NewGuid(),
+            Guid.NewGuid(),
+            EProjectStatus.Opened,
+            "Status Description",
+            "Appeal Observation",
+            DateTime.UtcNow,
+            DateTime.UtcNow,
+            DateTime.UtcNow,
+            "Cancellation Reason");
 
         [Fact]
         public void SetTitle_ValidTitle_SetsTitle()

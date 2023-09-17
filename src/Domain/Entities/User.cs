@@ -146,6 +146,18 @@ namespace Domain.Entities
             GenerateEmailValidationCode();
         }
 
+        public User(Guid? id, string? name, string? email, string? password, string? cpf, ERole? role)
+        {
+            Id = id;
+            Name = name;
+            Email = email;
+            Password = password;
+            CPF = cpf;
+            Role = role;
+
+            GenerateEmailValidationCode();
+        }
+
         /// <summary>
         /// Constructor to dbcontext EF instancing.
         /// </summary>

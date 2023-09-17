@@ -20,6 +20,10 @@ namespace Application.UseCases.SubArea
 
         public async Task<IQueryable<ResumedReadSubAreaOutput>> ExecuteAsync(Guid? areaId, int skip, int take)
         {
+            // Valida valores de skip e take
+            if (skip < 0 || take < 1)
+                throw new ArgumentException("Parâmetros inválidos.");
+
             UseCaseException.NotInformedParam(areaId is null, nameof(areaId));
             IEnumerable<Domain.Entities.SubArea> entities = await _subAreaRepository.GetSubAreasByAreaAsync(areaId, skip, take);
             return _mapper.Map<IEnumerable<ResumedReadSubAreaOutput>>(entities).AsQueryable();

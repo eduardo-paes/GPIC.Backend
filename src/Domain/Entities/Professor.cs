@@ -72,7 +72,7 @@ namespace Domain.Entities
             }
         }
 
-        public virtual User? User { get; }
+        public virtual User? User { get; set; }
         #endregion
 
         #region Constructors
@@ -85,7 +85,7 @@ namespace Domain.Entities
         /// <summary>
         /// Constructor to dbcontext EF instancing.
         /// </summary>
-        public Professor() { }
+        protected Professor() { }
         #endregion
     }
 }

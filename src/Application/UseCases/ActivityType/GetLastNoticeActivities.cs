@@ -14,16 +14,23 @@ namespace Application.UseCases.ActivityType
             _activityTypeRepository = activityTypeRepository;
             _mapper = mapper;
         }
-        async Task<IEnumerable<ActivityTypeOutput>> IGetLastNoticeActivities.ExecuteAsync()
+
+        public async Task<IEnumerable<ActivityTypeOutput>> ExecuteAsync()
         {
             // Obtém os tipos de atividades do último edital
             var activityTypes = await _activityTypeRepository.GetLastNoticeActivitiesAsync();
+
+            // Lista de tipos de atividades para o output
+            List<ActivityTypeOutput> activityTypesOutput = new();
+
+            // Se não houver tipos de atividades, retorna a lista vazia
+            if (activityTypes == null)
+                return activityTypesOutput;
 
             // Mapeia os tipos de atividades para o output
             _ = _mapper.Map<IEnumerable<ActivityTypeOutput>>(activityTypes);
 
             // Mapeia os tipos de atividades para o output
-            List<ActivityTypeOutput> activityTypesOutput = new();
             foreach (var type in activityTypes)
             {
                 // Mapeia as atividades para o output

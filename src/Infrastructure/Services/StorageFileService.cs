@@ -33,6 +33,12 @@ namespace Services
             // Verifica se o diretório de armazenamento de arquivos dos editais foi configurado
             _folder = configuration["StorageFile:Folder"]
                 ?? throw new Exception("O diretório de armazenamento de arquivos não foi configurado.");
+
+            // Cria diretório de arquivos caso não exista
+            if (!Directory.Exists(_directory))
+            {
+                _ = Directory.CreateDirectory(_directory);
+            }
         }
         #endregion Global Scope
 
@@ -116,7 +122,7 @@ namespace Services
         #endregion Public Methods
 
         #region Private Methods
-        private async Task<string> GenerateFilePath(IFormFile file, string custom_directory, string? filePath = null, bool onlyPdf = false)
+        private async Task<string> GenerateFilePath(IFormFile file, string customDirectory, string? filePath = null, bool onlyPdf = false)
         {
             // Verifica se a extensão do arquivo é permitida
             string extension = Path.GetExtension(file.FileName);
@@ -138,7 +144,7 @@ namespace Services
             if (string.IsNullOrEmpty(filePath))
             {
                 // Cria o diretório caso não exista
-                string dirPath = Path.Combine(_directory, custom_directory);
+                string dirPath = Path.Combine(_directory, customDirectory);
                 if (!Directory.Exists(dirPath))
                 {
                     _ = Directory.CreateDirectory(dirPath);

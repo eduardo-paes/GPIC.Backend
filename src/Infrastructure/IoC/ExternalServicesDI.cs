@@ -27,7 +27,7 @@ namespace Infrastructure.IoC
             services.AddSingleton(sp =>
             {
                 IEmailServiceFactory factory = sp.GetRequiredService<IEmailServiceFactory>();
-                return factory.Create(smtpConfig, configuration);
+                return factory.Create(smtpConfig, dotEnvSecrets.GetFrontEndUrl());
             });
             #endregion Serviço de E-mail
 

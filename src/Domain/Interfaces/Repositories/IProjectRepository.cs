@@ -85,5 +85,11 @@ namespace Domain.Interfaces.Repositories
         /// A data de entrega de relatório parcial ou final é considerada próxima quando a mesma está a um mês ou 7 dias de distância.
         /// </remarks>
         Task<IEnumerable<Project>> GetProjectsWithCloseReportDueDateAsync();
+
+        /// <summary>
+        /// Obtém projetos com alguma pendência e cujo prazo de resolução da pendência esteja vencido.
+        /// </summary>
+        /// <returns>Resultado do processo de encerramento dos projetos.</returns>
+        Task<string> ClosePendingAndOverdueProjectsAsync();
     }
 }
