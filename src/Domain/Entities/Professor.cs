@@ -82,6 +82,13 @@ namespace Domain.Entities
             IdentifyLattes = identifyLattes;
         }
 
+        public Professor(Guid? id, string? siapeEnrollment, long identifyLattes)
+        {
+            Id = id;
+            SIAPEEnrollment = siapeEnrollment;
+            IdentifyLattes = identifyLattes;
+        }
+
         /// <summary>
         /// Constructor to dbcontext EF instancing.
         /// </summary>
