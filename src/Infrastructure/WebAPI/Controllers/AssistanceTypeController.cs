@@ -55,6 +55,7 @@ namespace WebAPI.Controllers
         /// <response code="401">Usuário não autorizado.</response>
         /// <response code="404">Nenhuma bolsa de assistência encontrada.</response>
         [HttpGet("{id}")]
+        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadAssistanceTypeOutput))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
@@ -91,6 +92,7 @@ namespace WebAPI.Controllers
         /// <response code="401">Usuário não autorizado.</response>
         /// <response code="404">Nenhuma bolsa de assitência encontrada.</response>
         [HttpGet]
+        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]

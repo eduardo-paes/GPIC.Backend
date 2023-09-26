@@ -54,6 +54,7 @@ namespace WebAPI.Controllers
         /// <response code="400">Requisição incorreta.</response>
         /// <response code="404">Campus não encontrado.</response>
         [HttpGet("{id}")]
+        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
@@ -87,6 +88,7 @@ namespace WebAPI.Controllers
         /// <response code="400">Requisição incorreta.</response>
         /// <response code="404">Nenhum Campus encontrado.</response>
         [HttpGet]
+        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
