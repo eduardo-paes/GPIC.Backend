@@ -55,6 +55,7 @@ namespace WebAPI.Controllers
         /// <response code="404">Curso não encontrado.</response>
         /// <response code="401">Usuário não autorizado.</response>
         [HttpGet("{id}")]
+        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadCourseOutput))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
@@ -92,6 +93,7 @@ namespace WebAPI.Controllers
         /// <returns>Todas os cursos ativos</returns>
         /// <response code="200">Retorna todas os cursos ativos</response>
         [HttpGet]
+        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ResumedReadCourseOutput>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]

@@ -45,8 +45,10 @@ namespace Application.Tests.UseCases.Professor
             };
             var hashedPassword = "HashedPassword123";
             var user = new User(Guid.NewGuid(), input.Name, input.Email, hashedPassword, input.CPF, ERole.PROFESSOR);
-            var professor = new Domain.Entities.Professor(input.SIAPEEnrollment, input.IdentifyLattes);
-            professor.UserId = user.Id;
+            var professor = new Domain.Entities.Professor(input.SIAPEEnrollment, input.IdentifyLattes)
+            {
+                UserId = user.Id
+            };
 
             _hashServiceMock.Setup(hashService => hashService.HashPassword(input.Password)).Returns(hashedPassword);
             _userRepositoryMock.Setup(userRepository => userRepository.GetUserByEmailAsync(input.Email)).ReturnsAsync((User)null);
