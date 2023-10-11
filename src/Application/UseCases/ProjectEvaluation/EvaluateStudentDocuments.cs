@@ -34,10 +34,14 @@ namespace Application.UseCases.ProjectEvaluation
         public async Task<DetailedReadProjectOutput> ExecuteAsync(EvaluateStudentDocumentsInput input)
         {
             // Obtém informações do usuário logado.
-            var user = _tokenAuthenticationService.GetUserAuthenticatedClaims();
+            var userClaims = _tokenAuthenticationService.GetUserAuthenticatedClaims();
+
+            // Obtém id do usuário e id de acordo com perfil logado
+            var userClaim = userClaims!.Values.FirstOrDefault();
+            var actorId = userClaims.Keys.FirstOrDefault();
 
             // Verifica se o usuário logado é um avaliador.
-            UseCaseException.BusinessRuleViolation(user.Role != ERole.ADMIN || user.Role != ERole.PROFESSOR,
+            UseCaseException.BusinessRuleViolation(userClaim!.Role != ERole.ADMIN || userClaim.Role != ERole.PROFESSOR,
                 "O usuário não é um avaliador.");
 
             // Verifica se o status da avaliação foi informado.
@@ -53,7 +57,7 @@ namespace Application.UseCases.ProjectEvaluation
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Domain.Entities.ProjectEvaluation));
 
             // Verifica se o avaliador é o professor orientador do projeto.
-            UseCaseException.BusinessRuleViolation(projectEvaluation.Project?.ProfessorId == user.Id,
+            UseCaseException.BusinessRuleViolation(projectEvaluation.Project?.ProfessorId == userClaim.Id,
                 "Avaliador é o orientador do projeto.");
 
             // Verifica se o projeto está na fase de avaliação da documentação.
@@ -70,7 +74,7 @@ namespace Application.UseCases.ProjectEvaluation
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Domain.Entities.Project));
 
             // Atualiza a avaliação do recurso.
-            projectEvaluation!.DocumentsEvaluatorId = user.Id;
+            projectEvaluation!.DocumentsEvaluatorId = userClaim.Id;
             projectEvaluation.DocumentsEvaluationDate = DateTime.UtcNow;
 
             // Atualiza a descrição e o status da avaliação da documentação.

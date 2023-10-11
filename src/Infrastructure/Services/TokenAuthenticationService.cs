@@ -25,10 +25,11 @@ namespace Services
         /// Gera o token de autenticação.
         /// </summary>
         /// <param name="id">Id do usuário.</param>
+        /// <param name="actorId">Id do professor ou do aluno.</param>
         /// <param name="userName">Nome do usuário.</param>
         /// <param name="role">Perfil do usuário.</param>
         /// <returns>Token de autenticação.</returns>
-        public string GenerateToken(Guid? id, string? userName, string? role)
+        public string GenerateToken(Guid? id, Guid? actorId, string? userName, string? role)
         {
             // Verifica se o id é nulo
             if (id == null)
@@ -52,6 +53,7 @@ namespace Services
             Claim[] claims = new[]
             {
                 new Claim(ClaimTypes.Sid, id.Value.ToString()),
+                new Claim(ClaimTypes.Actor, actorId is null ? string.Empty : actorId.Value.ToString()),
                 new Claim(ClaimTypes.Name, userName),
                 new Claim(ClaimTypes.Role, role),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
@@ -85,7 +87,7 @@ namespace Services
         /// Retorna as claims do usuário autenticado.
         /// </summary>
         /// <returns>Id, Name e Role.</returns>
-        public User GetUserAuthenticatedClaims()
+        public Dictionary<Guid, User> GetUserAuthenticatedClaims()
         {
             // Get the current HttpContext to retrieve the claims principal
             HttpContext? httpContext = _httpContextAccessor.HttpContext;
@@ -93,22 +95,32 @@ namespace Services
             // Check if the user is authenticated
             if (httpContext?.User.Identity == null || httpContext?.User.Identity.IsAuthenticated != true)
             {
-                throw new Exception("User is not authenticated.");
+                throw new Exception("Usuário não autenticado.");
             }
 
             // Get the claims principal
             ClaimsIdentity claimsIdentity = httpContext.User.Identity as ClaimsIdentity
-                ?? throw new Exception("User is not authenticated.");
+                ?? throw new Exception("Usuário não autenticado.");
 
             // Get the user's ID
             string? id = claimsIdentity.FindFirst(ClaimTypes.Sid)?.Value;
             if (string.IsNullOrEmpty(id))
             {
-                throw new Exception("User ID not provided.");
+                throw new Exception("Id do usuário não informado.");
             }
 
-            // Return the user's claims
-            return new User(Guid.Parse(id), claimsIdentity.FindFirst(ClaimTypes.Name)?.Value, claimsIdentity.FindFirst(ClaimTypes.Role)?.Value);
+            string? actorId = claimsIdentity.FindFirst(ClaimTypes.Actor)?.Value;
+            if (string.IsNullOrEmpty(actorId))
+            {
+                throw new Exception($"Id do {ClaimTypes.Role} não informado.");
+            }
+
+            // Cria o output com o id do professor ou estudade e o usuário
+            var user = new User(Guid.Parse(id), claimsIdentity.FindFirst(ClaimTypes.Name)?.Value, claimsIdentity.FindFirst(ClaimTypes.Role)?.Value);
+            return new Dictionary<Guid, User>
+            {
+                { Guid.Parse(actorId), user }
+            };
         }
     }
 }

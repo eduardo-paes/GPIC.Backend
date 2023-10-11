@@ -38,7 +38,11 @@ namespace Application.UseCases.ProjectFinalReport
             UseCaseException.NotInformedParam(input.ReportFile is null, nameof(input.ReportFile));
 
             // Obtém usuário logado
-            var user = _tokenAuthenticationService.GetUserAuthenticatedClaims();
+            var userClaims = _tokenAuthenticationService.GetUserAuthenticatedClaims();
+
+            // Obtém id do usuário e id de acordo com perfil logado
+            var userClaim = userClaims!.Values.FirstOrDefault();
+            var actorId = userClaims.Keys.FirstOrDefault();
 
             // Recupera entidade que será atualizada
             Domain.Entities.ProjectFinalReport report = await _projectReportRepository.GetByIdAsync(id) ??
@@ -61,7 +65,7 @@ namespace Application.UseCases.ProjectFinalReport
                 "O projeto informado não está em andamento.");
 
             // Somente aluno ou professor do projeto pode fazer alteração no relatório
-            UseCaseException.BusinessRuleViolation(user.Id != project.StudentId && user.Id != project.ProfessorId,
+            UseCaseException.BusinessRuleViolation(actorId != project.StudentId && actorId != project.ProfessorId,
                 "Somente o aluno ou o professor orientador do projeto pode fazer alterações no relatório.");
 
             // Verifica se o relatório está sendo enviado dentro do prazo
@@ -77,7 +81,7 @@ namespace Application.UseCases.ProjectFinalReport
             await _storageFileService.UploadFileAsync(input.ReportFile!, report.ReportUrl);
 
             // Atualiza atributos permitidos
-            report.UserId = user.Id;
+            report.UserId = userClaim!.Id;
             report.SendDate = DateTime.UtcNow;
 
             // Salva entidade atualizada no banco

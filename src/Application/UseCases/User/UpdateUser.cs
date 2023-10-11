@@ -26,11 +26,15 @@ namespace Application.UseCases.User
             // Busca as claims do usuário autenticado
             var userClaims = _tokenAuthenticationService.GetUserAuthenticatedClaims();
 
+            // Obtém id do usuário e id de acordo com perfil logado
+            var userClaim = userClaims!.Values.FirstOrDefault();
+            var actorId = userClaims.Keys.FirstOrDefault();
+
             // Verifica se o id informado é nulo
-            UseCaseException.NotInformedParam(userClaims.Id is null, nameof(userClaims.Id));
+            UseCaseException.NotInformedParam(userClaim!.Id is null, nameof(userClaim.Id));
 
             // Busca usuário pelo id informado
-            Domain.Entities.User user = await _repository.GetByIdAsync(userClaims.Id)
+            Domain.Entities.User user = await _repository.GetByIdAsync(userClaim.Id)
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Domain.Entities.User));
 
             // Atualiza atributos permitidos

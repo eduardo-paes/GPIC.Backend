@@ -16,9 +16,11 @@ namespace Application.Tests.UseCases.Auth
     {
         private readonly Mock<ITokenAuthenticationService> _tokenServiceMock = new Mock<ITokenAuthenticationService>();
         private readonly Mock<IUserRepository> _userRepositoryMock = new Mock<IUserRepository>();
+        private readonly Mock<IProfessorRepository> _professorRepositoryMock = new Mock<IProfessorRepository>();
+        private readonly Mock<IStudentRepository> _studentRepositoryMock = new Mock<IStudentRepository>();
         private readonly Mock<IHashService> _hashServiceMock = new Mock<IHashService>();
 
-        private ILogin CreateUseCase() => new Login(_tokenServiceMock.Object, _userRepositoryMock.Object, _hashServiceMock.Object);
+        private ILogin CreateUseCase() => new Login(_tokenServiceMock.Object, _userRepositoryMock.Object, _professorRepositoryMock.Object, _studentRepositoryMock.Object, _hashServiceMock.Object);
         private static User MockValidUser() => new("John Doe", "john.doe@example.com", "strongpassword", "92114660087", ERole.ADMIN);
         private static User MockValidUserWithId() => new(Guid.NewGuid(), "John Doe", "ADMIN");
 
@@ -67,7 +69,7 @@ namespace Application.Tests.UseCases.Auth
             Assert.ThrowsAsync<UseCaseException>(async () => await useCase.ExecuteAsync(input));
             _userRepositoryMock.Verify(repo => repo.GetUserByEmailAsync(It.IsAny<string>()), Times.Never);
             _hashServiceMock.Verify(hashService => hashService.VerifyPassword(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
-            _tokenServiceMock.Verify(tokenService => tokenService.GenerateToken(It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+            _tokenServiceMock.Verify(tokenService => tokenService.GenerateToken(It.IsAny<Guid>(), It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
         }
 
         [Fact]
@@ -85,7 +87,7 @@ namespace Application.Tests.UseCases.Auth
             Assert.ThrowsAsync<UseCaseException>(async () => await useCase.ExecuteAsync(input));
             _userRepositoryMock.Verify(repo => repo.GetUserByEmailAsync(It.IsAny<string>()), Times.Never);
             _hashServiceMock.Verify(hashService => hashService.VerifyPassword(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
-            _tokenServiceMock.Verify(tokenService => tokenService.GenerateToken(It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+            _tokenServiceMock.Verify(tokenService => tokenService.GenerateToken(It.IsAny<Guid>(), It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
         }
 
         [Fact]
@@ -105,7 +107,7 @@ namespace Application.Tests.UseCases.Auth
             Assert.ThrowsAsync<UseCaseException>(async () => await useCase.ExecuteAsync(input));
             _userRepositoryMock.Verify(repo => repo.GetUserByEmailAsync(input.Email), Times.Once);
             _hashServiceMock.Verify(hashService => hashService.VerifyPassword(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
-            _tokenServiceMock.Verify(tokenService => tokenService.GenerateToken(It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+            _tokenServiceMock.Verify(tokenService => tokenService.GenerateToken(It.IsAny<Guid>(), It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
         }
 
         [Fact]
@@ -126,7 +128,7 @@ namespace Application.Tests.UseCases.Auth
             Assert.ThrowsAsync<UseCaseException>(async () => await useCase.ExecuteAsync(input));
             _userRepositoryMock.Verify(repo => repo.GetUserByEmailAsync(input.Email), Times.Once);
             _hashServiceMock.Verify(hashService => hashService.VerifyPassword(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
-            _tokenServiceMock.Verify(tokenService => tokenService.GenerateToken(It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+            _tokenServiceMock.Verify(tokenService => tokenService.GenerateToken(It.IsAny<Guid>(), It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
         }
 
         [Fact]
@@ -149,7 +151,7 @@ namespace Application.Tests.UseCases.Auth
             Assert.ThrowsAsync<UseCaseException>(async () => await useCase.ExecuteAsync(input));
             _userRepositoryMock.Verify(repo => repo.GetUserByEmailAsync(input.Email), Times.Once);
             _hashServiceMock.Verify(hashService => hashService.VerifyPassword(input.Password, user.Password), Times.Once);
-            _tokenServiceMock.Verify(tokenService => tokenService.GenerateToken(It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+            _tokenServiceMock.Verify(tokenService => tokenService.GenerateToken(It.IsAny<Guid>(), It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
         }
     }
 }
