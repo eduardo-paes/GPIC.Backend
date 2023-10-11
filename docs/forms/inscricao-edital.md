@@ -22,7 +22,7 @@ _Campos que comporão as entidades relacionadas com Projeto._
 - Título do Projeto de Iniciação Científica
 - Grande Área (areas.txt -> \*.00.00.00)
 - Área (areas.txt -> \*.00.00)
-- Sub-área (areas.txt -> others)
+- Sub-área (areas.txt -> \*.00)
 - É candidato a Bolsa? (Boolean)
 - Palavras Chave (3x - String)
 
@@ -85,7 +85,7 @@ _Campos que comporão as entidades relacionadas com Projeto._
 
 ### PontuacaoAtividades (Índice AP - Edital PIBIC) (OK)
 
-- Pegar do arquivo Excel <--
+- _(Planilha de avaliação do projeto de IC)_
 
 ### CompromissoOrientador
 
