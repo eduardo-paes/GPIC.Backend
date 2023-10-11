@@ -38,10 +38,16 @@ namespace Application.Tests.UseCases.Auth
             user.Password = "hashed_password";
             user.Email = input.Email;
             user.ConfirmUserEmail(user.ValidationCode);
+            user.Role = ERole.PROFESSOR;
+            var professor = new Domain.Entities.Professor(Guid.NewGuid(), "1234567", 1234567)
+            {
+                UserId = user.Id
+            };
 
             _userRepositoryMock.Setup(repo => repo.GetUserByEmailAsync(input.Email)).ReturnsAsync(user);
+            _professorRepositoryMock.Setup(repo => repo.GetByUserIdAsync(user.Id)).ReturnsAsync(professor);
             _hashServiceMock.Setup(hashService => hashService.VerifyPassword(input.Password, user.Password)).Returns(true);
-            _tokenServiceMock.Setup(tokenService => tokenService.GenerateToken(user.Id, user.Name, user.Role.ToString())).Returns("token");
+            _tokenServiceMock.Setup(tokenService => tokenService.GenerateToken(user.Id, professor.Id, user.Name, user.Role.ToString())).Returns("token");
 
             // Act
             var result = await useCase.ExecuteAsync(input);
@@ -51,7 +57,7 @@ namespace Application.Tests.UseCases.Auth
             Assert.Equal("token", result.Token);
             _userRepositoryMock.Verify(repo => repo.GetUserByEmailAsync(input.Email), Times.Once);
             _hashServiceMock.Verify(hashService => hashService.VerifyPassword(input.Password, user.Password), Times.Once);
-            _tokenServiceMock.Verify(tokenService => tokenService.GenerateToken(user.Id, user.Name, user.Role.ToString()), Times.Once);
+            _tokenServiceMock.Verify(tokenService => tokenService.GenerateToken(user.Id, professor.Id, user.Name, user.Role.ToString()), Times.Once);
         }
 
         [Fact]
