@@ -34,10 +34,13 @@ namespace Application.UseCases.ProjectEvaluation
         public async Task<DetailedReadProjectOutput> ExecuteAsync(EvaluateAppealProjectInput input)
         {
             // Obtém informações do usuário logado.
-            var user = _tokenAuthenticationService.GetUserAuthenticatedClaims();
+            var userClaims = _tokenAuthenticationService.GetUserAuthenticatedClaims();
+
+            // Obtém id do usuário e id de acordo com perfil logado
+            var userClaim = userClaims!.Values.FirstOrDefault();
 
             // Verifica se o usuário logado é um avaliador.
-            UseCaseException.BusinessRuleViolation(user.Role != ERole.ADMIN || user.Role != ERole.PROFESSOR,
+            UseCaseException.BusinessRuleViolation(userClaim!.Role != ERole.ADMIN || userClaim.Role != ERole.PROFESSOR,
                 "O usuário não é um avaliador.");
 
             // Verifica se o status da avaliação foi informado.
@@ -53,7 +56,7 @@ namespace Application.UseCases.ProjectEvaluation
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Domain.Entities.ProjectEvaluation));
 
             // Verifica se o avaliador é o professor orientador do projeto.
-            UseCaseException.BusinessRuleViolation(projectEvaluation.Project?.ProfessorId == user.Id,
+            UseCaseException.BusinessRuleViolation(projectEvaluation.Project?.ProfessorId == userClaim.Id,
                 "Avaliador é o orientador do projeto.");
 
             // Verifica se o projeto está na fase de recurso.
@@ -69,7 +72,7 @@ namespace Application.UseCases.ProjectEvaluation
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Domain.Entities.Project));
 
             // Atualiza a avaliação do recurso.
-            projectEvaluation!.AppealEvaluatorId = user.Id;
+            projectEvaluation!.AppealEvaluatorId = userClaim.Id;
             projectEvaluation.AppealEvaluationDate = DateTime.UtcNow;
 
             // Atualiza a descrição e o status da avaliação do recurso.

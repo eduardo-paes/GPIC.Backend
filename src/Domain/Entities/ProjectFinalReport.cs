@@ -58,7 +58,7 @@ namespace Domain.Entities
         public virtual Project? Project { get; set; }
         public virtual User? User { get; set; }
 
-        public ProjectFinalReport(Guid? projectId)
+        public ProjectFinalReport(Guid? projectId, Guid? userId)
         {
             SendDate = DateTime.UtcNow;
             ProjectId = projectId;

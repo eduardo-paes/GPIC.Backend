@@ -29,15 +29,19 @@ namespace Application.UseCases.Project
                 throw new ArgumentException("Parâmetros inválidos.");
 
             // Obtém o usuário logado
-            var user = _tokenAuthenticationService.GetUserAuthenticatedClaims();
+            var userClaims = _tokenAuthenticationService.GetUserAuthenticatedClaims();
+
+            // Obtém id do usuário e id de acordo com perfil logado
+            var userClaim = userClaims!.Values.FirstOrDefault();
+            var actorId = userClaims.Keys.FirstOrDefault();
 
             // Verifica se o usuário logado é um professor ou administrador
-            UseCaseException.BusinessRuleViolation(user.Role != ERole.ADMIN && user.Role != ERole.PROFESSOR,
+            UseCaseException.BusinessRuleViolation(userClaim!.Role != ERole.ADMIN && userClaim.Role != ERole.PROFESSOR,
                  "Usuário sem permissão para avaliar projetos.");
 
             // Obtém todos os projetos que estão na fase de avaliação (Submitted, Evaluation, DocumentAnalysis)
             // e que o usuário logado possa avaliar (somente projetos que o usuário não é o orientador)
-            var projects = await _projectRepository.GetProjectsToEvaluateAsync(skip, take, user.Id);
+            var projects = await _projectRepository.GetProjectsToEvaluateAsync(skip, take, actorId);
 
             // Mapeia a lista de projetos para uma lista de projetos resumidos e retorna.
             return _mapper.Map<IList<DetailedReadProjectOutput>>(projects);

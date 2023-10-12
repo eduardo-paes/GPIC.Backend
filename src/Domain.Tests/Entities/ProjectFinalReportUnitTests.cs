@@ -9,10 +9,9 @@ namespace Domain.Tests.Entities
     {
         private static ProjectFinalReport MockValidProjectFinalReport()
         {
-            return new ProjectFinalReport(Guid.NewGuid())
+            return new ProjectFinalReport(Guid.NewGuid(), Guid.NewGuid())
             {
                 ReportUrl = "https://example.com/report",
-                UserId = Guid.NewGuid(),
                 SendDate = DateTime.UtcNow
             };
         }
@@ -109,9 +108,10 @@ namespace Domain.Tests.Entities
         {
             // Arrange
             var projectId = Guid.NewGuid();
+            var userId = Guid.NewGuid();
 
             // Act
-            var projectFinalReport = new ProjectFinalReport(projectId);
+            var projectFinalReport = new ProjectFinalReport(projectId, userId);
 
             // Assert
             projectFinalReport.ProjectId.Should().Be(projectId);

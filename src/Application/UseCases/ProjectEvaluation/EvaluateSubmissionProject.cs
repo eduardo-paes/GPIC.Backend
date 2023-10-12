@@ -40,11 +40,15 @@ namespace Application.UseCases.ProjectEvaluation
         public async Task<DetailedReadProjectOutput> ExecuteAsync(EvaluateSubmissionProjectInput input)
         {
             // Obtém informações do usuário logado.
-            var user = _tokenAuthenticationService.GetUserAuthenticatedClaims();
+            var userClaims = _tokenAuthenticationService.GetUserAuthenticatedClaims();
+
+            // Obtém id do usuário e id de acordo com perfil logado
+            var userClaim = userClaims!.Values.FirstOrDefault();
+            var actorId = userClaims.Keys.FirstOrDefault();
 
             // Verifica se o usuário logado é um avaliador.
-            UseCaseException.BusinessRuleViolation(user.Role != ERole.ADMIN
-                    || user.Role != ERole.PROFESSOR,
+            UseCaseException.BusinessRuleViolation(userClaim!.Role != ERole.ADMIN
+                    || userClaim.Role != ERole.PROFESSOR,
                 "O usuário não é um avaliador.");
 
             // Verifica se já existe alguma avaliação para o projeto.
@@ -57,7 +61,7 @@ namespace Application.UseCases.ProjectEvaluation
                 ?? throw UseCaseException.NotFoundEntityById(nameof(Domain.Entities.Project));
 
             // Verifica se o avaliador é o professor orientador do projeto.
-            UseCaseException.BusinessRuleViolation(project.ProfessorId == user.Id,
+            UseCaseException.BusinessRuleViolation(project.ProfessorId == actorId,
                 "Avaliador é o orientador do projeto.");
 
             // Verifica se o projeto está na fase de submissão.
@@ -75,7 +79,7 @@ namespace Application.UseCases.ProjectEvaluation
             // Mapeia dados de entrada para entidade.
             projectEvaluation = new Domain.Entities.ProjectEvaluation(input.ProjectId,
                 input.IsProductivityFellow,
-                user.Id, // Id do avaliador logado.
+                userClaim.Id, // Id do avaliador logado.
                 TryCastEnum<EProjectStatus>(input.SubmissionEvaluationStatus),
                 DateTime.UtcNow,
                 input.SubmissionEvaluationDescription,

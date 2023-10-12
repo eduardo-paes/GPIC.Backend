@@ -33,7 +33,11 @@ namespace Application.UseCases.ProjectPartialReport
             UseCaseException.NotInformedParam(id is null, nameof(id));
 
             // Obtém usuário logado
-            var user = _tokenAuthenticationService.GetUserAuthenticatedClaims();
+            var userClaims = _tokenAuthenticationService.GetUserAuthenticatedClaims();
+
+            // Obtém id do usuário e id de acordo com perfil logado
+            var userClaim = userClaims!.Values.FirstOrDefault();
+            var actorId = userClaims.Keys.FirstOrDefault();
 
             // Recupera entidade que será atualizada
             Domain.Entities.ProjectPartialReport report = await _projectReportRepository.GetByIdAsync(id) ??
@@ -56,7 +60,7 @@ namespace Application.UseCases.ProjectPartialReport
                 "O projeto informado não está em andamento.");
 
             // Somente aluno ou professor do projeto pode fazer alteração no relatório
-            UseCaseException.BusinessRuleViolation(user.Id != project.StudentId && user.Id != project.ProfessorId,
+            UseCaseException.BusinessRuleViolation(actorId != project.StudentId && actorId != project.ProfessorId,
                 "Somente o aluno ou o professor orientador do projeto pode fazer alterações no relatório.");
 
             // Verifica se o relatório está sendo enviado dentro do prazo
@@ -77,7 +81,7 @@ namespace Application.UseCases.ProjectPartialReport
                 report.AdditionalInfo = input.AdditionalInfo;
 
             // Atualiza propriedades de auditoria
-            report.UserId = user.Id;
+            report.UserId = userClaim!.Id;
 
             // Salva entidade atualizada no banco
             await _projectReportRepository.UpdateAsync(report);
