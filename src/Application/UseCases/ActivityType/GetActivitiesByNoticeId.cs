@@ -15,10 +15,10 @@ namespace Application.UseCases.ActivityType
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<ActivityTypeOutput>> ExecuteAsync(Guid? id)
+        public async Task<IEnumerable<ActivityTypeOutput>> ExecuteAsync(Guid? noticeId)
         {
             // Obtém os tipos de atividades do edital
-            var activityTypes = await _activityTypeRepository.GetByNoticeIdAsync(id);
+            var activityTypes = await _activityTypeRepository.GetByNoticeIdAsync(noticeId);
 
             // Lista de tipos de atividades para o output
             List<ActivityTypeOutput> activityTypesOutput = new();

@@ -4,6 +4,6 @@ namespace Application.Interfaces.UseCases.ActivityType
 {
     public interface IGetActivitiesByNoticeId
     {
-        Task<IEnumerable<ActivityTypeOutput>> ExecuteAsync(Guid? id);
+        Task<IEnumerable<ActivityTypeOutput>> ExecuteAsync(Guid? noticeId);
     }
 }
