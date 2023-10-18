@@ -2,6 +2,7 @@ using Application.Ports.Project;
 using Application.Interfaces.UseCases.Project;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Application.Ports.ProjectActivity;
 
 namespace WebAPI.Controllers
 {
@@ -22,6 +23,7 @@ namespace WebAPI.Controllers
         private readonly IOpenProject _openProject;
         private readonly ISubmitProject _submitProject;
         private readonly IUpdateProject _updateProject;
+        private readonly IGetActivitiesByProjectId _getActivitiesByProjectId;
         private readonly ILogger<ProjectController> _logger;
 
         /// <summary>
@@ -35,6 +37,7 @@ namespace WebAPI.Controllers
         /// <param name="cancelProject">Serviço de cancelamento de projeto.</param>
         /// <param name="appealProject">Serviço de recurso de projeto.</param>
         /// <param name="submitProject">Serviço de submissão de projeto.</param>
+        /// <param name="getActivitiesByProjectId">Serviço de obtenção de atividades de projeto.</param>
         /// <param name="logger">Serviço de log.</param>
         public ProjectController(IGetProjectById getProjectById,
             IGetOpenProjects getOpenProjects,
@@ -44,6 +47,7 @@ namespace WebAPI.Controllers
             ICancelProject cancelProject,
             IAppealProject appealProject,
             ISubmitProject submitProject,
+            IGetActivitiesByProjectId getActivitiesByProjectId,
             ILogger<ProjectController> logger)
         {
             _getProjectById = getProjectById;
@@ -54,6 +58,7 @@ namespace WebAPI.Controllers
             _cancelProject = cancelProject;
             _appealProject = appealProject;
             _submitProject = submitProject;
+            _getActivitiesByProjectId = getActivitiesByProjectId;
             _logger = logger;
         }
         #endregion Global Scope
@@ -97,6 +102,34 @@ namespace WebAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        /// <summary>
+        /// Busca atividades de projeto pelo id do projeto.
+        /// </summary>
+        /// <param name="projectId">Id do projeto</param>
+        /// <returns>Atividades de projeto correspondentes</returns>
+        /// <response code="200">Retorna atividades de projeto correspondentes</response>
+        /// <response code="400">Requisição incorreta.</response>
+        /// <response code="401">Usuário não autorizado.</response>
+        /// <response code="404">Nenhuma atividade encontrada.</response>
+        [HttpGet("activity/{projectId}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<DetailedReadProjectActivityOutput>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
+        public async Task<ActionResult<IEnumerable<DetailedReadProjectActivityOutput>>> GetActivitiesByProjectId(Guid? projectId)
+        {
+            var activities = await _getActivitiesByProjectId.ExecuteAsync(projectId);
+            if (activities == null || !activities.Any())
+            {
+                const string errorMessage = "Nenhuma atividade encontrada.";
+                _logger.LogWarning(errorMessage);
+                return NotFound(errorMessage);
+            }
+            _logger.LogInformation("Atividades encontradas: {quantidade}", activities.Count());
+            return Ok(activities);
+        }
+
 
         /// <summary>
         /// Busca projetos abertos.

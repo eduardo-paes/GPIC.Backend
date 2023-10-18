@@ -49,19 +49,19 @@ namespace Application.UseCases.Auth
 
             // Obtém id do professor ou do aluno
             Guid? actorId;
-            if (user.Role == Domain.Entities.Enums.ERole.PROFESSOR)
-            {
-                var professor = await _professorRepository.GetByUserIdAsync(user.Id)
-                    ?? throw UseCaseException.NotFoundEntityByParams(nameof(Domain.Entities.Professor));
-                actorId = professor.Id;
-            }
-            else if (user.Role == Domain.Entities.Enums.ERole.STUDENT)
+            if (user.Role == Domain.Entities.Enums.ERole.STUDENT)
             {
                 var student = await _studentRepository.GetByUserIdAsync(user.Id)
                     ?? throw UseCaseException.NotFoundEntityByParams(nameof(Domain.Entities.Student));
                 actorId = student.Id;
             }
-            else actorId = null;
+            // Professor ou Administrador
+            else
+            {
+                var professor = await _professorRepository.GetByUserIdAsync(user.Id)
+                    ?? throw UseCaseException.NotFoundEntityByParams(nameof(Domain.Entities.Professor));
+                actorId = professor.Id;
+            }
 
             // Gera o token de autenticação e retorna o resultado
             return new UserLoginOutput

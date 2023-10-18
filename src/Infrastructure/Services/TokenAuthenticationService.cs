@@ -49,11 +49,17 @@ namespace Services
                 throw new Exception("Perfil do usuário não informado.");
             }
 
+            // Verifica se o id do professor ou estudante é nulo
+            if (actorId == null)
+            {
+                throw new Exception($"Id do {role} inválido.");
+            }
+
             // Declaração do usuário
             Claim[] claims = new[]
             {
                 new Claim(ClaimTypes.Sid, id.Value.ToString()),
-                new Claim(ClaimTypes.Actor, actorId is null ? string.Empty : actorId.Value.ToString()),
+                new Claim(ClaimTypes.Actor, actorId.Value.ToString()),
                 new Claim(ClaimTypes.Name, userName),
                 new Claim(ClaimTypes.Role, role),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
