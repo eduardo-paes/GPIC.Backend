@@ -9,6 +9,9 @@ namespace WebAPI
     /// </summary>
     public class Startup
     {
+        private const string CORS_POLICY_NAME = "_allowSpecificOrigins";
+        private IConfiguration? _configuration;
+
         /// <summary>
         /// Realiza a configuração dos serviços de injeção de dependência.
         /// </summary>
@@ -19,7 +22,7 @@ namespace WebAPI
             services.AddControllers();
 
             // Realiza comunicação com os demais Projetos.
-            services.AddInfrastructure();
+            services.AddInfrastructure(ref _configuration);
             services.AddPersistence();
             services.AddExternalServices();
             services.AddApplication();
@@ -32,6 +35,32 @@ namespace WebAPI
 
             // Permite que rotas sejam acessíveis em lowercase
             services.AddRouting(options => options.LowercaseUrls = true);
+
+            #region CORS
+            // Definição de política de CORS
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: CORS_POLICY_NAME,
+                      policy =>
+                      {
+                          // Busca os valores de ALLOW_ORIGINS do arquivo .env
+                          policy.WithOrigins(
+                            origins: Environment.GetEnvironmentVariable("ALLOW_ORIGINS").Split(',')!)
+                              .AllowAnyHeader()
+                              .AllowAnyMethod();
+                      });
+            });
+            #endregion CORS
+
+            #region Rate Limit
+            services.AddMemoryCache();
+            services.AddInMemoryRateLimiting();
+            services.Configure<ClientRateLimitOptions>(_configuration.GetSection("IpRateLimiting"));
+            services.AddSingleton<IClientPolicyStore, MemoryCacheClientPolicyStore>();
+            services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
+            services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
+            services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+            #endregion Rate Limit
         }
 
         /// <summary>
@@ -66,7 +95,7 @@ namespace WebAPI
             app.UseHttpsRedirection();
 
             // Enable CORS
-            app.UseCors();
+            app.UseCors(CORS_POLICY_NAME);
 
             // Enable routing for incoming requests
             app.UseRouting();
