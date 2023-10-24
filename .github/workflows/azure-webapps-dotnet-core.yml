@@ -1,7 +1,7 @@
 name: Build and deploy ASP.Net Core app to an Azure Web App
 
 env:
-  AZURE_WEBAPP_NAME: GPIC-Staging-WebAPI
+  AZURE_WEBAPP_NAME: GPIC-Stg-WebAPI
   AZURE_WEBAPP_PACKAGE_PATH: "."
   DOTNET_VERSION: "7.0"
   PROJECT_PATH: "src/Infrastructure/WebAPI/WebAPI.csproj"
