@@ -36,7 +36,7 @@ namespace Persistence.Seeds
                     var codeA = activity.Split(";")[0].Trim();
                     var nameA = activity.Split(";")[1].Trim();
                     var pointsA = activity.Split(";")[2].Trim();
-                    var limitsA = activity.Split(";")[2].Trim();
+                    var limitsA = activity.Split(";")[3].Trim();
 
                     // Trata valores nulos
                     if (limitsA == "NULL")

@@ -31,12 +31,15 @@ namespace Application.UseCases.User
             UseCaseException.BusinessRuleViolation(userClaims is null,
                 "Usuário não autenticado");
 
+            // Obtém id do usuário e id de acordo com perfil logado
+            var userClaim = userClaims!.Values.FirstOrDefault();
+
             // Verifica se usuário logado é administrador
-            UseCaseException.BusinessRuleViolation(userClaims!.Role != Domain.Entities.Enums.ERole.ADMIN,
+            UseCaseException.BusinessRuleViolation(userClaim!.Role != Domain.Entities.Enums.ERole.ADMIN,
                 "Usuário logado não é administrador");
 
             // Verifica se usuário logado realmente existe
-            var user = await _userRepository.GetByIdAsync(userClaims.Id);
+            var user = await _userRepository.GetByIdAsync(userClaim.Id);
             UseCaseException.NotFoundEntityById(user is null, nameof(user));
 
             // Obtém usuário que será tornado administrador

@@ -31,13 +31,19 @@ namespace Application.UseCases.ProjectFinalReport
 
         public async Task<DetailedReadProjectFinalReportOutput> ExecuteAsync(CreateProjectFinalReportInput input)
         {
+            // Obtém usuário logado
+            var userClaims = _tokenAuthenticationService.GetUserAuthenticatedClaims();
+
+            // Obtém id do usuário e id de acordo com perfil logado
+            var userClaim = userClaims!.Values.FirstOrDefault();
+            var actorId = userClaims.Keys.FirstOrDefault();
+
             // Cria entidade a partir do modelo
             Domain.Entities.ProjectFinalReport report = new(
-                input.ProjectId
+                input.ProjectId,
+                // Salva o Id do usuário logado no relatório
+                userClaim!.Id
             );
-
-            // Obtém usuário logado
-            var user = _tokenAuthenticationService.GetUserAuthenticatedClaims();
 
             // Verifica se o projeto existe
             Domain.Entities.Project project = await _projectRepository.GetByIdAsync(report.ProjectId)
@@ -52,7 +58,7 @@ namespace Application.UseCases.ProjectFinalReport
                 "O projeto informado não está em andamento.");
 
             // Somente aluno ou professor do projeto pode fazer inclusão de relatório
-            UseCaseException.BusinessRuleViolation(user.Id != project.StudentId && user.Id != project.ProfessorId,
+            UseCaseException.BusinessRuleViolation(actorId != project.StudentId && actorId != project.ProfessorId,
                 "Somente o aluno ou o professor orientador do projeto pode fazer inclusão de relatório.");
 
             // Verifica se o relatório está sendo enviado dentro do prazo
@@ -69,9 +75,6 @@ namespace Application.UseCases.ProjectFinalReport
 
             // Salva o link do arquivo no relatório
             report.ReportUrl = fileUrl;
-
-            // Salva o Id do usuário logado no relatório
-            report.UserId = user.Id;
 
             // Cria entidade
             report = await _projectReportRepository.CreateAsync(report);

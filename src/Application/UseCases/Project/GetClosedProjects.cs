@@ -31,33 +31,37 @@ namespace Application.UseCases.Project
                 throw new ArgumentException("Parâmetros inválidos.");
 
             // Obtém as claims do usuário autenticado.
-            var user = _tokenAuthenticationService.GetUserAuthenticatedClaims();
+            var userClaims = _tokenAuthenticationService.GetUserAuthenticatedClaims();
+
+            // Obtém id do usuário e id de acordo com perfil logado
+            var userClaim = userClaims!.Values.FirstOrDefault();
+            var actorId = userClaims.Keys.FirstOrDefault();
 
             // Se o usuário não estiver autenticado, lança uma exceção.
-            UseCaseException.BusinessRuleViolation(user == null || user.Role == null,
+            UseCaseException.BusinessRuleViolation(userClaim == null || userClaim.Role == null,
                 "Usuário não autorizado.");
 
             // Obtém a lista de projetos de acordo com o tipo de usuário.
             IEnumerable<Domain.Entities.Project> projects;
 
             // Se o usuário for um professor, retorna apenas os seus projetos.
-            if (user?.Role == ERole.PROFESSOR)
+            if (userClaim?.Role == ERole.PROFESSOR)
             {
-                projects = await _projectRepository.GetProfessorProjectsAsync(skip, take, user?.Id, true);
+                projects = await _projectRepository.GetProfessorProjectsAsync(skip, take, actorId, true);
             }
 
             // Se o usuário for um aluno, retorna apenas os seus projetos.
-            else if (user?.Role == ERole.STUDENT)
+            else if (userClaim?.Role == ERole.STUDENT)
             {
-                projects = await _projectRepository.GetStudentProjectsAsync(skip, take, user?.Id, true);
+                projects = await _projectRepository.GetStudentProjectsAsync(skip, take, actorId, true);
             }
 
             // Se o usuário for um administrador, permite a busca apenas pelo seu ID.
             else
             {
-                projects = user?.Role == ERole.ADMIN && onlyMyProjects
-                    ? await _projectRepository.GetProfessorProjectsAsync(skip, take, user?.Id, true)
-                    : user?.Role == ERole.ADMIN && !onlyMyProjects
+                projects = userClaim?.Role == ERole.ADMIN && onlyMyProjects
+                    ? await _projectRepository.GetProfessorProjectsAsync(skip, take, actorId, true)
+                    : userClaim?.Role == ERole.ADMIN && !onlyMyProjects
                                     ? await _projectRepository.GetProjectsAsync(skip, take, true)
                                     : throw UseCaseException.BusinessRuleViolation("Usuário não autorizado.");
             }

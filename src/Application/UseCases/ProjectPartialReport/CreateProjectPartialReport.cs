@@ -30,7 +30,11 @@ namespace Application.UseCases.ProjectPartialReport
         public async Task<DetailedReadProjectPartialReportOutput> ExecuteAsync(CreateProjectPartialReportInput input)
         {
             // Obtém usuário logado
-            var user = _tokenAuthenticationService.GetUserAuthenticatedClaims();
+            var userClaims = _tokenAuthenticationService.GetUserAuthenticatedClaims();
+
+            // Obtém id do usuário e id de acordo com perfil logado
+            var userClaim = userClaims!.Values.FirstOrDefault();
+            var actorId = userClaims.Keys.FirstOrDefault();
 
             // Cria entidade a partir do modelo
             Domain.Entities.ProjectPartialReport report = new(
@@ -38,7 +42,7 @@ namespace Application.UseCases.ProjectPartialReport
                 input.CurrentDevelopmentStage,
                 TryCastEnum<EScholarPerformance>(input.ScholarPerformance),
                 input.AdditionalInfo,
-                user.Id
+                userClaim!.Id
             );
 
             // Verifica se o projeto existe
@@ -54,7 +58,7 @@ namespace Application.UseCases.ProjectPartialReport
                 "O projeto informado não está em andamento.");
 
             // Somente aluno ou professor do projeto pode fazer inclusão de relatório
-            UseCaseException.BusinessRuleViolation(user.Id != project.StudentId && user.Id != project.ProfessorId,
+            UseCaseException.BusinessRuleViolation(actorId != project.StudentId && actorId != project.ProfessorId,
                 "Somente o aluno ou o professor orientador do projeto pode fazer inclusão de relatório.");
 
             // Verifica se o relatório está sendo enviado dentro do prazo

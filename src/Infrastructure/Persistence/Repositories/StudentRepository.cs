@@ -70,6 +70,15 @@ namespace Persistence.Repositories
                 .AsAsyncEnumerable()
                 .FirstOrDefaultAsync(x => x.RegistrationCode == registrationCode.ToUpper());
         }
+
+        public async Task<Student?> GetByUserIdAsync(Guid? userId)
+        {
+            return await _context.Students
+                .Include(x => x.User)
+                .IgnoreQueryFilters()
+                .AsAsyncEnumerable()
+                .FirstOrDefaultAsync(x => x.UserId == userId);
+        }
         #endregion Public Methods
     }
 }
