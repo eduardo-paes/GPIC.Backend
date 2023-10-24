@@ -1,12 +1,12 @@
 name: Deploy WebAPI to Azure
 
 env:
-  AZURE_WEBAPP_NAME: ${{ env.AZURE_WEBAPP_NAME }}
+  AZURE_WEBAPP_NAME: ${{ secrets.AZURE_WEBAPP_NAME }}
   AZURE_WEBAPP_PACKAGE_PATH: "."
   DOTNET_VERSION: "7.0"
   PROJECT_PATH: "src/Infrastructure/WebAPI/WebAPI.csproj"
   WEBAPI_PATH: "src/Infrastructure/WebAPI/"
-  ASPNETCORE_ENVIRONMENT: ${{ env.ASPNETCORE_ENVIRONMENT }}
+  ASPNETCORE_ENVIRONMENT: ${{ secrets.ASPNETCORE_ENVIRONMENT }}
 
 on:
   push:
