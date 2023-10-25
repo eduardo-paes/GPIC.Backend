@@ -62,7 +62,7 @@ namespace Persistence.Repositories
                     .Include(x => x.Notice)
                     .IgnoreQueryFilters()
                     .AsAsyncEnumerable()
-                    .Where(x => x.StudentId == id
+                    .Where(x => x.ProfessorId == id
                         && (x.Status == EProjectStatus.Closed
                             || x.Status == EProjectStatus.Canceled))
                     .OrderByDescending(x => x.Notice?.RegistrationStartDate) // Traz os projetos mais recentes primeiro.
@@ -78,7 +78,7 @@ namespace Persistence.Repositories
                 .Include(x => x.Notice)
                 .IgnoreQueryFilters()
                 .AsAsyncEnumerable()
-                .Where(x => x.StudentId == id
+                .Where(x => x.ProfessorId == id
                     && x.Status != EProjectStatus.Closed
                     && x.Status != EProjectStatus.Canceled)
                 .OrderByDescending(x => x.Notice?.RegistrationStartDate) // Traz os projetos mais recentes primeiro.
@@ -132,7 +132,7 @@ namespace Persistence.Repositories
                     .Include(x => x.Notice)
                     .IgnoreQueryFilters()
                     .AsAsyncEnumerable()
-                    .Where(x => x.ProfessorId == id
+                    .Where(x => x.StudentId == id
                         && (x.Status == EProjectStatus.Closed
                             || x.Status == EProjectStatus.Canceled))
                     .OrderByDescending(x => x.Notice?.RegistrationStartDate) // Traz os projetos mais recentes primeiro.
