@@ -67,14 +67,15 @@ namespace WebAPI
             #endregion CORS
 
             #region Rate Limit
-            // Definido através do API Gateway
-            // services.AddMemoryCache();
-            // services.AddInMemoryRateLimiting();
-            // services.Configure<ClientRateLimitOptions>(_configuration.GetSection("IpRateLimiting"));
-            // services.AddSingleton<IClientPolicyStore, MemoryCacheClientPolicyStore>();
-            // services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
-            // services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
-            // services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+            services.AddMemoryCache();
+            services.AddInMemoryRateLimiting();
+            var ipRateLimitingConfig = _configuration?.GetSection("IpRateLimiting");
+            if (ipRateLimitingConfig is not null)
+                services.Configure<ClientRateLimitOptions>(ipRateLimitingConfig);
+            services.AddSingleton<IClientPolicyStore, MemoryCacheClientPolicyStore>();
+            services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
+            services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
+            services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
             #endregion Rate Limit
         }
 

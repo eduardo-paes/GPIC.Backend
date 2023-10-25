@@ -1,5 +1,4 @@
-﻿using AspNetCoreRateLimit;
-using Infrastructure.IoC.Utils;
+﻿using Infrastructure.IoC.Utils;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
