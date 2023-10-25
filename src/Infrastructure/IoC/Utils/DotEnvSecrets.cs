@@ -13,66 +13,18 @@ namespace Infrastructure.IoC.Utils
             _ = DotNetEnv.Env.Load(Path.Combine(basePath!, ".env"));
         }
 
-        public string GetFrontEndUrl()
-        {
-            return DotNetEnv.Env.GetString("FRONTEND_URL");
-        }
-
-        public string GetSeqUrl()
-        {
-            return DotNetEnv.Env.GetString("SEQ_URL");
-        }
-
-        public string GetSeqApiKey()
-        {
-            return DotNetEnv.Env.GetString("SEQ_API_KEY");
-        }
-
-        public string GetBlobStorageConnectionString()
-        {
-            return DotNetEnv.Env.GetString("AZURE_BLOB_STORAGE_CONNECTION_STRING");
-        }
-
-        public string GetBlobStorageContainerName()
-        {
-            return DotNetEnv.Env.GetString("AZURE_BLOB_STORAGE_CONTAINER_NAME");
-        }
-
-        public string GetDatabaseConnectionString()
-        {
-            return DotNetEnv.Env.GetString("POSTGRES_CONNECTION_STRING");
-        }
-
-        public string GetSmtpUserName()
-        {
-            return DotNetEnv.Env.GetString("SMTP_EMAIL_USERNAME");
-        }
-
-        public string GetSmtpUserPassword()
-        {
-            return DotNetEnv.Env.GetString("SMTP_EMAIL_PASSWORD");
-        }
-
-        public string GetJwtSecret()
-        {
-            return DotNetEnv.Env.GetString("JWT_SECRET_KEY");
-        }
-
-        public string GetJwtIssuer()
-        {
-            return DotNetEnv.Env.GetString("JWT_ISSUER");
-        }
-
-        public string GetJwtAudience()
-        {
-            return DotNetEnv.Env.GetString("JWT_AUDIENCE");
-        }
-
-        public string GetJwtExpirationTime()
-        {
-            return DotNetEnv.Env.GetString("JWT_EXPIRE_IN");
-        }
-
+        public string GetFrontEndUrl() => DotNetEnv.Env.GetString("FRONTEND_URL");
+        public string GetSeqUrl() => DotNetEnv.Env.GetString("SEQ_URL");
+        public string GetSeqApiKey() => DotNetEnv.Env.GetString("SEQ_API_KEY");
+        public string GetBlobStorageConnectionString() => DotNetEnv.Env.GetString("AZURE_BLOB_STORAGE_CONNECTION_STRING");
+        public string GetBlobStorageContainerName() => DotNetEnv.Env.GetString("AZURE_BLOB_STORAGE_CONTAINER_NAME");
+        public string GetDatabaseConnectionString() => DotNetEnv.Env.GetString("POSTGRES_CONNECTION_STRING");
+        public string GetSmtpUserName() => DotNetEnv.Env.GetString("SMTP_EMAIL_USERNAME");
+        public string GetSmtpUserPassword() => DotNetEnv.Env.GetString("SMTP_EMAIL_PASSWORD");
+        public string GetJwtSecret() => DotNetEnv.Env.GetString("JWT_SECRET_KEY");
+        public string GetJwtIssuer() => DotNetEnv.Env.GetString("JWT_ISSUER");
+        public string GetJwtAudience() => DotNetEnv.Env.GetString("JWT_AUDIENCE");
+        public string GetJwtExpirationTime() => DotNetEnv.Env.GetString("JWT_EXPIRE_IN");
         public bool ExecuteMigration()
         {
             try

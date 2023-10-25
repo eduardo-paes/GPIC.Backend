@@ -1,12 +1,12 @@
-name: Build and deploy ASP.Net Core app to an Azure Web App
+name: Deploy WebAPI to Azure
 
 env:
-  AZURE_WEBAPP_NAME: GPIC-Staging-WebAPI
+  AZURE_WEBAPP_NAME: ${{ secrets.AZURE_WEBAPP_NAME }}
   AZURE_WEBAPP_PACKAGE_PATH: "."
   DOTNET_VERSION: "7.0"
   PROJECT_PATH: "src/Infrastructure/WebAPI/WebAPI.csproj"
   WEBAPI_PATH: "src/Infrastructure/WebAPI/"
-  ASPNETCORE_ENVIRONMENT: Development
+  ASPNETCORE_ENVIRONMENT: ${{ secrets.ASPNETCORE_ENVIRONMENT }}
 
 on:
   push:
@@ -42,6 +42,8 @@ jobs:
           echo "AZURE_BLOB_STORAGE_CONNECTION_STRING=${{ secrets.AZURE_BLOB_STORAGE_CONNECTION_STRING }}
           AZURE_BLOB_STORAGE_CONTAINER_NAME=${{ secrets.AZURE_BLOB_STORAGE_CONTAINER_NAME }}
           POSTGRES_CONNECTION_STRING=${{ secrets.POSTGRES_CONNECTION_STRING }}
+          FRONTEND_URL=${{ secrets.FRONTEND_URL }}
+          ALLOW_ORIGINS=${{ secrets.ALLOW_ORIGINS }}
           JWT_AUDIENCE=${{ secrets.JWT_AUDIENCE }}
           JWT_EXPIRE_IN=${{ secrets.JWT_EXPIRE_IN }}
           JWT_ISSUER=${{ secrets.JWT_ISSUER }}
@@ -49,7 +51,8 @@ jobs:
           SEQ_API_KEY=${{ secrets.SEQ_API_KEY }}
           SEQ_URL=${{ secrets.SEQ_URL }}
           SMTP_EMAIL_PASSWORD=${{ secrets.SMTP_EMAIL_PASSWORD }}
-          SMTP_EMAIL_USERNAME=${{ secrets.SMTP_EMAIL_USERNAME }}" > src/Infrastructure/WebAPI/.env
+          SMTP_EMAIL_USERNAME=${{ secrets.SMTP_EMAIL_USERNAME }}
+          EXECUTE_MIGRATION=${{ secrets.EXECUTE_MIGRATION }}" > src/Infrastructure/WebAPI/.env
 
       - name: Set environment variable
         run: echo "ASPNETCORE_ENVIRONMENT=${{ env.ASPNETCORE_ENVIRONMENT }}" >> $GITHUB_ENV
