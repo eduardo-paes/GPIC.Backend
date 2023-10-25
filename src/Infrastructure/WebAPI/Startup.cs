@@ -40,26 +40,41 @@ namespace WebAPI
             // Definição de política de CORS
             services.AddCors(options =>
             {
-                options.AddPolicy(name: CORS_POLICY_NAME,
-                      policy =>
-                      {
-                          // Busca os valores de ALLOW_ORIGINS do arquivo .env
-                          policy.WithOrigins(
-                            origins: Environment.GetEnvironmentVariable("ALLOW_ORIGINS").Split(',')!)
-                              .AllowAnyHeader()
-                              .AllowAnyMethod();
-                      });
+                // Permite qualquer origem, cabeçalho e método
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+
+                // // Busca os valores de ALLOW_ORIGINS do arquivo .env
+                // var allowedOrigins = Environment.GetEnvironmentVariable("ALLOW_ORIGINS")
+                //     ?? throw new Exception("ALLOW_ORIGINS não definido nas variáveis de ambiente.");
+
+                // // Permite apenas as origens definidas no arquivo .env
+                // options.AddPolicy(name: CORS_POLICY_NAME,
+                //       policy =>
+                //       {
+                //           // Busca os valores de ALLOW_ORIGINS do arquivo .env
+                //           policy.WithOrigins(
+                //             origins: allowedOrigins.Split(',')!)
+                //               .AllowAnyHeader()
+                //               .AllowAnyMethod();
+                //       });
             });
             #endregion CORS
 
             #region Rate Limit
-            services.AddMemoryCache();
-            services.AddInMemoryRateLimiting();
-            services.Configure<ClientRateLimitOptions>(_configuration.GetSection("IpRateLimiting"));
-            services.AddSingleton<IClientPolicyStore, MemoryCacheClientPolicyStore>();
-            services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
-            services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
-            services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+            // Definido através do API Gateway
+            // services.AddMemoryCache();
+            // services.AddInMemoryRateLimiting();
+            // services.Configure<ClientRateLimitOptions>(_configuration.GetSection("IpRateLimiting"));
+            // services.AddSingleton<IClientPolicyStore, MemoryCacheClientPolicyStore>();
+            // services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
+            // services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
+            // services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
             #endregion Rate Limit
         }
 
@@ -95,7 +110,8 @@ namespace WebAPI
             app.UseHttpsRedirection();
 
             // Enable CORS
-            app.UseCors(CORS_POLICY_NAME);
+            app.UseCors();
+            // app.UseCors(CORS_POLICY_NAME);
 
             // Enable routing for incoming requests
             app.UseRouting();
