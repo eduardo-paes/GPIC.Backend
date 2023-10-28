@@ -37,5 +37,10 @@ namespace Application.Ports.Project
         public string? CancellationReason { get; set; }
         public DateTime SendingDocumentationDeadline { get; set; }
         #endregion Informações de Controle
+
+        #region Informações dos Envolvidos
+        public string? ProfessorName { get; set; }
+        public string? StudentName { get; set; }
+        #endregion Informações dos Envolvidos
     }
 }

@@ -53,39 +53,29 @@ namespace Persistence.Repositories
 
         public async Task<IEnumerable<Project>> GetProfessorProjectsAsync(int skip, int take, Guid? id, bool isClosed = false)
         {
-            return isClosed
-                ? await _context.Projects
-                    .Include(x => x.Student)
-                    .Include(x => x.Professor)
-                    .Include(x => x.SubArea)
-                    .Include(x => x.ProgramType)
-                    .Include(x => x.Notice)
-                    .IgnoreQueryFilters()
-                    .AsAsyncEnumerable()
-                    .Where(x => x.ProfessorId == id
-                        && (x.Status == EProjectStatus.Closed
-                            || x.Status == EProjectStatus.Canceled))
-                    .OrderByDescending(x => x.Notice?.RegistrationStartDate) // Traz os projetos mais recentes primeiro.
-                    .ThenBy(x => x.Title) // Traz os projetos em ordem alfabética.
-                    .Skip(skip)
-                    .Take(take)
-                    .ToListAsync()
-                : (IEnumerable<Project>)await _context.Projects
+            return await _context.Projects
                 .Include(x => x.Student)
+                .Include(x => x.Student!.User)
                 .Include(x => x.Professor)
+                .Include(x => x.Professor!.User)
                 .Include(x => x.SubArea)
                 .Include(x => x.ProgramType)
                 .Include(x => x.Notice)
                 .IgnoreQueryFilters()
                 .AsAsyncEnumerable()
-                .Where(x => x.ProfessorId == id
-                    && x.Status != EProjectStatus.Closed
-                    && x.Status != EProjectStatus.Canceled)
-                .OrderByDescending(x => x.Notice?.RegistrationStartDate) // Traz os projetos mais recentes primeiro.
+                .Where(x => WhereClause(id, x))
+                .OrderByDescending(x => (x.Notice?.RegistrationStartDate)) // Traz os projetos mais recentes primeiro.
                 .ThenBy(x => x.Title) // Traz os projetos em ordem alfabética.
                 .Skip(skip)
                 .Take(take)
                 .ToListAsync();
+
+            bool WhereClause(Guid? id, Project p)
+            {
+                return isClosed
+                    ? p.ProfessorId == id && (p.Status == EProjectStatus.Closed || p.Status == EProjectStatus.Canceled)
+                    : p.ProfessorId == id && p.Status != EProjectStatus.Closed && p.Status != EProjectStatus.Canceled;
+            }
         }
 
         public async Task<IEnumerable<Project>> GetProjectsAsync(int skip, int take, bool isClosed = false)
@@ -123,39 +113,29 @@ namespace Persistence.Repositories
 
         public async Task<IEnumerable<Project>> GetStudentProjectsAsync(int skip, int take, Guid? id, bool isClosed = false)
         {
-            return isClosed
-                ? await _context.Projects
-                    .Include(x => x.Student)
-                    .Include(x => x.Professor)
-                    .Include(x => x.SubArea)
-                    .Include(x => x.ProgramType)
-                    .Include(x => x.Notice)
-                    .IgnoreQueryFilters()
-                    .AsAsyncEnumerable()
-                    .Where(x => x.StudentId == id
-                        && (x.Status == EProjectStatus.Closed
-                            || x.Status == EProjectStatus.Canceled))
-                    .OrderByDescending(x => x.Notice?.RegistrationStartDate) // Traz os projetos mais recentes primeiro.
-                    .ThenBy(x => x.Title) // Traz os projetos em ordem alfabética.
-                    .Skip(skip)
-                    .Take(take)
-                    .ToListAsync()
-                : (IEnumerable<Project>)await _context.Projects
+            return await _context.Projects
                 .Include(x => x.Student)
+                .Include(x => x.Student!.User)
                 .Include(x => x.Professor)
+                .Include(x => x.Professor!.User)
                 .Include(x => x.SubArea)
                 .Include(x => x.ProgramType)
                 .Include(x => x.Notice)
                 .IgnoreQueryFilters()
                 .AsAsyncEnumerable()
-                .Where(x => x.StudentId == id
-                    && x.Status != EProjectStatus.Closed
-                    && x.Status != EProjectStatus.Canceled)
+                .Where(x => WhereClause(id, x))
                 .OrderByDescending(x => x.Notice?.RegistrationStartDate) // Traz os projetos mais recentes primeiro.
                 .ThenBy(x => x.Title) // Traz os projetos em ordem alfabética.
                 .Skip(skip)
                 .Take(take)
                 .ToListAsync();
+
+            bool WhereClause(Guid? id, Project p)
+            {
+                return isClosed
+                    ? p.StudentId == id && (p.Status == EProjectStatus.Closed || p.Status == EProjectStatus.Canceled)
+                    : p.StudentId == id && p.Status != EProjectStatus.Closed && p.Status != EProjectStatus.Canceled;
+            }
         }
 
         public async Task<IEnumerable<Project>> GetProjectByNoticeAsync(Guid? noticeId)

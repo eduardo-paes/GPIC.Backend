@@ -10,8 +10,12 @@ namespace Domain.Mappings
         {
             _ = CreateMap<Project, OpenProjectInput>().ReverseMap();
             _ = CreateMap<Project, UpdateProjectInput>().ReverseMap();
-            _ = CreateMap<Project, ResumedReadProjectOutput>().ReverseMap();
             _ = CreateMap<Project, DetailedReadProjectOutput>().ReverseMap();
+            _ = CreateMap<Project, ResumedReadProjectOutput>()
+                .ForMember(dest => dest.ProfessorName, opt => opt.MapFrom(src => src.Professor.User.Name))
+                .ForMember(dest => dest.StudentName, opt => opt.MapFrom(src => src.Student.User.Name))
+                    .ReverseMap();
+
         }
     }
 }
