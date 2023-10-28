@@ -40,7 +40,7 @@ namespace Application.UseCases.User
             UseCaseException.NotFoundEntityById(user is null, nameof(user));
 
             // Verifica se usuário logado é coordenador
-            UseCaseException.BusinessRuleViolation(user!.IsCoordinator,
+            UseCaseException.BusinessRuleViolation(!user!.IsCoordinator,
                 "Usuário não é coordenador");
 
             // Obtém usuário que será tornado coordenador

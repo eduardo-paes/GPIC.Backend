@@ -21,8 +21,8 @@ namespace Application.Tests.UseCases.Auth
         private readonly Mock<IHashService> _hashServiceMock = new Mock<IHashService>();
 
         private ILogin CreateUseCase() => new Login(_tokenServiceMock.Object, _userRepositoryMock.Object, _professorRepositoryMock.Object, _studentRepositoryMock.Object, _hashServiceMock.Object);
-        private static User MockValidUser() => new("John Doe", "john.doe@example.com", "strongpassword", "92114660087", ERole.ADMIN);
-        private static User MockValidUserWithId() => new(Guid.NewGuid(), "John Doe", "ADMIN");
+        private static Domain.Entities.User MockValidUser() => new("John Doe", "john.doe@example.com", "strongpassword", "92114660087", ERole.ADMIN);
+        private static Domain.Entities.User MockValidUserWithId() => new(Guid.NewGuid(), "John Doe", "ADMIN");
 
         [Fact]
         public async Task ExecuteAsync_ValidInput_ReturnsUserLoginOutput()
@@ -107,7 +107,7 @@ namespace Application.Tests.UseCases.Auth
                 Password = "password"
             };
 
-            _userRepositoryMock.Setup(repo => repo.GetUserByEmailAsync(input.Email)).ReturnsAsync((User)null);
+            _userRepositoryMock.Setup(repo => repo.GetUserByEmailAsync(input.Email)).ReturnsAsync((Domain.Entities.User)null);
 
             // Act & Assert
             Assert.ThrowsAsync<UseCaseException>(async () => await useCase.ExecuteAsync(input));

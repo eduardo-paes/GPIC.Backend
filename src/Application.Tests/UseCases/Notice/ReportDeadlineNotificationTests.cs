@@ -41,7 +41,7 @@ namespace Application.Tests.UseCases.Notice
             {
                 Professor = new Domain.Entities.Professor("1234567", 1234567)
                 {
-                    User = new User("Name", "professor@email.com", "Password", "58411338029", Domain.Entities.Enums.ERole.ADMIN)
+                    User = new Domain.Entities.User("Name", "professor@email.com", "Password", "58411338029", Domain.Entities.Enums.ERole.ADMIN)
                 },
                 Notice = new(
                     registrationStartDate: DateTime.UtcNow,
