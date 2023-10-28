@@ -20,14 +20,8 @@ namespace Application.UseCases.User
 
         public async Task<UserReadOutput> ExecuteAsync(Guid? id)
         {
-            // Verifica se o id informado é nulo
             UseCaseException.NotInformedParam(id is null, nameof(id));
-
-            // Busca usuário pelo id informado
-            Domain.Entities.User entity = await _repository.GetByIdAsync(id)
-                ?? throw UseCaseException.NotFoundEntityById(nameof(Domain.Entities.User));
-
-            // Retorna usuário encontrado
+            var entity = await _repository.GetByIdAsync(id);
             return _mapper.Map<UserReadOutput>(entity);
         }
     }

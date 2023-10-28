@@ -61,7 +61,7 @@ namespace Application.Tests.UseCases.User
             // Act & Assert
             Assert.ThrowsAsync<UseCaseException>(() => useCase.ExecuteAsync(userId));
             _repositoryMock.Verify(repo => repo.GetByIdAsync(userId), Times.Once);
-            _mapperMock.Verify(mapper => mapper.Map<UserReadOutput>(It.IsAny<Domain.Entities.User>()), Times.Never);
+            _mapperMock.Verify(mapper => mapper.Map<UserReadOutput>(It.IsAny<Domain.Entities.User>()), Times.Once);
         }
     }
 }
