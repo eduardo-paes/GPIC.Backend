@@ -1,7 +1,6 @@
 using Application.Interfaces.UseCases.Auth;
 using Application.UseCases.Auth;
 using Application.Validation;
-using Domain.Entities;
 using Domain.Entities.Enums;
 using Domain.Interfaces.Repositories;
 using Moq;
@@ -11,7 +10,7 @@ namespace Application.Tests.UseCases.Auth
 {
     public class ConfirmEmailTests
     {
-        private readonly Mock<IUserRepository> _userRepositoryMock = new Mock<IUserRepository>();
+        private readonly Mock<IUserRepository> _userRepositoryMock = new();
 
         private IConfirmEmail CreateUseCase() => new ConfirmEmail(_userRepositoryMock.Object);
 

@@ -2,23 +2,21 @@ using Application.Interfaces.UseCases.Auth;
 using Application.Ports.Auth;
 using Application.UseCases.Auth;
 using Application.Validation;
-using Domain.Entities;
 using Domain.Entities.Enums;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
 using Moq;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Application.Tests.UseCases.Auth
 {
     public class LoginTests
     {
-        private readonly Mock<ITokenAuthenticationService> _tokenServiceMock = new Mock<ITokenAuthenticationService>();
-        private readonly Mock<IUserRepository> _userRepositoryMock = new Mock<IUserRepository>();
-        private readonly Mock<IProfessorRepository> _professorRepositoryMock = new Mock<IProfessorRepository>();
-        private readonly Mock<IStudentRepository> _studentRepositoryMock = new Mock<IStudentRepository>();
-        private readonly Mock<IHashService> _hashServiceMock = new Mock<IHashService>();
+        private readonly Mock<ITokenAuthenticationService> _tokenServiceMock = new();
+        private readonly Mock<IUserRepository> _userRepositoryMock = new();
+        private readonly Mock<IProfessorRepository> _professorRepositoryMock = new();
+        private readonly Mock<IStudentRepository> _studentRepositoryMock = new();
+        private readonly Mock<IHashService> _hashServiceMock = new();
 
         private ILogin CreateUseCase() => new Login(_tokenServiceMock.Object, _userRepositoryMock.Object, _professorRepositoryMock.Object, _studentRepositoryMock.Object, _hashServiceMock.Object);
         private static Domain.Entities.User MockValidUser() => new("John Doe", "john.doe@example.com", "strongpassword", "92114660087", ERole.ADMIN);

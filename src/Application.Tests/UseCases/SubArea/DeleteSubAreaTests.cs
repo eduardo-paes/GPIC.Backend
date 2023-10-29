@@ -11,8 +11,8 @@ namespace Application.Tests.UseCases.SubArea
 {
     public class DeleteSubAreaTests
     {
-        private readonly Mock<ISubAreaRepository> _subAreaRepositoryMock = new Mock<ISubAreaRepository>();
-        private readonly Mock<IMapper> _mapperMock = new Mock<IMapper>();
+        private readonly Mock<ISubAreaRepository> _subAreaRepositoryMock = new();
+        private readonly Mock<IMapper> _mapperMock = new();
 
         private IDeleteSubArea CreateUseCase() => new DeleteSubArea(_subAreaRepositoryMock.Object, _mapperMock.Object);
         private static Domain.Entities.SubArea MockValidSubArea() => new(Guid.NewGuid(), "ABC", "SubArea Name");

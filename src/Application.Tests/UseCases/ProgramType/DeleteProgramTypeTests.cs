@@ -1,10 +1,7 @@
-using System;
-using System.Threading.Tasks;
 using AutoMapper;
 using Application.UseCases.ProgramType;
 using Application.Ports.ProgramType;
 using Application.Validation;
-using Domain.Entities;
 using Domain.Interfaces.Repositories;
 using Moq;
 using Xunit;
@@ -14,8 +11,8 @@ namespace Application.Tests.UseCases.ProgramType
 {
     public class DeleteProgramTypeTests
     {
-        private readonly Mock<IProgramTypeRepository> _repositoryMock = new Mock<IProgramTypeRepository>();
-        private readonly Mock<IMapper> _mapperMock = new Mock<IMapper>();
+        private readonly Mock<IProgramTypeRepository> _repositoryMock = new();
+        private readonly Mock<IMapper> _mapperMock = new();
 
         private IDeleteProgramType CreateUseCase() => new DeleteProgramType(_repositoryMock.Object, _mapperMock.Object);
 

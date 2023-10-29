@@ -1,7 +1,6 @@
 using Domain.Entities;
 using Domain.Validation;
 using FluentAssertions;
-using System;
 using Xunit;
 
 namespace Domain.Tests.Entities

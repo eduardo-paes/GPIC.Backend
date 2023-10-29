@@ -1,10 +1,7 @@
-using System;
-using System.Threading.Tasks;
 using AutoMapper;
 using Application.UseCases.User;
 using Application.Ports.User;
 using Application.Validation;
-using Domain.Entities;
 using Domain.Interfaces.Repositories;
 using Moq;
 using Xunit;
@@ -14,8 +11,8 @@ namespace Application.Tests.UseCases.User
 {
     public class DeactivateUserTests
     {
-        private readonly Mock<IUserRepository> _repositoryMock = new Mock<IUserRepository>();
-        private readonly Mock<IMapper> _mapperMock = new Mock<IMapper>();
+        private readonly Mock<IUserRepository> _repositoryMock = new();
+        private readonly Mock<IMapper> _mapperMock = new();
 
         private IDeactivateUser CreateUseCase() => new DeactivateUser(_repositoryMock.Object, _mapperMock.Object);
         private static Domain.Entities.User MockValidUser() => new(id: Guid.NewGuid(), name: "Test", role: "ADMIN");

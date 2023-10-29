@@ -1,7 +1,6 @@
 using Application.Interfaces.UseCases.Auth;
 using Application.UseCases.Auth;
 using Application.Validation;
-using Domain.Entities;
 using Domain.Entities.Enums;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
@@ -12,8 +11,8 @@ namespace Application.Tests.UseCases.Auth
 {
     public class ForgotPasswordTests
     {
-        private readonly Mock<IUserRepository> _userRepositoryMock = new Mock<IUserRepository>();
-        private readonly Mock<IEmailService> _emailServiceMock = new Mock<IEmailService>();
+        private readonly Mock<IUserRepository> _userRepositoryMock = new();
+        private readonly Mock<IEmailService> _emailServiceMock = new();
 
         private IForgotPassword CreateUseCase() => new ForgotPassword(_userRepositoryMock.Object, _emailServiceMock.Object);
 

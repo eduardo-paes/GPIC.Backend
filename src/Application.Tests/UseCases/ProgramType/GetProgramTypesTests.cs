@@ -10,8 +10,8 @@ namespace Application.Tests.UseCases.ProgramType
 {
     public class GetProgramTypesTests
     {
-        private readonly Mock<IProgramTypeRepository> _repositoryMock = new Mock<IProgramTypeRepository>();
-        private readonly Mock<IMapper> _mapperMock = new Mock<IMapper>();
+        private readonly Mock<IProgramTypeRepository> _repositoryMock = new();
+        private readonly Mock<IMapper> _mapperMock = new();
 
         private IGetProgramTypes CreateUseCase() => new GetProgramTypes(_repositoryMock.Object, _mapperMock.Object);
         private static Domain.Entities.ProgramType MockValidProgramType() => new("Program Name", "Program Description");

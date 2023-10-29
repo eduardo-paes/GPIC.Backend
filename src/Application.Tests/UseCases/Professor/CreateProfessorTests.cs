@@ -3,7 +3,6 @@ using Application.Ports.Professor;
 using Application.UseCases.Professor;
 using Application.Validation;
 using AutoMapper;
-using Domain.Entities;
 using Domain.Entities.Enums;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;

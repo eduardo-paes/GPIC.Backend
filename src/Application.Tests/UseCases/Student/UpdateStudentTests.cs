@@ -1,13 +1,10 @@
 using AutoMapper;
-using Domain.Entities.Enums;
 using Domain.Interfaces.Repositories;
 using Application.Interfaces.UseCases.Student;
 using Application.Ports.Student;
 using Application.UseCases.Student;
 using Application.Validation;
 using Moq;
-using System;
-using System.Threading.Tasks;
 using Xunit;
 using Application.Tests.Mocks;
 

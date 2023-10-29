@@ -11,8 +11,8 @@ namespace Application.Tests.UseCases.User
 {
     public class GetUserByIdTests
     {
-        private readonly Mock<IUserRepository> _repositoryMock = new Mock<IUserRepository>();
-        private readonly Mock<IMapper> _mapperMock = new Mock<IMapper>();
+        private readonly Mock<IUserRepository> _repositoryMock = new();
+        private readonly Mock<IMapper> _mapperMock = new();
 
         private IGetUserById CreateUseCase() => new GetUserById(_repositoryMock.Object, _mapperMock.Object);
         private static Domain.Entities.User MockValidUser() => new(id: Guid.NewGuid(), name: "Test", role: "ADMIN");

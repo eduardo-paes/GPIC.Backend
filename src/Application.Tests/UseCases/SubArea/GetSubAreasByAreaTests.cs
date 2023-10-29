@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Application.Interfaces.UseCases.SubArea;
 using Application.Ports.SubArea;
 using Application.UseCases.SubArea;
 using Application.Validation;
 using AutoMapper;
-using Domain.Entities;
 using Domain.Interfaces.Repositories;
 using Moq;
 using Xunit;
@@ -16,8 +11,8 @@ namespace Application.Tests.UseCases.SubArea
 {
     public class GetSubAreasByAreaTests
     {
-        private readonly Mock<ISubAreaRepository> _subAreaRepositoryMock = new Mock<ISubAreaRepository>();
-        private readonly Mock<IMapper> _mapperMock = new Mock<IMapper>();
+        private readonly Mock<ISubAreaRepository> _subAreaRepositoryMock = new();
+        private readonly Mock<IMapper> _mapperMock = new();
 
         private IGetSubAreasByArea CreateUseCase() => new GetSubAreasByArea(_subAreaRepositoryMock.Object, _mapperMock.Object);
         private static Domain.Entities.SubArea MockValidSubArea() => new(Guid.NewGuid(), "ABC", "SubArea Name");

@@ -11,8 +11,8 @@ namespace Application.Tests.UseCases.ProgramType
 {
     public class GetProgramTypeByIdTests
     {
-        private readonly Mock<IProgramTypeRepository> _repositoryMock = new Mock<IProgramTypeRepository>();
-        private readonly Mock<IMapper> _mapperMock = new Mock<IMapper>();
+        private readonly Mock<IProgramTypeRepository> _repositoryMock = new();
+        private readonly Mock<IMapper> _mapperMock = new();
 
         private IGetProgramTypeById CreateUseCase() => new GetProgramTypeById(_repositoryMock.Object, _mapperMock.Object);
 

@@ -11,7 +11,7 @@ namespace Application.Tests.UseCases.SubArea
 {
     public class GetSubAreaByIdTests
     {
-        private readonly Mock<ISubAreaRepository> _subAreaRepositoryMock = new Mock<ISubAreaRepository>();
+        private readonly Mock<ISubAreaRepository> _subAreaRepositoryMock = new();
         private readonly Mock<IMapper> _mapperMock = new();
 
         private IGetSubAreaById CreateUseCase() => new GetSubAreaById(_subAreaRepositoryMock.Object, _mapperMock.Object);

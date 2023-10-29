@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
-using Domain.Entities;
 using Domain.Interfaces.Repositories;
 using Application.UseCases.Professor;
 using Application.Ports.Professor;
@@ -15,8 +10,8 @@ namespace Application.Tests.UseCases.Professor
 {
     public class GetProfessorsTests
     {
-        private readonly Mock<IProfessorRepository> _repositoryMock = new Mock<IProfessorRepository>();
-        private readonly Mock<IMapper> _mapperMock = new Mock<IMapper>();
+        private readonly Mock<IProfessorRepository> _repositoryMock = new();
+        private readonly Mock<IMapper> _mapperMock = new();
         private static Domain.Entities.Professor MockValidProfessor() => new("1234567", 12345);
 
         private IGetProfessors CreateUseCase() => new GetProfessors(_repositoryMock.Object, _mapperMock.Object);

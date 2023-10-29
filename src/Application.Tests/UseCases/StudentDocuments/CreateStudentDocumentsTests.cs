@@ -1,9 +1,9 @@
 using Application.Interfaces.UseCases.StudentDocuments;
 using Application.Ports.StudentDocuments;
+using Application.Tests.Mocks;
 using Application.UseCases.StudentDocuments;
 using Application.Validation;
 using AutoMapper;
-using Domain.Entities;
 using Domain.Entities.Enums;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
@@ -15,50 +15,21 @@ namespace Application.Tests.UseCases.StudentDocuments
 {
     public class CreateStudentDocumentsTests
     {
-        private readonly Mock<IStudentDocumentsRepository> _studentDocumentRepositoryMock = new Mock<IStudentDocumentsRepository>();
-        private readonly Mock<IProjectRepository> _projectRepositoryMock = new Mock<IProjectRepository>();
-        private readonly Mock<IStorageFileService> _storageFileServiceMock = new Mock<IStorageFileService>();
-        private readonly Mock<IMapper> _mapperMock = new Mock<IMapper>();
+        private readonly Mock<IStudentDocumentsRepository> _studentDocumentRepositoryMock = new();
+        private readonly Mock<IProjectRepository> _projectRepositoryMock = new();
+        private readonly Mock<IStorageFileService> _storageFileServiceMock = new();
+        private readonly Mock<IMapper> _mapperMock = new();
 
         private ICreateStudentDocuments CreateUseCase() => new CreateStudentDocuments(_studentDocumentRepositoryMock.Object, _projectRepositoryMock.Object,
                 _storageFileServiceMock.Object, _mapperMock.Object);
-        private static Project MockValidProject() => new(
-            "Project Title",
-            "Keyword 1",
-            "Keyword 2",
-            "Keyword 3",
-            true,
-            "Objective",
-            "Methodology",
-            "Expected Results",
-            "Schedule",
-            Guid.NewGuid(),
-            Guid.NewGuid(),
-            Guid.NewGuid(),
-            Guid.NewGuid(),
-            Guid.NewGuid(),
-            EProjectStatus.Opened,
-            "Status Description",
-            "Appeal Observation",
-            DateTime.UtcNow,
-            DateTime.UtcNow,
-            DateTime.UtcNow,
-            "Cancellation Reason");
-        private static Domain.Entities.StudentDocuments MockValidStudentDocuments()
-        {
-            return new Domain.Entities.StudentDocuments(
-                            Guid.NewGuid(),
-                            "123456",
-                            "7890"
-                        );
-        }
+        private static Domain.Entities.StudentDocuments MockValidStudentDocuments() => new(Guid.NewGuid(), "123456", "7890");
 
         [Fact]
         public async Task ExecuteAsync_ValidInput_ReturnsDetailedReadStudentDocumentsOutput()
         {
             // Arrange
             var useCase = CreateUseCase();
-            var project = MockValidProject();
+            var project = ProjectMock.MockValidProject();
             project.Status = EProjectStatus.Accepted;
             var input = new CreateStudentDocumentsInput
             {
@@ -137,7 +108,7 @@ namespace Application.Tests.UseCases.StudentDocuments
             };
 
             _studentDocumentRepositoryMock.Setup(repo => repo.GetByProjectIdAsync(input.ProjectId)).ReturnsAsync((Domain.Entities.StudentDocuments)null);
-            _projectRepositoryMock.Setup(repo => repo.GetByIdAsync(input.ProjectId)).ReturnsAsync((Project)null);
+            _projectRepositoryMock.Setup(repo => repo.GetByIdAsync(input.ProjectId)).ReturnsAsync((Domain.Entities.Project)null);
 
             // Act & Assert
             Assert.ThrowsAsync<UseCaseException>(() => useCase.ExecuteAsync(input));
@@ -152,7 +123,7 @@ namespace Application.Tests.UseCases.StudentDocuments
         {
             // Arrange
             var useCase = CreateUseCase();
-            var project = MockValidProject();
+            var project = ProjectMock.MockValidProject();
             project.Status = EProjectStatus.Pending; // Not Accepted
             var input = new CreateStudentDocumentsInput
             {

@@ -11,8 +11,8 @@ namespace Application.Tests.UseCases.Professor
 {
     public class GetProfessorByIdTests
     {
-        private readonly Mock<IProfessorRepository> _repositoryMock = new Mock<IProfessorRepository>();
-        private readonly Mock<IMapper> _mapperMock = new Mock<IMapper>();
+        private readonly Mock<IProfessorRepository> _repositoryMock = new();
+        private readonly Mock<IMapper> _mapperMock = new();
 
         private IGetProfessorById CreateUseCase() => new GetProfessorById(_repositoryMock.Object, _mapperMock.Object);
 

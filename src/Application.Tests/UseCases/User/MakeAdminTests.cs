@@ -1,4 +1,3 @@
-using System.Security.Claims;
 using Application.Interfaces.UseCases.User;
 using Application.UseCases.User;
 using Application.Validation;
@@ -12,9 +11,9 @@ namespace Application.Tests.UseCases.User
 {
     public class MakeAdminTests
     {
-        private readonly Mock<IUserRepository> _userRepositoryMock = new Mock<IUserRepository>();
-        private readonly Mock<IProfessorRepository> _professorRepositoryMock = new Mock<IProfessorRepository>();
-        private readonly Mock<ITokenAuthenticationService> _tokenAuthenticationServiceMock = new Mock<ITokenAuthenticationService>();
+        private readonly Mock<IUserRepository> _userRepositoryMock = new();
+        private readonly Mock<IProfessorRepository> _professorRepositoryMock = new();
+        private readonly Mock<ITokenAuthenticationService> _tokenAuthenticationServiceMock = new();
 
         private IMakeAdmin CreateUseCase() =>
             new MakeAdmin(_userRepositoryMock.Object, _professorRepositoryMock.Object, _tokenAuthenticationServiceMock.Object);

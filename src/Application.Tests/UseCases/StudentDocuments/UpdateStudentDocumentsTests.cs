@@ -8,8 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Moq;
 using Xunit;
 using Application.UseCases.StudentDocuments;
-using Domain.Entities;
-using Domain.Entities.Enums;
+using Application.Tests.Mocks;
 
 namespace Application.Tests.UseCases.StudentDocuments
 {
@@ -27,28 +26,6 @@ namespace Application.Tests.UseCases.StudentDocuments
                 _storageFileServiceMock.Object,
                 _mapperMock.Object);
         private static Domain.Entities.StudentDocuments MockValidStudentDocuments() => new(Guid.NewGuid(), "123456", "7890");
-        private static Project MockValidProject() => new(
-                    "Project Title",
-                    "Keyword 1",
-                    "Keyword 2",
-                    "Keyword 3",
-                    true,
-                    "Objective",
-                    "Methodology",
-                    "Expected Results",
-                    "Schedule",
-                    Guid.NewGuid(),
-                    Guid.NewGuid(),
-                    Guid.NewGuid(),
-                    Guid.NewGuid(),
-                    Guid.NewGuid(),
-                    EProjectStatus.Accepted,
-                    "Status Description",
-                    "Appeal Observation",
-                    DateTime.UtcNow,
-                    DateTime.UtcNow,
-                    DateTime.UtcNow,
-                    "Cancellation Reason");
 
         [Fact]
         public async Task ExecuteAsync_ValidIdAndInput_ReturnsDetailedReadStudentDocumentsOutput()
@@ -61,7 +38,7 @@ namespace Application.Tests.UseCases.StudentDocuments
                 AgencyNumber = "1234",
                 AccountNumber = "5678",
             };
-            var project = MockValidProject();
+            var project = ProjectMock.MockValidProject();
             var studentDocuments = MockValidStudentDocuments();
             studentDocuments.Project = project;
 

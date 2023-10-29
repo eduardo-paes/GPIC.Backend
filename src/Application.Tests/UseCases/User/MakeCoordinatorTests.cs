@@ -1,4 +1,3 @@
-using System.Security.Claims;
 using Application.Interfaces.UseCases.User;
 using Application.UseCases.User;
 using Application.Validation;
@@ -12,8 +11,8 @@ namespace Application.Tests.UseCases.User
 {
     public class MakeCoordinatorTests
     {
-        private readonly Mock<IUserRepository> _userRepositoryMock = new Mock<IUserRepository>();
-        private readonly Mock<ITokenAuthenticationService> _tokenAuthenticationServiceMock = new Mock<ITokenAuthenticationService>();
+        private readonly Mock<IUserRepository> _userRepositoryMock = new();
+        private readonly Mock<ITokenAuthenticationService> _tokenAuthenticationServiceMock = new();
 
         private IMakeCoordinator CreateUseCase() => new MakeCoordinator(_userRepositoryMock.Object, _tokenAuthenticationServiceMock.Object);
         private static Domain.Entities.User MockValidUser() => new(id: Guid.NewGuid(), name: "Test", role: "ADMIN");

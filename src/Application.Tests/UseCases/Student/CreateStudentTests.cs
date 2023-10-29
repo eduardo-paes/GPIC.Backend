@@ -3,7 +3,6 @@ using Application.Ports.Student;
 using Application.Tests.Mocks;
 using Application.Validation;
 using AutoMapper;
-using Domain.Entities.Enums;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
 using Moq;

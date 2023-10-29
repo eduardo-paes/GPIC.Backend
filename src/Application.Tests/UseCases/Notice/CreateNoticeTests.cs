@@ -34,7 +34,7 @@ namespace Application.Tests.UseCases.Notice
             _mapperMock.Object,
             _loggerMock.Object);
 
-        private CreateNoticeInput MockValidNoticeInput() => new CreateNoticeInput
+        private CreateNoticeInput MockValidNoticeInput() => new()
         {
             RegistrationStartDate = DateTime.UtcNow,
             RegistrationEndDate = DateTime.UtcNow.AddDays(7),
@@ -100,7 +100,7 @@ namespace Application.Tests.UseCases.Notice
             var input = MockValidNoticeInput();
             var professors = new List<Domain.Entities.Professor>()
             {
-                new Domain.Entities.Professor("1234567", 12345)
+                new("1234567", 12345)
             };
 
             _repositoryMock.Setup(repo => repo.CreateAsync(It.IsAny<Domain.Entities.Notice>())).ReturnsAsync(notice);

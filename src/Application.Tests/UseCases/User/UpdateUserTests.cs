@@ -1,4 +1,3 @@
-using System.Security.Claims;
 using Application.Interfaces.UseCases.User;
 using Application.Ports.User;
 using Application.UseCases.User;
@@ -13,9 +12,9 @@ namespace Application.Tests.UseCases.User
 {
     public class UpdateUserTests
     {
-        private readonly Mock<IUserRepository> _userRepositoryMock = new Mock<IUserRepository>();
-        private readonly Mock<ITokenAuthenticationService> _tokenAuthenticationServiceMock = new Mock<ITokenAuthenticationService>();
-        private readonly Mock<IMapper> _mapperMock = new Mock<IMapper>();
+        private readonly Mock<IUserRepository> _userRepositoryMock = new();
+        private readonly Mock<ITokenAuthenticationService> _tokenAuthenticationServiceMock = new();
+        private readonly Mock<IMapper> _mapperMock = new();
 
         private IUpdateUser CreateUseCase() =>
             new UpdateUser(_userRepositoryMock.Object, _tokenAuthenticationServiceMock.Object, _mapperMock.Object);

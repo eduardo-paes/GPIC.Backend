@@ -4,8 +4,6 @@ using Application.Ports.Course;
 using Application.Interfaces.UseCases.Course;
 using Application.Validation;
 using Moq;
-using System;
-using System.Threading.Tasks;
 using Xunit;
 using Application.UseCases.Course;
 
