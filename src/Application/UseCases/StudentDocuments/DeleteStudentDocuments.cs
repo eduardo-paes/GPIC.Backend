@@ -20,15 +20,9 @@ namespace Application.UseCases.StudentDocuments
 
         public async Task<DetailedReadStudentDocumentsOutput> ExecuteAsync(Guid? id)
         {
-            // Verifica se o id foi informado
-            UseCaseException.NotInformedParam(id is null, nameof(id));
-
-            // Remove a entidade
-            Domain.Entities.StudentDocuments model = await _repository.DeleteAsync(id);
-
             // TODO: Verificar se seria preciso remover os documentos do aluno caso fosse removido o registro de documentos do aluno
-
-            // Retorna o tipo de programa removido
+            UseCaseException.NotInformedParam(id is null, nameof(id));
+            var model = await _repository.DeleteAsync(id);
             return _mapper.Map<DetailedReadStudentDocumentsOutput>(model);
         }
     }

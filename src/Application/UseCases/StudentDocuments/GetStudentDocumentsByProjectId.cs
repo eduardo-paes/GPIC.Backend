@@ -22,13 +22,8 @@ namespace Application.UseCases.StudentDocuments
 
         public async Task<ResumedReadStudentDocumentsOutput> ExecuteAsync(Guid? projectId)
         {
-            // Verifica se o id foi informado
             UseCaseException.NotInformedParam(projectId is null, nameof(projectId));
-
-            // Busca documentos do estudante pelo id do projeto
             Domain.Entities.StudentDocuments? entity = await _repository.GetByProjectIdAsync(projectId);
-
-            // Retorna entidade mapeada
             return _mapper.Map<ResumedReadStudentDocumentsOutput>(entity);
         }
     }

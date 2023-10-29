@@ -164,7 +164,7 @@ namespace Domain.Entities
         }
         #endregion BankData
 
-        public virtual Project? Project { get; }
+        public virtual Project? Project { get; set; }
         #endregion Properties
 
         /// <summary>

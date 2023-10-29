@@ -40,7 +40,7 @@ namespace Application.UseCases.StudentDocuments
         {
             // Verifica se já há documentos para o projeto informado
             var documents = await _studentDocumentRepository.GetByProjectIdAsync(input.ProjectId!);
-            UseCaseException.BusinessRuleViolation(documents is null,
+            UseCaseException.BusinessRuleViolation(documents is not null,
                 "Já existem documentos do aluno para o projeto indicado.");
 
             // Verifica se o projeto existe
