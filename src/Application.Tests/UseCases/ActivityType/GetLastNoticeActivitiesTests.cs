@@ -4,9 +4,6 @@ using Application.Ports.Activity;
 using Application.Interfaces.UseCases.ActivityType;
 using Application.UseCases.ActivityType;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Application.Tests.UseCases.ActivityType
