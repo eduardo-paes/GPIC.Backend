@@ -40,7 +40,7 @@ namespace Application.UseCases.ProjectPartialReport
             Domain.Entities.ProjectPartialReport report = new(
                 input.ProjectId,
                 input.CurrentDevelopmentStage,
-                TryCastEnum<EScholarPerformance>(input.ScholarPerformance),
+                EnumExtensions.TryCastEnum<EScholarPerformance>(input.ScholarPerformance),
                 input.AdditionalInfo,
                 userClaim!.Id
             );
@@ -63,8 +63,8 @@ namespace Application.UseCases.ProjectPartialReport
 
             // Verifica se o relatório está sendo enviado dentro do prazo
             // Relatórios podem ser entregues até 6 meses antes do prazo final
-            var isBeforeDeadline = project.Notice?.PartialReportDeadline <= DateTime.UtcNow
-                && project.Notice?.PartialReportDeadline.Value.AddMonths(-6) >= DateTime.UtcNow;
+            var deadline = project.Notice?.PartialReportDeadline ?? throw UseCaseException.BusinessRuleViolation("O prazo para envio de relatório parcial não foi definido.");
+            var isBeforeDeadline = deadline < DateTime.UtcNow || deadline.AddMonths(-6) > DateTime.UtcNow;
 
             // Lança exceção caso o relatório esteja sendo enviado fora do prazo
             UseCaseException.BusinessRuleViolation(isBeforeDeadline,
@@ -75,25 +75,6 @@ namespace Application.UseCases.ProjectPartialReport
 
             // Salva entidade no banco
             return _mapper.Map<DetailedReadProjectPartialReportOutput>(report);
-        }
-
-        /// <summary>
-        /// Tenta converter um objeto para um tipo Enum.
-        /// </summary>
-        /// <param name="value">Valor a ser convertido.</param>
-        /// <typeparam name="T">Tipo para o qual ser convertido.</typeparam>
-        /// <returns>Objeto com tipo convertido.</returns>
-        private static T TryCastEnum<T>(object? value)
-        {
-            try
-            {
-                UseCaseException.NotInformedParam(value is null, typeof(T).ToString());
-                return (T)Enum.Parse(typeof(T), value?.ToString()!);
-            }
-            catch (Exception)
-            {
-                throw UseCaseException.BusinessRuleViolation($"Não foi possível converter o valor {value} para o tipo {typeof(T)}.");
-            }
         }
     }
 }

@@ -70,8 +70,8 @@ namespace Application.UseCases.ProjectFinalReport
 
             // Verifica se o relatório está sendo enviado dentro do prazo
             // Relatórios podem ser entregues até 6 meses antes do prazo final
-            var isBeforeDeadline = project.Notice?.FinalReportDeadline <= DateTime.UtcNow
-                && project.Notice?.FinalReportDeadline.Value.AddMonths(-6) >= DateTime.UtcNow;
+            var deadline = project.Notice?.FinalReportDeadline ?? throw UseCaseException.BusinessRuleViolation("O prazo para envio de relatório parcial não foi definido.");
+            var isBeforeDeadline = deadline < DateTime.UtcNow || deadline.AddMonths(-6) > DateTime.UtcNow;
 
             // Lança exceção caso o relatório esteja sendo enviado fora do prazo
             UseCaseException.BusinessRuleViolation(isBeforeDeadline,

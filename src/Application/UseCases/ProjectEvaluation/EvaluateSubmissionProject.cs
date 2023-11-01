@@ -79,14 +79,14 @@ namespace Application.UseCases.ProjectEvaluation
             projectEvaluation = new Domain.Entities.ProjectEvaluation(input.ProjectId,
                 input.IsProductivityFellow,
                 userClaim.Id, // Id do avaliador logado.
-                TryCastEnum<EProjectStatus>(input.SubmissionEvaluationStatus),
+                EnumExtensions.TryCastEnum<EProjectStatus>(input.SubmissionEvaluationStatus),
                 DateTime.UtcNow,
                 input.SubmissionEvaluationDescription,
-                TryCastEnum<EQualification>(input.Qualification),
-                TryCastEnum<EScore>(input.ProjectProposalObjectives),
-                TryCastEnum<EScore>(input.AcademicScientificProductionCoherence),
-                TryCastEnum<EScore>(input.ProposalMethodologyAdaptation),
-                TryCastEnum<EScore>(input.EffectiveContributionToResearch),
+                EnumExtensions.TryCastEnum<EQualification>(input.Qualification),
+                EnumExtensions.TryCastEnum<EScore>(input.ProjectProposalObjectives),
+                EnumExtensions.TryCastEnum<EScore>(input.AcademicScientificProductionCoherence),
+                EnumExtensions.TryCastEnum<EScore>(input.ProposalMethodologyAdaptation),
+                EnumExtensions.TryCastEnum<EScore>(input.EffectiveContributionToResearch),
                 0);
 
             // Obtém atividades do Edital
@@ -154,33 +154,6 @@ namespace Application.UseCases.ProjectEvaluation
 
             // Mapeia dados de saída e retorna.
             return _mapper.Map<DetailedReadProjectOutput>(output);
-        }
-
-        /// <summary>
-        /// Tenta converter um objeto para um tipo Enum.
-        /// </summary>
-        /// <param name="value">Valor a ser convertido.</param>
-        /// <typeparam name="T">Tipo para o qual ser convertido.</typeparam>
-        /// <returns>Objeto com tipo convertido.</returns>
-        private static T TryCastEnum<T>(object? value)
-        {
-            try
-            {
-                UseCaseException.NotInformedParam(value is null, typeof(T).ToString());
-                foreach (T enumValue in Enum.GetValues(typeof(T)))
-                {
-                    if (enumValue.GetHashCode().Equals(value))
-                    {
-                        return (T)Enum.Parse(typeof(T), value?.ToString()!);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                throw UseCaseException.BusinessRuleViolation($"Não foi possível converter o valor {value} para o tipo {typeof(T)}.");
-            }
-
-            throw UseCaseException.BusinessRuleViolation($"Valor {value} fora do intervalo permitido para o tipo {typeof(T)}.");
         }
     }
 }
