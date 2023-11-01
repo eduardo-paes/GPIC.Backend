@@ -71,6 +71,13 @@ namespace Domain.Interfaces.Repositories
         Task<Project> UpdateAsync(Project model);
 
         /// <summary>
+        /// Atualiza vários projetos.
+        /// </summary>
+        /// <param name="projects">Projetos a serem atualizados.</param>
+        /// <returns>Quantidade de projetos atualizados.</returns>
+        Task<int> UpdateManyAsync(IList<Project> projects);
+
+        /// <summary>
         /// Obtém projeto pelo Id do Edital informado.
         /// </summary>
         /// <param name="noticeId">Id do Edital.</param>
@@ -87,9 +94,9 @@ namespace Domain.Interfaces.Repositories
         Task<IEnumerable<Project>> GetProjectsWithCloseReportDueDateAsync();
 
         /// <summary>
-        /// Obtém projetos com alguma pendência e cujo prazo de resolução da pendência esteja vencido.
+        /// Obtém projetos pendentes e cujo prazo de resolução da pendência esteja vencido.
         /// </summary>
-        /// <returns>Resultado do processo de encerramento dos projetos.</returns>
-        Task<string> ClosePendingAndOverdueProjectsAsync();
+        /// <returns>Projetos encontrados.</returns>
+        Task<IList<Project>> GetPendingAndOverdueProjectsAsync();
     }
 }

@@ -41,4 +41,10 @@
     <None Remove="FluentAssertions" />
   </ItemGroup>
 
+    <ItemGroup>
+    <None Update="Samples/*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

@@ -11,8 +11,8 @@ namespace Application.Tests.UseCases.ProgramType
 {
     public class UpdateProgramTypeTests
     {
-        private readonly Mock<IProgramTypeRepository> _repositoryMock = new Mock<IProgramTypeRepository>();
-        private readonly Mock<IMapper> _mapperMock = new Mock<IMapper>();
+        private readonly Mock<IProgramTypeRepository> _repositoryMock = new();
+        private readonly Mock<IMapper> _mapperMock = new();
 
         private IUpdateProgramType CreateUseCase() => new UpdateProgramType(_repositoryMock.Object, _mapperMock.Object);
         private static Domain.Entities.ProgramType MockValidProgramType() => new("Program Name", "Program Description");

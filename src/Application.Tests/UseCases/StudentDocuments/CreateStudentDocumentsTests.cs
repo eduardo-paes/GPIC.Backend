@@ -36,12 +36,12 @@ namespace Application.Tests.UseCases.StudentDocuments
                 ProjectId = Guid.NewGuid(),
                 AgencyNumber = "123456",
                 AccountNumber = "7890",
-                IdentityDocument = CreateIFormFile(),
-                CPF = CreateIFormFile(),
-                Photo3x4 = CreateIFormFile(),
-                SchoolHistory = CreateIFormFile(),
-                ScholarCommitmentAgreement = CreateIFormFile(),
-                AccountOpeningProof = CreateIFormFile()
+                IdentityDocument = FileMock.CreateIFormFile(),
+                CPF = FileMock.CreateIFormFile(),
+                Photo3x4 = FileMock.CreateIFormFile(),
+                SchoolHistory = FileMock.CreateIFormFile(),
+                ScholarCommitmentAgreement = FileMock.CreateIFormFile(),
+                AccountOpeningProof = FileMock.CreateIFormFile()
             };
 
             _projectRepositoryMock.Setup(repo => repo.GetByIdAsync(input.ProjectId)).ReturnsAsync(project);
@@ -69,12 +69,12 @@ namespace Application.Tests.UseCases.StudentDocuments
             var input = new CreateStudentDocumentsInput
             {
                 ProjectId = Guid.NewGuid(),
-                IdentityDocument = CreateIFormFile(),
-                CPF = CreateIFormFile(),
-                Photo3x4 = CreateIFormFile(),
-                SchoolHistory = CreateIFormFile(),
-                ScholarCommitmentAgreement = CreateIFormFile(),
-                AccountOpeningProof = CreateIFormFile()
+                IdentityDocument = FileMock.CreateIFormFile(),
+                CPF = FileMock.CreateIFormFile(),
+                Photo3x4 = FileMock.CreateIFormFile(),
+                SchoolHistory = FileMock.CreateIFormFile(),
+                ScholarCommitmentAgreement = FileMock.CreateIFormFile(),
+                AccountOpeningProof = FileMock.CreateIFormFile()
             };
 
             var existingDocuments = MockValidStudentDocuments();
@@ -99,12 +99,12 @@ namespace Application.Tests.UseCases.StudentDocuments
             var input = new CreateStudentDocumentsInput
             {
                 ProjectId = Guid.NewGuid(),
-                IdentityDocument = CreateIFormFile(),
-                CPF = CreateIFormFile(),
-                Photo3x4 = CreateIFormFile(),
-                SchoolHistory = CreateIFormFile(),
-                ScholarCommitmentAgreement = CreateIFormFile(),
-                AccountOpeningProof = CreateIFormFile()
+                IdentityDocument = FileMock.CreateIFormFile(),
+                CPF = FileMock.CreateIFormFile(),
+                Photo3x4 = FileMock.CreateIFormFile(),
+                SchoolHistory = FileMock.CreateIFormFile(),
+                ScholarCommitmentAgreement = FileMock.CreateIFormFile(),
+                AccountOpeningProof = FileMock.CreateIFormFile()
             };
 
             _studentDocumentRepositoryMock.Setup(repo => repo.GetByProjectIdAsync(input.ProjectId)).ReturnsAsync((Domain.Entities.StudentDocuments)null);
@@ -128,12 +128,12 @@ namespace Application.Tests.UseCases.StudentDocuments
             var input = new CreateStudentDocumentsInput
             {
                 ProjectId = Guid.NewGuid(),
-                IdentityDocument = CreateIFormFile(),
-                CPF = CreateIFormFile(),
-                Photo3x4 = CreateIFormFile(),
-                SchoolHistory = CreateIFormFile(),
-                ScholarCommitmentAgreement = CreateIFormFile(),
-                AccountOpeningProof = CreateIFormFile()
+                IdentityDocument = FileMock.CreateIFormFile(),
+                CPF = FileMock.CreateIFormFile(),
+                Photo3x4 = FileMock.CreateIFormFile(),
+                SchoolHistory = FileMock.CreateIFormFile(),
+                ScholarCommitmentAgreement = FileMock.CreateIFormFile(),
+                AccountOpeningProof = FileMock.CreateIFormFile()
             };
 
             _studentDocumentRepositoryMock.Setup(repo => repo.GetByProjectIdAsync(input.ProjectId)).ReturnsAsync((Domain.Entities.StudentDocuments)null);
@@ -145,16 +145,6 @@ namespace Application.Tests.UseCases.StudentDocuments
             _projectRepositoryMock.Verify(repo => repo.GetByIdAsync(input.ProjectId), Times.Once);
             _storageFileServiceMock.Verify(service => service.UploadFileAsync(It.IsAny<IFormFile>(), ""), Times.Never);
             _mapperMock.Verify(mapper => mapper.Map<DetailedReadStudentDocumentsOutput>(It.IsAny<Domain.Entities.StudentDocuments>()), Times.Never);
-        }
-
-        private IFormFile CreateIFormFile()
-        {
-            // Create a mock IFormFile, you can adjust the implementation as needed.
-            var fileMock = new Mock<IFormFile>();
-            fileMock.Setup(file => file.FileName).Returns("file.txt");
-            fileMock.Setup(file => file.Length).Returns(1024);
-            // Add other setup as needed.
-            return fileMock.Object;
         }
     }
 }

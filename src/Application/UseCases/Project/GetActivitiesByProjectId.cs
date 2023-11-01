@@ -3,16 +3,14 @@ using Domain.Interfaces.Repositories;
 using Application.Ports.ProjectActivity;
 using Application.Interfaces.UseCases.Project;
 
-namespace Application.UseCases.ActivityType
+namespace Application.UseCases.Project
 {
     public class GetActivitiesByProjectId : IGetActivitiesByProjectId
     {
         private readonly IProjectActivityRepository _projectActivityRepository;
-        private readonly IMapper _mapper;
-        public GetActivitiesByProjectId(IProjectActivityRepository projectActivityRepository, IMapper mapper)
+        public GetActivitiesByProjectId(IProjectActivityRepository projectActivityRepository)
         {
             _projectActivityRepository = projectActivityRepository;
-            _mapper = mapper;
         }
 
         public async Task<IEnumerable<DetailedReadProjectActivityOutput>> ExecuteAsync(Guid? projectId)

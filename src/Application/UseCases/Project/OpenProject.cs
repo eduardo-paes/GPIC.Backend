@@ -119,6 +119,10 @@ namespace Application.UseCases.Project
 
             // Obtém atividades do Edital
             var noticeActivities = await _activityTypeRepository.GetByNoticeIdAsync(notice.Id);
+            if (noticeActivities == null || !noticeActivities.Any())
+            {
+                throw UseCaseException.BusinessRuleViolation("Edital não possui atividades cadastradas.");
+            }
 
             // Valida se todas as atividades do projeto foram informadas corretamente
             List<Domain.Entities.ProjectActivity> newProjectActivities = new();

@@ -40,6 +40,7 @@ namespace Application.Tests.UseCases.StudentDocuments
             };
             var project = ProjectMock.MockValidProject();
             var studentDocuments = MockValidStudentDocuments();
+            project.Status = Domain.Entities.Enums.EProjectStatus.Accepted;
             studentDocuments.Project = project;
 
             _studentDocumentRepositoryMock.Setup(r => r.GetByIdAsync(id)).ReturnsAsync(studentDocuments);
