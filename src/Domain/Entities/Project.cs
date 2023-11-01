@@ -161,7 +161,7 @@ namespace Domain.Entities
         public Guid? ProfessorId
         {
             get => _professorId;
-            private set
+            set
             {
                 {
                     EntityExceptionValidation.When(value == null,
@@ -189,7 +189,7 @@ namespace Domain.Entities
         public Guid? NoticeId
         {
             get => _noticeId;
-            private set
+            set
             {
                 {
                     EntityExceptionValidation.When(value == null,

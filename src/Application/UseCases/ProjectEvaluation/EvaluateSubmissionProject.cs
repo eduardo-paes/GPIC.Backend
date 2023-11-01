@@ -47,8 +47,7 @@ namespace Application.UseCases.ProjectEvaluation
             var actorId = userClaims.Keys.FirstOrDefault();
 
             // Verifica se o usuário logado é um avaliador.
-            UseCaseException.BusinessRuleViolation(userClaim!.Role != ERole.ADMIN
-                    || userClaim.Role != ERole.PROFESSOR,
+            UseCaseException.BusinessRuleViolation(userClaim!.Role != ERole.ADMIN && userClaim.Role != ERole.PROFESSOR,
                 "O usuário não é um avaliador.");
 
             // Verifica se já existe alguma avaliação para o projeto.
@@ -70,7 +69,7 @@ namespace Application.UseCases.ProjectEvaluation
 
             // Verifica se o edital está em fase de avaliação.
             UseCaseException.BusinessRuleViolation(project.Notice?.EvaluationStartDate > DateTime.UtcNow || project.Notice?.EvaluationEndDate < DateTime.UtcNow,
-                "Edital encerrado.");
+                "Fora do intervalo de avaliação do edital.");
 
             // Verifica se o status da avaliação foi informado.
             UseCaseException.NotInformedParam(input.SubmissionEvaluationStatus is null,
@@ -92,6 +91,8 @@ namespace Application.UseCases.ProjectEvaluation
 
             // Obtém atividades do Edital
             var noticeActivities = await _activityTypeRepository.GetByNoticeIdAsync(project.Notice!.Id);
+            if (noticeActivities is null || noticeActivities.Count == 0)
+                throw UseCaseException.BusinessRuleViolation("Não foram encontradas atividades para o edital.");
 
             // Obtém atividades do projeto
             var projectActivities = await _projectActivityRepository.GetByProjectIdAsync(project.Id);
@@ -166,12 +167,20 @@ namespace Application.UseCases.ProjectEvaluation
             try
             {
                 UseCaseException.NotInformedParam(value is null, typeof(T).ToString());
-                return (T)Enum.Parse(typeof(T), value?.ToString()!);
+                foreach (T enumValue in Enum.GetValues(typeof(T)))
+                {
+                    if (enumValue.GetHashCode().Equals(value))
+                    {
+                        return (T)Enum.Parse(typeof(T), value?.ToString()!);
+                    }
+                }
             }
             catch (Exception)
             {
                 throw UseCaseException.BusinessRuleViolation($"Não foi possível converter o valor {value} para o tipo {typeof(T)}.");
             }
+
+            throw UseCaseException.BusinessRuleViolation($"Valor {value} fora do intervalo permitido para o tipo {typeof(T)}.");
         }
     }
 }

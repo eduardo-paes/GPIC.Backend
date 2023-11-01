@@ -140,7 +140,7 @@ namespace Domain.Entities
         /// </summary>
         public string? DocumentsEvaluationDescription { get; set; }
 
-        public virtual Project? Project { get; }
+        public virtual Project? Project { get; set; }
         public virtual User? SubmissionEvaluator { get; }
         public virtual User? AppealEvaluator { get; }
         public virtual User? DocumentsEvaluator { get; }

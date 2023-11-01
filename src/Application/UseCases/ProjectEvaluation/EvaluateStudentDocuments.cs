@@ -41,7 +41,7 @@ namespace Application.UseCases.ProjectEvaluation
             var actorId = userClaims.Keys.FirstOrDefault();
 
             // Verifica se o usuário logado é um avaliador.
-            UseCaseException.BusinessRuleViolation(userClaim!.Role != ERole.ADMIN || userClaim.Role != ERole.PROFESSOR,
+            UseCaseException.BusinessRuleViolation(userClaim!.Role != ERole.ADMIN && userClaim.Role != ERole.PROFESSOR,
                 "O usuário não é um avaliador.");
 
             // Verifica se o status da avaliação foi informado.
