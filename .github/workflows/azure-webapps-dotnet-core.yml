@@ -96,7 +96,7 @@ jobs:
     permissions:
       contents: none
     runs-on: ubuntu-latest
-    needs: build
+    needs: test
     environment:
       name: STAGING
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
