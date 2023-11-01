@@ -6,6 +6,8 @@ env:
   DOTNET_VERSION: "7.0"
   PROJECT_PATH: "src/Infrastructure/WebAPI/WebAPI.csproj"
   WEBAPI_PATH: "src/Infrastructure/WebAPI/"
+  UNIT_TESTS_PROJ: "src/Domain.Tests/Domain.Tests.csproj"
+  INTEGRATION_TESTS_PROJ: "src/Application.Tests/Application.Tests.csproj"
   ASPNETCORE_ENVIRONMENT: ${{ secrets.ASPNETCORE_ENVIRONMENT }}
 
 on:
@@ -71,6 +73,24 @@ jobs:
         with:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Run Unit Tests
+        run: dotnet test ${{ env.UNIT_TESTS_PROJ }} --configuration Release
+
+      - name: Run Integration Tests
+        run: dotnet test ${{ env.INTEGRATION_TESTS_PROJ }} --configuration Release
 
   deploy:
     permissions:
