@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="0.1.0"></a>
+## [0.1.0](https://www.github.com/eduardo-paes/DotnetGraphQl/releases/tag/v0.1.0) (2023-11-1)
+
+### Features
+
+* Add CORS configuration ([eb8cde4](https://www.github.com/eduardo-paes/DotnetGraphQl/commit/eb8cde421b565331008d8719e335ee5b4b00d391))
+* Add user names to project GET endpoints ([05e2610](https://www.github.com/eduardo-paes/DotnetGraphQl/commit/05e2610f8239e1424b21adb8aec3cb7d7dba0719))
+
+### Bug Fixes
+
+* Adjust GetUserById usecase ([e4774ed](https://www.github.com/eduardo-paes/DotnetGraphQl/commit/e4774ed601ec0c27847732506047d653f7628ac8))
+* Adjust subarea usecases ([75ae476](https://www.github.com/eduardo-paes/DotnetGraphQl/commit/75ae476f8e013c1b5a2e0f36868e55131d77025a))
+* Correction on project opening. ([8d258a8](https://www.github.com/eduardo-paes/DotnetGraphQl/commit/8d258a8339c0e248bfcb8122cecb175df5f192e3))
+* Disable CORS policy for tests ([9868851](https://www.github.com/eduardo-paes/DotnetGraphQl/commit/98688510d106b00fd28f75f433854dace1bc6588))
+* Enable correct StorageFileService ([a5557d4](https://www.github.com/eduardo-paes/DotnetGraphQl/commit/a5557d4a054820b3b39eb17993477e6f2f7e6268))
+* Enable IpRateLimiting in Startup ([2283568](https://www.github.com/eduardo-paes/DotnetGraphQl/commit/2283568bda84fed8416097fe9722e60491890473))
+
 <a name="0.0.1"></a>
 ## [0.0.1](https://www.github.com/eduardo-paes/DotnetGraphQl/releases/tag/v0.0.1) (2023-10-24)
 
