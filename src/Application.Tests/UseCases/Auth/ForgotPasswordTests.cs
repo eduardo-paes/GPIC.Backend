@@ -1,7 +1,6 @@
 using Application.Interfaces.UseCases.Auth;
 using Application.UseCases.Auth;
 using Application.Validation;
-using Domain.Entities;
 using Domain.Entities.Enums;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
@@ -12,12 +11,12 @@ namespace Application.Tests.UseCases.Auth
 {
     public class ForgotPasswordTests
     {
-        private readonly Mock<IUserRepository> _userRepositoryMock = new Mock<IUserRepository>();
-        private readonly Mock<IEmailService> _emailServiceMock = new Mock<IEmailService>();
+        private readonly Mock<IUserRepository> _userRepositoryMock = new();
+        private readonly Mock<IEmailService> _emailServiceMock = new();
 
         private IForgotPassword CreateUseCase() => new ForgotPassword(_userRepositoryMock.Object, _emailServiceMock.Object);
 
-        private static User MockValidUser() => new("John Doe", "john.doe@example.com", "strongpassword", "92114660087", ERole.ADMIN);
+        private static Domain.Entities.User MockValidUser() => new("John Doe", "john.doe@example.com", "strongpassword", "92114660087", ERole.ADMIN);
 
         [Fact]
         public async Task ExecuteAsync_ValidInput_ReturnsSuccessMessage()
@@ -50,7 +49,7 @@ namespace Application.Tests.UseCases.Auth
             // Act & Assert
             Assert.ThrowsAsync<UseCaseException>(async () => await useCase.ExecuteAsync(email));
             _userRepositoryMock.Verify(repo => repo.GetUserByEmailAsync(It.IsAny<string>()), Times.Never);
-            _userRepositoryMock.Verify(repo => repo.UpdateAsync(It.IsAny<User>()), Times.Never);
+            _userRepositoryMock.Verify(repo => repo.UpdateAsync(It.IsAny<Domain.Entities.User>()), Times.Never);
             _emailServiceMock.Verify(service => service.SendResetPasswordEmailAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
         }
 
@@ -61,12 +60,12 @@ namespace Application.Tests.UseCases.Auth
             var useCase = CreateUseCase();
             var email = "test@example.com";
 
-            _userRepositoryMock.Setup(repo => repo.GetUserByEmailAsync(email)).ReturnsAsync((User)null);
+            _userRepositoryMock.Setup(repo => repo.GetUserByEmailAsync(email)).ReturnsAsync((Domain.Entities.User)null);
 
             // Act & Assert
             Assert.ThrowsAsync<UseCaseException>(async () => await useCase.ExecuteAsync(email));
             _userRepositoryMock.Verify(repo => repo.GetUserByEmailAsync(email), Times.Once);
-            _userRepositoryMock.Verify(repo => repo.UpdateAsync(It.IsAny<User>()), Times.Never);
+            _userRepositoryMock.Verify(repo => repo.UpdateAsync(It.IsAny<Domain.Entities.User>()), Times.Never);
             _emailServiceMock.Verify(service => service.SendResetPasswordEmailAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
         }
     }

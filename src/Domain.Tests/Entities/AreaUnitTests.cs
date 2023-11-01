@@ -1,5 +1,4 @@
 using Domain.Entities;
-using Domain.Entities.Enums;
 using Domain.Validation;
 using FluentAssertions;
 using Xunit;

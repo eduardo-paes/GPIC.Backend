@@ -2,6 +2,7 @@ using AutoMapper;
 using Domain.Interfaces.Repositories;
 using Application.Interfaces.UseCases.SubArea;
 using Application.Ports.SubArea;
+using Application.Validation;
 
 namespace Application.UseCases.SubArea
 {
@@ -19,7 +20,8 @@ namespace Application.UseCases.SubArea
 
         public async Task<DetailedReadSubAreaOutput> ExecuteAsync(Guid? id)
         {
-            Domain.Entities.SubArea? entity = await _subAreaRepository.GetByIdAsync(id);
+            UseCaseException.NotInformedParam(id is null, nameof(id));
+            var entity = await _subAreaRepository.GetByIdAsync(id);
             return _mapper.Map<DetailedReadSubAreaOutput>(entity);
         }
     }

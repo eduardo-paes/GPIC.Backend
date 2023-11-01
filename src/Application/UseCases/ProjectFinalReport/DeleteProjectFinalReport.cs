@@ -20,13 +20,8 @@ namespace Application.UseCases.ProjectFinalReport
 
         public async Task<DetailedReadProjectFinalReportOutput> ExecuteAsync(Guid? id)
         {
-            // Verifica se o id foi informado
             UseCaseException.NotInformedParam(id is null, nameof(id));
-
-            // Remove a entidade
             Domain.Entities.ProjectFinalReport model = await _repository.DeleteAsync(id);
-
-            // Retorna o curso removido
             return _mapper.Map<DetailedReadProjectFinalReportOutput>(model);
         }
     }

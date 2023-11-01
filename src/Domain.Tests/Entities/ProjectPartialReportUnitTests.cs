@@ -3,7 +3,6 @@ using Domain.Entities.Enums;
 using Domain.Validation;
 using FluentAssertions;
 using Xunit;
-using System;
 
 namespace Domain.Tests.Entities
 {

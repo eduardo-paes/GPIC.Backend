@@ -2,7 +2,6 @@ using Application.Interfaces.UseCases.Auth;
 using Application.Ports.Auth;
 using Application.UseCases.Auth;
 using Application.Validation;
-using Domain.Entities;
 using Domain.Entities.Enums;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
@@ -13,12 +12,12 @@ namespace Application.Tests.UseCases.Auth
 {
     public class ResetPasswordTests
     {
-        private readonly Mock<IUserRepository> _userRepositoryMock = new Mock<IUserRepository>();
-        private readonly Mock<IHashService> _hashServiceMock = new Mock<IHashService>();
+        private readonly Mock<IUserRepository> _userRepositoryMock = new();
+        private readonly Mock<IHashService> _hashServiceMock = new();
 
         private IResetPassword CreateUseCase() => new ResetPassword(_userRepositoryMock.Object, _hashServiceMock.Object);
-        private static User MockValidUser() => new("John Doe", "john.doe@example.com", "strongpassword", "92114660087", ERole.ADMIN);
-        private static User MockValidUserWithId() => new(Guid.NewGuid(), "John Doe", "ADMIN");
+        private static Domain.Entities.User MockValidUser() => new("John Doe", "john.doe@example.com", "strongpassword", "92114660087", ERole.ADMIN);
+        private static Domain.Entities.User MockValidUserWithId() => new(Guid.NewGuid(), "John Doe", "ADMIN");
 
 
         [Fact]
@@ -66,7 +65,7 @@ namespace Application.Tests.UseCases.Auth
             Assert.ThrowsAsync<UseCaseException>(async () => await useCase.ExecuteAsync(input));
             _userRepositoryMock.Verify(repo => repo.GetByIdAsync(It.IsAny<Guid>()), Times.Never);
             _hashServiceMock.Verify(hashService => hashService.HashPassword(It.IsAny<string>()), Times.Never);
-            _userRepositoryMock.Verify(repo => repo.UpdateAsync(It.IsAny<User>()), Times.Never);
+            _userRepositoryMock.Verify(repo => repo.UpdateAsync(It.IsAny<Domain.Entities.User>()), Times.Never);
         }
 
         [Fact]
@@ -85,7 +84,7 @@ namespace Application.Tests.UseCases.Auth
             Assert.ThrowsAsync<UseCaseException>(async () => await useCase.ExecuteAsync(input));
             _userRepositoryMock.Verify(repo => repo.GetByIdAsync(It.IsAny<Guid>()), Times.Never);
             _hashServiceMock.Verify(hashService => hashService.HashPassword(It.IsAny<string>()), Times.Never);
-            _userRepositoryMock.Verify(repo => repo.UpdateAsync(It.IsAny<User>()), Times.Never);
+            _userRepositoryMock.Verify(repo => repo.UpdateAsync(It.IsAny<Domain.Entities.User>()), Times.Never);
         }
 
         [Fact]
@@ -104,7 +103,7 @@ namespace Application.Tests.UseCases.Auth
             Assert.ThrowsAsync<UseCaseException>(async () => await useCase.ExecuteAsync(input));
             _userRepositoryMock.Verify(repo => repo.GetByIdAsync(It.IsAny<Guid>()), Times.Never);
             _hashServiceMock.Verify(hashService => hashService.HashPassword(It.IsAny<string>()), Times.Never);
-            _userRepositoryMock.Verify(repo => repo.UpdateAsync(It.IsAny<User>()), Times.Never);
+            _userRepositoryMock.Verify(repo => repo.UpdateAsync(It.IsAny<Domain.Entities.User>()), Times.Never);
         }
 
         [Fact]
@@ -119,13 +118,13 @@ namespace Application.Tests.UseCases.Auth
                 Token = "reset_token"
             };
 
-            _userRepositoryMock.Setup(repo => repo.GetByIdAsync(input.Id.Value)).ReturnsAsync((User)null);
+            _userRepositoryMock.Setup(repo => repo.GetByIdAsync(input.Id.Value)).ReturnsAsync((Domain.Entities.User)null);
 
             // Act & Assert
             Assert.ThrowsAsync<UseCaseException>(async () => await useCase.ExecuteAsync(input));
             _userRepositoryMock.Verify(repo => repo.GetByIdAsync(input.Id.Value), Times.Once);
             _hashServiceMock.Verify(hashService => hashService.HashPassword(It.IsAny<string>()), Times.Never);
-            _userRepositoryMock.Verify(repo => repo.UpdateAsync(It.IsAny<User>()), Times.Never);
+            _userRepositoryMock.Verify(repo => repo.UpdateAsync(It.IsAny<Domain.Entities.User>()), Times.Never);
         }
 
         [Fact]
@@ -148,7 +147,7 @@ namespace Application.Tests.UseCases.Auth
             Assert.ThrowsAsync<UseCaseException>(async () => await useCase.ExecuteAsync(input));
             _userRepositoryMock.Verify(repo => repo.GetByIdAsync(input.Id.Value), Times.Once);
             _hashServiceMock.Verify(hashService => hashService.HashPassword(It.IsAny<string>()), Times.Once);
-            _userRepositoryMock.Verify(repo => repo.UpdateAsync(It.IsAny<User>()), Times.Never);
+            _userRepositoryMock.Verify(repo => repo.UpdateAsync(It.IsAny<Domain.Entities.User>()), Times.Never);
         }
     }
 }

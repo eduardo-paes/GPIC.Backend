@@ -21,13 +21,8 @@ namespace Application.UseCases.ProjectEvaluation
 
         public async Task<DetailedReadProjectEvaluationOutput> ExecuteAsync(Guid? projectId)
         {
-            // Verifica se Id foi informado.
             UseCaseException.NotInformedParam(projectId is null, nameof(projectId));
-
-            // Obtém a avaliação do projeto pelo Id do projeto.
             var entity = await _repository.GetByProjectIdAsync(projectId);
-
-            // Converte e retorna o resultado.
             return _mapper.Map<DetailedReadProjectEvaluationOutput>(entity);
         }
     }

@@ -47,8 +47,7 @@ namespace Application.UseCases.ProjectEvaluation
             var actorId = userClaims.Keys.FirstOrDefault();
 
             // Verifica se o usuário logado é um avaliador.
-            UseCaseException.BusinessRuleViolation(userClaim!.Role != ERole.ADMIN
-                    || userClaim.Role != ERole.PROFESSOR,
+            UseCaseException.BusinessRuleViolation(userClaim!.Role != ERole.ADMIN && userClaim.Role != ERole.PROFESSOR,
                 "O usuário não é um avaliador.");
 
             // Verifica se já existe alguma avaliação para o projeto.
@@ -70,7 +69,7 @@ namespace Application.UseCases.ProjectEvaluation
 
             // Verifica se o edital está em fase de avaliação.
             UseCaseException.BusinessRuleViolation(project.Notice?.EvaluationStartDate > DateTime.UtcNow || project.Notice?.EvaluationEndDate < DateTime.UtcNow,
-                "Edital encerrado.");
+                "Fora do intervalo de avaliação do edital.");
 
             // Verifica se o status da avaliação foi informado.
             UseCaseException.NotInformedParam(input.SubmissionEvaluationStatus is null,
@@ -80,18 +79,20 @@ namespace Application.UseCases.ProjectEvaluation
             projectEvaluation = new Domain.Entities.ProjectEvaluation(input.ProjectId,
                 input.IsProductivityFellow,
                 userClaim.Id, // Id do avaliador logado.
-                TryCastEnum<EProjectStatus>(input.SubmissionEvaluationStatus),
+                EnumExtensions.TryCastEnum<EProjectStatus>(input.SubmissionEvaluationStatus),
                 DateTime.UtcNow,
                 input.SubmissionEvaluationDescription,
-                TryCastEnum<EQualification>(input.Qualification),
-                TryCastEnum<EScore>(input.ProjectProposalObjectives),
-                TryCastEnum<EScore>(input.AcademicScientificProductionCoherence),
-                TryCastEnum<EScore>(input.ProposalMethodologyAdaptation),
-                TryCastEnum<EScore>(input.EffectiveContributionToResearch),
+                EnumExtensions.TryCastEnum<EQualification>(input.Qualification),
+                EnumExtensions.TryCastEnum<EScore>(input.ProjectProposalObjectives),
+                EnumExtensions.TryCastEnum<EScore>(input.AcademicScientificProductionCoherence),
+                EnumExtensions.TryCastEnum<EScore>(input.ProposalMethodologyAdaptation),
+                EnumExtensions.TryCastEnum<EScore>(input.EffectiveContributionToResearch),
                 0);
 
             // Obtém atividades do Edital
             var noticeActivities = await _activityTypeRepository.GetByNoticeIdAsync(project.Notice!.Id);
+            if (noticeActivities is null || noticeActivities.Count == 0)
+                throw UseCaseException.BusinessRuleViolation("Não foram encontradas atividades para o edital.");
 
             // Obtém atividades do projeto
             var projectActivities = await _projectActivityRepository.GetByProjectIdAsync(project.Id);
@@ -153,25 +154,6 @@ namespace Application.UseCases.ProjectEvaluation
 
             // Mapeia dados de saída e retorna.
             return _mapper.Map<DetailedReadProjectOutput>(output);
-        }
-
-        /// <summary>
-        /// Tenta converter um objeto para um tipo Enum.
-        /// </summary>
-        /// <param name="value">Valor a ser convertido.</param>
-        /// <typeparam name="T">Tipo para o qual ser convertido.</typeparam>
-        /// <returns>Objeto com tipo convertido.</returns>
-        private static T TryCastEnum<T>(object? value)
-        {
-            try
-            {
-                UseCaseException.NotInformedParam(value is null, typeof(T).ToString());
-                return (T)Enum.Parse(typeof(T), value?.ToString()!);
-            }
-            catch (Exception)
-            {
-                throw UseCaseException.BusinessRuleViolation($"Não foi possível converter o valor {value} para o tipo {typeof(T)}.");
-            }
         }
     }
 }

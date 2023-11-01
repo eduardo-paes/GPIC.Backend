@@ -385,6 +385,50 @@ namespace Domain.Entities
             RegistrationCode = registrationCode;
         }
 
+        public Student(
+            Guid id,
+            DateTime birthDate,
+            long rg,
+            string? issuingAgency,
+            DateTime dispatchDate,
+            EGender? gender,
+            ERace? race,
+            string? homeAddress,
+            string? city,
+            string? uf,
+            long cep,
+            int? phoneDDD,
+            long? phone,
+            int? cellPhoneDDD,
+            long? cellPhone,
+            Guid? campusId,
+            Guid? courseId,
+            string? startYear,
+            Guid? studentAssistanceProgramId,
+            string? registrationCode)
+        {
+            Id = id;
+            BirthDate = birthDate;
+            RG = rg;
+            IssuingAgency = issuingAgency;
+            DispatchDate = dispatchDate;
+            Gender = gender;
+            Race = race;
+            HomeAddress = homeAddress;
+            City = city;
+            UF = uf;
+            CEP = cep;
+            PhoneDDD = phoneDDD;
+            Phone = phone;
+            CellPhoneDDD = cellPhoneDDD;
+            CellPhone = cellPhone;
+            CampusId = campusId;
+            CourseId = courseId;
+            StartYear = startYear;
+            AssistanceTypeId = studentAssistanceProgramId;
+            RegistrationCode = registrationCode;
+        }
+
         /// <summary>
         /// Constructor to dbcontext EF instancing.
         /// </summary>

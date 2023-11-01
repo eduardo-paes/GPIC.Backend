@@ -36,7 +36,7 @@ namespace Application.UseCases.StudentDocuments
 
             // Verifica se já foram enviados documentos para o projeto informado
             Domain.Entities.StudentDocuments? studentDocuments = await _studentDocumentRepository.GetByIdAsync(id!);
-            UseCaseException.NotFoundEntityById(studentDocuments is not null, nameof(studentDocuments));
+            UseCaseException.NotFoundEntityById(studentDocuments is null, nameof(studentDocuments));
 
             // Verifica se o projeto se encontra em situação de submissão de documentos (Aceito ou Pendente do envio de documentação)
             UseCaseException.BusinessRuleViolation(

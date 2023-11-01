@@ -62,6 +62,15 @@ namespace Domain.Entities
         {
             SendDate = DateTime.UtcNow;
             ProjectId = projectId;
+            UserId = userId;
+        }
+
+        public ProjectFinalReport(Guid? id, Guid? projectId, Guid? userId)
+        {
+            Id = id;
+            SendDate = DateTime.UtcNow;
+            ProjectId = projectId;
+            UserId = userId;
         }
 
         /// <summary>

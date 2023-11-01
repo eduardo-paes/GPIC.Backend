@@ -24,17 +24,17 @@ namespace Application.Tests.UseCases.Course
             var take = 10;
             var expectedCourses = new List<Domain.Entities.Course>
             {
-                new Domain.Entities.Course("Course 1"),
-                new Domain.Entities.Course("Course 2"),
-                new Domain.Entities.Course("Course 3")
+                new("Course 1"),
+                new("Course 2"),
+                new("Course 3")
             };
             _repositoryMock.Setup(repo => repo.GetAllAsync(skip, take)).ReturnsAsync(expectedCourses);
             _mapperMock.Setup(mapper => mapper.Map<IEnumerable<ResumedReadCourseOutput>>(expectedCourses)).Returns(
                 new List<ResumedReadCourseOutput>
                 {
-                    new ResumedReadCourseOutput(),
-                    new ResumedReadCourseOutput(),
-                    new ResumedReadCourseOutput()
+                    new(),
+                    new(),
+                    new()
                 });
 
             // Act

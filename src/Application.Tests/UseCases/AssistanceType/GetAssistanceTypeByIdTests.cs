@@ -3,11 +3,8 @@ using Application.Ports.AssistanceType;
 using Application.UseCases.AssistanceType;
 using Application.Validation;
 using AutoMapper;
-using Domain.Entities;
 using Domain.Interfaces.Repositories;
 using Moq;
-using System;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Application.Tests.UseCases.AssistanceType

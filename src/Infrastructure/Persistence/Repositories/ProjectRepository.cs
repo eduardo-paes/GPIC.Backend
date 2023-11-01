@@ -16,16 +16,22 @@ namespace Persistence.Repositories
 
         public async Task<Project> CreateAsync(Project project)
         {
-            _ = _context.Add(project);
-            _ = await _context.SaveChangesAsync();
+            _context.Add(project);
+            await _context.SaveChangesAsync();
             return project;
         }
 
         public async Task<Project> UpdateAsync(Project project)
         {
-            _ = _context.Update(project);
-            _ = await _context.SaveChangesAsync();
+            _context.Update(project);
+            await _context.SaveChangesAsync();
             return project;
+        }
+
+        public async Task<int> UpdateManyAsync(IList<Project> projects)
+        {
+            _context.Update(projects);
+            return await _context.SaveChangesAsync();
         }
 
         public async Task<Project> DeleteAsync(Guid? id)
@@ -197,13 +203,13 @@ namespace Persistence.Repositories
                 .ToListAsync();
         }
 
-        public async Task<string> ClosePendingAndOverdueProjectsAsync()
+        public async Task<IList<Project>> GetPendingAndOverdueProjectsAsync()
         {
             // Obtém data atual em UTC para comparação
             DateTime currentDate = DateTime.UtcNow;
 
             // Obtém projetos pendentes e com o prazo de resolução vencido
-            var projects = await _context.Projects
+            return await _context.Projects
                 .Include(x => x.Notice)
                 .AsAsyncEnumerable()
                 .Where(x =>
@@ -216,24 +222,6 @@ namespace Persistence.Repositories
                     // Projetos pendentes de documentação e com o prazo de entrega vencido
                     (x.Status is EProjectStatus.Pending && x.Notice!.SendingDocsEndDate < currentDate))
                 .ToListAsync();
-
-            // Verifica se existem projetos pendentes e com prazo vencido
-            if (projects.Count == 0)
-                return "Nenhum projeto pendente e com prazo vencido foi encontrado.";
-
-            // Atualiza status dos projetos
-            projects.ForEach(x =>
-            {
-                x.Status = EProjectStatus.Canceled;
-                x.StatusDescription = "Projeto cancelado automaticamente por falta de ação dentro do prazo estipulado.";
-            });
-
-            // Atualiza modificações realizadas no banco
-            _context.UpdateRange(projects);
-            _ = await _context.SaveChangesAsync();
-
-            // Retorna mensagem de sucesso
-            return $"{projects.Count} projetos pendentes e com prazo de resolução vencido foram cancelados com sucesso.";
         }
     }
 }

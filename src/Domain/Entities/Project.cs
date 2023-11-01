@@ -161,7 +161,7 @@ namespace Domain.Entities
         public Guid? ProfessorId
         {
             get => _professorId;
-            private set
+            set
             {
                 {
                     EntityExceptionValidation.When(value == null,
@@ -189,7 +189,7 @@ namespace Domain.Entities
         public Guid? NoticeId
         {
             get => _noticeId;
-            private set
+            set
             {
                 {
                     EntityExceptionValidation.When(value == null,
@@ -272,7 +272,37 @@ namespace Domain.Entities
                        DateTime? submitionDate, DateTime? ressubmissionDate, DateTime? cancellationDate,
                        string? cancellationReason)
         {
-            // Inicializar as propriedades
+            Title = title;
+            KeyWord1 = keyWord1;
+            KeyWord2 = keyWord2;
+            KeyWord3 = keyWord3;
+            IsScholarshipCandidate = isScholarshipCandidate;
+            Objective = objective;
+            Methodology = methodology;
+            ExpectedResults = expectedResults;
+            ActivitiesExecutionSchedule = activitiesExecutionSchedule;
+            StudentId = studentId;
+            ProgramTypeId = programTypeId;
+            ProfessorId = professorId;
+            SubAreaId = subAreaId;
+            NoticeId = noticeId;
+            Status = status;
+            StatusDescription = statusDescription;
+            AppealObservation = appealDescription;
+            SubmissionDate = submitionDate;
+            AppealDate = ressubmissionDate;
+            CancellationDate = cancellationDate;
+            CancellationReason = cancellationReason;
+        }
+
+        public Project(Guid? id, string? title, string? keyWord1, string? keyWord2, string? keyWord3, bool isScholarshipCandidate,
+                       string? objective, string? methodology, string? expectedResults, string? activitiesExecutionSchedule,
+                       Guid? studentId, Guid? programTypeId, Guid? professorId, Guid? subAreaId, Guid? noticeId,
+                       EProjectStatus? status, string? statusDescription, string? appealDescription,
+                       DateTime? submitionDate, DateTime? ressubmissionDate, DateTime? cancellationDate,
+                       string? cancellationReason)
+        {
+            Id = id;
             Title = title;
             KeyWord1 = keyWord1;
             KeyWord2 = keyWord2;

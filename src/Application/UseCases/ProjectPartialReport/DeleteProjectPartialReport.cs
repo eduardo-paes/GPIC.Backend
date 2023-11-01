@@ -20,13 +20,8 @@ namespace Application.UseCases.ProjectPartialReport
 
         public async Task<DetailedReadProjectPartialReportOutput> ExecuteAsync(Guid? id)
         {
-            // Verifica se o id foi informado
             UseCaseException.NotInformedParam(id is null, nameof(id));
-
-            // Remove a entidade
             Domain.Entities.ProjectPartialReport model = await _repository.DeleteAsync(id);
-
-            // Retorna a entidade removida
             return _mapper.Map<DetailedReadProjectPartialReportOutput>(model);
         }
     }

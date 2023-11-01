@@ -34,8 +34,8 @@ namespace Application.UseCases.Project
             var userClaims = _tokenAuthenticationService.GetUserAuthenticatedClaims();
 
             // Obtém id do usuário e id de acordo com perfil logado
-            var userClaim = userClaims!.Values.FirstOrDefault();
-            var actorId = userClaims.Keys.FirstOrDefault();
+            var userClaim = userClaims?.Values.FirstOrDefault();
+            var actorId = userClaims?.Keys.FirstOrDefault();
 
             // Se o usuário não estiver autenticado, lança uma exceção.
             UseCaseException.BusinessRuleViolation(userClaim == null || userClaim.Role == null,

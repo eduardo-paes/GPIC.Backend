@@ -20,7 +20,7 @@ namespace Application.Tests.UseCases.AssistanceType
         }
 
         private Domain.Entities.AssistanceType MockValidAssistanceType() => new("AssistanceTypeName1", "AssistanceTypeDescription");
-        private UpdateAssistanceTypeInput MockValidAssistanceTypeInput() => new UpdateAssistanceTypeInput
+        private UpdateAssistanceTypeInput MockValidAssistanceTypeInput() => new()
         {
             Name = "AssistanceTypeName2",
             Description = "AssistanceTypeDescription"

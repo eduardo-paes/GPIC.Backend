@@ -22,12 +22,12 @@ namespace Application.UseCases.SubArea
 
         public async Task<DetailedReadSubAreaOutput> ExecuteAsync(CreateSubAreaInput input)
         {
+            // Verifica id da área
+            UseCaseException.NotInformedParam(input.AreaId == null, nameof(input.AreaId));
+
             var entity = await _subAreaRepository.GetByCodeAsync(input.Code);
             UseCaseException.BusinessRuleViolation(entity != null,
                 "Já existe uma Subárea para o código informado.");
-
-            // Verifica id da área
-            UseCaseException.NotInformedParam(input.AreaId == null, nameof(input.AreaId));
 
             // Valida se existe área
             var area = await _areaRepository.GetByIdAsync(input.AreaId)
