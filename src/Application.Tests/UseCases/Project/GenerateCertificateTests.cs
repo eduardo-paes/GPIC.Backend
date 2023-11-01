@@ -91,7 +91,7 @@ namespace Application.Tests.UseCases.Project
             _projectRepositoryMock.Setup(repo => repo.GetProjectByNoticeAsync(It.IsAny<Guid>())).ReturnsAsync(projects);
             _userRepositoryMock.Setup(repo => repo.GetCoordinatorAsync()).ReturnsAsync(coordinator);
             _projectRepositoryMock.Setup(repo => repo.UpdateAsync(It.IsAny<Domain.Entities.Project>())).ReturnsAsync((Domain.Entities.Project project) => project);
-            _projectReportRepositoryMock.Setup(repo => repo.GetByProjectIdAsync(It.IsAny<Guid?>())).ReturnsAsync((ProjectFinalReport)null);
+            _projectReportRepositoryMock.Setup(repo => repo.GetByProjectIdAsync(It.IsAny<Guid?>())).ReturnsAsync((Domain.Entities.ProjectFinalReport)null);
             _professorRepositoryMock.Setup(repo => repo.GetByIdAsync(It.IsAny<Guid?>())).ReturnsAsync((Domain.Entities.Professor)null);
 
             // Act
@@ -117,7 +117,7 @@ namespace Application.Tests.UseCases.Project
             var coordinator = UserMock.MockValidUser();
             var notice = NoticeMock.MockValidNoticeWithId();
             var projects = new[] { ProjectMock.MockValidProjectProfessorAndNotice() };
-            var projectFinalReport = new ProjectFinalReport(Guid.NewGuid(), Guid.NewGuid());
+            var projectFinalReport = new Domain.Entities.ProjectFinalReport(Guid.NewGuid(), Guid.NewGuid());
             var file = FileMock.CreateIFormFile();
             var path = "./Samples/sample.pdf";
             var bytes = File.ReadAllBytes(path);
