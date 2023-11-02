@@ -1,0 +1,162 @@
+\doxysection{Referência à classe Web\+API.\+Controllers.\+Professor\+Controller}
+\hypertarget{class_web_a_p_i_1_1_controllers_1_1_professor_controller}{}\label{class_web_a_p_i_1_1_controllers_1_1_professor_controller}\index{WebAPI.Controllers.ProfessorController@{WebAPI.Controllers.ProfessorController}}
+
+
+Controller de Professor.  
+
+
+
+
+Diagrama de heranças da classe Web\+API.\+Controllers.\+Professor\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{class_web_a_p_i_1_1_controllers_1_1_professor_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para Web\+API.\+Controllers.\+Professor\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{class_web_a_p_i_1_1_controllers_1_1_professor_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_professor_controller_a4dd9010cfc5e10107a1fd4861cd58823}{Professor\+Controller}} (\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_professor_1_1_i_get_professor_by_id}{IGet\+Professor\+By\+Id}} get\+By\+Id, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_professor_1_1_i_get_professors}{IGet\+Professors}} get\+All, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_professor_1_1_i_create_professor}{ICreate\+Professor}} create, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_professor_1_1_i_update_professor}{IUpdate\+Professor}} update, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_professor_1_1_i_delete_professor}{IDelete\+Professor}} delete, ILogger$<$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_professor_controller}{Professor\+Controller}} $>$ logger)
+\begin{DoxyCompactList}\small\item\em Construtor do Controller de Professor. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_professor_1_1_detailed_read_professor_output}{Detailed\+Read\+Professor\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_professor_controller_a457e5e6047a8ef179ef6d73a14b7aa67}{Get\+By\+Id}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Busca Professor pelo id. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ IEnumerable$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_professor_1_1_resumed_read_professor_output}{Resumed\+Read\+Professor\+Output}} $>$ $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_professor_controller_a7dd2591f73d5736017d067b79592558e}{Get\+All}} (int skip=0, int take=50)
+\begin{DoxyCompactList}\small\item\em Busca todos os Professor ativos. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_professor_1_1_detailed_read_professor_output}{Detailed\+Read\+Professor\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_professor_controller_af43813d2c9b3ca6924b1b93f41c6494a}{Create}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_professor_1_1_create_professor_input}{Create\+Professor\+Input}} request)
+\begin{DoxyCompactList}\small\item\em Cria Professor. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_professor_1_1_detailed_read_professor_output}{Detailed\+Read\+Professor\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_professor_controller_a16264aff18c299a817eecbdb264ad86b}{Update}} (Guid? id, \mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_professor_1_1_update_professor_input}{Update\+Professor\+Input}} request)
+\begin{DoxyCompactList}\small\item\em Atualiza Professor. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_professor_1_1_detailed_read_professor_output}{Detailed\+Read\+Professor\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_professor_controller_a62dca85437de97c4f02f90746b700868}{Delete}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Remove Professor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Controller de Professor. 
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_professor_controller_a4dd9010cfc5e10107a1fd4861cd58823}\label{class_web_a_p_i_1_1_controllers_1_1_professor_controller_a4dd9010cfc5e10107a1fd4861cd58823} 
+\index{WebAPI.Controllers.ProfessorController@{WebAPI.Controllers.ProfessorController}!ProfessorController@{ProfessorController}}
+\index{ProfessorController@{ProfessorController}!WebAPI.Controllers.ProfessorController@{WebAPI.Controllers.ProfessorController}}
+\doxysubsubsection{\texorpdfstring{ProfessorController()}{ProfessorController()}}
+{\footnotesize\ttfamily Web\+API.\+Controllers.\+Professor\+Controller.\+Professor\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_professor_1_1_i_get_professor_by_id}{IGet\+Professor\+By\+Id}}}]{get\+By\+Id,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_professor_1_1_i_get_professors}{IGet\+Professors}}}]{get\+All,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_professor_1_1_i_create_professor}{ICreate\+Professor}}}]{create,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_professor_1_1_i_update_professor}{IUpdate\+Professor}}}]{update,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_professor_1_1_i_delete_professor}{IDelete\+Professor}}}]{delete,  }\item[{ILogger$<$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_professor_controller}{Professor\+Controller}} $>$}]{logger }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construtor do Controller de Professor. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em get\+By\+Id} & Serviço de obtenção de professor pelo id.\\
+\hline
+{\em get\+All} & Serviço de obtenção de todos os professores ativos.\\
+\hline
+{\em create} & Serviço de criação de professor.\\
+\hline
+{\em update} & Serviço de atualização de professor.\\
+\hline
+{\em delete} & Serviço de remoção de professor.\\
+\hline
+{\em logger} & Serviço de log.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_professor_controller_af43813d2c9b3ca6924b1b93f41c6494a}\label{class_web_a_p_i_1_1_controllers_1_1_professor_controller_af43813d2c9b3ca6924b1b93f41c6494a} 
+\index{WebAPI.Controllers.ProfessorController@{WebAPI.Controllers.ProfessorController}!Create@{Create}}
+\index{Create@{Create}!WebAPI.Controllers.ProfessorController@{WebAPI.Controllers.ProfessorController}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_professor_1_1_detailed_read_professor_output}{Detailed\+Read\+Professor\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Professor\+Controller.\+Create (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_professor_1_1_create_professor_input}{Create\+Professor\+Input}}}]{request }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cria Professor. 
+
+\begin{DoxyReturn}{Retorna}
+Professor criado
+\end{DoxyReturn}
+$<$response code=\"{}201\"{}$>$Retorna Professor criado$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ Grafo de chamadas desta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_web_a_p_i_1_1_controllers_1_1_professor_controller_af43813d2c9b3ca6924b1b93f41c6494a_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_professor_controller_a62dca85437de97c4f02f90746b700868}\label{class_web_a_p_i_1_1_controllers_1_1_professor_controller_a62dca85437de97c4f02f90746b700868} 
+\index{WebAPI.Controllers.ProfessorController@{WebAPI.Controllers.ProfessorController}!Delete@{Delete}}
+\index{Delete@{Delete}!WebAPI.Controllers.ProfessorController@{WebAPI.Controllers.ProfessorController}}
+\doxysubsubsection{\texorpdfstring{Delete()}{Delete()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_professor_1_1_detailed_read_professor_output}{Detailed\+Read\+Professor\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Professor\+Controller.\+Delete (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Remove Professor. 
+
+\begin{DoxyReturn}{Retorna}
+Professor removido
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna Professor removido$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Professor não encontrado.$<$/response$>$ \Hypertarget{class_web_a_p_i_1_1_controllers_1_1_professor_controller_a7dd2591f73d5736017d067b79592558e}\label{class_web_a_p_i_1_1_controllers_1_1_professor_controller_a7dd2591f73d5736017d067b79592558e} 
+\index{WebAPI.Controllers.ProfessorController@{WebAPI.Controllers.ProfessorController}!GetAll@{GetAll}}
+\index{GetAll@{GetAll}!WebAPI.Controllers.ProfessorController@{WebAPI.Controllers.ProfessorController}}
+\doxysubsubsection{\texorpdfstring{GetAll()}{GetAll()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ IEnumerable$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_professor_1_1_resumed_read_professor_output}{Resumed\+Read\+Professor\+Output}} $>$ $>$ $>$ Web\+API.\+Controllers.\+Professor\+Controller.\+Get\+All (\begin{DoxyParamCaption}\item[{int}]{skip = {\ttfamily 0},  }\item[{int}]{take = {\ttfamily 50} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Busca todos os Professor ativos. 
+
+\begin{DoxyReturn}{Retorna}
+Todos os Professor ativos
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna todos os Professor ativos$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Nenhum Professor encontrado.$<$/response$>$ \Hypertarget{class_web_a_p_i_1_1_controllers_1_1_professor_controller_a457e5e6047a8ef179ef6d73a14b7aa67}\label{class_web_a_p_i_1_1_controllers_1_1_professor_controller_a457e5e6047a8ef179ef6d73a14b7aa67} 
+\index{WebAPI.Controllers.ProfessorController@{WebAPI.Controllers.ProfessorController}!GetById@{GetById}}
+\index{GetById@{GetById}!WebAPI.Controllers.ProfessorController@{WebAPI.Controllers.ProfessorController}}
+\doxysubsubsection{\texorpdfstring{GetById()}{GetById()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_professor_1_1_detailed_read_professor_output}{Detailed\+Read\+Professor\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Professor\+Controller.\+Get\+By\+Id (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Busca Professor pelo id. 
+
+\begin{DoxyReturn}{Retorna}
+Professor correspondente
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna Professor correspondente$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Professor não encontrado.$<$/response$>$ Este é o diagrama das funções que utilizam esta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_web_a_p_i_1_1_controllers_1_1_professor_controller_a457e5e6047a8ef179ef6d73a14b7aa67_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_professor_controller_a16264aff18c299a817eecbdb264ad86b}\label{class_web_a_p_i_1_1_controllers_1_1_professor_controller_a16264aff18c299a817eecbdb264ad86b} 
+\index{WebAPI.Controllers.ProfessorController@{WebAPI.Controllers.ProfessorController}!Update@{Update}}
+\index{Update@{Update}!WebAPI.Controllers.ProfessorController@{WebAPI.Controllers.ProfessorController}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_professor_1_1_detailed_read_professor_output}{Detailed\+Read\+Professor\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Professor\+Controller.\+Update (\begin{DoxyParamCaption}\item[{Guid?}]{id,  }\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_professor_1_1_update_professor_input}{Update\+Professor\+Input}}}]{request }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Atualiza Professor. 
+
+\begin{DoxyReturn}{Retorna}
+Professor atualizado
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna Professor atualizado$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Professor não encontrado.$<$/response$>$ 
+
+A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Infrastructure/\+Web\+API/\+Controllers/\mbox{\hyperlink{_professor_controller_8cs}{Professor\+Controller.\+cs}}\end{DoxyCompactItemize}

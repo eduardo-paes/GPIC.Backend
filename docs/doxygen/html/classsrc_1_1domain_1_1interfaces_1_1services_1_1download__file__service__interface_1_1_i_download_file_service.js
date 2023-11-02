@@ -1,0 +1,4 @@
+var classsrc_1_1domain_1_1interfaces_1_1services_1_1download__file__service__interface_1_1_i_download_file_service =
+[
+    [ "download_file", "classsrc_1_1domain_1_1interfaces_1_1services_1_1download__file__service__interface_1_1_i_download_file_service.html#ace66628f62132c7ef0ae8c0be1d8a09b", null ]
+];

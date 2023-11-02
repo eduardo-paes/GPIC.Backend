@@ -1,0 +1,7 @@
+<map id="Application.Tests.UseCases.Area.CreateAreaTests.MockValidArea" name="Application.Tests.UseCases.Area.CreateAreaTests.MockValidArea">
+<area shape="rect" id="Node000001" title=" " alt="" coords="328,53,569,94"/>
+<area shape="rect" id="Node000002" href="$class_application_1_1_tests_1_1_use_cases_1_1_area_1_1_create_area_tests.html#af78bb435aaadd80ac756b9485fda65d1" title=" " alt="" coords="5,5,280,61"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="312,58,280,54,281,49,313,53"/>
+<area shape="rect" id="Node000003" href="$class_application_1_1_tests_1_1_use_cases_1_1_area_1_1_create_area_tests.html#a7b16076b303ab8e53d00630d47c743a6" title=" " alt="" coords="30,85,255,141"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="312,94,256,101,255,96,312,88"/>
+</map>

@@ -1,0 +1,4 @@
+var namespacesrc_1_1domain_1_1interfaces_1_1repositories =
+[
+    [ "info_file_repository_interface", "namespacesrc_1_1domain_1_1interfaces_1_1repositories_1_1info__file__repository__interface.html", "namespacesrc_1_1domain_1_1interfaces_1_1repositories_1_1info__file__repository__interface" ]
+];

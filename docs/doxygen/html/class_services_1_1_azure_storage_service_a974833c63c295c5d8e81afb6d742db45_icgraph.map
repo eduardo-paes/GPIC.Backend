@@ -1,0 +1,5 @@
+<map id="Services.AzureStorageService.DeleteFileAsync" name="Services.AzureStorageService.DeleteFileAsync">
+<area shape="rect" id="Node000001" title="Deleta um arquivo." alt="" coords="257,5,460,46"/>
+<area shape="rect" id="Node000002" href="$class_services_1_1_azure_storage_service.html#ae0f5d5960658e0520ad72c44eb4056fe" title="Realiza o upload de um arquivo de edital." alt="" coords="5,5,209,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="241,28,209,28,209,23,241,23"/>
+</map>

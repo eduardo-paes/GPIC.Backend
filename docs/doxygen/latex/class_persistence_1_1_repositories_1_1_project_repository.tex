@@ -1,0 +1,368 @@
+\doxysection{Referência à classe Persistence.\+Repositories.\+Project\+Repository}
+\hypertarget{class_persistence_1_1_repositories_1_1_project_repository}{}\label{class_persistence_1_1_repositories_1_1_project_repository}\index{Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}}
+
+
+Diagrama de heranças da classe Persistence.\+Repositories.\+Project\+Repository
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=209pt]{class_persistence_1_1_repositories_1_1_project_repository__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para Persistence.\+Repositories.\+Project\+Repository\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=209pt]{class_persistence_1_1_repositories_1_1_project_repository__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_persistence_1_1_repositories_1_1_project_repository_adcb2304bb417aa46b55b6c8f818f4195}{Project\+Repository}} (\mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context}{Application\+Db\+Context}} context)
+\item 
+async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}} $>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_project_repository_ad81c68554441c99094e0c71f36ea2385}{Create\+Async}} (\mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}} project)
+\begin{DoxyCompactList}\small\item\em Cria projeto conforme parâmetros fornecidos. \end{DoxyCompactList}\item 
+async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}} $>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_project_repository_a9a3b3f210a29bbbe04eedb4a8acc5737}{Update\+Async}} (\mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}} project)
+\begin{DoxyCompactList}\small\item\em Atualiza projeto conforme parâmetros fornecidos. \end{DoxyCompactList}\item 
+async Task$<$ int $>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_project_repository_ab4e3bbad73a30add2dc438c0e24ff1e0}{Update\+Many\+Async}} (IList$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}} $>$ projects)
+\begin{DoxyCompactList}\small\item\em Atualiza vários projetos. \end{DoxyCompactList}\item 
+async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}} $>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_project_repository_aa4db46fcbaa369d1357f3bbd7ce577ea}{Delete\+Async}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Remove projeto através do Id informado. \end{DoxyCompactList}\item 
+async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}}?$>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_project_repository_acf06dfb24c7e5973fcb0b4dfba413ae3}{Get\+By\+Id\+Async}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Obtém projeto pelo Id informado. \end{DoxyCompactList}\item 
+async Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}} $>$ $>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_project_repository_a1031c95bbf24f977bfcd746775f8439c}{Get\+Professor\+Projects\+Async}} (int skip, int take, Guid? id, bool is\+Closed=false)
+\begin{DoxyCompactList}\small\item\em Permite a busca dos projetos (abertos ou fechados) associados ao professor. \end{DoxyCompactList}\item 
+async Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}} $>$ $>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_project_repository_ab4607dd996b57ab9ba3f8ea3d908bb2c}{Get\+Projects\+Async}} (int skip, int take, bool is\+Closed=false)
+\begin{DoxyCompactList}\small\item\em Permite a busca de todos os projetos (abertos ou fechados). \end{DoxyCompactList}\item 
+async Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}} $>$ $>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_project_repository_ab143a2b53a000611103782ade8873393}{Get\+Student\+Projects\+Async}} (int skip, int take, Guid? id, bool is\+Closed=false)
+\begin{DoxyCompactList}\small\item\em Permite a busca dos projetos (abertos ou fechados) associados ao aluno. \end{DoxyCompactList}\item 
+async Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}} $>$ $>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_project_repository_abf9d2094ab066f61dbba9417f3a3a558}{Get\+Project\+By\+Notice\+Async}} (Guid? notice\+Id)
+\begin{DoxyCompactList}\small\item\em Obtém projeto pelo Id do Edital informado. \end{DoxyCompactList}\item 
+async Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}} $>$ $>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_project_repository_a005aa6732bd32a2dfa7ff1e682ae844c}{Get\+Projects\+To\+Evaluate\+Async}} (int skip, int take, Guid? professor\+Id)
+\begin{DoxyCompactList}\small\item\em Permite a busca dos projetos em avaliação e que não estão associados ao professor. \end{DoxyCompactList}\item 
+async Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}} $>$ $>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_project_repository_a61c057be8ac82c4786a660b71be10bfe}{Get\+Projects\+With\+Close\+Report\+Due\+Date\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Obtém projetos que possuem data de entrega de relatório parcial ou final próxima. \end{DoxyCompactList}\item 
+async Task$<$ IList$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}} $>$ $>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_project_repository_a1ad928d52bae04f8d0b35789d20a396e}{Get\+Pending\+And\+Overdue\+Projects\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Obtém projetos pendentes e cujo prazo de resolução da pendência esteja vencido. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_persistence_1_1_repositories_1_1_project_repository_adcb2304bb417aa46b55b6c8f818f4195}\label{class_persistence_1_1_repositories_1_1_project_repository_adcb2304bb417aa46b55b6c8f818f4195} 
+\index{Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}!ProjectRepository@{ProjectRepository}}
+\index{ProjectRepository@{ProjectRepository}!Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}}
+\doxysubsubsection{\texorpdfstring{ProjectRepository()}{ProjectRepository()}}
+{\footnotesize\ttfamily Persistence.\+Repositories.\+Project\+Repository.\+Project\+Repository (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context}{Application\+Db\+Context}}}]{context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_persistence_1_1_repositories_1_1_project_repository_ad81c68554441c99094e0c71f36ea2385}\label{class_persistence_1_1_repositories_1_1_project_repository_ad81c68554441c99094e0c71f36ea2385} 
+\index{Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}!CreateAsync@{CreateAsync}}
+\index{CreateAsync@{CreateAsync}!Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}}
+\doxysubsubsection{\texorpdfstring{CreateAsync()}{CreateAsync()}}
+{\footnotesize\ttfamily async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}} $>$ Persistence.\+Repositories.\+Project\+Repository.\+Create\+Async (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}}}]{model }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cria projeto conforme parâmetros fornecidos. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em model} & Parâmetros de criação.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Projeto criado.
+\end{DoxyReturn}
+
+
+Implementa \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_repository_afecbfac06112273f6542b4fc85e21348}{Domain.\+Interfaces.\+Repositories.\+IProject\+Repository}}.
+
+\Hypertarget{class_persistence_1_1_repositories_1_1_project_repository_aa4db46fcbaa369d1357f3bbd7ce577ea}\label{class_persistence_1_1_repositories_1_1_project_repository_aa4db46fcbaa369d1357f3bbd7ce577ea} 
+\index{Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}!DeleteAsync@{DeleteAsync}}
+\index{DeleteAsync@{DeleteAsync}!Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}}
+\doxysubsubsection{\texorpdfstring{DeleteAsync()}{DeleteAsync()}}
+{\footnotesize\ttfamily async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}} $>$ Persistence.\+Repositories.\+Project\+Repository.\+Delete\+Async (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Remove projeto através do Id informado. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em id} & Id do projeto a ser removido.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Projeto removido.
+\end{DoxyReturn}
+
+
+Implementa \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_repository_a861c915d6e9db3c2baac1916c27cb6ab}{Domain.\+Interfaces.\+Repositories.\+IProject\+Repository}}.
+
+Grafo de chamadas desta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_persistence_1_1_repositories_1_1_project_repository_aa4db46fcbaa369d1357f3bbd7ce577ea_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_persistence_1_1_repositories_1_1_project_repository_acf06dfb24c7e5973fcb0b4dfba413ae3}\label{class_persistence_1_1_repositories_1_1_project_repository_acf06dfb24c7e5973fcb0b4dfba413ae3} 
+\index{Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}!GetByIdAsync@{GetByIdAsync}}
+\index{GetByIdAsync@{GetByIdAsync}!Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}}
+\doxysubsubsection{\texorpdfstring{GetByIdAsync()}{GetByIdAsync()}}
+{\footnotesize\ttfamily async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}}?$>$ Persistence.\+Repositories.\+Project\+Repository.\+Get\+By\+Id\+Async (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Obtém projeto pelo Id informado. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em id} & Id do projeto.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Projeto encontrado.
+\end{DoxyReturn}
+
+
+Implementa \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_repository_a8b5034959490c3183a9223fee47c6c19}{Domain.\+Interfaces.\+Repositories.\+IProject\+Repository}}.
+
+Este é o diagrama das funções que utilizam esta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_persistence_1_1_repositories_1_1_project_repository_acf06dfb24c7e5973fcb0b4dfba413ae3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_persistence_1_1_repositories_1_1_project_repository_a1ad928d52bae04f8d0b35789d20a396e}\label{class_persistence_1_1_repositories_1_1_project_repository_a1ad928d52bae04f8d0b35789d20a396e} 
+\index{Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}!GetPendingAndOverdueProjectsAsync@{GetPendingAndOverdueProjectsAsync}}
+\index{GetPendingAndOverdueProjectsAsync@{GetPendingAndOverdueProjectsAsync}!Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}}
+\doxysubsubsection{\texorpdfstring{GetPendingAndOverdueProjectsAsync()}{GetPendingAndOverdueProjectsAsync()}}
+{\footnotesize\ttfamily async Task$<$ IList$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}} $>$ $>$ Persistence.\+Repositories.\+Project\+Repository.\+Get\+Pending\+And\+Overdue\+Projects\+Async (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Obtém projetos pendentes e cujo prazo de resolução da pendência esteja vencido. 
+
+\begin{DoxyReturn}{Retorna}
+Projetos encontrados.
+\end{DoxyReturn}
+
+
+Implementa \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_repository_a580bf24d7ce8dbbad01beac0baac31d6}{Domain.\+Interfaces.\+Repositories.\+IProject\+Repository}}.
+
+\Hypertarget{class_persistence_1_1_repositories_1_1_project_repository_a1031c95bbf24f977bfcd746775f8439c}\label{class_persistence_1_1_repositories_1_1_project_repository_a1031c95bbf24f977bfcd746775f8439c} 
+\index{Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}!GetProfessorProjectsAsync@{GetProfessorProjectsAsync}}
+\index{GetProfessorProjectsAsync@{GetProfessorProjectsAsync}!Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}}
+\doxysubsubsection{\texorpdfstring{GetProfessorProjectsAsync()}{GetProfessorProjectsAsync()}}
+{\footnotesize\ttfamily async Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}} $>$ $>$ Persistence.\+Repositories.\+Project\+Repository.\+Get\+Professor\+Projects\+Async (\begin{DoxyParamCaption}\item[{int}]{skip,  }\item[{int}]{take,  }\item[{Guid?}]{id,  }\item[{bool}]{is\+Closed = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Permite a busca dos projetos (abertos ou fechados) associados ao professor. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em skip} & Quantidade de registros a serem ignorados.\\
+\hline
+{\em take} & Quantidade de registros a serem retornados.\\
+\hline
+{\em id} & Id do professor.\\
+\hline
+{\em is\+Closed} & Filtra por projetos encerrados.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Retorna os projetos do professor.
+\end{DoxyReturn}
+
+
+Implementa \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_repository_a5370abd635313d2e62e002a338264070}{Domain.\+Interfaces.\+Repositories.\+IProject\+Repository}}.
+
+\Hypertarget{class_persistence_1_1_repositories_1_1_project_repository_abf9d2094ab066f61dbba9417f3a3a558}\label{class_persistence_1_1_repositories_1_1_project_repository_abf9d2094ab066f61dbba9417f3a3a558} 
+\index{Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}!GetProjectByNoticeAsync@{GetProjectByNoticeAsync}}
+\index{GetProjectByNoticeAsync@{GetProjectByNoticeAsync}!Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}}
+\doxysubsubsection{\texorpdfstring{GetProjectByNoticeAsync()}{GetProjectByNoticeAsync()}}
+{\footnotesize\ttfamily async Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}} $>$ $>$ Persistence.\+Repositories.\+Project\+Repository.\+Get\+Project\+By\+Notice\+Async (\begin{DoxyParamCaption}\item[{Guid?}]{notice\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Obtém projeto pelo Id do Edital informado. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em notice\+Id} & Id do Edital.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Projetos encontrados.
+\end{DoxyReturn}
+
+
+Implementa \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_repository_a3998a1ab48822d9f342f098289d62953}{Domain.\+Interfaces.\+Repositories.\+IProject\+Repository}}.
+
+\Hypertarget{class_persistence_1_1_repositories_1_1_project_repository_ab4607dd996b57ab9ba3f8ea3d908bb2c}\label{class_persistence_1_1_repositories_1_1_project_repository_ab4607dd996b57ab9ba3f8ea3d908bb2c} 
+\index{Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}!GetProjectsAsync@{GetProjectsAsync}}
+\index{GetProjectsAsync@{GetProjectsAsync}!Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}}
+\doxysubsubsection{\texorpdfstring{GetProjectsAsync()}{GetProjectsAsync()}}
+{\footnotesize\ttfamily async Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}} $>$ $>$ Persistence.\+Repositories.\+Project\+Repository.\+Get\+Projects\+Async (\begin{DoxyParamCaption}\item[{int}]{skip,  }\item[{int}]{take,  }\item[{bool}]{is\+Closed = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Permite a busca de todos os projetos (abertos ou fechados). 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em skip} & Quantidade de registros a serem ignorados.\\
+\hline
+{\em take} & Quantidade de registros a serem retornados.\\
+\hline
+{\em is\+Closed} & Filtra por projetos encerrados.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Retorna todos os projetos.
+\end{DoxyReturn}
+
+
+Implementa \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_repository_a95bede67f0979d62f9d6a322ee573263}{Domain.\+Interfaces.\+Repositories.\+IProject\+Repository}}.
+
+\Hypertarget{class_persistence_1_1_repositories_1_1_project_repository_a005aa6732bd32a2dfa7ff1e682ae844c}\label{class_persistence_1_1_repositories_1_1_project_repository_a005aa6732bd32a2dfa7ff1e682ae844c} 
+\index{Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}!GetProjectsToEvaluateAsync@{GetProjectsToEvaluateAsync}}
+\index{GetProjectsToEvaluateAsync@{GetProjectsToEvaluateAsync}!Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}}
+\doxysubsubsection{\texorpdfstring{GetProjectsToEvaluateAsync()}{GetProjectsToEvaluateAsync()}}
+{\footnotesize\ttfamily async Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}} $>$ $>$ Persistence.\+Repositories.\+Project\+Repository.\+Get\+Projects\+To\+Evaluate\+Async (\begin{DoxyParamCaption}\item[{int}]{skip,  }\item[{int}]{take,  }\item[{Guid?}]{professor\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Permite a busca dos projetos em avaliação e que não estão associados ao professor. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em skip} & Quantidade de registros a serem ignorados.\\
+\hline
+{\em take} & Quantidade de registros a serem retornados.\\
+\hline
+{\em professor\+Id} & Id do professor.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Retorna os projetos em avaliação.
+\end{DoxyReturn}
+
+
+Implementa \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_repository_ada3a89cbacdbaaa5038ae1b347f18280}{Domain.\+Interfaces.\+Repositories.\+IProject\+Repository}}.
+
+\Hypertarget{class_persistence_1_1_repositories_1_1_project_repository_a61c057be8ac82c4786a660b71be10bfe}\label{class_persistence_1_1_repositories_1_1_project_repository_a61c057be8ac82c4786a660b71be10bfe} 
+\index{Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}!GetProjectsWithCloseReportDueDateAsync@{GetProjectsWithCloseReportDueDateAsync}}
+\index{GetProjectsWithCloseReportDueDateAsync@{GetProjectsWithCloseReportDueDateAsync}!Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}}
+\doxysubsubsection{\texorpdfstring{GetProjectsWithCloseReportDueDateAsync()}{GetProjectsWithCloseReportDueDateAsync()}}
+{\footnotesize\ttfamily async Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}} $>$ $>$ Persistence.\+Repositories.\+Project\+Repository.\+Get\+Projects\+With\+Close\+Report\+Due\+Date\+Async (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Obtém projetos que possuem data de entrega de relatório parcial ou final próxima. 
+
+\begin{DoxyReturn}{Retorna}
+Projetos encontrados.
+\end{DoxyReturn}
+
+
+A data de entrega de relatório parcial ou final é considerada próxima quando a mesma está a um mês ou 7 dias de distância. 
+
+Implementa \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_repository_a05663e8c8c2024b60fa3b86ac98e994e}{Domain.\+Interfaces.\+Repositories.\+IProject\+Repository}}.
+
+\Hypertarget{class_persistence_1_1_repositories_1_1_project_repository_ab143a2b53a000611103782ade8873393}\label{class_persistence_1_1_repositories_1_1_project_repository_ab143a2b53a000611103782ade8873393} 
+\index{Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}!GetStudentProjectsAsync@{GetStudentProjectsAsync}}
+\index{GetStudentProjectsAsync@{GetStudentProjectsAsync}!Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}}
+\doxysubsubsection{\texorpdfstring{GetStudentProjectsAsync()}{GetStudentProjectsAsync()}}
+{\footnotesize\ttfamily async Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}} $>$ $>$ Persistence.\+Repositories.\+Project\+Repository.\+Get\+Student\+Projects\+Async (\begin{DoxyParamCaption}\item[{int}]{skip,  }\item[{int}]{take,  }\item[{Guid?}]{id,  }\item[{bool}]{is\+Closed = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Permite a busca dos projetos (abertos ou fechados) associados ao aluno. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em skip} & Quantidade de registros a serem ignorados.\\
+\hline
+{\em take} & Quantidade de registros a serem retornados.\\
+\hline
+{\em id} & Id do aluno.\\
+\hline
+{\em is\+Closed} & Filtra por projetos encerrados.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Retorna os projetos do aluno.
+\end{DoxyReturn}
+
+
+Implementa \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_repository_af1622593b0756fddc788330a639480f2}{Domain.\+Interfaces.\+Repositories.\+IProject\+Repository}}.
+
+\Hypertarget{class_persistence_1_1_repositories_1_1_project_repository_a9a3b3f210a29bbbe04eedb4a8acc5737}\label{class_persistence_1_1_repositories_1_1_project_repository_a9a3b3f210a29bbbe04eedb4a8acc5737} 
+\index{Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}!UpdateAsync@{UpdateAsync}}
+\index{UpdateAsync@{UpdateAsync}!Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}}
+\doxysubsubsection{\texorpdfstring{UpdateAsync()}{UpdateAsync()}}
+{\footnotesize\ttfamily async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}} $>$ Persistence.\+Repositories.\+Project\+Repository.\+Update\+Async (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}}}]{model }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Atualiza projeto conforme parâmetros fornecidos. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em model} & Parâmetros de atualização.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Projeto atualizado.
+\end{DoxyReturn}
+
+
+Implementa \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_repository_aadb4a8aa61bc1b912ef33c123a6885f5}{Domain.\+Interfaces.\+Repositories.\+IProject\+Repository}}.
+
+Este é o diagrama das funções que utilizam esta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_persistence_1_1_repositories_1_1_project_repository_a9a3b3f210a29bbbe04eedb4a8acc5737_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_persistence_1_1_repositories_1_1_project_repository_ab4e3bbad73a30add2dc438c0e24ff1e0}\label{class_persistence_1_1_repositories_1_1_project_repository_ab4e3bbad73a30add2dc438c0e24ff1e0} 
+\index{Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}!UpdateManyAsync@{UpdateManyAsync}}
+\index{UpdateManyAsync@{UpdateManyAsync}!Persistence.Repositories.ProjectRepository@{Persistence.Repositories.ProjectRepository}}
+\doxysubsubsection{\texorpdfstring{UpdateManyAsync()}{UpdateManyAsync()}}
+{\footnotesize\ttfamily async Task$<$ int $>$ Persistence.\+Repositories.\+Project\+Repository.\+Update\+Many\+Async (\begin{DoxyParamCaption}\item[{IList$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}} $>$}]{projects }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Atualiza vários projetos. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em projects} & Projetos a serem atualizados.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Quantidade de projetos atualizados.
+\end{DoxyReturn}
+
+
+Implementa \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_repository_a0b311f6d79a08105751886c89665b031}{Domain.\+Interfaces.\+Repositories.\+IProject\+Repository}}.
+
+
+
+A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Infrastructure/\+Persistence/\+Repositories/\mbox{\hyperlink{_project_repository_8cs}{Project\+Repository.\+cs}}\end{DoxyCompactItemize}

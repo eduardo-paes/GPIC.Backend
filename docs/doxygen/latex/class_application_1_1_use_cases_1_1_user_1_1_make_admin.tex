@@ -1,0 +1,64 @@
+\doxysection{Referência à classe Application.\+Use\+Cases.\+User.\+Make\+Admin}
+\hypertarget{class_application_1_1_use_cases_1_1_user_1_1_make_admin}{}\label{class_application_1_1_use_cases_1_1_user_1_1_make_admin}\index{Application.UseCases.User.MakeAdmin@{Application.UseCases.User.MakeAdmin}}
+
+
+Diagrama de heranças da classe Application.\+Use\+Cases.\+User.\+Make\+Admin
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{class_application_1_1_use_cases_1_1_user_1_1_make_admin__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para Application.\+Use\+Cases.\+User.\+Make\+Admin\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{class_application_1_1_use_cases_1_1_user_1_1_make_admin__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_application_1_1_use_cases_1_1_user_1_1_make_admin_ac1bca09e68239c3d8555edb63020f7e9}{Make\+Admin}} (\mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository}{IUser\+Repository}} user\+Repository, \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_professor_repository}{IProfessor\+Repository}} professor\+Repository, \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_services_1_1_i_token_authentication_service}{IToken\+Authentication\+Service}} token\+Authentication\+Service)
+\item 
+async Task$<$ string $>$ \mbox{\hyperlink{class_application_1_1_use_cases_1_1_user_1_1_make_admin_aba9474b4f4f6976a221d8622457d9c22}{Execute\+Async}} (Guid? user\+Id)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_application_1_1_use_cases_1_1_user_1_1_make_admin_ac1bca09e68239c3d8555edb63020f7e9}\label{class_application_1_1_use_cases_1_1_user_1_1_make_admin_ac1bca09e68239c3d8555edb63020f7e9} 
+\index{Application.UseCases.User.MakeAdmin@{Application.UseCases.User.MakeAdmin}!MakeAdmin@{MakeAdmin}}
+\index{MakeAdmin@{MakeAdmin}!Application.UseCases.User.MakeAdmin@{Application.UseCases.User.MakeAdmin}}
+\doxysubsubsection{\texorpdfstring{MakeAdmin()}{MakeAdmin()}}
+{\footnotesize\ttfamily Application.\+Use\+Cases.\+User.\+Make\+Admin.\+Make\+Admin (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository}{IUser\+Repository}}}]{user\+Repository,  }\item[{\mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_professor_repository}{IProfessor\+Repository}}}]{professor\+Repository,  }\item[{\mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_services_1_1_i_token_authentication_service}{IToken\+Authentication\+Service}}}]{token\+Authentication\+Service }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_application_1_1_use_cases_1_1_user_1_1_make_admin_aba9474b4f4f6976a221d8622457d9c22}\label{class_application_1_1_use_cases_1_1_user_1_1_make_admin_aba9474b4f4f6976a221d8622457d9c22} 
+\index{Application.UseCases.User.MakeAdmin@{Application.UseCases.User.MakeAdmin}!ExecuteAsync@{ExecuteAsync}}
+\index{ExecuteAsync@{ExecuteAsync}!Application.UseCases.User.MakeAdmin@{Application.UseCases.User.MakeAdmin}}
+\doxysubsubsection{\texorpdfstring{ExecuteAsync()}{ExecuteAsync()}}
+{\footnotesize\ttfamily async Task$<$ string $>$ Application.\+Use\+Cases.\+User.\+Make\+Admin.\+Execute\+Async (\begin{DoxyParamCaption}\item[{Guid?}]{user\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Verifica se usuário que será tornado administrador é professor, pois apenas um professor pode se tornar administrador
+
+Implementa \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_user_1_1_i_make_admin_a35c6d78c5c110a1953052be668818cc7}{Application.\+Interfaces.\+Use\+Cases.\+User.\+IMake\+Admin}}.
+
+Grafo de chamadas desta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_application_1_1_use_cases_1_1_user_1_1_make_admin_aba9474b4f4f6976a221d8622457d9c22_cgraph}
+\end{center}
+\end{figure}
+
+
+A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Application/\+Use\+Cases/\+User/\mbox{\hyperlink{_make_admin_8cs}{Make\+Admin.\+cs}}\end{DoxyCompactItemize}

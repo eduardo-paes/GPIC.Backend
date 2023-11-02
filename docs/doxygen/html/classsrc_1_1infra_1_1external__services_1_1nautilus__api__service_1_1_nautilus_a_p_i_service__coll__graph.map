@@ -1,0 +1,7 @@
+<map id="src.infra.external_services.nautilus_api_service.NautilusAPIService" name="src.infra.external_services.nautilus_api_service.NautilusAPIService">
+<area shape="rect" id="Node000001" title=" " alt="" coords="424,5,612,61"/>
+<area shape="rect" id="Node000002" href="$classsrc_1_1domain_1_1interfaces_1_1services_1_1nautilus__api__service__interface_1_1_i_nautilus_a_p_i_service.html" title=" " alt="" coords="103,13,376,54"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="391,31,423,31,423,36,391,36"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,20,55,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="69,31,102,31,102,36,69,36"/>
+</map>

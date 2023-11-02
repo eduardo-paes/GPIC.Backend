@@ -1,0 +1,136 @@
+\doxysection{Referência à classe Web\+API.\+Controllers.\+Auth\+Controller}
+\hypertarget{class_web_a_p_i_1_1_controllers_1_1_auth_controller}{}\label{class_web_a_p_i_1_1_controllers_1_1_auth_controller}\index{WebAPI.Controllers.AuthController@{WebAPI.Controllers.AuthController}}
+
+
+Controller de Autenticação.  
+
+
+
+
+Diagrama de heranças da classe Web\+API.\+Controllers.\+Auth\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=248pt]{class_web_a_p_i_1_1_controllers_1_1_auth_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para Web\+API.\+Controllers.\+Auth\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=248pt]{class_web_a_p_i_1_1_controllers_1_1_auth_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_auth_controller_ae97bb01ae703cdbfd6134459b178a9bf}{Auth\+Controller}} (\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_auth_1_1_i_confirm_email}{IConfirm\+Email}} confirm\+Email, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_auth_1_1_i_forgot_password}{IForgot\+Password}} forgot\+Password, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_auth_1_1_i_login}{ILogin}} login, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_auth_1_1_i_reset_password}{IReset\+Password}} reset\+Password, ILogger$<$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_auth_controller}{Auth\+Controller}} $>$ logger)
+\begin{DoxyCompactList}\small\item\em Construtor do Controller de Autenticação. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ string $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_auth_controller_a9ae7de166edd656a3bbe6fd3bd1a8513}{Confirm\+Email}} (string? email, string? token)
+\begin{DoxyCompactList}\small\item\em Realiza a confirmação do e-\/mail do usuário através do token de validação fornecido e do E-\/mail do usuário. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ string $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_auth_controller_a3d7d8476fe397fb84bd6e9b80fd9d1fa}{Forgot\+Password}} (string? email)
+\begin{DoxyCompactList}\small\item\em Realiza a solicitação de reset de senha para o e-\/mail informado. Após a solicitação, um código é enviado para o e-\/mail do usuário. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_auth_1_1_user_login_output}{User\+Login\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_auth_controller_a9e091ce3f717cf7abaa81896fdb1cb22}{Login}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_auth_1_1_user_login_input}{User\+Login\+Input}} request)
+\begin{DoxyCompactList}\small\item\em Realiza o login do usário. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ string $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_auth_controller_ac9ff4127907cdc139966c95b7a8be1a8}{Reset\+Password}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_auth_1_1_user_reset_password_input}{User\+Reset\+Password\+Input}} request)
+\begin{DoxyCompactList}\small\item\em Realiza a alteração de senha do usário. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Controller de Autenticação. 
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_auth_controller_ae97bb01ae703cdbfd6134459b178a9bf}\label{class_web_a_p_i_1_1_controllers_1_1_auth_controller_ae97bb01ae703cdbfd6134459b178a9bf} 
+\index{WebAPI.Controllers.AuthController@{WebAPI.Controllers.AuthController}!AuthController@{AuthController}}
+\index{AuthController@{AuthController}!WebAPI.Controllers.AuthController@{WebAPI.Controllers.AuthController}}
+\doxysubsubsection{\texorpdfstring{AuthController()}{AuthController()}}
+{\footnotesize\ttfamily Web\+API.\+Controllers.\+Auth\+Controller.\+Auth\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_auth_1_1_i_confirm_email}{IConfirm\+Email}}}]{confirm\+Email,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_auth_1_1_i_forgot_password}{IForgot\+Password}}}]{forgot\+Password,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_auth_1_1_i_login}{ILogin}}}]{login,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_auth_1_1_i_reset_password}{IReset\+Password}}}]{reset\+Password,  }\item[{ILogger$<$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_auth_controller}{Auth\+Controller}} $>$}]{logger }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construtor do Controller de Autenticação. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em confirm\+Email} & Serviço de confirmação de e-\/mail.\\
+\hline
+{\em forgot\+Password} & Serviço de solicitação de reset de senha.\\
+\hline
+{\em login} & Serviço de login.\\
+\hline
+{\em reset\+Password} & Serviço de reset de senha.\\
+\hline
+{\em logger} & Serviço de log.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_auth_controller_a9ae7de166edd656a3bbe6fd3bd1a8513}\label{class_web_a_p_i_1_1_controllers_1_1_auth_controller_a9ae7de166edd656a3bbe6fd3bd1a8513} 
+\index{WebAPI.Controllers.AuthController@{WebAPI.Controllers.AuthController}!ConfirmEmail@{ConfirmEmail}}
+\index{ConfirmEmail@{ConfirmEmail}!WebAPI.Controllers.AuthController@{WebAPI.Controllers.AuthController}}
+\doxysubsubsection{\texorpdfstring{ConfirmEmail()}{ConfirmEmail()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ string $>$ $>$ Web\+API.\+Controllers.\+Auth\+Controller.\+Confirm\+Email (\begin{DoxyParamCaption}\item[{string?}]{email,  }\item[{string?}]{token }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Realiza a confirmação do e-\/mail do usuário através do token de validação fornecido e do E-\/mail do usuário. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em email} & E-\/mail do usuário\\
+\hline
+{\em token} & Token de validação\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Resultado da solicitação de validação
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$E-\/mail confirmado com sucesso$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ \Hypertarget{class_web_a_p_i_1_1_controllers_1_1_auth_controller_a3d7d8476fe397fb84bd6e9b80fd9d1fa}\label{class_web_a_p_i_1_1_controllers_1_1_auth_controller_a3d7d8476fe397fb84bd6e9b80fd9d1fa} 
+\index{WebAPI.Controllers.AuthController@{WebAPI.Controllers.AuthController}!ForgotPassword@{ForgotPassword}}
+\index{ForgotPassword@{ForgotPassword}!WebAPI.Controllers.AuthController@{WebAPI.Controllers.AuthController}}
+\doxysubsubsection{\texorpdfstring{ForgotPassword()}{ForgotPassword()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ string $>$ $>$ Web\+API.\+Controllers.\+Auth\+Controller.\+Forgot\+Password (\begin{DoxyParamCaption}\item[{string?}]{email }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Realiza a solicitação de reset de senha para o e-\/mail informado. Após a solicitação, um código é enviado para o e-\/mail do usuário. 
+
+\begin{DoxyReturn}{Retorna}
+Resultado da requisição
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Solicitação realizada com sucesso$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ \Hypertarget{class_web_a_p_i_1_1_controllers_1_1_auth_controller_a9e091ce3f717cf7abaa81896fdb1cb22}\label{class_web_a_p_i_1_1_controllers_1_1_auth_controller_a9e091ce3f717cf7abaa81896fdb1cb22} 
+\index{WebAPI.Controllers.AuthController@{WebAPI.Controllers.AuthController}!Login@{Login}}
+\index{Login@{Login}!WebAPI.Controllers.AuthController@{WebAPI.Controllers.AuthController}}
+\doxysubsubsection{\texorpdfstring{Login()}{Login()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_auth_1_1_user_login_output}{User\+Login\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Auth\+Controller.\+Login (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_auth_1_1_user_login_input}{User\+Login\+Input}}}]{request }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Realiza o login do usário. 
+
+\begin{DoxyReturn}{Retorna}
+Retorna token de acesso
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna token de acesso$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ \Hypertarget{class_web_a_p_i_1_1_controllers_1_1_auth_controller_ac9ff4127907cdc139966c95b7a8be1a8}\label{class_web_a_p_i_1_1_controllers_1_1_auth_controller_ac9ff4127907cdc139966c95b7a8be1a8} 
+\index{WebAPI.Controllers.AuthController@{WebAPI.Controllers.AuthController}!ResetPassword@{ResetPassword}}
+\index{ResetPassword@{ResetPassword}!WebAPI.Controllers.AuthController@{WebAPI.Controllers.AuthController}}
+\doxysubsubsection{\texorpdfstring{ResetPassword()}{ResetPassword()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ string $>$ $>$ Web\+API.\+Controllers.\+Auth\+Controller.\+Reset\+Password (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_auth_1_1_user_reset_password_input}{User\+Reset\+Password\+Input}}}]{request }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Realiza a alteração de senha do usário. 
+
+\begin{DoxyReturn}{Retorna}
+Retorna o status da alteração
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna o status da alteração$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ 
+
+A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Infrastructure/\+Web\+API/\+Controllers/\mbox{\hyperlink{_auth_controller_8cs}{Auth\+Controller.\+cs}}\end{DoxyCompactItemize}

@@ -1,0 +1,8 @@
+var class_application_1_1_tests_1_1_use_cases_1_1_program_type_1_1_update_program_type_tests =
+[
+    [ "ExecuteAsync_DeletedProgramType_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_program_type_1_1_update_program_type_tests.html#aa4a67f58acb21f95ceac61db75ebe7c4", null ],
+    [ "ExecuteAsync_InvalidId_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_program_type_1_1_update_program_type_tests.html#a7dfe5f85b1e8593030b59655559de1f0", null ],
+    [ "ExecuteAsync_NameIsNull_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_program_type_1_1_update_program_type_tests.html#a9d274636b8e6dd9112a9226153dd5781", null ],
+    [ "ExecuteAsync_ProgramTypeNameExists_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_program_type_1_1_update_program_type_tests.html#a160a4234c54bcee539bc6bed2ec879e2", null ],
+    [ "ExecuteAsync_ValidInput_ReturnsDetailedReadProgramTypeOutput", "class_application_1_1_tests_1_1_use_cases_1_1_program_type_1_1_update_program_type_tests.html#ac9dcc039a8a82964080314b47392a73a", null ]
+];

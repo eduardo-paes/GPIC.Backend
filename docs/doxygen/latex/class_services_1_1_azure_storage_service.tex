@@ -1,0 +1,141 @@
+\doxysection{Referência à classe Services.\+Azure\+Storage\+Service}
+\hypertarget{class_services_1_1_azure_storage_service}{}\label{class_services_1_1_azure_storage_service}\index{Services.AzureStorageService@{Services.AzureStorageService}}
+
+
+Diagrama de heranças da classe Services.\+Azure\+Storage\+Service
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{class_services_1_1_azure_storage_service__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para Services.\+Azure\+Storage\+Service\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=230pt]{class_services_1_1_azure_storage_service__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_services_1_1_azure_storage_service_a8a96a920be6c91334687c3a1860e6da6}{Azure\+Storage\+Service}} (IConfiguration configuration, \mbox{\hyperlink{interface_services_1_1_i_dot_env_secrets}{IDot\+Env\+Secrets}} dot\+Env\+Secrets)
+\item 
+async Task \mbox{\hyperlink{class_services_1_1_azure_storage_service_a974833c63c295c5d8e81afb6d742db45}{Delete\+File\+Async}} (string file\+Path)
+\begin{DoxyCompactList}\small\item\em Deleta um arquivo. \end{DoxyCompactList}\item 
+async Task$<$ string $>$ \mbox{\hyperlink{class_services_1_1_azure_storage_service_ae0f5d5960658e0520ad72c44eb4056fe}{Upload\+File\+Async}} (IForm\+File file, string? file\+Path=null)
+\begin{DoxyCompactList}\small\item\em Realiza o upload de um arquivo de edital. \end{DoxyCompactList}\item 
+async Task$<$ string $>$ \mbox{\hyperlink{class_services_1_1_azure_storage_service_a3ad44274b96328989f555b00cf2365af}{Upload\+File\+Async}} (byte\mbox{[}$\,$\mbox{]} file, string? file\+Path)
+\begin{DoxyCompactList}\small\item\em Realiza o upload de um arquivo de edital. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_services_1_1_azure_storage_service_a8a96a920be6c91334687c3a1860e6da6}\label{class_services_1_1_azure_storage_service_a8a96a920be6c91334687c3a1860e6da6} 
+\index{Services.AzureStorageService@{Services.AzureStorageService}!AzureStorageService@{AzureStorageService}}
+\index{AzureStorageService@{AzureStorageService}!Services.AzureStorageService@{Services.AzureStorageService}}
+\doxysubsubsection{\texorpdfstring{AzureStorageService()}{AzureStorageService()}}
+{\footnotesize\ttfamily Services.\+Azure\+Storage\+Service.\+Azure\+Storage\+Service (\begin{DoxyParamCaption}\item[{IConfiguration}]{configuration,  }\item[{\mbox{\hyperlink{interface_services_1_1_i_dot_env_secrets}{IDot\+Env\+Secrets}}}]{dot\+Env\+Secrets }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Grafo de chamadas desta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_services_1_1_azure_storage_service_a8a96a920be6c91334687c3a1860e6da6_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_services_1_1_azure_storage_service_a974833c63c295c5d8e81afb6d742db45}\label{class_services_1_1_azure_storage_service_a974833c63c295c5d8e81afb6d742db45} 
+\index{Services.AzureStorageService@{Services.AzureStorageService}!DeleteFileAsync@{DeleteFileAsync}}
+\index{DeleteFileAsync@{DeleteFileAsync}!Services.AzureStorageService@{Services.AzureStorageService}}
+\doxysubsubsection{\texorpdfstring{DeleteFileAsync()}{DeleteFileAsync()}}
+{\footnotesize\ttfamily async Task Services.\+Azure\+Storage\+Service.\+Delete\+File\+Async (\begin{DoxyParamCaption}\item[{string}]{file\+Path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Deleta um arquivo. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em file\+Path} & Caminho completo até o arquivo\\
+\hline
+\end{DoxyParams}
+
+
+Implementa \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_services_1_1_i_storage_file_service_ab3a0c8478147e29bfa6993c51f67599f}{Domain.\+Interfaces.\+Services.\+IStorage\+File\+Service}}.
+
+Este é o diagrama das funções que utilizam esta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_services_1_1_azure_storage_service_a974833c63c295c5d8e81afb6d742db45_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_services_1_1_azure_storage_service_a3ad44274b96328989f555b00cf2365af}\label{class_services_1_1_azure_storage_service_a3ad44274b96328989f555b00cf2365af} 
+\index{Services.AzureStorageService@{Services.AzureStorageService}!UploadFileAsync@{UploadFileAsync}}
+\index{UploadFileAsync@{UploadFileAsync}!Services.AzureStorageService@{Services.AzureStorageService}}
+\doxysubsubsection{\texorpdfstring{UploadFileAsync()}{UploadFileAsync()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily async Task$<$ string $>$ Services.\+Azure\+Storage\+Service.\+Upload\+File\+Async (\begin{DoxyParamCaption}\item[{byte\mbox{[}$\,$\mbox{]}}]{file,  }\item[{string?}]{file\+Path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Realiza o upload de um arquivo de edital. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em file} & Edital em pdf\\
+\hline
+{\em file\+Path} & Caminho completo até o arquivo\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Caminho final do arquivo
+\end{DoxyReturn}
+
+
+Implementa \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_services_1_1_i_storage_file_service_a91e1e0f14bf1d06fe05c72d5f4de24f7}{Domain.\+Interfaces.\+Services.\+IStorage\+File\+Service}}.
+
+\Hypertarget{class_services_1_1_azure_storage_service_ae0f5d5960658e0520ad72c44eb4056fe}\label{class_services_1_1_azure_storage_service_ae0f5d5960658e0520ad72c44eb4056fe} 
+\index{Services.AzureStorageService@{Services.AzureStorageService}!UploadFileAsync@{UploadFileAsync}}
+\index{UploadFileAsync@{UploadFileAsync}!Services.AzureStorageService@{Services.AzureStorageService}}
+\doxysubsubsection{\texorpdfstring{UploadFileAsync()}{UploadFileAsync()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily async Task$<$ string $>$ Services.\+Azure\+Storage\+Service.\+Upload\+File\+Async (\begin{DoxyParamCaption}\item[{IForm\+File}]{file,  }\item[{string?}]{file\+Path = {\ttfamily null} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Realiza o upload de um arquivo de edital. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em file} & Edital em pdf\\
+\hline
+{\em file\+Path} & Caminho completo até o arquivo\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Caminho final do arquivo
+\end{DoxyReturn}
+
+
+Implementa \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_services_1_1_i_storage_file_service_a0c507db2b07407960098081c09da2b11}{Domain.\+Interfaces.\+Services.\+IStorage\+File\+Service}}.
+
+Grafo de chamadas desta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_services_1_1_azure_storage_service_ae0f5d5960658e0520ad72c44eb4056fe_cgraph}
+\end{center}
+\end{figure}
+
+
+A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Infrastructure/\+Services/\mbox{\hyperlink{_azure_storage_service_8cs}{Azure\+Storage\+Service.\+cs}}\end{DoxyCompactItemize}

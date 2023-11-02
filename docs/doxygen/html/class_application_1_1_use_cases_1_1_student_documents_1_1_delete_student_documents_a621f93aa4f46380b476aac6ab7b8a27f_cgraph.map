@@ -1,0 +1,7 @@
+<map id="Application.UseCases.StudentDocuments.DeleteStudentDocuments.ExecuteAsync" name="Application.UseCases.StudentDocuments.DeleteStudentDocuments.ExecuteAsync">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,252,61"/>
+<area shape="rect" id="Node000002" href="$class_application_1_1_validation_1_1_use_case_exception.html#a640987a86719d6afd8278fdbf578ab57" title=" " alt="" coords="300,13,524,54"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="252,31,284,31,284,36,252,36"/>
+<area shape="rect" id="Node000003" href="$class_application_1_1_validation_1_1_use_case_exception.html#ad2defa29da6c9eee2864794300f152ae" title=" " alt="" coords="572,13,799,54"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="525,31,557,31,557,36,525,36"/>
+</map>

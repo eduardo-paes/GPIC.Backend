@@ -1,0 +1,162 @@
+\doxysection{Referência à classe Web\+API.\+Controllers.\+Program\+Type\+Controller}
+\hypertarget{class_web_a_p_i_1_1_controllers_1_1_program_type_controller}{}\label{class_web_a_p_i_1_1_controllers_1_1_program_type_controller}\index{WebAPI.Controllers.ProgramTypeController@{WebAPI.Controllers.ProgramTypeController}}
+
+
+Controller de Tipo de Programa.  
+
+
+
+
+Diagrama de heranças da classe Web\+API.\+Controllers.\+Program\+Type\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{class_web_a_p_i_1_1_controllers_1_1_program_type_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para Web\+API.\+Controllers.\+Program\+Type\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{class_web_a_p_i_1_1_controllers_1_1_program_type_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_program_type_controller_a3c2f1de1ec447e2d0a7168f5c5712c9b}{Program\+Type\+Controller}} (\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_get_program_type_by_id}{IGet\+Program\+Type\+By\+Id}} get\+By\+Id, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_get_program_types}{IGet\+Program\+Types}} get\+All, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_create_program_type}{ICreate\+Program\+Type}} create, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_update_program_type}{IUpdate\+Program\+Type}} update, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_delete_program_type}{IDelete\+Program\+Type}} delete, ILogger$<$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_program_type_controller}{Program\+Type\+Controller}} $>$ logger)
+\begin{DoxyCompactList}\small\item\em Construtor do Controller de Tipo de Programa. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_program_type_1_1_detailed_read_program_type_output}{Detailed\+Read\+Program\+Type\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_program_type_controller_a7ddf25b5cfb6f75b78907fadb3f5db61}{Get\+By\+Id}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Busca tipo de programa pelo id. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ IEnumerable$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_program_type_1_1_resumed_read_program_type_output}{Resumed\+Read\+Program\+Type\+Output}} $>$ $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_program_type_controller_a5f732f5aa3590da08ec6ddb525dd9c45}{Get\+All}} (int skip=0, int take=50)
+\begin{DoxyCompactList}\small\item\em Busca todas os tipos de programas ativos. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_program_type_1_1_detailed_read_program_type_output}{Detailed\+Read\+Program\+Type\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_program_type_controller_abcba0c23e8ee3b34611d2be367599df3}{Create}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_program_type_1_1_create_program_type_input}{Create\+Program\+Type\+Input}} request)
+\begin{DoxyCompactList}\small\item\em Cria tipo de programa. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_program_type_1_1_detailed_read_program_type_output}{Detailed\+Read\+Program\+Type\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_program_type_controller_a531db2a2812b62e440b679f1a0802013}{Update}} (Guid? id, \mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_program_type_1_1_update_program_type_input}{Update\+Program\+Type\+Input}} request)
+\begin{DoxyCompactList}\small\item\em Atualiza tipo de programa. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_program_type_1_1_detailed_read_program_type_output}{Detailed\+Read\+Program\+Type\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_program_type_controller_a1fa5f3bb991ede6b4899552055c85073}{Delete}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Remove tipo de programa. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Controller de Tipo de Programa. 
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_program_type_controller_a3c2f1de1ec447e2d0a7168f5c5712c9b}\label{class_web_a_p_i_1_1_controllers_1_1_program_type_controller_a3c2f1de1ec447e2d0a7168f5c5712c9b} 
+\index{WebAPI.Controllers.ProgramTypeController@{WebAPI.Controllers.ProgramTypeController}!ProgramTypeController@{ProgramTypeController}}
+\index{ProgramTypeController@{ProgramTypeController}!WebAPI.Controllers.ProgramTypeController@{WebAPI.Controllers.ProgramTypeController}}
+\doxysubsubsection{\texorpdfstring{ProgramTypeController()}{ProgramTypeController()}}
+{\footnotesize\ttfamily Web\+API.\+Controllers.\+Program\+Type\+Controller.\+Program\+Type\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_get_program_type_by_id}{IGet\+Program\+Type\+By\+Id}}}]{get\+By\+Id,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_get_program_types}{IGet\+Program\+Types}}}]{get\+All,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_create_program_type}{ICreate\+Program\+Type}}}]{create,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_update_program_type}{IUpdate\+Program\+Type}}}]{update,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_delete_program_type}{IDelete\+Program\+Type}}}]{delete,  }\item[{ILogger$<$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_program_type_controller}{Program\+Type\+Controller}} $>$}]{logger }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construtor do Controller de Tipo de Programa. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em get\+By\+Id} & Serviço de obtenção de tipo de programa pelo id.\\
+\hline
+{\em get\+All} & Serviço de obtenção de todos os tipos de programas ativos.\\
+\hline
+{\em create} & Serviço de criação de tipo de programa.\\
+\hline
+{\em update} & Serviço de atualização de tipo de programa.\\
+\hline
+{\em delete} & Serviço de remoção de tipo de programa.\\
+\hline
+{\em logger} & Serviço de log.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_program_type_controller_abcba0c23e8ee3b34611d2be367599df3}\label{class_web_a_p_i_1_1_controllers_1_1_program_type_controller_abcba0c23e8ee3b34611d2be367599df3} 
+\index{WebAPI.Controllers.ProgramTypeController@{WebAPI.Controllers.ProgramTypeController}!Create@{Create}}
+\index{Create@{Create}!WebAPI.Controllers.ProgramTypeController@{WebAPI.Controllers.ProgramTypeController}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_program_type_1_1_detailed_read_program_type_output}{Detailed\+Read\+Program\+Type\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Program\+Type\+Controller.\+Create (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_program_type_1_1_create_program_type_input}{Create\+Program\+Type\+Input}}}]{request }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cria tipo de programa. 
+
+\begin{DoxyReturn}{Retorna}
+Tipo de Programa criado
+\end{DoxyReturn}
+$<$response code=\"{}201\"{}$>$Retorna tipo de programa criado$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ Grafo de chamadas desta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_web_a_p_i_1_1_controllers_1_1_program_type_controller_abcba0c23e8ee3b34611d2be367599df3_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_program_type_controller_a1fa5f3bb991ede6b4899552055c85073}\label{class_web_a_p_i_1_1_controllers_1_1_program_type_controller_a1fa5f3bb991ede6b4899552055c85073} 
+\index{WebAPI.Controllers.ProgramTypeController@{WebAPI.Controllers.ProgramTypeController}!Delete@{Delete}}
+\index{Delete@{Delete}!WebAPI.Controllers.ProgramTypeController@{WebAPI.Controllers.ProgramTypeController}}
+\doxysubsubsection{\texorpdfstring{Delete()}{Delete()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_program_type_1_1_detailed_read_program_type_output}{Detailed\+Read\+Program\+Type\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Program\+Type\+Controller.\+Delete (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Remove tipo de programa. 
+
+\begin{DoxyReturn}{Retorna}
+Tipo de Programa removido
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna tipo de programa removido$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Tipo de Programa não encontrado.$<$/response$>$ \Hypertarget{class_web_a_p_i_1_1_controllers_1_1_program_type_controller_a5f732f5aa3590da08ec6ddb525dd9c45}\label{class_web_a_p_i_1_1_controllers_1_1_program_type_controller_a5f732f5aa3590da08ec6ddb525dd9c45} 
+\index{WebAPI.Controllers.ProgramTypeController@{WebAPI.Controllers.ProgramTypeController}!GetAll@{GetAll}}
+\index{GetAll@{GetAll}!WebAPI.Controllers.ProgramTypeController@{WebAPI.Controllers.ProgramTypeController}}
+\doxysubsubsection{\texorpdfstring{GetAll()}{GetAll()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ IEnumerable$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_program_type_1_1_resumed_read_program_type_output}{Resumed\+Read\+Program\+Type\+Output}} $>$ $>$ $>$ Web\+API.\+Controllers.\+Program\+Type\+Controller.\+Get\+All (\begin{DoxyParamCaption}\item[{int}]{skip = {\ttfamily 0},  }\item[{int}]{take = {\ttfamily 50} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Busca todas os tipos de programas ativos. 
+
+\begin{DoxyReturn}{Retorna}
+Todas os tipos de programas ativos
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna todas os tipos de programas ativos$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Nenhum tipo de programa encontrado.$<$/response$>$ \Hypertarget{class_web_a_p_i_1_1_controllers_1_1_program_type_controller_a7ddf25b5cfb6f75b78907fadb3f5db61}\label{class_web_a_p_i_1_1_controllers_1_1_program_type_controller_a7ddf25b5cfb6f75b78907fadb3f5db61} 
+\index{WebAPI.Controllers.ProgramTypeController@{WebAPI.Controllers.ProgramTypeController}!GetById@{GetById}}
+\index{GetById@{GetById}!WebAPI.Controllers.ProgramTypeController@{WebAPI.Controllers.ProgramTypeController}}
+\doxysubsubsection{\texorpdfstring{GetById()}{GetById()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_program_type_1_1_detailed_read_program_type_output}{Detailed\+Read\+Program\+Type\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Program\+Type\+Controller.\+Get\+By\+Id (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Busca tipo de programa pelo id. 
+
+\begin{DoxyReturn}{Retorna}
+Tipo de Programa correspondente
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna Tipo de Programa correspondente$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Tipo de Programa não encontrado.$<$/response$>$ Este é o diagrama das funções que utilizam esta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_web_a_p_i_1_1_controllers_1_1_program_type_controller_a7ddf25b5cfb6f75b78907fadb3f5db61_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_program_type_controller_a531db2a2812b62e440b679f1a0802013}\label{class_web_a_p_i_1_1_controllers_1_1_program_type_controller_a531db2a2812b62e440b679f1a0802013} 
+\index{WebAPI.Controllers.ProgramTypeController@{WebAPI.Controllers.ProgramTypeController}!Update@{Update}}
+\index{Update@{Update}!WebAPI.Controllers.ProgramTypeController@{WebAPI.Controllers.ProgramTypeController}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_program_type_1_1_detailed_read_program_type_output}{Detailed\+Read\+Program\+Type\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Program\+Type\+Controller.\+Update (\begin{DoxyParamCaption}\item[{Guid?}]{id,  }\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_program_type_1_1_update_program_type_input}{Update\+Program\+Type\+Input}}}]{request }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Atualiza tipo de programa. 
+
+\begin{DoxyReturn}{Retorna}
+Tipo de Programa atualizado
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna tipo de programa atualizado$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Tipo de Programa não encontrado.$<$/response$>$ 
+
+A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Infrastructure/\+Web\+API/\+Controllers/\mbox{\hyperlink{_program_type_controller_8cs}{Program\+Type\+Controller.\+cs}}\end{DoxyCompactItemize}

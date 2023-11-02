@@ -1,0 +1,11 @@
+<map id="Representação gráfica da hiearquia da classe" name="Representação gráfica da hiearquia da classe">
+<area shape="rect" id="Node000000" href="$class_application_1_1_ports_1_1_area_1_1_base_area_contract.html" title=" " alt="" coords="5,104,191,145"/>
+<area shape="rect" id="Node000001" href="$class_application_1_1_ports_1_1_area_1_1_create_area_input.html" title=" " alt="" coords="247,5,442,46"/>
+<area shape="poly" id="edge103_Node000000_Node000001" title=" " alt="" coords="153,94,238,57,272,44,274,49,240,61,155,99"/>
+<area shape="rect" id="Node000002" href="$class_application_1_1_ports_1_1_area_1_1_detailed_read_area_output.html" title=" " alt="" coords="243,71,446,111"/>
+<area shape="poly" id="edge104_Node000000_Node000002" title=" " alt="" coords="206,107,242,102,243,107,207,112"/>
+<area shape="rect" id="Node000003" href="$class_application_1_1_ports_1_1_area_1_1_resumed_read_area_output.html" title=" " alt="" coords="239,136,450,177"/>
+<area shape="poly" id="edge105_Node000000_Node000003" title=" " alt="" coords="206,136,239,140,238,145,206,141"/>
+<area shape="rect" id="Node000004" href="$class_application_1_1_ports_1_1_area_1_1_update_area_input.html" title=" " alt="" coords="246,201,443,242"/>
+<area shape="poly" id="edge106_Node000000_Node000004" title=" " alt="" coords="156,149,240,186,274,198,273,203,238,191,154,154"/>
+</map>

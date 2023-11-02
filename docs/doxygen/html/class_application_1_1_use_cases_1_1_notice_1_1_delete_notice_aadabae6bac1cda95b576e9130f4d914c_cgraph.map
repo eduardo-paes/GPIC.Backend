@@ -1,0 +1,7 @@
+<map id="Application.UseCases.Notice.DeleteNotice.ExecuteAsync" name="Application.UseCases.Notice.DeleteNotice.ExecuteAsync">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,203,46"/>
+<area shape="rect" id="Node000002" href="$class_application_1_1_validation_1_1_use_case_exception.html#a640987a86719d6afd8278fdbf578ab57" title=" " alt="" coords="251,5,475,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="203,23,235,23,235,28,203,28"/>
+<area shape="rect" id="Node000003" href="$class_application_1_1_validation_1_1_use_case_exception.html#ad2defa29da6c9eee2864794300f152ae" title=" " alt="" coords="523,5,750,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="476,23,508,23,508,28,476,28"/>
+</map>

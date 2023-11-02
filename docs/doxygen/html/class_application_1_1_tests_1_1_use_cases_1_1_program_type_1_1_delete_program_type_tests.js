@@ -1,0 +1,5 @@
+var class_application_1_1_tests_1_1_use_cases_1_1_program_type_1_1_delete_program_type_tests =
+[
+    [ "ExecuteAsync_NullId_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_program_type_1_1_delete_program_type_tests.html#aaf9fff070d87fe20c7e3d73ef49cf16f", null ],
+    [ "ExecuteAsync_ValidId_ReturnsDetailedReadProgramTypeOutput", "class_application_1_1_tests_1_1_use_cases_1_1_program_type_1_1_delete_program_type_tests.html#a16647a3e5015dd64357f2b79980b6df0", null ]
+];

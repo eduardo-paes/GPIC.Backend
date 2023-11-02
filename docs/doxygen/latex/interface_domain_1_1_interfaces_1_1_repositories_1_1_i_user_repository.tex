@@ -1,0 +1,238 @@
+\doxysection{Referência ao interface Domain.\+Interfaces.\+Repositories.\+IUser\+Repository}
+\hypertarget{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository}{}\label{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository}\index{Domain.Interfaces.Repositories.IUserRepository@{Domain.Interfaces.Repositories.IUserRepository}}
+
+
+Diagrama de heranças da classe Domain.\+Interfaces.\+Repositories.\+IUser\+Repository
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}} $>$ $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_a789ff00123c8b9bd5537e3b7d7ff24d0}{Get\+Active\+Users\+Async}} (int skip, int take)
+\begin{DoxyCompactList}\small\item\em Retorna usuários ativos no sistema. \end{DoxyCompactList}\item 
+Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}} $>$ $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_a1a52f4effe12092a0c11387810d34247}{Get\+Inactive\+Users\+Async}} (int skip, int take)
+\begin{DoxyCompactList}\small\item\em Retorna usuários inativos no sistema. \end{DoxyCompactList}\item 
+Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}}?$>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_a4a2c1d70582bdd82fd67dcf45fa2e2e6}{Get\+By\+Id\+Async}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Recupera usuário através do Id informado. \end{DoxyCompactList}\item 
+Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}} $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_a5b58b31b42d68798f506734c881a4f4a}{Update\+Async}} (\mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}} user)
+\begin{DoxyCompactList}\small\item\em Atualiza usuário utilizando os parâmetros informados. \end{DoxyCompactList}\item 
+Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}} $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_a50cb442d8fd2654de8ba48c513832108}{Create\+Async}} (\mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}} user)
+\begin{DoxyCompactList}\small\item\em Realiza a criação do usuário utilizando os parâmetros informados. \end{DoxyCompactList}\item 
+Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}} $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_a5982e1cbdba2b7b628e1686d608c7ccf}{Delete\+Async}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Realiza a remoção do usuário utilizando o id informado. \end{DoxyCompactList}\item 
+Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}}?$>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_ad8164fcc91c3926d2c170be7d71e8398}{Get\+User\+By\+Email\+Async}} (string? email)
+\begin{DoxyCompactList}\small\item\em Retorna usuário com o Email informado. Usuários inativos também são retornados. \end{DoxyCompactList}\item 
+Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}}?$>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_a2d8fd7cc78b838f00e607cc932be3a18}{Get\+User\+By\+CPFAsync}} (string? cpf)
+\begin{DoxyCompactList}\small\item\em Retorna usuário com o CPF informado. Usuários inativos também são retornados. \end{DoxyCompactList}\item 
+Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}}?$>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_a23da69dd957b19e169bf57f30fe2ab5c}{Get\+Coordinator\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Retorna usuário com permissão de coordenador. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_a50cb442d8fd2654de8ba48c513832108}\label{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_a50cb442d8fd2654de8ba48c513832108} 
+\index{Domain.Interfaces.Repositories.IUserRepository@{Domain.Interfaces.Repositories.IUserRepository}!CreateAsync@{CreateAsync}}
+\index{CreateAsync@{CreateAsync}!Domain.Interfaces.Repositories.IUserRepository@{Domain.Interfaces.Repositories.IUserRepository}}
+\doxysubsubsection{\texorpdfstring{CreateAsync()}{CreateAsync()}}
+{\footnotesize\ttfamily Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}} $>$ Domain.\+Interfaces.\+Repositories.\+IUser\+Repository.\+Create\+Async (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}}}]{user }\end{DoxyParamCaption})}
+
+
+
+Realiza a criação do usuário utilizando os parâmetros informados. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em user} & Parâmetros de criação do usuário.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Usuário criado.
+\end{DoxyReturn}
+
+
+Implementado em \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_user_repository_a407ea71fcd759ffe5ca1b64b229c04cc}{Persistence.\+Repositories.\+User\+Repository}}.
+
+\Hypertarget{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_a5982e1cbdba2b7b628e1686d608c7ccf}\label{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_a5982e1cbdba2b7b628e1686d608c7ccf} 
+\index{Domain.Interfaces.Repositories.IUserRepository@{Domain.Interfaces.Repositories.IUserRepository}!DeleteAsync@{DeleteAsync}}
+\index{DeleteAsync@{DeleteAsync}!Domain.Interfaces.Repositories.IUserRepository@{Domain.Interfaces.Repositories.IUserRepository}}
+\doxysubsubsection{\texorpdfstring{DeleteAsync()}{DeleteAsync()}}
+{\footnotesize\ttfamily Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}} $>$ Domain.\+Interfaces.\+Repositories.\+IUser\+Repository.\+Delete\+Async (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})}
+
+
+
+Realiza a remoção do usuário utilizando o id informado. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em id} & Id do usuário.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Usuário removido.
+\end{DoxyReturn}
+
+
+Implementado em \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_user_repository_a439ce0bb5eaa65a0f848b0c59a65ea56}{Persistence.\+Repositories.\+User\+Repository}}.
+
+\Hypertarget{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_a789ff00123c8b9bd5537e3b7d7ff24d0}\label{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_a789ff00123c8b9bd5537e3b7d7ff24d0} 
+\index{Domain.Interfaces.Repositories.IUserRepository@{Domain.Interfaces.Repositories.IUserRepository}!GetActiveUsersAsync@{GetActiveUsersAsync}}
+\index{GetActiveUsersAsync@{GetActiveUsersAsync}!Domain.Interfaces.Repositories.IUserRepository@{Domain.Interfaces.Repositories.IUserRepository}}
+\doxysubsubsection{\texorpdfstring{GetActiveUsersAsync()}{GetActiveUsersAsync()}}
+{\footnotesize\ttfamily Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}} $>$ $>$ Domain.\+Interfaces.\+Repositories.\+IUser\+Repository.\+Get\+Active\+Users\+Async (\begin{DoxyParamCaption}\item[{int}]{skip,  }\item[{int}]{take }\end{DoxyParamCaption})}
+
+
+
+Retorna usuários ativos no sistema. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em skip} & Quantidade de registros a serem ignorados.\\
+\hline
+{\em take} & Quantidade de registros a serem retornados.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Usuários encontrados.
+\end{DoxyReturn}
+
+
+Implementado em \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_user_repository_a229d54e6536262afce53e17e8e9cf876}{Persistence.\+Repositories.\+User\+Repository}}.
+
+\Hypertarget{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_a4a2c1d70582bdd82fd67dcf45fa2e2e6}\label{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_a4a2c1d70582bdd82fd67dcf45fa2e2e6} 
+\index{Domain.Interfaces.Repositories.IUserRepository@{Domain.Interfaces.Repositories.IUserRepository}!GetByIdAsync@{GetByIdAsync}}
+\index{GetByIdAsync@{GetByIdAsync}!Domain.Interfaces.Repositories.IUserRepository@{Domain.Interfaces.Repositories.IUserRepository}}
+\doxysubsubsection{\texorpdfstring{GetByIdAsync()}{GetByIdAsync()}}
+{\footnotesize\ttfamily Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}}?$>$ Domain.\+Interfaces.\+Repositories.\+IUser\+Repository.\+Get\+By\+Id\+Async (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})}
+
+
+
+Recupera usuário através do Id informado. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em id} & Id do usuário.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Usuário encontrado.
+\end{DoxyReturn}
+
+
+Implementado em \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_user_repository_aac14dc52ebd5a20734d2efd12522ba49}{Persistence.\+Repositories.\+User\+Repository}}.
+
+\Hypertarget{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_a23da69dd957b19e169bf57f30fe2ab5c}\label{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_a23da69dd957b19e169bf57f30fe2ab5c} 
+\index{Domain.Interfaces.Repositories.IUserRepository@{Domain.Interfaces.Repositories.IUserRepository}!GetCoordinatorAsync@{GetCoordinatorAsync}}
+\index{GetCoordinatorAsync@{GetCoordinatorAsync}!Domain.Interfaces.Repositories.IUserRepository@{Domain.Interfaces.Repositories.IUserRepository}}
+\doxysubsubsection{\texorpdfstring{GetCoordinatorAsync()}{GetCoordinatorAsync()}}
+{\footnotesize\ttfamily Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}}?$>$ Domain.\+Interfaces.\+Repositories.\+IUser\+Repository.\+Get\+Coordinator\+Async (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retorna usuário com permissão de coordenador. 
+
+\begin{DoxyReturn}{Retorna}
+Coordenador encontrado.
+\end{DoxyReturn}
+
+
+Implementado em \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_user_repository_a1fae0e0d7da42f8755e173474ae4dc91}{Persistence.\+Repositories.\+User\+Repository}}.
+
+\Hypertarget{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_a1a52f4effe12092a0c11387810d34247}\label{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_a1a52f4effe12092a0c11387810d34247} 
+\index{Domain.Interfaces.Repositories.IUserRepository@{Domain.Interfaces.Repositories.IUserRepository}!GetInactiveUsersAsync@{GetInactiveUsersAsync}}
+\index{GetInactiveUsersAsync@{GetInactiveUsersAsync}!Domain.Interfaces.Repositories.IUserRepository@{Domain.Interfaces.Repositories.IUserRepository}}
+\doxysubsubsection{\texorpdfstring{GetInactiveUsersAsync()}{GetInactiveUsersAsync()}}
+{\footnotesize\ttfamily Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}} $>$ $>$ Domain.\+Interfaces.\+Repositories.\+IUser\+Repository.\+Get\+Inactive\+Users\+Async (\begin{DoxyParamCaption}\item[{int}]{skip,  }\item[{int}]{take }\end{DoxyParamCaption})}
+
+
+
+Retorna usuários inativos no sistema. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em skip} & Quantidade de registros a serem ignorados.\\
+\hline
+{\em take} & Quantidade de registros a serem retornados.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Usuários encontrados.
+\end{DoxyReturn}
+
+
+Implementado em \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_user_repository_aa46ed7b440da3d6a3af0bf5cc1368843}{Persistence.\+Repositories.\+User\+Repository}}.
+
+\Hypertarget{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_a2d8fd7cc78b838f00e607cc932be3a18}\label{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_a2d8fd7cc78b838f00e607cc932be3a18} 
+\index{Domain.Interfaces.Repositories.IUserRepository@{Domain.Interfaces.Repositories.IUserRepository}!GetUserByCPFAsync@{GetUserByCPFAsync}}
+\index{GetUserByCPFAsync@{GetUserByCPFAsync}!Domain.Interfaces.Repositories.IUserRepository@{Domain.Interfaces.Repositories.IUserRepository}}
+\doxysubsubsection{\texorpdfstring{GetUserByCPFAsync()}{GetUserByCPFAsync()}}
+{\footnotesize\ttfamily Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}}?$>$ Domain.\+Interfaces.\+Repositories.\+IUser\+Repository.\+Get\+User\+By\+CPFAsync (\begin{DoxyParamCaption}\item[{string?}]{cpf }\end{DoxyParamCaption})}
+
+
+
+Retorna usuário com o CPF informado. Usuários inativos também são retornados. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em cpf} & CPF do usuário.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Usuário encontrado.
+\end{DoxyReturn}
+
+
+Implementado em \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_user_repository_a4ebc67ab1fdf8710eab7c05dda90ff1b}{Persistence.\+Repositories.\+User\+Repository}}.
+
+\Hypertarget{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_ad8164fcc91c3926d2c170be7d71e8398}\label{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_ad8164fcc91c3926d2c170be7d71e8398} 
+\index{Domain.Interfaces.Repositories.IUserRepository@{Domain.Interfaces.Repositories.IUserRepository}!GetUserByEmailAsync@{GetUserByEmailAsync}}
+\index{GetUserByEmailAsync@{GetUserByEmailAsync}!Domain.Interfaces.Repositories.IUserRepository@{Domain.Interfaces.Repositories.IUserRepository}}
+\doxysubsubsection{\texorpdfstring{GetUserByEmailAsync()}{GetUserByEmailAsync()}}
+{\footnotesize\ttfamily Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}}?$>$ Domain.\+Interfaces.\+Repositories.\+IUser\+Repository.\+Get\+User\+By\+Email\+Async (\begin{DoxyParamCaption}\item[{string?}]{email }\end{DoxyParamCaption})}
+
+
+
+Retorna usuário com o Email informado. Usuários inativos também são retornados. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em email} & Email do usuário.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Usuário encontrado.
+\end{DoxyReturn}
+
+
+Implementado em \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_user_repository_aa8b2af3ce5162844758fd811959d5cc6}{Persistence.\+Repositories.\+User\+Repository}}.
+
+\Hypertarget{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_a5b58b31b42d68798f506734c881a4f4a}\label{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository_a5b58b31b42d68798f506734c881a4f4a} 
+\index{Domain.Interfaces.Repositories.IUserRepository@{Domain.Interfaces.Repositories.IUserRepository}!UpdateAsync@{UpdateAsync}}
+\index{UpdateAsync@{UpdateAsync}!Domain.Interfaces.Repositories.IUserRepository@{Domain.Interfaces.Repositories.IUserRepository}}
+\doxysubsubsection{\texorpdfstring{UpdateAsync()}{UpdateAsync()}}
+{\footnotesize\ttfamily Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}} $>$ Domain.\+Interfaces.\+Repositories.\+IUser\+Repository.\+Update\+Async (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}}}]{user }\end{DoxyParamCaption})}
+
+
+
+Atualiza usuário utilizando os parâmetros informados. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em user} & Parâmetros de atualização do usuário.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Usuário atualizado.
+\end{DoxyReturn}
+
+
+Implementado em \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_user_repository_a63fd2cbf23f5f9e5d0f26688e7d79cf1}{Persistence.\+Repositories.\+User\+Repository}}.
+
+
+
+A documentação para este interface foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Domain/\+Interfaces/\+Repositories/\mbox{\hyperlink{_i_user_repository_8cs}{IUser\+Repository.\+cs}}\end{DoxyCompactItemize}

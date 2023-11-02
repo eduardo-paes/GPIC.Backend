@@ -1,0 +1,61 @@
+\chapter{GPIC -\/ Backend}
+\hypertarget{index}{}\label{index}\index{GPIC -\/ Backend@{GPIC -\/ Backend}}
+\label{index_md__r_e_a_d_m_e}%
+\Hypertarget{index_md__r_e_a_d_m_e}%
+ Bem-\/vindo ao código do backend do sistema Gerenciamento Institucional de Processos de Iniciação Científica (GPIC)! Este repositório contém o código das aplicações de backend do sistema GPIC, uma solução web-\/based para a otimização do processo de gestão do Programa Institucional de Bolsas de Iniciação Científica (PIBIC) do Centro Federal de Educação Tecnológica Celso Suckow da Fonseca (CEFET/\+RJ) Campus Petrópolis.
+
+Este repositório contém o código-\/fonte e a definição de testes automatizados para garantir a qualidade e a correção do Backend do GPIC. A base de código é continuamente construída, testada e integrada através de um processo de integração contínua que utiliza a estrutura Git\+Hub Actions para acelerar o desenvolvimento e avaliar o padrão de qualidade do código.
+
+O backend faz parte do sistema GPIC, composto pelo frontend, o backend propriamente dito e um servidor isolado para a execução de processos em segundo plano que não requerem a interação do utilizador. O frontend está armazenado no repositório \href{https://github.com/eduardo-paes/CopetSystem.WebUI}{\texttt{ GPIC.\+Web\+UI}}, e o servidor de fundo (background worker) está localizado no subdiretório {\ttfamily src/\+GPIC.\+Web\+Function} deste repositório.\hypertarget{index_autotoc_md1}{}\doxysection{\texorpdfstring{Tabela de Conteúdo}{Tabela de Conteúdo}}\label{index_autotoc_md1}
+
+\begin{DoxyItemize}
+\item GPIC -\/ Backend
+\begin{DoxyItemize}
+\item Tabela de Conteúdo
+\item Introdução
+\item Arquitetura do Sistema
+\item Pré-\/\+Requisitos
+\item Contribuição
+\item Licença
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{index_autotoc_md2}{}\doxysection{\texorpdfstring{Introdução}{Introdução}}\label{index_autotoc_md2}
+O Backend do GPIC é responsável por gerenciar e servir dados para as aplicações web através de uma interface REST API utilizando C\# e .NET e interage com um banco de dados Postgre\+SQL. Foi concebido utilizando uma arquitetura cliente-\/servidor, uma arquitetura de microsserviços que utiliza contentores Docker e estruturas de Arquitetura Limpa para garantir a separação em camadas das preocupações e a testabilidade.\hypertarget{index_autotoc_md3}{}\doxysection{\texorpdfstring{Arquitetura do Sistema}{Arquitetura do Sistema}}\label{index_autotoc_md3}
+A arquitetura do sistema foi desenvolvida com base no modelo Cliente-\/\+Servidor. As responsabilidades foram separadas em camadas de front-\/end e back-\/end, permitindo a independência entre ambas. A adoção da Clean Architecture para arquitetura das aplicações que compõem o sistema foi baseada no intuito de alcançar coesão, redução de acoplamento e escalabilidade.
+
+A interface de usuário foi desenvolvida como uma Single Page \doxylink{namespace_application}{Application} (SPA), utilizando o framework React\+JS para aprimorar a usabilidade e a experiência do usuário. O back-\/end foi desenvolvido utilizando C\# e .NET, adotando a Arquitetura Limpa para camadas do sistema. O banco de dados utilizado foi Postgre\+SQL.
+
+O sistema foi construído por meio de três aplicações distintas, cada uma operando em contêineres separados\+: GPIC.\+Web\+UI (responsável pela interface do usuário), GPIC.\+Web\+API (que oferece funcionalidades conforme as regras de negócio) e GPIC.\+Web\+Functions (responsável por execuções periódicas de rotinas assíncronas).
+
+A seguir, há um diagrama ilustrando a arquitetura do sistema\+:
+
+\hypertarget{index_autotoc_md4}{}\doxysection{\texorpdfstring{Pré-\/\+Requisitos}{Pré-Requisitos}}\label{index_autotoc_md4}
+Antes de executar o backend do sistema, você deverá garantir que os seguintes pontos sejam atendidos\+:
+
+
+\begin{DoxyItemize}
+\item O sistema operacional suporta a instalação da plataforma .NET;
+\item O banco de dados Postgre\+SQL está instalado e configurado;
+\item As variáveis de ambiente necessárias estão definidas (ex\+: string de conexão do banco de dados).
+\end{DoxyItemize}
+
+Para executar o backend, siga os seguintes passos\+:
+
+
+\begin{DoxyEnumerate}
+\item Faça um clone do repositório.
+\item Navegue até o diretório raiz {\ttfamily /src}.
+\item Execute o comando \"{}dotnet run\"{} na linha de comando.
+\end{DoxyEnumerate}\hypertarget{index_autotoc_md5}{}\doxysection{\texorpdfstring{Contribuição}{Contribuição}}\label{index_autotoc_md5}
+As contribuições para este repositório são bem-\/vindas! Para contribuir, siga estes passos\+:
+
+
+\begin{DoxyEnumerate}
+\item Faça um fork deste repositório na sua conta Git\+Hub.
+\item Crie um novo ramo para a sua contribuição.
+\item Adicione os seus exemplos de código ou projectos ao diretório apropriado.
+\item Escreva ficheiros README claros e informativos para as suas adições.
+\item Crie um pull request para juntar as suas alterações a este repositório.
+\end{DoxyEnumerate}
+
+As suas contribuições ajudarão a aprimorar o processo de análise e controle dos projetos de IC do CEFET.\hypertarget{index_autotoc_md6}{}\doxysection{\texorpdfstring{Licença}{Licença}}\label{index_autotoc_md6}
+Este projeto está licenciado sob a Licença MIT -\/ veja o ficheiro \href{./LICENSE}{\texttt{ LICENSE}} para mais detalhes. 

@@ -1,0 +1,76 @@
+\doxysection{Referência à classe Application.\+Use\+Cases.\+User.\+Make\+Coordinator}
+\hypertarget{class_application_1_1_use_cases_1_1_user_1_1_make_coordinator}{}\label{class_application_1_1_use_cases_1_1_user_1_1_make_coordinator}\index{Application.UseCases.User.MakeCoordinator@{Application.UseCases.User.MakeCoordinator}}
+
+
+Diagrama de heranças da classe Application.\+Use\+Cases.\+User.\+Make\+Coordinator
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{class_application_1_1_use_cases_1_1_user_1_1_make_coordinator__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para Application.\+Use\+Cases.\+User.\+Make\+Coordinator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{class_application_1_1_use_cases_1_1_user_1_1_make_coordinator__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_application_1_1_use_cases_1_1_user_1_1_make_coordinator_a82eb0ca0892a0dbf512299c2fbade1da}{Make\+Coordinator}} (\mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository}{IUser\+Repository}} user\+Repository, \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_services_1_1_i_token_authentication_service}{IToken\+Authentication\+Service}} token\+Authentication\+Service)
+\item 
+async Task$<$ string $>$ \mbox{\hyperlink{class_application_1_1_use_cases_1_1_user_1_1_make_coordinator_a0294be699a8f0679a395fe680d2bff22}{Execute\+Async}} (Guid? user\+Id)
+\begin{DoxyCompactList}\small\item\em Torna o usuário um coordenador e faz com que o coordenador anterior seja desativado. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_application_1_1_use_cases_1_1_user_1_1_make_coordinator_a82eb0ca0892a0dbf512299c2fbade1da}\label{class_application_1_1_use_cases_1_1_user_1_1_make_coordinator_a82eb0ca0892a0dbf512299c2fbade1da} 
+\index{Application.UseCases.User.MakeCoordinator@{Application.UseCases.User.MakeCoordinator}!MakeCoordinator@{MakeCoordinator}}
+\index{MakeCoordinator@{MakeCoordinator}!Application.UseCases.User.MakeCoordinator@{Application.UseCases.User.MakeCoordinator}}
+\doxysubsubsection{\texorpdfstring{MakeCoordinator()}{MakeCoordinator()}}
+{\footnotesize\ttfamily Application.\+Use\+Cases.\+User.\+Make\+Coordinator.\+Make\+Coordinator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository}{IUser\+Repository}}}]{user\+Repository,  }\item[{\mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_services_1_1_i_token_authentication_service}{IToken\+Authentication\+Service}}}]{token\+Authentication\+Service }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_application_1_1_use_cases_1_1_user_1_1_make_coordinator_a0294be699a8f0679a395fe680d2bff22}\label{class_application_1_1_use_cases_1_1_user_1_1_make_coordinator_a0294be699a8f0679a395fe680d2bff22} 
+\index{Application.UseCases.User.MakeCoordinator@{Application.UseCases.User.MakeCoordinator}!ExecuteAsync@{ExecuteAsync}}
+\index{ExecuteAsync@{ExecuteAsync}!Application.UseCases.User.MakeCoordinator@{Application.UseCases.User.MakeCoordinator}}
+\doxysubsubsection{\texorpdfstring{ExecuteAsync()}{ExecuteAsync()}}
+{\footnotesize\ttfamily async Task$<$ string $>$ Application.\+Use\+Cases.\+User.\+Make\+Coordinator.\+Execute\+Async (\begin{DoxyParamCaption}\item[{Guid?}]{user\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Torna o usuário um coordenador e faz com que o coordenador anterior seja desativado. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em user\+Id} & Id do usuário que será tornando coordenador.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Retorna uma mensagem de sucesso ou erro.
+\end{DoxyReturn}
+
+
+Implementa \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_user_1_1_i_make_coordinator_a44bef2efc3e89976b03f95c7a36949c3}{Application.\+Interfaces.\+Use\+Cases.\+User.\+IMake\+Coordinator}}.
+
+Grafo de chamadas desta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_application_1_1_use_cases_1_1_user_1_1_make_coordinator_a0294be699a8f0679a395fe680d2bff22_cgraph}
+\end{center}
+\end{figure}
+
+
+A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Application/\+Use\+Cases/\+User/\mbox{\hyperlink{_make_coordinator_8cs}{Make\+Coordinator.\+cs}}\end{DoxyCompactItemize}

@@ -1,0 +1,162 @@
+\doxysection{Referência à classe Web\+API.\+Controllers.\+Assistance\+Type\+Controller}
+\hypertarget{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller}{}\label{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller}\index{WebAPI.Controllers.AssistanceTypeController@{WebAPI.Controllers.AssistanceTypeController}}
+
+
+Controller de Bolsa de Assistência.  
+
+
+
+
+Diagrama de heranças da classe Web\+API.\+Controllers.\+Assistance\+Type\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=234pt]{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para Web\+API.\+Controllers.\+Assistance\+Type\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=234pt]{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller_ad5330ffa2a782ee4d6e4ce4931050f56}{Assistance\+Type\+Controller}} (\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_get_assistance_type_by_id}{IGet\+Assistance\+Type\+By\+Id}} get\+By\+Id, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_get_assistance_types}{IGet\+Assistance\+Types}} get\+All, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_create_assistance_type}{ICreate\+Assistance\+Type}} create, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_update_assistance_type}{IUpdate\+Assistance\+Type}} update, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_delete_assistance_type}{IDelete\+Assistance\+Type}} delete, ILogger$<$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller}{Assistance\+Type\+Controller}} $>$ logger)
+\begin{DoxyCompactList}\small\item\em Construtor do Controller de Bolsa de Assistência. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller_adb5b90c08a527076965aa633e46ebc73}{Get\+By\+Id}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Busca bolsa de assistência pelo id. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ IEnumerable$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_assistance_type_1_1_resumed_read_assistance_type_output}{Resumed\+Read\+Assistance\+Type\+Output}} $>$ $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller_a53cd7c847aeb3387a6314238a9f327be}{Get\+All}} (int skip=0, int take=50)
+\begin{DoxyCompactList}\small\item\em Busca todas as bolsas de assitência ativas. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller_a9d694c106fb950addbeec3579e09818a}{Create}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_assistance_type_1_1_create_assistance_type_input}{Create\+Assistance\+Type\+Input}} request)
+\begin{DoxyCompactList}\small\item\em Cria bolsa de assistência. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller_abc331496163c6a5f0dd3582f231c68fe}{Update}} (Guid? id, \mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_assistance_type_1_1_update_assistance_type_input}{Update\+Assistance\+Type\+Input}} request)
+\begin{DoxyCompactList}\small\item\em Atualiza bolsa de assistência. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller_a937f8dadec2bc2f7b60b796f784f5983}{Delete}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Remove bolsa de assistência. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Controller de Bolsa de Assistência. 
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller_ad5330ffa2a782ee4d6e4ce4931050f56}\label{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller_ad5330ffa2a782ee4d6e4ce4931050f56} 
+\index{WebAPI.Controllers.AssistanceTypeController@{WebAPI.Controllers.AssistanceTypeController}!AssistanceTypeController@{AssistanceTypeController}}
+\index{AssistanceTypeController@{AssistanceTypeController}!WebAPI.Controllers.AssistanceTypeController@{WebAPI.Controllers.AssistanceTypeController}}
+\doxysubsubsection{\texorpdfstring{AssistanceTypeController()}{AssistanceTypeController()}}
+{\footnotesize\ttfamily Web\+API.\+Controllers.\+Assistance\+Type\+Controller.\+Assistance\+Type\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_get_assistance_type_by_id}{IGet\+Assistance\+Type\+By\+Id}}}]{get\+By\+Id,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_get_assistance_types}{IGet\+Assistance\+Types}}}]{get\+All,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_create_assistance_type}{ICreate\+Assistance\+Type}}}]{create,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_update_assistance_type}{IUpdate\+Assistance\+Type}}}]{update,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_delete_assistance_type}{IDelete\+Assistance\+Type}}}]{delete,  }\item[{ILogger$<$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller}{Assistance\+Type\+Controller}} $>$}]{logger }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construtor do Controller de Bolsa de Assistência. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em get\+By\+Id} & Serviço de obtenção de bolsa de assistência pelo id.\\
+\hline
+{\em get\+All} & Serviço de obtenção de todas as bolsas de assistência ativas.\\
+\hline
+{\em create} & Serviço de criação de bolsa de assistência.\\
+\hline
+{\em update} & Serviço de atualização de bolsa de assistência.\\
+\hline
+{\em delete} & Serviço de remoção de bolsa de assistência.\\
+\hline
+{\em logger} & Serviço de log.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller_a9d694c106fb950addbeec3579e09818a}\label{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller_a9d694c106fb950addbeec3579e09818a} 
+\index{WebAPI.Controllers.AssistanceTypeController@{WebAPI.Controllers.AssistanceTypeController}!Create@{Create}}
+\index{Create@{Create}!WebAPI.Controllers.AssistanceTypeController@{WebAPI.Controllers.AssistanceTypeController}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily async Task$<$ IAction\+Result $>$ Web\+API.\+Controllers.\+Assistance\+Type\+Controller.\+Create (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_assistance_type_1_1_create_assistance_type_input}{Create\+Assistance\+Type\+Input}}}]{request }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cria bolsa de assistência. 
+
+\begin{DoxyReturn}{Retorna}
+Bolsa de Assistência criada
+\end{DoxyReturn}
+$<$response code=\"{}201\"{}$>$Retorna bolsa de assistência criada$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ Grafo de chamadas desta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller_a9d694c106fb950addbeec3579e09818a_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller_a937f8dadec2bc2f7b60b796f784f5983}\label{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller_a937f8dadec2bc2f7b60b796f784f5983} 
+\index{WebAPI.Controllers.AssistanceTypeController@{WebAPI.Controllers.AssistanceTypeController}!Delete@{Delete}}
+\index{Delete@{Delete}!WebAPI.Controllers.AssistanceTypeController@{WebAPI.Controllers.AssistanceTypeController}}
+\doxysubsubsection{\texorpdfstring{Delete()}{Delete()}}
+{\footnotesize\ttfamily async Task$<$ IAction\+Result $>$ Web\+API.\+Controllers.\+Assistance\+Type\+Controller.\+Delete (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Remove bolsa de assistência. 
+
+\begin{DoxyReturn}{Retorna}
+Bolsa de Assistência removido
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna bolsa de assistência removido$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ \Hypertarget{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller_a53cd7c847aeb3387a6314238a9f327be}\label{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller_a53cd7c847aeb3387a6314238a9f327be} 
+\index{WebAPI.Controllers.AssistanceTypeController@{WebAPI.Controllers.AssistanceTypeController}!GetAll@{GetAll}}
+\index{GetAll@{GetAll}!WebAPI.Controllers.AssistanceTypeController@{WebAPI.Controllers.AssistanceTypeController}}
+\doxysubsubsection{\texorpdfstring{GetAll()}{GetAll()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ IEnumerable$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_assistance_type_1_1_resumed_read_assistance_type_output}{Resumed\+Read\+Assistance\+Type\+Output}} $>$ $>$ $>$ Web\+API.\+Controllers.\+Assistance\+Type\+Controller.\+Get\+All (\begin{DoxyParamCaption}\item[{int}]{skip = {\ttfamily 0},  }\item[{int}]{take = {\ttfamily 50} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Busca todas as bolsas de assitência ativas. 
+
+\begin{DoxyReturn}{Retorna}
+Todas as bolsas de assitência ativas
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna todas as bolsas de assitência ativas$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Nenhuma bolsa de assitência encontrada.$<$/response$>$ \Hypertarget{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller_adb5b90c08a527076965aa633e46ebc73}\label{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller_adb5b90c08a527076965aa633e46ebc73} 
+\index{WebAPI.Controllers.AssistanceTypeController@{WebAPI.Controllers.AssistanceTypeController}!GetById@{GetById}}
+\index{GetById@{GetById}!WebAPI.Controllers.AssistanceTypeController@{WebAPI.Controllers.AssistanceTypeController}}
+\doxysubsubsection{\texorpdfstring{GetById()}{GetById()}}
+{\footnotesize\ttfamily async Task$<$ IAction\+Result $>$ Web\+API.\+Controllers.\+Assistance\+Type\+Controller.\+Get\+By\+Id (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Busca bolsa de assistência pelo id. 
+
+\begin{DoxyReturn}{Retorna}
+Bolsa de Assistência correspondente
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna bolsa de assistência correspondente$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Nenhuma bolsa de assistência encontrada.$<$/response$>$ Este é o diagrama das funções que utilizam esta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller_adb5b90c08a527076965aa633e46ebc73_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller_abc331496163c6a5f0dd3582f231c68fe}\label{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller_abc331496163c6a5f0dd3582f231c68fe} 
+\index{WebAPI.Controllers.AssistanceTypeController@{WebAPI.Controllers.AssistanceTypeController}!Update@{Update}}
+\index{Update@{Update}!WebAPI.Controllers.AssistanceTypeController@{WebAPI.Controllers.AssistanceTypeController}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily async Task$<$ IAction\+Result $>$ Web\+API.\+Controllers.\+Assistance\+Type\+Controller.\+Update (\begin{DoxyParamCaption}\item[{Guid?}]{id,  }\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_assistance_type_1_1_update_assistance_type_input}{Update\+Assistance\+Type\+Input}}}]{request }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Atualiza bolsa de assistência. 
+
+\begin{DoxyReturn}{Retorna}
+Bolsa de Assistência atualizada
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna bolsa de assistência atualizada$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ 
+
+A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Infrastructure/\+Web\+API/\+Controllers/\mbox{\hyperlink{_assistance_type_controller_8cs}{Assistance\+Type\+Controller.\+cs}}\end{DoxyCompactItemize}

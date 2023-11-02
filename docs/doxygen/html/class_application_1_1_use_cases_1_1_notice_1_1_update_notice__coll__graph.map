@@ -1,0 +1,5 @@
+<map id="Application.UseCases.Notice.UpdateNotice" name="Application.UseCases.Notice.UpdateNotice">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,203,120"/>
+<area shape="rect" id="Node000002" href="$interface_application_1_1_interfaces_1_1_use_cases_1_1_notice_1_1_i_update_notice.html" title=" " alt="" coords="51,5,157,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,46,107,79,101,79,101,46"/>
+</map>

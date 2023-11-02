@@ -1,0 +1,5 @@
+var class_application_1_1_tests_1_1_use_cases_1_1_notice_1_1_report_deadline_notification_tests =
+[
+    [ "ExecuteAsync_NoProjects_ReturnsNoProjectsMessage", "class_application_1_1_tests_1_1_use_cases_1_1_notice_1_1_report_deadline_notification_tests.html#af54d59724a565efd82d5e87df0cc6979", null ],
+    [ "ExecuteAsync_ProjectsWithCloseReportDueDate_ReturnsSuccessMessage", "class_application_1_1_tests_1_1_use_cases_1_1_notice_1_1_report_deadline_notification_tests.html#a840ed8d72804df85b227a4434d425d61", null ]
+];

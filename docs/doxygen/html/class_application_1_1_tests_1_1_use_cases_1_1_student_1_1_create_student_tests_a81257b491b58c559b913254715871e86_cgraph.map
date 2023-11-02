@@ -1,0 +1,5 @@
+<map id="Application.Tests.UseCases.Student.CreateStudentTests.ExecuteAsync_CourseNotFound_ThrowsUseCaseException" name="Application.Tests.UseCases.Student.CreateStudentTests.ExecuteAsync_CourseNotFound_ThrowsUseCaseException">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,333,61"/>
+<area shape="rect" id="Node000002" href="$class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_create_student_tests.html#a7e29f44112389dc30c233c862b04cfa7" title=" " alt="" coords="381,13,649,54"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="333,31,365,31,365,36,333,36"/>
+</map>

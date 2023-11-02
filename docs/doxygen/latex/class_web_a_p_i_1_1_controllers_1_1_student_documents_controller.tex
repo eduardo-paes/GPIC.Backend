@@ -1,0 +1,175 @@
+\doxysection{Referência à classe Web\+API.\+Controllers.\+Student\+Documents\+Controller}
+\hypertarget{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller}{}\label{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller}\index{WebAPI.Controllers.StudentDocumentsController@{WebAPI.Controllers.StudentDocumentsController}}
+
+
+Controller de Documentos de Estudante.  
+
+
+
+
+Diagrama de heranças da classe Web\+API.\+Controllers.\+Student\+Documents\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para Web\+API.\+Controllers.\+Student\+Documents\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller_a3564ca0f76a596a34af240fe4e42361a}{Student\+Documents\+Controller}} (\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_student_documents_1_1_i_get_student_documents_by_project_id}{IGet\+Student\+Documents\+By\+Project\+Id}} get\+Student\+Documents\+By\+Project\+Id, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_student_documents_1_1_i_get_student_documents_by_student_id}{IGet\+Student\+Documents\+By\+Student\+Id}} get\+Student\+Documents\+By\+Student\+Id, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_student_documents_1_1_i_create_student_documents}{ICreate\+Student\+Documents}} create\+Student\+Documents, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_student_documents_1_1_i_update_student_documents}{IUpdate\+Student\+Documents}} update\+Student\+Documents, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_student_documents_1_1_i_delete_student_documents}{IDelete\+Student\+Documents}} delete\+Student\+Documents, ILogger$<$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller}{Student\+Documents\+Controller}} $>$ logger)
+\begin{DoxyCompactList}\small\item\em Construtor do Controller de Documentos de Estudante. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_student_documents_1_1_detailed_read_student_documents_output}{Detailed\+Read\+Student\+Documents\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller_a4a015096ea0405705b14de197a6011a8}{Get\+By\+Project\+Id}} (Guid? project\+Id)
+\begin{DoxyCompactList}\small\item\em Busca documentos de estudante pelo id do projeto. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_student_documents_1_1_detailed_read_student_documents_output}{Detailed\+Read\+Student\+Documents\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller_aab9269f0f300750d07716b8e26d13347}{Get\+By\+Student\+Id}} (Guid? student\+Id)
+\begin{DoxyCompactList}\small\item\em Busca documentos de estudante pelo id do estudante. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_student_documents_1_1_detailed_read_student_documents_output}{Detailed\+Read\+Student\+Documents\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller_a957f7572f162984ed64ac501ce773d3e}{Create}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_student_documents_1_1_create_student_documents_input}{Create\+Student\+Documents\+Input}} request)
+\begin{DoxyCompactList}\small\item\em Adiciona documentos de estudante ao projeto. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_student_documents_1_1_detailed_read_student_documents_output}{Detailed\+Read\+Student\+Documents\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller_a537064d997a4c1da3bf73085cd1dd9f4}{Update}} (Guid? id, \mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_student_documents_1_1_update_student_documents_input}{Update\+Student\+Documents\+Input}} request)
+\begin{DoxyCompactList}\small\item\em Atualiza documentos de estudante. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_student_documents_1_1_detailed_read_student_documents_output}{Detailed\+Read\+Student\+Documents\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller_a5f868a983a3df1e20cf7bfd5c9b0fcb6}{Delete}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Remove documentos de estudante. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Controller de Documentos de Estudante. 
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller_a3564ca0f76a596a34af240fe4e42361a}\label{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller_a3564ca0f76a596a34af240fe4e42361a} 
+\index{WebAPI.Controllers.StudentDocumentsController@{WebAPI.Controllers.StudentDocumentsController}!StudentDocumentsController@{StudentDocumentsController}}
+\index{StudentDocumentsController@{StudentDocumentsController}!WebAPI.Controllers.StudentDocumentsController@{WebAPI.Controllers.StudentDocumentsController}}
+\doxysubsubsection{\texorpdfstring{StudentDocumentsController()}{StudentDocumentsController()}}
+{\footnotesize\ttfamily Web\+API.\+Controllers.\+Student\+Documents\+Controller.\+Student\+Documents\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_student_documents_1_1_i_get_student_documents_by_project_id}{IGet\+Student\+Documents\+By\+Project\+Id}}}]{get\+Student\+Documents\+By\+Project\+Id,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_student_documents_1_1_i_get_student_documents_by_student_id}{IGet\+Student\+Documents\+By\+Student\+Id}}}]{get\+Student\+Documents\+By\+Student\+Id,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_student_documents_1_1_i_create_student_documents}{ICreate\+Student\+Documents}}}]{create\+Student\+Documents,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_student_documents_1_1_i_update_student_documents}{IUpdate\+Student\+Documents}}}]{update\+Student\+Documents,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_student_documents_1_1_i_delete_student_documents}{IDelete\+Student\+Documents}}}]{delete\+Student\+Documents,  }\item[{ILogger$<$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller}{Student\+Documents\+Controller}} $>$}]{logger }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construtor do Controller de Documentos de Estudante. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em get\+Student\+Documents\+By\+Project\+Id} & Use Case de busca de documentos de estudante pelo id do projeto.\\
+\hline
+{\em get\+Student\+Documents\+By\+Student\+Id} & Use Case de busca de documentos de estudante pelo id do estudante.\\
+\hline
+{\em create\+Student\+Documents} & Use Case de adição de documentos de estudante.\\
+\hline
+{\em update\+Student\+Documents} & Use Case de atualização de documentos de estudante.\\
+\hline
+{\em delete\+Student\+Documents} & Use Case de remoção de documentos de estudante.\\
+\hline
+{\em logger} & Logger\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller_a957f7572f162984ed64ac501ce773d3e}\label{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller_a957f7572f162984ed64ac501ce773d3e} 
+\index{WebAPI.Controllers.StudentDocumentsController@{WebAPI.Controllers.StudentDocumentsController}!Create@{Create}}
+\index{Create@{Create}!WebAPI.Controllers.StudentDocumentsController@{WebAPI.Controllers.StudentDocumentsController}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_student_documents_1_1_detailed_read_student_documents_output}{Detailed\+Read\+Student\+Documents\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Student\+Documents\+Controller.\+Create (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_student_documents_1_1_create_student_documents_input}{Create\+Student\+Documents\+Input}}}]{request }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adiciona documentos de estudante ao projeto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em request} & Dados para adição dos documentos.\\
+\hline
+\end{DoxyParams}
+$<$response code=\"{}201\"{}$>$Documentos de estudante adicionados.$<$/response$>$ $<$response code=\"{}400\"{}$>$O id informado não pode ser nulo.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autenticado.$<$/response$>$ Grafo de chamadas desta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller_a957f7572f162984ed64ac501ce773d3e_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller_a5f868a983a3df1e20cf7bfd5c9b0fcb6}\label{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller_a5f868a983a3df1e20cf7bfd5c9b0fcb6} 
+\index{WebAPI.Controllers.StudentDocumentsController@{WebAPI.Controllers.StudentDocumentsController}!Delete@{Delete}}
+\index{Delete@{Delete}!WebAPI.Controllers.StudentDocumentsController@{WebAPI.Controllers.StudentDocumentsController}}
+\doxysubsubsection{\texorpdfstring{Delete()}{Delete()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_student_documents_1_1_detailed_read_student_documents_output}{Detailed\+Read\+Student\+Documents\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Student\+Documents\+Controller.\+Delete (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Remove documentos de estudante. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em id} & Id dos documentos do estudante\\
+\hline
+\end{DoxyParams}
+$<$response code=\"{}200\"{}$>$Documentos de estudante removidos.$<$/response$>$ $<$response code=\"{}400\"{}$>$O id informado não pode ser nulo.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autenticado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Documentos de estudante não encontrados.$<$/response$>$ ~\newline
+ \Hypertarget{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller_a4a015096ea0405705b14de197a6011a8}\label{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller_a4a015096ea0405705b14de197a6011a8} 
+\index{WebAPI.Controllers.StudentDocumentsController@{WebAPI.Controllers.StudentDocumentsController}!GetByProjectId@{GetByProjectId}}
+\index{GetByProjectId@{GetByProjectId}!WebAPI.Controllers.StudentDocumentsController@{WebAPI.Controllers.StudentDocumentsController}}
+\doxysubsubsection{\texorpdfstring{GetByProjectId()}{GetByProjectId()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_student_documents_1_1_detailed_read_student_documents_output}{Detailed\+Read\+Student\+Documents\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Student\+Documents\+Controller.\+Get\+By\+Project\+Id (\begin{DoxyParamCaption}\item[{Guid?}]{project\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Busca documentos de estudante pelo id do projeto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em project\+Id} & Id do projeto\\
+\hline
+\end{DoxyParams}
+$<$response code=\"{}200\"{}$>$Documentos de estudante encontrados.$<$/response$>$ $<$response code=\"{}400\"{}$>$O id informado não pode ser nulo.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autenticado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Documentos de estudante não encontrados.$<$/response$>$ Este é o diagrama das funções que utilizam esta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller_a4a015096ea0405705b14de197a6011a8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller_aab9269f0f300750d07716b8e26d13347}\label{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller_aab9269f0f300750d07716b8e26d13347} 
+\index{WebAPI.Controllers.StudentDocumentsController@{WebAPI.Controllers.StudentDocumentsController}!GetByStudentId@{GetByStudentId}}
+\index{GetByStudentId@{GetByStudentId}!WebAPI.Controllers.StudentDocumentsController@{WebAPI.Controllers.StudentDocumentsController}}
+\doxysubsubsection{\texorpdfstring{GetByStudentId()}{GetByStudentId()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_student_documents_1_1_detailed_read_student_documents_output}{Detailed\+Read\+Student\+Documents\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Student\+Documents\+Controller.\+Get\+By\+Student\+Id (\begin{DoxyParamCaption}\item[{Guid?}]{student\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Busca documentos de estudante pelo id do estudante. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em student\+Id} & Id do estudante\\
+\hline
+\end{DoxyParams}
+$<$response code=\"{}200\"{}$>$Documentos de estudante encontrados.$<$/response$>$ $<$response code=\"{}400\"{}$>$O id informado não pode ser nulo.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autenticado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Documentos de estudante não encontrados.$<$/response$>$ \Hypertarget{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller_a537064d997a4c1da3bf73085cd1dd9f4}\label{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller_a537064d997a4c1da3bf73085cd1dd9f4} 
+\index{WebAPI.Controllers.StudentDocumentsController@{WebAPI.Controllers.StudentDocumentsController}!Update@{Update}}
+\index{Update@{Update}!WebAPI.Controllers.StudentDocumentsController@{WebAPI.Controllers.StudentDocumentsController}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_student_documents_1_1_detailed_read_student_documents_output}{Detailed\+Read\+Student\+Documents\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Student\+Documents\+Controller.\+Update (\begin{DoxyParamCaption}\item[{Guid?}]{id,  }\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_student_documents_1_1_update_student_documents_input}{Update\+Student\+Documents\+Input}}}]{request }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Atualiza documentos de estudante. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em id} & Id dos documentos do estudante\\
+\hline
+{\em request} & Dados para atualização dos documentos.\\
+\hline
+\end{DoxyParams}
+$<$response code=\"{}200\"{}$>$Documentos de estudante atualizados.$<$/response$>$ $<$response code=\"{}400\"{}$>$O id informado não pode ser nulo.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autenticado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Documentos de estudante não encontrados.$<$/response$>$ 
+
+A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Infrastructure/\+Web\+API/\+Controllers/\mbox{\hyperlink{_student_documents_controller_8cs}{Student\+Documents\+Controller.\+cs}}\end{DoxyCompactItemize}

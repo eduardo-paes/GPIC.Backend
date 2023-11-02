@@ -1,0 +1,162 @@
+\doxysection{Referência à classe Web\+API.\+Controllers.\+Main\+Area\+Controller}
+\hypertarget{class_web_a_p_i_1_1_controllers_1_1_main_area_controller}{}\label{class_web_a_p_i_1_1_controllers_1_1_main_area_controller}\index{WebAPI.Controllers.MainAreaController@{WebAPI.Controllers.MainAreaController}}
+
+
+Controller de Área Principal.  
+
+
+
+
+Diagrama de heranças da classe Web\+API.\+Controllers.\+Main\+Area\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{class_web_a_p_i_1_1_controllers_1_1_main_area_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para Web\+API.\+Controllers.\+Main\+Area\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{class_web_a_p_i_1_1_controllers_1_1_main_area_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_main_area_controller_a86161a8147386ea0997abfe8c426614d}{Main\+Area\+Controller}} (\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_main_area_1_1_i_get_main_area_by_id}{IGet\+Main\+Area\+By\+Id}} get\+By\+Id, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_main_area_1_1_i_get_main_areas}{IGet\+Main\+Areas}} get\+All, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_main_area_1_1_i_create_main_area}{ICreate\+Main\+Area}} create, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_main_area_1_1_i_update_main_area}{IUpdate\+Main\+Area}} update, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_main_area_1_1_i_delete_main_area}{IDelete\+Main\+Area}} delete, ILogger$<$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_main_area_controller}{Main\+Area\+Controller}} $>$ logger)
+\begin{DoxyCompactList}\small\item\em Construtor do Controller de Área Principal. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_main_area_1_1_detailed_main_area_output}{Detailed\+Main\+Area\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_main_area_controller_aa90eaa7144c2acf57791d6c6dc57f2f6}{Get\+By\+Id}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Busca área principal pelo id. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ IEnumerable$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_main_area_1_1_resumed_read_main_area_output}{Resumed\+Read\+Main\+Area\+Output}} $>$ $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_main_area_controller_a8ba87bf295d3b9f2868cd1179a3e66f2}{Get\+All}} (int skip=0, int take=50)
+\begin{DoxyCompactList}\small\item\em Busca todas as áreas principais ativas. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_main_area_1_1_detailed_main_area_output}{Detailed\+Main\+Area\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_main_area_controller_ac8c74d11cb158b7021fa92f27293c432}{Create}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_main_area_1_1_create_main_area_input}{Create\+Main\+Area\+Input}} request)
+\begin{DoxyCompactList}\small\item\em Cria área principal. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_main_area_1_1_detailed_main_area_output}{Detailed\+Main\+Area\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_main_area_controller_a351a51264242b5e56bc4ce82dbf45550}{Update}} (Guid? id, \mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_main_area_1_1_update_main_area_input}{Update\+Main\+Area\+Input}} request)
+\begin{DoxyCompactList}\small\item\em Atualiza área principal. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_main_area_1_1_detailed_main_area_output}{Detailed\+Main\+Area\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_main_area_controller_aaf1524f5c9319c0e984486299a82e658}{Delete}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Remove área principal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Controller de Área Principal. 
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_main_area_controller_a86161a8147386ea0997abfe8c426614d}\label{class_web_a_p_i_1_1_controllers_1_1_main_area_controller_a86161a8147386ea0997abfe8c426614d} 
+\index{WebAPI.Controllers.MainAreaController@{WebAPI.Controllers.MainAreaController}!MainAreaController@{MainAreaController}}
+\index{MainAreaController@{MainAreaController}!WebAPI.Controllers.MainAreaController@{WebAPI.Controllers.MainAreaController}}
+\doxysubsubsection{\texorpdfstring{MainAreaController()}{MainAreaController()}}
+{\footnotesize\ttfamily Web\+API.\+Controllers.\+Main\+Area\+Controller.\+Main\+Area\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_main_area_1_1_i_get_main_area_by_id}{IGet\+Main\+Area\+By\+Id}}}]{get\+By\+Id,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_main_area_1_1_i_get_main_areas}{IGet\+Main\+Areas}}}]{get\+All,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_main_area_1_1_i_create_main_area}{ICreate\+Main\+Area}}}]{create,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_main_area_1_1_i_update_main_area}{IUpdate\+Main\+Area}}}]{update,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_main_area_1_1_i_delete_main_area}{IDelete\+Main\+Area}}}]{delete,  }\item[{ILogger$<$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_main_area_controller}{Main\+Area\+Controller}} $>$}]{logger }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construtor do Controller de Área Principal. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em get\+By\+Id} & Serviço de obtenção de área principal pelo id.\\
+\hline
+{\em get\+All} & Serviço de obtenção de todas as áreas principais ativas.\\
+\hline
+{\em create} & Serviço de criação de área principal.\\
+\hline
+{\em update} & Serviço de atualização de área principal.\\
+\hline
+{\em delete} & Serviço de remoção de área principal.\\
+\hline
+{\em logger} & Serviço de log.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_main_area_controller_ac8c74d11cb158b7021fa92f27293c432}\label{class_web_a_p_i_1_1_controllers_1_1_main_area_controller_ac8c74d11cb158b7021fa92f27293c432} 
+\index{WebAPI.Controllers.MainAreaController@{WebAPI.Controllers.MainAreaController}!Create@{Create}}
+\index{Create@{Create}!WebAPI.Controllers.MainAreaController@{WebAPI.Controllers.MainAreaController}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_main_area_1_1_detailed_main_area_output}{Detailed\+Main\+Area\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Main\+Area\+Controller.\+Create (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_main_area_1_1_create_main_area_input}{Create\+Main\+Area\+Input}}}]{request }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cria área principal. 
+
+\begin{DoxyReturn}{Retorna}
+Área principal criada
+\end{DoxyReturn}
+$<$response code=\"{}201\"{}$>$Retorna área principal criada$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ Grafo de chamadas desta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_web_a_p_i_1_1_controllers_1_1_main_area_controller_ac8c74d11cb158b7021fa92f27293c432_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_main_area_controller_aaf1524f5c9319c0e984486299a82e658}\label{class_web_a_p_i_1_1_controllers_1_1_main_area_controller_aaf1524f5c9319c0e984486299a82e658} 
+\index{WebAPI.Controllers.MainAreaController@{WebAPI.Controllers.MainAreaController}!Delete@{Delete}}
+\index{Delete@{Delete}!WebAPI.Controllers.MainAreaController@{WebAPI.Controllers.MainAreaController}}
+\doxysubsubsection{\texorpdfstring{Delete()}{Delete()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_main_area_1_1_detailed_main_area_output}{Detailed\+Main\+Area\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Main\+Area\+Controller.\+Delete (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Remove área principal. 
+
+\begin{DoxyReturn}{Retorna}
+Área principal removida
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna área principal removida$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Área principal não encontrada.$<$/response$>$ \Hypertarget{class_web_a_p_i_1_1_controllers_1_1_main_area_controller_a8ba87bf295d3b9f2868cd1179a3e66f2}\label{class_web_a_p_i_1_1_controllers_1_1_main_area_controller_a8ba87bf295d3b9f2868cd1179a3e66f2} 
+\index{WebAPI.Controllers.MainAreaController@{WebAPI.Controllers.MainAreaController}!GetAll@{GetAll}}
+\index{GetAll@{GetAll}!WebAPI.Controllers.MainAreaController@{WebAPI.Controllers.MainAreaController}}
+\doxysubsubsection{\texorpdfstring{GetAll()}{GetAll()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ IEnumerable$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_main_area_1_1_resumed_read_main_area_output}{Resumed\+Read\+Main\+Area\+Output}} $>$ $>$ $>$ Web\+API.\+Controllers.\+Main\+Area\+Controller.\+Get\+All (\begin{DoxyParamCaption}\item[{int}]{skip = {\ttfamily 0},  }\item[{int}]{take = {\ttfamily 50} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Busca todas as áreas principais ativas. 
+
+\begin{DoxyReturn}{Retorna}
+Todas as áreas principais ativas
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna todas as áreas principais ativas$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Nenhuma área principal encontrada.$<$/response$>$ \Hypertarget{class_web_a_p_i_1_1_controllers_1_1_main_area_controller_aa90eaa7144c2acf57791d6c6dc57f2f6}\label{class_web_a_p_i_1_1_controllers_1_1_main_area_controller_aa90eaa7144c2acf57791d6c6dc57f2f6} 
+\index{WebAPI.Controllers.MainAreaController@{WebAPI.Controllers.MainAreaController}!GetById@{GetById}}
+\index{GetById@{GetById}!WebAPI.Controllers.MainAreaController@{WebAPI.Controllers.MainAreaController}}
+\doxysubsubsection{\texorpdfstring{GetById()}{GetById()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_main_area_1_1_detailed_main_area_output}{Detailed\+Main\+Area\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Main\+Area\+Controller.\+Get\+By\+Id (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Busca área principal pelo id. 
+
+\begin{DoxyReturn}{Retorna}
+Área principal correspondente
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna área principal correspondente$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Área principal não encontrada.$<$/response$>$ Este é o diagrama das funções que utilizam esta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_web_a_p_i_1_1_controllers_1_1_main_area_controller_aa90eaa7144c2acf57791d6c6dc57f2f6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_main_area_controller_a351a51264242b5e56bc4ce82dbf45550}\label{class_web_a_p_i_1_1_controllers_1_1_main_area_controller_a351a51264242b5e56bc4ce82dbf45550} 
+\index{WebAPI.Controllers.MainAreaController@{WebAPI.Controllers.MainAreaController}!Update@{Update}}
+\index{Update@{Update}!WebAPI.Controllers.MainAreaController@{WebAPI.Controllers.MainAreaController}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_main_area_1_1_detailed_main_area_output}{Detailed\+Main\+Area\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Main\+Area\+Controller.\+Update (\begin{DoxyParamCaption}\item[{Guid?}]{id,  }\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_main_area_1_1_update_main_area_input}{Update\+Main\+Area\+Input}}}]{request }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Atualiza área principal. 
+
+\begin{DoxyReturn}{Retorna}
+Área principal atualizada
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna área principal atualizada$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Área principal não encontrada.$<$/response$>$ 
+
+A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Infrastructure/\+Web\+API/\+Controllers/\mbox{\hyperlink{_main_area_controller_8cs}{Main\+Area\+Controller.\+cs}}\end{DoxyCompactItemize}

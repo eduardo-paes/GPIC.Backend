@@ -1,0 +1,77 @@
+\doxysection{Referência à classe Application.\+Use\+Cases.\+Project\+Evaluation.\+Get\+Evaluation\+By\+Project\+Id}
+\hypertarget{class_application_1_1_use_cases_1_1_project_evaluation_1_1_get_evaluation_by_project_id}{}\label{class_application_1_1_use_cases_1_1_project_evaluation_1_1_get_evaluation_by_project_id}\index{Application.UseCases.ProjectEvaluation.GetEvaluationByProjectId@{Application.UseCases.ProjectEvaluation.GetEvaluationByProjectId}}
+
+
+Diagrama de heranças da classe Application.\+Use\+Cases.\+Project\+Evaluation.\+Get\+Evaluation\+By\+Project\+Id
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=257pt]{class_application_1_1_use_cases_1_1_project_evaluation_1_1_get_evaluation_by_project_id__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para Application.\+Use\+Cases.\+Project\+Evaluation.\+Get\+Evaluation\+By\+Project\+Id\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=257pt]{class_application_1_1_use_cases_1_1_project_evaluation_1_1_get_evaluation_by_project_id__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_application_1_1_use_cases_1_1_project_evaluation_1_1_get_evaluation_by_project_id_a77612f9217bdc01c7b505a9c8a7fa469}{Get\+Evaluation\+By\+Project\+Id}} (IMapper mapper, \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_evaluation_repository}{IProject\+Evaluation\+Repository}} repository)
+\item 
+async Task$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_evaluation_1_1_detailed_read_project_evaluation_output}{Detailed\+Read\+Project\+Evaluation\+Output}} $>$ \mbox{\hyperlink{class_application_1_1_use_cases_1_1_project_evaluation_1_1_get_evaluation_by_project_id_aec3f4f1a6047655e1e65a02ea9684fcf}{Execute\+Async}} (Guid? project\+Id)
+\begin{DoxyCompactList}\small\item\em Obtém a avaliação do projeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_application_1_1_use_cases_1_1_project_evaluation_1_1_get_evaluation_by_project_id_a77612f9217bdc01c7b505a9c8a7fa469}\label{class_application_1_1_use_cases_1_1_project_evaluation_1_1_get_evaluation_by_project_id_a77612f9217bdc01c7b505a9c8a7fa469} 
+\index{Application.UseCases.ProjectEvaluation.GetEvaluationByProjectId@{Application.UseCases.ProjectEvaluation.GetEvaluationByProjectId}!GetEvaluationByProjectId@{GetEvaluationByProjectId}}
+\index{GetEvaluationByProjectId@{GetEvaluationByProjectId}!Application.UseCases.ProjectEvaluation.GetEvaluationByProjectId@{Application.UseCases.ProjectEvaluation.GetEvaluationByProjectId}}
+\doxysubsubsection{\texorpdfstring{GetEvaluationByProjectId()}{GetEvaluationByProjectId()}}
+{\footnotesize\ttfamily Application.\+Use\+Cases.\+Project\+Evaluation.\+Get\+Evaluation\+By\+Project\+Id.\+Get\+Evaluation\+By\+Project\+Id (\begin{DoxyParamCaption}\item[{IMapper}]{mapper,  }\item[{\mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_evaluation_repository}{IProject\+Evaluation\+Repository}}}]{repository }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_application_1_1_use_cases_1_1_project_evaluation_1_1_get_evaluation_by_project_id_aec3f4f1a6047655e1e65a02ea9684fcf}\label{class_application_1_1_use_cases_1_1_project_evaluation_1_1_get_evaluation_by_project_id_aec3f4f1a6047655e1e65a02ea9684fcf} 
+\index{Application.UseCases.ProjectEvaluation.GetEvaluationByProjectId@{Application.UseCases.ProjectEvaluation.GetEvaluationByProjectId}!ExecuteAsync@{ExecuteAsync}}
+\index{ExecuteAsync@{ExecuteAsync}!Application.UseCases.ProjectEvaluation.GetEvaluationByProjectId@{Application.UseCases.ProjectEvaluation.GetEvaluationByProjectId}}
+\doxysubsubsection{\texorpdfstring{ExecuteAsync()}{ExecuteAsync()}}
+{\footnotesize\ttfamily async Task$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_evaluation_1_1_detailed_read_project_evaluation_output}{Detailed\+Read\+Project\+Evaluation\+Output}} $>$ Application.\+Use\+Cases.\+Project\+Evaluation.\+Get\+Evaluation\+By\+Project\+Id.\+Execute\+Async (\begin{DoxyParamCaption}\item[{Guid?}]{project\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Obtém a avaliação do projeto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em project\+Id} & Identificador do projeto.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Avaliação do projeto.
+\end{DoxyReturn}
+~\newline
+ 
+
+Implementa \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_evaluation_1_1_i_get_evaluation_by_project_id_a9e9366b2a89a4a9d4913fa4dd1570189}{Application.\+Interfaces.\+Use\+Cases.\+Project\+Evaluation.\+IGet\+Evaluation\+By\+Project\+Id}}.
+
+Grafo de chamadas desta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_application_1_1_use_cases_1_1_project_evaluation_1_1_get_evaluation_by_project_id_aec3f4f1a6047655e1e65a02ea9684fcf_cgraph}
+\end{center}
+\end{figure}
+
+
+A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Application/\+Use\+Cases/\+Project\+Evaluation/\mbox{\hyperlink{_get_evaluation_by_project_id_8cs}{Get\+Evaluation\+By\+Project\+Id.\+cs}}\end{DoxyCompactItemize}

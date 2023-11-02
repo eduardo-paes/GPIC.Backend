@@ -1,0 +1,145 @@
+\doxysection{Referência à classe Persistence.\+Repositories.\+Sub\+Area\+Repository}
+\hypertarget{class_persistence_1_1_repositories_1_1_sub_area_repository}{}\label{class_persistence_1_1_repositories_1_1_sub_area_repository}\index{Persistence.Repositories.SubAreaRepository@{Persistence.Repositories.SubAreaRepository}}
+
+
+Diagrama de heranças da classe Persistence.\+Repositories.\+Sub\+Area\+Repository
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{class_persistence_1_1_repositories_1_1_sub_area_repository__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para Persistence.\+Repositories.\+Sub\+Area\+Repository\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{class_persistence_1_1_repositories_1_1_sub_area_repository__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_persistence_1_1_repositories_1_1_sub_area_repository_a16da95ece90b25c58ae6090e37f529f7}{Sub\+Area\+Repository}} (\mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context}{Application\+Db\+Context}} context)
+\item 
+async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_sub_area}{Sub\+Area}} $>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_sub_area_repository_a285f85659d90617393e931196a08c757}{Create\+Async}} (\mbox{\hyperlink{class_domain_1_1_entities_1_1_sub_area}{Sub\+Area}} model)
+\item 
+async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_sub_area}{Sub\+Area}}?$>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_sub_area_repository_a9a8b4f61cf325aaba9961928756bb2d9}{Get\+By\+Code\+Async}} (string? code)
+\item 
+async Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_sub_area}{Sub\+Area}} $>$ $>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_sub_area_repository_a0bf3e76e36b139501042b0597d75822d}{Get\+Sub\+Areas\+By\+Area\+Async}} (Guid? area\+Id, int skip, int take)
+\item 
+async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_sub_area}{Sub\+Area}}?$>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_sub_area_repository_a6c93495938f71fdcc20c362d79a2583a}{Get\+By\+Id\+Async}} (Guid? id)
+\item 
+async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_sub_area}{Sub\+Area}} $>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_sub_area_repository_abf79edcbcef414e998512efe7b8fb794}{Delete\+Async}} (Guid? id)
+\item 
+async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_sub_area}{Sub\+Area}} $>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_sub_area_repository_afb95d8fb383c8aedb163cd28a39f3a02}{Update\+Async}} (\mbox{\hyperlink{class_domain_1_1_entities_1_1_sub_area}{Sub\+Area}} model)
+\item 
+Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_sub_area}{Sub\+Area}} $>$ $>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_sub_area_repository_ac0713cd3fcca9907f4e2e2ff76431a78}{Get\+All\+Async}} (int skip, int take)
+\end{DoxyCompactItemize}
+\doxysubsection*{Membros públicos herdados de \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository}{Domain.\+Interfaces.\+Repositories.\+Bases.\+IGeneric\+CRUDRepository$<$ Sub\+Area $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+Task$<$ T?$>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository_a6841e9b42292eab29e06a110eb1bf0c6}{Get\+By\+Id\+Async}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Busca entidade pelo Id informado. Lança uma exceção quando a entidade não é encontrada. \end{DoxyCompactList}\item 
+Task$<$ IEnumerable$<$ T $>$ $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository_ad3f01fc2bd245d9cde1e3df89ed0e838}{Get\+All\+Async}} (int skip, int take)
+\begin{DoxyCompactList}\small\item\em Busca todas as entidades ativas. \end{DoxyCompactList}\item 
+Task$<$ T $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository_aeab117b679172abf7e1091b67d1ee98d}{Create\+Async}} (T model)
+\begin{DoxyCompactList}\small\item\em Cria entidade conforme parâmetros fornecidos. \end{DoxyCompactList}\item 
+Task$<$ T $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository_a33d532d65e072c5eea34dd948cef118e}{Delete\+Async}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Remove entidade através do Id informado. \end{DoxyCompactList}\item 
+Task$<$ T $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository_adeb973367d91689a1d499ebb9986ce19}{Update\+Async}} (T model)
+\begin{DoxyCompactList}\small\item\em Atualiza entidade conforme parâmetros fornecidos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_persistence_1_1_repositories_1_1_sub_area_repository_a16da95ece90b25c58ae6090e37f529f7}\label{class_persistence_1_1_repositories_1_1_sub_area_repository_a16da95ece90b25c58ae6090e37f529f7} 
+\index{Persistence.Repositories.SubAreaRepository@{Persistence.Repositories.SubAreaRepository}!SubAreaRepository@{SubAreaRepository}}
+\index{SubAreaRepository@{SubAreaRepository}!Persistence.Repositories.SubAreaRepository@{Persistence.Repositories.SubAreaRepository}}
+\doxysubsubsection{\texorpdfstring{SubAreaRepository()}{SubAreaRepository()}}
+{\footnotesize\ttfamily Persistence.\+Repositories.\+Sub\+Area\+Repository.\+Sub\+Area\+Repository (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context}{Application\+Db\+Context}}}]{context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_persistence_1_1_repositories_1_1_sub_area_repository_a285f85659d90617393e931196a08c757}\label{class_persistence_1_1_repositories_1_1_sub_area_repository_a285f85659d90617393e931196a08c757} 
+\index{Persistence.Repositories.SubAreaRepository@{Persistence.Repositories.SubAreaRepository}!CreateAsync@{CreateAsync}}
+\index{CreateAsync@{CreateAsync}!Persistence.Repositories.SubAreaRepository@{Persistence.Repositories.SubAreaRepository}}
+\doxysubsubsection{\texorpdfstring{CreateAsync()}{CreateAsync()}}
+{\footnotesize\ttfamily async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_sub_area}{Sub\+Area}} $>$ Persistence.\+Repositories.\+Sub\+Area\+Repository.\+Create\+Async (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_domain_1_1_entities_1_1_sub_area}{Sub\+Area}}}]{model }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_persistence_1_1_repositories_1_1_sub_area_repository_abf79edcbcef414e998512efe7b8fb794}\label{class_persistence_1_1_repositories_1_1_sub_area_repository_abf79edcbcef414e998512efe7b8fb794} 
+\index{Persistence.Repositories.SubAreaRepository@{Persistence.Repositories.SubAreaRepository}!DeleteAsync@{DeleteAsync}}
+\index{DeleteAsync@{DeleteAsync}!Persistence.Repositories.SubAreaRepository@{Persistence.Repositories.SubAreaRepository}}
+\doxysubsubsection{\texorpdfstring{DeleteAsync()}{DeleteAsync()}}
+{\footnotesize\ttfamily async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_sub_area}{Sub\+Area}} $>$ Persistence.\+Repositories.\+Sub\+Area\+Repository.\+Delete\+Async (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Grafo de chamadas desta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_persistence_1_1_repositories_1_1_sub_area_repository_abf79edcbcef414e998512efe7b8fb794_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_persistence_1_1_repositories_1_1_sub_area_repository_ac0713cd3fcca9907f4e2e2ff76431a78}\label{class_persistence_1_1_repositories_1_1_sub_area_repository_ac0713cd3fcca9907f4e2e2ff76431a78} 
+\index{Persistence.Repositories.SubAreaRepository@{Persistence.Repositories.SubAreaRepository}!GetAllAsync@{GetAllAsync}}
+\index{GetAllAsync@{GetAllAsync}!Persistence.Repositories.SubAreaRepository@{Persistence.Repositories.SubAreaRepository}}
+\doxysubsubsection{\texorpdfstring{GetAllAsync()}{GetAllAsync()}}
+{\footnotesize\ttfamily Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_sub_area}{Sub\+Area}} $>$ $>$ Persistence.\+Repositories.\+Sub\+Area\+Repository.\+Get\+All\+Async (\begin{DoxyParamCaption}\item[{int}]{skip,  }\item[{int}]{take }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_persistence_1_1_repositories_1_1_sub_area_repository_a9a8b4f61cf325aaba9961928756bb2d9}\label{class_persistence_1_1_repositories_1_1_sub_area_repository_a9a8b4f61cf325aaba9961928756bb2d9} 
+\index{Persistence.Repositories.SubAreaRepository@{Persistence.Repositories.SubAreaRepository}!GetByCodeAsync@{GetByCodeAsync}}
+\index{GetByCodeAsync@{GetByCodeAsync}!Persistence.Repositories.SubAreaRepository@{Persistence.Repositories.SubAreaRepository}}
+\doxysubsubsection{\texorpdfstring{GetByCodeAsync()}{GetByCodeAsync()}}
+{\footnotesize\ttfamily async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_sub_area}{Sub\+Area}}?$>$ Persistence.\+Repositories.\+Sub\+Area\+Repository.\+Get\+By\+Code\+Async (\begin{DoxyParamCaption}\item[{string?}]{code }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementa \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_sub_area_repository_a3f1e82ac5f0af798f9e1b81ed3b188c7}{Domain.\+Interfaces.\+Repositories.\+ISub\+Area\+Repository}}.
+
+\Hypertarget{class_persistence_1_1_repositories_1_1_sub_area_repository_a6c93495938f71fdcc20c362d79a2583a}\label{class_persistence_1_1_repositories_1_1_sub_area_repository_a6c93495938f71fdcc20c362d79a2583a} 
+\index{Persistence.Repositories.SubAreaRepository@{Persistence.Repositories.SubAreaRepository}!GetByIdAsync@{GetByIdAsync}}
+\index{GetByIdAsync@{GetByIdAsync}!Persistence.Repositories.SubAreaRepository@{Persistence.Repositories.SubAreaRepository}}
+\doxysubsubsection{\texorpdfstring{GetByIdAsync()}{GetByIdAsync()}}
+{\footnotesize\ttfamily async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_sub_area}{Sub\+Area}}?$>$ Persistence.\+Repositories.\+Sub\+Area\+Repository.\+Get\+By\+Id\+Async (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Este é o diagrama das funções que utilizam esta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_persistence_1_1_repositories_1_1_sub_area_repository_a6c93495938f71fdcc20c362d79a2583a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_persistence_1_1_repositories_1_1_sub_area_repository_a0bf3e76e36b139501042b0597d75822d}\label{class_persistence_1_1_repositories_1_1_sub_area_repository_a0bf3e76e36b139501042b0597d75822d} 
+\index{Persistence.Repositories.SubAreaRepository@{Persistence.Repositories.SubAreaRepository}!GetSubAreasByAreaAsync@{GetSubAreasByAreaAsync}}
+\index{GetSubAreasByAreaAsync@{GetSubAreasByAreaAsync}!Persistence.Repositories.SubAreaRepository@{Persistence.Repositories.SubAreaRepository}}
+\doxysubsubsection{\texorpdfstring{GetSubAreasByAreaAsync()}{GetSubAreasByAreaAsync()}}
+{\footnotesize\ttfamily async Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_sub_area}{Sub\+Area}} $>$ $>$ Persistence.\+Repositories.\+Sub\+Area\+Repository.\+Get\+Sub\+Areas\+By\+Area\+Async (\begin{DoxyParamCaption}\item[{Guid?}]{area\+Id,  }\item[{int}]{skip,  }\item[{int}]{take }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementa \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_sub_area_repository_ac00c89a002a47bedc095328327e7e8a9}{Domain.\+Interfaces.\+Repositories.\+ISub\+Area\+Repository}}.
+
+\Hypertarget{class_persistence_1_1_repositories_1_1_sub_area_repository_afb95d8fb383c8aedb163cd28a39f3a02}\label{class_persistence_1_1_repositories_1_1_sub_area_repository_afb95d8fb383c8aedb163cd28a39f3a02} 
+\index{Persistence.Repositories.SubAreaRepository@{Persistence.Repositories.SubAreaRepository}!UpdateAsync@{UpdateAsync}}
+\index{UpdateAsync@{UpdateAsync}!Persistence.Repositories.SubAreaRepository@{Persistence.Repositories.SubAreaRepository}}
+\doxysubsubsection{\texorpdfstring{UpdateAsync()}{UpdateAsync()}}
+{\footnotesize\ttfamily async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_sub_area}{Sub\+Area}} $>$ Persistence.\+Repositories.\+Sub\+Area\+Repository.\+Update\+Async (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_domain_1_1_entities_1_1_sub_area}{Sub\+Area}}}]{model }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Este é o diagrama das funções que utilizam esta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_persistence_1_1_repositories_1_1_sub_area_repository_afb95d8fb383c8aedb163cd28a39f3a02_icgraph}
+\end{center}
+\end{figure}
+
+
+A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Infrastructure/\+Persistence/\+Repositories/\mbox{\hyperlink{_sub_area_repository_8cs}{Sub\+Area\+Repository.\+cs}}\end{DoxyCompactItemize}

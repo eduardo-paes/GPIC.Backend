@@ -1,0 +1,8 @@
+var namespace_application_1_1_ports_1_1_student_documents =
+[
+    [ "BaseStudentDocumentsOutput", "class_application_1_1_ports_1_1_student_documents_1_1_base_student_documents_output.html", "class_application_1_1_ports_1_1_student_documents_1_1_base_student_documents_output" ],
+    [ "CreateStudentDocumentsInput", "class_application_1_1_ports_1_1_student_documents_1_1_create_student_documents_input.html", "class_application_1_1_ports_1_1_student_documents_1_1_create_student_documents_input" ],
+    [ "DetailedReadStudentDocumentsOutput", "class_application_1_1_ports_1_1_student_documents_1_1_detailed_read_student_documents_output.html", "class_application_1_1_ports_1_1_student_documents_1_1_detailed_read_student_documents_output" ],
+    [ "ResumedReadStudentDocumentsOutput", "class_application_1_1_ports_1_1_student_documents_1_1_resumed_read_student_documents_output.html", null ],
+    [ "UpdateStudentDocumentsInput", "class_application_1_1_ports_1_1_student_documents_1_1_update_student_documents_input.html", "class_application_1_1_ports_1_1_student_documents_1_1_update_student_documents_input" ]
+];

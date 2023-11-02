@@ -1,0 +1,98 @@
+\doxysection{Referência à classe Application.\+Use\+Cases.\+Student.\+Request\+Student\+Register}
+\hypertarget{class_application_1_1_use_cases_1_1_student_1_1_request_student_register}{}\label{class_application_1_1_use_cases_1_1_student_1_1_request_student_register}\index{Application.UseCases.Student.RequestStudentRegister@{Application.UseCases.Student.RequestStudentRegister}}
+
+
+Diagrama de heranças da classe Application.\+Use\+Cases.\+Student.\+Request\+Student\+Register
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{class_application_1_1_use_cases_1_1_student_1_1_request_student_register__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para Application.\+Use\+Cases.\+Student.\+Request\+Student\+Register\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{class_application_1_1_use_cases_1_1_student_1_1_request_student_register__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_application_1_1_use_cases_1_1_student_1_1_request_student_register_afe0b1e9eaef960b9297061af528cba16}{Request\+Student\+Register}} (\mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_services_1_1_i_email_service}{IEmail\+Service}} email\+Service, \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository}{IUser\+Repository}} user\+Repository)
+\item 
+async Task$<$ string?$>$ \mbox{\hyperlink{class_application_1_1_use_cases_1_1_student_1_1_request_student_register_a674bfa93db29983936a52896c8cedb0d}{Execute\+Async}} (string? email)
+\item 
+bool \mbox{\hyperlink{class_application_1_1_use_cases_1_1_student_1_1_request_student_register_ae0a6d0ab5ae0a3b2f346e394ce1aa743}{Validate\+Student\+Email}} (string email)
+\begin{DoxyCompactList}\small\item\em Verifica se o e-\/mail informado é válido para o estudante. Padrões aceitos\+: \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_application_1_1_use_cases_1_1_student_1_1_request_student_register_afe0b1e9eaef960b9297061af528cba16}\label{class_application_1_1_use_cases_1_1_student_1_1_request_student_register_afe0b1e9eaef960b9297061af528cba16} 
+\index{Application.UseCases.Student.RequestStudentRegister@{Application.UseCases.Student.RequestStudentRegister}!RequestStudentRegister@{RequestStudentRegister}}
+\index{RequestStudentRegister@{RequestStudentRegister}!Application.UseCases.Student.RequestStudentRegister@{Application.UseCases.Student.RequestStudentRegister}}
+\doxysubsubsection{\texorpdfstring{RequestStudentRegister()}{RequestStudentRegister()}}
+{\footnotesize\ttfamily Application.\+Use\+Cases.\+Student.\+Request\+Student\+Register.\+Request\+Student\+Register (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_services_1_1_i_email_service}{IEmail\+Service}}}]{email\+Service,  }\item[{\mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository}{IUser\+Repository}}}]{user\+Repository }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_application_1_1_use_cases_1_1_student_1_1_request_student_register_a674bfa93db29983936a52896c8cedb0d}\label{class_application_1_1_use_cases_1_1_student_1_1_request_student_register_a674bfa93db29983936a52896c8cedb0d} 
+\index{Application.UseCases.Student.RequestStudentRegister@{Application.UseCases.Student.RequestStudentRegister}!ExecuteAsync@{ExecuteAsync}}
+\index{ExecuteAsync@{ExecuteAsync}!Application.UseCases.Student.RequestStudentRegister@{Application.UseCases.Student.RequestStudentRegister}}
+\doxysubsubsection{\texorpdfstring{ExecuteAsync()}{ExecuteAsync()}}
+{\footnotesize\ttfamily async Task$<$ string?$>$ Application.\+Use\+Cases.\+Student.\+Request\+Student\+Register.\+Execute\+Async (\begin{DoxyParamCaption}\item[{string?}]{email }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementa \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_student_1_1_i_request_student_register_acc3556affe5019a672f21690cc78f4e9}{Application.\+Interfaces.\+Use\+Cases.\+Student.\+IRequest\+Student\+Register}}.
+
+Grafo de chamadas desta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_application_1_1_use_cases_1_1_student_1_1_request_student_register_a674bfa93db29983936a52896c8cedb0d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_application_1_1_use_cases_1_1_student_1_1_request_student_register_ae0a6d0ab5ae0a3b2f346e394ce1aa743}\label{class_application_1_1_use_cases_1_1_student_1_1_request_student_register_ae0a6d0ab5ae0a3b2f346e394ce1aa743} 
+\index{Application.UseCases.Student.RequestStudentRegister@{Application.UseCases.Student.RequestStudentRegister}!ValidateStudentEmail@{ValidateStudentEmail}}
+\index{ValidateStudentEmail@{ValidateStudentEmail}!Application.UseCases.Student.RequestStudentRegister@{Application.UseCases.Student.RequestStudentRegister}}
+\doxysubsubsection{\texorpdfstring{ValidateStudentEmail()}{ValidateStudentEmail()}}
+{\footnotesize\ttfamily bool Application.\+Use\+Cases.\+Student.\+Request\+Student\+Register.\+Validate\+Student\+Email (\begin{DoxyParamCaption}\item[{string}]{email }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verifica se o e-\/mail informado é válido para o estudante. Padrões aceitos\+: 
+
+
+\begin{DoxyItemize}
+\item \href{mailto:nome.sobrenome@aluno.cefet-rj.br}{\texttt{ nome.\+sobrenome@aluno.\+cefet-\/rj.\+br}}
+\item \href{mailto:12345678912@cefet-rj.br}{\texttt{ 12345678912@cefet-\/rj.\+br}}
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em email} & E-\/mail a ser validado\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+True se o e-\/mail é válido, caso contrário, False
+\end{DoxyReturn}
+Este é o diagrama das funções que utilizam esta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_application_1_1_use_cases_1_1_student_1_1_request_student_register_ae0a6d0ab5ae0a3b2f346e394ce1aa743_icgraph}
+\end{center}
+\end{figure}
+
+
+A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Application/\+Use\+Cases/\+Student/\mbox{\hyperlink{_request_student_register_8cs}{Request\+Student\+Register.\+cs}}\end{DoxyCompactItemize}

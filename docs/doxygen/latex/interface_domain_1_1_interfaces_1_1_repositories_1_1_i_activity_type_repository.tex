@@ -1,0 +1,70 @@
+\doxysection{Referência ao interface Domain.\+Interfaces.\+Repositories.\+IActivity\+Type\+Repository}
+\hypertarget{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_activity_type_repository}{}\label{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_activity_type_repository}\index{Domain.Interfaces.Repositories.IActivityTypeRepository@{Domain.Interfaces.Repositories.IActivityTypeRepository}}
+
+
+Diagrama de heranças da classe Domain.\+Interfaces.\+Repositories.\+IActivity\+Type\+Repository
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_activity_type_repository__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para Domain.\+Interfaces.\+Repositories.\+IActivity\+Type\+Repository\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_activity_type_repository__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+Task$<$ IList$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_activity_type}{Activity\+Type}} $>$ $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_activity_type_repository_a5f1d5a5b424382f8b7993dc96ad87017}{Get\+By\+Notice\+Id\+Async}} (Guid? notice\+Id)
+\item 
+Task$<$ IList$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_activity_type}{Activity\+Type}} $>$ $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_activity_type_repository_ac0b7be82b1308902c96f4be72477dd3f}{Get\+Last\+Notice\+Activities\+Async}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Membros públicos herdados de \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository}{Domain.\+Interfaces.\+Repositories.\+Bases.\+IGeneric\+CRUDRepository$<$ Activity\+Type $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+Task$<$ T?$>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository_a6841e9b42292eab29e06a110eb1bf0c6}{Get\+By\+Id\+Async}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Busca entidade pelo Id informado. Lança uma exceção quando a entidade não é encontrada. \end{DoxyCompactList}\item 
+Task$<$ IEnumerable$<$ T $>$ $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository_ad3f01fc2bd245d9cde1e3df89ed0e838}{Get\+All\+Async}} (int skip, int take)
+\begin{DoxyCompactList}\small\item\em Busca todas as entidades ativas. \end{DoxyCompactList}\item 
+Task$<$ T $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository_aeab117b679172abf7e1091b67d1ee98d}{Create\+Async}} (T model)
+\begin{DoxyCompactList}\small\item\em Cria entidade conforme parâmetros fornecidos. \end{DoxyCompactList}\item 
+Task$<$ T $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository_a33d532d65e072c5eea34dd948cef118e}{Delete\+Async}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Remove entidade através do Id informado. \end{DoxyCompactList}\item 
+Task$<$ T $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository_adeb973367d91689a1d499ebb9986ce19}{Update\+Async}} (T model)
+\begin{DoxyCompactList}\small\item\em Atualiza entidade conforme parâmetros fornecidos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_activity_type_repository_a5f1d5a5b424382f8b7993dc96ad87017}\label{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_activity_type_repository_a5f1d5a5b424382f8b7993dc96ad87017} 
+\index{Domain.Interfaces.Repositories.IActivityTypeRepository@{Domain.Interfaces.Repositories.IActivityTypeRepository}!GetByNoticeIdAsync@{GetByNoticeIdAsync}}
+\index{GetByNoticeIdAsync@{GetByNoticeIdAsync}!Domain.Interfaces.Repositories.IActivityTypeRepository@{Domain.Interfaces.Repositories.IActivityTypeRepository}}
+\doxysubsubsection{\texorpdfstring{GetByNoticeIdAsync()}{GetByNoticeIdAsync()}}
+{\footnotesize\ttfamily Task$<$ IList$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_activity_type}{Activity\+Type}} $>$ $>$ Domain.\+Interfaces.\+Repositories.\+IActivity\+Type\+Repository.\+Get\+By\+Notice\+Id\+Async (\begin{DoxyParamCaption}\item[{Guid?}]{notice\+Id }\end{DoxyParamCaption})}
+
+
+
+Implementado em \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_activity_type_repository_a54c5cb61d7f6a962431f15cbc8a966f7}{Persistence.\+Repositories.\+Activity\+Type\+Repository}}.
+
+\Hypertarget{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_activity_type_repository_ac0b7be82b1308902c96f4be72477dd3f}\label{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_activity_type_repository_ac0b7be82b1308902c96f4be72477dd3f} 
+\index{Domain.Interfaces.Repositories.IActivityTypeRepository@{Domain.Interfaces.Repositories.IActivityTypeRepository}!GetLastNoticeActivitiesAsync@{GetLastNoticeActivitiesAsync}}
+\index{GetLastNoticeActivitiesAsync@{GetLastNoticeActivitiesAsync}!Domain.Interfaces.Repositories.IActivityTypeRepository@{Domain.Interfaces.Repositories.IActivityTypeRepository}}
+\doxysubsubsection{\texorpdfstring{GetLastNoticeActivitiesAsync()}{GetLastNoticeActivitiesAsync()}}
+{\footnotesize\ttfamily Task$<$ IList$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_activity_type}{Activity\+Type}} $>$ $>$ Domain.\+Interfaces.\+Repositories.\+IActivity\+Type\+Repository.\+Get\+Last\+Notice\+Activities\+Async (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Implementado em \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_activity_type_repository_a363d1c45b58e7681501d225a342ca806}{Persistence.\+Repositories.\+Activity\+Type\+Repository}}.
+
+
+
+A documentação para este interface foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Domain/\+Interfaces/\+Repositories/\mbox{\hyperlink{_i_activity_type_repository_8cs}{IActivity\+Type\+Repository.\+cs}}\end{DoxyCompactItemize}

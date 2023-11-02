@@ -1,0 +1,11 @@
+<map id="Application.UseCases.Professor.DeleteProfessor.ExecuteAsync" name="Application.UseCases.Professor.DeleteProfessor.ExecuteAsync">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,71,220,111"/>
+<area shape="rect" id="Node000002" href="$class_application_1_1_validation_1_1_use_case_exception.html#abdfb0053369c84d85c471ad55011c4c4" title=" " alt="" coords="268,5,513,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="201,67,286,47,287,53,203,73"/>
+<area shape="rect" id="Node000003" href="$class_application_1_1_validation_1_1_use_case_exception.html#a6bfcf35154fd3871957a71216a943cba" title=" " alt="" coords="274,71,507,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="220,88,259,88,259,94,220,94"/>
+<area shape="rect" id="Node000004" href="$class_application_1_1_validation_1_1_use_case_exception.html#a640987a86719d6afd8278fdbf578ab57" title=" " alt="" coords="278,136,503,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="203,109,287,129,286,135,201,115"/>
+<area shape="rect" id="Node000005" href="$class_application_1_1_validation_1_1_use_case_exception.html#ad2defa29da6c9eee2864794300f152ae" title=" " alt="" coords="561,136,788,177"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="503,154,545,154,545,159,503,159"/>
+</map>

@@ -1,0 +1,4 @@
+var class_infrastructure_1_1_persistence_1_1_entities_configuration_1_1_project_final_report_configuration =
+[
+    [ "Configure", "class_infrastructure_1_1_persistence_1_1_entities_configuration_1_1_project_final_report_configuration.html#a00cb88e4dd14fb2de06d93ec1f4d7f86", null ]
+];

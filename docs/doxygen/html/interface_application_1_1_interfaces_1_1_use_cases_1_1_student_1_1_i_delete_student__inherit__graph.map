@@ -1,0 +1,5 @@
+<map id="Application.Interfaces.UseCases.Student.IDeleteStudent" name="Application.Interfaces.UseCases.Student.IDeleteStudent">
+<area shape="rect" id="Node000001" title=" " alt="" coords="8,5,207,46"/>
+<area shape="rect" id="Node000002" href="$class_application_1_1_use_cases_1_1_student_1_1_delete_student.html" title=" " alt="" coords="5,94,210,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,62,110,94,105,94,105,62"/>
+</map>

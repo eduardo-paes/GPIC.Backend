@@ -1,0 +1,8 @@
+var namespace_application_1_1_interfaces_1_1_use_cases_1_1_program_type =
+[
+    [ "ICreateProgramType", "interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_create_program_type.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_create_program_type" ],
+    [ "IDeleteProgramType", "interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_delete_program_type.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_delete_program_type" ],
+    [ "IGetProgramTypeById", "interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_get_program_type_by_id.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_get_program_type_by_id" ],
+    [ "IGetProgramTypes", "interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_get_program_types.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_get_program_types" ],
+    [ "IUpdateProgramType", "interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_update_program_type.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_update_program_type" ]
+];

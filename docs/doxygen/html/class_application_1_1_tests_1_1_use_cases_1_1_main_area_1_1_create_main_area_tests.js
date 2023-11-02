@@ -1,0 +1,5 @@
+var class_application_1_1_tests_1_1_use_cases_1_1_main_area_1_1_create_main_area_tests =
+[
+    [ "ExecuteAsync_CodeAlreadyExists_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_main_area_1_1_create_main_area_tests.html#ae7a740852b2494f2961ad04a01702404", null ],
+    [ "ExecuteAsync_ValidInput_ReturnsDetailedMainAreaOutput", "class_application_1_1_tests_1_1_use_cases_1_1_main_area_1_1_create_main_area_tests.html#a922c0a619018094a990d1f0b83a3dc32", null ]
+];

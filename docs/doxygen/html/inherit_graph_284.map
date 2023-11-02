@@ -1,0 +1,33 @@
+<map id="Representação gráfica da hiearquia da classe" name="Representação gráfica da hiearquia da classe">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,406,64,432"/>
+<area shape="rect" id="Node000001" href="$class_domain_1_1_mappings_1_1_activity_mappings.html" title=" " alt="" coords="146,5,320,46"/>
+<area shape="poly" id="edge259_Node000000_Node000001" title=" " alt="" coords="35,390,43,313,57,213,79,119,93,82,110,56,126,43,144,34,146,39,129,47,114,59,98,84,84,120,63,214,48,313,41,391"/>
+<area shape="rect" id="Node000002" href="$class_domain_1_1_mappings_1_1_area_mappings.html" title=" " alt="" coords="126,70,340,96"/>
+<area shape="poly" id="edge260_Node000000_Node000002" title=" " alt="" coords="36,390,45,322,61,238,82,158,95,128,110,106,126,94,130,99,114,110,100,130,87,160,66,239,51,323,42,391"/>
+<area shape="rect" id="Node000003" href="$class_domain_1_1_mappings_1_1_assistance_type_mappings.html" title=" " alt="" coords="135,120,331,161"/>
+<area shape="poly" id="edge261_Node000000_Node000003" title=" " alt="" coords="33,391,37,343,49,284,72,223,89,195,110,170,133,154,136,159,113,174,93,198,77,225,54,285,43,344,39,391"/>
+<area shape="rect" id="Node000004" href="$class_domain_1_1_mappings_1_1_campus_mappings.html" title=" " alt="" coords="115,185,351,211"/>
+<area shape="poly" id="edge262_Node000000_Node000004" title=" " alt="" coords="36,391,42,352,55,305,77,259,92,238,110,220,126,209,129,213,113,224,96,241,82,262,60,307,47,353,41,391"/>
+<area shape="rect" id="Node000005" href="$class_domain_1_1_mappings_1_1_course_mappings.html" title=" " alt="" coords="119,234,347,260"/>
+<area shape="poly" id="edge263_Node000000_Node000005" title=" " alt="" coords="40,390,64,329,84,297,110,270,131,258,134,263,113,274,88,300,68,331,45,392"/>
+<area shape="rect" id="Node000006" href="$class_domain_1_1_mappings_1_1_main_area_mappings.html" title=" " alt="" coords="140,284,326,325"/>
+<area shape="poly" id="edge264_Node000000_Node000006" title=" " alt="" coords="51,392,77,361,110,334,138,321,141,325,113,339,80,365,55,395"/>
+<area shape="rect" id="Node000007" href="$class_domain_1_1_mappings_1_1_notice_mappings.html" title=" " alt="" coords="121,349,345,375"/>
+<area shape="poly" id="edge265_Node000000_Node000007" title=" " alt="" coords="77,397,111,384,156,373,157,378,112,390,79,402"/>
+<area shape="rect" id="Node000008" href="$class_domain_1_1_mappings_1_1_professor_mappings.html" title=" " alt="" coords="140,399,326,439"/>
+<area shape="poly" id="edge266_Node000000_Node000008" title=" " alt="" coords="79,416,139,416,139,422,79,422"/>
+<area shape="rect" id="Node000009" href="$class_domain_1_1_mappings_1_1_program_type_mappings.html" title=" " alt="" coords="129,464,337,505"/>
+<area shape="poly" id="edge267_Node000000_Node000009" title=" " alt="" coords="79,436,113,448,152,461,150,466,111,454,77,441"/>
+<area shape="rect" id="Node000010" href="$class_domain_1_1_mappings_1_1_project_evaluation_mappings.html" title=" " alt="" coords="117,529,349,570"/>
+<area shape="poly" id="edge268_Node000000_Node000010" title=" " alt="" coords="52,444,78,481,94,499,113,514,136,526,134,531,110,519,91,503,73,484,48,447"/>
+<area shape="rect" id="Node000011" href="$class_domain_1_1_mappings_1_1_project_mappings.html" title=" " alt="" coords="119,594,347,620"/>
+<area shape="poly" id="edge269_Node000000_Node000011" title=" " alt="" coords="44,447,52,478,66,514,86,550,113,580,133,591,130,596,110,584,82,553,61,517,47,480,38,448"/>
+<area shape="rect" id="Node000012" href="$class_domain_1_1_mappings_1_1_student_documents_mappings.html" title=" " alt="" coords="112,644,354,685"/>
+<area shape="poly" id="edge270_Node000000_Node000012" title=" " alt="" coords="40,447,46,488,59,538,81,588,95,610,113,630,128,641,125,646,110,634,91,614,76,590,54,539,41,489,35,448"/>
+<area shape="rect" id="Node000013" href="$class_domain_1_1_mappings_1_1_student_mappings.html" title=" " alt="" coords="117,709,349,735"/>
+<area shape="poly" id="edge271_Node000000_Node000013" title=" " alt="" coords="37,447,39,501,49,567,59,602,72,636,90,667,113,694,130,706,127,711,110,698,86,670,67,638,53,604,44,569,34,501,32,448"/>
+<area shape="rect" id="Node000014" href="$class_domain_1_1_mappings_1_1_sub_area_mappings.html" title=" " alt="" coords="115,758,351,784"/>
+<area shape="poly" id="edge272_Node000000_Node000014" title=" " alt="" coords="41,447,50,518,64,608,86,692,99,724,114,745,127,756,124,760,110,749,94,726,81,693,59,609,44,519,36,448"/>
+<area shape="rect" id="Node000015" href="$class_domain_1_1_mappings_1_1_user_mappings.html" title=" " alt="" coords="126,808,340,833"/>
+<area shape="poly" id="edge273_Node000000_Node000015" title=" " alt="" coords="40,447,47,528,61,632,83,731,97,769,114,795,127,805,124,809,110,798,92,772,77,733,55,633,42,529,35,448"/>
+</map>

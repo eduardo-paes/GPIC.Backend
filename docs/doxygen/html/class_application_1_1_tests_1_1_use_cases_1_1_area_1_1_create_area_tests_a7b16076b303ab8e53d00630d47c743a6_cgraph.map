@@ -1,0 +1,7 @@
+<map id="Application.Tests.UseCases.Area.CreateAreaTests.Execute_WithValidInput_ShouldCreateArea" name="Application.Tests.UseCases.Area.CreateAreaTests.Execute_WithValidInput_ShouldCreateArea">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,231,87"/>
+<area shape="rect" id="Node000002" href="$interface_application_1_1_interfaces_1_1_use_cases_1_1_area_1_1_i_create_area.html#a8f6a2cd46ac0f0d45efb72bda2b0ee2a" title=" " alt="" coords="279,5,532,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="231,43,263,40,263,45,231,49"/>
+<area shape="rect" id="Node000003" href="$class_application_1_1_tests_1_1_use_cases_1_1_area_1_1_create_area_tests.html#a4c609c72868484e9e581fb7acfbb31ac" title=" " alt="" coords="285,71,526,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="231,69,270,73,269,78,231,74"/>
+</map>

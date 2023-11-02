@@ -1,0 +1,4 @@
+var interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_get_assistance_types =
+[
+    [ "ExecuteAsync", "interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_get_assistance_types.html#ad01c09996e762235499e621041ec4d4c", null ]
+];

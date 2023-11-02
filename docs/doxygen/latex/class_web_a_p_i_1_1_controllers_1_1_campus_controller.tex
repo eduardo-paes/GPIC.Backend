@@ -1,0 +1,179 @@
+\doxysection{Referência à classe Web\+API.\+Controllers.\+Campus\+Controller}
+\hypertarget{class_web_a_p_i_1_1_controllers_1_1_campus_controller}{}\label{class_web_a_p_i_1_1_controllers_1_1_campus_controller}\index{WebAPI.Controllers.CampusController@{WebAPI.Controllers.CampusController}}
+
+
+Controller de Campus.  
+
+
+
+
+Diagrama de heranças da classe Web\+API.\+Controllers.\+Campus\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{class_web_a_p_i_1_1_controllers_1_1_campus_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para Web\+API.\+Controllers.\+Campus\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{class_web_a_p_i_1_1_controllers_1_1_campus_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_campus_controller_ab389195d42d3630cce83c289c7069c67}{Campus\+Controller}} (\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_campus_1_1_i_get_campus_by_id}{IGet\+Campus\+By\+Id}} get\+By\+Id, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_campus_1_1_i_get_campuses}{IGet\+Campuses}} get\+All, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_campus_1_1_i_create_campus}{ICreate\+Campus}} create, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_campus_1_1_i_update_campus}{IUpdate\+Campus}} update, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_campus_1_1_i_delete_campus}{IDelete\+Campus}} delete, ILogger$<$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_campus_controller}{Campus\+Controller}} $>$ logger)
+\begin{DoxyCompactList}\small\item\em Construtor do Controller de Campus. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_campus_1_1_detailed_read_campus_output}{Detailed\+Read\+Campus\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_campus_controller_a3f59a6e28d662f5a09287b9f59a56059}{Get\+By\+Id}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Busca campus pelo id. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ IEnumerable$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_campus_1_1_resumed_read_campus_output}{Resumed\+Read\+Campus\+Output}} $>$ $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_campus_controller_a56d33693982fbb0136f7515dd2c8d7a2}{Get\+All}} (int skip=0, int take=50)
+\begin{DoxyCompactList}\small\item\em Busca todas os campus ativos. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_campus_1_1_detailed_read_campus_output}{Detailed\+Read\+Campus\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_campus_controller_aee40e43889e98a06e9122926e877ea0f}{Create}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_campus_1_1_create_campus_input}{Create\+Campus\+Input}} request)
+\begin{DoxyCompactList}\small\item\em Cria um novo campus. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_campus_1_1_detailed_read_campus_output}{Detailed\+Read\+Campus\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_campus_controller_a823cd2abc9169e909017efa6b907cbb6}{Update}} (Guid? id, \mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_campus_1_1_update_campus_input}{Update\+Campus\+Input}} request)
+\begin{DoxyCompactList}\small\item\em Atualiza um campus. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_campus_1_1_detailed_read_campus_output}{Detailed\+Read\+Campus\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_campus_controller_aa10220a63fa25716161d6da9cbb59f21}{Remover}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Remove um campus. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Controller de Campus. 
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_campus_controller_ab389195d42d3630cce83c289c7069c67}\label{class_web_a_p_i_1_1_controllers_1_1_campus_controller_ab389195d42d3630cce83c289c7069c67} 
+\index{WebAPI.Controllers.CampusController@{WebAPI.Controllers.CampusController}!CampusController@{CampusController}}
+\index{CampusController@{CampusController}!WebAPI.Controllers.CampusController@{WebAPI.Controllers.CampusController}}
+\doxysubsubsection{\texorpdfstring{CampusController()}{CampusController()}}
+{\footnotesize\ttfamily Web\+API.\+Controllers.\+Campus\+Controller.\+Campus\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_campus_1_1_i_get_campus_by_id}{IGet\+Campus\+By\+Id}}}]{get\+By\+Id,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_campus_1_1_i_get_campuses}{IGet\+Campuses}}}]{get\+All,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_campus_1_1_i_create_campus}{ICreate\+Campus}}}]{create,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_campus_1_1_i_update_campus}{IUpdate\+Campus}}}]{update,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_campus_1_1_i_delete_campus}{IDelete\+Campus}}}]{delete,  }\item[{ILogger$<$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_campus_controller}{Campus\+Controller}} $>$}]{logger }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construtor do Controller de Campus. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em get\+By\+Id} & Serviço de obtenção de campus pelo id.\\
+\hline
+{\em get\+All} & Serviço de obtenção de todos os campus ativos.\\
+\hline
+{\em create} & Serviço de criação de campus.\\
+\hline
+{\em update} & Serviço de atualização de campus.\\
+\hline
+{\em delete} & Serviço de remoção de campus.\\
+\hline
+{\em logger} & Serviço de log.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_campus_controller_aee40e43889e98a06e9122926e877ea0f}\label{class_web_a_p_i_1_1_controllers_1_1_campus_controller_aee40e43889e98a06e9122926e877ea0f} 
+\index{WebAPI.Controllers.CampusController@{WebAPI.Controllers.CampusController}!Create@{Create}}
+\index{Create@{Create}!WebAPI.Controllers.CampusController@{WebAPI.Controllers.CampusController}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_campus_1_1_detailed_read_campus_output}{Detailed\+Read\+Campus\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Campus\+Controller.\+Create (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_campus_1_1_create_campus_input}{Create\+Campus\+Input}}}]{request }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cria um novo campus. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em request} & Informações do campus\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+O campus criado
+\end{DoxyReturn}
+$<$response code=\"{}201\"{}$>$Retorna o campus recém-\/criado$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição inválida, se a entrada for inválida$<$/response$>$ $<$response code=\"{}401\"{}$>$Não autorizado, se o usuário não tiver a função necessária$<$/response$>$ Grafo de chamadas desta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_web_a_p_i_1_1_controllers_1_1_campus_controller_aee40e43889e98a06e9122926e877ea0f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_campus_controller_a56d33693982fbb0136f7515dd2c8d7a2}\label{class_web_a_p_i_1_1_controllers_1_1_campus_controller_a56d33693982fbb0136f7515dd2c8d7a2} 
+\index{WebAPI.Controllers.CampusController@{WebAPI.Controllers.CampusController}!GetAll@{GetAll}}
+\index{GetAll@{GetAll}!WebAPI.Controllers.CampusController@{WebAPI.Controllers.CampusController}}
+\doxysubsubsection{\texorpdfstring{GetAll()}{GetAll()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ IEnumerable$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_campus_1_1_resumed_read_campus_output}{Resumed\+Read\+Campus\+Output}} $>$ $>$ $>$ Web\+API.\+Controllers.\+Campus\+Controller.\+Get\+All (\begin{DoxyParamCaption}\item[{int}]{skip = {\ttfamily 0},  }\item[{int}]{take = {\ttfamily 50} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Busca todas os campus ativos. 
+
+\begin{DoxyReturn}{Retorna}
+Todas os campus ativos
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna todas os campus ativos$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ $<$response code=\"{}404\"{}$>$Nenhum Campus encontrado.$<$/response$>$ \Hypertarget{class_web_a_p_i_1_1_controllers_1_1_campus_controller_a3f59a6e28d662f5a09287b9f59a56059}\label{class_web_a_p_i_1_1_controllers_1_1_campus_controller_a3f59a6e28d662f5a09287b9f59a56059} 
+\index{WebAPI.Controllers.CampusController@{WebAPI.Controllers.CampusController}!GetById@{GetById}}
+\index{GetById@{GetById}!WebAPI.Controllers.CampusController@{WebAPI.Controllers.CampusController}}
+\doxysubsubsection{\texorpdfstring{GetById()}{GetById()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_campus_1_1_detailed_read_campus_output}{Detailed\+Read\+Campus\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Campus\+Controller.\+Get\+By\+Id (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Busca campus pelo id. 
+
+\begin{DoxyReturn}{Retorna}
+Campus correspondente
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna campus correspondente$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ $<$response code=\"{}404\"{}$>$Campus não encontrado.$<$/response$>$ Este é o diagrama das funções que utilizam esta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_web_a_p_i_1_1_controllers_1_1_campus_controller_a3f59a6e28d662f5a09287b9f59a56059_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_campus_controller_aa10220a63fa25716161d6da9cbb59f21}\label{class_web_a_p_i_1_1_controllers_1_1_campus_controller_aa10220a63fa25716161d6da9cbb59f21} 
+\index{WebAPI.Controllers.CampusController@{WebAPI.Controllers.CampusController}!Remover@{Remover}}
+\index{Remover@{Remover}!WebAPI.Controllers.CampusController@{WebAPI.Controllers.CampusController}}
+\doxysubsubsection{\texorpdfstring{Remover()}{Remover()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_campus_1_1_detailed_read_campus_output}{Detailed\+Read\+Campus\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Campus\+Controller.\+Remover (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Remove um campus. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em id} & O ID do campus a ser removido\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+O campus removido
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna o campus removido$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição inválida, se o ID for nulo$<$/response$>$ $<$response code=\"{}401\"{}$>$Não autorizado, se o usuário não tiver a função necessária$<$/response$>$ $<$response code=\"{}404\"{}$>$Não encontrado, se o campus não existir$<$/response$>$ \Hypertarget{class_web_a_p_i_1_1_controllers_1_1_campus_controller_a823cd2abc9169e909017efa6b907cbb6}\label{class_web_a_p_i_1_1_controllers_1_1_campus_controller_a823cd2abc9169e909017efa6b907cbb6} 
+\index{WebAPI.Controllers.CampusController@{WebAPI.Controllers.CampusController}!Update@{Update}}
+\index{Update@{Update}!WebAPI.Controllers.CampusController@{WebAPI.Controllers.CampusController}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_campus_1_1_detailed_read_campus_output}{Detailed\+Read\+Campus\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Campus\+Controller.\+Update (\begin{DoxyParamCaption}\item[{Guid?}]{id,  }\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_campus_1_1_update_campus_input}{Update\+Campus\+Input}}}]{request }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Atualiza um campus. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em id} & O ID do campus a ser atualizado\\
+\hline
+{\em request} & Informações de atualização do campus\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+O campus atualizado
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna o campus atualizado$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição inválida, se a entrada for inválida$<$/response$>$ $<$response code=\"{}401\"{}$>$Não autorizado, se o usuário não tiver a função necessária$<$/response$>$ $<$response code=\"{}404\"{}$>$Não encontrado, se o campus não existir$<$/response$>$ 
+
+A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Infrastructure/\+Web\+API/\+Controllers/\mbox{\hyperlink{_campus_controller_8cs}{Campus\+Controller.\+cs}}\end{DoxyCompactItemize}

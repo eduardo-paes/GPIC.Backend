@@ -1,0 +1,173 @@
+\doxysection{Referência à classe Web\+API.\+Controllers.\+Project\+Evaluation\+Controller}
+\hypertarget{class_web_a_p_i_1_1_controllers_1_1_project_evaluation_controller}{}\label{class_web_a_p_i_1_1_controllers_1_1_project_evaluation_controller}\index{WebAPI.Controllers.ProjectEvaluationController@{WebAPI.Controllers.ProjectEvaluationController}}
+
+
+Controller de projetos.  
+
+
+
+
+Diagrama de heranças da classe Web\+API.\+Controllers.\+Project\+Evaluation\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{class_web_a_p_i_1_1_controllers_1_1_project_evaluation_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para Web\+API.\+Controllers.\+Project\+Evaluation\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{class_web_a_p_i_1_1_controllers_1_1_project_evaluation_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_project_evaluation_controller_ace23a803fef636f6c0e19bdf56e04428}{Project\+Evaluation\+Controller}} (\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_evaluation_1_1_i_evaluate_appeal_project}{IEvaluate\+Appeal\+Project}} evaluate\+Appeal\+Project, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_evaluation_1_1_i_evaluate_submission_project}{IEvaluate\+Submission\+Project}} evaluate\+Submission\+Project, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_evaluation_1_1_i_evaluate_student_documents}{IEvaluate\+Student\+Documents}} evaluate\+Student\+Documents, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_evaluation_1_1_i_get_evaluation_by_project_id}{IGet\+Evaluation\+By\+Project\+Id}} get\+Evaluation\+By\+Project\+Id, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_get_projects_to_evaluate}{IGet\+Projects\+To\+Evaluate}} get\+Projects\+To\+Evaluate, ILogger$<$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_project_evaluation_controller}{Project\+Evaluation\+Controller}} $>$ logger)
+\begin{DoxyCompactList}\small\item\em Construtor do Controller de projetos. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ IEnumerable$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_1_1_detailed_read_project_output}{Detailed\+Read\+Project\+Output}} $>$ $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_project_evaluation_controller_a12db60eddcd36e2fd4860ac70131ef86}{Get\+Projects\+To\+Evaluate}} (int skip=0, int take=50)
+\begin{DoxyCompactList}\small\item\em Busca projetos em aberto e que se encontram no estágio de avaliação (Submetido, Recurso, Análise de Documentos). \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_evaluation_1_1_detailed_read_project_evaluation_output}{Detailed\+Read\+Project\+Evaluation\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_project_evaluation_controller_a7bc9b6c5d2b955fc99dc70417b9e9684}{Get\+Evaluation\+By\+Project\+Id}} (Guid? project\+Id)
+\begin{DoxyCompactList}\small\item\em Busca avaliação do projeto pelo id do projeto. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_1_1_detailed_read_project_output}{Detailed\+Read\+Project\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_project_evaluation_controller_a1163bf61aca18a76ede7c02db0330205}{Evaluate\+Submission\+Project}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_project_evaluation_1_1_evaluate_submission_project_input}{Evaluate\+Submission\+Project\+Input}} request)
+\begin{DoxyCompactList}\small\item\em Realiza a avaliação da submissão de um projeto. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_1_1_detailed_read_project_output}{Detailed\+Read\+Project\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_project_evaluation_controller_aaa78a9e1a1db8d686d8a9ce8839bd333}{Evaluate\+Appeal\+Project\+Request}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_project_evaluation_1_1_evaluate_appeal_project_input}{Evaluate\+Appeal\+Project\+Input}} request)
+\begin{DoxyCompactList}\small\item\em Realiza a avaliação do recurso de um projeto. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_1_1_detailed_read_project_output}{Detailed\+Read\+Project\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_project_evaluation_controller_a7f43edcbc6f26409dbe41a216910f5fc}{Evaluate\+Student\+Documents}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_project_evaluation_1_1_evaluate_student_documents_input}{Evaluate\+Student\+Documents\+Input}} request)
+\begin{DoxyCompactList}\small\item\em Realiza a avaliação dos documentos de um estudante. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Controller de projetos. 
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_project_evaluation_controller_ace23a803fef636f6c0e19bdf56e04428}\label{class_web_a_p_i_1_1_controllers_1_1_project_evaluation_controller_ace23a803fef636f6c0e19bdf56e04428} 
+\index{WebAPI.Controllers.ProjectEvaluationController@{WebAPI.Controllers.ProjectEvaluationController}!ProjectEvaluationController@{ProjectEvaluationController}}
+\index{ProjectEvaluationController@{ProjectEvaluationController}!WebAPI.Controllers.ProjectEvaluationController@{WebAPI.Controllers.ProjectEvaluationController}}
+\doxysubsubsection{\texorpdfstring{ProjectEvaluationController()}{ProjectEvaluationController()}}
+{\footnotesize\ttfamily Web\+API.\+Controllers.\+Project\+Evaluation\+Controller.\+Project\+Evaluation\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_evaluation_1_1_i_evaluate_appeal_project}{IEvaluate\+Appeal\+Project}}}]{evaluate\+Appeal\+Project,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_evaluation_1_1_i_evaluate_submission_project}{IEvaluate\+Submission\+Project}}}]{evaluate\+Submission\+Project,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_evaluation_1_1_i_evaluate_student_documents}{IEvaluate\+Student\+Documents}}}]{evaluate\+Student\+Documents,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_evaluation_1_1_i_get_evaluation_by_project_id}{IGet\+Evaluation\+By\+Project\+Id}}}]{get\+Evaluation\+By\+Project\+Id,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_get_projects_to_evaluate}{IGet\+Projects\+To\+Evaluate}}}]{get\+Projects\+To\+Evaluate,  }\item[{ILogger$<$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_project_evaluation_controller}{Project\+Evaluation\+Controller}} $>$}]{logger }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construtor do Controller de projetos. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em evaluate\+Appeal\+Project} & Serviço de avaliação de recurso de projeto.\\
+\hline
+{\em evaluate\+Submission\+Project} & Serviço de avaliação de submissão de projeto.\\
+\hline
+{\em evaluate\+Student\+Documents} & Serviço de avaliação de documentos do estudante.\\
+\hline
+{\em get\+Evaluation\+By\+Project\+Id} & Serviço de obtenção de avaliação de projeto pelo id do projeto.\\
+\hline
+{\em get\+Projects\+To\+Evaluate} & Serviço de obtenção de projetos para avaliação.\\
+\hline
+{\em logger} & Serviço de log.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_project_evaluation_controller_aaa78a9e1a1db8d686d8a9ce8839bd333}\label{class_web_a_p_i_1_1_controllers_1_1_project_evaluation_controller_aaa78a9e1a1db8d686d8a9ce8839bd333} 
+\index{WebAPI.Controllers.ProjectEvaluationController@{WebAPI.Controllers.ProjectEvaluationController}!EvaluateAppealProjectRequest@{EvaluateAppealProjectRequest}}
+\index{EvaluateAppealProjectRequest@{EvaluateAppealProjectRequest}!WebAPI.Controllers.ProjectEvaluationController@{WebAPI.Controllers.ProjectEvaluationController}}
+\doxysubsubsection{\texorpdfstring{EvaluateAppealProjectRequest()}{EvaluateAppealProjectRequest()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_1_1_detailed_read_project_output}{Detailed\+Read\+Project\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Project\+Evaluation\+Controller.\+Evaluate\+Appeal\+Project\+Request (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_project_evaluation_1_1_evaluate_appeal_project_input}{Evaluate\+Appeal\+Project\+Input}}}]{request }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Realiza a avaliação do recurso de um projeto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em request} & Dados da avaliação.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Projeto correspondente
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna avaliação do projeto correspondente$<$/response$>$ $<$response code=\"{}400\"{}$>$Retorna mensagem de erro$<$/response$>$ $<$response code=\"{}401\"{}$>$Retorna mensagem de erro$<$/response$>$ \Hypertarget{class_web_a_p_i_1_1_controllers_1_1_project_evaluation_controller_a7f43edcbc6f26409dbe41a216910f5fc}\label{class_web_a_p_i_1_1_controllers_1_1_project_evaluation_controller_a7f43edcbc6f26409dbe41a216910f5fc} 
+\index{WebAPI.Controllers.ProjectEvaluationController@{WebAPI.Controllers.ProjectEvaluationController}!EvaluateStudentDocuments@{EvaluateStudentDocuments}}
+\index{EvaluateStudentDocuments@{EvaluateStudentDocuments}!WebAPI.Controllers.ProjectEvaluationController@{WebAPI.Controllers.ProjectEvaluationController}}
+\doxysubsubsection{\texorpdfstring{EvaluateStudentDocuments()}{EvaluateStudentDocuments()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_1_1_detailed_read_project_output}{Detailed\+Read\+Project\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Project\+Evaluation\+Controller.\+Evaluate\+Student\+Documents (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_project_evaluation_1_1_evaluate_student_documents_input}{Evaluate\+Student\+Documents\+Input}}}]{request }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Realiza a avaliação dos documentos de um estudante. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em request} & Dados da avaliação.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Projeto correspondente
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna avaliação do projeto correspondente$<$/response$>$ $<$response code=\"{}400\"{}$>$Retorna mensagem de erro$<$/response$>$ $<$response code=\"{}401\"{}$>$Retorna mensagem de erro$<$/response$>$ \Hypertarget{class_web_a_p_i_1_1_controllers_1_1_project_evaluation_controller_a1163bf61aca18a76ede7c02db0330205}\label{class_web_a_p_i_1_1_controllers_1_1_project_evaluation_controller_a1163bf61aca18a76ede7c02db0330205} 
+\index{WebAPI.Controllers.ProjectEvaluationController@{WebAPI.Controllers.ProjectEvaluationController}!EvaluateSubmissionProject@{EvaluateSubmissionProject}}
+\index{EvaluateSubmissionProject@{EvaluateSubmissionProject}!WebAPI.Controllers.ProjectEvaluationController@{WebAPI.Controllers.ProjectEvaluationController}}
+\doxysubsubsection{\texorpdfstring{EvaluateSubmissionProject()}{EvaluateSubmissionProject()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_1_1_detailed_read_project_output}{Detailed\+Read\+Project\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Project\+Evaluation\+Controller.\+Evaluate\+Submission\+Project (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_project_evaluation_1_1_evaluate_submission_project_input}{Evaluate\+Submission\+Project\+Input}}}]{request }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Realiza a avaliação da submissão de um projeto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em request} & Dados da avaliação.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Projeto correspondente
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna avaliação do projeto correspondente$<$/response$>$ $<$response code=\"{}400\"{}$>$Retorna mensagem de erro$<$/response$>$ $<$response code=\"{}401\"{}$>$Retorna mensagem de erro$<$/response$>$ \Hypertarget{class_web_a_p_i_1_1_controllers_1_1_project_evaluation_controller_a7bc9b6c5d2b955fc99dc70417b9e9684}\label{class_web_a_p_i_1_1_controllers_1_1_project_evaluation_controller_a7bc9b6c5d2b955fc99dc70417b9e9684} 
+\index{WebAPI.Controllers.ProjectEvaluationController@{WebAPI.Controllers.ProjectEvaluationController}!GetEvaluationByProjectId@{GetEvaluationByProjectId}}
+\index{GetEvaluationByProjectId@{GetEvaluationByProjectId}!WebAPI.Controllers.ProjectEvaluationController@{WebAPI.Controllers.ProjectEvaluationController}}
+\doxysubsubsection{\texorpdfstring{GetEvaluationByProjectId()}{GetEvaluationByProjectId()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_evaluation_1_1_detailed_read_project_evaluation_output}{Detailed\+Read\+Project\+Evaluation\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Project\+Evaluation\+Controller.\+Get\+Evaluation\+By\+Project\+Id (\begin{DoxyParamCaption}\item[{Guid?}]{project\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Busca avaliação do projeto pelo id do projeto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em project\+Id} & Id do projeto.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Avaliação do projeto correspondente
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna avaliação do projeto correspondente$<$/response$>$ $<$response code=\"{}400\"{}$>$Retorna mensagem de erro$<$/response$>$ $<$response code=\"{}401\"{}$>$Retorna mensagem de erro$<$/response$>$ $<$response code=\"{}404\"{}$>$Nenhum avaliação do projeto encontrado.$<$/response$>$ \Hypertarget{class_web_a_p_i_1_1_controllers_1_1_project_evaluation_controller_a12db60eddcd36e2fd4860ac70131ef86}\label{class_web_a_p_i_1_1_controllers_1_1_project_evaluation_controller_a12db60eddcd36e2fd4860ac70131ef86} 
+\index{WebAPI.Controllers.ProjectEvaluationController@{WebAPI.Controllers.ProjectEvaluationController}!GetProjectsToEvaluate@{GetProjectsToEvaluate}}
+\index{GetProjectsToEvaluate@{GetProjectsToEvaluate}!WebAPI.Controllers.ProjectEvaluationController@{WebAPI.Controllers.ProjectEvaluationController}}
+\doxysubsubsection{\texorpdfstring{GetProjectsToEvaluate()}{GetProjectsToEvaluate()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ IEnumerable$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_1_1_detailed_read_project_output}{Detailed\+Read\+Project\+Output}} $>$ $>$ $>$ Web\+API.\+Controllers.\+Project\+Evaluation\+Controller.\+Get\+Projects\+To\+Evaluate (\begin{DoxyParamCaption}\item[{int}]{skip = {\ttfamily 0},  }\item[{int}]{take = {\ttfamily 50} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Busca projetos em aberto e que se encontram no estágio de avaliação (Submetido, Recurso, Análise de Documentos). 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em skip} & Quantidade de registros a serem ignorados.\\
+\hline
+{\em take} & Quantidade de registros a serem retornados.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Projetos para avaliação.
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna projetos para avaliação.$<$/response$>$ $<$response code=\"{}400\"{}$>$Ocorreu um erro ao buscar projetos para avaliação.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ 
+
+A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Infrastructure/\+Web\+API/\+Controllers/\mbox{\hyperlink{_project_evaluation_controller_8cs}{Project\+Evaluation\+Controller.\+cs}}\end{DoxyCompactItemize}

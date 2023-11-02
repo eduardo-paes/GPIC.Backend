@@ -1,0 +1,5 @@
+var class_application_1_1_tests_1_1_use_cases_1_1_professor_1_1_get_professor_by_id_tests =
+[
+    [ "ExecuteAsync_NullId_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_professor_1_1_get_professor_by_id_tests.html#a5f81786ee54042ad6283faaedcb749d5", null ],
+    [ "ExecuteAsync_ValidId_ReturnsDetailedReadProfessorOutput", "class_application_1_1_tests_1_1_use_cases_1_1_professor_1_1_get_professor_by_id_tests.html#a8a1d7c4b8721ab0cdfbc4ce11971a295", null ]
+];

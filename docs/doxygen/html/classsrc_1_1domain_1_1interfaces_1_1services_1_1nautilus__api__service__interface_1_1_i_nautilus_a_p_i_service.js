@@ -1,0 +1,4 @@
+var classsrc_1_1domain_1_1interfaces_1_1services_1_1nautilus__api__service__interface_1_1_i_nautilus_a_p_i_service =
+[
+    [ "create", "classsrc_1_1domain_1_1interfaces_1_1services_1_1nautilus__api__service__interface_1_1_i_nautilus_a_p_i_service.html#a4ad78d2f342538eaea674e7452c56d88", null ]
+];

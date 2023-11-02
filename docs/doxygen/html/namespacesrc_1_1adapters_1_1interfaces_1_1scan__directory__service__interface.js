@@ -1,0 +1,4 @@
+var namespacesrc_1_1adapters_1_1interfaces_1_1scan__directory__service__interface =
+[
+    [ "IScanDirectoryService", "classsrc_1_1adapters_1_1interfaces_1_1scan__directory__service__interface_1_1_i_scan_directory_service.html", "classsrc_1_1adapters_1_1interfaces_1_1scan__directory__service__interface_1_1_i_scan_directory_service" ]
+];

@@ -1,0 +1,96 @@
+\doxysection{Referência ao interface Domain.\+Interfaces.\+Services.\+IStorage\+File\+Service}
+\hypertarget{interface_domain_1_1_interfaces_1_1_services_1_1_i_storage_file_service}{}\label{interface_domain_1_1_interfaces_1_1_services_1_1_i_storage_file_service}\index{Domain.Interfaces.Services.IStorageFileService@{Domain.Interfaces.Services.IStorageFileService}}
+
+
+Diagrama de heranças da classe Domain.\+Interfaces.\+Services.\+IStorage\+File\+Service
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_domain_1_1_interfaces_1_1_services_1_1_i_storage_file_service__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+Task$<$ string $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_services_1_1_i_storage_file_service_a0c507db2b07407960098081c09da2b11}{Upload\+File\+Async}} (IForm\+File file, string? file\+Path=null)
+\begin{DoxyCompactList}\small\item\em Realiza o upload de um arquivo de edital. \end{DoxyCompactList}\item 
+Task$<$ string $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_services_1_1_i_storage_file_service_a91e1e0f14bf1d06fe05c72d5f4de24f7}{Upload\+File\+Async}} (byte\mbox{[}$\,$\mbox{]} file, string? file\+Path)
+\begin{DoxyCompactList}\small\item\em Realiza o upload de um arquivo de edital. \end{DoxyCompactList}\item 
+Task \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_services_1_1_i_storage_file_service_ab3a0c8478147e29bfa6993c51f67599f}{Delete\+File\+Async}} (string file\+Path)
+\begin{DoxyCompactList}\small\item\em Deleta um arquivo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{interface_domain_1_1_interfaces_1_1_services_1_1_i_storage_file_service_ab3a0c8478147e29bfa6993c51f67599f}\label{interface_domain_1_1_interfaces_1_1_services_1_1_i_storage_file_service_ab3a0c8478147e29bfa6993c51f67599f} 
+\index{Domain.Interfaces.Services.IStorageFileService@{Domain.Interfaces.Services.IStorageFileService}!DeleteFileAsync@{DeleteFileAsync}}
+\index{DeleteFileAsync@{DeleteFileAsync}!Domain.Interfaces.Services.IStorageFileService@{Domain.Interfaces.Services.IStorageFileService}}
+\doxysubsubsection{\texorpdfstring{DeleteFileAsync()}{DeleteFileAsync()}}
+{\footnotesize\ttfamily Task Domain.\+Interfaces.\+Services.\+IStorage\+File\+Service.\+Delete\+File\+Async (\begin{DoxyParamCaption}\item[{string}]{file\+Path }\end{DoxyParamCaption})}
+
+
+
+Deleta um arquivo. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em file\+Path} & Caminho completo até o arquivo\\
+\hline
+\end{DoxyParams}
+
+
+Implementado em \mbox{\hyperlink{class_services_1_1_azure_storage_service_a974833c63c295c5d8e81afb6d742db45}{Services.\+Azure\+Storage\+Service}} e \mbox{\hyperlink{class_services_1_1_storage_file_service_a9ab63de430f4ae5e4a9bc49e02a4ffc5}{Services.\+Storage\+File\+Service}}.
+
+\Hypertarget{interface_domain_1_1_interfaces_1_1_services_1_1_i_storage_file_service_a91e1e0f14bf1d06fe05c72d5f4de24f7}\label{interface_domain_1_1_interfaces_1_1_services_1_1_i_storage_file_service_a91e1e0f14bf1d06fe05c72d5f4de24f7} 
+\index{Domain.Interfaces.Services.IStorageFileService@{Domain.Interfaces.Services.IStorageFileService}!UploadFileAsync@{UploadFileAsync}}
+\index{UploadFileAsync@{UploadFileAsync}!Domain.Interfaces.Services.IStorageFileService@{Domain.Interfaces.Services.IStorageFileService}}
+\doxysubsubsection{\texorpdfstring{UploadFileAsync()}{UploadFileAsync()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Task$<$ string $>$ Domain.\+Interfaces.\+Services.\+IStorage\+File\+Service.\+Upload\+File\+Async (\begin{DoxyParamCaption}\item[{byte\mbox{[}$\,$\mbox{]}}]{file,  }\item[{string?}]{file\+Path }\end{DoxyParamCaption})}
+
+
+
+Realiza o upload de um arquivo de edital. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em file} & Edital em pdf\\
+\hline
+{\em file\+Path} & Caminho completo até o arquivo\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Caminho final do arquivo
+\end{DoxyReturn}
+
+
+Implementado em \mbox{\hyperlink{class_services_1_1_azure_storage_service_a3ad44274b96328989f555b00cf2365af}{Services.\+Azure\+Storage\+Service}} e \mbox{\hyperlink{class_services_1_1_storage_file_service_a14e21366e2142a04b329fbd894b10967}{Services.\+Storage\+File\+Service}}.
+
+\Hypertarget{interface_domain_1_1_interfaces_1_1_services_1_1_i_storage_file_service_a0c507db2b07407960098081c09da2b11}\label{interface_domain_1_1_interfaces_1_1_services_1_1_i_storage_file_service_a0c507db2b07407960098081c09da2b11} 
+\index{Domain.Interfaces.Services.IStorageFileService@{Domain.Interfaces.Services.IStorageFileService}!UploadFileAsync@{UploadFileAsync}}
+\index{UploadFileAsync@{UploadFileAsync}!Domain.Interfaces.Services.IStorageFileService@{Domain.Interfaces.Services.IStorageFileService}}
+\doxysubsubsection{\texorpdfstring{UploadFileAsync()}{UploadFileAsync()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Task$<$ string $>$ Domain.\+Interfaces.\+Services.\+IStorage\+File\+Service.\+Upload\+File\+Async (\begin{DoxyParamCaption}\item[{IForm\+File}]{file,  }\item[{string?}]{file\+Path = {\ttfamily null} }\end{DoxyParamCaption})}
+
+
+
+Realiza o upload de um arquivo de edital. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em file} & Edital em pdf\\
+\hline
+{\em file\+Path} & Caminho completo até o arquivo\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Caminho final do arquivo
+\end{DoxyReturn}
+
+
+Implementado em \mbox{\hyperlink{class_services_1_1_azure_storage_service_ae0f5d5960658e0520ad72c44eb4056fe}{Services.\+Azure\+Storage\+Service}} e \mbox{\hyperlink{class_services_1_1_storage_file_service_ae2415f33c5f0fc0ad342b2872fceeaaa}{Services.\+Storage\+File\+Service}}.
+
+
+
+A documentação para este interface foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Domain/\+Interfaces/\+Services/\mbox{\hyperlink{_i_storage_file_service_8cs}{IStorage\+File\+Service.\+cs}}\end{DoxyCompactItemize}

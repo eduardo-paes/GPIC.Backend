@@ -1,0 +1,5 @@
+<map id="Application.Ports.AssistanceType.DetailedReadAssistanceTypeOutput" name="Application.Ports.AssistanceType.DetailedReadAssistanceTypeOutput">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,231,135"/>
+<area shape="rect" id="Node000002" href="$class_application_1_1_ports_1_1_assistance_type_1_1_base_assistance_type_contract.html" title=" " alt="" coords="21,5,215,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,47,121,78,115,78,115,47"/>
+</map>

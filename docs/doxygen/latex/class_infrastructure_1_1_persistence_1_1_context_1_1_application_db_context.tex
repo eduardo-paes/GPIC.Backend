@@ -1,0 +1,236 @@
+\doxysection{Referência à classe Infrastructure.\+Persistence.\+Context.\+Application\+Db\+Context}
+\hypertarget{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context}{}\label{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context}\index{Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}}
+
+
+Diagrama de heranças da classe Infrastructure.\+Persistence.\+Context.\+Application\+Db\+Context
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para Infrastructure.\+Persistence.\+Context.\+Application\+Db\+Context\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a1ede0fed9b3ce3515030b46591a3139c}{Application\+Db\+Context}} (Db\+Context\+Options$<$ \mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context}{Application\+Db\+Context}} $>$ options)
+\begin{DoxyCompactList}\small\item\em Initializes a new instance of the Db\+Context class using the specified options. The M\+:\+Microsoft.\+Entity\+Framework\+Core.\+Db\+Context.\+On\+Configuring(\+Microsoft.\+Entity\+Framework\+Core.\+Db\+Context\+Options\+Builder) method will still be called to allow further configuration of the options. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Membros protegidos}
+\begin{DoxyCompactItemize}
+\item 
+override void \mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a4b3c9f92f17417461b4826ff1926e208}{On\+Model\+Creating}} (Model\+Builder builder)
+\item 
+override void \mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_af08a66ce093af604d902b9797f633416}{On\+Configuring}} (Db\+Context\+Options\+Builder options\+Builder)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Propriedades}
+\begin{DoxyCompactItemize}
+\item 
+Db\+Set$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_area}{Area}} $>$ \mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_af3c7e2eceef377724597f844ebc50fc2}{Areas}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Db\+Set$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_activity}{Activity}} $>$ \mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a4da4b8d25e6cb4718e2cdd63cd855330}{Activities}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Db\+Set$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_activity_type}{Activity\+Type}} $>$ \mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a0a90d4ec722e6aca56ff1cb613e200d2}{Activity\+Types}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Db\+Set$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_assistance_type}{Assistance\+Type}} $>$ \mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a4c89f9ae0d0150dc4c055934ad62e262}{Assistance\+Types}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Db\+Set$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_campus}{Campus}} $>$ \mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_ae4b06dd4be3b0d459e2c6e56304e3e9a}{Campuses}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Db\+Set$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_course}{Course}} $>$ \mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_ab50d50c62bbb8e60f2172de525ee5017}{Courses}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Db\+Set$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_main_area}{Main\+Area}} $>$ \mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a01b2fbf38e4628a0ce88c3053b848e1b}{Main\+Areas}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Db\+Set$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_notice}{Notice}} $>$ \mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_ac92eba2d06ca8b9a541d62ea37effc27}{Notices}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Db\+Set$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_professor}{Professor}} $>$ \mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a8fa6213018d6e367e0c5e266e7fc106d}{Professors}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Db\+Set$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}} $>$ \mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a01159d1f996700cf238f62c2cfb7234f}{Projects}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Db\+Set$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project_activity}{Project\+Activity}} $>$ \mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_ac0def6e2f50fbfaed7526099ff215eaf}{Project\+Activities}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Db\+Set$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project_evaluation}{Project\+Evaluation}} $>$ \mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_ac1c188245a7a496505f620d71764c4a2}{Project\+Evaluations}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Db\+Set$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project_final_report}{Project\+Final\+Report}} $>$ \mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_afdeea9c503f35ef734f1269dd7266bbe}{Project\+Final\+Reports}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Db\+Set$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project_partial_report}{Project\+Partial\+Report}} $>$ \mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a938757dae207cb126f00cb849ed1273a}{Project\+Partial\+Reports}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Db\+Set$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_program_type}{Program\+Type}} $>$ \mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_ad61f5cf4afa3ec6a442630c8d8c2001e}{Program\+Types}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Db\+Set$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_student}{Student}} $>$ \mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_acb2d4c6f82530667ae605785d62da437}{Students}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Db\+Set$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_student_documents}{Student\+Documents}} $>$ \mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_aaa2d19c9d4c51a237e71506c6dba7d6b}{Student\+Documents}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Db\+Set$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_sub_area}{Sub\+Area}} $>$ \mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_add4b516c1b0020fa9f02742c38318eda}{Sub\+Areas}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Db\+Set$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}} $>$ \mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a48c74dfd047f3a7ba678d91f61db81f1}{Users}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a1ede0fed9b3ce3515030b46591a3139c}\label{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a1ede0fed9b3ce3515030b46591a3139c} 
+\index{Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}!ApplicationDbContext@{ApplicationDbContext}}
+\index{ApplicationDbContext@{ApplicationDbContext}!Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}}
+\doxysubsubsection{\texorpdfstring{ApplicationDbContext()}{ApplicationDbContext()}}
+{\footnotesize\ttfamily Infrastructure.\+Persistence.\+Context.\+Application\+Db\+Context.\+Application\+Db\+Context (\begin{DoxyParamCaption}\item[{Db\+Context\+Options$<$ \mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context}{Application\+Db\+Context}} $>$}]{options }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initializes a new instance of the Db\+Context class using the specified options. The M\+:\+Microsoft.\+Entity\+Framework\+Core.\+Db\+Context.\+On\+Configuring(\+Microsoft.\+Entity\+Framework\+Core.\+Db\+Context\+Options\+Builder) method will still be called to allow further configuration of the options. 
+
+See Db\+Context lifetime, configuration, and initialization
+
+and Using Db\+Context\+Options
+
+for more information and examples. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em options} & The options for this context.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_af08a66ce093af604d902b9797f633416}\label{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_af08a66ce093af604d902b9797f633416} 
+\index{Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}!OnConfiguring@{OnConfiguring}}
+\index{OnConfiguring@{OnConfiguring}!Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}}
+\doxysubsubsection{\texorpdfstring{OnConfiguring()}{OnConfiguring()}}
+{\footnotesize\ttfamily override void Infrastructure.\+Persistence.\+Context.\+Application\+Db\+Context.\+On\+Configuring (\begin{DoxyParamCaption}\item[{Db\+Context\+Options\+Builder}]{options\+Builder }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a4b3c9f92f17417461b4826ff1926e208}\label{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a4b3c9f92f17417461b4826ff1926e208} 
+\index{Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}!OnModelCreating@{OnModelCreating}}
+\index{OnModelCreating@{OnModelCreating}!Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}}
+\doxysubsubsection{\texorpdfstring{OnModelCreating()}{OnModelCreating()}}
+{\footnotesize\ttfamily override void Infrastructure.\+Persistence.\+Context.\+Application\+Db\+Context.\+On\+Model\+Creating (\begin{DoxyParamCaption}\item[{Model\+Builder}]{builder }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+\doxysubsection{Documentação das propriedades}
+\Hypertarget{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a4da4b8d25e6cb4718e2cdd63cd855330}\label{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a4da4b8d25e6cb4718e2cdd63cd855330} 
+\index{Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}!Activities@{Activities}}
+\index{Activities@{Activities}!Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}}
+\doxysubsubsection{\texorpdfstring{Activities}{Activities}}
+{\footnotesize\ttfamily Db\+Set$<$\mbox{\hyperlink{class_domain_1_1_entities_1_1_activity}{Activity}}$>$ Infrastructure.\+Persistence.\+Context.\+Application\+Db\+Context.\+Activities\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a0a90d4ec722e6aca56ff1cb613e200d2}\label{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a0a90d4ec722e6aca56ff1cb613e200d2} 
+\index{Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}!ActivityTypes@{ActivityTypes}}
+\index{ActivityTypes@{ActivityTypes}!Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}}
+\doxysubsubsection{\texorpdfstring{ActivityTypes}{ActivityTypes}}
+{\footnotesize\ttfamily Db\+Set$<$\mbox{\hyperlink{class_domain_1_1_entities_1_1_activity_type}{Activity\+Type}}$>$ Infrastructure.\+Persistence.\+Context.\+Application\+Db\+Context.\+Activity\+Types\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_af3c7e2eceef377724597f844ebc50fc2}\label{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_af3c7e2eceef377724597f844ebc50fc2} 
+\index{Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}!Areas@{Areas}}
+\index{Areas@{Areas}!Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}}
+\doxysubsubsection{\texorpdfstring{Areas}{Areas}}
+{\footnotesize\ttfamily Db\+Set$<$\mbox{\hyperlink{class_domain_1_1_entities_1_1_area}{Area}}$>$ Infrastructure.\+Persistence.\+Context.\+Application\+Db\+Context.\+Areas\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a4c89f9ae0d0150dc4c055934ad62e262}\label{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a4c89f9ae0d0150dc4c055934ad62e262} 
+\index{Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}!AssistanceTypes@{AssistanceTypes}}
+\index{AssistanceTypes@{AssistanceTypes}!Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}}
+\doxysubsubsection{\texorpdfstring{AssistanceTypes}{AssistanceTypes}}
+{\footnotesize\ttfamily Db\+Set$<$\mbox{\hyperlink{class_domain_1_1_entities_1_1_assistance_type}{Assistance\+Type}}$>$ Infrastructure.\+Persistence.\+Context.\+Application\+Db\+Context.\+Assistance\+Types\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_ae4b06dd4be3b0d459e2c6e56304e3e9a}\label{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_ae4b06dd4be3b0d459e2c6e56304e3e9a} 
+\index{Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}!Campuses@{Campuses}}
+\index{Campuses@{Campuses}!Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}}
+\doxysubsubsection{\texorpdfstring{Campuses}{Campuses}}
+{\footnotesize\ttfamily Db\+Set$<$\mbox{\hyperlink{class_domain_1_1_entities_1_1_campus}{Campus}}$>$ Infrastructure.\+Persistence.\+Context.\+Application\+Db\+Context.\+Campuses\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_ab50d50c62bbb8e60f2172de525ee5017}\label{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_ab50d50c62bbb8e60f2172de525ee5017} 
+\index{Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}!Courses@{Courses}}
+\index{Courses@{Courses}!Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}}
+\doxysubsubsection{\texorpdfstring{Courses}{Courses}}
+{\footnotesize\ttfamily Db\+Set$<$\mbox{\hyperlink{class_domain_1_1_entities_1_1_course}{Course}}$>$ Infrastructure.\+Persistence.\+Context.\+Application\+Db\+Context.\+Courses\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a01b2fbf38e4628a0ce88c3053b848e1b}\label{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a01b2fbf38e4628a0ce88c3053b848e1b} 
+\index{Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}!MainAreas@{MainAreas}}
+\index{MainAreas@{MainAreas}!Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}}
+\doxysubsubsection{\texorpdfstring{MainAreas}{MainAreas}}
+{\footnotesize\ttfamily Db\+Set$<$\mbox{\hyperlink{class_domain_1_1_entities_1_1_main_area}{Main\+Area}}$>$ Infrastructure.\+Persistence.\+Context.\+Application\+Db\+Context.\+Main\+Areas\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_ac92eba2d06ca8b9a541d62ea37effc27}\label{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_ac92eba2d06ca8b9a541d62ea37effc27} 
+\index{Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}!Notices@{Notices}}
+\index{Notices@{Notices}!Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}}
+\doxysubsubsection{\texorpdfstring{Notices}{Notices}}
+{\footnotesize\ttfamily Db\+Set$<$\mbox{\hyperlink{class_domain_1_1_entities_1_1_notice}{Notice}}$>$ Infrastructure.\+Persistence.\+Context.\+Application\+Db\+Context.\+Notices\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a8fa6213018d6e367e0c5e266e7fc106d}\label{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a8fa6213018d6e367e0c5e266e7fc106d} 
+\index{Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}!Professors@{Professors}}
+\index{Professors@{Professors}!Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}}
+\doxysubsubsection{\texorpdfstring{Professors}{Professors}}
+{\footnotesize\ttfamily Db\+Set$<$\mbox{\hyperlink{class_domain_1_1_entities_1_1_professor}{Professor}}$>$ Infrastructure.\+Persistence.\+Context.\+Application\+Db\+Context.\+Professors\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_ad61f5cf4afa3ec6a442630c8d8c2001e}\label{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_ad61f5cf4afa3ec6a442630c8d8c2001e} 
+\index{Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}!ProgramTypes@{ProgramTypes}}
+\index{ProgramTypes@{ProgramTypes}!Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}}
+\doxysubsubsection{\texorpdfstring{ProgramTypes}{ProgramTypes}}
+{\footnotesize\ttfamily Db\+Set$<$\mbox{\hyperlink{class_domain_1_1_entities_1_1_program_type}{Program\+Type}}$>$ Infrastructure.\+Persistence.\+Context.\+Application\+Db\+Context.\+Program\+Types\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_ac0def6e2f50fbfaed7526099ff215eaf}\label{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_ac0def6e2f50fbfaed7526099ff215eaf} 
+\index{Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}!ProjectActivities@{ProjectActivities}}
+\index{ProjectActivities@{ProjectActivities}!Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}}
+\doxysubsubsection{\texorpdfstring{ProjectActivities}{ProjectActivities}}
+{\footnotesize\ttfamily Db\+Set$<$\mbox{\hyperlink{class_domain_1_1_entities_1_1_project_activity}{Project\+Activity}}$>$ Infrastructure.\+Persistence.\+Context.\+Application\+Db\+Context.\+Project\+Activities\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_ac1c188245a7a496505f620d71764c4a2}\label{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_ac1c188245a7a496505f620d71764c4a2} 
+\index{Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}!ProjectEvaluations@{ProjectEvaluations}}
+\index{ProjectEvaluations@{ProjectEvaluations}!Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}}
+\doxysubsubsection{\texorpdfstring{ProjectEvaluations}{ProjectEvaluations}}
+{\footnotesize\ttfamily Db\+Set$<$\mbox{\hyperlink{class_domain_1_1_entities_1_1_project_evaluation}{Project\+Evaluation}}$>$ Infrastructure.\+Persistence.\+Context.\+Application\+Db\+Context.\+Project\+Evaluations\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_afdeea9c503f35ef734f1269dd7266bbe}\label{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_afdeea9c503f35ef734f1269dd7266bbe} 
+\index{Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}!ProjectFinalReports@{ProjectFinalReports}}
+\index{ProjectFinalReports@{ProjectFinalReports}!Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}}
+\doxysubsubsection{\texorpdfstring{ProjectFinalReports}{ProjectFinalReports}}
+{\footnotesize\ttfamily Db\+Set$<$\mbox{\hyperlink{class_domain_1_1_entities_1_1_project_final_report}{Project\+Final\+Report}}$>$ Infrastructure.\+Persistence.\+Context.\+Application\+Db\+Context.\+Project\+Final\+Reports\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a938757dae207cb126f00cb849ed1273a}\label{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a938757dae207cb126f00cb849ed1273a} 
+\index{Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}!ProjectPartialReports@{ProjectPartialReports}}
+\index{ProjectPartialReports@{ProjectPartialReports}!Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}}
+\doxysubsubsection{\texorpdfstring{ProjectPartialReports}{ProjectPartialReports}}
+{\footnotesize\ttfamily Db\+Set$<$\mbox{\hyperlink{class_domain_1_1_entities_1_1_project_partial_report}{Project\+Partial\+Report}}$>$ Infrastructure.\+Persistence.\+Context.\+Application\+Db\+Context.\+Project\+Partial\+Reports\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a01159d1f996700cf238f62c2cfb7234f}\label{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a01159d1f996700cf238f62c2cfb7234f} 
+\index{Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}!Projects@{Projects}}
+\index{Projects@{Projects}!Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}}
+\doxysubsubsection{\texorpdfstring{Projects}{Projects}}
+{\footnotesize\ttfamily Db\+Set$<$\mbox{\hyperlink{class_domain_1_1_entities_1_1_project}{Project}}$>$ Infrastructure.\+Persistence.\+Context.\+Application\+Db\+Context.\+Projects\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_aaa2d19c9d4c51a237e71506c6dba7d6b}\label{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_aaa2d19c9d4c51a237e71506c6dba7d6b} 
+\index{Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}!StudentDocuments@{StudentDocuments}}
+\index{StudentDocuments@{StudentDocuments}!Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}}
+\doxysubsubsection{\texorpdfstring{StudentDocuments}{StudentDocuments}}
+{\footnotesize\ttfamily Db\+Set$<$\mbox{\hyperlink{class_domain_1_1_entities_1_1_student_documents}{Student\+Documents}}$>$ Infrastructure.\+Persistence.\+Context.\+Application\+Db\+Context.\+Student\+Documents\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_acb2d4c6f82530667ae605785d62da437}\label{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_acb2d4c6f82530667ae605785d62da437} 
+\index{Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}!Students@{Students}}
+\index{Students@{Students}!Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}}
+\doxysubsubsection{\texorpdfstring{Students}{Students}}
+{\footnotesize\ttfamily Db\+Set$<$\mbox{\hyperlink{class_domain_1_1_entities_1_1_student}{Student}}$>$ Infrastructure.\+Persistence.\+Context.\+Application\+Db\+Context.\+Students\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_add4b516c1b0020fa9f02742c38318eda}\label{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_add4b516c1b0020fa9f02742c38318eda} 
+\index{Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}!SubAreas@{SubAreas}}
+\index{SubAreas@{SubAreas}!Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}}
+\doxysubsubsection{\texorpdfstring{SubAreas}{SubAreas}}
+{\footnotesize\ttfamily Db\+Set$<$\mbox{\hyperlink{class_domain_1_1_entities_1_1_sub_area}{Sub\+Area}}$>$ Infrastructure.\+Persistence.\+Context.\+Application\+Db\+Context.\+Sub\+Areas\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\Hypertarget{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a48c74dfd047f3a7ba678d91f61db81f1}\label{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context_a48c74dfd047f3a7ba678d91f61db81f1} 
+\index{Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}!Users@{Users}}
+\index{Users@{Users}!Infrastructure.Persistence.Context.ApplicationDbContext@{Infrastructure.Persistence.Context.ApplicationDbContext}}
+\doxysubsubsection{\texorpdfstring{Users}{Users}}
+{\footnotesize\ttfamily Db\+Set$<$\mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}}$>$ Infrastructure.\+Persistence.\+Context.\+Application\+Db\+Context.\+Users\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Infrastructure/\+Persistence/\+Context/\mbox{\hyperlink{_application_db_context_8cs}{Application\+Db\+Context.\+cs}}\end{DoxyCompactItemize}

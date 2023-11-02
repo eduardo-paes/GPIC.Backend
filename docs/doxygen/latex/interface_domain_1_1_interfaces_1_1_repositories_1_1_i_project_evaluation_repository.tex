@@ -1,0 +1,119 @@
+\doxysection{Referência ao interface Domain.\+Interfaces.\+Repositories.\+IProject\+Evaluation\+Repository}
+\hypertarget{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_evaluation_repository}{}\label{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_evaluation_repository}\index{Domain.Interfaces.Repositories.IProjectEvaluationRepository@{Domain.Interfaces.Repositories.IProjectEvaluationRepository}}
+
+
+Diagrama de heranças da classe Domain.\+Interfaces.\+Repositories.\+IProject\+Evaluation\+Repository
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_evaluation_repository__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project_evaluation}{Project\+Evaluation}}?$>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_evaluation_repository_af25df0dd1826988ee1fe5030a9553585}{Get\+By\+Id\+Async}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Busca uma avaliação de projeto pelo id. \end{DoxyCompactList}\item 
+Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project_evaluation}{Project\+Evaluation}}?$>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_evaluation_repository_a9198e6087107aaaf62ed62872e506307}{Get\+By\+Project\+Id\+Async}} (Guid? project\+Id)
+\begin{DoxyCompactList}\small\item\em Busca uma avaliação de projeto pelo id do projeto. \end{DoxyCompactList}\item 
+Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project_evaluation}{Project\+Evaluation}} $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_evaluation_repository_af85291cf5d29a1cdf02bd85fd1c133bf}{Create\+Async}} (\mbox{\hyperlink{class_domain_1_1_entities_1_1_project_evaluation}{Project\+Evaluation}} model)
+\begin{DoxyCompactList}\small\item\em Cria uma avaliação de projeto. \end{DoxyCompactList}\item 
+Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project_evaluation}{Project\+Evaluation}} $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_evaluation_repository_a077630c72aa4d6b49283bf488a65767c}{Update\+Async}} (\mbox{\hyperlink{class_domain_1_1_entities_1_1_project_evaluation}{Project\+Evaluation}} model)
+\begin{DoxyCompactList}\small\item\em Atualiza uma avaliação de projeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_evaluation_repository_af85291cf5d29a1cdf02bd85fd1c133bf}\label{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_evaluation_repository_af85291cf5d29a1cdf02bd85fd1c133bf} 
+\index{Domain.Interfaces.Repositories.IProjectEvaluationRepository@{Domain.Interfaces.Repositories.IProjectEvaluationRepository}!CreateAsync@{CreateAsync}}
+\index{CreateAsync@{CreateAsync}!Domain.Interfaces.Repositories.IProjectEvaluationRepository@{Domain.Interfaces.Repositories.IProjectEvaluationRepository}}
+\doxysubsubsection{\texorpdfstring{CreateAsync()}{CreateAsync()}}
+{\footnotesize\ttfamily Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project_evaluation}{Project\+Evaluation}} $>$ Domain.\+Interfaces.\+Repositories.\+IProject\+Evaluation\+Repository.\+Create\+Async (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_domain_1_1_entities_1_1_project_evaluation}{Project\+Evaluation}}}]{model }\end{DoxyParamCaption})}
+
+
+
+Cria uma avaliação de projeto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em model} & Modelo da avaliação de projeto.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Avaliação de projeto criado.
+\end{DoxyReturn}
+
+
+Implementado em \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_project_evaluation_repository_af791a5a87568184081071dc75aa4ecc0}{Persistence.\+Repositories.\+Project\+Evaluation\+Repository}}.
+
+\Hypertarget{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_evaluation_repository_af25df0dd1826988ee1fe5030a9553585}\label{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_evaluation_repository_af25df0dd1826988ee1fe5030a9553585} 
+\index{Domain.Interfaces.Repositories.IProjectEvaluationRepository@{Domain.Interfaces.Repositories.IProjectEvaluationRepository}!GetByIdAsync@{GetByIdAsync}}
+\index{GetByIdAsync@{GetByIdAsync}!Domain.Interfaces.Repositories.IProjectEvaluationRepository@{Domain.Interfaces.Repositories.IProjectEvaluationRepository}}
+\doxysubsubsection{\texorpdfstring{GetByIdAsync()}{GetByIdAsync()}}
+{\footnotesize\ttfamily Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project_evaluation}{Project\+Evaluation}}?$>$ Domain.\+Interfaces.\+Repositories.\+IProject\+Evaluation\+Repository.\+Get\+By\+Id\+Async (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})}
+
+
+
+Busca uma avaliação de projeto pelo id. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em id} & Id da avaliação.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Avaliação de projeto encontrado.
+\end{DoxyReturn}
+
+
+Implementado em \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_project_evaluation_repository_a73d2cbb7f1aa2b26d217f1ee4c32e0af}{Persistence.\+Repositories.\+Project\+Evaluation\+Repository}}.
+
+\Hypertarget{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_evaluation_repository_a9198e6087107aaaf62ed62872e506307}\label{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_evaluation_repository_a9198e6087107aaaf62ed62872e506307} 
+\index{Domain.Interfaces.Repositories.IProjectEvaluationRepository@{Domain.Interfaces.Repositories.IProjectEvaluationRepository}!GetByProjectIdAsync@{GetByProjectIdAsync}}
+\index{GetByProjectIdAsync@{GetByProjectIdAsync}!Domain.Interfaces.Repositories.IProjectEvaluationRepository@{Domain.Interfaces.Repositories.IProjectEvaluationRepository}}
+\doxysubsubsection{\texorpdfstring{GetByProjectIdAsync()}{GetByProjectIdAsync()}}
+{\footnotesize\ttfamily Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project_evaluation}{Project\+Evaluation}}?$>$ Domain.\+Interfaces.\+Repositories.\+IProject\+Evaluation\+Repository.\+Get\+By\+Project\+Id\+Async (\begin{DoxyParamCaption}\item[{Guid?}]{project\+Id }\end{DoxyParamCaption})}
+
+
+
+Busca uma avaliação de projeto pelo id do projeto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em project\+Id} & Id do projeto em avaliação.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Avaliação de projeto encontrado.
+\end{DoxyReturn}
+
+
+Implementado em \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_project_evaluation_repository_a6793b64251fe6fe271fcecf008a20569}{Persistence.\+Repositories.\+Project\+Evaluation\+Repository}}.
+
+\Hypertarget{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_evaluation_repository_a077630c72aa4d6b49283bf488a65767c}\label{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_evaluation_repository_a077630c72aa4d6b49283bf488a65767c} 
+\index{Domain.Interfaces.Repositories.IProjectEvaluationRepository@{Domain.Interfaces.Repositories.IProjectEvaluationRepository}!UpdateAsync@{UpdateAsync}}
+\index{UpdateAsync@{UpdateAsync}!Domain.Interfaces.Repositories.IProjectEvaluationRepository@{Domain.Interfaces.Repositories.IProjectEvaluationRepository}}
+\doxysubsubsection{\texorpdfstring{UpdateAsync()}{UpdateAsync()}}
+{\footnotesize\ttfamily Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_project_evaluation}{Project\+Evaluation}} $>$ Domain.\+Interfaces.\+Repositories.\+IProject\+Evaluation\+Repository.\+Update\+Async (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_domain_1_1_entities_1_1_project_evaluation}{Project\+Evaluation}}}]{model }\end{DoxyParamCaption})}
+
+
+
+Atualiza uma avaliação de projeto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em model} & Modelo da avaliação de projeto.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Avaliação de projeto atualizado.
+\end{DoxyReturn}
+
+
+Implementado em \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_project_evaluation_repository_ac131bdbbb481f8989882b33278dfe77d}{Persistence.\+Repositories.\+Project\+Evaluation\+Repository}}.
+
+
+
+A documentação para este interface foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Domain/\+Interfaces/\+Repositories/\mbox{\hyperlink{_i_project_evaluation_repository_8cs}{IProject\+Evaluation\+Repository.\+cs}}\end{DoxyCompactItemize}

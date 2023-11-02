@@ -1,0 +1,4 @@
+var classsrc_1_1domain_1_1interfaces_1_1usecases_1_1audio__analysis__usecase__interface_1_1_i_audio_analysis_use_case =
+[
+    [ "execute", "classsrc_1_1domain_1_1interfaces_1_1usecases_1_1audio__analysis__usecase__interface_1_1_i_audio_analysis_use_case.html#a288802e721f43418f07fcedce0aa3592", null ]
+];

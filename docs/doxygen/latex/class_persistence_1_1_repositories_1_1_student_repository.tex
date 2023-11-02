@@ -1,0 +1,169 @@
+\doxysection{Referência à classe Persistence.\+Repositories.\+Student\+Repository}
+\hypertarget{class_persistence_1_1_repositories_1_1_student_repository}{}\label{class_persistence_1_1_repositories_1_1_student_repository}\index{Persistence.Repositories.StudentRepository@{Persistence.Repositories.StudentRepository}}
+
+
+Diagrama de heranças da classe Persistence.\+Repositories.\+Student\+Repository
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{class_persistence_1_1_repositories_1_1_student_repository__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para Persistence.\+Repositories.\+Student\+Repository\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{class_persistence_1_1_repositories_1_1_student_repository__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_persistence_1_1_repositories_1_1_student_repository_a9b5b735708cc50cf7786d554f43ca862}{Student\+Repository}} (\mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context}{Application\+Db\+Context}} context)
+\item 
+async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_student}{Student}} $>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_student_repository_a782ff5c10d399b0fbcf4e787854acc8d}{Create\+Async}} (\mbox{\hyperlink{class_domain_1_1_entities_1_1_student}{Student}} model)
+\item 
+async Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_student}{Student}} $>$ $>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_student_repository_ae190f773ec4c4b9db1b31d4e08cadc63}{Get\+All\+Async}} (int skip, int take)
+\item 
+async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_student}{Student}}?$>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_student_repository_a628181637ac6fa1b92faf7b18b11005a}{Get\+By\+Id\+Async}} (Guid? id)
+\item 
+async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_student}{Student}} $>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_student_repository_a6793f40d88035d4333944de761b7bbf0}{Delete\+Async}} (Guid? id)
+\item 
+async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_student}{Student}} $>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_student_repository_aa8255764d75ced3e67e5a2b40bee0690}{Update\+Async}} (\mbox{\hyperlink{class_domain_1_1_entities_1_1_student}{Student}} model)
+\item 
+async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_student}{Student}}?$>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_student_repository_a7ac071a094f1b32319d871b52e039523}{Get\+By\+Registration\+Code\+Async}} (string registration\+Code)
+\begin{DoxyCompactList}\small\item\em Busca aluno pelo código de matrícula. \end{DoxyCompactList}\item 
+async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_student}{Student}}?$>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_student_repository_a085fddc509e267cd05c8d7a07dd77905}{Get\+By\+User\+Id\+Async}} (Guid? user\+Id)
+\begin{DoxyCompactList}\small\item\em Obtém estudante pelo Id do usuário informado. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Membros públicos herdados de \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository}{Domain.\+Interfaces.\+Repositories.\+Bases.\+IGeneric\+CRUDRepository$<$ Student $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+Task$<$ T?$>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository_a6841e9b42292eab29e06a110eb1bf0c6}{Get\+By\+Id\+Async}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Busca entidade pelo Id informado. Lança uma exceção quando a entidade não é encontrada. \end{DoxyCompactList}\item 
+Task$<$ IEnumerable$<$ T $>$ $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository_ad3f01fc2bd245d9cde1e3df89ed0e838}{Get\+All\+Async}} (int skip, int take)
+\begin{DoxyCompactList}\small\item\em Busca todas as entidades ativas. \end{DoxyCompactList}\item 
+Task$<$ T $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository_aeab117b679172abf7e1091b67d1ee98d}{Create\+Async}} (T model)
+\begin{DoxyCompactList}\small\item\em Cria entidade conforme parâmetros fornecidos. \end{DoxyCompactList}\item 
+Task$<$ T $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository_a33d532d65e072c5eea34dd948cef118e}{Delete\+Async}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Remove entidade através do Id informado. \end{DoxyCompactList}\item 
+Task$<$ T $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository_adeb973367d91689a1d499ebb9986ce19}{Update\+Async}} (T model)
+\begin{DoxyCompactList}\small\item\em Atualiza entidade conforme parâmetros fornecidos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_persistence_1_1_repositories_1_1_student_repository_a9b5b735708cc50cf7786d554f43ca862}\label{class_persistence_1_1_repositories_1_1_student_repository_a9b5b735708cc50cf7786d554f43ca862} 
+\index{Persistence.Repositories.StudentRepository@{Persistence.Repositories.StudentRepository}!StudentRepository@{StudentRepository}}
+\index{StudentRepository@{StudentRepository}!Persistence.Repositories.StudentRepository@{Persistence.Repositories.StudentRepository}}
+\doxysubsubsection{\texorpdfstring{StudentRepository()}{StudentRepository()}}
+{\footnotesize\ttfamily Persistence.\+Repositories.\+Student\+Repository.\+Student\+Repository (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context}{Application\+Db\+Context}}}]{context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_persistence_1_1_repositories_1_1_student_repository_a782ff5c10d399b0fbcf4e787854acc8d}\label{class_persistence_1_1_repositories_1_1_student_repository_a782ff5c10d399b0fbcf4e787854acc8d} 
+\index{Persistence.Repositories.StudentRepository@{Persistence.Repositories.StudentRepository}!CreateAsync@{CreateAsync}}
+\index{CreateAsync@{CreateAsync}!Persistence.Repositories.StudentRepository@{Persistence.Repositories.StudentRepository}}
+\doxysubsubsection{\texorpdfstring{CreateAsync()}{CreateAsync()}}
+{\footnotesize\ttfamily async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_student}{Student}} $>$ Persistence.\+Repositories.\+Student\+Repository.\+Create\+Async (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_domain_1_1_entities_1_1_student}{Student}}}]{model }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_persistence_1_1_repositories_1_1_student_repository_a6793f40d88035d4333944de761b7bbf0}\label{class_persistence_1_1_repositories_1_1_student_repository_a6793f40d88035d4333944de761b7bbf0} 
+\index{Persistence.Repositories.StudentRepository@{Persistence.Repositories.StudentRepository}!DeleteAsync@{DeleteAsync}}
+\index{DeleteAsync@{DeleteAsync}!Persistence.Repositories.StudentRepository@{Persistence.Repositories.StudentRepository}}
+\doxysubsubsection{\texorpdfstring{DeleteAsync()}{DeleteAsync()}}
+{\footnotesize\ttfamily async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_student}{Student}} $>$ Persistence.\+Repositories.\+Student\+Repository.\+Delete\+Async (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Grafo de chamadas desta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_persistence_1_1_repositories_1_1_student_repository_a6793f40d88035d4333944de761b7bbf0_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_persistence_1_1_repositories_1_1_student_repository_ae190f773ec4c4b9db1b31d4e08cadc63}\label{class_persistence_1_1_repositories_1_1_student_repository_ae190f773ec4c4b9db1b31d4e08cadc63} 
+\index{Persistence.Repositories.StudentRepository@{Persistence.Repositories.StudentRepository}!GetAllAsync@{GetAllAsync}}
+\index{GetAllAsync@{GetAllAsync}!Persistence.Repositories.StudentRepository@{Persistence.Repositories.StudentRepository}}
+\doxysubsubsection{\texorpdfstring{GetAllAsync()}{GetAllAsync()}}
+{\footnotesize\ttfamily async Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_student}{Student}} $>$ $>$ Persistence.\+Repositories.\+Student\+Repository.\+Get\+All\+Async (\begin{DoxyParamCaption}\item[{int}]{skip,  }\item[{int}]{take }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_persistence_1_1_repositories_1_1_student_repository_a628181637ac6fa1b92faf7b18b11005a}\label{class_persistence_1_1_repositories_1_1_student_repository_a628181637ac6fa1b92faf7b18b11005a} 
+\index{Persistence.Repositories.StudentRepository@{Persistence.Repositories.StudentRepository}!GetByIdAsync@{GetByIdAsync}}
+\index{GetByIdAsync@{GetByIdAsync}!Persistence.Repositories.StudentRepository@{Persistence.Repositories.StudentRepository}}
+\doxysubsubsection{\texorpdfstring{GetByIdAsync()}{GetByIdAsync()}}
+{\footnotesize\ttfamily async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_student}{Student}}?$>$ Persistence.\+Repositories.\+Student\+Repository.\+Get\+By\+Id\+Async (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Este é o diagrama das funções que utilizam esta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_persistence_1_1_repositories_1_1_student_repository_a628181637ac6fa1b92faf7b18b11005a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_persistence_1_1_repositories_1_1_student_repository_a7ac071a094f1b32319d871b52e039523}\label{class_persistence_1_1_repositories_1_1_student_repository_a7ac071a094f1b32319d871b52e039523} 
+\index{Persistence.Repositories.StudentRepository@{Persistence.Repositories.StudentRepository}!GetByRegistrationCodeAsync@{GetByRegistrationCodeAsync}}
+\index{GetByRegistrationCodeAsync@{GetByRegistrationCodeAsync}!Persistence.Repositories.StudentRepository@{Persistence.Repositories.StudentRepository}}
+\doxysubsubsection{\texorpdfstring{GetByRegistrationCodeAsync()}{GetByRegistrationCodeAsync()}}
+{\footnotesize\ttfamily async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_student}{Student}}?$>$ Persistence.\+Repositories.\+Student\+Repository.\+Get\+By\+Registration\+Code\+Async (\begin{DoxyParamCaption}\item[{string}]{registration\+Code }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Busca aluno pelo código de matrícula. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em registration\+Code} & Código de matrícula\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Aluno encontrado
+\end{DoxyReturn}
+
+
+Implementa \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_student_repository_a2cc98972b6c0680a625be1de26e4ad7c}{Domain.\+Interfaces.\+Repositories.\+IStudent\+Repository}}.
+
+\Hypertarget{class_persistence_1_1_repositories_1_1_student_repository_a085fddc509e267cd05c8d7a07dd77905}\label{class_persistence_1_1_repositories_1_1_student_repository_a085fddc509e267cd05c8d7a07dd77905} 
+\index{Persistence.Repositories.StudentRepository@{Persistence.Repositories.StudentRepository}!GetByUserIdAsync@{GetByUserIdAsync}}
+\index{GetByUserIdAsync@{GetByUserIdAsync}!Persistence.Repositories.StudentRepository@{Persistence.Repositories.StudentRepository}}
+\doxysubsubsection{\texorpdfstring{GetByUserIdAsync()}{GetByUserIdAsync()}}
+{\footnotesize\ttfamily async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_student}{Student}}?$>$ Persistence.\+Repositories.\+Student\+Repository.\+Get\+By\+User\+Id\+Async (\begin{DoxyParamCaption}\item[{Guid?}]{user\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Obtém estudante pelo Id do usuário informado. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em user\+Id} & Id do usuário.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Estudante encontrado.
+\end{DoxyReturn}
+
+
+Implementa \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_student_repository_a8697a018775a719762c513a1245d900b}{Domain.\+Interfaces.\+Repositories.\+IStudent\+Repository}}.
+
+\Hypertarget{class_persistence_1_1_repositories_1_1_student_repository_aa8255764d75ced3e67e5a2b40bee0690}\label{class_persistence_1_1_repositories_1_1_student_repository_aa8255764d75ced3e67e5a2b40bee0690} 
+\index{Persistence.Repositories.StudentRepository@{Persistence.Repositories.StudentRepository}!UpdateAsync@{UpdateAsync}}
+\index{UpdateAsync@{UpdateAsync}!Persistence.Repositories.StudentRepository@{Persistence.Repositories.StudentRepository}}
+\doxysubsubsection{\texorpdfstring{UpdateAsync()}{UpdateAsync()}}
+{\footnotesize\ttfamily async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_student}{Student}} $>$ Persistence.\+Repositories.\+Student\+Repository.\+Update\+Async (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_domain_1_1_entities_1_1_student}{Student}}}]{model }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Este é o diagrama das funções que utilizam esta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_persistence_1_1_repositories_1_1_student_repository_aa8255764d75ced3e67e5a2b40bee0690_icgraph}
+\end{center}
+\end{figure}
+
+
+A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Infrastructure/\+Persistence/\+Repositories/\mbox{\hyperlink{_student_repository_8cs}{Student\+Repository.\+cs}}\end{DoxyCompactItemize}

@@ -1,0 +1,5 @@
+<map id="Application.UseCases.ProjectPartialReport.GetProjectPartialReportByProjectId" name="Application.UseCases.ProjectPartialReport.GetProjectPartialReportByProjectId">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,94,206,150"/>
+<area shape="rect" id="Node000002" href="$interface_application_1_1_interfaces_1_1_use_cases_1_1_project_partial_report_1_1_i_get_project_partial_report_by_project_id.html" title=" " alt="" coords="24,5,187,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,61,108,93,103,93,103,61"/>
+</map>

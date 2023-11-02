@@ -1,0 +1,61 @@
+\doxysection{Referência à classe src.\+domain.\+interfaces.\+services.\+text\+\_\+recognition\+\_\+service\+\_\+interface.\+IText\+Recognition\+Service}
+\hypertarget{classsrc_1_1domain_1_1interfaces_1_1services_1_1text__recognition__service__interface_1_1_i_text_recognition_service}{}\label{classsrc_1_1domain_1_1interfaces_1_1services_1_1text__recognition__service__interface_1_1_i_text_recognition_service}\index{src.domain.interfaces.services.text\_recognition\_service\_interface.ITextRecognitionService@{src.domain.interfaces.services.text\_recognition\_service\_interface.ITextRecognitionService}}
+
+
+Diagrama de heranças da classe src.\+domain.\+interfaces.\+services.\+text\+\_\+recognition\+\_\+service\+\_\+interface.\+IText\+Recognition\+Service\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{classsrc_1_1domain_1_1interfaces_1_1services_1_1text__recognition__service__interface_1_1_i_text2e63417d696a5b6573b4db81a64c9c94}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para src.\+domain.\+interfaces.\+services.\+text\+\_\+recognition\+\_\+service\+\_\+interface.\+IText\+Recognition\+Service\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{classsrc_1_1domain_1_1interfaces_1_1services_1_1text__recognition__service__interface_1_1_i_text09a3dbcfc0809628b834c4b5bac1ce3b}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classsrc_1_1domain_1_1interfaces_1_1services_1_1text__recognition__service__interface_1_1_i_text_recognition_service_ae85492d8b497a223300569d3565ecc31}{execute}} (self, str video\+\_\+file\+\_\+path)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+\begin{DoxyVerb}Interface que define o contrato para o serviço de reconhecimento de texto no vídeo
+
+Attributes:
+    None
+
+Methods:
+    def execute(self, video_file_path: str) -> bool:
+        Assinatura do método responsável por realizar reconhecimento de texto em um arquivo de vídeo.
+
+        Args:
+            video_file_path (str): Caminho do arquivo de vídeo a ser analisado.
+
+        Returns:
+            bool: True se foi reconhecido texto no vídeo e False caso contrário.
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{classsrc_1_1domain_1_1interfaces_1_1services_1_1text__recognition__service__interface_1_1_i_text_recognition_service_ae85492d8b497a223300569d3565ecc31}\label{classsrc_1_1domain_1_1interfaces_1_1services_1_1text__recognition__service__interface_1_1_i_text_recognition_service_ae85492d8b497a223300569d3565ecc31} 
+\index{src.domain.interfaces.services.text\_recognition\_service\_interface.ITextRecognitionService@{src.domain.interfaces.services.text\_recognition\_service\_interface.ITextRecognitionService}!execute@{execute}}
+\index{execute@{execute}!src.domain.interfaces.services.text\_recognition\_service\_interface.ITextRecognitionService@{src.domain.interfaces.services.text\_recognition\_service\_interface.ITextRecognitionService}}
+\doxysubsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily  bool src.\+domain.\+interfaces.\+services.\+text\+\_\+recognition\+\_\+service\+\_\+interface.\+IText\+Recognition\+Service.\+execute (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{video\+\_\+file\+\_\+path }\end{DoxyParamCaption})}
+
+
+
+Reimplementado em \mbox{\hyperlink{classsrc_1_1infra_1_1external__services_1_1text__recognition__service_1_1_text_recognition_service_a5cf793c884a019b7f78e2babcf028f85}{src.\+infra.\+external\+\_\+services.\+text\+\_\+recognition\+\_\+service.\+Text\+Recognition\+Service}}.
+
+
+
+A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/domain/interfaces/services/\mbox{\hyperlink{text__recognition__service__interface_8py}{text\+\_\+recognition\+\_\+service\+\_\+interface.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,11 @@
+<map id="Application.Ports.ProgramType.BaseProgramTypeContract" name="Application.Ports.ProgramType.BaseProgramTypeContract">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,104,216,145"/>
+<area shape="rect" id="Node000002" href="$class_application_1_1_ports_1_1_program_type_1_1_create_program_type_input.html" title=" " alt="" coords="293,5,491,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="168,95,263,56,303,44,304,49,265,62,170,100"/>
+<area shape="rect" id="Node000003" href="$class_application_1_1_ports_1_1_program_type_1_1_detailed_read_program_type_output.html" title=" " alt="" coords="268,71,516,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="231,107,267,103,268,108,231,113"/>
+<area shape="rect" id="Node000004" href="$class_application_1_1_ports_1_1_program_type_1_1_resumed_read_program_type_output.html" title=" " alt="" coords="264,136,520,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="231,135,264,139,263,144,231,141"/>
+<area shape="rect" id="Node000005" href="$class_application_1_1_ports_1_1_program_type_1_1_update_program_type_input.html" title=" " alt="" coords="291,201,493,242"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="171,149,265,186,305,198,303,203,263,191,169,154"/>
+</map>

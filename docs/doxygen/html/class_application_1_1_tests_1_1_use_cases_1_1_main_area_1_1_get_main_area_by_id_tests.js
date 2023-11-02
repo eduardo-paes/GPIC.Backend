@@ -1,0 +1,5 @@
+var class_application_1_1_tests_1_1_use_cases_1_1_main_area_1_1_get_main_area_by_id_tests =
+[
+    [ "ExecuteAsync_NullId_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_main_area_1_1_get_main_area_by_id_tests.html#a48a70e506eb32e411bd5788653ad8cab", null ],
+    [ "ExecuteAsync_ValidId_ReturnsDetailedMainAreaOutput", "class_application_1_1_tests_1_1_use_cases_1_1_main_area_1_1_get_main_area_by_id_tests.html#ac2372208c92e58dbe3221a4687f1d263", null ]
+];

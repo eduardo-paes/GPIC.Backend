@@ -1,0 +1,11 @@
+<map id="Representação gráfica da hiearquia da classe" name="Representação gráfica da hiearquia da classe">
+<area shape="rect" id="Node000000" href="$class_application_1_1_ports_1_1_assistance_type_1_1_base_assistance_type_contract.html" title=" " alt="" coords="5,113,232,154"/>
+<area shape="rect" id="Node000001" href="$class_application_1_1_ports_1_1_assistance_type_1_1_create_assistance_type_input.html" title=" " alt="" coords="309,5,523,46"/>
+<area shape="poly" id="edge107_Node000000_Node000001" title=" " alt="" coords="170,104,222,78,279,55,315,44,316,49,281,60,224,83,172,108"/>
+<area shape="rect" id="Node000002" href="$class_application_1_1_ports_1_1_assistance_type_1_1_detailed_read_assistance_type_output.html" title=" " alt="" coords="303,70,529,126"/>
+<area shape="poly" id="edge108_Node000000_Node000002" title=" " alt="" coords="247,116,302,109,303,114,247,121"/>
+<area shape="rect" id="Node000003" href="$class_application_1_1_ports_1_1_assistance_type_1_1_resumed_read_assistance_type_output.html" title=" " alt="" coords="280,149,552,190"/>
+<area shape="poly" id="edge109_Node000000_Node000003" title=" " alt="" coords="247,147,280,151,279,156,247,152"/>
+<area shape="rect" id="Node000004" href="$class_application_1_1_ports_1_1_assistance_type_1_1_update_assistance_type_input.html" title=" " alt="" coords="307,215,525,255"/>
+<area shape="poly" id="edge110_Node000000_Node000004" title=" " alt="" coords="179,158,281,199,322,212,321,217,279,204,177,163"/>
+</map>

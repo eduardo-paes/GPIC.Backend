@@ -1,0 +1,4 @@
+var namespacesrc_1_1infra_1_1external__services_1_1spoken__language__identification__service =
+[
+    [ "SpokenLanguageIdentificationService", "classsrc_1_1infra_1_1external__services_1_1spoken__language__identification__service_1_1_spoken_language_identification_service.html", "classsrc_1_1infra_1_1external__services_1_1spoken__language__identification__service_1_1_spoken_language_identification_service" ]
+];

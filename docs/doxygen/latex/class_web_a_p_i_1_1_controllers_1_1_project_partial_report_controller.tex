@@ -1,0 +1,189 @@
+\doxysection{Referência à classe Web\+API.\+Controllers.\+Project\+Partial\+Report\+Controller}
+\hypertarget{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller}{}\label{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller}\index{WebAPI.Controllers.ProjectPartialReportController@{WebAPI.Controllers.ProjectPartialReportController}}
+
+
+Controller de Relatório de Projeto.  
+
+
+
+
+Diagrama de heranças da classe Web\+API.\+Controllers.\+Project\+Partial\+Report\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para Web\+API.\+Controllers.\+Project\+Partial\+Report\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller_af28e3c788a461d65383f0388880feb75}{Project\+Partial\+Report\+Controller}} (\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_partial_report_1_1_i_get_project_partial_report_by_id}{IGet\+Project\+Partial\+Report\+By\+Id}} get\+Project\+Partial\+Report\+By\+Id, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_partial_report_1_1_i_get_project_partial_report_by_project_id}{IGet\+Project\+Partial\+Report\+By\+Project\+Id}} get\+Project\+Partial\+Report\+By\+Project\+Id, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_partial_report_1_1_i_create_project_partial_report}{ICreate\+Project\+Partial\+Report}} create\+Project\+Partial\+Report, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_partial_report_1_1_i_update_project_partial_report}{IUpdate\+Project\+Partial\+Report}} update\+Project\+Partial\+Report, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_partial_report_1_1_i_delete_project_partial_report}{IDelete\+Project\+Partial\+Report}} delete\+Project\+Partial\+Report, ILogger$<$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller}{Project\+Partial\+Report\+Controller}} $>$ logger)
+\begin{DoxyCompactList}\small\item\em Construtor do Controller de Relatório de Projeto. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_partial_report_1_1_detailed_read_project_partial_report_output}{Detailed\+Read\+Project\+Partial\+Report\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller_a92ac3dfb99c4e93f0b67e86c1d0fcb39}{Get\+By\+Id}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Busca relatório parcial de projeto pelo Id. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_partial_report_1_1_detailed_read_project_partial_report_output}{Detailed\+Read\+Project\+Partial\+Report\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller_af9e490ac7387e47784d201a6c6fd0e58}{Get\+By\+Project\+Id}} (Guid? project\+Id)
+\begin{DoxyCompactList}\small\item\em Busca relatório parcial de projeto pelo Id do projeto. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_partial_report_1_1_detailed_read_project_partial_report_output}{Detailed\+Read\+Project\+Partial\+Report\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller_a6649bcf817aa0c065f5215d8d436a803}{Create}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_project_partial_report_1_1_create_project_partial_report_input}{Create\+Project\+Partial\+Report\+Input}} request)
+\begin{DoxyCompactList}\small\item\em Cria relatório parcial de projeto. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_partial_report_1_1_detailed_read_project_partial_report_output}{Detailed\+Read\+Project\+Partial\+Report\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller_a12b1b7f9d8168fe19eab64a24c5bd950}{Update}} (Guid? id, \mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_project_partial_report_1_1_update_project_partial_report_input}{Update\+Project\+Partial\+Report\+Input}} request)
+\begin{DoxyCompactList}\small\item\em Atualiza relatório parcial de projeto. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_partial_report_1_1_detailed_read_project_partial_report_output}{Detailed\+Read\+Project\+Partial\+Report\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller_a43d2ee16a68a5743711ab01283f50b06}{Delete}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Remove relatório parcial de projeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Controller de Relatório de Projeto. 
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller_af28e3c788a461d65383f0388880feb75}\label{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller_af28e3c788a461d65383f0388880feb75} 
+\index{WebAPI.Controllers.ProjectPartialReportController@{WebAPI.Controllers.ProjectPartialReportController}!ProjectPartialReportController@{ProjectPartialReportController}}
+\index{ProjectPartialReportController@{ProjectPartialReportController}!WebAPI.Controllers.ProjectPartialReportController@{WebAPI.Controllers.ProjectPartialReportController}}
+\doxysubsubsection{\texorpdfstring{ProjectPartialReportController()}{ProjectPartialReportController()}}
+{\footnotesize\ttfamily Web\+API.\+Controllers.\+Project\+Partial\+Report\+Controller.\+Project\+Partial\+Report\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_partial_report_1_1_i_get_project_partial_report_by_id}{IGet\+Project\+Partial\+Report\+By\+Id}}}]{get\+Project\+Partial\+Report\+By\+Id,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_partial_report_1_1_i_get_project_partial_report_by_project_id}{IGet\+Project\+Partial\+Report\+By\+Project\+Id}}}]{get\+Project\+Partial\+Report\+By\+Project\+Id,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_partial_report_1_1_i_create_project_partial_report}{ICreate\+Project\+Partial\+Report}}}]{create\+Project\+Partial\+Report,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_partial_report_1_1_i_update_project_partial_report}{IUpdate\+Project\+Partial\+Report}}}]{update\+Project\+Partial\+Report,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_partial_report_1_1_i_delete_project_partial_report}{IDelete\+Project\+Partial\+Report}}}]{delete\+Project\+Partial\+Report,  }\item[{ILogger$<$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller}{Project\+Partial\+Report\+Controller}} $>$}]{logger }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construtor do Controller de Relatório de Projeto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em get\+Project\+Partial\+Report\+By\+Id} & Use Case de busca de relatório parcial de projeto por Id.\\
+\hline
+{\em get\+Project\+Partial\+Report\+By\+Project\+Id} & Use Case de busca de relatório parcial de projeto por Id do projeto.\\
+\hline
+{\em create\+Project\+Partial\+Report} & Use Case de criação de relatório parcial de projeto.\\
+\hline
+{\em update\+Project\+Partial\+Report} & Use Case de atualização de relatório parcial de projeto.\\
+\hline
+{\em delete\+Project\+Partial\+Report} & Use Case de remoção de relatório parcial de projeto.\\
+\hline
+{\em logger} & Logger.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller_a6649bcf817aa0c065f5215d8d436a803}\label{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller_a6649bcf817aa0c065f5215d8d436a803} 
+\index{WebAPI.Controllers.ProjectPartialReportController@{WebAPI.Controllers.ProjectPartialReportController}!Create@{Create}}
+\index{Create@{Create}!WebAPI.Controllers.ProjectPartialReportController@{WebAPI.Controllers.ProjectPartialReportController}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_partial_report_1_1_detailed_read_project_partial_report_output}{Detailed\+Read\+Project\+Partial\+Report\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Project\+Partial\+Report\+Controller.\+Create (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_project_partial_report_1_1_create_project_partial_report_input}{Create\+Project\+Partial\+Report\+Input}}}]{request }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cria relatório parcial de projeto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em request} & Dados para criação de relatório parcial de projeto.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Relatório de projeto criado.
+\end{DoxyReturn}
+$<$response code=\"{}201\"{}$>$Relatório de projeto criado.$<$/response$>$ $<$response code=\"{}400\"{}$>$Dados inválidos.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ Grafo de chamadas desta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller_a6649bcf817aa0c065f5215d8d436a803_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller_a43d2ee16a68a5743711ab01283f50b06}\label{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller_a43d2ee16a68a5743711ab01283f50b06} 
+\index{WebAPI.Controllers.ProjectPartialReportController@{WebAPI.Controllers.ProjectPartialReportController}!Delete@{Delete}}
+\index{Delete@{Delete}!WebAPI.Controllers.ProjectPartialReportController@{WebAPI.Controllers.ProjectPartialReportController}}
+\doxysubsubsection{\texorpdfstring{Delete()}{Delete()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_partial_report_1_1_detailed_read_project_partial_report_output}{Detailed\+Read\+Project\+Partial\+Report\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Project\+Partial\+Report\+Controller.\+Delete (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Remove relatório parcial de projeto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em id} & Id do relatório parcial de projeto.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Relatório de projeto removido.
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Relatório de projeto removido.$<$/response$>$ $<$response code=\"{}400\"{}$>$Id não informado.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Relatório de projeto não encontrado.$<$/response$>$ \Hypertarget{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller_a92ac3dfb99c4e93f0b67e86c1d0fcb39}\label{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller_a92ac3dfb99c4e93f0b67e86c1d0fcb39} 
+\index{WebAPI.Controllers.ProjectPartialReportController@{WebAPI.Controllers.ProjectPartialReportController}!GetById@{GetById}}
+\index{GetById@{GetById}!WebAPI.Controllers.ProjectPartialReportController@{WebAPI.Controllers.ProjectPartialReportController}}
+\doxysubsubsection{\texorpdfstring{GetById()}{GetById()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_partial_report_1_1_detailed_read_project_partial_report_output}{Detailed\+Read\+Project\+Partial\+Report\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Project\+Partial\+Report\+Controller.\+Get\+By\+Id (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Busca relatório parcial de projeto pelo Id. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em id} & Id do relatório parcial de projeto.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Relatório de projeto.
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Relatório de projeto encontrado.$<$/response$>$ $<$response code=\"{}400\"{}$>$Id não informado.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Relatório de projeto não encontrado.$<$/response$>$ Este é o diagrama das funções que utilizam esta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller_a92ac3dfb99c4e93f0b67e86c1d0fcb39_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller_af9e490ac7387e47784d201a6c6fd0e58}\label{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller_af9e490ac7387e47784d201a6c6fd0e58} 
+\index{WebAPI.Controllers.ProjectPartialReportController@{WebAPI.Controllers.ProjectPartialReportController}!GetByProjectId@{GetByProjectId}}
+\index{GetByProjectId@{GetByProjectId}!WebAPI.Controllers.ProjectPartialReportController@{WebAPI.Controllers.ProjectPartialReportController}}
+\doxysubsubsection{\texorpdfstring{GetByProjectId()}{GetByProjectId()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_partial_report_1_1_detailed_read_project_partial_report_output}{Detailed\+Read\+Project\+Partial\+Report\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Project\+Partial\+Report\+Controller.\+Get\+By\+Project\+Id (\begin{DoxyParamCaption}\item[{Guid?}]{project\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Busca relatório parcial de projeto pelo Id do projeto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em project\+Id} & Id do projeto.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Relatório parcial do projeto.
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Relatórios de projeto encontrados.$<$/response$>$ $<$response code=\"{}400\"{}$>$Id não informado.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Relatórios de projeto não encontrados.$<$/response$>$ \Hypertarget{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller_a12b1b7f9d8168fe19eab64a24c5bd950}\label{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller_a12b1b7f9d8168fe19eab64a24c5bd950} 
+\index{WebAPI.Controllers.ProjectPartialReportController@{WebAPI.Controllers.ProjectPartialReportController}!Update@{Update}}
+\index{Update@{Update}!WebAPI.Controllers.ProjectPartialReportController@{WebAPI.Controllers.ProjectPartialReportController}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_partial_report_1_1_detailed_read_project_partial_report_output}{Detailed\+Read\+Project\+Partial\+Report\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Project\+Partial\+Report\+Controller.\+Update (\begin{DoxyParamCaption}\item[{Guid?}]{id,  }\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_project_partial_report_1_1_update_project_partial_report_input}{Update\+Project\+Partial\+Report\+Input}}}]{request }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Atualiza relatório parcial de projeto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em id} & Id do relatório parcial de projeto.\\
+\hline
+{\em request} & Dados para atualização de relatório parcial de projeto.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Relatório de projeto atualizado.
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Relatório de projeto atualizado.$<$/response$>$ $<$response code=\"{}400\"{}$>$Dados inválidos.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Relatório de projeto não encontrado.$<$/response$>$ 
+
+A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Infrastructure/\+Web\+API/\+Controllers/\mbox{\hyperlink{_project_final_report_controller_01copy_8cs}{Project\+Final\+Report\+Controller copy.\+cs}}\end{DoxyCompactItemize}

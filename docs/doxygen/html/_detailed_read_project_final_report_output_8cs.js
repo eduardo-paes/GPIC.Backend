@@ -1,0 +1,4 @@
+var _detailed_read_project_final_report_output_8cs =
+[
+    [ "Application.Ports.ProjectFinalReport.DetailedReadProjectFinalReportOutput", "class_application_1_1_ports_1_1_project_final_report_1_1_detailed_read_project_final_report_output.html", "class_application_1_1_ports_1_1_project_final_report_1_1_detailed_read_project_final_report_output" ]
+];

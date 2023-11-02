@@ -1,0 +1,100 @@
+\doxysection{Referência à classe Web\+API.\+Controllers.\+Activity\+Controller}
+\hypertarget{class_web_a_p_i_1_1_controllers_1_1_activity_controller}{}\label{class_web_a_p_i_1_1_controllers_1_1_activity_controller}\index{WebAPI.Controllers.ActivityController@{WebAPI.Controllers.ActivityController}}
+
+
+Controller responsável por gerenciar as atividades.  
+
+
+
+
+Diagrama de heranças da classe Web\+API.\+Controllers.\+Activity\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{class_web_a_p_i_1_1_controllers_1_1_activity_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para Web\+API.\+Controllers.\+Activity\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{class_web_a_p_i_1_1_controllers_1_1_activity_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_activity_controller_a8b790a94ddd6e2d4c96be8c586130d4e}{Activity\+Controller}} (\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_activity_type_1_1_i_get_last_notice_activities}{IGet\+Last\+Notice\+Activities}} get\+Last\+Notice\+Activities, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_activity_type_1_1_i_get_activities_by_notice_id}{IGet\+Activities\+By\+Notice\+Id}} get\+Activities\+By\+Notice\+Id, ILogger$<$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_activity_controller}{Activity\+Controller}} $>$ logger)
+\begin{DoxyCompactList}\small\item\em Construtor da classe. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_activity_controller_a6eacb9dd7b76c1bba37ed61ade21a23d}{Get\+Last\+Notice\+Activities}} ()
+\begin{DoxyCompactList}\small\item\em Obtém as últimas atividades em uso pelo edital anterior. \end{DoxyCompactList}\item 
+async Task$<$ IAction\+Result $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_activity_controller_a541f825fe810ced8b6ac2872caffc307}{Get\+Activities\+By\+Notice\+Id}} (Guid? notice\+Id)
+\begin{DoxyCompactList}\small\item\em Obtém as atividades de um edital. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Controller responsável por gerenciar as atividades. 
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_activity_controller_a8b790a94ddd6e2d4c96be8c586130d4e}\label{class_web_a_p_i_1_1_controllers_1_1_activity_controller_a8b790a94ddd6e2d4c96be8c586130d4e} 
+\index{WebAPI.Controllers.ActivityController@{WebAPI.Controllers.ActivityController}!ActivityController@{ActivityController}}
+\index{ActivityController@{ActivityController}!WebAPI.Controllers.ActivityController@{WebAPI.Controllers.ActivityController}}
+\doxysubsubsection{\texorpdfstring{ActivityController()}{ActivityController()}}
+{\footnotesize\ttfamily Web\+API.\+Controllers.\+Activity\+Controller.\+Activity\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_activity_type_1_1_i_get_last_notice_activities}{IGet\+Last\+Notice\+Activities}}}]{get\+Last\+Notice\+Activities,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_activity_type_1_1_i_get_activities_by_notice_id}{IGet\+Activities\+By\+Notice\+Id}}}]{get\+Activities\+By\+Notice\+Id,  }\item[{ILogger$<$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_activity_controller}{Activity\+Controller}} $>$}]{logger }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construtor da classe. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em get\+Last\+Notice\+Activities} & Serviço de obtenção das últimas atividades em uso pelo edital anterior.\\
+\hline
+{\em get\+Activities\+By\+Notice\+Id} & Serviço de obtenção das atividades de um edital.\\
+\hline
+{\em logger} & Serviço de log.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_activity_controller_a541f825fe810ced8b6ac2872caffc307}\label{class_web_a_p_i_1_1_controllers_1_1_activity_controller_a541f825fe810ced8b6ac2872caffc307} 
+\index{WebAPI.Controllers.ActivityController@{WebAPI.Controllers.ActivityController}!GetActivitiesByNoticeId@{GetActivitiesByNoticeId}}
+\index{GetActivitiesByNoticeId@{GetActivitiesByNoticeId}!WebAPI.Controllers.ActivityController@{WebAPI.Controllers.ActivityController}}
+\doxysubsubsection{\texorpdfstring{GetActivitiesByNoticeId()}{GetActivitiesByNoticeId()}}
+{\footnotesize\ttfamily async Task$<$ IAction\+Result $>$ Web\+API.\+Controllers.\+Activity\+Controller.\+Get\+Activities\+By\+Notice\+Id (\begin{DoxyParamCaption}\item[{Guid?}]{notice\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Obtém as atividades de um edital. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em notice\+Id} & Id do edital.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Lista de atividades.
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna a lista de atividades.$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ \Hypertarget{class_web_a_p_i_1_1_controllers_1_1_activity_controller_a6eacb9dd7b76c1bba37ed61ade21a23d}\label{class_web_a_p_i_1_1_controllers_1_1_activity_controller_a6eacb9dd7b76c1bba37ed61ade21a23d} 
+\index{WebAPI.Controllers.ActivityController@{WebAPI.Controllers.ActivityController}!GetLastNoticeActivities@{GetLastNoticeActivities}}
+\index{GetLastNoticeActivities@{GetLastNoticeActivities}!WebAPI.Controllers.ActivityController@{WebAPI.Controllers.ActivityController}}
+\doxysubsubsection{\texorpdfstring{GetLastNoticeActivities()}{GetLastNoticeActivities()}}
+{\footnotesize\ttfamily async Task$<$ IAction\+Result $>$ Web\+API.\+Controllers.\+Activity\+Controller.\+Get\+Last\+Notice\+Activities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Obtém as últimas atividades em uso pelo edital anterior. 
+
+\begin{DoxyReturn}{Retorna}
+Lista de atividades mais recentes.
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Retorna a lista de atividades mais recentes.$<$/response$>$ $<$response code=\"{}400\"{}$>$Requisição incorreta.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ 
+
+A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Infrastructure/\+Web\+API/\+Controllers/\mbox{\hyperlink{_activity_controller_8cs}{Activity\+Controller.\+cs}}\end{DoxyCompactItemize}

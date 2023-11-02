@@ -1,0 +1,101 @@
+\doxysection{Referência à classe Services.\+Token\+Authentication\+Service}
+\hypertarget{class_services_1_1_token_authentication_service}{}\label{class_services_1_1_token_authentication_service}\index{Services.TokenAuthenticationService@{Services.TokenAuthenticationService}}
+
+
+Diagrama de heranças da classe Services.\+Token\+Authentication\+Service
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{class_services_1_1_token_authentication_service__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para Services.\+Token\+Authentication\+Service\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{class_services_1_1_token_authentication_service__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_services_1_1_token_authentication_service_a77cc5d3cb3708148b185526cc0f51584}{Token\+Authentication\+Service}} (\mbox{\hyperlink{interface_services_1_1_i_dot_env_secrets}{IDot\+Env\+Secrets}} dot\+Env\+Secrets, IHttp\+Context\+Accessor http\+Context\+Accessor)
+\item 
+string \mbox{\hyperlink{class_services_1_1_token_authentication_service_ab0c908ab4947a83d8f7bb87d1797473d}{Generate\+Token}} (Guid? id, Guid? actor\+Id, string? user\+Name, string? role)
+\begin{DoxyCompactList}\small\item\em Gera o token de autenticação. \end{DoxyCompactList}\item 
+Dictionary$<$ Guid, \mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}} $>$ \mbox{\hyperlink{class_services_1_1_token_authentication_service_afa24b3f82c9d9ec6e4be0d85b8fb8abb}{Get\+User\+Authenticated\+Claims}} ()
+\begin{DoxyCompactList}\small\item\em Retorna as claims do usuário autenticado. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_services_1_1_token_authentication_service_a77cc5d3cb3708148b185526cc0f51584}\label{class_services_1_1_token_authentication_service_a77cc5d3cb3708148b185526cc0f51584} 
+\index{Services.TokenAuthenticationService@{Services.TokenAuthenticationService}!TokenAuthenticationService@{TokenAuthenticationService}}
+\index{TokenAuthenticationService@{TokenAuthenticationService}!Services.TokenAuthenticationService@{Services.TokenAuthenticationService}}
+\doxysubsubsection{\texorpdfstring{TokenAuthenticationService()}{TokenAuthenticationService()}}
+{\footnotesize\ttfamily Services.\+Token\+Authentication\+Service.\+Token\+Authentication\+Service (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_services_1_1_i_dot_env_secrets}{IDot\+Env\+Secrets}}}]{dot\+Env\+Secrets,  }\item[{IHttp\+Context\+Accessor}]{http\+Context\+Accessor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_services_1_1_token_authentication_service_ab0c908ab4947a83d8f7bb87d1797473d}\label{class_services_1_1_token_authentication_service_ab0c908ab4947a83d8f7bb87d1797473d} 
+\index{Services.TokenAuthenticationService@{Services.TokenAuthenticationService}!GenerateToken@{GenerateToken}}
+\index{GenerateToken@{GenerateToken}!Services.TokenAuthenticationService@{Services.TokenAuthenticationService}}
+\doxysubsubsection{\texorpdfstring{GenerateToken()}{GenerateToken()}}
+{\footnotesize\ttfamily string Services.\+Token\+Authentication\+Service.\+Generate\+Token (\begin{DoxyParamCaption}\item[{Guid?}]{id,  }\item[{Guid?}]{actor\+Id,  }\item[{string?}]{user\+Name,  }\item[{string?}]{role }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gera o token de autenticação. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em id} & Id do usuário.\\
+\hline
+{\em actor\+Id} & Id do professor ou do aluno.\\
+\hline
+{\em user\+Name} & Nome do usuário.\\
+\hline
+{\em role} & Perfil do usuário.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Token de autenticação.
+\end{DoxyReturn}
+
+
+Implementa \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_services_1_1_i_token_authentication_service_ac4084f320bd6b62dc431a9aaf2b873d5}{Domain.\+Interfaces.\+Services.\+IToken\+Authentication\+Service}}.
+
+\Hypertarget{class_services_1_1_token_authentication_service_afa24b3f82c9d9ec6e4be0d85b8fb8abb}\label{class_services_1_1_token_authentication_service_afa24b3f82c9d9ec6e4be0d85b8fb8abb} 
+\index{Services.TokenAuthenticationService@{Services.TokenAuthenticationService}!GetUserAuthenticatedClaims@{GetUserAuthenticatedClaims}}
+\index{GetUserAuthenticatedClaims@{GetUserAuthenticatedClaims}!Services.TokenAuthenticationService@{Services.TokenAuthenticationService}}
+\doxysubsubsection{\texorpdfstring{GetUserAuthenticatedClaims()}{GetUserAuthenticatedClaims()}}
+{\footnotesize\ttfamily Dictionary$<$ Guid, \mbox{\hyperlink{class_domain_1_1_entities_1_1_user}{User}} $>$ Services.\+Token\+Authentication\+Service.\+Get\+User\+Authenticated\+Claims (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retorna as claims do usuário autenticado. 
+
+\begin{DoxyReturn}{Retorna}
+Id, Name e Role.
+\end{DoxyReturn}
+
+
+Implementa \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_services_1_1_i_token_authentication_service_a9fece2cbd98ea4d05a327397f6035b0c}{Domain.\+Interfaces.\+Services.\+IToken\+Authentication\+Service}}.
+
+Grafo de chamadas desta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_services_1_1_token_authentication_service_afa24b3f82c9d9ec6e4be0d85b8fb8abb_cgraph}
+\end{center}
+\end{figure}
+
+
+A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Infrastructure/\+Services/\mbox{\hyperlink{_token_authentication_service_8cs}{Token\+Authentication\+Service.\+cs}}\end{DoxyCompactItemize}

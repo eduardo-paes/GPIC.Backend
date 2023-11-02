@@ -1,0 +1,189 @@
+\doxysection{Referência à classe Web\+API.\+Controllers.\+Project\+Final\+Report\+Controller}
+\hypertarget{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller}{}\label{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller}\index{WebAPI.Controllers.ProjectFinalReportController@{WebAPI.Controllers.ProjectFinalReportController}}
+
+
+Controller de Relatório de Projeto.  
+
+
+
+
+Diagrama de heranças da classe Web\+API.\+Controllers.\+Project\+Final\+Report\+Controller
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para Web\+API.\+Controllers.\+Project\+Final\+Report\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller_a9628ac99b1361ac7342ee1c546b6541e}{Project\+Final\+Report\+Controller}} (\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_final_report_1_1_i_get_project_final_report_by_id}{IGet\+Project\+Final\+Report\+By\+Id}} get\+Project\+Final\+Report\+By\+Id, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_final_report_1_1_i_get_project_final_report_by_project_id}{IGet\+Project\+Final\+Report\+By\+Project\+Id}} get\+Project\+Final\+Report\+By\+Project\+Id, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_final_report_1_1_i_create_project_final_report}{ICreate\+Project\+Final\+Report}} create\+Project\+Final\+Report, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_final_report_1_1_i_update_project_final_report}{IUpdate\+Project\+Final\+Report}} update\+Project\+Final\+Report, \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_final_report_1_1_i_delete_project_final_report}{IDelete\+Project\+Final\+Report}} delete\+Project\+Final\+Report, ILogger$<$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller}{Project\+Final\+Report\+Controller}} $>$ logger)
+\begin{DoxyCompactList}\small\item\em Construtor do Controller de Relatório de Projeto. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_final_report_1_1_detailed_read_project_final_report_output}{Detailed\+Read\+Project\+Final\+Report\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller_a1ace43f5f9e362ba7f15b7e281b87d9e}{Get\+By\+Id}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Busca relatório final de projeto pelo Id. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_final_report_1_1_detailed_read_project_final_report_output}{Detailed\+Read\+Project\+Final\+Report\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller_a9a5a06d66218a4e9565b16802791d973}{Get\+By\+Project\+Id}} (Guid? project\+Id)
+\begin{DoxyCompactList}\small\item\em Busca relatório final de projeto pelo Id do projeto. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_final_report_1_1_detailed_read_project_final_report_output}{Detailed\+Read\+Project\+Final\+Report\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller_a72f3eb5153f620758325b5f05db14a93}{Create}} (\mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_project_final_report_1_1_create_project_final_report_input}{Create\+Project\+Final\+Report\+Input}} request)
+\begin{DoxyCompactList}\small\item\em Cria relatório final de projeto. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_final_report_1_1_detailed_read_project_final_report_output}{Detailed\+Read\+Project\+Final\+Report\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller_a51b8412d985759afad14d97ee5bc53d2}{Update}} (Guid? id, \mbox{[}From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_project_final_report_1_1_update_project_final_report_input}{Update\+Project\+Final\+Report\+Input}} request)
+\begin{DoxyCompactList}\small\item\em Atualiza relatório final de projeto. \end{DoxyCompactList}\item 
+async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_final_report_1_1_detailed_read_project_final_report_output}{Detailed\+Read\+Project\+Final\+Report\+Output}} $>$ $>$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller_adb46aa22444742203fbc8f80b44116ce}{Delete}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Remove relatório final de projeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descrição detalhada}
+Controller de Relatório de Projeto. 
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller_a9628ac99b1361ac7342ee1c546b6541e}\label{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller_a9628ac99b1361ac7342ee1c546b6541e} 
+\index{WebAPI.Controllers.ProjectFinalReportController@{WebAPI.Controllers.ProjectFinalReportController}!ProjectFinalReportController@{ProjectFinalReportController}}
+\index{ProjectFinalReportController@{ProjectFinalReportController}!WebAPI.Controllers.ProjectFinalReportController@{WebAPI.Controllers.ProjectFinalReportController}}
+\doxysubsubsection{\texorpdfstring{ProjectFinalReportController()}{ProjectFinalReportController()}}
+{\footnotesize\ttfamily Web\+API.\+Controllers.\+Project\+Final\+Report\+Controller.\+Project\+Final\+Report\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_final_report_1_1_i_get_project_final_report_by_id}{IGet\+Project\+Final\+Report\+By\+Id}}}]{get\+Project\+Final\+Report\+By\+Id,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_final_report_1_1_i_get_project_final_report_by_project_id}{IGet\+Project\+Final\+Report\+By\+Project\+Id}}}]{get\+Project\+Final\+Report\+By\+Project\+Id,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_final_report_1_1_i_create_project_final_report}{ICreate\+Project\+Final\+Report}}}]{create\+Project\+Final\+Report,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_final_report_1_1_i_update_project_final_report}{IUpdate\+Project\+Final\+Report}}}]{update\+Project\+Final\+Report,  }\item[{\mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_final_report_1_1_i_delete_project_final_report}{IDelete\+Project\+Final\+Report}}}]{delete\+Project\+Final\+Report,  }\item[{ILogger$<$ \mbox{\hyperlink{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller}{Project\+Final\+Report\+Controller}} $>$}]{logger }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construtor do Controller de Relatório de Projeto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em get\+Project\+Final\+Report\+By\+Id} & Use Case de busca de relatório final de projeto por Id.\\
+\hline
+{\em get\+Project\+Final\+Report\+By\+Project\+Id} & Use Case de busca de relatório final de projeto por Id do projeto.\\
+\hline
+{\em create\+Project\+Final\+Report} & Use Case de criação de relatório final de projeto.\\
+\hline
+{\em update\+Project\+Final\+Report} & Use Case de atualização de relatório final de projeto.\\
+\hline
+{\em delete\+Project\+Final\+Report} & Use Case de remoção de relatório final de projeto.\\
+\hline
+{\em logger} & Logger.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller_a72f3eb5153f620758325b5f05db14a93}\label{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller_a72f3eb5153f620758325b5f05db14a93} 
+\index{WebAPI.Controllers.ProjectFinalReportController@{WebAPI.Controllers.ProjectFinalReportController}!Create@{Create}}
+\index{Create@{Create}!WebAPI.Controllers.ProjectFinalReportController@{WebAPI.Controllers.ProjectFinalReportController}}
+\doxysubsubsection{\texorpdfstring{Create()}{Create()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_final_report_1_1_detailed_read_project_final_report_output}{Detailed\+Read\+Project\+Final\+Report\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Project\+Final\+Report\+Controller.\+Create (\begin{DoxyParamCaption}\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_project_final_report_1_1_create_project_final_report_input}{Create\+Project\+Final\+Report\+Input}}}]{request }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cria relatório final de projeto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em request} & Dados para criação de relatório final de projeto.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Relatório de projeto criado.
+\end{DoxyReturn}
+$<$response code=\"{}201\"{}$>$Relatório de projeto criado.$<$/response$>$ $<$response code=\"{}400\"{}$>$Dados inválidos.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ Grafo de chamadas desta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller_a72f3eb5153f620758325b5f05db14a93_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller_adb46aa22444742203fbc8f80b44116ce}\label{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller_adb46aa22444742203fbc8f80b44116ce} 
+\index{WebAPI.Controllers.ProjectFinalReportController@{WebAPI.Controllers.ProjectFinalReportController}!Delete@{Delete}}
+\index{Delete@{Delete}!WebAPI.Controllers.ProjectFinalReportController@{WebAPI.Controllers.ProjectFinalReportController}}
+\doxysubsubsection{\texorpdfstring{Delete()}{Delete()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_final_report_1_1_detailed_read_project_final_report_output}{Detailed\+Read\+Project\+Final\+Report\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Project\+Final\+Report\+Controller.\+Delete (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Remove relatório final de projeto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em id} & Id do relatório final de projeto.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Relatório de projeto removido.
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Relatório de projeto removido.$<$/response$>$ $<$response code=\"{}400\"{}$>$Id não informado.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Relatório de projeto não encontrado.$<$/response$>$ \Hypertarget{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller_a1ace43f5f9e362ba7f15b7e281b87d9e}\label{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller_a1ace43f5f9e362ba7f15b7e281b87d9e} 
+\index{WebAPI.Controllers.ProjectFinalReportController@{WebAPI.Controllers.ProjectFinalReportController}!GetById@{GetById}}
+\index{GetById@{GetById}!WebAPI.Controllers.ProjectFinalReportController@{WebAPI.Controllers.ProjectFinalReportController}}
+\doxysubsubsection{\texorpdfstring{GetById()}{GetById()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_final_report_1_1_detailed_read_project_final_report_output}{Detailed\+Read\+Project\+Final\+Report\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Project\+Final\+Report\+Controller.\+Get\+By\+Id (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Busca relatório final de projeto pelo Id. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em id} & Id do relatório final de projeto.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Relatório de projeto.
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Relatório de projeto encontrado.$<$/response$>$ $<$response code=\"{}400\"{}$>$Id não informado.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Relatório de projeto não encontrado.$<$/response$>$ Este é o diagrama das funções que utilizam esta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller_a1ace43f5f9e362ba7f15b7e281b87d9e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller_a9a5a06d66218a4e9565b16802791d973}\label{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller_a9a5a06d66218a4e9565b16802791d973} 
+\index{WebAPI.Controllers.ProjectFinalReportController@{WebAPI.Controllers.ProjectFinalReportController}!GetByProjectId@{GetByProjectId}}
+\index{GetByProjectId@{GetByProjectId}!WebAPI.Controllers.ProjectFinalReportController@{WebAPI.Controllers.ProjectFinalReportController}}
+\doxysubsubsection{\texorpdfstring{GetByProjectId()}{GetByProjectId()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_final_report_1_1_detailed_read_project_final_report_output}{Detailed\+Read\+Project\+Final\+Report\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Project\+Final\+Report\+Controller.\+Get\+By\+Project\+Id (\begin{DoxyParamCaption}\item[{Guid?}]{project\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Busca relatório final de projeto pelo Id do projeto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em project\+Id} & Id do projeto.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Relatório final do projeto.
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Relatórios de projeto encontrados.$<$/response$>$ $<$response code=\"{}400\"{}$>$Id não informado.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Relatórios de projeto não encontrados.$<$/response$>$ \Hypertarget{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller_a51b8412d985759afad14d97ee5bc53d2}\label{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller_a51b8412d985759afad14d97ee5bc53d2} 
+\index{WebAPI.Controllers.ProjectFinalReportController@{WebAPI.Controllers.ProjectFinalReportController}!Update@{Update}}
+\index{Update@{Update}!WebAPI.Controllers.ProjectFinalReportController@{WebAPI.Controllers.ProjectFinalReportController}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily async Task$<$ Action\+Result$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_project_final_report_1_1_detailed_read_project_final_report_output}{Detailed\+Read\+Project\+Final\+Report\+Output}} $>$ $>$ Web\+API.\+Controllers.\+Project\+Final\+Report\+Controller.\+Update (\begin{DoxyParamCaption}\item[{Guid?}]{id,  }\item[{\mbox{[}\+From\+Body\mbox{]} \mbox{\hyperlink{class_application_1_1_ports_1_1_project_final_report_1_1_update_project_final_report_input}{Update\+Project\+Final\+Report\+Input}}}]{request }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Atualiza relatório final de projeto. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em id} & Id do relatório final de projeto.\\
+\hline
+{\em request} & Dados para atualização de relatório final de projeto.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Relatório de projeto atualizado.
+\end{DoxyReturn}
+$<$response code=\"{}200\"{}$>$Relatório de projeto atualizado.$<$/response$>$ $<$response code=\"{}400\"{}$>$Dados inválidos.$<$/response$>$ $<$response code=\"{}401\"{}$>$Usuário não autorizado.$<$/response$>$ $<$response code=\"{}404\"{}$>$Relatório de projeto não encontrado.$<$/response$>$ 
+
+A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Infrastructure/\+Web\+API/\+Controllers/\mbox{\hyperlink{_project_final_report_controller_8cs}{Project\+Final\+Report\+Controller.\+cs}}\end{DoxyCompactItemize}

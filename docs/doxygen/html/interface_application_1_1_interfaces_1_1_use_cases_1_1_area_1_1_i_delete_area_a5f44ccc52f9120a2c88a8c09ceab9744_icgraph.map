@@ -1,0 +1,7 @@
+<map id="Application.Interfaces.UseCases.Area.IDeleteArea.ExecuteAsync" name="Application.Interfaces.UseCases.Area.IDeleteArea.ExecuteAsync">
+<area shape="rect" id="Node000001" title=" " alt="" coords="361,64,613,105"/>
+<area shape="rect" id="Node000002" href="$class_application_1_1_tests_1_1_use_cases_1_1_area_1_1_delete_area_tests.html#a805b003013b014acb5387ed37fbc6854" title=" " alt="" coords="33,5,285,76"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="345,68,285,60,285,55,345,63"/>
+<area shape="rect" id="Node000003" href="$class_application_1_1_tests_1_1_use_cases_1_1_area_1_1_delete_area_tests.html#a22b874bd08829aa849357dda81bf08ba" title=" " alt="" coords="5,100,313,155"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="346,106,314,110,313,105,345,100"/>
+</map>

@@ -1,0 +1,8 @@
+var namespace_application_1_1_use_cases_1_1_project_partial_report =
+[
+    [ "CreateProjectPartialReport", "class_application_1_1_use_cases_1_1_project_partial_report_1_1_create_project_partial_report.html", "class_application_1_1_use_cases_1_1_project_partial_report_1_1_create_project_partial_report" ],
+    [ "DeleteProjectPartialReport", "class_application_1_1_use_cases_1_1_project_partial_report_1_1_delete_project_partial_report.html", "class_application_1_1_use_cases_1_1_project_partial_report_1_1_delete_project_partial_report" ],
+    [ "GetProjectPartialReportById", "class_application_1_1_use_cases_1_1_project_partial_report_1_1_get_project_partial_report_by_id.html", "class_application_1_1_use_cases_1_1_project_partial_report_1_1_get_project_partial_report_by_id" ],
+    [ "GetProjectPartialReportByProjectId", "class_application_1_1_use_cases_1_1_project_partial_report_1_1_get_project_partial_report_by_project_id.html", "class_application_1_1_use_cases_1_1_project_partial_report_1_1_get_project_partial_report_by_project_id" ],
+    [ "UpdateProjectPartialReport", "class_application_1_1_use_cases_1_1_project_partial_report_1_1_update_project_partial_report.html", "class_application_1_1_use_cases_1_1_project_partial_report_1_1_update_project_partial_report" ]
+];

@@ -1,0 +1,5 @@
+<map id="Application.UseCases.StudentDocuments.CreateStudentDocuments" name="Application.UseCases.StudentDocuments.CreateStudentDocuments">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,249,120"/>
+<area shape="rect" id="Node000002" href="$interface_application_1_1_interfaces_1_1_use_cases_1_1_student_documents_1_1_i_create_student_documents.html" title=" " alt="" coords="39,5,215,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="130,46,130,79,124,79,124,46"/>
+</map>

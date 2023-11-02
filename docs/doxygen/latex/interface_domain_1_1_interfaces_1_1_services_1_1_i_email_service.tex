@@ -1,0 +1,95 @@
+\doxysection{Referência ao interface Domain.\+Interfaces.\+Services.\+IEmail\+Service}
+\hypertarget{interface_domain_1_1_interfaces_1_1_services_1_1_i_email_service}{}\label{interface_domain_1_1_interfaces_1_1_services_1_1_i_email_service}\index{Domain.Interfaces.Services.IEmailService@{Domain.Interfaces.Services.IEmailService}}
+
+
+Diagrama de heranças da classe Domain.\+Interfaces.\+Services.\+IEmail\+Service
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{interface_domain_1_1_interfaces_1_1_services_1_1_i_email_service__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+Task \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_services_1_1_i_email_service_a92d882f9300dab76f32f889f5fb1b574}{Send\+Confirmation\+Email\+Async}} (string? email, string? name, string? token)
+\item 
+Task \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_services_1_1_i_email_service_a23c21a93a5d460da40b481c327b57145}{Send\+Reset\+Password\+Email\+Async}} (string? email, string? name, string? token)
+\item 
+Task \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_services_1_1_i_email_service_ae922ec52878eac8ba7a91d1143c08d94}{Send\+Notice\+Email\+Async}} (string? email, string? name, Date\+Time? registration\+Start\+Date, Date\+Time? registration\+End\+Date, string? notice\+Url)
+\item 
+Task \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_services_1_1_i_email_service_a57e88ea930bec12e114f5cbbd6c11056}{Send\+Project\+Notification\+Email\+Async}} (string? email, string? name, string? project\+Title, string? status, string? description)
+\item 
+Task \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_services_1_1_i_email_service_a2421a43c5a15a0f2d408698719400920}{Send\+Request\+Student\+Register\+Email\+Async}} (string? email)
+\item 
+Task \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_services_1_1_i_email_service_a4dfcaefa90f78bf1cfc61a9509249aad}{Send\+Notification\+Of\+Report\+Deadline\+Email\+Async}} (string? email, string? name, string? project\+Title, string? report\+Type, Date\+Time? report\+Deadline)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{interface_domain_1_1_interfaces_1_1_services_1_1_i_email_service_a92d882f9300dab76f32f889f5fb1b574}\label{interface_domain_1_1_interfaces_1_1_services_1_1_i_email_service_a92d882f9300dab76f32f889f5fb1b574} 
+\index{Domain.Interfaces.Services.IEmailService@{Domain.Interfaces.Services.IEmailService}!SendConfirmationEmailAsync@{SendConfirmationEmailAsync}}
+\index{SendConfirmationEmailAsync@{SendConfirmationEmailAsync}!Domain.Interfaces.Services.IEmailService@{Domain.Interfaces.Services.IEmailService}}
+\doxysubsubsection{\texorpdfstring{SendConfirmationEmailAsync()}{SendConfirmationEmailAsync()}}
+{\footnotesize\ttfamily Task Domain.\+Interfaces.\+Services.\+IEmail\+Service.\+Send\+Confirmation\+Email\+Async (\begin{DoxyParamCaption}\item[{string?}]{email,  }\item[{string?}]{name,  }\item[{string?}]{token }\end{DoxyParamCaption})}
+
+
+
+Implementado em \mbox{\hyperlink{class_services_1_1_email_1_1_email_service_a6e847d27ce8279d1287963b092619c0c}{Services.\+Email.\+Email\+Service}}.
+
+\Hypertarget{interface_domain_1_1_interfaces_1_1_services_1_1_i_email_service_ae922ec52878eac8ba7a91d1143c08d94}\label{interface_domain_1_1_interfaces_1_1_services_1_1_i_email_service_ae922ec52878eac8ba7a91d1143c08d94} 
+\index{Domain.Interfaces.Services.IEmailService@{Domain.Interfaces.Services.IEmailService}!SendNoticeEmailAsync@{SendNoticeEmailAsync}}
+\index{SendNoticeEmailAsync@{SendNoticeEmailAsync}!Domain.Interfaces.Services.IEmailService@{Domain.Interfaces.Services.IEmailService}}
+\doxysubsubsection{\texorpdfstring{SendNoticeEmailAsync()}{SendNoticeEmailAsync()}}
+{\footnotesize\ttfamily Task Domain.\+Interfaces.\+Services.\+IEmail\+Service.\+Send\+Notice\+Email\+Async (\begin{DoxyParamCaption}\item[{string?}]{email,  }\item[{string?}]{name,  }\item[{Date\+Time?}]{registration\+Start\+Date,  }\item[{Date\+Time?}]{registration\+End\+Date,  }\item[{string?}]{notice\+Url }\end{DoxyParamCaption})}
+
+
+
+Implementado em \mbox{\hyperlink{class_services_1_1_email_1_1_email_service_a1171bee4d40483b4f7dabbab2c32cd90}{Services.\+Email.\+Email\+Service}}.
+
+\Hypertarget{interface_domain_1_1_interfaces_1_1_services_1_1_i_email_service_a4dfcaefa90f78bf1cfc61a9509249aad}\label{interface_domain_1_1_interfaces_1_1_services_1_1_i_email_service_a4dfcaefa90f78bf1cfc61a9509249aad} 
+\index{Domain.Interfaces.Services.IEmailService@{Domain.Interfaces.Services.IEmailService}!SendNotificationOfReportDeadlineEmailAsync@{SendNotificationOfReportDeadlineEmailAsync}}
+\index{SendNotificationOfReportDeadlineEmailAsync@{SendNotificationOfReportDeadlineEmailAsync}!Domain.Interfaces.Services.IEmailService@{Domain.Interfaces.Services.IEmailService}}
+\doxysubsubsection{\texorpdfstring{SendNotificationOfReportDeadlineEmailAsync()}{SendNotificationOfReportDeadlineEmailAsync()}}
+{\footnotesize\ttfamily Task Domain.\+Interfaces.\+Services.\+IEmail\+Service.\+Send\+Notification\+Of\+Report\+Deadline\+Email\+Async (\begin{DoxyParamCaption}\item[{string?}]{email,  }\item[{string?}]{name,  }\item[{string?}]{project\+Title,  }\item[{string?}]{report\+Type,  }\item[{Date\+Time?}]{report\+Deadline }\end{DoxyParamCaption})}
+
+
+
+Implementado em \mbox{\hyperlink{class_services_1_1_email_1_1_email_service_a6dc6c315d8ba0e1453dc79435b7e7120}{Services.\+Email.\+Email\+Service}}.
+
+\Hypertarget{interface_domain_1_1_interfaces_1_1_services_1_1_i_email_service_a57e88ea930bec12e114f5cbbd6c11056}\label{interface_domain_1_1_interfaces_1_1_services_1_1_i_email_service_a57e88ea930bec12e114f5cbbd6c11056} 
+\index{Domain.Interfaces.Services.IEmailService@{Domain.Interfaces.Services.IEmailService}!SendProjectNotificationEmailAsync@{SendProjectNotificationEmailAsync}}
+\index{SendProjectNotificationEmailAsync@{SendProjectNotificationEmailAsync}!Domain.Interfaces.Services.IEmailService@{Domain.Interfaces.Services.IEmailService}}
+\doxysubsubsection{\texorpdfstring{SendProjectNotificationEmailAsync()}{SendProjectNotificationEmailAsync()}}
+{\footnotesize\ttfamily Task Domain.\+Interfaces.\+Services.\+IEmail\+Service.\+Send\+Project\+Notification\+Email\+Async (\begin{DoxyParamCaption}\item[{string?}]{email,  }\item[{string?}]{name,  }\item[{string?}]{project\+Title,  }\item[{string?}]{status,  }\item[{string?}]{description }\end{DoxyParamCaption})}
+
+
+
+Implementado em \mbox{\hyperlink{class_services_1_1_email_1_1_email_service_acac60e14ea753ab4be216425451553b1}{Services.\+Email.\+Email\+Service}}.
+
+\Hypertarget{interface_domain_1_1_interfaces_1_1_services_1_1_i_email_service_a2421a43c5a15a0f2d408698719400920}\label{interface_domain_1_1_interfaces_1_1_services_1_1_i_email_service_a2421a43c5a15a0f2d408698719400920} 
+\index{Domain.Interfaces.Services.IEmailService@{Domain.Interfaces.Services.IEmailService}!SendRequestStudentRegisterEmailAsync@{SendRequestStudentRegisterEmailAsync}}
+\index{SendRequestStudentRegisterEmailAsync@{SendRequestStudentRegisterEmailAsync}!Domain.Interfaces.Services.IEmailService@{Domain.Interfaces.Services.IEmailService}}
+\doxysubsubsection{\texorpdfstring{SendRequestStudentRegisterEmailAsync()}{SendRequestStudentRegisterEmailAsync()}}
+{\footnotesize\ttfamily Task Domain.\+Interfaces.\+Services.\+IEmail\+Service.\+Send\+Request\+Student\+Register\+Email\+Async (\begin{DoxyParamCaption}\item[{string?}]{email }\end{DoxyParamCaption})}
+
+
+
+Implementado em \mbox{\hyperlink{class_services_1_1_email_1_1_email_service_aa7a1ff575189a23a96f806266a63eca4}{Services.\+Email.\+Email\+Service}}.
+
+\Hypertarget{interface_domain_1_1_interfaces_1_1_services_1_1_i_email_service_a23c21a93a5d460da40b481c327b57145}\label{interface_domain_1_1_interfaces_1_1_services_1_1_i_email_service_a23c21a93a5d460da40b481c327b57145} 
+\index{Domain.Interfaces.Services.IEmailService@{Domain.Interfaces.Services.IEmailService}!SendResetPasswordEmailAsync@{SendResetPasswordEmailAsync}}
+\index{SendResetPasswordEmailAsync@{SendResetPasswordEmailAsync}!Domain.Interfaces.Services.IEmailService@{Domain.Interfaces.Services.IEmailService}}
+\doxysubsubsection{\texorpdfstring{SendResetPasswordEmailAsync()}{SendResetPasswordEmailAsync()}}
+{\footnotesize\ttfamily Task Domain.\+Interfaces.\+Services.\+IEmail\+Service.\+Send\+Reset\+Password\+Email\+Async (\begin{DoxyParamCaption}\item[{string?}]{email,  }\item[{string?}]{name,  }\item[{string?}]{token }\end{DoxyParamCaption})}
+
+
+
+Implementado em \mbox{\hyperlink{class_services_1_1_email_1_1_email_service_ae9e95fa7d7ee982aecbfab334e0952e5}{Services.\+Email.\+Email\+Service}}.
+
+
+
+A documentação para este interface foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Domain/\+Interfaces/\+Services/\mbox{\hyperlink{_i_email_service_8cs}{IEmail\+Service.\+cs}}\end{DoxyCompactItemize}

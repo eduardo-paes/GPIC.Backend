@@ -1,0 +1,27 @@
+<map id="Application.Tests.Mocks.ProjectPartialReportMock.MockValidProjectPartialReport" name="Application.Tests.Mocks.ProjectPartialReportMock.MockValidProjectPartialReport">
+<area shape="rect" id="Node000001" title=" " alt="" coords="409,534,615,590"/>
+<area shape="rect" id="Node000002" href="$class_application_1_1_tests_1_1_use_cases_1_1_project_partial_report_1_1_update_project_partial_report_tests.html#ad062d1f45f28486ba5e2679e1e9812af" title=" " alt="" coords="44,5,322,76"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="507,519,500,429,491,373,478,313,459,252,433,193,400,138,359,89,341,75,321,64,323,60,344,71,363,85,405,135,438,190,464,250,483,312,497,372,505,429,513,519"/>
+<area shape="rect" id="Node000003" href="$class_application_1_1_tests_1_1_use_cases_1_1_project_partial_report_1_1_update_project_partial_report_tests.html#a097b7ee0b6f372b69767d19fe7358c8d" title=" " alt="" coords="38,100,328,171"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="503,519,491,446,465,355,446,308,422,263,394,221,359,184,327,163,329,158,362,180,398,217,427,260,451,306,470,354,496,445,509,518"/>
+<area shape="rect" id="Node000004" href="$class_application_1_1_tests_1_1_use_cases_1_1_project_partial_report_1_1_update_project_partial_report_tests.html#a36349aef0855dc5e690e7d3246b31387" title=" " alt="" coords="35,195,331,265"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="497,520,479,464,451,399,411,334,387,304,359,279,330,260,332,256,362,275,391,301,415,331,455,397,484,462,502,518"/>
+<area shape="rect" id="Node000005" href="$class_application_1_1_tests_1_1_use_cases_1_1_project_partial_report_1_1_update_project_partial_report_tests.html#a5ce22261c3c358a0113ee989b8feb041" title=" " alt="" coords="45,289,321,360"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="486,522,464,485,435,445,400,406,359,374,320,354,322,349,362,369,403,403,439,442,468,482,491,519"/>
+<area shape="rect" id="Node000006" href="$class_application_1_1_tests_1_1_use_cases_1_1_project_partial_report_1_1_update_project_partial_report_tests.html#aefc1160c0591f0cf136fb7d46d221987" title=" " alt="" coords="15,384,351,455"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="460,527,412,496,360,468,333,458,335,453,362,464,415,492,463,523"/>
+<area shape="rect" id="Node000007" href="$class_application_1_1_tests_1_1_use_cases_1_1_project_partial_report_1_1_update_project_partial_report_tests.html#ab43ebfd9b42d6c2b90f3216a47d2ac3d" title=" " alt="" coords="34,479,332,549"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="393,547,332,538,333,533,394,542"/>
+<area shape="rect" id="Node000008" href="$class_application_1_1_tests_1_1_use_cases_1_1_project_partial_report_1_1_update_project_partial_report_tests.html#abef4c7973679328abbeca9f60c6d3503" title=" " alt="" coords="32,573,334,644"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="394,581,335,590,334,585,393,576"/>
+<area shape="rect" id="Node000009" href="$class_application_1_1_tests_1_1_use_cases_1_1_project_partial_report_1_1_delete_project_partial_report_tests.html#a6054403c7bdc2ab37b77d0e883f9756c" title=" " alt="" coords="44,669,322,754"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="460,601,413,630,362,658,323,674,321,669,360,653,411,626,457,597"/>
+<area shape="rect" id="Node000010" href="$class_application_1_1_tests_1_1_use_cases_1_1_project_partial_report_1_1_get_project_partial_report_by_id_tests.html#a9471540cec1b03fc060ef1518e4d1852" title=" " alt="" coords="5,779,361,849"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="493,605,471,645,441,689,405,732,362,768,342,780,339,776,359,764,401,728,437,685,466,642,488,603"/>
+<area shape="rect" id="Node000011" href="$class_application_1_1_tests_1_1_use_cases_1_1_project_partial_report_1_1_create_project_partial_report_tests.html#adbfc3934e9221c6686db19f09dd8a79b" title=" " alt="" coords="35,874,331,960"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="503,606,485,664,456,733,416,802,391,834,362,863,333,883,330,878,359,859,387,831,412,799,452,730,480,662,498,604"/>
+<area shape="rect" id="Node000012" href="$class_application_1_1_tests_1_1_use_cases_1_1_project_partial_report_1_1_update_project_partial_report_tests.html#a9984f9ab30c35267bf61cc20ec336379" title=" " alt="" coords="35,983,331,1069"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="510,606,498,684,473,783,454,834,429,885,399,932,362,973,333,995,329,991,359,969,395,929,425,882,449,832,468,781,493,683,504,605"/>
+<area shape="rect" id="Node000013" href="$class_application_1_1_tests_1_1_use_cases_1_1_project_partial_report_1_1_get_project_partial_report_by_project_id_tests.html#a6b773cd81ec2e6afb806cebca585de9a" title=" " alt="" coords="24,1093,342,1178"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="514,605,508,702,500,764,487,830,468,898,442,965,407,1027,363,1083,344,1098,341,1094,359,1079,403,1024,437,962,463,896,482,829,495,763,503,702,508,605"/>
+</map>

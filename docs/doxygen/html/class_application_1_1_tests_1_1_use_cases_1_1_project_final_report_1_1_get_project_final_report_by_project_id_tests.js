@@ -1,0 +1,5 @@
+var class_application_1_1_tests_1_1_use_cases_1_1_project_final_report_1_1_get_project_final_report_by_project_id_tests =
+[
+    [ "ExecuteAsync_NullProjectId_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_project_final_report_1_1_get_project_final_report_by_project_id_tests.html#a4fef2c8e3441f10237eeaa418aea493d", null ],
+    [ "ExecuteAsync_ValidProjectId_ReturnsDetailedReadProjectFinalReportOutput", "class_application_1_1_tests_1_1_use_cases_1_1_project_final_report_1_1_get_project_final_report_by_project_id_tests.html#a81e66b07b3d8c851b71a9fc164e39990", null ]
+];

@@ -1,0 +1,6 @@
+var class_application_1_1_tests_1_1_use_cases_1_1_project_evaluation_1_1_evaluate_appeal_project_tests =
+[
+    [ "ExecuteAsync_AppealStatusNotInformed_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_project_evaluation_1_1_evaluate_appeal_project_tests.html#a01b060966e86c898d45f1414ec2e4de1", null ],
+    [ "ExecuteAsync_UserNotEvaluator_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_project_evaluation_1_1_evaluate_appeal_project_tests.html#aacf184de42532bbc4d9108e6a358397c", null ],
+    [ "ExecuteAsync_ValidInput_ReturnsDetailedReadProjectOutput", "class_application_1_1_tests_1_1_use_cases_1_1_project_evaluation_1_1_evaluate_appeal_project_tests.html#aea762991e801388d7b5f7ba63603c6a1", null ]
+];

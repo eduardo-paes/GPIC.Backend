@@ -1,0 +1,7 @@
+<map id="Representação gráfica da hiearquia da classe" name="Representação gráfica da hiearquia da classe">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,46,85,72"/>
+<area shape="rect" id="Node000001" href="$class_application_1_1_validation_1_1_use_case_exception.html" title=" " alt="" coords="133,5,306,46"/>
+<area shape="poly" id="edge236_Node000000_Node000001" title=" " alt="" coords="100,46,132,40,133,45,101,51"/>
+<area shape="rect" id="Node000002" href="$class_domain_1_1_validation_1_1_entity_exception_validation.html" title=" " alt="" coords="137,71,302,111"/>
+<area shape="poly" id="edge237_Node000000_Node000002" title=" " alt="" coords="101,66,137,73,136,78,100,72"/>
+</map>

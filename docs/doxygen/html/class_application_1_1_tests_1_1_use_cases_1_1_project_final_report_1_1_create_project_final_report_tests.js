@@ -1,0 +1,10 @@
+var class_application_1_1_tests_1_1_use_cases_1_1_project_final_report_1_1_create_project_final_report_tests =
+[
+    [ "ExecuteAsync_ActorNotStudentOrProfessor_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_project_final_report_1_1_create_project_final_report_tests.html#a01330b8bd193725fa8274986dec80476", null ],
+    [ "ExecuteAsync_ProjectDeleted_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_project_final_report_1_1_create_project_final_report_tests.html#acb830d44a07ac9db410ff127010e9896", null ],
+    [ "ExecuteAsync_ProjectNotFound_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_project_final_report_1_1_create_project_final_report_tests.html#ae9a9cb7199017f157dced5dc6807e5ea", null ],
+    [ "ExecuteAsync_ProjectNotStarted_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_project_final_report_1_1_create_project_final_report_tests.html#a2f4d95df513f021ff25aeca607a5f503", null ],
+    [ "ExecuteAsync_ReportFileInvalid_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_project_final_report_1_1_create_project_final_report_tests.html#a74768d3cc67950b43e8b38042c190d6c", null ],
+    [ "ExecuteAsync_ReportOutsideDeadline_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_project_final_report_1_1_create_project_final_report_tests.html#a46f6e16343d074b1c7abada386dfd3fd", null ],
+    [ "ExecuteAsync_ValidInput_ReturnsDetailedReadProjectFinalReportOutput", "class_application_1_1_tests_1_1_use_cases_1_1_project_final_report_1_1_create_project_final_report_tests.html#ad7e0d8911f65eee01f2026f753064857", null ]
+];

@@ -1,0 +1,64 @@
+\doxysection{Referência à classe Application.\+Use\+Cases.\+Auth.\+Login}
+\hypertarget{class_application_1_1_use_cases_1_1_auth_1_1_login}{}\label{class_application_1_1_use_cases_1_1_auth_1_1_login}\index{Application.UseCases.Auth.Login@{Application.UseCases.Auth.Login}}
+
+
+Diagrama de heranças da classe Application.\+Use\+Cases.\+Auth.\+Login
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{class_application_1_1_use_cases_1_1_auth_1_1_login__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para Application.\+Use\+Cases.\+Auth.\+Login\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{class_application_1_1_use_cases_1_1_auth_1_1_login__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_application_1_1_use_cases_1_1_auth_1_1_login_a08eac680cd32c16b032dbdcfab3bbad7}{Login}} (\mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_services_1_1_i_token_authentication_service}{IToken\+Authentication\+Service}} token\+Service, \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository}{IUser\+Repository}} user\+Repository, \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_professor_repository}{IProfessor\+Repository}} professor\+Repository, \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_student_repository}{IStudent\+Repository}} student\+Repository, \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_services_1_1_i_hash_service}{IHash\+Service}} hash\+Service)
+\item 
+async Task$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_auth_1_1_user_login_output}{User\+Login\+Output}} $>$ \mbox{\hyperlink{class_application_1_1_use_cases_1_1_auth_1_1_login_a27b03090df8c448bc984fcc57a3f7563}{Execute\+Async}} (\mbox{\hyperlink{class_application_1_1_ports_1_1_auth_1_1_user_login_input}{User\+Login\+Input}} input)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_application_1_1_use_cases_1_1_auth_1_1_login_a08eac680cd32c16b032dbdcfab3bbad7}\label{class_application_1_1_use_cases_1_1_auth_1_1_login_a08eac680cd32c16b032dbdcfab3bbad7} 
+\index{Application.UseCases.Auth.Login@{Application.UseCases.Auth.Login}!Login@{Login}}
+\index{Login@{Login}!Application.UseCases.Auth.Login@{Application.UseCases.Auth.Login}}
+\doxysubsubsection{\texorpdfstring{Login()}{Login()}}
+{\footnotesize\ttfamily Application.\+Use\+Cases.\+Auth.\+Login.\+Login (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_services_1_1_i_token_authentication_service}{IToken\+Authentication\+Service}}}]{token\+Service,  }\item[{\mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository}{IUser\+Repository}}}]{user\+Repository,  }\item[{\mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_professor_repository}{IProfessor\+Repository}}}]{professor\+Repository,  }\item[{\mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_student_repository}{IStudent\+Repository}}}]{student\+Repository,  }\item[{\mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_services_1_1_i_hash_service}{IHash\+Service}}}]{hash\+Service }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_application_1_1_use_cases_1_1_auth_1_1_login_a27b03090df8c448bc984fcc57a3f7563}\label{class_application_1_1_use_cases_1_1_auth_1_1_login_a27b03090df8c448bc984fcc57a3f7563} 
+\index{Application.UseCases.Auth.Login@{Application.UseCases.Auth.Login}!ExecuteAsync@{ExecuteAsync}}
+\index{ExecuteAsync@{ExecuteAsync}!Application.UseCases.Auth.Login@{Application.UseCases.Auth.Login}}
+\doxysubsubsection{\texorpdfstring{ExecuteAsync()}{ExecuteAsync()}}
+{\footnotesize\ttfamily async Task$<$ \mbox{\hyperlink{class_application_1_1_ports_1_1_auth_1_1_user_login_output}{User\+Login\+Output}} $>$ Application.\+Use\+Cases.\+Auth.\+Login.\+Execute\+Async (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_application_1_1_ports_1_1_auth_1_1_user_login_input}{User\+Login\+Input}}}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementa \mbox{\hyperlink{interface_application_1_1_interfaces_1_1_use_cases_1_1_auth_1_1_i_login_a1e96cebe73753738f97edf5dad69147b}{Application.\+Interfaces.\+Use\+Cases.\+Auth.\+ILogin}}.
+
+Grafo de chamadas desta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_application_1_1_use_cases_1_1_auth_1_1_login_a27b03090df8c448bc984fcc57a3f7563_cgraph}
+\end{center}
+\end{figure}
+
+
+A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Application/\+Use\+Cases/\+Auth/\mbox{\hyperlink{_login_8cs}{Login.\+cs}}\end{DoxyCompactItemize}

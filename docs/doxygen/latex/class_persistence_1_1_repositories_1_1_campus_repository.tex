@@ -1,0 +1,133 @@
+\doxysection{Referência à classe Persistence.\+Repositories.\+Campus\+Repository}
+\hypertarget{class_persistence_1_1_repositories_1_1_campus_repository}{}\label{class_persistence_1_1_repositories_1_1_campus_repository}\index{Persistence.Repositories.CampusRepository@{Persistence.Repositories.CampusRepository}}
+
+
+Diagrama de heranças da classe Persistence.\+Repositories.\+Campus\+Repository
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{class_persistence_1_1_repositories_1_1_campus_repository__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Diagrama de colaboração para Persistence.\+Repositories.\+Campus\+Repository\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{class_persistence_1_1_repositories_1_1_campus_repository__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_persistence_1_1_repositories_1_1_campus_repository_a0a5ecb444d19e6555b5a06f00e7e7a29}{Campus\+Repository}} (\mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context}{Application\+Db\+Context}} context)
+\item 
+async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_campus}{Campus}} $>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_campus_repository_a7587681d6cd5d9cf5c841f57380bfc10}{Create\+Async}} (\mbox{\hyperlink{class_domain_1_1_entities_1_1_campus}{Campus}} model)
+\item 
+async Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_campus}{Campus}} $>$ $>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_campus_repository_a85625b1e57b2cb7e979e95bb4e6a29d0}{Get\+All\+Async}} (int skip, int take)
+\item 
+async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_campus}{Campus}}?$>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_campus_repository_ae1349938b2a380175d11b3aa1246fe71}{Get\+By\+Id\+Async}} (Guid? id)
+\item 
+async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_campus}{Campus}} $>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_campus_repository_aaaf5ae2ee56da3e36f1ff6ba53e3ae4f}{Delete\+Async}} (Guid? id)
+\item 
+async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_campus}{Campus}} $>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_campus_repository_a3f57bc3244c59213970f9fa51a0adb15}{Update\+Async}} (\mbox{\hyperlink{class_domain_1_1_entities_1_1_campus}{Campus}} model)
+\item 
+async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_campus}{Campus}}?$>$ \mbox{\hyperlink{class_persistence_1_1_repositories_1_1_campus_repository_af97e55248e6ff912a746d5173778e5a6}{Get\+Campus\+By\+Name\+Async}} (string name)
+\end{DoxyCompactItemize}
+\doxysubsection*{Membros públicos herdados de \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository}{Domain.\+Interfaces.\+Repositories.\+Bases.\+IGeneric\+CRUDRepository$<$ Campus $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+Task$<$ T?$>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository_a6841e9b42292eab29e06a110eb1bf0c6}{Get\+By\+Id\+Async}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Busca entidade pelo Id informado. Lança uma exceção quando a entidade não é encontrada. \end{DoxyCompactList}\item 
+Task$<$ IEnumerable$<$ T $>$ $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository_ad3f01fc2bd245d9cde1e3df89ed0e838}{Get\+All\+Async}} (int skip, int take)
+\begin{DoxyCompactList}\small\item\em Busca todas as entidades ativas. \end{DoxyCompactList}\item 
+Task$<$ T $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository_aeab117b679172abf7e1091b67d1ee98d}{Create\+Async}} (T model)
+\begin{DoxyCompactList}\small\item\em Cria entidade conforme parâmetros fornecidos. \end{DoxyCompactList}\item 
+Task$<$ T $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository_a33d532d65e072c5eea34dd948cef118e}{Delete\+Async}} (Guid? id)
+\begin{DoxyCompactList}\small\item\em Remove entidade através do Id informado. \end{DoxyCompactList}\item 
+Task$<$ T $>$ \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository_adeb973367d91689a1d499ebb9986ce19}{Update\+Async}} (T model)
+\begin{DoxyCompactList}\small\item\em Atualiza entidade conforme parâmetros fornecidos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentação dos Construtores \& Destrutor}
+\Hypertarget{class_persistence_1_1_repositories_1_1_campus_repository_a0a5ecb444d19e6555b5a06f00e7e7a29}\label{class_persistence_1_1_repositories_1_1_campus_repository_a0a5ecb444d19e6555b5a06f00e7e7a29} 
+\index{Persistence.Repositories.CampusRepository@{Persistence.Repositories.CampusRepository}!CampusRepository@{CampusRepository}}
+\index{CampusRepository@{CampusRepository}!Persistence.Repositories.CampusRepository@{Persistence.Repositories.CampusRepository}}
+\doxysubsubsection{\texorpdfstring{CampusRepository()}{CampusRepository()}}
+{\footnotesize\ttfamily Persistence.\+Repositories.\+Campus\+Repository.\+Campus\+Repository (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context}{Application\+Db\+Context}}}]{context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{class_persistence_1_1_repositories_1_1_campus_repository_a7587681d6cd5d9cf5c841f57380bfc10}\label{class_persistence_1_1_repositories_1_1_campus_repository_a7587681d6cd5d9cf5c841f57380bfc10} 
+\index{Persistence.Repositories.CampusRepository@{Persistence.Repositories.CampusRepository}!CreateAsync@{CreateAsync}}
+\index{CreateAsync@{CreateAsync}!Persistence.Repositories.CampusRepository@{Persistence.Repositories.CampusRepository}}
+\doxysubsubsection{\texorpdfstring{CreateAsync()}{CreateAsync()}}
+{\footnotesize\ttfamily async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_campus}{Campus}} $>$ Persistence.\+Repositories.\+Campus\+Repository.\+Create\+Async (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_domain_1_1_entities_1_1_campus}{Campus}}}]{model }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_persistence_1_1_repositories_1_1_campus_repository_aaaf5ae2ee56da3e36f1ff6ba53e3ae4f}\label{class_persistence_1_1_repositories_1_1_campus_repository_aaaf5ae2ee56da3e36f1ff6ba53e3ae4f} 
+\index{Persistence.Repositories.CampusRepository@{Persistence.Repositories.CampusRepository}!DeleteAsync@{DeleteAsync}}
+\index{DeleteAsync@{DeleteAsync}!Persistence.Repositories.CampusRepository@{Persistence.Repositories.CampusRepository}}
+\doxysubsubsection{\texorpdfstring{DeleteAsync()}{DeleteAsync()}}
+{\footnotesize\ttfamily async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_campus}{Campus}} $>$ Persistence.\+Repositories.\+Campus\+Repository.\+Delete\+Async (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Grafo de chamadas desta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_persistence_1_1_repositories_1_1_campus_repository_aaaf5ae2ee56da3e36f1ff6ba53e3ae4f_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_persistence_1_1_repositories_1_1_campus_repository_a85625b1e57b2cb7e979e95bb4e6a29d0}\label{class_persistence_1_1_repositories_1_1_campus_repository_a85625b1e57b2cb7e979e95bb4e6a29d0} 
+\index{Persistence.Repositories.CampusRepository@{Persistence.Repositories.CampusRepository}!GetAllAsync@{GetAllAsync}}
+\index{GetAllAsync@{GetAllAsync}!Persistence.Repositories.CampusRepository@{Persistence.Repositories.CampusRepository}}
+\doxysubsubsection{\texorpdfstring{GetAllAsync()}{GetAllAsync()}}
+{\footnotesize\ttfamily async Task$<$ IEnumerable$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_campus}{Campus}} $>$ $>$ Persistence.\+Repositories.\+Campus\+Repository.\+Get\+All\+Async (\begin{DoxyParamCaption}\item[{int}]{skip,  }\item[{int}]{take }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_persistence_1_1_repositories_1_1_campus_repository_ae1349938b2a380175d11b3aa1246fe71}\label{class_persistence_1_1_repositories_1_1_campus_repository_ae1349938b2a380175d11b3aa1246fe71} 
+\index{Persistence.Repositories.CampusRepository@{Persistence.Repositories.CampusRepository}!GetByIdAsync@{GetByIdAsync}}
+\index{GetByIdAsync@{GetByIdAsync}!Persistence.Repositories.CampusRepository@{Persistence.Repositories.CampusRepository}}
+\doxysubsubsection{\texorpdfstring{GetByIdAsync()}{GetByIdAsync()}}
+{\footnotesize\ttfamily async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_campus}{Campus}}?$>$ Persistence.\+Repositories.\+Campus\+Repository.\+Get\+By\+Id\+Async (\begin{DoxyParamCaption}\item[{Guid?}]{id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Este é o diagrama das funções que utilizam esta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_persistence_1_1_repositories_1_1_campus_repository_ae1349938b2a380175d11b3aa1246fe71_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_persistence_1_1_repositories_1_1_campus_repository_af97e55248e6ff912a746d5173778e5a6}\label{class_persistence_1_1_repositories_1_1_campus_repository_af97e55248e6ff912a746d5173778e5a6} 
+\index{Persistence.Repositories.CampusRepository@{Persistence.Repositories.CampusRepository}!GetCampusByNameAsync@{GetCampusByNameAsync}}
+\index{GetCampusByNameAsync@{GetCampusByNameAsync}!Persistence.Repositories.CampusRepository@{Persistence.Repositories.CampusRepository}}
+\doxysubsubsection{\texorpdfstring{GetCampusByNameAsync()}{GetCampusByNameAsync()}}
+{\footnotesize\ttfamily async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_campus}{Campus}}?$>$ Persistence.\+Repositories.\+Campus\+Repository.\+Get\+Campus\+By\+Name\+Async (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Implementa \mbox{\hyperlink{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_campus_repository_ab21167df85fe1414b44b7ce8b90d9fa5}{Domain.\+Interfaces.\+Repositories.\+ICampus\+Repository}}.
+
+\Hypertarget{class_persistence_1_1_repositories_1_1_campus_repository_a3f57bc3244c59213970f9fa51a0adb15}\label{class_persistence_1_1_repositories_1_1_campus_repository_a3f57bc3244c59213970f9fa51a0adb15} 
+\index{Persistence.Repositories.CampusRepository@{Persistence.Repositories.CampusRepository}!UpdateAsync@{UpdateAsync}}
+\index{UpdateAsync@{UpdateAsync}!Persistence.Repositories.CampusRepository@{Persistence.Repositories.CampusRepository}}
+\doxysubsubsection{\texorpdfstring{UpdateAsync()}{UpdateAsync()}}
+{\footnotesize\ttfamily async Task$<$ \mbox{\hyperlink{class_domain_1_1_entities_1_1_campus}{Campus}} $>$ Persistence.\+Repositories.\+Campus\+Repository.\+Update\+Async (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_domain_1_1_entities_1_1_campus}{Campus}}}]{model }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Este é o diagrama das funções que utilizam esta função\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_persistence_1_1_repositories_1_1_campus_repository_a3f57bc3244c59213970f9fa51a0adb15_icgraph}
+\end{center}
+\end{figure}
+
+
+A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Infrastructure/\+Persistence/\+Repositories/\mbox{\hyperlink{_campus_repository_8cs}{Campus\+Repository.\+cs}}\end{DoxyCompactItemize}

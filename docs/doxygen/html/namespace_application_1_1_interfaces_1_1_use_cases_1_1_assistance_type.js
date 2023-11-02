@@ -1,0 +1,8 @@
+var namespace_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type =
+[
+    [ "ICreateAssistanceType", "interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_create_assistance_type.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_create_assistance_type" ],
+    [ "IDeleteAssistanceType", "interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_delete_assistance_type.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_delete_assistance_type" ],
+    [ "IGetAssistanceTypeById", "interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_get_assistance_type_by_id.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_get_assistance_type_by_id" ],
+    [ "IGetAssistanceTypes", "interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_get_assistance_types.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_get_assistance_types" ],
+    [ "IUpdateAssistanceType", "interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_update_assistance_type.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_update_assistance_type" ]
+];

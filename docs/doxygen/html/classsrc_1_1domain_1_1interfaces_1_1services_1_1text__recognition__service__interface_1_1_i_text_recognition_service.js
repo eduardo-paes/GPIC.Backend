@@ -1,0 +1,4 @@
+var classsrc_1_1domain_1_1interfaces_1_1services_1_1text__recognition__service__interface_1_1_i_text_recognition_service =
+[
+    [ "execute", "classsrc_1_1domain_1_1interfaces_1_1services_1_1text__recognition__service__interface_1_1_i_text_recognition_service.html#ae85492d8b497a223300569d3565ecc31", null ]
+];

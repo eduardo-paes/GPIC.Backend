@@ -1,0 +1,1525 @@
+  % Handle batch mode
+  % to overcome problems with too many open files
+  \let\mypdfximage\pdfximage\def\pdfximage{\immediate\mypdfximage}
+  \pdfminorversion=7
+  % Set document class depending on configuration
+  \documentclass[twoside]{book}
+  %% moved from doxygen.sty due to workaround for LaTex 2019 version and unmaintained tabu package
+  \usepackage{ifthen}
+  \ifx\requestedLaTeXdate\undefined
+    \usepackage{array}
+  \else
+    \usepackage{array}[=2016-10-06]
+  \fi
+  %%
+  % Packages required by doxygen
+  \makeatletter
+  \providecommand\IfFormatAtLeastTF{\@ifl@t@r\fmtversion}
+  % suppress package identification of infwarerr as it contains the word "warning"
+  \let\@@protected@wlog\protected@wlog
+  \def\protected@wlog#1{\wlog{package info suppressed}}
+  \RequirePackage{infwarerr}
+  \let\protected@wlog\@@protected@wlog
+  \makeatother
+  \IfFormatAtLeastTF{2016/01/01}{}{\usepackage{fixltx2e}} % for \textsubscript
+  \IfFormatAtLeastTF{2015/01/01}{\pdfsuppresswarningpagegroup=1}{}
+  \usepackage{doxygen}
+  \usepackage{graphicx}
+  \usepackage[utf8]{inputenc}
+  \usepackage{makeidx}
+  \PassOptionsToPackage{warn}{textcomp}
+  \usepackage{textcomp}
+  \usepackage[nointegrals]{wasysym}
+  \usepackage{ifxetex}
+  % NLS support packages
+  \usepackage[portuges]{babel}
+  % Define default fonts
+  % Font selection
+  \usepackage[T1]{fontenc}
+  % set main and monospaced font
+  \usepackage[scaled=.90]{helvet}
+\usepackage{courier}
+\renewcommand{\familydefault}{\sfdefault}
+  \doxyallsectionsfont{%
+    \fontseries{bc}\selectfont%
+    \color{darkgray}%
+  }
+  \renewcommand{\DoxyLabelFont}{%
+    \fontseries{bc}\selectfont%
+    \color{darkgray}%
+  }
+  \newcommand{\+}{\discretionary{\mbox{\scriptsize$\hookleftarrow$}}{}{}}
+   % Arguments of doxygenemoji:
+   % 1) ':<text>:' form of the emoji, already LaTeX-escaped
+   % 2) file with the name of the emoji without the .png extension
+   % in case image exist use this otherwise use the ':<text>:' form
+   \newcommand{\doxygenemoji}[2]{%
+     \IfFileExists{./#2.png}{\raisebox{-0.1em}{\includegraphics[height=0.9em]{./#2.png}}}{#1}%
+   }
+  % Page & text layout
+  \usepackage{geometry}
+  \geometry{%
+    a4paper,%
+    top=2.5cm,%
+    bottom=2.5cm,%
+    left=2.5cm,%
+    right=2.5cm%
+  }
+  \usepackage{changepage}
+  % Allow a bit of overflow to go unnoticed by other means
+  \tolerance=750
+  \hfuzz=15pt
+  \hbadness=750
+  \setlength{\emergencystretch}{15pt}
+  \setlength{\parindent}{0cm}
+  \newcommand{\doxynormalparskip}{\setlength{\parskip}{3ex plus 2ex minus 2ex}}
+  \newcommand{\doxytocparskip}{\setlength{\parskip}{1ex plus 0ex minus 0ex}}
+  \doxynormalparskip
+  % Redefine paragraph/subparagraph environments, using sectsty fonts
+  \makeatletter
+  \renewcommand{\paragraph}{%
+    \@startsection{paragraph}{4}{0ex}{-1.0ex}{1.0ex}{%
+      \normalfont\normalsize\bfseries\SS@parafont%
+    }%
+  }
+  \renewcommand{\subparagraph}{%
+    \@startsection{subparagraph}{5}{0ex}{-1.0ex}{1.0ex}{%
+      \normalfont\normalsize\bfseries\SS@subparafont%
+    }%
+  }
+  \makeatother
+  \makeatletter
+  \newcommand\hrulefilll{\leavevmode\leaders\hrule\hskip 0pt plus 1filll\kern\z@}
+  \makeatother
+  % Headers & footers
+  \usepackage{fancyhdr}
+  \pagestyle{fancyplain}
+  \renewcommand{\footrulewidth}{0.4pt}
+  \fancypagestyle{fancyplain}{
+    \fancyhf{}
+    \fancyhead[LE, RO]{\bfseries\thepage}
+    \fancyhead[LO]{\bfseries\rightmark}
+    \fancyhead[RE]{\bfseries\leftmark}
+    \fancyfoot[LO, RE]{\bfseries\scriptsize Gerado por Doxygen }
+  }
+  \fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[LO, RE]{\bfseries\scriptsize Gerado por Doxygen }
+    \renewcommand{\headrulewidth}{0pt}
+  }
+  \pagestyle{fancyplain}
+  \renewcommand{\chaptermark}[1]{%
+    \markboth{#1}{}%
+  }
+  \renewcommand{\sectionmark}[1]{%
+    \markright{\thesection\ #1}%
+  }
+  % ToC, LoF, LoT, bibliography, and index
+  % Indices & bibliography
+  \usepackage{natbib}
+  \usepackage[titles]{tocloft}
+  \setcounter{tocdepth}{3}
+  \setcounter{secnumdepth}{5}
+  % creating indexes
+  \makeindex
+  \usepackage{newunicodechar}
+  \makeatletter
+    \def\doxynewunicodechar#1#2{%
+    \@tempswafalse
+    \edef\nuc@tempa{\detokenize{#1}}%
+    \if\relax\nuc@tempa\relax
+      \nuc@emptyargerr
+    \else
+      \edef\@tempb{\expandafter\@car\nuc@tempa\@nil}%
+      \nuc@check
+      \if@tempswa
+        \@namedef{u8:\nuc@tempa}{#2}%
+      \fi
+    \fi
+  }
+  \makeatother
+  \doxynewunicodechar{⁻}{${}^{-}$}% Superscript minus
+  \doxynewunicodechar{²}{${}^{2}$}% Superscript two
+  \doxynewunicodechar{³}{${}^{3}$}% Superscript three
+  % Hyperlinks
+    % Hyperlinks (required, but should be loaded last)
+    \ifpdf
+      \usepackage[pdftex,pagebackref=true]{hyperref}
+    \else
+      \ifxetex
+        \usepackage[pagebackref=true]{hyperref}
+      \else
+        \usepackage[ps2pdf,pagebackref=true]{hyperref}
+      \fi
+    \fi
+    \hypersetup{%
+      colorlinks=true,%
+      linkcolor=blue,%
+      citecolor=blue,%
+      unicode,%
+      pdftitle={GPIC -\/ Backend},%
+      pdfsubject={Aplicações .\+NET para o backend do GPIC}%
+    }
+  % Custom commands used by the header
+  % Custom commands
+  \newcommand{\clearemptydoublepage}{%
+    \newpage{\pagestyle{empty}\cleardoublepage}%
+  }
+  % caption style definition
+  \usepackage{caption}
+  \captionsetup{labelsep=space,justification=centering,font={bf},singlelinecheck=off,skip=4pt,position=top}
+  % in page table of contents
+  \IfFormatAtLeastTF{2023/05/01}{\usepackage[deeplevels]{etoc}}{\usepackage[deeplevels]{etoc_doxygen}}
+  \etocsettocstyle{\doxytocparskip}{\doxynormalparskip}
+  \etocsetlevel{subsubsubsection}{4}
+  \etocsetlevel{subsubsubsubsection}{5}
+  \etocsetlevel{subsubsubsubsubsection}{6}
+  \etocsetlevel{subsubsubsubsubsubsection}{7}
+  \etocsetlevel{paragraph}{8}
+  \etocsetlevel{subparagraph}{9}
+  % prevent numbers overlap the titles in toc
+  \renewcommand{\numberline}[1]{#1~}
+% End of preamble, now comes the document contents
+%===== C O N T E N T S =====
+\begin{document}
+  \raggedbottom
+  % Titlepage & ToC
+    % To avoid duplicate page anchors due to reuse of same numbers for
+    % the index (be it as roman numbers)
+    \hypersetup{pageanchor=false,
+                bookmarksnumbered=true,
+                pdfencoding=unicode
+               }
+  \pagenumbering{alph}
+  \begin{titlepage}
+  \vspace*{7cm}
+  \begin{center}%
+  {\Large GPIC -\/ Backend}\\
+  [1ex]\large 1.\+0 \\
+  \vspace*{1cm}
+  {\large Gerado por Doxygen 1.9.8}\\
+  \end{center}
+  \end{titlepage}
+  \clearemptydoublepage
+  \pagenumbering{roman}
+  \tableofcontents
+  \clearemptydoublepage
+  \pagenumbering{arabic}
+  % re-enable anchors again
+  \hypersetup{pageanchor=true}
+%--- Begin generated contents ---
+\input{index}
+\input{md_src_2_c_h_a_n_g_e_l_o_g}
+\chapter{Índice dos namespaces}
+\input{namespaces}
+\chapter{Índice da hierarquia}
+\input{hierarchy}
+\chapter{Índice dos componentes}
+\input{annotated}
+\chapter{Índice dos ficheiros}
+\input{files}
+\chapter{Documentação dos namespaces}
+\input{namespace_application}
+\input{namespace_application_1_1_interfaces}
+\input{namespace_application_1_1_interfaces_1_1_use_cases}
+\input{namespace_application_1_1_interfaces_1_1_use_cases_1_1_activity_type}
+\input{namespace_application_1_1_interfaces_1_1_use_cases_1_1_area}
+\input{namespace_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type}
+\input{namespace_application_1_1_interfaces_1_1_use_cases_1_1_auth}
+\input{namespace_application_1_1_interfaces_1_1_use_cases_1_1_campus}
+\input{namespace_application_1_1_interfaces_1_1_use_cases_1_1_course}
+\input{namespace_application_1_1_interfaces_1_1_use_cases_1_1_main_area}
+\input{namespace_application_1_1_interfaces_1_1_use_cases_1_1_notice}
+\input{namespace_application_1_1_interfaces_1_1_use_cases_1_1_professor}
+\input{namespace_application_1_1_interfaces_1_1_use_cases_1_1_program_type}
+\input{namespace_application_1_1_interfaces_1_1_use_cases_1_1_project}
+\input{namespace_application_1_1_interfaces_1_1_use_cases_1_1_project_evaluation}
+\input{namespace_application_1_1_interfaces_1_1_use_cases_1_1_project_final_report}
+\input{namespace_application_1_1_interfaces_1_1_use_cases_1_1_project_partial_report}
+\input{namespace_application_1_1_interfaces_1_1_use_cases_1_1_student}
+\input{namespace_application_1_1_interfaces_1_1_use_cases_1_1_student_documents}
+\input{namespace_application_1_1_interfaces_1_1_use_cases_1_1_sub_area}
+\input{namespace_application_1_1_interfaces_1_1_use_cases_1_1_user}
+\input{namespace_application_1_1_ports}
+\input{namespace_application_1_1_ports_1_1_activity}
+\input{namespace_application_1_1_ports_1_1_area}
+\input{namespace_application_1_1_ports_1_1_assistance_type}
+\input{namespace_application_1_1_ports_1_1_auth}
+\input{namespace_application_1_1_ports_1_1_campus}
+\input{namespace_application_1_1_ports_1_1_course}
+\input{namespace_application_1_1_ports_1_1_main_area}
+\input{namespace_application_1_1_ports_1_1_notice}
+\input{namespace_application_1_1_ports_1_1_professor}
+\input{namespace_application_1_1_ports_1_1_program_type}
+\input{namespace_application_1_1_ports_1_1_project}
+\input{namespace_application_1_1_ports_1_1_project_activity}
+\input{namespace_application_1_1_ports_1_1_project_evaluation}
+\input{namespace_application_1_1_ports_1_1_project_final_report}
+\input{namespace_application_1_1_ports_1_1_project_partial_report}
+\input{namespace_application_1_1_ports_1_1_student}
+\input{namespace_application_1_1_ports_1_1_student_documents}
+\input{namespace_application_1_1_ports_1_1_sub_area}
+\input{namespace_application_1_1_ports_1_1_user}
+\input{namespace_application_1_1_tests}
+\input{namespace_application_1_1_tests_1_1_mocks}
+\input{namespace_application_1_1_tests_1_1_use_cases}
+\input{namespace_application_1_1_tests_1_1_use_cases_1_1_activity_type}
+\input{namespace_application_1_1_tests_1_1_use_cases_1_1_area}
+\input{namespace_application_1_1_tests_1_1_use_cases_1_1_assistance_type}
+\input{namespace_application_1_1_tests_1_1_use_cases_1_1_auth}
+\input{namespace_application_1_1_tests_1_1_use_cases_1_1_campus}
+\input{namespace_application_1_1_tests_1_1_use_cases_1_1_course}
+\input{namespace_application_1_1_tests_1_1_use_cases_1_1_main_area}
+\input{namespace_application_1_1_tests_1_1_use_cases_1_1_notice}
+\input{namespace_application_1_1_tests_1_1_use_cases_1_1_professor}
+\input{namespace_application_1_1_tests_1_1_use_cases_1_1_program_type}
+\input{namespace_application_1_1_tests_1_1_use_cases_1_1_project}
+\input{namespace_application_1_1_tests_1_1_use_cases_1_1_project_evaluation}
+\input{namespace_application_1_1_tests_1_1_use_cases_1_1_project_final_report}
+\input{namespace_application_1_1_tests_1_1_use_cases_1_1_project_partial_report}
+\input{namespace_application_1_1_tests_1_1_use_cases_1_1_student}
+\input{namespace_application_1_1_tests_1_1_use_cases_1_1_student_documents}
+\input{namespace_application_1_1_tests_1_1_use_cases_1_1_sub_area}
+\input{namespace_application_1_1_tests_1_1_use_cases_1_1_user}
+\input{namespace_application_1_1_use_cases}
+\input{namespace_application_1_1_use_cases_1_1_activity_type}
+\input{namespace_application_1_1_use_cases_1_1_area}
+\input{namespace_application_1_1_use_cases_1_1_assistance_type}
+\input{namespace_application_1_1_use_cases_1_1_auth}
+\input{namespace_application_1_1_use_cases_1_1_campus}
+\input{namespace_application_1_1_use_cases_1_1_course}
+\input{namespace_application_1_1_use_cases_1_1_main_area}
+\input{namespace_application_1_1_use_cases_1_1_notice}
+\input{namespace_application_1_1_use_cases_1_1_professor}
+\input{namespace_application_1_1_use_cases_1_1_program_type}
+\input{namespace_application_1_1_use_cases_1_1_project}
+\input{namespace_application_1_1_use_cases_1_1_project_evaluation}
+\input{namespace_application_1_1_use_cases_1_1_project_final_report}
+\input{namespace_application_1_1_use_cases_1_1_project_partial_report}
+\input{namespace_application_1_1_use_cases_1_1_student}
+\input{namespace_application_1_1_use_cases_1_1_student_documents}
+\input{namespace_application_1_1_use_cases_1_1_sub_area}
+\input{namespace_application_1_1_use_cases_1_1_user}
+\input{namespace_application_1_1_validation}
+\input{namespace_domain}
+\input{namespace_domain_1_1_entities}
+\input{namespace_domain_1_1_entities_1_1_enums}
+\input{namespace_domain_1_1_entities_1_1_primitives}
+\input{namespace_domain_1_1_interfaces}
+\input{namespace_domain_1_1_interfaces_1_1_repositories}
+\input{namespace_domain_1_1_interfaces_1_1_repositories_1_1_bases}
+\input{namespace_domain_1_1_interfaces_1_1_services}
+\input{namespace_domain_1_1_mappings}
+\input{namespace_domain_1_1_tests}
+\input{namespace_domain_1_1_tests_1_1_entities}
+\input{namespace_domain_1_1_validation}
+\input{namespace_infrastructure}
+\input{namespace_infrastructure_1_1_functions}
+\input{namespace_infrastructure_1_1_functions_1_1_web_functions}
+\input{namespace_infrastructure_1_1_io_c}
+\input{namespace_infrastructure_1_1_io_c_1_1_utils}
+\input{namespace_infrastructure_1_1_persistence}
+\input{namespace_infrastructure_1_1_persistence_1_1_context}
+\input{namespace_infrastructure_1_1_persistence_1_1_entities_configuration}
+\input{namespace_persistence}
+\input{namespace_persistence_1_1_entities_configuration}
+\input{namespace_persistence_1_1_migrations}
+\input{namespace_persistence_1_1_repositories}
+\input{namespace_persistence_1_1_seeds}
+\input{namespace_services}
+\input{namespace_services_1_1_email}
+\input{namespace_services_1_1_email_1_1_configs}
+\input{namespace_services_1_1_email_1_1_factories}
+\input{namespace_web_a_p_i}
+\input{namespace_web_a_p_i_1_1_controllers}
+\input{namespace_web_a_p_i_1_1_middlewares}
+\input{namespace_web_functions}
+\input{namespace_web_functions_1_1_functions}
+\input{namespace_web_functions_1_1_models}
+\chapter{Documentação da classe}
+\input{class_application_1_1_use_cases_1_1_user_1_1_activate_user}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_user_1_1_activate_user_tests}
+\input{class_domain_1_1_entities_1_1_activity}
+\input{class_persistence_1_1_entities_configuration_1_1_activity_configuration}
+\input{class_web_a_p_i_1_1_controllers_1_1_activity_controller}
+\input{class_domain_1_1_mappings_1_1_activity_mappings}
+\input{class_application_1_1_ports_1_1_activity_1_1_activity_output}
+\input{class_persistence_1_1_repositories_1_1_activity_repository}
+\input{class_domain_1_1_entities_1_1_activity_type}
+\input{class_persistence_1_1_entities_configuration_1_1_activity_type_configuration}
+\input{class_application_1_1_ports_1_1_activity_1_1_activity_type_output}
+\input{class_persistence_1_1_repositories_1_1_activity_type_repository}
+\input{class_domain_1_1_tests_1_1_entities_1_1_activity_type_unit_tests}
+\input{class_domain_1_1_tests_1_1_entities_1_1_activity_unit_tests}
+\input{class_application_1_1_use_cases_1_1_project_1_1_appeal_project}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_appeal_project_tests}
+\input{class_infrastructure_1_1_persistence_1_1_context_1_1_application_db_context}
+\input{class_persistence_1_1_migrations_1_1_application_db_context_model_snapshot}
+\input{class_domain_1_1_entities_1_1_area}
+\input{class_infrastructure_1_1_persistence_1_1_entities_configuration_1_1_area_configuration}
+\input{class_web_a_p_i_1_1_controllers_1_1_area_controller}
+\input{class_domain_1_1_mappings_1_1_area_mappings}
+\input{class_persistence_1_1_repositories_1_1_area_repository}
+\input{class_domain_1_1_tests_1_1_entities_1_1_area_unit_tests}
+\input{class_domain_1_1_entities_1_1_assistance_type}
+\input{class_infrastructure_1_1_persistence_1_1_entities_configuration_1_1_assistance_type_configuration}
+\input{class_web_a_p_i_1_1_controllers_1_1_assistance_type_controller}
+\input{class_domain_1_1_mappings_1_1_assistance_type_mappings}
+\input{class_persistence_1_1_repositories_1_1_assistance_type_repository}
+\input{class_domain_1_1_tests_1_1_entities_1_1_assistance_type_unit_tests}
+\input{class_web_a_p_i_1_1_controllers_1_1_auth_controller}
+\input{class_services_1_1_azure_storage_service}
+\input{class_application_1_1_ports_1_1_activity_1_1_base_activity}
+\input{class_application_1_1_ports_1_1_activity_1_1_base_activity_type}
+\input{class_application_1_1_ports_1_1_area_1_1_base_area_contract}
+\input{class_application_1_1_ports_1_1_assistance_type_1_1_base_assistance_type_contract}
+\input{class_application_1_1_ports_1_1_campus_1_1_base_campus_contract}
+\input{class_application_1_1_ports_1_1_course_1_1_base_course_contract}
+\input{class_application_1_1_ports_1_1_main_area_1_1_base_main_area_contract}
+\input{class_application_1_1_ports_1_1_notice_1_1_base_notice_contract}
+\input{class_application_1_1_ports_1_1_professor_1_1_base_professor_contract}
+\input{class_application_1_1_ports_1_1_program_type_1_1_base_program_type_contract}
+\input{class_application_1_1_ports_1_1_project_activity_1_1_base_project_activity_contract}
+\input{class_application_1_1_ports_1_1_project_1_1_base_project_contract}
+\input{class_application_1_1_ports_1_1_project_final_report_1_1_base_project_final_report_contract}
+\input{class_application_1_1_ports_1_1_project_partial_report_1_1_base_project_partial_report_contract}
+\input{class_application_1_1_ports_1_1_student_1_1_base_student_contract}
+\input{class_application_1_1_ports_1_1_student_documents_1_1_base_student_documents_output}
+\input{class_application_1_1_ports_1_1_sub_area_1_1_base_sub_area_contract}
+\input{class_domain_1_1_entities_1_1_campus}
+\input{class_infrastructure_1_1_persistence_1_1_entities_configuration_1_1_campus_configuration}
+\input{class_web_a_p_i_1_1_controllers_1_1_campus_controller}
+\input{class_domain_1_1_mappings_1_1_campus_mappings}
+\input{class_persistence_1_1_repositories_1_1_campus_repository}
+\input{class_domain_1_1_tests_1_1_entities_1_1_campus_tests}
+\input{class_application_1_1_use_cases_1_1_project_1_1_cancel_project}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_cancel_project_tests}
+\input{class_application_1_1_use_cases_1_1_project_1_1_close_pending_projects}
+\input{class_web_functions_1_1_functions_1_1_close_pending_projects_function}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_close_pending_projects_tests}
+\input{class_application_1_1_use_cases_1_1_auth_1_1_confirm_email}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_auth_1_1_confirm_email_tests}
+\input{class_domain_1_1_entities_1_1_course}
+\input{class_infrastructure_1_1_persistence_1_1_entities_configuration_1_1_course_configuration}
+\input{class_web_a_p_i_1_1_controllers_1_1_course_controller}
+\input{class_domain_1_1_mappings_1_1_course_mappings}
+\input{class_persistence_1_1_repositories_1_1_course_repository}
+\input{class_domain_1_1_tests_1_1_entities_1_1_course_unit_tests}
+\input{class_application_1_1_ports_1_1_activity_1_1_create_activity_input}
+\input{class_application_1_1_ports_1_1_activity_1_1_create_activity_type_input}
+\input{class_application_1_1_use_cases_1_1_area_1_1_create_area}
+\input{class_application_1_1_ports_1_1_area_1_1_create_area_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_area_1_1_create_area_tests}
+\input{class_application_1_1_use_cases_1_1_assistance_type_1_1_create_assistance_type}
+\input{class_application_1_1_ports_1_1_assistance_type_1_1_create_assistance_type_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_assistance_type_1_1_create_assistance_type_tests}
+\input{class_application_1_1_use_cases_1_1_campus_1_1_create_campus}
+\input{class_application_1_1_ports_1_1_campus_1_1_create_campus_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_campus_1_1_create_campus_tests}
+\input{class_application_1_1_use_cases_1_1_course_1_1_create_course}
+\input{class_application_1_1_ports_1_1_course_1_1_create_course_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_course_1_1_create_course_tests}
+\input{class_application_1_1_use_cases_1_1_main_area_1_1_create_main_area}
+\input{class_application_1_1_ports_1_1_main_area_1_1_create_main_area_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_main_area_1_1_create_main_area_tests}
+\input{class_application_1_1_use_cases_1_1_notice_1_1_create_notice}
+\input{class_application_1_1_ports_1_1_notice_1_1_create_notice_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_notice_1_1_create_notice_tests}
+\input{class_application_1_1_use_cases_1_1_professor_1_1_create_professor}
+\input{class_application_1_1_ports_1_1_professor_1_1_create_professor_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_professor_1_1_create_professor_tests}
+\input{class_application_1_1_use_cases_1_1_program_type_1_1_create_program_type}
+\input{class_application_1_1_ports_1_1_program_type_1_1_create_program_type_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_program_type_1_1_create_program_type_tests}
+\input{class_application_1_1_ports_1_1_project_activity_1_1_create_project_activity_input}
+\input{class_application_1_1_use_cases_1_1_project_final_report_1_1_create_project_final_report}
+\input{class_application_1_1_ports_1_1_project_final_report_1_1_create_project_final_report_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_final_report_1_1_create_project_final_report_tests}
+\input{class_application_1_1_use_cases_1_1_project_partial_report_1_1_create_project_partial_report}
+\input{class_application_1_1_ports_1_1_project_partial_report_1_1_create_project_partial_report_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_partial_report_1_1_create_project_partial_report_tests}
+\input{class_application_1_1_use_cases_1_1_student_1_1_create_student}
+\input{class_application_1_1_use_cases_1_1_student_documents_1_1_create_student_documents}
+\input{class_application_1_1_ports_1_1_student_documents_1_1_create_student_documents_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_student_documents_1_1_create_student_documents_tests}
+\input{class_application_1_1_ports_1_1_student_1_1_create_student_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_create_student_tests}
+\input{class_application_1_1_use_cases_1_1_sub_area_1_1_create_sub_area}
+\input{class_application_1_1_ports_1_1_sub_area_1_1_create_sub_area_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_sub_area_1_1_create_sub_area_tests}
+\input{class_web_functions_1_1_models_1_1_custom_schedule_status}
+\input{class_web_functions_1_1_models_1_1_custom_timer_info}
+\input{class_application_1_1_use_cases_1_1_user_1_1_deactivate_user}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_user_1_1_deactivate_user_tests}
+\input{class_application_1_1_use_cases_1_1_area_1_1_delete_area}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_area_1_1_delete_area_tests}
+\input{class_application_1_1_use_cases_1_1_assistance_type_1_1_delete_assistance_type}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_assistance_type_1_1_delete_assistance_type_tests}
+\input{class_application_1_1_use_cases_1_1_campus_1_1_delete_campus}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_campus_1_1_delete_campus_tests}
+\input{class_application_1_1_use_cases_1_1_course_1_1_delete_course}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_course_1_1_delete_course_tests}
+\input{class_application_1_1_use_cases_1_1_main_area_1_1_delete_main_area}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_main_area_1_1_delete_main_area_tests}
+\input{class_application_1_1_use_cases_1_1_notice_1_1_delete_notice}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_notice_1_1_delete_notice_tests}
+\input{class_application_1_1_use_cases_1_1_professor_1_1_delete_professor}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_professor_1_1_delete_professor_tests}
+\input{class_application_1_1_use_cases_1_1_program_type_1_1_delete_program_type}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_program_type_1_1_delete_program_type_tests}
+\input{class_application_1_1_use_cases_1_1_project_final_report_1_1_delete_project_final_report}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_final_report_1_1_delete_project_final_report_tests}
+\input{class_application_1_1_use_cases_1_1_project_partial_report_1_1_delete_project_partial_report}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_partial_report_1_1_delete_project_partial_report_tests}
+\input{class_application_1_1_use_cases_1_1_student_1_1_delete_student}
+\input{class_application_1_1_use_cases_1_1_student_documents_1_1_delete_student_documents}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_student_documents_1_1_delete_student_documents_tests}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_delete_student_tests}
+\input{class_application_1_1_use_cases_1_1_sub_area_1_1_delete_sub_area}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_sub_area_1_1_delete_sub_area_tests}
+\input{class_application_1_1_ports_1_1_main_area_1_1_detailed_main_area_output}
+\input{class_application_1_1_ports_1_1_area_1_1_detailed_read_area_output}
+\input{class_application_1_1_ports_1_1_assistance_type_1_1_detailed_read_assistance_type_output}
+\input{class_application_1_1_ports_1_1_campus_1_1_detailed_read_campus_output}
+\input{class_application_1_1_ports_1_1_course_1_1_detailed_read_course_output}
+\input{class_application_1_1_ports_1_1_notice_1_1_detailed_read_notice_output}
+\input{class_application_1_1_ports_1_1_professor_1_1_detailed_read_professor_output}
+\input{class_application_1_1_ports_1_1_program_type_1_1_detailed_read_program_type_output}
+\input{class_application_1_1_ports_1_1_project_activity_1_1_detailed_read_project_activity_output}
+\input{class_application_1_1_ports_1_1_project_evaluation_1_1_detailed_read_project_evaluation_output}
+\input{class_application_1_1_ports_1_1_project_final_report_1_1_detailed_read_project_final_report_output}
+\input{class_application_1_1_ports_1_1_project_1_1_detailed_read_project_output}
+\input{class_application_1_1_ports_1_1_project_partial_report_1_1_detailed_read_project_partial_report_output}
+\input{class_application_1_1_ports_1_1_student_documents_1_1_detailed_read_student_documents_output}
+\input{class_application_1_1_ports_1_1_student_1_1_detailed_read_student_output}
+\input{class_application_1_1_ports_1_1_sub_area_1_1_detailed_read_sub_area_output}
+\input{class_infrastructure_1_1_io_c_1_1_utils_1_1_dot_env_secrets}
+\input{class_services_1_1_email_1_1_email_service}
+\input{class_services_1_1_email_1_1_factories_1_1_email_service_factory}
+\input{class_domain_1_1_entities_1_1_primitives_1_1_entity}
+\input{class_domain_1_1_validation_1_1_entity_exception_validation}
+\input{class_application_1_1_use_cases_1_1_project_evaluation_1_1_evaluate_appeal_project}
+\input{class_application_1_1_ports_1_1_project_evaluation_1_1_evaluate_appeal_project_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_evaluation_1_1_evaluate_appeal_project_tests}
+\input{class_application_1_1_ports_1_1_project_activity_1_1_evaluate_project_activity_input}
+\input{class_application_1_1_use_cases_1_1_project_evaluation_1_1_evaluate_student_documents}
+\input{class_application_1_1_ports_1_1_project_evaluation_1_1_evaluate_student_documents_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_evaluation_1_1_evaluate_student_documents_tests}
+\input{class_application_1_1_use_cases_1_1_project_evaluation_1_1_evaluate_submission_project}
+\input{class_application_1_1_ports_1_1_project_evaluation_1_1_evaluate_submission_project_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_evaluation_1_1_evaluate_submission_project_tests}
+\input{class_web_a_p_i_1_1_middlewares_1_1_exception_handling_middleware}
+\input{class_application_1_1_use_cases_1_1_auth_1_1_forgot_password}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_auth_1_1_forgot_password_tests}
+\input{class_application_1_1_use_cases_1_1_project_1_1_generate_certificate}
+\input{class_infrastructure_1_1_functions_1_1_web_functions_1_1_generate_certificate_function}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_generate_certificate_tests}
+\input{class_application_1_1_use_cases_1_1_user_1_1_get_active_users}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_user_1_1_get_active_users_tests}
+\input{class_application_1_1_use_cases_1_1_activity_type_1_1_get_activities_by_notice_id}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_activity_type_1_1_get_activities_by_notice_id_tests}
+\input{class_application_1_1_use_cases_1_1_project_1_1_get_activities_by_project_id}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_get_activities_by_project_id_tests}
+\input{class_application_1_1_use_cases_1_1_area_1_1_get_area_by_id}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_area_1_1_get_area_by_id_tests}
+\input{class_application_1_1_use_cases_1_1_area_1_1_get_areas_by_main_area}
+\input{class_application_1_1_use_cases_1_1_assistance_type_1_1_get_assistance_type_by_id}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_assistance_type_1_1_get_assistance_type_by_id_tests}
+\input{class_application_1_1_use_cases_1_1_assistance_type_1_1_get_assistance_types}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_assistance_type_1_1_get_assistance_types_tests}
+\input{class_application_1_1_use_cases_1_1_campus_1_1_get_campus_by_id}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_campus_1_1_get_campus_by_id_tests}
+\input{class_application_1_1_use_cases_1_1_campus_1_1_get_campuses}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_campus_1_1_get_campuses_tests}
+\input{class_application_1_1_use_cases_1_1_project_1_1_get_closed_projects}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_get_closed_projects_tests}
+\input{class_application_1_1_use_cases_1_1_course_1_1_get_course_by_id}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_course_1_1_get_course_by_id_tests}
+\input{class_application_1_1_use_cases_1_1_course_1_1_get_courses}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_course_1_1_get_courses_tests}
+\input{class_application_1_1_use_cases_1_1_project_evaluation_1_1_get_evaluation_by_project_id}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_evaluation_1_1_get_evaluation_by_project_id_tests}
+\input{class_application_1_1_use_cases_1_1_user_1_1_get_inactive_users}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_user_1_1_get_inactive_users_tests}
+\input{class_application_1_1_use_cases_1_1_activity_type_1_1_get_last_notice_activities}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_activity_type_1_1_get_last_notice_activities_tests}
+\input{class_application_1_1_use_cases_1_1_main_area_1_1_get_main_area_by_id}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_main_area_1_1_get_main_area_by_id_tests}
+\input{class_application_1_1_use_cases_1_1_main_area_1_1_get_main_areas}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_main_area_1_1_get_main_areas_tests}
+\input{class_application_1_1_use_cases_1_1_notice_1_1_get_notice_by_id}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_notice_1_1_get_notice_by_id_tests}
+\input{class_application_1_1_use_cases_1_1_notice_1_1_get_notices}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_notice_1_1_get_notices_tests}
+\input{class_application_1_1_use_cases_1_1_project_1_1_get_open_projects}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_get_open_projects_tests}
+\input{class_application_1_1_use_cases_1_1_professor_1_1_get_professor_by_id}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_professor_1_1_get_professor_by_id_tests}
+\input{class_application_1_1_use_cases_1_1_professor_1_1_get_professors}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_professor_1_1_get_professors_tests}
+\input{class_application_1_1_use_cases_1_1_program_type_1_1_get_program_type_by_id}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_program_type_1_1_get_program_type_by_id_tests}
+\input{class_application_1_1_use_cases_1_1_program_type_1_1_get_program_types}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_program_type_1_1_get_program_types_tests}
+\input{class_application_1_1_use_cases_1_1_project_1_1_get_project_by_id}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_get_project_by_id_tests}
+\input{class_application_1_1_use_cases_1_1_project_final_report_1_1_get_project_final_report_by_id}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_final_report_1_1_get_project_final_report_by_id_tests}
+\input{class_application_1_1_use_cases_1_1_project_final_report_1_1_get_project_final_report_by_project_id}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_final_report_1_1_get_project_final_report_by_project_id_tests}
+\input{class_application_1_1_use_cases_1_1_project_partial_report_1_1_get_project_partial_report_by_id}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_partial_report_1_1_get_project_partial_report_by_id_tests}
+\input{class_application_1_1_use_cases_1_1_project_partial_report_1_1_get_project_partial_report_by_project_id}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_partial_report_1_1_get_project_partial_report_by_project_id_tests}
+\input{class_application_1_1_use_cases_1_1_project_1_1_get_projects_to_evaluate}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_get_projects_to_evaluate_tests}
+\input{class_application_1_1_use_cases_1_1_student_1_1_get_student_by_id}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_get_student_by_id_tests}
+\input{class_application_1_1_use_cases_1_1_student_1_1_get_student_by_registration_code}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_get_student_by_registration_code_tests}
+\input{class_application_1_1_use_cases_1_1_student_documents_1_1_get_student_documents_by_project_id}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_student_documents_1_1_get_student_documents_by_project_id_tests}
+\input{class_application_1_1_use_cases_1_1_student_documents_1_1_get_student_documents_by_student_id}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_student_documents_1_1_get_student_documents_by_student_id_tests}
+\input{class_application_1_1_use_cases_1_1_student_1_1_get_students}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_get_students_tests}
+\input{class_application_1_1_use_cases_1_1_sub_area_1_1_get_sub_area_by_id}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_sub_area_1_1_get_sub_area_by_id_tests}
+\input{class_application_1_1_use_cases_1_1_sub_area_1_1_get_sub_areas_by_area}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_sub_area_1_1_get_sub_areas_by_area_tests}
+\input{class_application_1_1_use_cases_1_1_user_1_1_get_user_by_id}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_user_1_1_get_user_by_id_tests}
+\input{class_services_1_1_hash_service}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_user_1_1_i_activate_user}
+\input{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_activity_repository}
+\input{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_activity_type_repository}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_appeal_project}
+\input{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_area_repository}
+\input{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_assistance_type_repository}
+\input{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_campus_repository}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_cancel_project}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_close_pending_projects}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_auth_1_1_i_confirm_email}
+\input{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_course_repository}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_area_1_1_i_create_area}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_create_assistance_type}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_campus_1_1_i_create_campus}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_course_1_1_i_create_course}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_main_area_1_1_i_create_main_area}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_notice_1_1_i_create_notice}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_professor_1_1_i_create_professor}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_create_program_type}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_final_report_1_1_i_create_project_final_report}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_partial_report_1_1_i_create_project_partial_report}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_student_1_1_i_create_student}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_student_documents_1_1_i_create_student_documents}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_sub_area_1_1_i_create_sub_area}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_user_1_1_i_deactivate_user}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_area_1_1_i_delete_area}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_delete_assistance_type}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_campus_1_1_i_delete_campus}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_course_1_1_i_delete_course}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_main_area_1_1_i_delete_main_area}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_notice_1_1_i_delete_notice}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_professor_1_1_i_delete_professor}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_delete_program_type}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_final_report_1_1_i_delete_project_final_report}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_partial_report_1_1_i_delete_project_partial_report}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_student_1_1_i_delete_student}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_student_documents_1_1_i_delete_student_documents}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_sub_area_1_1_i_delete_sub_area}
+\input{interface_services_1_1_i_dot_env_secrets}
+\input{interface_domain_1_1_interfaces_1_1_services_1_1_i_email_service}
+\input{interface_services_1_1_email_1_1_factories_1_1_i_email_service_factory}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_evaluation_1_1_i_evaluate_appeal_project}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_evaluation_1_1_i_evaluate_student_documents}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_evaluation_1_1_i_evaluate_submission_project}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_auth_1_1_i_forgot_password}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_generate_certificate}
+\input{interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_user_1_1_i_get_active_users}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_activity_type_1_1_i_get_activities_by_notice_id}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_get_activities_by_project_id}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_area_1_1_i_get_area_by_id}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_area_1_1_i_get_areas_by_main_area}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_get_assistance_type_by_id}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_get_assistance_types}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_campus_1_1_i_get_campus_by_id}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_campus_1_1_i_get_campuses}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_get_closed_projects}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_course_1_1_i_get_course_by_id}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_course_1_1_i_get_courses}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_evaluation_1_1_i_get_evaluation_by_project_id}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_user_1_1_i_get_inactive_users}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_activity_type_1_1_i_get_last_notice_activities}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_main_area_1_1_i_get_main_area_by_id}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_main_area_1_1_i_get_main_areas}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_notice_1_1_i_get_notice_by_id}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_notice_1_1_i_get_notices}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_get_open_projects}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_professor_1_1_i_get_professor_by_id}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_professor_1_1_i_get_professors}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_get_program_type_by_id}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_get_program_types}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_get_project_by_id}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_final_report_1_1_i_get_project_final_report_by_id}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_final_report_1_1_i_get_project_final_report_by_project_id}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_partial_report_1_1_i_get_project_partial_report_by_id}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_partial_report_1_1_i_get_project_partial_report_by_project_id}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_get_projects_to_evaluate}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_student_1_1_i_get_student_by_id}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_student_1_1_i_get_student_by_registration_code}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_student_documents_1_1_i_get_student_documents_by_project_id}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_student_documents_1_1_i_get_student_documents_by_student_id}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_student_1_1_i_get_students}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_sub_area_1_1_i_get_sub_area_by_id}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_sub_area_1_1_i_get_sub_areas_by_area}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_user_1_1_i_get_user_by_id}
+\input{interface_domain_1_1_interfaces_1_1_services_1_1_i_hash_service}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_auth_1_1_i_login}
+\input{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_main_area_repository}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_user_1_1_i_make_admin}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_user_1_1_i_make_coordinator}
+\input{class_persistence_1_1_migrations_1_1_initialize}
+\input{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_notice_repository}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_open_project}
+\input{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_professor_repository}
+\input{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_program_type_repository}
+\input{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_activity_repository}
+\input{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_evaluation_repository}
+\input{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_final_report_repository}
+\input{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_partial_report_repository}
+\input{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_repository}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_notice_1_1_i_report_deadline_notification}
+\input{interface_domain_1_1_interfaces_1_1_services_1_1_i_report_service}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_student_1_1_i_request_student_register}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_auth_1_1_i_reset_password}
+\input{interface_domain_1_1_interfaces_1_1_services_1_1_i_storage_file_service}
+\input{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_student_documents_repository}
+\input{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_student_repository}
+\input{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_sub_area_repository}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_submit_project}
+\input{interface_domain_1_1_interfaces_1_1_services_1_1_i_token_authentication_service}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_area_1_1_i_update_area}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_update_assistance_type}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_campus_1_1_i_update_campus}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_course_1_1_i_update_course}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_main_area_1_1_i_update_main_area}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_notice_1_1_i_update_notice}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_professor_1_1_i_update_professor}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_update_program_type}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_update_project}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_final_report_1_1_i_update_project_final_report}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_project_partial_report_1_1_i_update_project_partial_report}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_student_1_1_i_update_student}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_student_documents_1_1_i_update_student_documents}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_sub_area_1_1_i_update_sub_area}
+\input{interface_application_1_1_interfaces_1_1_use_cases_1_1_user_1_1_i_update_user}
+\input{interface_domain_1_1_interfaces_1_1_repositories_1_1_i_user_repository}
+\input{class_application_1_1_use_cases_1_1_auth_1_1_login}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_auth_1_1_login_tests}
+\input{class_domain_1_1_entities_1_1_main_area}
+\input{class_infrastructure_1_1_persistence_1_1_entities_configuration_1_1_main_area_configuration}
+\input{class_web_a_p_i_1_1_controllers_1_1_main_area_controller}
+\input{class_domain_1_1_mappings_1_1_main_area_mappings}
+\input{class_persistence_1_1_repositories_1_1_main_area_repository}
+\input{class_domain_1_1_tests_1_1_entities_1_1_main_area_unit_tests}
+\input{class_application_1_1_use_cases_1_1_user_1_1_make_admin}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_user_1_1_make_admin_tests}
+\input{class_application_1_1_use_cases_1_1_user_1_1_make_coordinator}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_user_1_1_make_coordinator_tests}
+\input{class_domain_1_1_entities_1_1_notice}
+\input{class_infrastructure_1_1_persistence_1_1_entities_configuration_1_1_notice_configuration}
+\input{class_web_a_p_i_1_1_controllers_1_1_notice_controller}
+\input{class_domain_1_1_mappings_1_1_notice_mappings}
+\input{class_persistence_1_1_repositories_1_1_notice_repository}
+\input{class_domain_1_1_tests_1_1_entities_1_1_notice_unit_tests}
+\input{class_application_1_1_use_cases_1_1_project_1_1_open_project}
+\input{class_application_1_1_ports_1_1_project_1_1_open_project_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_open_project_tests}
+\input{class_domain_1_1_entities_1_1_professor}
+\input{class_infrastructure_1_1_persistence_1_1_entities_configuration_1_1_professor_configuration}
+\input{class_web_a_p_i_1_1_controllers_1_1_professor_controller}
+\input{class_domain_1_1_mappings_1_1_professor_mappings}
+\input{class_persistence_1_1_repositories_1_1_professor_repository}
+\input{class_domain_1_1_tests_1_1_entities_1_1_professor_unit_tests}
+\input{class_domain_1_1_entities_1_1_program_type}
+\input{class_infrastructure_1_1_persistence_1_1_entities_configuration_1_1_program_type_configuration}
+\input{class_web_a_p_i_1_1_controllers_1_1_program_type_controller}
+\input{class_domain_1_1_mappings_1_1_program_type_mappings}
+\input{class_persistence_1_1_repositories_1_1_program_type_repository}
+\input{class_domain_1_1_tests_1_1_entities_1_1_program_type_unit_tests}
+\input{class_domain_1_1_entities_1_1_project}
+\input{class_domain_1_1_entities_1_1_project_activity}
+\input{class_persistence_1_1_entities_configuration_1_1_project_activity_configuration}
+\input{class_persistence_1_1_repositories_1_1_project_activity_repository}
+\input{class_domain_1_1_tests_1_1_entities_1_1_project_activity_unit_tests}
+\input{class_persistence_1_1_entities_configuration_1_1_project_configuration}
+\input{class_web_a_p_i_1_1_controllers_1_1_project_controller}
+\input{class_domain_1_1_entities_1_1_project_evaluation}
+\input{class_persistence_1_1_entities_configuration_1_1_project_evaluation_configuration}
+\input{class_web_a_p_i_1_1_controllers_1_1_project_evaluation_controller}
+\input{class_domain_1_1_mappings_1_1_project_evaluation_mappings}
+\input{class_persistence_1_1_repositories_1_1_project_evaluation_repository}
+\input{class_domain_1_1_tests_1_1_entities_1_1_project_evaluation_unit_tests}
+\input{class_domain_1_1_entities_1_1_project_final_report}
+\input{class_infrastructure_1_1_persistence_1_1_entities_configuration_1_1_project_final_report_configuration}
+\input{class_web_a_p_i_1_1_controllers_1_1_project_final_report_controller}
+\input{class_application_1_1_ports_1_1_project_1_1_project_final_report_input}
+\input{class_application_1_1_ports_1_1_project_1_1_project_final_report_output}
+\input{class_persistence_1_1_repositories_1_1_project_final_report_repository}
+\input{class_domain_1_1_tests_1_1_entities_1_1_project_final_report_unit_tests}
+\input{class_domain_1_1_mappings_1_1_project_mappings}
+\input{class_domain_1_1_entities_1_1_project_partial_report}
+\input{class_infrastructure_1_1_persistence_1_1_entities_configuration_1_1_project_partial_report_configuration}
+\input{class_web_a_p_i_1_1_controllers_1_1_project_partial_report_controller}
+\input{class_application_1_1_tests_1_1_mocks_1_1_project_partial_report_mock}
+\input{class_persistence_1_1_repositories_1_1_project_partial_report_repository}
+\input{class_domain_1_1_tests_1_1_entities_1_1_project_partial_report_unit_tests}
+\input{class_persistence_1_1_repositories_1_1_project_repository}
+\input{class_domain_1_1_tests_1_1_entities_1_1_project_unit_tests}
+\input{class_application_1_1_use_cases_1_1_notice_1_1_report_deadline_notification}
+\input{class_infrastructure_1_1_functions_1_1_web_functions_1_1_report_deadline_notification_function}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_notice_1_1_report_deadline_notification_tests}
+\input{class_services_1_1_report_service}
+\input{class_application_1_1_use_cases_1_1_student_1_1_request_student_register}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_request_student_register_tests}
+\input{class_application_1_1_use_cases_1_1_auth_1_1_reset_password}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_auth_1_1_reset_password_tests}
+\input{class_application_1_1_ports_1_1_area_1_1_resumed_read_area_output}
+\input{class_application_1_1_ports_1_1_assistance_type_1_1_resumed_read_assistance_type_output}
+\input{class_application_1_1_ports_1_1_campus_1_1_resumed_read_campus_output}
+\input{class_application_1_1_ports_1_1_course_1_1_resumed_read_course_output}
+\input{class_application_1_1_ports_1_1_main_area_1_1_resumed_read_main_area_output}
+\input{class_application_1_1_ports_1_1_notice_1_1_resumed_read_notice_output}
+\input{class_application_1_1_ports_1_1_professor_1_1_resumed_read_professor_output}
+\input{class_application_1_1_ports_1_1_program_type_1_1_resumed_read_program_type_output}
+\input{class_application_1_1_ports_1_1_project_activity_1_1_resumed_read_project_activity_output}
+\input{class_application_1_1_ports_1_1_project_1_1_resumed_read_project_output}
+\input{class_application_1_1_ports_1_1_student_documents_1_1_resumed_read_student_documents_output}
+\input{class_application_1_1_ports_1_1_student_1_1_resumed_read_student_output}
+\input{class_application_1_1_ports_1_1_sub_area_1_1_resumed_read_sub_area_output}
+\input{class_services_1_1_email_1_1_configs_1_1_smtp_configuration}
+\input{class_web_a_p_i_1_1_startup}
+\input{class_services_1_1_storage_file_service}
+\input{class_domain_1_1_entities_1_1_student}
+\input{class_infrastructure_1_1_persistence_1_1_entities_configuration_1_1_student_configuration}
+\input{class_web_a_p_i_1_1_controllers_1_1_student_controller}
+\input{class_domain_1_1_entities_1_1_student_documents}
+\input{class_persistence_1_1_entities_configuration_1_1_student_documents_configuration}
+\input{class_web_a_p_i_1_1_controllers_1_1_student_documents_controller}
+\input{class_domain_1_1_mappings_1_1_student_documents_mappings}
+\input{class_persistence_1_1_repositories_1_1_student_documents_repository}
+\input{class_domain_1_1_tests_1_1_entities_1_1_student_documents_unit_tests}
+\input{class_domain_1_1_mappings_1_1_student_mappings}
+\input{class_persistence_1_1_repositories_1_1_student_repository}
+\input{class_domain_1_1_tests_1_1_entities_1_1_student_unit_tests}
+\input{class_domain_1_1_entities_1_1_sub_area}
+\input{class_infrastructure_1_1_persistence_1_1_entities_configuration_1_1_sub_area_configuration}
+\input{class_web_a_p_i_1_1_controllers_1_1_sub_area_controller}
+\input{class_domain_1_1_mappings_1_1_sub_area_mappings}
+\input{class_persistence_1_1_repositories_1_1_sub_area_repository}
+\input{class_domain_1_1_tests_1_1_entities_1_1_sub_area_unit_tests}
+\input{class_application_1_1_use_cases_1_1_project_1_1_submit_project}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_submit_project_tests}
+\input{class_services_1_1_token_authentication_service}
+\input{class_application_1_1_ports_1_1_activity_1_1_update_activity_input}
+\input{class_application_1_1_ports_1_1_activity_1_1_update_activity_type_input}
+\input{class_application_1_1_use_cases_1_1_area_1_1_update_area}
+\input{class_application_1_1_ports_1_1_area_1_1_update_area_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_area_1_1_update_area_tests}
+\input{class_application_1_1_use_cases_1_1_assistance_type_1_1_update_assistance_type}
+\input{class_application_1_1_ports_1_1_assistance_type_1_1_update_assistance_type_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_assistance_type_1_1_update_assistance_type_tests}
+\input{class_application_1_1_use_cases_1_1_campus_1_1_update_campus}
+\input{class_application_1_1_ports_1_1_campus_1_1_update_campus_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_campus_1_1_update_campus_tests}
+\input{class_application_1_1_use_cases_1_1_course_1_1_update_course}
+\input{class_application_1_1_ports_1_1_course_1_1_update_course_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_course_1_1_update_course_tests}
+\input{class_application_1_1_use_cases_1_1_main_area_1_1_update_main_area}
+\input{class_application_1_1_ports_1_1_main_area_1_1_update_main_area_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_main_area_1_1_update_main_area_tests}
+\input{class_application_1_1_use_cases_1_1_notice_1_1_update_notice}
+\input{class_application_1_1_ports_1_1_notice_1_1_update_notice_input}
+\input{class_application_1_1_use_cases_1_1_professor_1_1_update_professor}
+\input{class_application_1_1_ports_1_1_professor_1_1_update_professor_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_professor_1_1_update_professor_tests}
+\input{class_application_1_1_use_cases_1_1_program_type_1_1_update_program_type}
+\input{class_application_1_1_ports_1_1_program_type_1_1_update_program_type_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_program_type_1_1_update_program_type_tests}
+\input{class_application_1_1_use_cases_1_1_project_1_1_update_project}
+\input{class_application_1_1_ports_1_1_project_activity_1_1_update_project_activity_input}
+\input{class_application_1_1_use_cases_1_1_project_final_report_1_1_update_project_final_report}
+\input{class_application_1_1_ports_1_1_project_final_report_1_1_update_project_final_report_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_final_report_1_1_update_project_final_report_tests}
+\input{class_application_1_1_ports_1_1_project_1_1_update_project_input}
+\input{class_application_1_1_use_cases_1_1_project_partial_report_1_1_update_project_partial_report}
+\input{class_application_1_1_ports_1_1_project_partial_report_1_1_update_project_partial_report_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_partial_report_1_1_update_project_partial_report_tests}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_update_project_tests}
+\input{class_application_1_1_use_cases_1_1_student_1_1_update_student}
+\input{class_application_1_1_use_cases_1_1_student_documents_1_1_update_student_documents}
+\input{class_application_1_1_ports_1_1_student_documents_1_1_update_student_documents_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_student_documents_1_1_update_student_documents_tests}
+\input{class_application_1_1_ports_1_1_student_1_1_update_student_input}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_update_student_tests}
+\input{class_application_1_1_use_cases_1_1_sub_area_1_1_update_sub_area}
+\input{class_application_1_1_ports_1_1_sub_area_1_1_update_sub_area_input}
+\input{class_application_1_1_use_cases_1_1_user_1_1_update_user}
+\input{class_application_1_1_tests_1_1_use_cases_1_1_user_1_1_update_user_tests}
+\input{class_application_1_1_validation_1_1_use_case_exception}
+\input{class_domain_1_1_entities_1_1_user}
+\input{class_application_1_1_ports_1_1_auth_1_1_user_claims_output}
+\input{class_infrastructure_1_1_persistence_1_1_entities_configuration_1_1_user_configuration}
+\input{class_web_a_p_i_1_1_controllers_1_1_user_controller}
+\input{class_application_1_1_ports_1_1_auth_1_1_user_login_input}
+\input{class_application_1_1_ports_1_1_auth_1_1_user_login_output}
+\input{class_domain_1_1_mappings_1_1_user_mappings}
+\input{class_application_1_1_ports_1_1_user_1_1_user_read_output}
+\input{class_persistence_1_1_repositories_1_1_user_repository}
+\input{class_application_1_1_ports_1_1_auth_1_1_user_reset_password_input}
+\input{class_domain_1_1_tests_1_1_entities_1_1_user_unit_tests}
+\input{class_application_1_1_ports_1_1_user_1_1_user_update_input}
+\input{class_web_a_p_i_1_1_controllers_1_1_version}
+\chapter{Documentação do ficheiro}
+\input{_r_e_a_d_m_e_8md}
+\input{src_2_infrastructure_2_persistence_2_r_e_a_d_m_e_8md}
+\input{_activity_type_mock_8cs}
+\input{_campus_mock_8cs}
+\input{_claims_mock_8cs}
+\input{_course_mock_8cs}
+\input{_file_mock_8cs}
+\input{_notice_mock_8cs}
+\input{_program_type_mock_8cs}
+\input{_project_activity_mock_8cs}
+\input{_project_evaluation_mock_8cs}
+\input{_project_final_report_mock_8cs}
+\input{_project_mock_8cs}
+\input{_project_partial_report_mock_8cs}
+\input{_student_mock_8cs}
+\input{_sub_area_mock_8cs}
+\input{_user_mock_8cs}
+\input{_application_8_tests_2obj_2_debug_2net7_80_2_8_n_e_t_core_app_00_version_0av7_80_8_assembly_attributes_8cs}
+\input{_application_8_tests_2obj_2_release_2net7_80_2_8_n_e_t_core_app_00_version_0av7_80_8_assembly_attributes_8cs}
+\input{_application_2obj_2_debug_2net7_80_2_8_n_e_t_core_app_00_version_0av7_80_8_assembly_attributes_8cs}
+\input{_application_2obj_2_release_2net7_80_2_8_n_e_t_core_app_00_version_0av7_80_8_assembly_attributes_8cs}
+\input{_domain_8_tests_2obj_2_debug_2net7_80_2_8_n_e_t_core_app_00_version_0av7_80_8_assembly_attributes_8cs}
+\input{_domain_8_tests_2obj_2_release_2net7_80_2_8_n_e_t_core_app_00_version_0av7_80_8_assembly_attributes_8cs}
+\input{_domain_2obj_2_debug_2net7_80_2_8_n_e_t_core_app_00_version_0av7_80_8_assembly_attributes_8cs}
+\input{_domain_2obj_2_release_2net7_80_2_8_n_e_t_core_app_00_version_0av7_80_8_assembly_attributes_8cs}
+\input{_infrastructure_2_io_c_2obj_2_debug_2net7_80_2_8_n_e_t_core_app_00_version_0av7_80_8_assembly_attributes_8cs}
+\input{_infrastructure_2_persistence_2obj_2_debug_2net7_80_2_8_n_e_t_core_app_00_version_0av7_80_8_assembly_attributes_8cs}
+\input{_infrastructure_2_services_2obj_2_debug_2net7_80_2_8_n_e_t_core_app_00_version_0av7_80_8_assembly_attributes_8cs}
+\input{_infrastructure_2_web_a_p_i_2obj_2_debug_2net7_80_2_8_n_e_t_core_app_00_version_0av7_80_8_assembly_attributes_8cs}
+\input{_infrastructure_2_web_functions_2obj_2_debug_2net7_80_2_8_n_e_t_core_app_00_version_0av7_80_8_assembly_attributes_8cs}
+\input{_debug_2net7_80_2_application_8_tests_8_assembly_info_8cs}
+\input{_release_2net7_80_2_application_8_tests_8_assembly_info_8cs}
+\input{_debug_2net7_80_2_application_8_tests_8_global_usings_8g_8cs}
+\input{_release_2net7_80_2_application_8_tests_8_global_usings_8g_8cs}
+\input{_get_activities_by_notice_id_tests_8cs}
+\input{_get_last_notice_activities_tests_8cs}
+\input{_create_area_tests_8cs}
+\input{_delete_area_tests_8cs}
+\input{_get_area_by_id_tests_8cs}
+\input{_update_area_tests_8cs}
+\input{_create_assistance_type_tests_8cs}
+\input{_delete_assistance_type_tests_8cs}
+\input{_get_assistance_type_by_id_tests_8cs}
+\input{_get_assistance_types_tests_8cs}
+\input{_update_assistance_type_tests_8cs}
+\input{_confirm_email_tests_8cs}
+\input{_forgot_password_tests_8cs}
+\input{_login_tests_8cs}
+\input{_reset_password_tests_8cs}
+\input{_create_campus_tests_8cs}
+\input{_delete_campus_tests_8cs}
+\input{_get_campus_by_id_tests_8cs}
+\input{_get_campuses_tests_8cs}
+\input{_update_campus_tests_8cs}
+\input{_create_course_tests_8cs}
+\input{_delete_course_tests_8cs}
+\input{_get_course_by_id_tests_8cs}
+\input{_get_courses_tests_8cs}
+\input{_update_course_tests_8cs}
+\input{_create_main_area_tests_8cs}
+\input{_delete_main_area_tests_8cs}
+\input{_get_main_area_by_id_tests_8cs}
+\input{_get_main_areas_tests_8cs}
+\input{_update_main_area_tests_8cs}
+\input{_create_notice_tests_8cs}
+\input{_delete_notice_tests_8cs}
+\input{_get_notice_by_id_tests_8cs}
+\input{_get_notices_tests_8cs}
+\input{_report_deadline_notification_tests_8cs}
+\input{_create_professor_tests_8cs}
+\input{_delete_professor_tests_8cs}
+\input{_get_professor_by_id_tests_8cs}
+\input{_get_professors_tests_8cs}
+\input{_update_professor_tests_8cs}
+\input{_create_program_type_tests_8cs}
+\input{_delete_program_type_tests_8cs}
+\input{_get_program_type_by_id_tests_8cs}
+\input{_get_program_types_tests_8cs}
+\input{_update_program_type_tests_8cs}
+\input{_appeal_project_tests_8cs}
+\input{_cancel_project_tests_8cs}
+\input{_close_pending_projects_tests_8cs}
+\input{_generate_certificate_tests_8cs}
+\input{_get_activities_by_project_id_tests_8cs}
+\input{_get_closed_projects_tests_8cs}
+\input{_get_open_projects_tests_8cs}
+\input{_get_project_by_id_tests_8cs}
+\input{_get_projects_to_evaluate_tests_8cs}
+\input{_open_project_tests_8cs}
+\input{_submit_project_tests_8cs}
+\input{_update_project_tests_8cs}
+\input{_evaluate_appeal_project_tests_8cs}
+\input{_evaluate_student_documents_tests_8cs}
+\input{_evaluate_submission_project_tests_8cs}
+\input{_get_evaluation_by_project_id_tests_8cs}
+\input{_create_project_final_report_tests_8cs}
+\input{_delete_project_final_report_tests_8cs}
+\input{_get_project_final_report_by_id_tests_8cs}
+\input{_get_project_final_report_by_project_id_tests_8cs}
+\input{_update_project_final_report_tests_8cs}
+\input{_create_project_partial_report_tests_8cs}
+\input{_delete_project_partial_report_tests_8cs}
+\input{_get_project_partial_report_by_id_tests_8cs}
+\input{_get_project_partial_report_by_project_id_tests_8cs}
+\input{_update_project_partial_report_tests_8cs}
+\input{_create_student_tests_8cs}
+\input{_delete_student_tests_8cs}
+\input{_get_student_by_id_tests_8cs}
+\input{_get_student_by_registration_code_tests_8cs}
+\input{_get_students_tests_8cs}
+\input{_request_student_register_tests_8cs}
+\input{_update_student_tests_8cs}
+\input{_create_student_documents_tests_8cs}
+\input{_delete_student_documents_tests_8cs}
+\input{_get_student_documents_by_project_id_tests_8cs}
+\input{_get_student_documents_by_student_id_tests_8cs}
+\input{_update_student_documents_tests_8cs}
+\input{_create_sub_area_tests_8cs}
+\input{_delete_sub_area_tests_8cs}
+\input{_get_sub_area_by_id_tests_8cs}
+\input{_get_sub_areas_by_area_tests_8cs}
+\input{_activate_user_tests_8cs}
+\input{_deactivate_user_tests_8cs}
+\input{_get_active_users_tests_8cs}
+\input{_get_inactive_users_tests_8cs}
+\input{_get_user_by_id_tests_8cs}
+\input{_make_admin_tests_8cs}
+\input{_make_coordinator_tests_8cs}
+\input{_update_user_tests_8cs}
+\input{_i_get_activities_by_notice_id_8cs}
+\input{_i_get_last_notice_activities_8cs}
+\input{_i_create_area_8cs}
+\input{_i_delete_area_8cs}
+\input{_i_get_area_by_id_8cs}
+\input{_i_get_areas_by_main_area_8cs}
+\input{_i_update_area_8cs}
+\input{_i_create_assistance_type_8cs}
+\input{_i_delete_assistance_type_8cs}
+\input{_i_get_assistance_type_by_id_8cs}
+\input{_i_get_assistance_types_8cs}
+\input{_i_update_assistance_type_8cs}
+\input{_i_confirm_email_8cs}
+\input{_i_forgot_password_8cs}
+\input{_i_login_8cs}
+\input{_i_reset_password_8cs}
+\input{_i_create_campus_8cs}
+\input{_i_delete_campus_8cs}
+\input{_i_get_campus_by_id_8cs}
+\input{_i_get_campuses_8cs}
+\input{_i_update_campus_8cs}
+\input{_i_create_course_8cs}
+\input{_i_delete_course_8cs}
+\input{_i_get_course_by_id_8cs}
+\input{_i_get_courses_8cs}
+\input{_i_update_course_8cs}
+\input{_i_create_main_area_8cs}
+\input{_i_delete_main_area_8cs}
+\input{_i_get_main_area_by_id_8cs}
+\input{_i_get_main_areas_8cs}
+\input{_i_update_main_area_8cs}
+\input{_i_create_notice_8cs}
+\input{_i_delete_notice_8cs}
+\input{_i_get_notice_by_id_8cs}
+\input{_i_get_notices_8cs}
+\input{_i_report_deadline_notification_8cs}
+\input{_i_update_notice_8cs}
+\input{_i_create_professor_8cs}
+\input{_i_delete_professor_8cs}
+\input{_i_get_professor_by_id_8cs}
+\input{_i_get_professors_8cs}
+\input{_i_update_professor_8cs}
+\input{_i_create_program_type_8cs}
+\input{_i_delete_program_type_8cs}
+\input{_i_get_program_type_by_id_8cs}
+\input{_i_get_program_types_8cs}
+\input{_i_update_program_type_8cs}
+\input{_i_appeal_project_8cs}
+\input{_i_cancel_project_8cs}
+\input{_i_close_pending_projects_8cs}
+\input{_i_generate_certificate_8cs}
+\input{_i_get_activities_by_project_id_8cs}
+\input{_i_get_closed_projects_8cs}
+\input{_i_get_open_projects_8cs}
+\input{_i_get_project_by_id_8cs}
+\input{_i_get_projects_to_evaluate_8cs}
+\input{_i_open_project_8cs}
+\input{_i_submit_project_8cs}
+\input{_i_update_project_8cs}
+\input{_i_evaluate_appeal_project_8cs}
+\input{_i_evaluate_student_documents_8cs}
+\input{_i_evaluate_submission_project_8cs}
+\input{_i_get_evaluation_by_project_id_8cs}
+\input{_i_create_project_final_report_8cs}
+\input{_i_delete_project_final_report_8cs}
+\input{_i_get_project_final_report_by_id_8cs}
+\input{_i_get_project_final_report_by_project_id_8cs}
+\input{_i_update_project_final_report_8cs}
+\input{_i_create_project_partial_report_8cs}
+\input{_i_delete_project_partial_report_8cs}
+\input{_i_get_project_partial_report_by_id_8cs}
+\input{_i_get_project_partial_report_by_project_id_8cs}
+\input{_i_update_project_partial_report_8cs}
+\input{_i_create_student_8cs}
+\input{_i_delete_student_8cs}
+\input{_i_get_student_by_id_8cs}
+\input{_i_get_student_by_registration_code_8cs}
+\input{_i_get_students_8cs}
+\input{_i_request_student_register_8cs}
+\input{_i_update_student_8cs}
+\input{_i_create_student_documents_8cs}
+\input{_i_delete_student_documents_8cs}
+\input{_i_get_student_documents_by_project_id_8cs}
+\input{_i_get_student_documents_by_student_id_8cs}
+\input{_i_update_student_documents_8cs}
+\input{_i_create_sub_area_8cs}
+\input{_i_delete_sub_area_8cs}
+\input{_i_get_sub_area_by_id_8cs}
+\input{_i_get_sub_areas_by_area_8cs}
+\input{_i_update_sub_area_8cs}
+\input{_i_activate_user_8cs}
+\input{_i_deactivate_user_8cs}
+\input{_i_get_active_users_8cs}
+\input{_i_get_inactive_users_8cs}
+\input{_i_get_user_by_id_8cs}
+\input{_i_make_admin_8cs}
+\input{_i_make_coordinator_8cs}
+\input{_i_update_user_8cs}
+\input{_activity_mappings_8cs}
+\input{_area_mappings_8cs}
+\input{_assistance_type_mappings_8cs}
+\input{_campus_mappings_8cs}
+\input{_course_mappings_8cs}
+\input{_main_area_mappings_8cs}
+\input{_notice_mappings_8cs}
+\input{_professor_mappings_8cs}
+\input{_program_type_mappings_8cs}
+\input{_project_evaluation_mappings_8cs}
+\input{_project_mappings_8cs}
+\input{_student_documents_mappings_8cs}
+\input{_student_mappings_8cs}
+\input{_sub_area_mappings_8cs}
+\input{_user_mappings_8cs}
+\input{_debug_2net7_80_2_application_8_assembly_info_8cs}
+\input{_release_2net7_80_2_application_8_assembly_info_8cs}
+\input{_debug_2net7_80_2_application_8_global_usings_8g_8cs}
+\input{_release_2net7_80_2_application_8_global_usings_8g_8cs}
+\input{_activity_output_8cs}
+\input{_activity_type_output_8cs}
+\input{_base_activity_8cs}
+\input{_base_activity_type_8cs}
+\input{_create_activity_input_8cs}
+\input{_create_activity_type_input_8cs}
+\input{_update_activity_input_8cs}
+\input{_update_activity_type_input_8cs}
+\input{_base_area_contract_8cs}
+\input{_create_area_input_8cs}
+\input{_detailed_read_area_output_8cs}
+\input{_resumed_read_area_output_8cs}
+\input{_update_area_input_8cs}
+\input{_base_assistance_type_contract_8cs}
+\input{_create_assistance_type_input_8cs}
+\input{_detailed_read_assistance_type_output_8cs}
+\input{_resumed_read_assistance_type_output_8cs}
+\input{_update_assistance_type_input_8cs}
+\input{_user_claims_output_8cs}
+\input{_user_login_input_8cs}
+\input{_user_login_output_8cs}
+\input{_user_reset_password_input_8cs}
+\input{_base_campus_contract_8cs}
+\input{_create_campus_input_8cs}
+\input{_detailed_read_campus_output_8cs}
+\input{_resumed_read_campus_output_8cs}
+\input{_update_campus_input_8cs}
+\input{_base_course_contract_8cs}
+\input{_create_course_input_8cs}
+\input{_detailed_read_course_output_8cs}
+\input{_resumed_read_course_output_8cs}
+\input{_update_course_input_8cs}
+\input{_base_main_area_contract_8cs}
+\input{_create_main_area_input_8cs}
+\input{_detailed_main_area_output_8cs}
+\input{_resumed_read_main_area_output_8cs}
+\input{_update_main_area_input_8cs}
+\input{_base_notice_contract_8cs}
+\input{_create_notice_input_8cs}
+\input{_detailed_read_notice_output_8cs}
+\input{_resumed_read_notice_output_8cs}
+\input{_update_notice_input_8cs}
+\input{_base_professor_contract_8cs}
+\input{_create_professor_input_8cs}
+\input{_base_program_type_contract_8cs}
+\input{_create_program_type_input_8cs}
+\input{_detailed_read_program_type_output_8cs}
+\input{_resumed_read_program_type_output_8cs}
+\input{_update_program_type_input_8cs}
+\input{_base_project_contract_8cs}
+\input{_detailed_read_project_output_8cs}
+\input{_open_project_input_8cs}
+\input{_project_report_input_8cs}
+\input{_project_report_output_8cs}
+\input{_resumed_read_project_output_8cs}
+\input{_update_project_input_8cs}
+\input{_base_project_activity_contract_8cs}
+\input{_create_project_activity_input_8cs}
+\input{_detailed_read_project_activity_output_8cs}
+\input{_evaluate_project_activity_input_8cs}
+\input{_resumed_read_project_activity_output_8cs}
+\input{_update_project_activity_input_8cs}
+\input{_detailed_read_project_evaluation_output_8cs}
+\input{_evaluate_appeal_project_input_8cs}
+\input{_evaluate_student_documents_input_8cs}
+\input{_evaluate_submission_project_input_8cs}
+\input{_base_project_final_report_contract_8cs}
+\input{_create_project_final_report_input_8cs}
+\input{_detailed_read_project_final_report_output_8cs}
+\input{_update_project_final_report_input_8cs}
+\input{_base_project_partial_report_contract_8cs}
+\input{_create_project_partial_report_input_8cs}
+\input{_detailed_read_project_partial_report_output_8cs}
+\input{_update_project_partial_report_input_8cs}
+\input{_base_student_contract_8cs}
+\input{_create_student_input_8cs}
+\input{_professor_2_detailed_read_student_output_8cs}
+\input{_student_2_detailed_read_student_output_8cs}
+\input{_professor_2_resumed_read_student_output_8cs}
+\input{_student_2_resumed_read_student_output_8cs}
+\input{_professor_2_update_student_input_8cs}
+\input{_student_2_update_student_input_8cs}
+\input{_base_student_documents_output_8cs}
+\input{_create_student_documents_input_8cs}
+\input{_detailed_read_student_documents_output_8cs}
+\input{_resumed_read_student_documents_output_8cs}
+\input{_update_student_documents_input_8cs}
+\input{_base_sub_area_contract_8cs}
+\input{_create_sub_area_input_8cs}
+\input{_detailed_read_sub_area_output_8cs}
+\input{_resumed_read_sub_area_output_8cs}
+\input{_update_sub_area_input_8cs}
+\input{_user_read_output_8cs}
+\input{_user_update_input_8cs}
+\input{_get_activities_by_notice_id_8cs}
+\input{_get_last_notice_activities_8cs}
+\input{_create_area_8cs}
+\input{_delete_area_8cs}
+\input{_get_area_by_id_8cs}
+\input{_get_areas_by_main_area_8cs}
+\input{_update_area_8cs}
+\input{_create_assistance_type_8cs}
+\input{_delete_assistance_type_8cs}
+\input{_get_assistance_type_by_id_8cs}
+\input{_get_assistance_types_8cs}
+\input{_update_assistance_type_8cs}
+\input{_confirm_email_8cs}
+\input{_forgot_password_8cs}
+\input{_login_8cs}
+\input{_reset_password_8cs}
+\input{_create_campus_8cs}
+\input{_delete_campus_8cs}
+\input{_get_campus_by_id_8cs}
+\input{_get_campuses_8cs}
+\input{_update_campus_8cs}
+\input{_create_course_8cs}
+\input{_delete_course_8cs}
+\input{_get_course_by_id_8cs}
+\input{_get_courses_8cs}
+\input{_update_course_8cs}
+\input{_create_main_area_8cs}
+\input{_delete_main_area_8cs}
+\input{_get_main_area_by_id_8cs}
+\input{_get_main_areas_8cs}
+\input{_update_main_area_8cs}
+\input{_create_notice_8cs}
+\input{_delete_notice_8cs}
+\input{_get_notice_by_id_8cs}
+\input{_get_notices_8cs}
+\input{_report_deadline_notification_8cs}
+\input{_update_notice_8cs}
+\input{_create_professor_8cs}
+\input{_delete_professor_8cs}
+\input{_get_professor_by_id_8cs}
+\input{_get_professors_8cs}
+\input{_update_professor_8cs}
+\input{_create_program_type_8cs}
+\input{_delete_program_type_8cs}
+\input{_get_program_type_by_id_8cs}
+\input{_get_program_types_8cs}
+\input{_update_program_type_8cs}
+\input{_appeal_project_8cs}
+\input{_cancel_project_8cs}
+\input{_close_pending_projects_8cs}
+\input{_generate_certificate_8cs}
+\input{_get_activities_by_project_id_8cs}
+\input{_get_closed_projects_8cs}
+\input{_get_open_projects_8cs}
+\input{_get_project_by_id_8cs}
+\input{_get_projects_to_evaluate_8cs}
+\input{_open_project_8cs}
+\input{_submit_project_8cs}
+\input{_update_project_8cs}
+\input{_evaluate_appeal_project_8cs}
+\input{_evaluate_student_documents_8cs}
+\input{_evaluate_submission_project_8cs}
+\input{_get_evaluation_by_project_id_8cs}
+\input{_create_project_final_report_8cs}
+\input{_delete_project_final_report_8cs}
+\input{_get_project_final_report_by_id_8cs}
+\input{_get_project_final_report_by_project_id_8cs}
+\input{_update_project_final_report_8cs}
+\input{_create_project_partial_report_8cs}
+\input{_delete_project_partial_report_8cs}
+\input{_get_project_partial_report_by_id_8cs}
+\input{_get_project_partial_report_by_project_id_8cs}
+\input{_update_project_partial_report_8cs}
+\input{_create_student_8cs}
+\input{_delete_student_8cs}
+\input{_get_student_by_id_8cs}
+\input{_get_student_by_registration_code_8cs}
+\input{_get_students_8cs}
+\input{_request_student_register_8cs}
+\input{_update_student_8cs}
+\input{_create_student_documents_8cs}
+\input{_delete_student_documents_8cs}
+\input{_get_student_documents_by_project_id_8cs}
+\input{_get_student_documents_by_student_id_8cs}
+\input{_update_student_documents_8cs}
+\input{_create_sub_area_8cs}
+\input{_delete_sub_area_8cs}
+\input{_get_sub_area_by_id_8cs}
+\input{_get_sub_areas_by_area_8cs}
+\input{_update_sub_area_8cs}
+\input{_activate_user_8cs}
+\input{_deactivate_user_8cs}
+\input{_get_active_users_8cs}
+\input{_get_inactive_users_8cs}
+\input{_get_user_by_id_8cs}
+\input{_make_admin_8cs}
+\input{_make_coordinator_8cs}
+\input{_update_user_8cs}
+\input{_use_case_exception_8cs}
+\input{_c_h_a_n_g_e_l_o_g_8md}
+\input{_activity_type_unit_tests_8cs}
+\input{_activity_unit_tests_8cs}
+\input{_area_unit_tests_8cs}
+\input{_assistance_type_unit_tests_8cs}
+\input{_campus_unit_tests_8cs}
+\input{_course_unit_tests_8cs}
+\input{_main_area_unit_tests_8cs}
+\input{_notice_unit_tests_8cs}
+\input{_professor_unit_tests_8cs}
+\input{_program_type_unit_tests_8cs}
+\input{_project_activity_unit_tests_8cs}
+\input{_project_evaluation_unit_tests_8cs}
+\input{_project_final_report_unit_tests_8cs}
+\input{_project_partial_report_unit_tests_8cs}
+\input{_project_unit_tests_8cs}
+\input{_student_documents_unit_tests_8cs}
+\input{_student_unit_tests_8cs}
+\input{_sub_area_unit_tests_8cs}
+\input{_user_unit_tests_8cs}
+\input{_debug_2net7_80_2_domain_8_tests_8_assembly_info_8cs}
+\input{_release_2net7_80_2_domain_8_tests_8_assembly_info_8cs}
+\input{_debug_2net7_80_2_domain_8_tests_8_global_usings_8g_8cs}
+\input{_release_2net7_80_2_domain_8_tests_8_global_usings_8g_8cs}
+\input{_activity_8cs}
+\input{_activity_type_8cs}
+\input{_area_8cs}
+\input{_assistance_type_8cs}
+\input{_campus_8cs}
+\input{_course_8cs}
+\input{_e_ethnicity_8cs}
+\input{_e_gender_8cs}
+\input{_enum_extensions_8cs}
+\input{_e_project_status_8cs}
+\input{_e_qualification_8cs}
+\input{_e_role_8cs}
+\input{_e_scholar_performance_8cs}
+\input{_e_score_8cs}
+\input{_main_area_8cs}
+\input{_notice_8cs}
+\input{_entity_8cs}
+\input{_professor_8cs}
+\input{_program_type_8cs}
+\input{_project_8cs}
+\input{_project_activity_8cs}
+\input{_project_evaluation_8cs}
+\input{_project_final_report_8cs}
+\input{_project_partial_report_8cs}
+\input{_student_8cs}
+\input{_student_documents_8cs}
+\input{_sub_area_8cs}
+\input{_user_8cs}
+\input{_i_generic_c_r_u_d_repository_8cs}
+\input{_i_activity_repository_8cs}
+\input{_i_activity_type_repository_8cs}
+\input{_i_area_repository_8cs}
+\input{_i_assistance_type_repository_8cs}
+\input{_i_campus_repository_8cs}
+\input{_i_course_repository_8cs}
+\input{_i_main_area_repository_8cs}
+\input{_i_notice_repository_8cs}
+\input{_i_professor_repository_8cs}
+\input{_i_program_type_repository_8cs}
+\input{_i_project_activity_repository_8cs}
+\input{_i_project_evaluation_repository_8cs}
+\input{_i_project_final_report_repository_8cs}
+\input{_i_project_partial_report_repository_8cs}
+\input{_i_project_repository_8cs}
+\input{_i_student_documents_repository_8cs}
+\input{_i_student_repository_8cs}
+\input{_i_sub_area_repository_8cs}
+\input{_i_user_repository_8cs}
+\input{_i_email_service_8cs}
+\input{_i_hash_service_8cs}
+\input{_i_report_service_8cs}
+\input{_i_storage_file_service_8cs}
+\input{_i_token_authentication_service_8cs}
+\input{_debug_2net7_80_2_domain_8_assembly_info_8cs}
+\input{_release_2net7_80_2_domain_8_assembly_info_8cs}
+\input{_debug_2net7_80_2_domain_8_global_usings_8g_8cs}
+\input{_release_2net7_80_2_domain_8_global_usings_8g_8cs}
+\input{_entity_exception_validation_8cs}
+\input{_exception_message_factory_8cs}
+\input{_application_d_i_8cs}
+\input{_external_services_d_i_8cs}
+\input{_infrastructure_d_i_8cs}
+\input{_jwt_d_i_8cs}
+\input{_io_c_8_assembly_info_8cs}
+\input{_io_c_8_global_usings_8g_8cs}
+\input{_persistence_d_i_8cs}
+\input{_swagger_d_i_8cs}
+\input{_dot_env_secrets_8cs}
+\input{_settings_configuration_8cs}
+\input{_application_db_context_8cs}
+\input{_activity_configuration_8cs}
+\input{_activity_type_configuration_8cs}
+\input{_area_configuration_8cs}
+\input{_assistance_type_configuration_8cs}
+\input{_campus_configuration_8cs}
+\input{_course_configuration_8cs}
+\input{_entity_builder_8cs}
+\input{_main_area_configuration_8cs}
+\input{_notice_configuration_8cs}
+\input{_professor_configuration_8cs}
+\input{_program_type_configuration_8cs}
+\input{_project_activity_configuration_8cs}
+\input{_project_configuration_8cs}
+\input{_project_evaluation_configuration_8cs}
+\input{_project_final_report_configuration_8cs}
+\input{_project_partial_report_configuration_8cs}
+\input{_student_configuration_8cs}
+\input{_student_documents_configuration_8cs}
+\input{_sub_area_configuration_8cs}
+\input{_user_configuration_8cs}
+\input{20230907134628___initialize_8cs}
+\input{20230907134628___initialize_8_designer_8cs}
+\input{_application_db_context_model_snapshot_8cs}
+\input{_persistence_8_assembly_info_8cs}
+\input{_persistence_8_global_usings_8g_8cs}
+\input{_activity_repository_8cs}
+\input{_activity_type_repository_8cs}
+\input{_area_repository_8cs}
+\input{_assistance_type_repository_8cs}
+\input{_campus_repository_8cs}
+\input{_course_repository_8cs}
+\input{_main_area_repository_8cs}
+\input{_notice_repository_8cs}
+\input{_professor_repository_8cs}
+\input{_program_type_repository_8cs}
+\input{_project_activity_repository_8cs}
+\input{_project_evaluation_repository_8cs}
+\input{_project_final_report_repository_8cs}
+\input{_project_partial_report_repository_8cs}
+\input{_project_repository_8cs}
+\input{_student_documents_repository_8cs}
+\input{_student_repository_8cs}
+\input{_sub_area_repository_8cs}
+\input{_user_repository_8cs}
+\input{_activities_seeder_8cs}
+\input{_areas_seeder_8cs}
+\input{_assistance_type_seeder_8cs}
+\input{_campuses_seeder_8cs}
+\input{_courses_seeder_8cs}
+\input{_program_types_seeder_8cs}
+\input{_seeder_8cs}
+\input{_user_seeder_8cs}
+\input{_azure_storage_service_8cs}
+\input{_smtp_configuration_8cs}
+\input{_email_service_8cs}
+\input{_email_service_factory_8cs}
+\input{_i_email_service_factory_8cs}
+\input{_hash_service_8cs}
+\input{_i_dot_env_secrets_8cs}
+\input{_services_8_assembly_info_8cs}
+\input{_services_8_global_usings_8g_8cs}
+\input{_report_service_8cs}
+\input{_storage_file_service_8cs}
+\input{_token_authentication_service_8cs}
+\input{_activity_controller_8cs}
+\input{_area_controller_8cs}
+\input{_assistance_type_controller_8cs}
+\input{_auth_controller_8cs}
+\input{_campus_controller_8cs}
+\input{_course_controller_8cs}
+\input{_main_area_controller_8cs}
+\input{_notice_controller_8cs}
+\input{_professor_controller_8cs}
+\input{_program_type_controller_8cs}
+\input{_project_controller_8cs}
+\input{_project_evaluation_controller_8cs}
+\input{_project_final_report_controller_01copy_8cs}
+\input{_project_final_report_controller_8cs}
+\input{_student_controller_8cs}
+\input{_student_documents_controller_8cs}
+\input{_sub_area_controller_8cs}
+\input{_user_controller_8cs}
+\input{_version_controller_8cs}
+\input{_exception_handling_middleware_8cs}
+\input{_web_a_p_i_8_assembly_info_8cs}
+\input{_web_a_p_i_8_global_usings_8g_8cs}
+\input{_web_a_p_i_8_mvc_application_parts_assembly_info_8cs}
+\input{_startup_8cs}
+\input{_close_pending_projects_function_8cs}
+\input{_generate_certificate_function_8cs}
+\input{_report_deadline_notification_function_8cs}
+\input{_custom_schedule_status_8cs}
+\input{_custom_timer_info_8cs}
+\input{_web_functions_8_assembly_info_8cs}
+\input{_web_functions_8_global_usings_8g_8cs}
+\input{_web_a_p_i_2_program_8cs}
+\input{_web_functions_2_program_8cs}
+%--- End generated contents ---
+% Index
+  \backmatter
+  \newpage
+  \phantomsection
+  \clearemptydoublepage
+  \addcontentsline{toc}{chapter}{\indexname}
+  \printindex
+% Required for some languages (in combination with latexdocumentpre from the header)
+\end{document}
