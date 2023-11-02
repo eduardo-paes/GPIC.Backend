@@ -5,6 +5,6 @@ namespace Domain.Interfaces.Repositories
 {
     public interface IProgramTypeRepository : IGenericCRUDRepository<ProgramType>
     {
-        Task<ProgramType?> GetProgramTypeByName(string name);
+        Task<ProgramType?> GetProgramTypeByNameAsync(string name);
     }
 }

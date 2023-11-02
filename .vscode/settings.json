@@ -1,3 +1,11 @@
 {
-  "dotnet-test-explorer.testProjectPath": "src/Domain.Tests/Domain.Tests.csproj"
+  // "dotnet-test-explorer.testProjectPath": "src/Domain.Tests/Domain.Tests.csproj",
+  "dotnet-test-explorer.testProjectPath": "src/Application.Tests/Application.Tests.csproj",
+  "dotnet.defaultSolution": "src/GPIC.BackEnd.sln",
+  "azureFunctions.deploySubpath": "src/Infrastructure/WebFunctions/bin/Release/net7.0/publish",
+  "azureFunctions.projectLanguage": "C#",
+  "azureFunctions.projectRuntime": "~4",
+  "debug.internalConsoleOptions": "neverOpen",
+  "azureFunctions.projectSubpath": "src/Infrastructure/WebFunctions",
+  "azureFunctions.preDeployTask": "publish (functions)"
 }

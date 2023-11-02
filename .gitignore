@@ -398,7 +398,6 @@ FodyWeavers.xsd
 *.sln.iml
 
 volumes
-Migrations
 
 node_modules
 .DS_Store
@@ -406,6 +405,14 @@ node_modules
 certificate
 certificate/*
 
-RemoteFiles
-RemoteFiles/*
-src/Infrastructure/WebAPI/.env
+storage
+storage/*
+
+temp
+temp/*
+
+files
+files/*
+
+**/.env
+thunder-tests

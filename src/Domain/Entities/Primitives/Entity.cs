@@ -1,5 +1,4 @@
-﻿using System;
-namespace Domain.Entities.Primitives
+﻿namespace Domain.Entities.Primitives
 {
     public abstract class Entity
     {

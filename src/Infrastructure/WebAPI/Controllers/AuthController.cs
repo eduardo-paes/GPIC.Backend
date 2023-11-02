@@ -1,31 +1,44 @@
-﻿using Adapters.Gateways.Auth;
-using Adapters.Interfaces;
+﻿using Application.Ports.Auth;
+using Application.Interfaces.UseCases.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Infrastructure.WebAPI.Controllers
+namespace WebAPI.Controllers
 {
     /// <summary>
     /// Controller de Autenticação.
     /// </summary>
     [ApiController]
-    [Route("Api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class AuthController : ControllerBase
     {
         #region Global Scope
-        private readonly IAuthPresenterController _authService;
+        private readonly IConfirmEmail _confirmEmail;
+        private readonly IForgotPassword _forgotPassword;
+        private readonly ILogin _login;
+        private readonly IResetPassword _resetPassword;
         private readonly ILogger<AuthController> _logger;
         /// <summary>
         /// Construtor do Controller de Autenticação.
         /// </summary>
-        /// <param name="authService"></param>
-        /// <param name="logger"></param>
-        public AuthController(IAuthPresenterController authService, ILogger<AuthController> logger)
+        /// <param name="confirmEmail">Serviço de confirmação de e-mail.</param>
+        /// <param name="forgotPassword">Serviço de solicitação de reset de senha.</param>
+        /// <param name="login">Serviço de login.</param>
+        /// <param name="resetPassword">Serviço de reset de senha.</param>
+        /// <param name="logger">Serviço de log.</param>
+        public AuthController(IConfirmEmail confirmEmail,
+            IForgotPassword forgotPassword,
+            ILogin login,
+            IResetPassword resetPassword,
+            ILogger<AuthController> logger)
         {
-            _authService = authService;
+            _confirmEmail = confirmEmail;
+            _forgotPassword = forgotPassword;
+            _login = login;
+            _resetPassword = resetPassword;
             _logger = logger;
         }
-        #endregion
+        #endregion Global Scope
 
         /// <summary>
         /// Realiza a confirmação do e-mail do usuário através do token de validação fornecido e do E-mail do usuário.
@@ -34,13 +47,16 @@ namespace Infrastructure.WebAPI.Controllers
         /// <param name="token">Token de validação</param>
         /// <returns>Resultado da solicitação de validação</returns>
         /// <response code="200">E-mail confirmado com sucesso</response>
+        /// <response code="400">Requisição incorreta.</response>
         [AllowAnonymous]
         [HttpPost("ConfirmEmail", Name = "ConfirmEmail")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         public async Task<ActionResult<string>> ConfirmEmail(string? email, string? token)
         {
             try
             {
-                var result = await _authService.ConfirmEmail(email, token);
+                string result = await _confirmEmail.ExecuteAsync(email, token);
                 _logger.LogInformation("Resultado: {Result}", result);
                 return Ok(result);
             }
@@ -58,13 +74,16 @@ namespace Infrastructure.WebAPI.Controllers
         /// <param></param>
         /// <returns>Resultado da requisição</returns>
         /// <response code="200">Solicitação realizada com sucesso</response>
+        /// <response code="400">Requisição incorreta.</response>
         [AllowAnonymous]
         [HttpPost("ForgotPassword", Name = "ForgotPassword")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         public async Task<ActionResult<string>> ForgotPassword(string? email)
         {
             try
             {
-                var result = await _authService.ForgotPassword(email);
+                string result = await _forgotPassword.ExecuteAsync(email);
                 _logger.LogInformation("Resultado: {Result}", result);
                 return Ok(result);
             }
@@ -81,13 +100,16 @@ namespace Infrastructure.WebAPI.Controllers
         /// <param></param>
         /// <returns>Retorna token de acesso</returns>
         /// <response code="200">Retorna token de acesso</response>
+        /// <response code="400">Requisição incorreta.</response>
         [AllowAnonymous]
         [HttpPost("Login", Name = "Login")]
-        public async Task<ActionResult<UserLoginResponse>> Login([FromBody] UserLoginRequest request)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserLoginOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        public async Task<ActionResult<UserLoginOutput>> Login([FromBody] UserLoginInput request)
         {
             try
             {
-                var model = await _authService.Login(request);
+                var model = await _login.ExecuteAsync(request);
                 _logger.LogInformation("Login realizado pelo usuário: {email}.", request.Email);
                 return Ok(model);
             }
@@ -104,13 +126,16 @@ namespace Infrastructure.WebAPI.Controllers
         /// <param></param>
         /// <returns>Retorna o status da alteração</returns>
         /// <response code="200">Retorna o status da alteração</response>
+        /// <response code="400">Requisição incorreta.</response>
         [AllowAnonymous]
         [HttpPost("ResetPassword", Name = "ResetPassword")]
-        public async Task<ActionResult<string>> ResetPassword([FromBody] UserResetPasswordRequest request)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        public async Task<ActionResult<string>> ResetPassword([FromBody] UserResetPasswordInput request)
         {
             try
             {
-                var result = await _authService.ResetPassword(request);
+                string result = await _resetPassword.ExecuteAsync(request);
                 _logger.LogInformation("Resultado: {Result}", result);
                 return Ok(result);
             }

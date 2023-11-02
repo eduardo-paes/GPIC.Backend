@@ -12,6 +12,9 @@ namespace Infrastructure.Persistence.EntitiesConfiguration
             builder.HasKey(t => t.Id);
             builder.Property(p => p.Id)
                 .ValueGeneratedOnAdd();
+            builder.Property(p => p.RegistrationCode)
+                .IsRequired()
+                .HasMaxLength(20);
             builder.Property(p => p.BirthDate)
                 .IsRequired();
             builder.Property(p => p.RG)
@@ -47,7 +50,7 @@ namespace Infrastructure.Persistence.EntitiesConfiguration
                 .IsRequired();
             builder.Property(p => p.StartYear)
                 .IsRequired();
-            builder.Property(p => p.TypeAssistanceId)
+            builder.Property(p => p.AssistanceTypeId)
                 .IsRequired();
             builder.Property(p => p.UserId)
                 .IsRequired();
@@ -56,7 +59,7 @@ namespace Infrastructure.Persistence.EntitiesConfiguration
             builder.HasOne(a => a.User).WithOne().HasForeignKey<Student>(a => a.UserId);
             builder.HasOne(a => a.Campus).WithMany().HasForeignKey(a => a.CampusId);
             builder.HasOne(a => a.Course).WithMany().HasForeignKey(a => a.CourseId);
-            builder.HasOne(a => a.TypeAssistance).WithMany().HasForeignKey(a => a.TypeAssistanceId);
+            builder.HasOne(a => a.AssistanceType).WithMany().HasForeignKey(a => a.AssistanceTypeId);
 
             builder.HasQueryFilter(x => x.DeletedAt == null);
         }

@@ -1,61 +1,121 @@
 using Domain.Entities;
 using Domain.Validation;
 using FluentAssertions;
-using System;
 using Xunit;
 
 namespace Domain.Tests.Entities
 {
     public class NoticeUnitTests
     {
-        private Notice MockValidNotice() => new Notice();
+        private static Notice MockValidNotice() => new(
+            registrationStartDate: DateTime.UtcNow,
+            registrationEndDate: DateTime.UtcNow.AddDays(7),
+            evaluationStartDate: DateTime.UtcNow.AddDays(8),
+            evaluationEndDate: DateTime.UtcNow.AddDays(14),
+            appealStartDate: DateTime.UtcNow.AddDays(15),
+            appealFinalDate: DateTime.UtcNow.AddDays(21),
+            sendingDocsStartDate: DateTime.UtcNow.AddDays(22),
+            sendingDocsEndDate: DateTime.UtcNow.AddDays(28),
+            partialReportDeadline: DateTime.UtcNow.AddDays(29),
+            finalReportDeadline: DateTime.UtcNow.AddDays(35),
+            description: "Edital de teste",
+            suspensionYears: 1
+        );
 
         [Fact]
-        public void SetStartDate_ValidStartDate_SetsStartDate()
+        public void SetRegistrationStartDate_ValidStartDate_SetsRegistrationStartDate()
         {
             // Arrange
             var notice = MockValidNotice();
-            var startDate = DateTime.Now;
+            var startDate = DateTime.UtcNow;
 
             // Act
-            notice.StartDate = startDate;
+            notice.RegistrationStartDate = startDate;
 
             // Assert
-            notice.StartDate.Should().Be(startDate.ToUniversalTime());
+            notice.RegistrationStartDate.Should().Be(startDate.ToUniversalTime());
         }
 
         [Fact]
-        public void SetStartDate_NullStartDate_ThrowsException()
+        public void SetRegistrationStartDate_NullStartDate_ThrowsException()
         {
             // Arrange
             var notice = MockValidNotice();
 
             // Act & Assert
-            Assert.Throws<EntityExceptionValidation>(() => notice.StartDate = null);
+            Assert.Throws<EntityExceptionValidation>(() => notice.RegistrationStartDate = null);
         }
 
         [Fact]
-        public void SetFinalDate_ValidFinalDate_SetsFinalDate()
+        public void SetRegistrationEndDate_ValidEndDate_SetsRegistrationEndDate()
         {
             // Arrange
             var notice = MockValidNotice();
-            var finalDate = DateTime.Now;
+            var endDate = DateTime.UtcNow;
 
             // Act
-            notice.FinalDate = finalDate;
+            notice.RegistrationEndDate = endDate;
 
             // Assert
-            notice.FinalDate.Should().Be(finalDate.ToUniversalTime());
+            notice.RegistrationEndDate.Should().Be(endDate.ToUniversalTime());
         }
 
         [Fact]
-        public void SetFinalDate_NullFinalDate_ThrowsException()
+        public void SetRegistrationEndDate_NullEndDate_ThrowsException()
         {
             // Arrange
             var notice = MockValidNotice();
 
             // Act & Assert
-            Assert.Throws<EntityExceptionValidation>(() => notice.FinalDate = null);
+            Assert.Throws<EntityExceptionValidation>(() => notice.RegistrationEndDate = null);
+        }
+
+        [Fact]
+        public void SetEvaluationStartDate_ValidStartDate_SetsEvaluationStartDate()
+        {
+            // Arrange
+            var notice = MockValidNotice();
+            var startDate = DateTime.UtcNow;
+
+            // Act
+            notice.EvaluationStartDate = startDate;
+
+            // Assert
+            notice.EvaluationStartDate.Should().Be(startDate.ToUniversalTime());
+        }
+
+        [Fact]
+        public void SetEvaluationStartDate_NullStartDate_ThrowsException()
+        {
+            // Arrange
+            var notice = MockValidNotice();
+
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => notice.EvaluationStartDate = null);
+        }
+
+        [Fact]
+        public void SetEvaluationEndDate_ValidEndDate_SetsEvaluationEndDate()
+        {
+            // Arrange
+            var notice = MockValidNotice();
+            var endDate = DateTime.UtcNow;
+
+            // Act
+            notice.EvaluationEndDate = endDate;
+
+            // Assert
+            notice.EvaluationEndDate.Should().Be(endDate.ToUniversalTime());
+        }
+
+        [Fact]
+        public void SetEvaluationEndDate_NullEndDate_ThrowsException()
+        {
+            // Arrange
+            var notice = MockValidNotice();
+
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => notice.EvaluationEndDate = null);
         }
 
         [Fact]
@@ -63,7 +123,7 @@ namespace Domain.Tests.Entities
         {
             // Arrange
             var notice = MockValidNotice();
-            var appealStartDate = DateTime.Now;
+            var appealStartDate = DateTime.UtcNow;
 
             // Act
             notice.AppealStartDate = appealStartDate;
@@ -83,27 +143,123 @@ namespace Domain.Tests.Entities
         }
 
         [Fact]
-        public void SetAppealFinalDate_ValidAppealFinalDate_SetsAppealFinalDate()
+        public void SetAppealEndDate_ValidAppealEndDate_SetsAppealEndDate()
         {
             // Arrange
             var notice = MockValidNotice();
-            var appealFinalDate = DateTime.Now;
+            var appealEndDate = DateTime.UtcNow;
 
             // Act
-            notice.AppealFinalDate = appealFinalDate;
+            notice.AppealEndDate = appealEndDate;
 
             // Assert
-            notice.AppealFinalDate.Should().Be(appealFinalDate.ToUniversalTime());
+            notice.AppealEndDate.Should().Be(appealEndDate.ToUniversalTime());
         }
 
         [Fact]
-        public void SetAppealFinalDate_NullAppealFinalDate_ThrowsException()
+        public void SetAppealEndDate_NullAppealEndDate_ThrowsException()
         {
             // Arrange
             var notice = MockValidNotice();
 
             // Act & Assert
-            Assert.Throws<EntityExceptionValidation>(() => notice.AppealFinalDate = null);
+            Assert.Throws<EntityExceptionValidation>(() => notice.AppealEndDate = null);
+        }
+
+        [Fact]
+        public void SetSendingDocsStartDate_ValidStartDate_SetsSendingDocsStartDate()
+        {
+            // Arrange
+            var notice = MockValidNotice();
+            var startDate = DateTime.UtcNow;
+
+            // Act
+            notice.SendingDocsStartDate = startDate;
+
+            // Assert
+            notice.SendingDocsStartDate.Should().Be(startDate.ToUniversalTime());
+        }
+
+        [Fact]
+        public void SetSendingDocsStartDate_NullStartDate_ThrowsException()
+        {
+            // Arrange
+            var notice = MockValidNotice();
+
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => notice.SendingDocsStartDate = null);
+        }
+
+        [Fact]
+        public void SetSendingDocsEndDate_ValidEndDate_SetsSendingDocsEndDate()
+        {
+            // Arrange
+            var notice = MockValidNotice();
+            var endDate = DateTime.UtcNow;
+
+            // Act
+            notice.SendingDocsEndDate = endDate;
+
+            // Assert
+            notice.SendingDocsEndDate.Should().Be(endDate.ToUniversalTime());
+        }
+
+        [Fact]
+        public void SetSendingDocsEndDate_NullEndDate_ThrowsException()
+        {
+            // Arrange
+            var notice = MockValidNotice();
+
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => notice.SendingDocsEndDate = null);
+        }
+
+        [Fact]
+        public void SetPartialReportDeadline_ValidDeadline_SetsPartialReportDeadline()
+        {
+            // Arrange
+            var notice = MockValidNotice();
+            var deadline = DateTime.UtcNow;
+
+            // Act
+            notice.PartialReportDeadline = deadline;
+
+            // Assert
+            notice.PartialReportDeadline.Should().Be(deadline.ToUniversalTime());
+        }
+
+        [Fact]
+        public void SetPartialReportDeadline_NullDeadline_ThrowsException()
+        {
+            // Arrange
+            var notice = MockValidNotice();
+
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => notice.PartialReportDeadline = null);
+        }
+
+        [Fact]
+        public void SetFinalReportDeadline_ValidDeadline_SetsFinalReportDeadline()
+        {
+            // Arrange
+            var notice = MockValidNotice();
+            var deadline = DateTime.UtcNow;
+
+            // Act
+            notice.FinalReportDeadline = deadline;
+
+            // Assert
+            notice.FinalReportDeadline.Should().Be(deadline.ToUniversalTime());
+        }
+
+        [Fact]
+        public void SetFinalReportDeadline_NullDeadline_ThrowsException()
+        {
+            // Arrange
+            var notice = MockValidNotice();
+
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => notice.FinalReportDeadline = null);
         }
 
         [Fact]
@@ -141,37 +297,29 @@ namespace Domain.Tests.Entities
         }
 
         [Fact]
-        public void SetSendingDocumentationDeadline_ValidSendingDocumentationDeadline_SetsSendingDocumentationDeadline()
+        public void SetDocUrl_ValidUrl_SetsDocUrl()
         {
             // Arrange
             var notice = MockValidNotice();
-            var sendingDocumentationDeadline = 1;
+            var url = "https://www.example.com";
 
             // Act
-            notice.SendingDocumentationDeadline = sendingDocumentationDeadline;
+            notice.DocUrl = url;
 
             // Assert
-            notice.SendingDocumentationDeadline.Should().Be(sendingDocumentationDeadline);
+            notice.DocUrl.Should().Be(url);
         }
 
+        // Add additional tests for DocUrl property (e.g., invalid URLs).
+
         [Fact]
-        public void SetSendingDocumentationDeadline_NullSendingDocumentationDeadline_ThrowsException()
+        public void SetCreatedAt_ValidDate_SetsCreatedAt()
         {
             // Arrange
             var notice = MockValidNotice();
 
-            // Act & Assert
-            Assert.Throws<EntityExceptionValidation>(() => notice.SendingDocumentationDeadline = null);
-        }
-
-        [Fact]
-        public void SetSendingDocumentationDeadline_NegativeSendingDocumentationDeadline_ThrowsException()
-        {
-            // Arrange
-            var notice = MockValidNotice();
-
-            // Act & Assert
-            Assert.Throws<EntityExceptionValidation>(() => notice.SendingDocumentationDeadline = -1);
+            // Assert
+            notice.CreatedAt.Should().NotBeNull();
         }
     }
 }

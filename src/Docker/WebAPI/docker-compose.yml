@@ -1,0 +1,90 @@
+version: '3.4'
+
+services:
+
+  # PostgreSQL Database
+  postgres:
+    container_name: postgres_gpic
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: Copet@123
+      POSTGRES_USER: copet-admin
+      POSTGRES_DB: COPET_DB
+    ports:
+      - 15432:5432
+    volumes:
+      - ./volumes/postgresql:/var/lib/postgresql/data
+    networks:
+      - gpic-network
+
+  # Seq - Servidor de Logs
+  seq:
+    container_name: seq_gpic
+    image: datalust/seq:latest
+    ports:
+      - "5341:80"
+    environment:
+      - ACCEPT_EULA=Y
+      - SEQ_API_KEY=vxM2YLukOTgnraaYczDh
+    networks:
+      - gpic-network
+
+  # Web API
+  webapi:
+    container_name: webapi_gpic
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    image: ${DOCKER_REGISTRY-}webapi
+    build:
+      context: ../../
+      dockerfile: Infrastructure/WebAPI/Dockerfile
+    ports:
+      - 5051:443
+      - 5050:80
+    volumes:
+      - ~/.aspnet/https:/root/.aspnet/https:ro
+      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+    depends_on:
+      - postgres
+      - seq
+    networks:
+      - gpic-network
+
+  # Web Functions
+  webfunctions:
+    container_name: webfunctions_gpic
+    image: ${DOCKER_REGISTRY-}webfunctions
+    build:
+      context: ../../
+      dockerfile: Infrastructure/WebFunctions/Dockerfile
+    ports:
+      - "7071:80"
+    volumes:
+      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+    environment:
+      - AzureWebJobsStorage=UseDevelopmentStorage=true
+      - AzureFunctionsJobHost__Logging__Console__IsEnabled=true
+    depends_on:
+      - azurite
+      - postgres
+      - seq
+    networks:
+      - gpic-network
+
+  # Azurite - Storage Emulator (Blob, Queue, Table)
+  azurite:
+    container_name: azurite_gpic
+    image: mcr.microsoft.com/azure-storage/azurite
+    ports:
+      - "10000:10000"
+      - "10001:10001"
+      - "10002:10002"
+    environment:
+      - AZURITE_ACCOUNTS=devstoreaccount1:devstoreaccount1Key
+    networks:
+      - gpic-network
+
+networks:
+  gpic-network:
+    driver: bridge

@@ -31,7 +31,7 @@ namespace Domain.Entities.Enums
         [Description("Cancelado: Projeto cancelado pelo professor ou administrador.")]
         Canceled,
 
-        [Description("Encerrado: Projeto concluído, o Orientador possui 30 dias para entregar o Relatório Final, do contrário sua conta será suspensa por XX anos.")]
+        [Description("Encerrado: Projeto concluído, o Orientador deve entregar o Relatório Final dentro do período estipulado no Edital, do contrário sua conta será suspensa.")]
         Closed
     }
 }

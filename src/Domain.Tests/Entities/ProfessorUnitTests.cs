@@ -1,14 +1,13 @@
 using Domain.Entities;
 using Domain.Validation;
 using FluentAssertions;
-using System;
 using Xunit;
 
 namespace Domain.Tests.Entities
 {
     public class ProfessorUnitTests
     {
-        private Professor MockValidProfessor() => new Professor();
+        private static Professor MockValidProfessor() => new("1234567", 12345);
 
         [Fact]
         public void SetSIAPEEnrollment_ValidSIAPEEnrollment_SetsSIAPEEnrollment()

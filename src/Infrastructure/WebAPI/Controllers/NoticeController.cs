@@ -1,32 +1,49 @@
-using Adapters.Gateways.Notice;
-using Adapters.Interfaces;
+using Application.Ports.Notice;
+using Application.Interfaces.UseCases.Notice;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Infrastructure.WebAPI.Controllers
+namespace WebAPI.Controllers
 {
     /// <summary>
     /// Controller de Edital.
     /// </summary>
     [ApiController]
-    [Route("Api/[controller]")]
+    [Route("api/v1/[controller]")]
     [Authorize]
     public class NoticeController : ControllerBase
     {
         #region Global Scope
-        private readonly INoticePresenterController _service;
+        private readonly IGetNoticeById _getById;
+        private readonly IGetNotices _getAll;
+        private readonly ICreateNotice _create;
+        private readonly IUpdateNotice _update;
+        private readonly IDeleteNotice _delete;
         private readonly ILogger<NoticeController> _logger;
         /// <summary>
         /// Construtor do Controller de Edital.
         /// </summary>
-        /// <param name="service"></param>
-        /// <param name="logger"></param>
-        public NoticeController(INoticePresenterController service, ILogger<NoticeController> logger)
+        /// <param name="getById">Serviço de obtenção de edital pelo id.</param>
+        /// <param name="getAll">Serviço de obtenção de todos os editais ativos.</param>
+        /// <param name="create">Serviço de criação de edital.</param>
+        /// <param name="update">Serviço de atualização de edital.</param>
+        /// <param name="delete">Serviço de remoção de edital.</param>
+        /// <param name="logger">Serviço de log.</param>
+        public NoticeController(IGetNoticeById getById,
+            IGetNotices getAll,
+            ICreateNotice create,
+            IUpdateNotice update,
+            IDeleteNotice delete,
+            ILogger<NoticeController> logger)
         {
-            _service = service;
+            _getById = getById;
+            _getAll = getAll;
+            _create = create;
+            _update = update;
+            _delete = delete;
             _logger = logger;
         }
-        #endregion
+        #endregion Global Scope
 
         /// <summary>
         /// Busca edital pelo id.
@@ -34,27 +51,37 @@ namespace Infrastructure.WebAPI.Controllers
         /// <param></param>
         /// <returns>Edital correspondente</returns>
         /// <response code="200">Retorna edital correspondente</response>
+        /// <response code="400">Requisição incorreta.</response>
+        /// <response code="401">Usuário não autorizado.</response>
+        /// <response code="404">Edital não encontrado.</response>
         [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<DetailedReadNoticeResponse>> GetById(Guid? id)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadNoticeOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
+        public async Task<ActionResult<DetailedReadNoticeOutput>> GetById(Guid? id)
         {
             if (id == null)
             {
-                const string msg = "O id informado não pode ser nulo.";
-                _logger.LogWarning(msg);
-                return BadRequest(msg);
+                const string errorMessage = "O ID do edital não pode ser nulo.";
+                _logger.LogWarning(errorMessage);
+                return BadRequest(errorMessage);
             }
 
             try
             {
-                var model = await _service.GetById(id);
-                _logger.LogInformation("Edital encontrado para o id {id}.", id);
-                return Ok(model);
+                var notice = await _getById.ExecuteAsync(id.Value);
+                if (notice == null)
+                {
+                    return NotFound("Nenhum registro encontrado.");
+                }
+                _logger.LogInformation("Edital encontrado para o ID {id}.", id);
+                return Ok(notice);
             }
             catch (Exception ex)
             {
                 _logger.LogError("Ocorreu um erro: {ErrorMessage}", ex.Message);
-                return NotFound(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -64,19 +91,25 @@ namespace Infrastructure.WebAPI.Controllers
         /// <param></param>
         /// <returns>Todas os editais ativos</returns>
         /// <response code="200">Retorna todas os editais ativos</response>
+        /// <response code="400">Requisição incorreta.</response>
+        /// <response code="401">Usuário não autorizado.</response>
+        /// <response code="404">Nenhum edital encontrado.</response>
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<ResumedReadNoticeResponse>>> GetAll(int skip = 0, int take = 50)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ResumedReadNoticeOutput>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
+        public async Task<ActionResult<IEnumerable<ResumedReadNoticeOutput>>> GetAll(int skip = 0, int take = 50)
         {
-            var models = await _service.GetAll(skip, take);
-            if (models == null)
+            var notices = await _getAll.ExecuteAsync(skip, take);
+            if (notices == null || !notices.Any())
             {
-                const string msg = "Nenhum Edital encontrado.";
-                _logger.LogWarning(msg);
-                return NotFound(msg);
+                const string errorMessage = "Nenhum edital encontrado.";
+                _logger.LogWarning(errorMessage);
+                return NotFound(errorMessage);
             }
-            _logger.LogInformation("Editais encontrados: {quantidade}", models.Count());
-            return Ok(models);
+            _logger.LogInformation("Editais encontrados: {quantidade}", notices.Count());
+            return Ok(notices);
         }
 
         /// <summary>
@@ -84,17 +117,21 @@ namespace Infrastructure.WebAPI.Controllers
         /// </summary>
         /// <param></param>
         /// <returns>Edital criado</returns>
-        /// <response code="200">Retorna edital criado</response>
+        /// <response code="201">Retorna edital criado</response>
+        /// <response code="400">Requisição incorreta.</response>
+        /// <response code="401">Usuário não autorizado.</response>
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(DetailedReadNoticeOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadNoticeResponse>> Create([FromForm] CreateNoticeRequest request)
+        public async Task<ActionResult<DetailedReadNoticeOutput>> Create([FromForm] CreateNoticeInput request)
         {
             try
             {
-                var model = await _service.Create(request) as DetailedReadNoticeResponse;
-                _logger.LogInformation("Edital criado: {id}", model?.Id);
-                return Ok(model);
+                var createdNotice = await _create.ExecuteAsync(request);
+                _logger.LogInformation("Edital criado: {id}", createdNotice?.Id);
+                return CreatedAtAction(nameof(GetById), new { id = createdNotice?.Id }, createdNotice);
             }
             catch (Exception ex)
             {
@@ -109,15 +146,33 @@ namespace Infrastructure.WebAPI.Controllers
         /// <param></param>
         /// <returns>Edital atualizado</returns>
         /// <response code="200">Retorna edital atualizado</response>
+        /// <response code="400">Requisição incorreta.</response>
+        /// <response code="401">Usuário não autorizado.</response>
+        /// <response code="404">Edital não encontrado.</response>
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadNoticeOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadNoticeResponse>> Update(Guid? id, [FromForm] UpdateNoticeRequest request)
+        public async Task<ActionResult<DetailedReadNoticeOutput>> Update(Guid? id, [FromForm] UpdateNoticeInput request)
         {
+            if (id == null)
+            {
+                const string errorMessage = "O ID do edital não pode ser nulo.";
+                _logger.LogWarning(errorMessage);
+                return BadRequest(errorMessage);
+            }
+
             try
             {
-                var model = await _service.Update(id, request) as DetailedReadNoticeResponse;
-                _logger.LogInformation("Edital atualizado: {id}", model?.Id);
-                return Ok(model);
+                var updatedNotice = await _update.ExecuteAsync(id.Value, request);
+                if (updatedNotice == null)
+                {
+                    return NotFound("Nenhum registro encontrado.");
+                }
+                _logger.LogInformation("Edital atualizado: {id}", updatedNotice?.Id);
+                return Ok(updatedNotice);
             }
             catch (Exception ex)
             {
@@ -132,22 +187,33 @@ namespace Infrastructure.WebAPI.Controllers
         /// <param></param>
         /// <returns>Edital removido</returns>
         /// <response code="200">Retorna edital removido</response>
+        /// <response code="400">Requisição incorreta.</response>
+        /// <response code="401">Usuário não autorizado.</response>
+        /// <response code="404">Edital não encontrado.</response>
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadNoticeOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadNoticeResponse>> Delete(Guid? id)
+        public async Task<ActionResult<DetailedReadNoticeOutput>> Delete(Guid? id)
         {
             if (id == null)
             {
-                const string msg = "O id informado não pode ser nulo.";
-                _logger.LogWarning(msg);
-                return BadRequest(msg);
+                const string errorMessage = "O ID do edital não pode ser nulo.";
+                _logger.LogWarning(errorMessage);
+                return BadRequest(errorMessage);
             }
 
             try
             {
-                var model = await _service.Delete(id.Value) as DetailedReadNoticeResponse;
-                _logger.LogInformation("Edital removido: {id}", model?.Id);
-                return Ok(model);
+                var deletedNotice = await _delete.ExecuteAsync(id.Value);
+                if (deletedNotice == null)
+                {
+                    return NotFound("Nenhum registro encontrado.");
+                }
+                _logger.LogInformation("Edital removido: {id}", deletedNotice?.Id);
+                return Ok(deletedNotice);
             }
             catch (Exception ex)
             {

@@ -59,21 +59,40 @@ namespace Domain.Entities
             }
         }
 
-        public virtual User? User { get; }
+        /// <summary>
+        /// Data de início da suspensão do professor
+        /// </summary>
+        private DateTime? _suspensionEndDate;
+        public DateTime? SuspensionEndDate
+        {
+            get => _suspensionEndDate;
+            set
+            {
+                _suspensionEndDate = value;
+            }
+        }
+
+        public virtual User? User { get; set; }
         #endregion
 
         #region Constructors
-        public Professor(string? siapeEnrollment, long identifyLattes, Guid? userId)
+        public Professor(string? siapeEnrollment, long identifyLattes)
         {
             SIAPEEnrollment = siapeEnrollment;
             IdentifyLattes = identifyLattes;
-            UserId = userId;
+        }
+
+        public Professor(Guid? id, string? siapeEnrollment, long identifyLattes)
+        {
+            Id = id;
+            SIAPEEnrollment = siapeEnrollment;
+            IdentifyLattes = identifyLattes;
         }
 
         /// <summary>
         /// Constructor to dbcontext EF instancing.
         /// </summary>
-        public Professor() { }
+        protected Professor() { }
         #endregion
     }
 }

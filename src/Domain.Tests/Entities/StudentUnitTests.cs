@@ -2,14 +2,13 @@ using Domain.Entities;
 using Domain.Entities.Enums;
 using Domain.Validation;
 using FluentAssertions;
-using System;
 using Xunit;
 
 namespace Domain.Tests.Entities
 {
     public class StudentUnitTests
     {
-        private Student MockValidStudent() => new Student(
+        private static Student MockValidStudent() => new(
             birthDate: new DateTime(2000, 1, 1),
             rg: 123456789,
             issuingAgency: "Agency",
@@ -28,15 +27,64 @@ namespace Domain.Tests.Entities
             courseId: Guid.NewGuid(),
             startYear: "2022",
             studentAssistanceProgramId: Guid.NewGuid(),
-            userId: Guid.NewGuid()
+            registrationCode: "GCOM1234567"
         );
+
+        [Fact]
+        public void SetRegistrationCode_ValidCode_SetsRegistrationCode()
+        {
+            // Arrange
+            var project = MockValidStudent();
+            var registrationCode = "AB123";
+
+            // Act
+            project.RegistrationCode = registrationCode;
+
+            // Assert
+            project.RegistrationCode.Should().Be(registrationCode);
+        }
+
+        [Fact]
+        public void SetRegistrationCode_NullOrEmptyCode_ThrowsException()
+        {
+            // Arrange
+            var project = MockValidStudent();
+
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => project.RegistrationCode = null);
+            Assert.Throws<EntityExceptionValidation>(() => project.RegistrationCode = string.Empty);
+        }
+
+        [Fact]
+        public void SetRegistrationCode_TooLongCode_ThrowsException()
+        {
+            // Arrange
+            var project = MockValidStudent();
+
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => project.RegistrationCode = new string('A', 21));
+        }
+
+        [Fact]
+        public void SetRegistrationCode_SetsToUpperCase()
+        {
+            // Arrange
+            var project = MockValidStudent();
+            var registrationCode = "ab123";
+
+            // Act
+            project.RegistrationCode = registrationCode;
+
+            // Assert
+            project.RegistrationCode.Should().Be("AB123");
+        }
 
         [Fact]
         public void SetBirthDate_ValidDate_SetsBirthDate()
         {
             // Arrange
             var student = MockValidStudent();
-            var birthDate = DateTime.Now.AddDays(-1);
+            var birthDate = DateTime.UtcNow.AddDays(-1);
 
             // Act
             student.BirthDate = birthDate;
@@ -62,7 +110,7 @@ namespace Domain.Tests.Entities
             var student = MockValidStudent();
 
             // Act & Assert
-            Assert.Throws<EntityExceptionValidation>(() => student.BirthDate = DateTime.Now.AddDays(1));
+            Assert.Throws<EntityExceptionValidation>(() => student.BirthDate = DateTime.UtcNow.AddDays(1));
         }
 
         [Fact]
@@ -129,7 +177,7 @@ namespace Domain.Tests.Entities
         {
             // Arrange
             var student = MockValidStudent();
-            var dispatchDate = DateTime.Now.AddDays(-1);
+            var dispatchDate = DateTime.UtcNow.AddDays(-1);
 
             // Act
             student.DispatchDate = dispatchDate;
@@ -155,7 +203,7 @@ namespace Domain.Tests.Entities
             var student = MockValidStudent();
 
             // Act & Assert
-            Assert.Throws<EntityExceptionValidation>(() => student.DispatchDate = DateTime.Now.AddDays(1));
+            Assert.Throws<EntityExceptionValidation>(() => student.DispatchDate = DateTime.UtcNow.AddDays(1));
         }
 
         [Fact]

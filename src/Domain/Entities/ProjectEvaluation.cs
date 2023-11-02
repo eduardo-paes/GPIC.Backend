@@ -1,12 +1,11 @@
 using Domain.Entities.Enums;
+using Domain.Entities.Primitives;
 using Domain.Validation;
 
 namespace Domain.Entities
 {
-    public class ProjectEvaluation
+    public class ProjectEvaluation : Entity
     {
-        public Guid? Id { get; protected set; }
-
         #region Properties
         #region Informações Gerais da Avaliação
         private Guid? _projectId;
@@ -16,7 +15,7 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(value is null,
-                    ExceptionMessageFactory.Required(nameof(IsProductivityFellow)));
+                    ExceptionMessageFactory.Required(nameof(ProjectId)));
                 _projectId = value;
             }
         }
@@ -90,7 +89,7 @@ namespace Domain.Entities
             get => _submissionEvaluationDescription;
             set
             {
-                EntityExceptionValidation.When(value is null,
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
                     ExceptionMessageFactory.Required(nameof(SubmissionEvaluationDescription)));
                 _submissionEvaluationDescription = value;
             }
@@ -104,7 +103,12 @@ namespace Domain.Entities
         /// <summary>
         /// Data da avaliação do recurso.
         /// </summary>
-        public DateTime? AppealEvaluationDate { get; set; }
+        private DateTime? _appealEvaluationDate;
+        public DateTime? AppealEvaluationDate
+        {
+            get { return _appealEvaluationDate; }
+            set { _appealEvaluationDate = value; }
+        }
 
         /// <summary>
         /// Status da avaliação do recurso.
@@ -124,208 +128,113 @@ namespace Domain.Entities
         /// <summary>
         /// Data da avaliação da documentação do projeto.
         /// </summary>
-        public DateTime? DocumentsEvaluationDate { get; set; }
+        private DateTime? _documentsEvaluationDate;
+        public DateTime? DocumentsEvaluationDate
+        {
+            get { return _documentsEvaluationDate; }
+            set { _documentsEvaluationDate = value; }
+        }
 
         /// <summary>
         /// Nota da avaliação da documentação do projeto.
         /// </summary>
         public string? DocumentsEvaluationDescription { get; set; }
 
-        public virtual Project? Project { get; }
+        public virtual Project? Project { get; set; }
         public virtual User? SubmissionEvaluator { get; }
         public virtual User? AppealEvaluator { get; }
         public virtual User? DocumentsEvaluator { get; }
         #endregion Informações Gerais da Avaliação
 
-        #region (Resultados) Produção Científica - Trabalhos Publicados
-        public int? FoundWorkType1
-        {
-            get => FoundWorkType1;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundWorkType1)));
-        }
-
-        public int? FoundWorkType2
-        {
-            get => FoundWorkType2;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundWorkType2)));
-        }
-
-        public int? FoundIndexedConferenceProceedings
-        {
-            get => FoundIndexedConferenceProceedings;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundIndexedConferenceProceedings)));
-        }
-
-        public int? FoundNotIndexedConferenceProceedings
-        {
-            get => FoundNotIndexedConferenceProceedings;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundNotIndexedConferenceProceedings)));
-        }
-
-        public int? FoundCompletedBook
-        {
-            get => FoundCompletedBook;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundCompletedBook)));
-        }
-
-        public int? FoundOrganizedBook
-        {
-            get => FoundOrganizedBook;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundOrganizedBook)));
-        }
-
-        public int? FoundBookChapters
-        {
-            get => FoundBookChapters;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundBookChapters)));
-        }
-
-        public int? FoundBookTranslations
-        {
-            get => FoundBookTranslations;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundBookTranslations)));
-        }
-
-        public int? FoundParticipationEditorialCommittees
-        {
-            get => FoundParticipationEditorialCommittees;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundParticipationEditorialCommittees)));
-        }
-        #endregion
-
-        #region (Resultados) Produção Artístca e Cultural - Produção Apresentada
-        public int? FoundFullComposerSoloOrchestraAllTracks
-        {
-            get => FoundFullComposerSoloOrchestraAllTracks;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundFullComposerSoloOrchestraAllTracks)));
-        }
-
-        public int? FoundFullComposerSoloOrchestraCompilation
-        {
-            get => FoundFullComposerSoloOrchestraCompilation;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundFullComposerSoloOrchestraCompilation)));
-        }
-
-        public int? FoundChamberOrchestraInterpretation
-        {
-            get => FoundChamberOrchestraInterpretation;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundChamberOrchestraInterpretation)));
-        }
-
-        public int? FoundIndividualAndCollectiveArtPerformances
-        {
-            get => FoundIndividualAndCollectiveArtPerformances;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundIndividualAndCollectiveArtPerformances)));
-        }
-
-        public int? FoundScientificCulturalArtisticCollectionsCuratorship
-        {
-            get => FoundScientificCulturalArtisticCollectionsCuratorship;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundScientificCulturalArtisticCollectionsCuratorship)));
-        }
-        #endregion
-
-        #region (Resultados) Produção Técnica - Produtos Registrados
-        public int? FoundPatentLetter
-        {
-            get => FoundPatentLetter;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundPatentLetter)));
-        }
-
-        public int? FoundPatentDeposit
-        {
-            get => FoundPatentDeposit;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundPatentDeposit)));
-        }
-
-        public int? FoundSoftwareRegistration
-        {
-            get => FoundSoftwareRegistration;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(FoundSoftwareRegistration)));
-        }
-        #endregion
-
         #region Critérios de Avaliação
         /// <summary>
         /// Pontuação Total (Índice AP).
         /// </summary>
-        public int? APIndex
-        {
-            get => APIndex;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(APIndex)));
-        }
+        public double APIndex { get; set; }
+
+        /// <summary>
+        /// Pontuação Total Final.
+        /// </summary>
+        public double FinalScore { get; set; }
 
         /// <summary>
         /// Titulação do Orientador.
         /// Doutor (2); Mestre (1).
         /// </summary>
+        private EQualification? _qualification;
         public EQualification? Qualification
         {
-            get => Qualification;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(Qualification)));
+            get => _qualification;
+            set
+            {
+                EntityExceptionValidation.When(value is null,
+                    ExceptionMessageFactory.Required(nameof(Qualification)));
+                _qualification = value;
+            }
         }
 
         /// <summary>
         /// Foco e clareza quanto aos objetivos da proposta de projeto a ser desenvolvido pelo aluno.
         /// Excelente (4); Bom (3); Regular (2); Fraco (1).
         /// </summary>
+        private EScore? _projectProposalObjectives;
         public EScore? ProjectProposalObjectives
         {
-            get => ProjectProposalObjectives;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(ProjectProposalObjectives)));
+            get => _projectProposalObjectives;
+            set
+            {
+                EntityExceptionValidation.When(value is null,
+                    ExceptionMessageFactory.Required(nameof(ProjectProposalObjectives)));
+                _projectProposalObjectives = value;
+            }
         }
 
         /// <summary>
         /// Coerência entre a produção acadêmico-científica do orientador e a proposta de projeto.
         /// Excelente (4); Bom (3); Regular (2); Fraco (1).
         /// </summary>
+        private EScore? _academicScientificProductionCoherence;
         public EScore? AcademicScientificProductionCoherence
         {
-            get => AcademicScientificProductionCoherence;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(AcademicScientificProductionCoherence)));
+            get => _academicScientificProductionCoherence;
+            set
+            {
+                EntityExceptionValidation.When(value is null,
+                    ExceptionMessageFactory.Required(nameof(AcademicScientificProductionCoherence)));
+                _academicScientificProductionCoherence = value;
+            }
         }
 
         /// <summary>
         /// Adequação da metodologia da proposta aos objetivos e ao cronograma de execução.
         /// Excelente (4); Bom (3); Regular (2); Fraco (1).
         /// </summary>
+        private EScore? _proposalMethodologyAdaptation;
         public EScore? ProposalMethodologyAdaptation
         {
-            get => ProposalMethodologyAdaptation;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(ProposalMethodologyAdaptation)));
+            get => _proposalMethodologyAdaptation;
+            set
+            {
+                EntityExceptionValidation.When(value is null,
+                    ExceptionMessageFactory.Required(nameof(ProposalMethodologyAdaptation)));
+                _proposalMethodologyAdaptation = value;
+            }
         }
 
         /// <summary>
         /// Contribuição efetiva da proposta de projeto para formação em pesquisa do aluno.
         /// Excelente (4); Bom (3); Regular (2); Fraco (1).
         /// </summary>
+        private EScore? _effectiveContributionToResearch;
         public EScore? EffectiveContributionToResearch
         {
-            get => EffectiveContributionToResearch;
-            set => EntityExceptionValidation.When(value is null,
-                ExceptionMessageFactory.Required(nameof(EffectiveContributionToResearch)));
+            get => _effectiveContributionToResearch;
+            set
+            {
+                EntityExceptionValidation.When(value is null,
+                    ExceptionMessageFactory.Required(nameof(EffectiveContributionToResearch)));
+                _effectiveContributionToResearch = value;
+            }
         }
         #endregion
         #endregion
@@ -334,7 +243,53 @@ namespace Domain.Entities
         /// <summary>
         /// Constructor to dbcontext EF instancing.
         /// </summary>
-        public ProjectEvaluation() { }
+        protected ProjectEvaluation() { }
+
+        public ProjectEvaluation(Guid? projectId,
+            bool? isProductivityFellow,
+            Guid? submissionEvaluatorId,
+            EProjectStatus? submissionEvaluationStatus,
+            DateTime? submissionEvaluationDate,
+            string? submissionEvaluationDescription,
+            EQualification? qualification,
+            EScore? projectProposalObjectives,
+            EScore? academicScientificProductionCoherence,
+            EScore? proposalMethodologyAdaptation,
+            EScore? effectiveContributionToResearch,
+            double apIndex)
+        {
+            ProjectId = projectId;
+            IsProductivityFellow = isProductivityFellow;
+            SubmissionEvaluatorId = submissionEvaluatorId;
+            SubmissionEvaluationStatus = submissionEvaluationStatus;
+            SubmissionEvaluationDate = submissionEvaluationDate;
+            Qualification = qualification;
+            ProjectProposalObjectives = projectProposalObjectives;
+            AcademicScientificProductionCoherence = academicScientificProductionCoherence;
+            ProposalMethodologyAdaptation = proposalMethodologyAdaptation;
+            EffectiveContributionToResearch = effectiveContributionToResearch;
+            APIndex = apIndex;
+
+            // Define a descrição da avaliação da submissão.
+            SubmissionEvaluationDescription = submissionEvaluationStatus == EProjectStatus.Accepted
+                ? EProjectStatus.Accepted.GetDescription()
+                : submissionEvaluationDescription;
+        }
+        #endregion
+
+        #region Methods
+        /// <summary>
+        /// Calcula a pontuação final do projeto considerando todos os critérios.
+        /// </summary>
+        public void CalculateFinalScore()
+        {
+            FinalScore = (double)Qualification!
+                + (double)ProjectProposalObjectives!
+                + (double)AcademicScientificProductionCoherence!
+                + (double)ProposalMethodologyAdaptation!
+                + (double)EffectiveContributionToResearch!
+                + APIndex;
+        }
         #endregion
     }
 }

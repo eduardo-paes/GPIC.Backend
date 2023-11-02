@@ -2,7 +2,7 @@ using Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 
-namespace Infrastructure.Services
+namespace Services
 {
     public class StorageFileService : IStorageFileService
     {
@@ -21,21 +21,26 @@ namespace Infrastructure.Services
                 ?? throw new Exception("O diretório de armazenamento de arquivos não foi configurado.");
 
             // Verifica se as extensões de arquivos permitidas foram configuradas
-            var allowedExtensions = configuration.GetSection("StorageFile:AllowedExtensions")
+            IConfigurationSection allowedExtensions = configuration.GetSection("StorageFile:AllowedExtensions")
                 ?? throw new Exception("As extensões de arquivos permitidas não foram configuradas.");
             _allowedExtensions = allowedExtensions.GetChildren().Select(x => x.Value).ToArray();
 
             // Verifica se o tamanho máximo de arquivo foi configurado
-            if (long.TryParse(configuration["StorageFile:MaxFileSizeInBytes"], out long maxFileSizeInBytes))
-                _maxFileSizeInBytes = maxFileSizeInBytes;
-            else
-                throw new Exception("O tamanho máximo de arquivo não foi configurado.");
+            _maxFileSizeInBytes = long.TryParse(configuration["StorageFile:MaxFileSizeInBytes"], out long maxFileSizeInBytes)
+                ? maxFileSizeInBytes
+                : throw new Exception("O tamanho máximo de arquivo não foi configurado.");
 
             // Verifica se o diretório de armazenamento de arquivos dos editais foi configurado
             _folder = configuration["StorageFile:Folder"]
                 ?? throw new Exception("O diretório de armazenamento de arquivos não foi configurado.");
+
+            // Cria diretório de arquivos caso não exista
+            if (!Directory.Exists(_directory))
+            {
+                _ = Directory.CreateDirectory(_directory);
+            }
         }
-        #endregion
+        #endregion Global Scope
 
         #region Public Methods
         public async Task<string> UploadFileAsync(IFormFile file, string? filePath = null)
@@ -44,19 +49,24 @@ namespace Infrastructure.Services
             filePath = await GenerateFilePath(file, _folder, filePath, true);
 
             // Salva o arquivo
-            using (var stream = new FileStream(filePath, FileMode.Create))
+            using (FileStream stream = new(filePath, FileMode.Create))
+            {
                 await file.CopyToAsync(stream);
+            }
 
             // Retorna o caminho do arquivo
             return filePath;
         }
 
-        public async Task DeleteFile(string filePath)
+        public async Task DeleteFileAsync(string filePath)
         {
             try
             {
                 if (File.Exists(filePath))
+                {
                     File.Delete(filePath);
+                }
+
                 await Task.CompletedTask;
             }
             catch (Exception ex)
@@ -64,19 +74,68 @@ namespace Infrastructure.Services
                 throw new Exception($"O arquivo {filePath} não pode ser excluído.", ex);
             }
         }
-        #endregion
 
-        #region Private Methods
-        private async Task<string> GenerateFilePath(IFormFile file, string custom_directory, string? filePath = null, bool onlyPdf = false)
+        public async Task<string> UploadFileAsync(byte[] file, string? filePath)
         {
+            // Verifica se caminho do arquivo é vazio
+            // FilePath representa aqui o caminho completo do arquivo ou o nome do arquivo
+            // Por exemplo: C:\Users\user\Documents\file.pdf ou file.pdf
+            if (string.IsNullOrEmpty(filePath))
+            {
+                throw new Exception("O caminho do arquivo não pode ser vazio.");
+            }
+
             // Verifica se a extensão do arquivo é permitida
-            var extension = Path.GetExtension(file.FileName);
-            if ((onlyPdf && extension != ".pdf") || (!_allowedExtensions.Contains(extension)))
+            string extension = Path.GetExtension(filePath);
+            if (!_allowedExtensions.Contains(extension))
+            {
                 throw new Exception($"A extensão {extension} do arquivo não é permitida.");
+            }
 
             // Verifica o tamanho do arquivo
             if (file.Length > _maxFileSizeInBytes)
+            {
                 throw new Exception($"O tamanho do arquivo excede o máximo de {_maxFileSizeInBytes} bytes.");
+            }
+
+            // Gera um nome único para o arquivo
+            string fileName = $"{Guid.NewGuid()}{Path.GetExtension(filePath)}";
+
+            // Cria o diretório caso não exista
+            string dirPath = Path.Combine(_directory, _folder);
+            if (!Directory.Exists(dirPath))
+            {
+                _ = Directory.CreateDirectory(dirPath);
+            }
+
+            // Gera o caminho do arquivo
+            filePath = Path.Combine(dirPath, fileName);
+
+            // Salva o arquivo
+            using (FileStream stream = new(filePath, FileMode.Create))
+            {
+                await stream.WriteAsync(file);
+            }
+
+            return filePath;
+        }
+        #endregion Public Methods
+
+        #region Private Methods
+        private async Task<string> GenerateFilePath(IFormFile file, string customDirectory, string? filePath = null, bool onlyPdf = false)
+        {
+            // Verifica se a extensão do arquivo é permitida
+            string extension = Path.GetExtension(file.FileName);
+            if ((onlyPdf && extension != ".pdf") || !_allowedExtensions.Contains(extension))
+            {
+                throw new Exception($"A extensão {extension} do arquivo não é permitida.");
+            }
+
+            // Verifica o tamanho do arquivo
+            if (file.Length > _maxFileSizeInBytes)
+            {
+                throw new Exception($"O tamanho do arquivo excede o máximo de {_maxFileSizeInBytes} bytes.");
+            }
 
             // Gera um nome único para o arquivo
             string fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
@@ -85,9 +144,11 @@ namespace Infrastructure.Services
             if (string.IsNullOrEmpty(filePath))
             {
                 // Cria o diretório caso não exista
-                string dirPath = Path.Combine(_directory, custom_directory);
+                string dirPath = Path.Combine(_directory, customDirectory);
                 if (!Directory.Exists(dirPath))
-                    Directory.CreateDirectory(dirPath);
+                {
+                    _ = Directory.CreateDirectory(dirPath);
+                }
 
                 // Gera o caminho do arquivo
                 filePath = Path.Combine(dirPath, fileName);
@@ -95,7 +156,7 @@ namespace Infrastructure.Services
             // Deleta o arquivo se o caminho do arquivo for informado
             else
             {
-                await DeleteFile(filePath);
+                await DeleteFileAsync(filePath);
             }
             return filePath;
         }
@@ -103,14 +164,14 @@ namespace Infrastructure.Services
         private static IConfiguration InitializeConfigs()
         {
             // Adicione o caminho base para o arquivo appsettings.json
-            var basePath = Path.GetDirectoryName(typeof(StorageFileService).Assembly.Location);
-            var configurationBuilder = new ConfigurationBuilder()
+            string? basePath = Path.GetDirectoryName(typeof(StorageFileService).Assembly.Location);
+            IConfigurationBuilder configurationBuilder = new ConfigurationBuilder()
                 .SetBasePath(basePath!)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
             // Use a configuração criada acima para ler as configurações do appsettings.json
             return configurationBuilder.Build();
         }
-        #endregion
+        #endregion Private Methods
     }
 }

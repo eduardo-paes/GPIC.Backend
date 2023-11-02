@@ -2,99 +2,158 @@ using Domain.Entities;
 using Domain.Entities.Enums;
 using Domain.Validation;
 using FluentAssertions;
-using System;
 using Xunit;
 
 namespace Domain.Tests.Entities
 {
     public class ProjectEvaluationUnitTests
     {
-        private ProjectEvaluation MockValidProjectEvaluation()
+        private static ProjectEvaluation MockValidProjectEvaluation() =>
+            new(
+                Guid.NewGuid(),
+                true,
+                Guid.NewGuid(),
+                EProjectStatus.Accepted,
+                DateTime.UtcNow,
+                "Valid Submission Evaluation Description",
+                EQualification.Doctor,
+                EScore.Excellent,
+                EScore.Excellent,
+                EScore.Excellent,
+                EScore.Excellent,
+                10.0);
+
+        [Fact]
+        public void Constructor_WithValidArguments_CreatesProjectEvaluationWithCorrectValues()
         {
-            return new ProjectEvaluation
-            {
-                ProjectId = Guid.NewGuid(),
-                IsProductivityFellow = true,
-                SubmissionEvaluatorId = Guid.NewGuid(),
-                SubmissionEvaluationDate = DateTime.Now,
-                SubmissionEvaluationStatus = EProjectStatus.Pending,
-                SubmissionEvaluationDescription = "Submission evaluation description",
-                AppealEvaluatorId = Guid.NewGuid(),
-                AppealEvaluationDate = DateTime.Now,
-                AppealEvaluationStatus = EProjectStatus.Accepted,
-                AppealEvaluationDescription = "Appeal evaluation description",
-                DocumentsEvaluatorId = Guid.NewGuid(),
-                DocumentsEvaluationDate = DateTime.Now,
-                DocumentsEvaluationDescription = "Documents evaluation description",
-                FoundWorkType1 = 1,
-                FoundWorkType2 = 2,
-                FoundIndexedConferenceProceedings = 3,
-                FoundNotIndexedConferenceProceedings = 4,
-                FoundCompletedBook = 5,
-                FoundOrganizedBook = 6,
-                FoundBookChapters = 7,
-                FoundBookTranslations = 8,
-                FoundParticipationEditorialCommittees = 9,
-                FoundFullComposerSoloOrchestraAllTracks = 10,
-                FoundFullComposerSoloOrchestraCompilation = 11,
-                FoundChamberOrchestraInterpretation = 12,
-                FoundIndividualAndCollectiveArtPerformances = 13,
-                FoundScientificCulturalArtisticCollectionsCuratorship = 14,
-                FoundPatentLetter = 15,
-                FoundPatentDeposit = 16,
-                FoundSoftwareRegistration = 17,
-                APIndex = 18,
-                Qualification = EQualification.Master,
-                ProjectProposalObjectives = EScore.Good,
-                AcademicScientificProductionCoherence = EScore.Excellent,
-                ProposalMethodologyAdaptation = EScore.Regular,
-                EffectiveContributionToResearch = EScore.Weak
-            };
+            // Arrange
+            var projectId = Guid.NewGuid();
+            var isProductivityFellow = true;
+            var submissionEvaluatorId = Guid.NewGuid();
+            var submissionEvaluationStatus = EProjectStatus.Rejected;
+            var submissionEvaluationDate = DateTime.UtcNow;
+            var submissionEvaluationDescription = "Valid Submission Evaluation Description";
+            var qualification = EQualification.Doctor;
+            var projectProposalObjectives = EScore.Excellent;
+            var academicScientificProductionCoherence = EScore.Excellent;
+            var proposalMethodologyAdaptation = EScore.Excellent;
+            var effectiveContributionToResearch = EScore.Excellent;
+            var apIndex = 10.0;
+
+            // Act
+            var projectEvaluation = new ProjectEvaluation(
+                projectId,
+                isProductivityFellow,
+                submissionEvaluatorId,
+                submissionEvaluationStatus,
+                submissionEvaluationDate,
+                submissionEvaluationDescription,
+                qualification,
+                projectProposalObjectives,
+                academicScientificProductionCoherence,
+                proposalMethodologyAdaptation,
+                effectiveContributionToResearch,
+                apIndex);
+
+            // Assert
+            projectEvaluation.ProjectId.Should().Be(projectId);
+            projectEvaluation.IsProductivityFellow.Should().Be(isProductivityFellow);
+            projectEvaluation.SubmissionEvaluatorId.Should().Be(submissionEvaluatorId);
+            projectEvaluation.SubmissionEvaluationStatus.Should().Be(submissionEvaluationStatus);
+            projectEvaluation.SubmissionEvaluationDate.Should().Be(submissionEvaluationDate);
+            projectEvaluation.SubmissionEvaluationDescription.Should().Be(submissionEvaluationDescription);
+            projectEvaluation.Qualification.Should().Be(qualification);
+            projectEvaluation.ProjectProposalObjectives.Should().Be(projectProposalObjectives);
+            projectEvaluation.AcademicScientificProductionCoherence.Should().Be(academicScientificProductionCoherence);
+            projectEvaluation.ProposalMethodologyAdaptation.Should().Be(proposalMethodologyAdaptation);
+            projectEvaluation.EffectiveContributionToResearch.Should().Be(effectiveContributionToResearch);
+            projectEvaluation.APIndex.Should().Be(apIndex);
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void Constructor_WithInvalidSubmissionEvaluationDescription_ThrowsException(string invalidDescription)
+        {
+            // Arrange
+            var projectId = Guid.NewGuid();
+            var isProductivityFellow = true;
+            var submissionEvaluatorId = Guid.NewGuid();
+            var submissionEvaluationStatus = EProjectStatus.Rejected;
+            var submissionEvaluationDate = DateTime.UtcNow;
+            var qualification = EQualification.Doctor;
+            var projectProposalObjectives = EScore.Excellent;
+            var academicScientificProductionCoherence = EScore.Excellent;
+            var proposalMethodologyAdaptation = EScore.Excellent;
+            var effectiveContributionToResearch = EScore.Excellent;
+            var apIndex = 10.0;
+
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => new ProjectEvaluation(
+                projectId,
+                isProductivityFellow,
+                submissionEvaluatorId,
+                submissionEvaluationStatus,
+                submissionEvaluationDate,
+                invalidDescription,
+                qualification,
+                projectProposalObjectives,
+                academicScientificProductionCoherence,
+                proposalMethodologyAdaptation,
+                effectiveContributionToResearch,
+                apIndex));
         }
 
         [Fact]
-        public void TestAllProperties()
+        public void Constructor_WithNullQualification_ThrowsException()
+        {
+            // Arrange
+            var projectId = Guid.NewGuid();
+            var isProductivityFellow = true;
+            var submissionEvaluatorId = Guid.NewGuid();
+            var submissionEvaluationStatus = EProjectStatus.Accepted;
+            var submissionEvaluationDate = DateTime.UtcNow;
+            var submissionEvaluationDescription = "Valid Submission Evaluation Description";
+            EQualification? qualification = null;
+            var projectProposalObjectives = EScore.Excellent;
+            var academicScientificProductionCoherence = EScore.Excellent;
+            var proposalMethodologyAdaptation = EScore.Excellent;
+            var effectiveContributionToResearch = EScore.Excellent;
+            var apIndex = 10.0;
+
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => new ProjectEvaluation(
+                projectId,
+                isProductivityFellow,
+                submissionEvaluatorId,
+                submissionEvaluationStatus,
+                submissionEvaluationDate,
+                submissionEvaluationDescription,
+                qualification,
+                projectProposalObjectives,
+                academicScientificProductionCoherence,
+                proposalMethodologyAdaptation,
+                effectiveContributionToResearch,
+                apIndex));
+        }
+
+        [Fact]
+        public void CalculateFinalScore_WithValidScores_SetsFinalScore()
         {
             // Arrange
             var projectEvaluation = MockValidProjectEvaluation();
+            projectEvaluation.Qualification = EQualification.Doctor;
+            projectEvaluation.ProjectProposalObjectives = EScore.Excellent;
+            projectEvaluation.AcademicScientificProductionCoherence = EScore.Good;
+            projectEvaluation.ProposalMethodologyAdaptation = EScore.Regular;
+            projectEvaluation.EffectiveContributionToResearch = EScore.Weak;
+            projectEvaluation.APIndex = 8.0;
 
-            // Act & Assert
-            AssertValidation(() => projectEvaluation.ProjectId = null);
-            AssertValidation(() => projectEvaluation.IsProductivityFellow = null);
-            AssertValidation(() => projectEvaluation.SubmissionEvaluatorId = null);
-            AssertValidation(() => projectEvaluation.SubmissionEvaluationDate = null);
-            AssertValidation(() => projectEvaluation.SubmissionEvaluationStatus = null);
-            AssertValidation(() => projectEvaluation.SubmissionEvaluationDescription = null);
-            // AssertValidation(() => projectEvaluation.AppealEvaluatorId = null);
-            // AssertValidation(() => projectEvaluation.AppealEvaluationDate = null);
-            // AssertValidation(() => projectEvaluation.AppealEvaluationStatus = null);
-            // AssertValidation(() => projectEvaluation.AppealEvaluationDescription = null);
-            // AssertValidation(() => projectEvaluation.DocumentsEvaluatorId = null);
-            // AssertValidation(() => projectEvaluation.DocumentsEvaluationDate = null);
-            // AssertValidation(() => projectEvaluation.DocumentsEvaluationDescription = null);
-            AssertValidation(() => projectEvaluation.FoundWorkType1 = null);
-            AssertValidation(() => projectEvaluation.FoundWorkType2 = null);
-            AssertValidation(() => projectEvaluation.FoundIndexedConferenceProceedings = null);
-            AssertValidation(() => projectEvaluation.FoundNotIndexedConferenceProceedings = null);
-            AssertValidation(() => projectEvaluation.FoundCompletedBook = null);
-            AssertValidation(() => projectEvaluation.FoundOrganizedBook = null);
-            AssertValidation(() => projectEvaluation.FoundBookChapters = null);
-            AssertValidation(() => projectEvaluation.FoundBookTranslations = null);
-            AssertValidation(() => projectEvaluation.FoundParticipationEditorialCommittees = null);
-            AssertValidation(() => projectEvaluation.FoundFullComposerSoloOrchestraAllTracks = null);
-            AssertValidation(() => projectEvaluation.FoundFullComposerSoloOrchestraCompilation = null);
-            AssertValidation(() => projectEvaluation.FoundChamberOrchestraInterpretation = null);
-            AssertValidation(() => projectEvaluation.FoundIndividualAndCollectiveArtPerformances = null);
-            AssertValidation(() => projectEvaluation.FoundScientificCulturalArtisticCollectionsCuratorship = null);
-            AssertValidation(() => projectEvaluation.FoundPatentLetter = null);
-            AssertValidation(() => projectEvaluation.FoundPatentDeposit = null);
-            AssertValidation(() => projectEvaluation.FoundSoftwareRegistration = null);
-            AssertValidation(() => projectEvaluation.APIndex = null);
-            AssertValidation(() => projectEvaluation.Qualification = null);
-            AssertValidation(() => projectEvaluation.ProjectProposalObjectives = null);
-            AssertValidation(() => projectEvaluation.AcademicScientificProductionCoherence = null);
-            AssertValidation(() => projectEvaluation.ProposalMethodologyAdaptation = null);
-            AssertValidation(() => projectEvaluation.EffectiveContributionToResearch = null);
+            // Act
+            projectEvaluation.CalculateFinalScore();
+
+            // Assert
+            projectEvaluation.FinalScore.Should().BeApproximately(20.0, 0.001);
         }
 
         [Fact]
@@ -174,13 +233,13 @@ namespace Domain.Tests.Entities
         {
             // Arrange
             var projectEvaluation = MockValidProjectEvaluation();
-            var submissionEvaluationDate = DateTime.UtcNow;
+            var evaluationDate = DateTime.Now;
 
             // Act
-            projectEvaluation.SubmissionEvaluationDate = submissionEvaluationDate;
+            projectEvaluation.SubmissionEvaluationDate = evaluationDate;
 
             // Assert
-            projectEvaluation.SubmissionEvaluationDate.Should().Be(submissionEvaluationDate);
+            projectEvaluation.SubmissionEvaluationDate.Should().Be(evaluationDate);
         }
 
         [Fact]
@@ -198,13 +257,13 @@ namespace Domain.Tests.Entities
         {
             // Arrange
             var projectEvaluation = MockValidProjectEvaluation();
-            var submissionEvaluationStatus = EProjectStatus.Accepted;
+            var evaluationStatus = EProjectStatus.Accepted;
 
             // Act
-            projectEvaluation.SubmissionEvaluationStatus = submissionEvaluationStatus;
+            projectEvaluation.SubmissionEvaluationStatus = evaluationStatus;
 
             // Assert
-            projectEvaluation.SubmissionEvaluationStatus.Should().Be(submissionEvaluationStatus);
+            projectEvaluation.SubmissionEvaluationStatus.Should().Be(evaluationStatus);
         }
 
         [Fact]
@@ -222,13 +281,13 @@ namespace Domain.Tests.Entities
         {
             // Arrange
             var projectEvaluation = MockValidProjectEvaluation();
-            var submissionEvaluationDescription = "This is a valid description.";
+            var description = "Accepted";
 
             // Act
-            projectEvaluation.SubmissionEvaluationDescription = submissionEvaluationDescription;
+            projectEvaluation.SubmissionEvaluationDescription = description;
 
             // Assert
-            projectEvaluation.SubmissionEvaluationDescription.Should().Be(submissionEvaluationDescription);
+            projectEvaluation.SubmissionEvaluationDescription.Should().Be(description);
         }
 
         [Fact]
@@ -241,9 +300,60 @@ namespace Domain.Tests.Entities
             Assert.Throws<EntityExceptionValidation>(() => projectEvaluation.SubmissionEvaluationDescription = null);
         }
 
-        private void AssertValidation(Action action)
+        [Fact]
+        public void SetAppealEvaluatorId_ValidId_SetsAppealEvaluatorId()
         {
-            Assert.Throws<EntityExceptionValidation>(action);
+            // Arrange
+            var projectEvaluation = MockValidProjectEvaluation();
+            var appealEvaluatorId = Guid.NewGuid();
+
+            // Act
+            projectEvaluation.AppealEvaluatorId = appealEvaluatorId;
+
+            // Assert
+            projectEvaluation.AppealEvaluatorId.Should().Be(appealEvaluatorId);
+        }
+
+        [Fact]
+        public void SetAppealEvaluationDate_ValidDate_SetsAppealEvaluationDate()
+        {
+            // Arrange
+            var projectEvaluation = MockValidProjectEvaluation();
+            var evaluationDate = DateTime.Now;
+
+            // Act
+            projectEvaluation.AppealEvaluationDate = evaluationDate;
+
+            // Assert
+            projectEvaluation.AppealEvaluationDate.Should().Be(evaluationDate);
+        }
+
+        [Fact]
+        public void SetAppealEvaluationStatus_ValidStatus_SetsAppealEvaluationStatus()
+        {
+            // Arrange
+            var projectEvaluation = MockValidProjectEvaluation();
+            var evaluationStatus = EProjectStatus.Rejected;
+
+            // Act
+            projectEvaluation.AppealEvaluationStatus = evaluationStatus;
+
+            // Assert
+            projectEvaluation.AppealEvaluationStatus.Should().Be(evaluationStatus);
+        }
+
+        [Fact]
+        public void SetAppealEvaluationDescription_ValidDescription_SetsAppealEvaluationDescription()
+        {
+            // Arrange
+            var projectEvaluation = MockValidProjectEvaluation();
+            var description = "Rejected due to insufficient details.";
+
+            // Act
+            projectEvaluation.AppealEvaluationDescription = description;
+
+            // Assert
+            projectEvaluation.AppealEvaluationDescription.Should().Be(description);
         }
     }
 }

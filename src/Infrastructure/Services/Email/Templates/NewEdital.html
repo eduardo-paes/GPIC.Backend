@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
+    <title>Novo Edital Disponível</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        color: #444444;
+      }
+      .container {
+        max-width: 37.5rem;
+        margin: 0 auto;
+        padding: 1.25rem;
+        background-color: #ffffff;
+        border-radius: 0.75rem;
+        box-shadow: 0 2px 0.75rem rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1.25rem;
+        color: #444444;
+        text-align: center;
+      }
+      p {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 1.25rem;
+      }
+      .signature {
+        font-size: 0.85rem;
+        text-align: center;
+        margin-top: 1.25rem;
+      }
+      .details {
+        font-size: 0.75rem;
+        margin: 0;
+      }
+      .link-button {
+        display: flex;
+        justify-content: center;
+      }
+      .button {
+        background-color: #ccc;
+        color: white;
+        display: flex;
+        text-decoration: none;
+        justify-content: center;
+        align-content: center;
+        padding: 1rem 1rem 0.3rem 1rem;
+        border-radius: 0.5rem;
+        width: 8rem;
+        height: 2rem;
+      }
+      .button:hover {
+        background-color: #aaa;
+        transition: ease-in-out 0.2s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Novo Edital Disponível</h1>
+      <p>Olá <strong>#PROFESSOR_NAME#</strong>,</p>
+      <p>Informamos que um novo edital está disponível em nossa plataforma.</p>
+      <p>
+        O período para registrar seu projeto de pesquisa é de
+        <strong>#START_DATE#</strong> até <strong>#END_DATE#</strong>.
+      </p>
+      <p>
+        Para mais informações acesse a plataforma do GPIC ou consulte as
+        informações do Edital através do link abaixo.
+      </p>
+      <div class="link-button">
+        <a href="#NOTICE_URL#" class="button" target="_blank">Acessar Edital</a>
+      </div>
+
+      <br />
+      <div>Atenciosamente,</div>
+      <img src="data:image/svg+xml;base64,#LOGO_GPIC#" width="200px" />
+
+      <p class="signature">
+        Este e-mail foi enviado automaticamente. Por favor, não responda.
+        <span class="details">
+          <br />Gerenciador de Projetos de Iniciação Científica, CEFET
+        </span>
+      </p>
+    </div>
+  </body>
+</html>

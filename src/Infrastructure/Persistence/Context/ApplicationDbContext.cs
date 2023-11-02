@@ -15,34 +15,25 @@ namespace Infrastructure.Persistence.Context
         ///     <see href="https://aka.ms/efcore-docs-dbcontext-options">Using DbContextOptions</see> for more information and examples.
         /// </remarks>
         /// <param name="options">The options for this context.</param>
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-        {
-            Areas = Set<Area>();
-            AssistanceScholarships = Set<TypeAssistance>();
-            Campuses = Set<Campus>();
-            Courses = Set<Course>();
-            MainAreas = Set<MainArea>();
-            Notices = Set<Notice>();
-            Professors = Set<Professor>();
-            Projects = Set<Project>();
-            ProgramTypes = Set<ProgramType>();
-            TypeAssistances = Set<TypeAssistance>();
-            Students = Set<Student>();
-            SubAreas = Set<SubArea>();
-            Users = Set<User>();
-        }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public DbSet<Area> Areas { get; set; }
-        public DbSet<TypeAssistance> AssistanceScholarships { get; set; }
+        public DbSet<Activity> Activities { get; set; }
+        public DbSet<ActivityType> ActivityTypes { get; set; }
+        public DbSet<AssistanceType> AssistanceTypes { get; set; }
         public DbSet<Campus> Campuses { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<MainArea> MainAreas { get; set; }
         public DbSet<Notice> Notices { get; set; }
         public DbSet<Professor> Professors { get; set; }
         public DbSet<Project> Projects { get; set; }
+        public DbSet<ProjectActivity> ProjectActivities { get; set; }
+        public DbSet<ProjectEvaluation> ProjectEvaluations { get; set; }
+        public DbSet<ProjectFinalReport> ProjectFinalReports { get; set; }
+        public DbSet<ProjectPartialReport> ProjectPartialReports { get; set; }
         public DbSet<ProgramType> ProgramTypes { get; set; }
-        public DbSet<TypeAssistance> TypeAssistances { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<StudentDocuments> StudentDocuments { get; set; }
         public DbSet<SubArea> SubAreas { get; set; }
         public DbSet<User> Users { get; set; }
 
@@ -52,5 +43,7 @@ namespace Infrastructure.Persistence.Context
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseLazyLoadingProxies();
     }
 }

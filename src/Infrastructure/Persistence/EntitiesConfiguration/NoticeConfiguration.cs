@@ -11,14 +11,20 @@ namespace Infrastructure.Persistence.EntitiesConfiguration
             builder.ToTable("Notices");
             builder.HasKey(t => t.Id);
             builder.Property(p => p.Id).ValueGeneratedOnAdd();
-            builder.Property(p => p.StartDate).IsRequired();
-            builder.Property(p => p.FinalDate).IsRequired();
+            builder.Property(p => p.RegistrationStartDate).IsRequired();
+            builder.Property(p => p.RegistrationEndDate).IsRequired();
+            builder.Property(p => p.EvaluationStartDate).IsRequired();
+            builder.Property(p => p.EvaluationEndDate).IsRequired();
             builder.Property(p => p.AppealStartDate).IsRequired();
-            builder.Property(p => p.AppealFinalDate).IsRequired();
+            builder.Property(p => p.AppealEndDate).IsRequired();
+            builder.Property(p => p.SendingDocsStartDate).IsRequired();
+            builder.Property(p => p.SendingDocsEndDate).IsRequired();
+            builder.Property(p => p.PartialReportDeadline).IsRequired();
+            builder.Property(p => p.FinalReportDeadline).IsRequired();
             builder.Property(p => p.SuspensionYears).IsRequired();
-            builder.Property(p => p.SendingDocumentationDeadline).IsRequired();
-            builder.Property(p => p.Description).HasMaxLength(300);
             builder.Property(p => p.DocUrl).HasMaxLength(300);
+            builder.Property(p => p.Description).HasMaxLength(300);
+            builder.Property(p => p.CreatedAt).HasDefaultValueSql("now() at time zone 'utc'").IsRequired();
             builder.Property(p => p.DeletedAt);
 
             builder.HasQueryFilter(x => x.DeletedAt == null);

@@ -1,32 +1,49 @@
-using Adapters.Gateways.Course;
-using Adapters.Interfaces;
+using Application.Ports.Course;
+using Application.Interfaces.UseCases.Course;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Infrastructure.WebAPI.Controllers
+namespace WebAPI.Controllers
 {
     /// <summary>
     /// Controller de Curso.
     /// </summary>
     [ApiController]
-    [Route("Api/[controller]")]
+    [Route("api/v1/[controller]")]
     [Authorize]
     public class CourseController : ControllerBase
     {
         #region Global Scope
-        private readonly ICoursePresenterController _service;
+        private readonly IGetCourseById _getById;
+        private readonly IGetCourses _getAll;
+        private readonly ICreateCourse _create;
+        private readonly IUpdateCourse _update;
+        private readonly IDeleteCourse _delete;
         private readonly ILogger<CourseController> _logger;
         /// <summary>
         /// Construtor do Controller de Curso.
         /// </summary>
-        /// <param name="service"></param>
-        /// <param name="logger"></param>
-        public CourseController(ICoursePresenterController service, ILogger<CourseController> logger)
+        /// <param name="getById">Serviço de obtenção de curso pelo id.</param>
+        /// <param name="getAll">Serviço de obtenção de todos os cursos ativos.</param>
+        /// <param name="create">Serviço de criação de curso.</param>
+        /// <param name="update">Serviço de atualização de curso.</param>
+        /// <param name="delete">Serviço de remoção de curso.</param>
+        /// <param name="logger">Serviço de log.</param>
+        public CourseController(IGetCourseById getById,
+            IGetCourses getAll,
+            ICreateCourse create,
+            IUpdateCourse update,
+            IDeleteCourse delete,
+            ILogger<CourseController> logger)
         {
-            _service = service;
+            _getById = getById;
+            _getAll = getAll;
+            _create = create;
+            _update = update;
+            _delete = delete;
             _logger = logger;
         }
-        #endregion
+        #endregion Global Scope
 
         /// <summary>
         /// Busca curso pelo id.
@@ -34,27 +51,38 @@ namespace Infrastructure.WebAPI.Controllers
         /// <param></param>
         /// <returns>Curso correspondente</returns>
         /// <response code="200">Retorna curso correspondente</response>
+        /// <response code="400">Requisição incorreta.</response>
+        /// <response code="404">Curso não encontrado.</response>
+        /// <response code="401">Usuário não autorizado.</response>
         [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<DetailedReadCourseResponse>> GetById(Guid? id)
+        [AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadCourseOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
+        public async Task<ActionResult<DetailedReadCourseOutput>> GetById(Guid? id)
         {
             if (id == null)
             {
-                const string msg = "O id informado não pode ser nulo.";
-                _logger.LogWarning(msg);
-                return BadRequest(msg);
+                const string errorMessage = "O ID do curso não pode ser nulo.";
+                _logger.LogWarning(errorMessage);
+                return BadRequest(errorMessage);
             }
 
             try
             {
-                var model = await _service.GetById(id);
-                _logger.LogInformation("Curso encontrado para o id {id}.", id);
-                return Ok(model);
+                var course = await _getById.ExecuteAsync(id);
+                if (course == null)
+                {
+                    return NotFound("Nenhum registro encontrado.");
+                }
+                _logger.LogInformation("Curso encontrado para o ID {id}.", id);
+                return Ok(course);
             }
             catch (Exception ex)
             {
                 _logger.LogError("Ocorreu um erro: {ErrorMessage}", ex.Message);
-                return NotFound(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -65,18 +93,29 @@ namespace Infrastructure.WebAPI.Controllers
         /// <returns>Todas os cursos ativos</returns>
         /// <response code="200">Retorna todas os cursos ativos</response>
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<ResumedReadCourseResponse>>> GetAll(int skip = 0, int take = 50)
+        [AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ResumedReadCourseOutput>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        public async Task<ActionResult<IEnumerable<ResumedReadCourseOutput>>> GetAll(int skip = 0, int take = 50)
         {
-            var models = await _service.GetAll(skip, take);
-            if (models == null)
+            try
             {
-                const string msg = "Nenhum Curso encontrado.";
-                _logger.LogWarning(msg);
-                return NotFound(msg);
+                var courses = await _getAll.ExecuteAsync(skip, take);
+                if (courses == null || !courses.Any())
+                {
+                    const string errorMessage = "Nenhum curso encontrado.";
+                    _logger.LogWarning(errorMessage);
+                    return NotFound(errorMessage);
+                }
+                _logger.LogInformation("Cursos encontrados: {quantidade}", courses.Count());
+                return Ok(courses);
             }
-            _logger.LogInformation("Cursos encontrados: {quantidade}", models.Count());
-            return Ok(models);
+            catch (Exception ex)
+            {
+                _logger.LogError("Ocorreu um erro: {ErrorMessage}", ex.Message);
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
@@ -84,17 +123,21 @@ namespace Infrastructure.WebAPI.Controllers
         /// </summary>
         /// <param></param>
         /// <returns>Curso criado</returns>
-        /// <response code="200">Retorna curso criado</response>
+        /// <response code="201">Retorna curso criado</response>
+        /// <response code="400">Requisição incorreta.</response>
+        /// <response code="401">Usuário não autorizado.</response>
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(DetailedReadCourseOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadCourseResponse>> Create([FromBody] CreateCourseRequest request)
+        public async Task<ActionResult<DetailedReadCourseOutput>> Create([FromBody] CreateCourseInput request)
         {
             try
             {
-                var model = await _service.Create(request) as DetailedReadCourseResponse;
-                _logger.LogInformation("Curso criado: {id}", model?.Id);
-                return Ok(model);
+                var createdCourse = await _create.ExecuteAsync(request);
+                _logger.LogInformation("Curso criado: {id}", createdCourse?.Id);
+                return CreatedAtAction(nameof(GetById), new { id = createdCourse?.Id }, createdCourse);
             }
             catch (Exception ex)
             {
@@ -109,15 +152,31 @@ namespace Infrastructure.WebAPI.Controllers
         /// <param></param>
         /// <returns>Curso atualizado</returns>
         /// <response code="200">Retorna curso atualizado</response>
+        /// <response code="400">Requisição incorreta.</response>
+        /// <response code="401">Usuário não autorizado.</response>
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadCourseOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadCourseResponse>> Update(Guid? id, [FromBody] UpdateCourseRequest request)
+        public async Task<ActionResult<DetailedReadCourseOutput>> Update(Guid? id, [FromBody] UpdateCourseInput request)
         {
+            if (id == null)
+            {
+                const string errorMessage = "O ID do curso não pode ser nulo.";
+                _logger.LogWarning(errorMessage);
+                return BadRequest(errorMessage);
+            }
+
             try
             {
-                var model = await _service.Update(id, request) as DetailedReadCourseResponse;
-                _logger.LogInformation("Curso atualizado: {id}", model?.Id);
-                return Ok(model);
+                var updatedCourse = await _update.ExecuteAsync(id.Value, request);
+                if (updatedCourse == null)
+                {
+                    return NotFound("Nenhum registro encontrado.");
+                }
+                _logger.LogInformation("Curso atualizado: {id}", updatedCourse?.Id);
+                return Ok(updatedCourse);
             }
             catch (Exception ex)
             {
@@ -132,22 +191,31 @@ namespace Infrastructure.WebAPI.Controllers
         /// <param></param>
         /// <returns>Curso removido</returns>
         /// <response code="200">Retorna curso removido</response>
+        /// <response code="400">Requisição incorreta.</response>
+        /// <response code="401">Usuário não autorizado.</response>
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadCourseOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadCourseResponse>> Delete(Guid? id)
+        public async Task<ActionResult<DetailedReadCourseOutput>> Delete(Guid? id)
         {
             if (id == null)
             {
-                const string msg = "O id informado não pode ser nulo.";
-                _logger.LogWarning(msg);
-                return BadRequest(msg);
+                const string errorMessage = "O ID do curso não pode ser nulo.";
+                _logger.LogWarning(errorMessage);
+                return BadRequest(errorMessage);
             }
 
             try
             {
-                var model = await _service.Delete(id.Value) as DetailedReadCourseResponse;
-                _logger.LogInformation("Curso removido: {id}", model?.Id);
-                return Ok(model);
+                var deletedCourse = await _delete.ExecuteAsync(id.Value);
+                if (deletedCourse == null)
+                {
+                    return NotFound("Nenhum registro encontrado.");
+                }
+                _logger.LogInformation("Curso removido: {id}", deletedCourse?.Id);
+                return Ok(deletedCourse);
             }
             catch (Exception ex)
             {

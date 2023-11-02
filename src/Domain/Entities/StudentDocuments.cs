@@ -13,7 +13,7 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(value is null,
-                    ExceptionMessageFactory.Required(nameof(_projectId)));
+                    ExceptionMessageFactory.Required(nameof(ProjectId)));
                 _projectId = value;
             }
         }
@@ -28,8 +28,8 @@ namespace Domain.Entities
             get => _identityDocument;
             set
             {
-                EntityExceptionValidation.When(value is null,
-                    ExceptionMessageFactory.Required(nameof(_identityDocument)));
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
+                    ExceptionMessageFactory.Required(nameof(IdentityDocument)));
                 _identityDocument = value;
             }
         }
@@ -43,8 +43,8 @@ namespace Domain.Entities
             get => _cpf;
             set
             {
-                EntityExceptionValidation.When(value is null,
-                    ExceptionMessageFactory.Required(nameof(_cpf)));
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
+                    ExceptionMessageFactory.Required(nameof(CPF)));
                 _cpf = value;
             }
         }
@@ -58,8 +58,8 @@ namespace Domain.Entities
             get => _photo3x4;
             set
             {
-                EntityExceptionValidation.When(value is null,
-                    ExceptionMessageFactory.Required(nameof(_photo3x4)));
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
+                    ExceptionMessageFactory.Required(nameof(Photo3x4)));
                 _photo3x4 = value;
             }
         }
@@ -73,8 +73,8 @@ namespace Domain.Entities
             get => _schoolHistory;
             set
             {
-                EntityExceptionValidation.When(value is null,
-                    ExceptionMessageFactory.Required(nameof(_schoolHistory)));
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
+                    ExceptionMessageFactory.Required(nameof(SchoolHistory)));
                 _schoolHistory = value;
             }
         }
@@ -88,8 +88,8 @@ namespace Domain.Entities
             get => _scholarCommitmentAgreement;
             set
             {
-                EntityExceptionValidation.When(value is null,
-                    ExceptionMessageFactory.Required(nameof(_scholarCommitmentAgreement)));
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
+                    ExceptionMessageFactory.Required(nameof(ScholarCommitmentAgreement)));
                 _scholarCommitmentAgreement = value;
             }
         }
@@ -103,15 +103,15 @@ namespace Domain.Entities
             get => _parentalAuthorization;
             set
             {
-                if (Project?.Student?.BirthDate >= DateTime.Now.AddYears(-18))
+                if (Project?.Student?.BirthDate >= DateTime.UtcNow.AddYears(-18))
                 {
-                    EntityExceptionValidation.When(value is null,
-                        ExceptionMessageFactory.Required(nameof(_parentalAuthorization)));
+                    EntityExceptionValidation.When(string.IsNullOrEmpty(value),
+                        ExceptionMessageFactory.Required(nameof(ParentalAuthorization)));
                 }
                 _parentalAuthorization = value;
             }
         }
-        #endregion
+        #endregion Documents
 
         #region BankData
         private string? _agencyNumber;
@@ -123,10 +123,10 @@ namespace Domain.Entities
             get => _agencyNumber;
             set
             {
-                EntityExceptionValidation.When(value is null,
-                    ExceptionMessageFactory.Required(nameof(_agencyNumber)));
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
+                    ExceptionMessageFactory.Required(nameof(AgencyNumber)));
                 EntityExceptionValidation.When(long.TryParse(value, out long tmp) && tmp <= 0,
-                    ExceptionMessageFactory.Invalid(ExceptionMessageFactory.Invalid(nameof(_agencyNumber))));
+                    ExceptionMessageFactory.Invalid(ExceptionMessageFactory.Invalid(nameof(AgencyNumber))));
                 _agencyNumber = value;
             }
         }
@@ -140,10 +140,10 @@ namespace Domain.Entities
             get => _accountNumber;
             set
             {
-                EntityExceptionValidation.When(value is null,
-                    ExceptionMessageFactory.Required(nameof(_accountNumber)));
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
+                    ExceptionMessageFactory.Required(nameof(AccountNumber)));
                 EntityExceptionValidation.When(long.TryParse(value, out long tmp) && tmp <= 0,
-                    ExceptionMessageFactory.Invalid(ExceptionMessageFactory.Invalid(nameof(_accountNumber))));
+                    ExceptionMessageFactory.Invalid(ExceptionMessageFactory.Invalid(nameof(AccountNumber))));
                 _accountNumber = value;
             }
         }
@@ -157,15 +157,15 @@ namespace Domain.Entities
             get => _accountOpeningProof;
             set
             {
-                EntityExceptionValidation.When(value is null,
-                    ExceptionMessageFactory.Required(nameof(_accountOpeningProof)));
+                EntityExceptionValidation.When(string.IsNullOrEmpty(value),
+                    ExceptionMessageFactory.Required(nameof(AccountOpeningProof)));
                 _accountOpeningProof = value;
             }
         }
-        #endregion
+        #endregion BankData
 
-        public virtual Project? Project { get; }
-        #endregion
+        public virtual Project? Project { get; set; }
+        #endregion Properties
 
         /// <summary>
         /// Constructor to dbcontext EF instancing.

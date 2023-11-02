@@ -1,24 +1,29 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>0.0.1</Version>
+    <Version>0.1.0</Version>
   </PropertyGroup>
+
   <ItemGroup>
     <None Remove="Validation\" />
     <None Remove="Interfaces\" />
     <None Remove="Entities\Primitives\" />
     <None Remove="Entities\Enums\" />
   </ItemGroup>
+
   <ItemGroup>
     <Folder Include="Validation\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Entities\Primitives\" />
     <Folder Include="Entities\Enums\" />
   </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
   </ItemGroup>
+
 </Project>

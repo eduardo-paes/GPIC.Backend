@@ -4,60 +4,68 @@ using Domain.Interfaces.Repositories;
 using Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Persistence.Repositories
+namespace Persistence.Repositories
 {
     public class CampusRepository : ICampusRepository
     {
         #region Global Scope
         private readonly ApplicationDbContext _context;
-        public CampusRepository(ApplicationDbContext context) => _context = context;
-        #endregion
+        public CampusRepository(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+        #endregion Global Scope
 
         #region Public Methods
-        public async Task<Campus> Create(Campus model)
+        public async Task<Campus> CreateAsync(Campus model)
         {
-            _context.Add(model);
-            await _context.SaveChangesAsync();
+            _ = _context.Add(model);
+            _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<IEnumerable<Campus>> GetAll(int skip, int take) => await _context.Campuses
+        public async Task<IEnumerable<Campus>> GetAllAsync(int skip, int take)
+        {
+            return await _context.Campuses
+            .OrderBy(x => x.Name)
             .Skip(skip)
             .Take(take)
             .AsAsyncEnumerable()
-            .OrderBy(x => x.Name)
             .ToListAsync();
+        }
 
-        public async Task<Campus?> GetById(Guid? id) =>
-            await _context.Campuses
+        public async Task<Campus?> GetByIdAsync(Guid? id)
+        {
+            return await _context.Campuses
             .IgnoreQueryFilters()
             .AsAsyncEnumerable()
             .FirstOrDefaultAsync(x => x.Id == id);
-
-        public async Task<Campus> Delete(Guid? id)
-        {
-            var model = await GetById(id)
-                ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
-            model.DeactivateEntity();
-            return await Update(model);
         }
 
-        public async Task<Campus> Update(Campus model)
+        public async Task<Campus> DeleteAsync(Guid? id)
         {
-            _context.Update(model);
-            await _context.SaveChangesAsync();
+            Campus model = await GetByIdAsync(id)
+                ?? throw new Exception($"Nenhum registro encontrado para o id ({id}) informado.");
+            model.DeactivateEntity();
+            return await UpdateAsync(model);
+        }
+
+        public async Task<Campus> UpdateAsync(Campus model)
+        {
+            _ = _context.Update(model);
+            _ = await _context.SaveChangesAsync();
             return model;
         }
 
-        public async Task<Campus?> GetCampusByName(string name)
+        public async Task<Campus?> GetCampusByNameAsync(string name)
         {
-            string loweredName = name.ToLower();
-            var entities = await _context.Campuses
-                .Where(x => x.Name!.ToLower() == loweredName)
+            string loweredName = name.ToLower(System.Globalization.CultureInfo.CurrentCulture);
+            List<Campus> entities = await _context.Campuses
+                .Where(x => x.Name!.ToLower(System.Globalization.CultureInfo.CurrentCulture) == loweredName)
                 .AsAsyncEnumerable()
                 .ToListAsync();
             return entities.FirstOrDefault();
         }
-        #endregion
+        #endregion Public Methods
     }
 }

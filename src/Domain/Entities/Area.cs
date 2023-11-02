@@ -16,7 +16,7 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(!value.HasValue,
-                    ExceptionMessageFactory.Invalid("mainAreaId"));
+                    ExceptionMessageFactory.Invalid("Id da Área Principal"));
                 _mainAreaId = value;
             }
         }
@@ -27,11 +27,11 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(string.IsNullOrEmpty(value),
-                    ExceptionMessageFactory.Required("code"));
+                    ExceptionMessageFactory.Required("Código"));
                 EntityExceptionValidation.When(value?.Length < 3,
-                    ExceptionMessageFactory.MinLength("code", 3));
+                    ExceptionMessageFactory.MinLength("Código", 3));
                 EntityExceptionValidation.When(value?.Length > 100,
-                    ExceptionMessageFactory.MaxLength("code", 100));
+                    ExceptionMessageFactory.MaxLength("Código", 100));
                 _code = value;
             }
         }
@@ -42,11 +42,11 @@ namespace Domain.Entities
             set
             {
                 EntityExceptionValidation.When(string.IsNullOrEmpty(value),
-                ExceptionMessageFactory.Required("name"));
+                ExceptionMessageFactory.Required("Nome"));
                 EntityExceptionValidation.When(value?.Length < 3,
-                    ExceptionMessageFactory.MinLength("name", 3));
+                    ExceptionMessageFactory.MinLength("Nome", 3));
                 EntityExceptionValidation.When(value?.Length > 300,
-                    ExceptionMessageFactory.MaxLength("name", 300));
+                    ExceptionMessageFactory.MaxLength("Nome", 300));
                 _name = value;
             }
         }

@@ -5,7 +5,7 @@ namespace Domain.Interfaces.Repositories
 {
     public interface IAreaRepository : IGenericCRUDRepository<Area>
     {
-        Task<Area?> GetByCode(string? code);
-        Task<IEnumerable<Area>> GetAreasByMainArea(Guid? mainAreaId, int skip, int take);
+        Task<Area?> GetByCodeAsync(string? code);
+        Task<IEnumerable<Area>> GetAreasByMainAreaAsync(Guid? mainAreaId, int skip, int take);
     }
 }

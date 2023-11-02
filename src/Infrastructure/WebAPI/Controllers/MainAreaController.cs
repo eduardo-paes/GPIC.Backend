@@ -1,32 +1,49 @@
-using Adapters.Gateways.MainArea;
-using Adapters.Interfaces;
+using Application.Ports.MainArea;
+using Application.Interfaces.UseCases.MainArea;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Infrastructure.WebAPI.Controllers
+namespace WebAPI.Controllers
 {
     /// <summary>
     /// Controller de Área Principal.
     /// </summary>
     [ApiController]
-    [Route("Api/[controller]")]
+    [Route("api/v1/[controller]")]
     [Authorize]
     public class MainAreaController : ControllerBase
     {
         #region Global Scope
-        private readonly IMainAreaPresenterController _service;
+        private readonly IGetMainAreaById _getById;
+        private readonly IGetMainAreas _getAll;
+        private readonly ICreateMainArea _create;
+        private readonly IUpdateMainArea _update;
+        private readonly IDeleteMainArea _delete;
         private readonly ILogger<MainAreaController> _logger;
         /// <summary>
         /// Construtor do Controller de Área Principal.
         /// </summary>
-        /// <param name="service"></param>
-        /// <param name="logger"></param>
-        public MainAreaController(IMainAreaPresenterController service, ILogger<MainAreaController> logger)
+        /// <param name="getById">Serviço de obtenção de área principal pelo id.</param>
+        /// <param name="getAll">Serviço de obtenção de todas as áreas principais ativas.</param>
+        /// <param name="create">Serviço de criação de área principal.</param>
+        /// <param name="update">Serviço de atualização de área principal.</param>
+        /// <param name="delete">Serviço de remoção de área principal.</param>
+        /// <param name="logger">Serviço de log.</param>
+        public MainAreaController(IGetMainAreaById getById,
+            IGetMainAreas getAll,
+            ICreateMainArea create,
+            IUpdateMainArea update,
+            IDeleteMainArea delete,
+            ILogger<MainAreaController> logger)
         {
-            _service = service;
+            _getById = getById;
+            _getAll = getAll;
+            _create = create;
+            _update = update;
+            _delete = delete;
             _logger = logger;
         }
-        #endregion
+        #endregion Global Scope
 
         /// <summary>
         /// Busca área principal pelo id.
@@ -34,27 +51,37 @@ namespace Infrastructure.WebAPI.Controllers
         /// <param></param>
         /// <returns>Área principal correspondente</returns>
         /// <response code="200">Retorna área principal correspondente</response>
+        /// <response code="400">Requisição incorreta.</response>
+        /// <response code="401">Usuário não autorizado.</response>
+        /// <response code="404">Área principal não encontrada.</response>
         [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<DetailedReadMainAreaResponse>> GetById(Guid? id)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedMainAreaOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
+        public async Task<ActionResult<DetailedMainAreaOutput>> GetById(Guid? id)
         {
             if (id == null)
             {
-                const string msg = "O id informado não pode ser nulo.";
-                _logger.LogWarning(msg);
-                return BadRequest(msg);
+                const string errorMessage = "O ID da área principal não pode ser nulo.";
+                _logger.LogWarning(errorMessage);
+                return BadRequest(errorMessage);
             }
 
             try
             {
-                var model = await _service.GetById(id);
-                _logger.LogInformation("Área Principal encontrada para o id {id}.", id);
-                return Ok(model);
+                var mainArea = await _getById.ExecuteAsync(id.Value);
+                if (mainArea == null)
+                {
+                    return NotFound("Nenhum registro encontrado.");
+                }
+                _logger.LogInformation("Área Principal encontrada para o ID {id}.", id);
+                return Ok(mainArea);
             }
             catch (Exception ex)
             {
                 _logger.LogError("Ocorreu um erro: {ErrorMessage}", ex.Message);
-                return NotFound(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -64,19 +91,25 @@ namespace Infrastructure.WebAPI.Controllers
         /// <param></param>
         /// <returns>Todas as áreas principais ativas</returns>
         /// <response code="200">Retorna todas as áreas principais ativas</response>
+        /// <response code="400">Requisição incorreta.</response>
+        /// <response code="401">Usuário não autorizado.</response>
+        /// <response code="404">Nenhuma área principal encontrada.</response>
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<ResumedReadMainAreaResponse>>> GetAll(int skip = 0, int take = 50)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ResumedReadMainAreaOutput>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
+        public async Task<ActionResult<IEnumerable<ResumedReadMainAreaOutput>>> GetAll(int skip = 0, int take = 50)
         {
-            var models = await _service.GetAll(skip, take);
-            if (models == null)
+            var mainAreas = await _getAll.ExecuteAsync(skip, take);
+            if (mainAreas == null || !mainAreas.Any())
             {
-                const string msg = "Nenhuma Área Principal encontrada.";
-                _logger.LogWarning(msg);
-                return NotFound(msg);
+                const string errorMessage = "Nenhuma Área Principal encontrada.";
+                _logger.LogWarning(errorMessage);
+                return NotFound(errorMessage);
             }
-            _logger.LogInformation("Áreas principais encontradas: {quantidade}", models.Count());
-            return Ok(models);
+            _logger.LogInformation("Áreas principais encontradas: {quantidade}", mainAreas.Count());
+            return Ok(mainAreas);
         }
 
         /// <summary>
@@ -84,17 +117,21 @@ namespace Infrastructure.WebAPI.Controllers
         /// </summary>
         /// <param></param>
         /// <returns>Área principal criada</returns>
-        /// <response code="200">Retorna área principal criada</response>
+        /// <response code="201">Retorna área principal criada</response>
+        /// <response code="400">Requisição incorreta.</response>
+        /// <response code="401">Usuário não autorizado.</response>
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(DetailedMainAreaOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadMainAreaResponse>> Create([FromBody] CreateMainAreaRequest request)
+        public async Task<ActionResult<DetailedMainAreaOutput>> Create([FromBody] CreateMainAreaInput request)
         {
             try
             {
-                var model = await _service.Create(request) as DetailedReadMainAreaResponse;
-                _logger.LogInformation("Área principal criada: {id}", model?.Id);
-                return Ok(model);
+                var createdMainArea = await _create.ExecuteAsync(request);
+                _logger.LogInformation("Área principal criada: {id}", createdMainArea?.Id);
+                return CreatedAtAction(nameof(GetById), new { id = createdMainArea?.Id }, createdMainArea);
             }
             catch (Exception ex)
             {
@@ -109,15 +146,33 @@ namespace Infrastructure.WebAPI.Controllers
         /// <param></param>
         /// <returns>Área principal atualizada</returns>
         /// <response code="200">Retorna área principal atualizada</response>
+        /// <response code="400">Requisição incorreta.</response>
+        /// <response code="401">Usuário não autorizado.</response>
+        /// <response code="404">Área principal não encontrada.</response>
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedMainAreaOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadMainAreaResponse>> Update(Guid? id, [FromBody] UpdateMainAreaRequest request)
+        public async Task<ActionResult<DetailedMainAreaOutput>> Update(Guid? id, [FromBody] UpdateMainAreaInput request)
         {
+            if (id == null)
+            {
+                const string errorMessage = "O ID da área principal não pode ser nulo.";
+                _logger.LogWarning(errorMessage);
+                return BadRequest(errorMessage);
+            }
+
             try
             {
-                var model = await _service.Update(id, request) as DetailedReadMainAreaResponse;
-                _logger.LogInformation("Área principal atualizada: {id}", model?.Id);
-                return Ok(model);
+                var updatedMainArea = await _update.ExecuteAsync(id.Value, request);
+                if (updatedMainArea == null)
+                {
+                    return NotFound("Nenhum registro encontrado.");
+                }
+                _logger.LogInformation("Área principal atualizada: {id}", updatedMainArea?.Id);
+                return Ok(updatedMainArea);
             }
             catch (Exception ex)
             {
@@ -132,22 +187,33 @@ namespace Infrastructure.WebAPI.Controllers
         /// <param></param>
         /// <returns>Área principal removida</returns>
         /// <response code="200">Retorna área principal removida</response>
+        /// <response code="400">Requisição incorreta.</response>
+        /// <response code="401">Usuário não autorizado.</response>
+        /// <response code="404">Área principal não encontrada.</response>
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedMainAreaOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadMainAreaResponse>> Delete(Guid? id)
+        public async Task<ActionResult<DetailedMainAreaOutput>> Delete(Guid? id)
         {
             if (id == null)
             {
-                const string msg = "O id informado não pode ser nulo.";
-                _logger.LogWarning(msg);
-                return BadRequest(msg);
+                const string errorMessage = "O ID da área principal não pode ser nulo.";
+                _logger.LogWarning(errorMessage);
+                return BadRequest(errorMessage);
             }
 
             try
             {
-                var model = await _service.Delete(id.Value) as DetailedReadMainAreaResponse;
-                _logger.LogInformation("Área principal removida: {id}", model?.Id);
-                return Ok(model);
+                var deletedMainArea = await _delete.ExecuteAsync(id.Value);
+                if (deletedMainArea == null)
+                {
+                    return NotFound("Nenhum registro encontrado.");
+                }
+                _logger.LogInformation("Área principal removida: {id}", deletedMainArea?.Id);
+                return Ok(deletedMainArea);
             }
             catch (Exception ex)
             {

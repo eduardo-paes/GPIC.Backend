@@ -1,60 +1,88 @@
-using Adapters.Gateways.ProgramType;
-using Adapters.Interfaces;
+using Application.Ports.ProgramType;
+using Application.Interfaces.UseCases.ProgramType;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Infrastructure.WebAPI.Controllers
+namespace WebAPI.Controllers
 {
     /// <summary>
     /// Controller de Tipo de Programa.
     /// </summary>
     [ApiController]
-    [Route("Api/[controller]")]
+    [Route("api/v1/[controller]")]
     [Authorize]
     public class ProgramTypeController : ControllerBase
     {
         #region Global Scope
-        private readonly IProgramTypePresenterController _service;
+        private readonly IGetProgramTypeById _getById;
+        private readonly IGetProgramTypes _getAll;
+        private readonly ICreateProgramType _create;
+        private readonly IUpdateProgramType _update;
+        private readonly IDeleteProgramType _delete;
         private readonly ILogger<ProgramTypeController> _logger;
+
         /// <summary>
         /// Construtor do Controller de Tipo de Programa.
         /// </summary>
-        /// <param name="service"></param>
-        /// <param name="logger"></param>
-        public ProgramTypeController(IProgramTypePresenterController service, ILogger<ProgramTypeController> logger)
+        /// <param name="getById">Serviço de obtenção de tipo de programa pelo id.</param>
+        /// <param name="getAll">Serviço de obtenção de todos os tipos de programas ativos.</param>
+        /// <param name="create">Serviço de criação de tipo de programa.</param>
+        /// <param name="update">Serviço de atualização de tipo de programa.</param>
+        /// <param name="delete">Serviço de remoção de tipo de programa.</param>
+        /// <param name="logger">Serviço de log.</param>
+        public ProgramTypeController(IGetProgramTypeById getById,
+            IGetProgramTypes getAll,
+            ICreateProgramType create,
+            IUpdateProgramType update,
+            IDeleteProgramType delete,
+            ILogger<ProgramTypeController> logger)
         {
-            _service = service;
+            _getById = getById;
+            _getAll = getAll;
+            _create = create;
+            _update = update;
+            _delete = delete;
             _logger = logger;
         }
-        #endregion
+        #endregion Global Scope
 
         /// <summary>
         /// Busca tipo de programa pelo id.
         /// </summary>
         /// <param></param>
         /// <returns>Tipo de Programa correspondente</returns>
-        /// <response code="200">Retorna tipo de programa correspondente</response>
+        /// <response code="200">Retorna Tipo de Programa correspondente</response>
+        /// <response code="400">Requisição incorreta.</response>
+        /// <response code="401">Usuário não autorizado.</response>
+        /// <response code="404">Tipo de Programa não encontrado.</response>
         [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<DetailedReadProgramTypeResponse>> GetById(Guid? id)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadProgramTypeOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
+        public async Task<ActionResult<DetailedReadProgramTypeOutput>> GetById(Guid? id)
         {
             if (id == null)
             {
-                const string msg = "O id informado não pode ser nulo.";
-                _logger.LogWarning(msg);
-                return BadRequest(msg);
+                const string errorMessage = "O ID do tipo de programa não pode ser nulo.";
+                _logger.LogWarning(errorMessage);
+                return BadRequest(errorMessage);
             }
 
             try
             {
-                var model = await _service.GetById(id);
-                _logger.LogInformation("Tipo de Programa encontrado para o id {id}.", id);
-                return Ok(model);
+                var programType = await _getById.ExecuteAsync(id.Value);
+                if (programType == null)
+                {
+                    return NotFound("Nenhum registro encontrado.");
+                }
+                _logger.LogInformation("Tipo de programa encontrado para o ID {id}.", id);
+                return Ok(programType);
             }
             catch (Exception ex)
             {
                 _logger.LogError("Ocorreu um erro: {ErrorMessage}", ex.Message);
-                return NotFound(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
 
@@ -64,19 +92,25 @@ namespace Infrastructure.WebAPI.Controllers
         /// <param></param>
         /// <returns>Todas os tipos de programas ativos</returns>
         /// <response code="200">Retorna todas os tipos de programas ativos</response>
+        /// <response code="400">Requisição incorreta.</response>
+        /// <response code="401">Usuário não autorizado.</response>
+        /// <response code="404">Nenhum tipo de programa encontrado.</response>
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<ResumedReadProgramTypeResponse>>> GetAll(int skip = 0, int take = 50)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ResumedReadProgramTypeOutput>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
+        public async Task<ActionResult<IEnumerable<ResumedReadProgramTypeOutput>>> GetAll(int skip = 0, int take = 50)
         {
-            var models = await _service.GetAll(skip, take);
-            if (models == null)
+            var programTypes = await _getAll.ExecuteAsync(skip, take);
+            if (programTypes == null || !programTypes.Any())
             {
-                const string msg = "Nenhum Tipo de Programa encontrado.";
-                _logger.LogWarning(msg);
-                return NotFound(msg);
+                const string errorMessage = "Nenhum tipo de programa encontrado.";
+                _logger.LogWarning(errorMessage);
+                return NotFound(errorMessage);
             }
-            _logger.LogInformation("Tipos de Programas encontrados: {quantidade}", models.Count());
-            return Ok(models);
+            _logger.LogInformation("Tipos de programa encontrados: {quantidade}", programTypes.Count());
+            return Ok(programTypes);
         }
 
         /// <summary>
@@ -84,17 +118,19 @@ namespace Infrastructure.WebAPI.Controllers
         /// </summary>
         /// <param></param>
         /// <returns>Tipo de Programa criado</returns>
-        /// <response code="200">Retorna tipo de programa criado</response>
+        /// <response code="201">Retorna tipo de programa criado</response>
+        /// <response code="400">Requisição incorreta.</response>
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(DetailedReadProgramTypeOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadProgramTypeResponse>> Create([FromBody] CreateProgramTypeRequest request)
+        public async Task<ActionResult<DetailedReadProgramTypeOutput>> Create([FromBody] CreateProgramTypeInput request)
         {
             try
             {
-                var model = await _service.Create(request) as DetailedReadProgramTypeResponse;
-                _logger.LogInformation("Tipo de Programa criado: {id}", model?.Id);
-                return Ok(model);
+                var createdProgramType = await _create.ExecuteAsync(request);
+                _logger.LogInformation("Tipo de programa criado: {id}", createdProgramType?.Id);
+                return CreatedAtAction(nameof(GetById), new { id = createdProgramType?.Id }, createdProgramType);
             }
             catch (Exception ex)
             {
@@ -109,15 +145,33 @@ namespace Infrastructure.WebAPI.Controllers
         /// <param></param>
         /// <returns>Tipo de Programa atualizado</returns>
         /// <response code="200">Retorna tipo de programa atualizado</response>
+        /// <response code="400">Requisição incorreta.</response>
+        /// <response code="401">Usuário não autorizado.</response>
+        /// <response code="404">Tipo de Programa não encontrado.</response>
         [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadProgramTypeOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadProgramTypeResponse>> Update(Guid? id, [FromBody] UpdateProgramTypeRequest request)
+        public async Task<ActionResult<DetailedReadProgramTypeOutput>> Update(Guid? id, [FromBody] UpdateProgramTypeInput request)
         {
+            if (id == null)
+            {
+                const string errorMessage = "O ID do tipo de programa não pode ser nulo.";
+                _logger.LogWarning(errorMessage);
+                return BadRequest(errorMessage);
+            }
+
             try
             {
-                var model = await _service.Update(id, request) as DetailedReadProgramTypeResponse;
-                _logger.LogInformation("Tipo de Programa atualizado: {id}", model?.Id);
-                return Ok(model);
+                var updatedProgramType = await _update.ExecuteAsync(id.Value, request);
+                if (updatedProgramType == null)
+                {
+                    return NotFound("Nenhum registro encontrado.");
+                }
+                _logger.LogInformation("Tipo de programa atualizado: {id}", updatedProgramType?.Id);
+                return Ok(updatedProgramType);
             }
             catch (Exception ex)
             {
@@ -132,22 +186,33 @@ namespace Infrastructure.WebAPI.Controllers
         /// <param></param>
         /// <returns>Tipo de Programa removido</returns>
         /// <response code="200">Retorna tipo de programa removido</response>
+        /// <response code="400">Requisição incorreta.</response>
+        /// <response code="401">Usuário não autorizado.</response>
+        /// <response code="404">Tipo de Programa não encontrado.</response>
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(DetailedReadProgramTypeOutput))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
         [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<DetailedReadProgramTypeResponse>> Delete(Guid? id)
+        public async Task<ActionResult<DetailedReadProgramTypeOutput>> Delete(Guid? id)
         {
             if (id == null)
             {
-                const string msg = "O id informado não pode ser nulo.";
-                _logger.LogWarning(msg);
-                return BadRequest(msg);
+                const string errorMessage = "O ID do tipo de programa não pode ser nulo.";
+                _logger.LogWarning(errorMessage);
+                return BadRequest(errorMessage);
             }
 
             try
             {
-                var model = await _service.Delete(id.Value) as DetailedReadProgramTypeResponse;
-                _logger.LogInformation("Tipo de Programa removido: {id}", model?.Id);
-                return Ok(model);
+                var deletedProgramType = await _delete.ExecuteAsync(id.Value);
+                if (deletedProgramType == null)
+                {
+                    return NotFound("Nenhum registro encontrado.");
+                }
+                _logger.LogInformation("Tipo de programa removido: {id}", deletedProgramType?.Id);
+                return Ok(deletedProgramType);
             }
             catch (Exception ex)
             {

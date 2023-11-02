@@ -1,21 +1,38 @@
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 
-namespace Infrastructure.IoC.Utils;
-public static class SettingsConfiguration
+namespace Infrastructure.IoC.Utils
 {
-    public static IConfiguration GetConfiguration()
+    public static class SettingsConfiguration
     {
-        // Caminho base para o arquivo appsettings.json
-        var basePath = Path.GetDirectoryName(typeof(SettingsConfiguration).Assembly.Location);
+        public static IConfiguration GetConfiguration(HostBuilderContext? hostContext = null)
+        {
+            // Caminho base para o arquivo appsettings.json
+            string basePath = AppContext.BaseDirectory;
 
-        // Carrega informações de ambiente (.env)
-        DotNetEnv.Env.Load(Path.Combine(basePath!, ".env"));
+            // Carrega informações de ambiente (.env)
+            DotNetEnv.Env.Load(Path.Combine(basePath, ".env"));
 
-        // Retorna configurações
-        return new ConfigurationBuilder()
-            .SetBasePath(basePath!)
-            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-            .AddEnvironmentVariables()
-            .Build();
+            // Adiciona o context do host caso exista
+            if (hostContext != null)
+            {
+                // Retorna configurações
+                return new ConfigurationBuilder()
+                    .SetBasePath(basePath)
+                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                    .AddConfiguration(hostContext.Configuration)
+                    .AddEnvironmentVariables()
+                    .Build();
+            }
+            else
+            {
+                // Retorna configurações
+                return new ConfigurationBuilder()
+                    .SetBasePath(basePath)
+                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                    .AddEnvironmentVariables()
+                    .Build();
+            }
+        }
     }
 }

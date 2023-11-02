@@ -29,7 +29,7 @@ Essa seção deverá ser preenchida apenas pelos alunos bolsistas. Caso o aluno 
 - Número da Conta Corrente
 - Comprovante de Abertura de Conta
 
-## DOCUMENTOS DO ALUNO A SEREM ENTREGUES (ANEXADOS)
+## Documentos do Aluno a serem Entregues (Anexados)
 
 Nos próximos itens anexe os documentos solicitados
 
@@ -43,7 +43,7 @@ Nos próximos itens anexe os documentos solicitados
 - Autorização dos pais ou responsáveis legais, em caso de aluno menor de 18 anos (Anexo 3 do Edital PIBIC ou modelo disponível na página da COPET -> File)
 - Aceite (Boolean)
 
-  ```text
-  DECLARO PARA TODOS OS FINS PERANTE A COORDENADORIA DE PESQUISA E ESTUDOS TECNOLÓGICOS – COPET, QUE AS INFORMAÇÕES PRESTADAS NESTE FORMULÁRIO E OS DOCUMENTOS ANEXADOS SÃO VERDADEIROS.
-  DECLARO AINDA TER PLENA CIÊNCIA DOS DIREITOS, COMPROMISSOS E OBRIGAÇÕES ASSUMIDOS, DE ACORDO COM OS TERMOS DO EDITAL PIBIC 2020 E ESPECIALMENTE DO TERMO DE ACEITE.
-  ```
+```text
+DECLARO PARA TODOS OS FINS PERANTE A COORDENADORIA DE PESQUISA E ESTUDOS TECNOLÓGICOS – COPET, QUE AS INFORMAÇÕES PRESTADAS NESTE FORMULÁRIO E OS DOCUMENTOS ANEXADOS SÃO VERDADEIROS.
+DECLARO AINDA TER PLENA CIÊNCIA DOS DIREITOS, COMPROMISSOS E OBRIGAÇÕES ASSUMIDOS, DE ACORDO COM OS TERMOS DO EDITAL PIBIC 2020 E ESPECIALMENTE DO TERMO DE ACEITE.
+```

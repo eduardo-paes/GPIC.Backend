@@ -1,0 +1,3 @@
+001;Produção Científica; Trabalhos Publicados
+002;Produção Artística e Cultural; Produção Apresentada
+003;Produção Técnica; Produtos Registrados

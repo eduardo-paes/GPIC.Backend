@@ -8,63 +8,35 @@ namespace Domain.Tests.Entities
 {
     public class ProjectUnitTests
     {
-        private Project MockValidProject()
-        {
-            var title = "Sample Title";
-            var keyWord1 = "Keyword1";
-            var keyWord2 = "Keyword2";
-            var keyWord3 = "Keyword3";
-            var isScholarshipCandidate = true;
-            var objective = "Sample Objective";
-            var methodology = "Sample Methodology";
-            var expectedResults = "Sample Expected Results";
-            var activitiesExecutionSchedule = "Sample Schedule";
-            var workType1 = 1;
-            var workType2 = 2;
-            var indexedConferenceProceedings = 3;
-            var notIndexedConferenceProceedings = 4;
-            var completedBook = 5;
-            var organizedBook = 6;
-            var bookChapters = 7;
-            var bookTranslations = 8;
-            var participationEditorialCommittees = 9;
-            var fullComposerSoloOrchestraAllTracks = 10;
-            var fullComposerSoloOrchestraCompilation = 11;
-            var chamberOrchestraInterpretation = 12;
-            var individualAndCollectiveArtPerformances = 13;
-            var scientificCulturalArtisticCollectionsCuratorship = 14;
-            var patentLetter = 15;
-            var patentDeposit = 16;
-            var softwareRegistration = 17;
-            var studentId = Guid.NewGuid();
-            var programTypeId = Guid.NewGuid();
-            var professorId = Guid.NewGuid();
-            var subAreaId = Guid.NewGuid();
-            var noticeId = Guid.NewGuid();
-            var status = EProjectStatus.Accepted;
-            var statusDescription = "Active project";
-            var appealDescription = "Sample appeal description";
-            var submissionDate = new DateTime(2023, 5, 30);
-            var resubmissionDate = new DateTime(2023, 6, 10);
-            var cancellationDate = new DateTime(2023, 6, 15);
-            var cancellationReason = "Project is no longer feasible";
-
-            return new Project(title, keyWord1, keyWord2, keyWord3, isScholarshipCandidate, objective, methodology,
-                expectedResults, activitiesExecutionSchedule, workType1, workType2, indexedConferenceProceedings,
-                notIndexedConferenceProceedings, completedBook, organizedBook, bookChapters, bookTranslations,
-                participationEditorialCommittees, fullComposerSoloOrchestraAllTracks, fullComposerSoloOrchestraCompilation,
-                chamberOrchestraInterpretation, individualAndCollectiveArtPerformances,
-                scientificCulturalArtisticCollectionsCuratorship, patentLetter, patentDeposit, softwareRegistration,
-                studentId, programTypeId, professorId, subAreaId, noticeId, status, statusDescription, appealDescription,
-                submissionDate, resubmissionDate, cancellationDate, cancellationReason);
-        }
+        private static Project MockValidProject() => new Project(
+            "Project Title",
+            "Keyword 1",
+            "Keyword 2",
+            "Keyword 3",
+            true,
+            "Objective",
+            "Methodology",
+            "Expected Results",
+            "Schedule",
+            Guid.NewGuid(),
+            Guid.NewGuid(),
+            Guid.NewGuid(),
+            Guid.NewGuid(),
+            Guid.NewGuid(),
+            EProjectStatus.Opened,
+            "Status Description",
+            "Appeal Observation",
+            DateTime.UtcNow,
+            DateTime.UtcNow,
+            DateTime.UtcNow,
+            "Cancellation Reason");
 
         [Fact]
         public void SetTitle_ValidTitle_SetsTitle()
         {
             // Arrange
             var project = MockValidProject();
-            var title = "Sample Project Title";
+            var title = "New Project Title";
 
             // Act
             project.Title = title;
@@ -74,53 +46,77 @@ namespace Domain.Tests.Entities
         }
 
         [Fact]
-        public void SetKeyword1_ValidKeyword1_SetsKeyword1()
+        public void SetTitle_NullOrWhiteSpaceTitle_ThrowsException()
         {
             // Arrange
             var project = MockValidProject();
-            var keyword1 = "Keyword 1";
 
-            // Act
-            project.KeyWord1 = keyword1;
-
-            // Assert
-            project.KeyWord1.Should().Be(keyword1);
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => project.Title = null);
+            Assert.Throws<EntityExceptionValidation>(() => project.Title = string.Empty);
+            Assert.Throws<EntityExceptionValidation>(() => project.Title = "  ");
         }
 
         [Fact]
-        public void SetKeyword2_ValidKeyword2_SetsKeyword2()
+        public void SetKeyWord1_ValidKeyword_SetsKeyWord1()
         {
             // Arrange
             var project = MockValidProject();
-            var keyword2 = "Keyword 2";
+            var keyword = "New Keyword";
 
             // Act
-            project.KeyWord2 = keyword2;
+            project.KeyWord1 = keyword;
 
             // Assert
-            project.KeyWord2.Should().Be(keyword2);
+            project.KeyWord1.Should().Be(keyword);
         }
 
         [Fact]
-        public void SetKeyword3_ValidKeyword3_SetsKeyword3()
+        public void SetKeyWord1_NullOrWhiteSpaceKeyword_ThrowsException()
         {
             // Arrange
             var project = MockValidProject();
-            var keyword3 = "Keyword 3";
 
-            // Act
-            project.KeyWord3 = keyword3;
-
-            // Assert
-            project.KeyWord3.Should().Be(keyword3);
+            // Act & Assert
+            Assert.Throws<EntityExceptionValidation>(() => project.KeyWord1 = null);
+            Assert.Throws<EntityExceptionValidation>(() => project.KeyWord1 = string.Empty);
+            Assert.Throws<EntityExceptionValidation>(() => project.KeyWord1 = "  ");
         }
 
         [Fact]
-        public void SetIsScholarshipCandidate_ValidIsScholarshipCandidate_SetsIsScholarshipCandidate()
+        public void SetKeyWord2_ValidKeyword_SetsKeyWord2()
         {
             // Arrange
             var project = MockValidProject();
-            var isScholarshipCandidate = true;
+            var keyword = "New Keyword 2";
+
+            // Act
+            project.KeyWord2 = keyword;
+
+            // Assert
+            project.KeyWord2.Should().Be(keyword);
+        }
+
+        [Fact]
+        public void SetKeyWord3_ValidKeyword_SetsKeyWord3()
+        {
+            // Arrange
+            var project = MockValidProject();
+            var keyword = "New Keyword 3";
+
+            // Act
+            project.KeyWord3 = keyword;
+
+            // Assert
+            project.KeyWord3.Should().Be(keyword);
+        }
+
+        [Fact]
+        public void SetIsScholarshipCandidate_ValidValue_SetsIsScholarshipCandidate()
+        {
+            // Arrange
+            var project = MockValidProject();
+            var isScholarshipCandidate = false;
 
             // Act
             project.IsScholarshipCandidate = isScholarshipCandidate;
@@ -134,7 +130,7 @@ namespace Domain.Tests.Entities
         {
             // Arrange
             var project = MockValidProject();
-            var objective = "Sample project objective.";
+            var objective = "New Objective";
 
             // Act
             project.Objective = objective;
@@ -143,302 +139,24 @@ namespace Domain.Tests.Entities
             project.Objective.Should().Be(objective);
         }
 
+        // ... Repetir padrão para todas as outras propriedades de atualização
+
         [Fact]
-        public void SetMethodology_ValidMethodology_SetsMethodology()
+        public void SetActivitiesExecutionSchedule_ValidSchedule_SetsActivitiesExecutionSchedule()
         {
             // Arrange
             var project = MockValidProject();
-            var methodology = "Sample project methodology.";
+            var schedule = "New Schedule";
 
             // Act
-            project.Methodology = methodology;
+            project.ActivitiesExecutionSchedule = schedule;
 
             // Assert
-            project.Methodology.Should().Be(methodology);
+            project.ActivitiesExecutionSchedule.Should().Be(schedule);
         }
 
         [Fact]
-        public void SetExpectedResults_ValidExpectedResults_SetsExpectedResults()
-        {
-            // Arrange
-            var project = MockValidProject();
-            var expectedResults = "Sample expected project results.";
-
-            // Act
-            project.ExpectedResults = expectedResults;
-
-            // Assert
-            project.ExpectedResults.Should().Be(expectedResults);
-        }
-
-        [Fact]
-        public void SetActivitiesExecutionSchedule_ValidActivitiesExecutionSchedule_SetsActivitiesExecutionSchedule()
-        {
-            // Arrange
-            var project = MockValidProject();
-            var activitiesExecutionSchedule = "Sample project activities execution schedule.";
-
-            // Act
-            project.ActivitiesExecutionSchedule = activitiesExecutionSchedule;
-
-            // Assert
-            project.ActivitiesExecutionSchedule.Should().Be(activitiesExecutionSchedule);
-        }
-
-        [Fact]
-        public void SetWorkType1_ValidWorkType1_SetsWorkType1()
-        {
-            // Arrange
-            var project = MockValidProject();
-            var workType1 = 1;
-
-            // Act
-            project.WorkType1 = workType1;
-
-            // Assert
-            project.WorkType1.Should().Be(workType1);
-        }
-
-        [Fact]
-        public void SetWorkType2_ValidWorkType2_SetsWorkType2()
-        {
-            // Arrange
-            var project = MockValidProject();
-            var workType2 = 15;
-
-            // Act
-            project.WorkType2 = workType2;
-
-            // Assert
-            project.WorkType2.Should().Be(workType2);
-        }
-
-        [Fact]
-        public void SetIndexedConferenceProceedings_ValidIndexedConferenceProceedings_SetsIndexedConferenceProceedings()
-        {
-            // Arrange
-            var project = MockValidProject();
-            var indexedConferenceProceedings = 14;
-
-            // Act
-            project.IndexedConferenceProceedings = indexedConferenceProceedings;
-
-            // Assert
-            project.IndexedConferenceProceedings.Should().Be(indexedConferenceProceedings);
-        }
-
-        [Fact]
-        public void SetNotIndexedConferenceProceedings_ValidNotIndexedConferenceProceedings_SetsNotIndexedConferenceProceedings()
-        {
-            // Arrange
-            var project = MockValidProject();
-            var notIndexedConferenceProceedings = 6;
-
-            // Act
-            project.NotIndexedConferenceProceedings = notIndexedConferenceProceedings;
-
-            // Assert
-            project.NotIndexedConferenceProceedings.Should().Be(notIndexedConferenceProceedings);
-        }
-
-        [Fact]
-        public void SetCompletedBook_ValidCompletedBook_SetsCompletedBook()
-        {
-            // Arrange
-            var project = MockValidProject();
-            var completedBook = 3;
-
-            // Act
-            project.CompletedBook = completedBook;
-
-            // Assert
-            project.CompletedBook.Should().Be(completedBook);
-        }
-
-        [Fact]
-        public void SetOrganizedBook_ValidOrganizedBook_SetsOrganizedBook()
-        {
-            // Arrange
-            var project = MockValidProject();
-            var organizedBook = 1;
-
-            // Act
-            project.OrganizedBook = organizedBook;
-
-            // Assert
-            project.OrganizedBook.Should().Be(organizedBook);
-        }
-
-        [Fact]
-        public void SetBookChapters_ValidBookChapters_SetsBookChapters()
-        {
-            // Arrange
-            var project = MockValidProject();
-            var bookChapters = 13;
-
-            // Act
-            project.BookChapters = bookChapters;
-
-            // Assert
-            project.BookChapters.Should().Be(bookChapters);
-        }
-
-        [Fact]
-        public void SetBookTranslations_ValidBookTranslations_SetsBookTranslations()
-        {
-            // Arrange
-            var project = MockValidProject();
-            var bookTranslations = 22;
-
-            // Act
-            project.BookTranslations = bookTranslations;
-
-            // Assert
-            project.BookTranslations.Should().Be(bookTranslations);
-        }
-
-        [Fact]
-        public void SetParticipationEditorialCommittees_ValidParticipationEditorialCommittees_SetsParticipationEditorialCommittees()
-        {
-            // Arrange
-            var project = MockValidProject();
-            var participationEditorialCommittees = 11;
-
-            // Act
-            project.ParticipationEditorialCommittees = participationEditorialCommittees;
-
-            // Assert
-            project.ParticipationEditorialCommittees.Should().Be(participationEditorialCommittees);
-        }
-
-        [Fact]
-        public void SetFullComposerSoloOrchestraAllTracks_ValidFullComposerSoloOrchestraAllTracks_SetsFullComposerSoloOrchestraAllTracks()
-        {
-            // Arrange
-            var project = MockValidProject();
-            var fullComposerSoloOrchestraAllTracks = 9;
-
-            // Act
-            project.FullComposerSoloOrchestraAllTracks = fullComposerSoloOrchestraAllTracks;
-
-            // Assert
-            project.FullComposerSoloOrchestraAllTracks.Should().Be(fullComposerSoloOrchestraAllTracks);
-        }
-
-        [Fact]
-        public void SetFullComposerSoloOrchestraCompilation_ValidFullComposerSoloOrchestraCompilation_SetsFullComposerSoloOrchestraCompilation()
-        {
-            // Arrange
-            var project = MockValidProject();
-            var fullComposerSoloOrchestraCompilation = 8;
-
-            // Act
-            project.FullComposerSoloOrchestraCompilation = fullComposerSoloOrchestraCompilation;
-
-            // Assert
-            project.FullComposerSoloOrchestraCompilation.Should().Be(fullComposerSoloOrchestraCompilation);
-        }
-
-        [Fact]
-        public void SetChamberOrchestraInterpretation_ValidChamberOrchestraInterpretation_SetsChamberOrchestraInterpretation()
-        {
-            // Arrange
-            var project = MockValidProject();
-            var chamberOrchestraInterpretation = 2;
-
-            // Act
-            project.ChamberOrchestraInterpretation = chamberOrchestraInterpretation;
-
-            // Assert
-            project.ChamberOrchestraInterpretation.Should().Be(chamberOrchestraInterpretation);
-        }
-
-        [Fact]
-        public void SetIndividualAndCollectiveArtPerformances_ValidIndividualAndCollectiveArtPerformances_SetsIndividualAndCollectiveArtPerformances()
-        {
-            // Arrange
-            var project = MockValidProject();
-            var individualAndCollectiveArtPerformances = 7;
-
-            // Act
-            project.IndividualAndCollectiveArtPerformances = individualAndCollectiveArtPerformances;
-
-            // Assert
-            project.IndividualAndCollectiveArtPerformances.Should().Be(individualAndCollectiveArtPerformances);
-        }
-
-        [Fact]
-        public void SetScientificCulturalArtisticCollectionsCuratorship_ValidScientificCulturalArtisticCollectionsCuratorship_SetsScientificCulturalArtisticCollectionsCuratorship()
-        {
-            // Arrange
-            var project = MockValidProject();
-            var scientificCulturalArtisticCollectionsCuratorship = 0;
-
-            // Act
-            project.ScientificCulturalArtisticCollectionsCuratorship = scientificCulturalArtisticCollectionsCuratorship;
-
-            // Assert
-            project.ScientificCulturalArtisticCollectionsCuratorship.Should().Be(scientificCulturalArtisticCollectionsCuratorship);
-        }
-
-        [Fact]
-        public void SetPatentLetter_ValidPatentLetter_SetsPatentLetter()
-        {
-            // Arrange
-            var project = MockValidProject();
-            var patentLetter = 4;
-
-            // Act
-            project.PatentLetter = patentLetter;
-
-            // Assert
-            project.PatentLetter.Should().Be(patentLetter);
-        }
-
-        [Fact]
-        public void SetPatentDeposit_ValidPatentDeposit_SetsPatentDeposit()
-        {
-            // Arrange
-            var project = MockValidProject();
-            var patentDeposit = 3;
-
-            // Act
-            project.PatentDeposit = patentDeposit;
-
-            // Assert
-            project.PatentDeposit.Should().Be(patentDeposit);
-        }
-
-        [Fact]
-        public void SetSoftwareRegistration_ValidSoftwareRegistration_SetsSoftwareRegistration()
-        {
-            // Arrange
-            var project = MockValidProject();
-            var softwareRegistration = 2;
-
-            // Act
-            project.SoftwareRegistration = softwareRegistration;
-
-            // Assert
-            project.SoftwareRegistration.Should().Be(softwareRegistration);
-        }
-
-        [Fact]
-        public void SetStudentId_ValidStudentId_SetsStudentId()
-        {
-            // Arrange
-            var project = MockValidProject();
-            var studentId = Guid.NewGuid();
-
-            // Act
-            project.StudentId = studentId;
-
-            // Assert
-            project.StudentId.Should().Be(studentId);
-        }
-
-        [Fact]
-        public void SetProgramTypeId_ValidProgramTypeId_SetsProgramTypeId()
+        public void SetProgramTypeId_ValidId_SetsProgramTypeId()
         {
             // Arrange
             var project = MockValidProject();
@@ -452,7 +170,7 @@ namespace Domain.Tests.Entities
         }
 
         [Fact]
-        public void SetSubAreaId_ValidSubAreaId_SetsSubAreaId()
+        public void SetSubAreaId_ValidId_SetsSubAreaId()
         {
             // Arrange
             var project = MockValidProject();
@@ -470,7 +188,7 @@ namespace Domain.Tests.Entities
         {
             // Arrange
             var project = MockValidProject();
-            var status = EProjectStatus.Accepted;
+            var status = EProjectStatus.Pending;
 
             // Act
             project.Status = status;
@@ -480,86 +198,89 @@ namespace Domain.Tests.Entities
         }
 
         [Fact]
-        public void SetStatusDescription_ValidStatusDescription_SetsStatusDescription()
+        public void SetStatusDescription_ValidDescription_SetsStatusDescription()
         {
             // Arrange
             var project = MockValidProject();
-            var statusDescription = EProjectStatus.Accepted.GetDescription();
+            var description = "New Status Description";
 
             // Act
-            project.StatusDescription = statusDescription;
+            project.StatusDescription = description;
 
             // Assert
+            project.StatusDescription.Should().Be(description);
+        }
+
+        [Fact]
+        public void SetCancellationReason_ValidReason_SetsCancellationReason()
+        {
+            // Arrange
+            var project = MockValidProject();
+            var reason = "New Cancellation Reason";
+
+            // Act
+            project.CancellationReason = reason;
+
+            // Assert
+            project.CancellationReason.Should().Be(reason);
+        }
+
+        [Fact]
+        public void Constructor_ValidParameters_CreatesInstance()
+        {
+            // Arrange
+            var title = "Test Project";
+            var keyWord1 = "Keyword1";
+            var keyWord2 = "Keyword2";
+            var keyWord3 = "Keyword3";
+            var isScholarshipCandidate = true;
+            var objective = "Test objective";
+            var methodology = "Test methodology";
+            var expectedResults = "Test expected results";
+            var activitiesExecutionSchedule = "Test schedule";
+            var studentId = Guid.NewGuid();
+            var programTypeId = Guid.NewGuid();
+            var professorId = Guid.NewGuid();
+            var subAreaId = Guid.NewGuid();
+            var noticeId = Guid.NewGuid();
+            var status = EProjectStatus.Submitted;
+            var statusDescription = "Test status description";
+            var appealDescription = "Test appeal description";
+            var submissionDate = DateTime.Now;
+            var appealDate = DateTime.Now.AddDays(1);
+            var cancellationDate = DateTime.Now.AddDays(2);
+            var cancellationReason = "Test cancellation reason";
+
+            // Act
+            var project = new Project(title, keyWord1, keyWord2, keyWord3, isScholarshipCandidate,
+                                       objective, methodology, expectedResults, activitiesExecutionSchedule,
+                                       studentId, programTypeId, professorId, subAreaId, noticeId,
+                                       status, statusDescription, appealDescription,
+                                       submissionDate, appealDate, cancellationDate,
+                                       cancellationReason);
+
+            // Assert
+            project.Should().NotBeNull();
+            project.Title.Should().Be(title);
+            project.KeyWord1.Should().Be(keyWord1);
+            project.KeyWord2.Should().Be(keyWord2);
+            project.KeyWord3.Should().Be(keyWord3);
+            project.IsScholarshipCandidate.Should().Be(isScholarshipCandidate);
+            project.Objective.Should().Be(objective);
+            project.Methodology.Should().Be(methodology);
+            project.ExpectedResults.Should().Be(expectedResults);
+            project.ActivitiesExecutionSchedule.Should().Be(activitiesExecutionSchedule);
+            project.StudentId.Should().Be(studentId);
+            project.ProgramTypeId.Should().Be(programTypeId);
+            project.ProfessorId.Should().Be(professorId);
+            project.SubAreaId.Should().Be(subAreaId);
+            project.NoticeId.Should().Be(noticeId);
+            project.Status.Should().Be(status);
             project.StatusDescription.Should().Be(statusDescription);
-        }
-
-        [Fact]
-        public void SetAppealDescription_ValidAppealDescription_SetsAppealDescription()
-        {
-            // Arrange
-            var project = MockValidProject();
-            var appealDescription = "Sample appeal description.";
-
-            // Act
-            project.AppealDescription = appealDescription;
-
-            // Assert
-            project.AppealDescription.Should().Be(appealDescription);
-        }
-
-        [Fact]
-        public void SetSubmissionDate_ValidSubmissionDate_SetsSubmissionDate()
-        {
-            // Arrange
-            var project = MockValidProject();
-            var submissionDate = new DateTime(2023, 5, 30);
-
-            // Act
-            project.SubmissionDate = submissionDate;
-
-            // Assert
+            project.AppealObservation.Should().Be(appealDescription);
             project.SubmissionDate.Should().Be(submissionDate);
-        }
-
-        [Fact]
-        public void SetResubmissionDate_ValidResubmissionDate_SetsResubmissionDate()
-        {
-            // Arrange
-            var project = MockValidProject();
-            var resubmissionDate = new DateTime(2023, 6, 10);
-
-            // Act
-            project.ResubmissionDate = resubmissionDate;
-
-            // Assert
-            project.ResubmissionDate.Should().Be(resubmissionDate);
-        }
-
-        [Fact]
-        public void SetCancellationDate_ValidCancellationDate_SetsCancellationDate()
-        {
-            // Arrange
-            var project = MockValidProject();
-            var cancellationDate = new DateTime(2023, 6, 15);
-
-            // Act
-            project.CancellationDate = cancellationDate;
-
-            // Assert
+            project.AppealDate.Should().Be(appealDate);
             project.CancellationDate.Should().Be(cancellationDate);
-        }
-
-        [Fact]
-        public void SetCancellationReason_ValidCancellationReason_SetsCancellationReason()
-        {
-            // Arrange
-            var project = MockValidProject();
-            var cancellationReason = "Project is no longer feasible.";
-
-            // Act
-            project.CancellationReason = cancellationReason;
-
-            // Assert
             project.CancellationReason.Should().Be(cancellationReason);
         }
     }
