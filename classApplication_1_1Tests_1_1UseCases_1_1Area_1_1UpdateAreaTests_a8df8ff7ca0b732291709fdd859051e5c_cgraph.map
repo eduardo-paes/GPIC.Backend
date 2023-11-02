@@ -1,0 +1,4 @@
+<map id="Application.Tests.UseCases.Area.UpdateAreaTests.Execute_WithNullId_ShouldThrowException" name="Application.Tests.UseCases.Area.UpdateAreaTests.Execute_WithNullId_ShouldThrowException">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,257,61"/>
+<area shape="rect" id="node2" href="$interfaceApplication_1_1Interfaces_1_1UseCases_1_1Area_1_1IUpdateArea.html#a7b16d4d80edda4b32990318cf8f931f2" title=" " alt="" coords="305,13,580,54"/>
+</map>

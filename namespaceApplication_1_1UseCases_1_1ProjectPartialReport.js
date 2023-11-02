@@ -1,0 +1,8 @@
+var namespaceApplication_1_1UseCases_1_1ProjectPartialReport =
+[
+    [ "CreateProjectPartialReport", "classApplication_1_1UseCases_1_1ProjectPartialReport_1_1CreateProjectPartialReport.html", "classApplication_1_1UseCases_1_1ProjectPartialReport_1_1CreateProjectPartialReport" ],
+    [ "DeleteProjectPartialReport", "classApplication_1_1UseCases_1_1ProjectPartialReport_1_1DeleteProjectPartialReport.html", "classApplication_1_1UseCases_1_1ProjectPartialReport_1_1DeleteProjectPartialReport" ],
+    [ "GetProjectPartialReportById", "classApplication_1_1UseCases_1_1ProjectPartialReport_1_1GetProjectPartialReportById.html", "classApplication_1_1UseCases_1_1ProjectPartialReport_1_1GetProjectPartialReportById" ],
+    [ "GetProjectPartialReportByProjectId", "classApplication_1_1UseCases_1_1ProjectPartialReport_1_1GetProjectPartialReportByProjectId.html", "classApplication_1_1UseCases_1_1ProjectPartialReport_1_1GetProjectPartialReportByProjectId" ],
+    [ "UpdateProjectPartialReport", "classApplication_1_1UseCases_1_1ProjectPartialReport_1_1UpdateProjectPartialReport.html", "classApplication_1_1UseCases_1_1ProjectPartialReport_1_1UpdateProjectPartialReport" ]
+];

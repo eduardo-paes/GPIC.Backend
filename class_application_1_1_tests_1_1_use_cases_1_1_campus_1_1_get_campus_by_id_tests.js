@@ -1,0 +1,5 @@
+var class_application_1_1_tests_1_1_use_cases_1_1_campus_1_1_get_campus_by_id_tests =
+[
+    [ "ExecuteAsync_InvalidInput_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_campus_1_1_get_campus_by_id_tests.html#aa3956ba21023481b5b06e5ca6e06a826", null ],
+    [ "ExecuteAsync_ValidInput_ReturnsDetailedReadCampusOutput", "class_application_1_1_tests_1_1_use_cases_1_1_campus_1_1_get_campus_by_id_tests.html#a5e538ed25d27d86bbab684f582b8aa0e", null ]
+];

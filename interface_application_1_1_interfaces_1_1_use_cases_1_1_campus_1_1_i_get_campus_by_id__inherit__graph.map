@@ -1,0 +1,5 @@
+<map id="Application.Interfaces.UseCases.Campus.IGetCampusById" name="Application.Interfaces.UseCases.Campus.IGetCampusById">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,223,46"/>
+<area shape="rect" id="Node000002" href="$class_application_1_1_use_cases_1_1_campus_1_1_get_campus_by_id.html" title=" " alt="" coords="10,94,218,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,62,117,94,111,94,111,62"/>
+</map>

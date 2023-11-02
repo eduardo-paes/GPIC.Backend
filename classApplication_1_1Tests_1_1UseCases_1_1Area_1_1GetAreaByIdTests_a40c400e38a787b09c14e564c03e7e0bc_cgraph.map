@@ -1,0 +1,5 @@
+<map id="Application.Tests.UseCases.Area.GetAreaByIdTests.Execute_WithValidId_ShouldReturnDetailedReadAreaOutput" name="Application.Tests.UseCases.Area.GetAreaByIdTests.Execute_WithValidId_ShouldReturnDetailedReadAreaOutput">
+<area shape="rect" id="node1" title=" " alt="" coords="5,24,291,95"/>
+<area shape="rect" id="node2" href="$interfaceApplication_1_1Interfaces_1_1UseCases_1_1Area_1_1IGetAreaById.html#acc70d83dde9e47a346e1651167bdf3a4" title=" " alt="" coords="339,5,617,47"/>
+<area shape="rect" id="node3" href="$classApplication_1_1Tests_1_1UseCases_1_1Area_1_1GetAreaByIdTests.html#a477585d6e515cac3daabedbdd5f98741" title=" " alt="" coords="342,71,614,112"/>
+</map>

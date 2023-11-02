@@ -1,0 +1,5 @@
+<map id="Application.UseCases.ActivityType.GetLastNoticeActivities" name="Application.UseCases.ActivityType.GetLastNoticeActivities">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,205,120"/>
+<area shape="rect" id="Node000002" href="$interface_application_1_1_interfaces_1_1_use_cases_1_1_activity_type_1_1_i_get_last_notice_activities.html" title=" " alt="" coords="23,5,187,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,46,108,79,102,79,102,46"/>
+</map>

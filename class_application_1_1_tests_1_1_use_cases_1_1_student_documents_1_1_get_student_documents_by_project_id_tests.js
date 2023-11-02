@@ -1,0 +1,6 @@
+var class_application_1_1_tests_1_1_use_cases_1_1_student_documents_1_1_get_student_documents_by_project_id_tests =
+[
+    [ "ExecuteAsync_ProjectIdIsNull_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_student_documents_1_1_get_student_documents_by_project_id_tests.html#a72bd0a1b2e79ae556b19c114175594e4", null ],
+    [ "ExecuteAsync_RepositoryReturnsNull_ReturnsNullOutput", "class_application_1_1_tests_1_1_use_cases_1_1_student_documents_1_1_get_student_documents_by_project_id_tests.html#a5b2df6b136b0694e124656062d9d4a6b", null ],
+    [ "ExecuteAsync_ValidProjectId_ReturnsResumedReadStudentDocumentsOutput", "class_application_1_1_tests_1_1_use_cases_1_1_student_documents_1_1_get_student_documents_by_project_id_tests.html#a808e6766833082e392711c170eb562ef", null ]
+];

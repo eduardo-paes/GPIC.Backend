@@ -1,0 +1,13 @@
+var classApplication_1_1Tests_1_1UseCases_1_1ProjectEvaluation_1_1EvaluateStudentDocumentsTests =
+[
+    [ "ExecuteAsync_AvaliadorIsProfessorOrientador_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1ProjectEvaluation_1_1EvaluateStudentDocumentsTests.html#a1c8f61f407b5640b3cd5b44cbff23cb4", null ],
+    [ "ExecuteAsync_DocumentsEvaluationDescriptionNotInformed_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1ProjectEvaluation_1_1EvaluateStudentDocumentsTests.html#a7d1bb95c2c8521452becd9feeeabb5c9", null ],
+    [ "ExecuteAsync_NotInDocumentAnalysisPhase_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1ProjectEvaluation_1_1EvaluateStudentDocumentsTests.html#af48fce259aac73666b9dedf0f241a537", null ],
+    [ "ExecuteAsync_NotInformedIsDocumentsApproved_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1ProjectEvaluation_1_1EvaluateStudentDocumentsTests.html#ab4f5de4b9abbe715df34d03a08c27694", null ],
+    [ "ExecuteAsync_ProjectNotInDatabase_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1ProjectEvaluation_1_1EvaluateStudentDocumentsTests.html#aa14c235194172484c9b1a4917eee9d56", null ],
+    [ "ExecuteAsync_ProjectNotInDocumentAnalysisPhase_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1ProjectEvaluation_1_1EvaluateStudentDocumentsTests.html#a717748de7cd0defebb32e8e2c4ac0bcc", null ],
+    [ "ExecuteAsync_SuccessfulEvaluationApprovedStatus_ReturnsDetailedReadProjectOutput", "classApplication_1_1Tests_1_1UseCases_1_1ProjectEvaluation_1_1EvaluateStudentDocumentsTests.html#a3f517e6eaa8e8c0ad6ed56a03d583a3e", null ],
+    [ "ExecuteAsync_SuccessfulEvaluationNotApprovedStatus_ReturnsDetailedReadProjectOutput", "classApplication_1_1Tests_1_1UseCases_1_1ProjectEvaluation_1_1EvaluateStudentDocumentsTests.html#a660ba55f1aa6fb73e52fb694831c930c", null ],
+    [ "ExecuteAsync_UserNotEvaluator_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1ProjectEvaluation_1_1EvaluateStudentDocumentsTests.html#a26f66499e2c8af62116e119ac21409b6", null ],
+    [ "ExecuteAsync_ValidInput_ReturnsDetailedReadProjectOutput", "classApplication_1_1Tests_1_1UseCases_1_1ProjectEvaluation_1_1EvaluateStudentDocumentsTests.html#ad5c858304b950cad62d40ae1e608d230", null ]
+];

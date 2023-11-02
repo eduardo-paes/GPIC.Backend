@@ -1,0 +1,22 @@
+<map id="Domain.Entities.Primitives.Entity.DeactivateEntity" name="Domain.Entities.Primitives.Entity.DeactivateEntity">
+<area shape="rect" id="node1" title=" " alt="" coords="412,593,612,635"/>
+<area shape="rect" id="node2" href="$classPersistence_1_1Repositories_1_1ActivityRepository.html#a7c3fb956859d97db11a9e2fe4354f0e5" title=" " alt="" coords="71,5,298,47"/>
+<area shape="rect" id="node3" href="$classPersistence_1_1Repositories_1_1ActivityTypeRepository.html#a04049c1f14754605e628cc14a22410cd" title=" " alt="" coords="57,71,313,112"/>
+<area shape="rect" id="node4" href="$classPersistence_1_1Repositories_1_1AreaRepository.html#abfb92b7f327304d54c6c2bd6c238c03b" title=" " alt="" coords="81,136,288,177"/>
+<area shape="rect" id="node5" href="$classPersistence_1_1Repositories_1_1AssistanceTypeRepository.html#ad101dc8dc0d6012afa691025de15153b" title=" " alt="" coords="47,201,323,243"/>
+<area shape="rect" id="node6" href="$classPersistence_1_1Repositories_1_1CampusRepository.html#af321a43bff2663c9cadd30f1778e1a01" title=" " alt="" coords="70,267,299,308"/>
+<area shape="rect" id="node7" href="$classPersistence_1_1Repositories_1_1CourseRepository.html#a6ff347fab8f57e33d5123841e4bfdc9b" title=" " alt="" coords="74,332,295,373"/>
+<area shape="rect" id="node8" href="$classPersistence_1_1Repositories_1_1MainAreaRepository.html#a62c668507be6c344bed067d120f53668" title=" " alt="" coords="65,397,304,439"/>
+<area shape="rect" id="node9" href="$classPersistence_1_1Repositories_1_1NoticeRepository.html#a6fe2699e9635951b8c412a2af6ec1f3f" title=" " alt="" coords="75,463,294,504"/>
+<area shape="rect" id="node10" href="$classPersistence_1_1Repositories_1_1ProfessorRepository.html#a9bcc81c20144b0e441f9ee6b5a6f2173" title=" " alt="" coords="66,528,303,569"/>
+<area shape="rect" id="node11" href="$classPersistence_1_1Repositories_1_1ProgramTypeRepository.html#a8bc50a4b5560257355930880c7e93f0a" title=" " alt="" coords="54,593,315,635"/>
+<area shape="rect" id="node12" href="$classPersistence_1_1Repositories_1_1ProjectActivityRepository.html#abcd17b10566bb6884950d71352aaf6f9" title=" " alt="" coords="49,659,320,700"/>
+<area shape="rect" id="node13" href="$classPersistence_1_1Repositories_1_1ProjectRepository.html#aaa92389e10890170a0d07cb6446c1f4b" title="Remove projeto através do Id informado." alt="" coords="74,724,295,765"/>
+<area shape="rect" id="node14" href="$classPersistence_1_1Repositories_1_1StudentDocumentsRepository.html#ad526a0ed09379f0fab4f8314e863b230" title=" " alt="" coords="35,789,335,831"/>
+<area shape="rect" id="node15" href="$classPersistence_1_1Repositories_1_1StudentRepository.html#a8468befb5435a51f08332800b77337a8" title=" " alt="" coords="71,855,298,896"/>
+<area shape="rect" id="node16" href="$classPersistence_1_1Repositories_1_1SubAreaRepository.html#a0f0f1a2ac0fbfd3d2e97ae09ac57000a" title=" " alt="" coords="69,920,300,961"/>
+<area shape="rect" id="node17" href="$classPersistence_1_1Repositories_1_1UserRepository.html#a5d3cf71881fb298b5de1f34c8f1bbc09" title="Realiza a remoção do usuário utilizando o id informado." alt="" coords="81,985,288,1027"/>
+<area shape="rect" id="node18" href="$classApplication_1_1Tests_1_1UseCases_1_1Campus_1_1UpdateCampusTests.html#a79c8140fd041e6854c964eb511e251db" title=" " alt="" coords="5,1051,364,1107"/>
+<area shape="rect" id="node19" href="$classApplication_1_1Tests_1_1UseCases_1_1Course_1_1UpdateCourseTests.html#a7e41e8c865d61e72b71637e5eca418ee" title=" " alt="" coords="9,1131,360,1187"/>
+<area shape="rect" id="node20" href="$classApplication_1_1Tests_1_1UseCases_1_1Professor_1_1UpdateProfessorTests.html#a6a8dd48834a8570b7e7d5d5282b7da7b" title=" " alt="" coords="69,1212,300,1283"/>
+</map>

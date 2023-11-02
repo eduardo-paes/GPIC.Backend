@@ -1,0 +1,5 @@
+var classApplication_1_1Tests_1_1UseCases_1_1ActivityType_1_1GetActivitiesByNoticeIdTests =
+[
+    [ "ExecuteAsync_InvalidId_ReturnsEmptyList", "classApplication_1_1Tests_1_1UseCases_1_1ActivityType_1_1GetActivitiesByNoticeIdTests.html#a8f9824811fee4188e5ee1ca6f8a2a3a2", null ],
+    [ "ExecuteAsync_ValidId_ReturnsListOfActivityTypeOutput", "classApplication_1_1Tests_1_1UseCases_1_1ActivityType_1_1GetActivitiesByNoticeIdTests.html#a0b31924f5714b7e9076e27055d894165", null ]
+];

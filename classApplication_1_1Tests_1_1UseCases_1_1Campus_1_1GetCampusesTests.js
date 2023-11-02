@@ -1,0 +1,4 @@
+var classApplication_1_1Tests_1_1UseCases_1_1Campus_1_1GetCampusesTests =
+[
+    [ "ExecuteAsync_ValidInput_ReturnsQueryableOfResumedReadCampusOutput", "classApplication_1_1Tests_1_1UseCases_1_1Campus_1_1GetCampusesTests.html#a42312dbcc71daff7a15a8118642092df", null ]
+];

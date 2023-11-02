@@ -1,0 +1,7 @@
+<map id="Application.Ports.ProjectPartialReport.BaseProjectPartialReportContract" name="Application.Ports.ProjectPartialReport.BaseProjectPartialReportContract">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,45,215,101"/>
+<area shape="rect" id="Node000002" href="$class_application_1_1_ports_1_1_project_partial_report_1_1_create_project_partial_report_input.html" title=" " alt="" coords="264,5,483,61"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="230,52,263,47,264,52,231,58"/>
+<area shape="rect" id="Node000003" href="$class_application_1_1_ports_1_1_project_partial_report_1_1_detailed_read_project_partial_report_output.html" title=" " alt="" coords="263,85,484,141"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="231,89,263,94,262,99,230,94"/>
+</map>

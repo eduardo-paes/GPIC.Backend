@@ -1,0 +1,6 @@
+<map id="WebAPI.Controllers.AreaController.Create" name="WebAPI.Controllers.AreaController.Create">
+<area shape="rect" id="Node000001" title="Cria área." alt="" coords="5,29,232,70"/>
+<area shape="rect" id="Node000002" href="$class_web_a_p_i_1_1_controllers_1_1_area_controller.html#abeaf52ac7eec417d5c812a2a122dbd3c" title="Busca área pelo id." alt="" coords="280,29,506,70"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="232,47,264,47,264,52,232,52"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="342,29,339,19,348,10,365,5,393,3,422,5,440,11,438,16,421,10,393,8,366,10,350,15,344,21,347,28"/>
+</map>

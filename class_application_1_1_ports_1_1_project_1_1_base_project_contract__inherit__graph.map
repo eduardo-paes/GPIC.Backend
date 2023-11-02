@@ -1,0 +1,7 @@
+<map id="Application.Ports.Project.BaseProjectContract" name="Application.Ports.Project.BaseProjectContract">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,39,175,79"/>
+<area shape="rect" id="Node000002" href="$class_application_1_1_ports_1_1_project_1_1_detailed_read_project_output.html" title=" " alt="" coords="227,5,407,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="190,42,226,36,227,42,190,47"/>
+<area shape="rect" id="Node000003" href="$class_application_1_1_ports_1_1_project_1_1_resumed_read_project_output.html" title=" " alt="" coords="223,71,411,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="190,70,223,75,222,80,189,76"/>
+</map>

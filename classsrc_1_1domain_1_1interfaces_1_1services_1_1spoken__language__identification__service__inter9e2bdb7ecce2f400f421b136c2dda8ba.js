@@ -1,0 +1,4 @@
+var classsrc_1_1domain_1_1interfaces_1_1services_1_1spoken__language__identification__service__inter9e2bdb7ecce2f400f421b136c2dda8ba =
+[
+    [ "detect", "classsrc_1_1domain_1_1interfaces_1_1services_1_1spoken__language__identification__service__inter9e2bdb7ecce2f400f421b136c2dda8ba.html#acda7d2f89eb3e4b72fc795b534c15a94", null ]
+];

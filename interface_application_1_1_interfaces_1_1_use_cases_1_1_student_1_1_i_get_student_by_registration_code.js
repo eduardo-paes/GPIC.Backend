@@ -1,0 +1,4 @@
+var interface_application_1_1_interfaces_1_1_use_cases_1_1_student_1_1_i_get_student_by_registration_code =
+[
+    [ "ExecuteAsync", "interface_application_1_1_interfaces_1_1_use_cases_1_1_student_1_1_i_get_student_by_registration_code.html#af5fc988d32954e43ab30ba54c1c18139", null ]
+];

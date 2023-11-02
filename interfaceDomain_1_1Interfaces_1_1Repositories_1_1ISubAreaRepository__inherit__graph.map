@@ -1,0 +1,5 @@
+<map id="Domain.Interfaces.Repositories.ISubAreaRepository" name="Domain.Interfaces.Repositories.ISubAreaRepository">
+<area shape="rect" id="node1" title=" " alt="" coords="5,95,236,136"/>
+<area shape="rect" id="node3" href="$classPersistence_1_1Repositories_1_1SubAreaRepository.html" title=" " alt="" coords="27,184,214,225"/>
+<area shape="rect" id="node2" href="$interfaceDomain_1_1Interfaces_1_1Repositories_1_1Bases_1_1IGenericCRUDRepository.html" title=" " alt="" coords="29,5,213,47"/>
+</map>

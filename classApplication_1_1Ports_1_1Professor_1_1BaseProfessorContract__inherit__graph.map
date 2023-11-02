@@ -1,0 +1,7 @@
+<map id="Application.Ports.Professor.BaseProfessorContract" name="Application.Ports.Professor.BaseProfessorContract">
+<area shape="rect" id="node1" title=" " alt="" coords="5,104,205,145"/>
+<area shape="rect" id="node2" href="$classApplication_1_1Ports_1_1Professor_1_1CreateProfessorInput.html" title=" " alt="" coords="264,5,464,47"/>
+<area shape="rect" id="node3" href="$classApplication_1_1Ports_1_1Professor_1_1DetailedReadProfessorOutput.html" title=" " alt="" coords="257,71,471,112"/>
+<area shape="rect" id="node4" href="$classApplication_1_1Ports_1_1Professor_1_1ResumedReadProfessorOutput.html" title=" " alt="" coords="253,136,475,177"/>
+<area shape="rect" id="node5" href="$classApplication_1_1Ports_1_1Professor_1_1UpdateProfessorInput.html" title=" " alt="" coords="264,201,464,243"/>
+</map>

@@ -1,0 +1,5 @@
+var namespace_application_1_1_interfaces_1_1_use_cases_1_1_activity_type =
+[
+    [ "IGetActivitiesByNoticeId", "interface_application_1_1_interfaces_1_1_use_cases_1_1_activity_type_1_1_i_get_activities_by_notice_id.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_activity_type_1_1_i_get_activities_by_notice_id" ],
+    [ "IGetLastNoticeActivities", "interface_application_1_1_interfaces_1_1_use_cases_1_1_activity_type_1_1_i_get_last_notice_activities.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_activity_type_1_1_i_get_last_notice_activities" ]
+];

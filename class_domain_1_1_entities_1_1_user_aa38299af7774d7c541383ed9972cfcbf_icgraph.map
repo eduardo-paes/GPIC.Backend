@@ -1,0 +1,5 @@
+<map id="Domain.Entities.User.User" name="Domain.Entities.User.User">
+<area shape="rect" id="Node000001" title=" " alt="" coords="293,13,470,39"/>
+<area shape="rect" id="Node000002" href="$class_services_1_1_token_authentication_service.html#afa24b3f82c9d9ec6e4be0d85b8fb8abb" title="Retorna as claims do usuário autenticado." alt="" coords="5,5,245,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="277,28,245,28,245,23,277,23"/>
+</map>

@@ -1,0 +1,4 @@
+var interfaceApplication_1_1Interfaces_1_1UseCases_1_1ProjectEvaluation_1_1IEvaluateSubmissionProject =
+[
+    [ "ExecuteAsync", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1ProjectEvaluation_1_1IEvaluateSubmissionProject.html#a2e9803efb7d4c3e4fe2e986aefb07f52", null ]
+];

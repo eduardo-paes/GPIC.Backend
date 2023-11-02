@@ -1,0 +1,4 @@
+var class_application_1_1_tests_1_1_use_cases_1_1_main_area_1_1_get_main_areas_tests =
+[
+    [ "ExecuteAsync_ValidInput_ReturnsResumedReadMainAreaOutputQueryable", "class_application_1_1_tests_1_1_use_cases_1_1_main_area_1_1_get_main_areas_tests.html#ae9eb43bbbd3d8618fdc34e9ce390a5aa", null ]
+];

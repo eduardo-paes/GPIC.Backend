@@ -1,0 +1,8 @@
+var namespaceApplication_1_1Tests_1_1UseCases_1_1ProjectFinalReport =
+[
+    [ "CreateProjectFinalReportTests", "classApplication_1_1Tests_1_1UseCases_1_1ProjectFinalReport_1_1CreateProjectFinalReportTests.html", "classApplication_1_1Tests_1_1UseCases_1_1ProjectFinalReport_1_1CreateProjectFinalReportTests" ],
+    [ "DeleteProjectFinalReportTests", "classApplication_1_1Tests_1_1UseCases_1_1ProjectFinalReport_1_1DeleteProjectFinalReportTests.html", "classApplication_1_1Tests_1_1UseCases_1_1ProjectFinalReport_1_1DeleteProjectFinalReportTests" ],
+    [ "GetProjectFinalReportByIdTests", "classApplication_1_1Tests_1_1UseCases_1_1ProjectFinalReport_1_1GetProjectFinalReportByIdTests.html", "classApplication_1_1Tests_1_1UseCases_1_1ProjectFinalReport_1_1GetProjectFinalReportByIdTests" ],
+    [ "GetProjectFinalReportByProjectIdTests", "classApplication_1_1Tests_1_1UseCases_1_1ProjectFinalReport_1_1GetProjectFinalReportByProjectIdTests.html", "classApplication_1_1Tests_1_1UseCases_1_1ProjectFinalReport_1_1GetProjectFinalReportByProjectIdTests" ],
+    [ "UpdateProjectFinalReportTests", "classApplication_1_1Tests_1_1UseCases_1_1ProjectFinalReport_1_1UpdateProjectFinalReportTests.html", "classApplication_1_1Tests_1_1UseCases_1_1ProjectFinalReport_1_1UpdateProjectFinalReportTests" ]
+];

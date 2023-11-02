@@ -1,0 +1,8 @@
+var namespace_application_1_1_use_cases_1_1_project_final_report =
+[
+    [ "CreateProjectFinalReport", "class_application_1_1_use_cases_1_1_project_final_report_1_1_create_project_final_report.html", "class_application_1_1_use_cases_1_1_project_final_report_1_1_create_project_final_report" ],
+    [ "DeleteProjectFinalReport", "class_application_1_1_use_cases_1_1_project_final_report_1_1_delete_project_final_report.html", "class_application_1_1_use_cases_1_1_project_final_report_1_1_delete_project_final_report" ],
+    [ "GetProjectFinalReportById", "class_application_1_1_use_cases_1_1_project_final_report_1_1_get_project_final_report_by_id.html", "class_application_1_1_use_cases_1_1_project_final_report_1_1_get_project_final_report_by_id" ],
+    [ "GetProjectFinalReportByProjectId", "class_application_1_1_use_cases_1_1_project_final_report_1_1_get_project_final_report_by_project_id.html", "class_application_1_1_use_cases_1_1_project_final_report_1_1_get_project_final_report_by_project_id" ],
+    [ "UpdateProjectFinalReport", "class_application_1_1_use_cases_1_1_project_final_report_1_1_update_project_final_report.html", "class_application_1_1_use_cases_1_1_project_final_report_1_1_update_project_final_report" ]
+];

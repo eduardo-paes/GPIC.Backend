@@ -1,0 +1,12 @@
+var classApplication_1_1Tests_1_1UseCases_1_1ProjectPartialReport_1_1UpdateProjectPartialReportTests =
+[
+    [ "ExecuteAsync_ProjectDeleted_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1ProjectPartialReport_1_1UpdateProjectPartialReportTests.html#ad062d1f45f28486ba5e2679e1e9812af", null ],
+    [ "ExecuteAsync_ProjectNotFound_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1ProjectPartialReport_1_1UpdateProjectPartialReportTests.html#a097b7ee0b6f372b69767d19fe7358c8d", null ],
+    [ "ExecuteAsync_ProjectNotStarted_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1ProjectPartialReport_1_1UpdateProjectPartialReportTests.html#a36349aef0855dc5e690e7d3246b31387", null ],
+    [ "ExecuteAsync_ReportDeleted_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1ProjectPartialReport_1_1UpdateProjectPartialReportTests.html#a5ce22261c3c358a0113ee989b8feb041", null ],
+    [ "ExecuteAsync_ReportNotFound_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1ProjectPartialReport_1_1UpdateProjectPartialReportTests.html#a6be60f24070a2f1182911b900ac0d60d", null ],
+    [ "ExecuteAsync_ReportSentAfterDeadline_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1ProjectPartialReport_1_1UpdateProjectPartialReportTests.html#aefc1160c0591f0cf136fb7d46d221987", null ],
+    [ "ExecuteAsync_StageOutOfRange_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1ProjectPartialReport_1_1UpdateProjectPartialReportTests.html#ab43ebfd9b42d6c2b90f3216a47d2ac3d", null ],
+    [ "ExecuteAsync_UserNotAuthorized_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1ProjectPartialReport_1_1UpdateProjectPartialReportTests.html#abef4c7973679328abbeca9f60c6d3503", null ],
+    [ "ExecuteAsync_ValidInput_ReturnsDetailedReadProjectPartialReportOutput", "classApplication_1_1Tests_1_1UseCases_1_1ProjectPartialReport_1_1UpdateProjectPartialReportTests.html#a9984f9ab30c35267bf61cc20ec336379", null ]
+];

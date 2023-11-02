@@ -1,0 +1,5 @@
+<map id="Representação gráfica da hiearquia da classe" name="Representação gráfica da hiearquia da classe">
+<area shape="rect" id="node1" href="$interfaceDomain_1_1Interfaces_1_1Repositories_1_1Bases_1_1IGenericCRUDRepository.html" title=" " alt="" coords="5,5,236,61"/>
+<area shape="rect" id="node2" href="$interfaceDomain_1_1Interfaces_1_1Repositories_1_1IActivityRepository.html" title=" " alt="" coords="284,13,515,54"/>
+<area shape="rect" id="node3" href="$classPersistence_1_1Repositories_1_1ActivityRepository.html" title=" " alt="" coords="563,13,749,54"/>
+</map>

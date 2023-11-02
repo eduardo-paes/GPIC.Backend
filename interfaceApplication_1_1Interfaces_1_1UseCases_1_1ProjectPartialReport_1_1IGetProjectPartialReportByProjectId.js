@@ -1,0 +1,4 @@
+var interfaceApplication_1_1Interfaces_1_1UseCases_1_1ProjectPartialReport_1_1IGetProjectPartialReportByProjectId =
+[
+    [ "ExecuteAsync", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1ProjectPartialReport_1_1IGetProjectPartialReportByProjectId.html#a9c741a83defb56c1838ad95a7b9d8e9a", null ]
+];

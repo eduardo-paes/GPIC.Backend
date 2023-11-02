@@ -1,0 +1,4 @@
+var interfaceApplication_1_1Interfaces_1_1UseCases_1_1StudentDocuments_1_1IGetStudentDocumentsByProjectId =
+[
+    [ "ExecuteAsync", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1StudentDocuments_1_1IGetStudentDocumentsByProjectId.html#a168e3b0debef26cf6c01c19010058c27", null ]
+];

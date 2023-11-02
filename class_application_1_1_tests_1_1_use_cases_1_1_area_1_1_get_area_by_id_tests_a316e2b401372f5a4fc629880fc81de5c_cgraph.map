@@ -1,0 +1,5 @@
+<map id="Application.Tests.UseCases.Area.GetAreaByIdTests.Execute_WithNullId_ShouldThrowException" name="Application.Tests.UseCases.Area.GetAreaByIdTests.Execute_WithNullId_ShouldThrowException">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,236,61"/>
+<area shape="rect" id="Node000002" href="$interface_application_1_1_interfaces_1_1_use_cases_1_1_area_1_1_i_get_area_by_id.html#ae9f040960bd7d6da7dd68b7f443483d8" title=" " alt="" coords="284,13,546,54"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,31,268,31,268,36,236,36"/>
+</map>

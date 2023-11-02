@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>GPIC - Backend: GPIC - Backend</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo-gpic-original.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">GPIC - Backend
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">Aplicações .NET para o backend do GPIC</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('index.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">GPIC - Backend </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="md_README"></a> Bem-vindo ao código do backend do sistema Gerenciamento Institucional de Processos de Iniciação Científica (GPIC)! Este repositório contém o código das aplicações de backend do sistema GPIC, uma solução web-based para a otimização do processo de gestão do Programa Institucional de Bolsas de Iniciação Científica (PIBIC) do Centro Federal de Educação Tecnológica Celso Suckow da Fonseca (CEFET/RJ) Campus Petrópolis.</p>
+<p>Este repositório contém o código-fonte e a definição de testes automatizados para garantir a qualidade e a correção do Backend do GPIC. A base de código é continuamente construída, testada e integrada através de um processo de integração contínua que utiliza a estrutura GitHub Actions para acelerar o desenvolvimento e avaliar o padrão de qualidade do código.</p>
+<p>O backend faz parte do sistema GPIC, composto pelo frontend, o backend propriamente dito e um servidor isolado para a execução de processos em segundo plano que não requerem a interação do utilizador. O frontend está armazenado no repositório <a href="https://github.com/eduardo-paes/CopetSystem.WebUI">GPIC.WebUI</a>, e o servidor de fundo (background worker) está localizado no subdiretório <code>src/GPIC.WebFunction</code> deste repositório.</p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Tabela de Conteúdo</h1>
+<ul>
+<li><a href="#gpic---backend">GPIC - Backend</a><ul>
+<li><a href="#tabela-de-conteúdo">Tabela de Conteúdo</a></li>
+<li><a href="#introdução">Introdução</a></li>
+<li><a href="#arquitetura-do-sistema">Arquitetura do Sistema</a></li>
+<li><a href="#pré-requisitos">Pré-Requisitos</a></li>
+<li><a href="#contribuição">Contribuição</a></li>
+<li><a href="#licença">Licença</a></li>
+</ul>
+</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Introdução</h1>
+<p>O Backend do GPIC é responsável por gerenciar e servir dados para as aplicações web através de uma interface REST API utilizando C# e .NET e interage com um banco de dados PostgreSQL. Foi concebido utilizando uma arquitetura cliente-servidor, uma arquitetura de microsserviços que utiliza contentores Docker e estruturas de Arquitetura Limpa para garantir a separação em camadas das preocupações e a testabilidade.</p>
+<h1><a class="anchor" id="autotoc_md3"></a>
+Arquitetura do Sistema</h1>
+<p>A arquitetura do sistema foi desenvolvida com base no modelo Cliente-Servidor. As responsabilidades foram separadas em camadas de front-end e back-end, permitindo a independência entre ambas. A adoção da Clean Architecture para arquitetura das aplicações que compõem o sistema foi baseada no intuito de alcançar coesão, redução de acoplamento e escalabilidade.</p>
+<p>A interface de usuário foi desenvolvida como uma Single Page <a class="el" href="namespaceApplication.html">Application</a> (SPA), utilizando o framework ReactJS para aprimorar a usabilidade e a experiência do usuário. O back-end foi desenvolvido utilizando C# e .NET, adotando a Arquitetura Limpa para camadas do sistema. O banco de dados utilizado foi PostgreSQL.</p>
+<p>O sistema foi construído por meio de três aplicações distintas, cada uma operando em contêineres separados: GPIC.WebUI (responsável pela interface do usuário), GPIC.WebAPI (que oferece funcionalidades conforme as regras de negócio) e GPIC.WebFunctions (responsável por execuções periódicas de rotinas assíncronas).</p>
+<p>A seguir, há um diagrama ilustrando a arquitetura do sistema:</p>
+<p><img src="/docs/images/system_design.png" alt="Diagrama arquitetural do sistema (GPIC)" class="inline"/></p>
+<h1><a class="anchor" id="autotoc_md4"></a>
+Pré-Requisitos</h1>
+<p>Antes de executar o backend do sistema, você deverá garantir que os seguintes pontos sejam atendidos:</p>
+<ul>
+<li>O sistema operacional suporta a instalação da plataforma .NET;</li>
+<li>O banco de dados PostgreSQL está instalado e configurado;</li>
+<li>As variáveis de ambiente necessárias estão definidas (ex: string de conexão do banco de dados).</li>
+</ul>
+<p>Para executar o backend, siga os seguintes passos:</p>
+<ol type="1">
+<li>Faça um clone do repositório.</li>
+<li>Navegue até o diretório raiz <code>/src</code>.</li>
+<li>Execute o comando "dotnet run" na linha de comando.</li>
+</ol>
+<h1><a class="anchor" id="autotoc_md5"></a>
+Contribuição</h1>
+<p>As contribuições para este repositório são bem-vindas! Para contribuir, siga estes passos:</p>
+<ol type="1">
+<li>Faça um fork deste repositório na sua conta GitHub.</li>
+<li>Crie um novo ramo para a sua contribuição.</li>
+<li>Adicione os seus exemplos de código ou projectos ao diretório apropriado.</li>
+<li>Escreva ficheiros README claros e informativos para as suas adições.</li>
+<li>Crie um pull request para juntar as suas alterações a este repositório.</li>
+</ol>
+<p>As suas contribuições ajudarão a aprimorar o processo de análise e controle dos projetos de IC do CEFET.</p>
+<h1><a class="anchor" id="autotoc_md6"></a>
+Licença</h1>
+<p>Este projeto está licenciado sob a Licença MIT - veja o ficheiro <a href="./LICENSE">LICENSE</a> para mais detalhes. </p>
+</div></div><!-- PageDoc -->
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Gerado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

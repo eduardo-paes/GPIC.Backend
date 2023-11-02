@@ -1,0 +1,7 @@
+var classApplication_1_1Tests_1_1UseCases_1_1StudentDocuments_1_1CreateStudentDocumentsTests =
+[
+    [ "ExecuteAsync_DocumentsExist_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1StudentDocuments_1_1CreateStudentDocumentsTests.html#a2b2961a899f403255d445e212c4534ee", null ],
+    [ "ExecuteAsync_ProjectNotAccepted_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1StudentDocuments_1_1CreateStudentDocumentsTests.html#a205692d76a65bc2c66f9e6b7fba74f42", null ],
+    [ "ExecuteAsync_ProjectNotFound_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1StudentDocuments_1_1CreateStudentDocumentsTests.html#a729d04b54d5a99af8ad0349eda3bf864", null ],
+    [ "ExecuteAsync_ValidInput_ReturnsDetailedReadStudentDocumentsOutput", "classApplication_1_1Tests_1_1UseCases_1_1StudentDocuments_1_1CreateStudentDocumentsTests.html#a1bfa1401aea69b3e3664315a014877fc", null ]
+];

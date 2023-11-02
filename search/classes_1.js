@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['baseactivity_1923',['BaseActivity',['../classApplication_1_1Ports_1_1Activity_1_1BaseActivity.html',1,'Application::Ports::Activity']]],
+  ['baseactivitytype_1924',['BaseActivityType',['../classApplication_1_1Ports_1_1Activity_1_1BaseActivityType.html',1,'Application::Ports::Activity']]],
+  ['baseareacontract_1925',['BaseAreaContract',['../classApplication_1_1Ports_1_1Area_1_1BaseAreaContract.html',1,'Application::Ports::Area']]],
+  ['baseassistancetypecontract_1926',['BaseAssistanceTypeContract',['../classApplication_1_1Ports_1_1AssistanceType_1_1BaseAssistanceTypeContract.html',1,'Application::Ports::AssistanceType']]],
+  ['basecampuscontract_1927',['BaseCampusContract',['../classApplication_1_1Ports_1_1Campus_1_1BaseCampusContract.html',1,'Application::Ports::Campus']]],
+  ['basecoursecontract_1928',['BaseCourseContract',['../classApplication_1_1Ports_1_1Course_1_1BaseCourseContract.html',1,'Application::Ports::Course']]],
+  ['basemainareacontract_1929',['BaseMainAreaContract',['../classApplication_1_1Ports_1_1MainArea_1_1BaseMainAreaContract.html',1,'Application::Ports::MainArea']]],
+  ['basenoticecontract_1930',['BaseNoticeContract',['../classApplication_1_1Ports_1_1Notice_1_1BaseNoticeContract.html',1,'Application::Ports::Notice']]],
+  ['baseprofessorcontract_1931',['BaseProfessorContract',['../classApplication_1_1Ports_1_1Professor_1_1BaseProfessorContract.html',1,'Application::Ports::Professor']]],
+  ['baseprogramtypecontract_1932',['BaseProgramTypeContract',['../classApplication_1_1Ports_1_1ProgramType_1_1BaseProgramTypeContract.html',1,'Application::Ports::ProgramType']]],
+  ['baseprojectactivitycontract_1933',['BaseProjectActivityContract',['../classApplication_1_1Ports_1_1ProjectActivity_1_1BaseProjectActivityContract.html',1,'Application::Ports::ProjectActivity']]],
+  ['baseprojectcontract_1934',['BaseProjectContract',['../classApplication_1_1Ports_1_1Project_1_1BaseProjectContract.html',1,'Application::Ports::Project']]],
+  ['baseprojectfinalreportcontract_1935',['BaseProjectFinalReportContract',['../classApplication_1_1Ports_1_1ProjectFinalReport_1_1BaseProjectFinalReportContract.html',1,'Application::Ports::ProjectFinalReport']]],
+  ['baseprojectpartialreportcontract_1936',['BaseProjectPartialReportContract',['../classApplication_1_1Ports_1_1ProjectPartialReport_1_1BaseProjectPartialReportContract.html',1,'Application::Ports::ProjectPartialReport']]],
+  ['basestudentcontract_1937',['BaseStudentContract',['../classApplication_1_1Ports_1_1Student_1_1BaseStudentContract.html',1,'Application::Ports::Student']]],
+  ['basestudentdocumentsoutput_1938',['BaseStudentDocumentsOutput',['../classApplication_1_1Ports_1_1StudentDocuments_1_1BaseStudentDocumentsOutput.html',1,'Application::Ports::StudentDocuments']]],
+  ['basesubareacontract_1939',['BaseSubAreaContract',['../classApplication_1_1Ports_1_1SubArea_1_1BaseSubAreaContract.html',1,'Application::Ports::SubArea']]]
+];

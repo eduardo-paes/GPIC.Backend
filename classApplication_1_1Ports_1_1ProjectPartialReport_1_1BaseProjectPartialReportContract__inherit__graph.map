@@ -1,0 +1,5 @@
+<map id="Application.Ports.ProjectPartialReport.BaseProjectPartialReportContract" name="Application.Ports.ProjectPartialReport.BaseProjectPartialReportContract">
+<area shape="rect" id="node1" title=" " alt="" coords="5,45,233,101"/>
+<area shape="rect" id="node2" href="$classApplication_1_1Ports_1_1ProjectPartialReport_1_1CreateProjectPartialReportInput.html" title=" " alt="" coords="283,5,522,61"/>
+<area shape="rect" id="node3" href="$classApplication_1_1Ports_1_1ProjectPartialReport_1_1DetailedReadProjectPartialReportOutput.html" title=" " alt="" coords="281,85,524,141"/>
+</map>

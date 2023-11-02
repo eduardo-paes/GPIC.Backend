@@ -1,0 +1,5 @@
+var namespaceApplication_1_1Interfaces_1_1UseCases_1_1ActivityType =
+[
+    [ "IGetActivitiesByNoticeId", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1ActivityType_1_1IGetActivitiesByNoticeId.html", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1ActivityType_1_1IGetActivitiesByNoticeId" ],
+    [ "IGetLastNoticeActivities", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1ActivityType_1_1IGetLastNoticeActivities.html", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1ActivityType_1_1IGetLastNoticeActivities" ]
+];

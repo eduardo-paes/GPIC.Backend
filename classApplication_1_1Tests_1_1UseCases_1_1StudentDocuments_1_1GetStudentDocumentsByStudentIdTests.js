@@ -1,0 +1,6 @@
+var classApplication_1_1Tests_1_1UseCases_1_1StudentDocuments_1_1GetStudentDocumentsByStudentIdTests =
+[
+    [ "ExecuteAsync_RepositoryReturnsNull_ReturnsNullOutput", "classApplication_1_1Tests_1_1UseCases_1_1StudentDocuments_1_1GetStudentDocumentsByStudentIdTests.html#afa410a7843281c6e43c814c7210a49e0", null ],
+    [ "ExecuteAsync_StudentIdIsNull_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1StudentDocuments_1_1GetStudentDocumentsByStudentIdTests.html#ae73ea8bd5c4a0d7e56dcaac048921f8e", null ],
+    [ "ExecuteAsync_ValidStudentId_ReturnsResumedReadStudentDocumentsOutput", "classApplication_1_1Tests_1_1UseCases_1_1StudentDocuments_1_1GetStudentDocumentsByStudentIdTests.html#ac0a6d1ec107853cab66f73e5e673b390", null ]
+];

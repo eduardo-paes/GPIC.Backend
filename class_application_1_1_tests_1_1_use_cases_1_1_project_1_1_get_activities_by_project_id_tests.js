@@ -1,0 +1,6 @@
+var class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_get_activities_by_project_id_tests =
+[
+    [ "ExecuteAsync_NoProjectActivities_ReturnsEmptyList", "class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_get_activities_by_project_id_tests.html#ac991e9e37513579230a99d962624f14a", null ],
+    [ "ExecuteAsync_ProjectActivitiesExist_ReturnsMappedList", "class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_get_activities_by_project_id_tests.html#a160bb23b78c4d7056b08755745b2b4b9", null ],
+    [ "ExecuteAsync_ProjectIdIsNull_ReturnsEmptyList", "class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_get_activities_by_project_id_tests.html#a625fdaaec5f06b783368e80aa8e30dfc", null ]
+];

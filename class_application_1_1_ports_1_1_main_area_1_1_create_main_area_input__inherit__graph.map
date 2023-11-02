@@ -1,0 +1,5 @@
+<map id="Application.Ports.MainArea.CreateMainAreaInput" name="Application.Ports.MainArea.CreateMainAreaInput">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,189,120"/>
+<area shape="rect" id="Node000002" href="$class_application_1_1_ports_1_1_main_area_1_1_base_main_area_contract.html" title=" " alt="" coords="19,5,175,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,46,100,79,94,79,94,46"/>
+</map>

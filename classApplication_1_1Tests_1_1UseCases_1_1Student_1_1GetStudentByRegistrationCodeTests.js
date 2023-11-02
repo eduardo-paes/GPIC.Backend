@@ -1,0 +1,6 @@
+var classApplication_1_1Tests_1_1UseCases_1_1Student_1_1GetStudentByRegistrationCodeTests =
+[
+    [ "ExecuteAsync_WithEmptyRegistrationCode_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1Student_1_1GetStudentByRegistrationCodeTests.html#a64c8eb5bba7c1bf65c8bc611cbef2f4f", null ],
+    [ "ExecuteAsync_WithInvalidRegistrationCode_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1Student_1_1GetStudentByRegistrationCodeTests.html#ab95b1095dd7e80595557bd94df023751", null ],
+    [ "ExecuteAsync_WithValidRegistrationCode_ReturnsDetailedReadStudentOutput", "classApplication_1_1Tests_1_1UseCases_1_1Student_1_1GetStudentByRegistrationCodeTests.html#afbd37709785d6dc767774854c0528566", null ]
+];

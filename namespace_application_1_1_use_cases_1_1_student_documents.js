@@ -1,0 +1,8 @@
+var namespace_application_1_1_use_cases_1_1_student_documents =
+[
+    [ "CreateStudentDocuments", "class_application_1_1_use_cases_1_1_student_documents_1_1_create_student_documents.html", "class_application_1_1_use_cases_1_1_student_documents_1_1_create_student_documents" ],
+    [ "DeleteStudentDocuments", "class_application_1_1_use_cases_1_1_student_documents_1_1_delete_student_documents.html", "class_application_1_1_use_cases_1_1_student_documents_1_1_delete_student_documents" ],
+    [ "GetStudentDocumentsByProjectId", "class_application_1_1_use_cases_1_1_student_documents_1_1_get_student_documents_by_project_id.html", "class_application_1_1_use_cases_1_1_student_documents_1_1_get_student_documents_by_project_id" ],
+    [ "GetStudentDocumentsByStudentId", "class_application_1_1_use_cases_1_1_student_documents_1_1_get_student_documents_by_student_id.html", "class_application_1_1_use_cases_1_1_student_documents_1_1_get_student_documents_by_student_id" ],
+    [ "UpdateStudentDocuments", "class_application_1_1_use_cases_1_1_student_documents_1_1_update_student_documents.html", "class_application_1_1_use_cases_1_1_student_documents_1_1_update_student_documents" ]
+];

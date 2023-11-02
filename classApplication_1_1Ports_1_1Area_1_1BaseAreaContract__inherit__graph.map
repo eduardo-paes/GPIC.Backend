@@ -1,0 +1,7 @@
+<map id="Application.Ports.Area.BaseAreaContract" name="Application.Ports.Area.BaseAreaContract">
+<area shape="rect" id="node1" title=" " alt="" coords="5,104,208,145"/>
+<area shape="rect" id="node2" href="$classApplication_1_1Ports_1_1Area_1_1CreateAreaInput.html" title=" " alt="" coords="265,5,478,47"/>
+<area shape="rect" id="node3" href="$classApplication_1_1Ports_1_1Area_1_1DetailedReadAreaOutput.html" title=" " alt="" coords="259,71,484,112"/>
+<area shape="rect" id="node4" href="$classApplication_1_1Ports_1_1Area_1_1ResumedReadAreaOutput.html" title=" " alt="" coords="256,136,487,177"/>
+<area shape="rect" id="node5" href="$classApplication_1_1Ports_1_1Area_1_1UpdateAreaInput.html" title=" " alt="" coords="263,201,480,243"/>
+</map>

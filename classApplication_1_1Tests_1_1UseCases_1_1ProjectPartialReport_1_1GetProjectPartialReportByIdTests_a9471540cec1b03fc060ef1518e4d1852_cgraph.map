@@ -1,0 +1,4 @@
+<map id="Application.Tests.UseCases.ProjectPartialReport.GetProjectPartialReportByIdTests.ExecuteAsync_ValidId_ReturnsDetailedReadProjectPartialReportOutput" name="Application.Tests.UseCases.ProjectPartialReport.GetProjectPartialReportByIdTests.ExecuteAsync_ValidId_ReturnsDetailedReadProjectPartialReportOutput">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,396,76"/>
+<area shape="rect" id="node2" href="$classApplication_1_1Tests_1_1Mocks_1_1ProjectPartialReportMock.html#afd8146d4782f6146dd3886a716f1023a" title=" " alt="" coords="444,13,669,69"/>
+</map>

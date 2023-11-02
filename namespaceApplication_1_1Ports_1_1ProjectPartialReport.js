@@ -1,0 +1,7 @@
+var namespaceApplication_1_1Ports_1_1ProjectPartialReport =
+[
+    [ "BaseProjectPartialReportContract", "classApplication_1_1Ports_1_1ProjectPartialReport_1_1BaseProjectPartialReportContract.html", "classApplication_1_1Ports_1_1ProjectPartialReport_1_1BaseProjectPartialReportContract" ],
+    [ "CreateProjectPartialReportInput", "classApplication_1_1Ports_1_1ProjectPartialReport_1_1CreateProjectPartialReportInput.html", "classApplication_1_1Ports_1_1ProjectPartialReport_1_1CreateProjectPartialReportInput" ],
+    [ "DetailedReadProjectPartialReportOutput", "classApplication_1_1Ports_1_1ProjectPartialReport_1_1DetailedReadProjectPartialReportOutput.html", "classApplication_1_1Ports_1_1ProjectPartialReport_1_1DetailedReadProjectPartialReportOutput" ],
+    [ "UpdateProjectPartialReportInput", "classApplication_1_1Ports_1_1ProjectPartialReport_1_1UpdateProjectPartialReportInput.html", "classApplication_1_1Ports_1_1ProjectPartialReport_1_1UpdateProjectPartialReportInput" ]
+];

@@ -1,0 +1,5 @@
+<map id="Application.Ports.ProjectFinalReport.BaseProjectFinalReportContract" name="Application.Ports.ProjectFinalReport.BaseProjectFinalReportContract">
+<area shape="rect" id="node1" title=" " alt="" coords="5,45,256,101"/>
+<area shape="rect" id="node2" href="$classApplication_1_1Ports_1_1ProjectFinalReport_1_1CreateProjectFinalReportInput.html" title=" " alt="" coords="311,5,530,61"/>
+<area shape="rect" id="node3" href="$classApplication_1_1Ports_1_1ProjectFinalReport_1_1DetailedReadProjectFinalReportOutput.html" title=" " alt="" coords="304,85,537,141"/>
+</map>

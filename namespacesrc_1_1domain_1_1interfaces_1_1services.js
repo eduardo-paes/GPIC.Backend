@@ -1,0 +1,10 @@
+var namespacesrc_1_1domain_1_1interfaces_1_1services =
+[
+    [ "download_file_service_interface", "namespacesrc_1_1domain_1_1interfaces_1_1services_1_1download__file__service__interface.html", "namespacesrc_1_1domain_1_1interfaces_1_1services_1_1download__file__service__interface" ],
+    [ "logger_service_interface", "namespacesrc_1_1domain_1_1interfaces_1_1services_1_1logger__service__interface.html", "namespacesrc_1_1domain_1_1interfaces_1_1services_1_1logger__service__interface" ],
+    [ "message_queue_service_interface", "namespacesrc_1_1domain_1_1interfaces_1_1services_1_1message__queue__service__interface.html", "namespacesrc_1_1domain_1_1interfaces_1_1services_1_1message__queue__service__interface" ],
+    [ "nautilus_api_service_interface", "namespacesrc_1_1domain_1_1interfaces_1_1services_1_1nautilus__api__service__interface.html", "namespacesrc_1_1domain_1_1interfaces_1_1services_1_1nautilus__api__service__interface" ],
+    [ "speech_recognition_service_interface", "namespacesrc_1_1domain_1_1interfaces_1_1services_1_1speech__recognition__service__interface.html", "namespacesrc_1_1domain_1_1interfaces_1_1services_1_1speech__recognition__service__interface" ],
+    [ "spoken_language_identification_service_interface", "namespacesrc_1_1domain_1_1interfaces_1_1services_1_1spoken__language__identification__service__interface.html", "namespacesrc_1_1domain_1_1interfaces_1_1services_1_1spoken__language__identification__service__interface" ],
+    [ "text_recognition_service_interface", "namespacesrc_1_1domain_1_1interfaces_1_1services_1_1text__recognition__service__interface.html", "namespacesrc_1_1domain_1_1interfaces_1_1services_1_1text__recognition__service__interface" ]
+];

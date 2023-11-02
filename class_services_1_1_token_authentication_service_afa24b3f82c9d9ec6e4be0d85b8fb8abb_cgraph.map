@@ -1,0 +1,5 @@
+<map id="Services.TokenAuthenticationService.GetUserAuthenticatedClaims" name="Services.TokenAuthenticationService.GetUserAuthenticatedClaims">
+<area shape="rect" id="Node000001" title="Retorna as claims do usuário autenticado." alt="" coords="5,5,245,46"/>
+<area shape="rect" id="Node000002" href="$class_domain_1_1_entities_1_1_user.html#aa38299af7774d7c541383ed9972cfcbf" title=" " alt="" coords="293,13,470,39"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="245,23,277,23,277,28,245,28"/>
+</map>

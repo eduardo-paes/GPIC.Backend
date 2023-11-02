@@ -1,0 +1,8 @@
+var namespace_application_1_1_interfaces_1_1_use_cases_1_1_professor =
+[
+    [ "ICreateProfessor", "interface_application_1_1_interfaces_1_1_use_cases_1_1_professor_1_1_i_create_professor.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_professor_1_1_i_create_professor" ],
+    [ "IDeleteProfessor", "interface_application_1_1_interfaces_1_1_use_cases_1_1_professor_1_1_i_delete_professor.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_professor_1_1_i_delete_professor" ],
+    [ "IGetProfessorById", "interface_application_1_1_interfaces_1_1_use_cases_1_1_professor_1_1_i_get_professor_by_id.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_professor_1_1_i_get_professor_by_id" ],
+    [ "IGetProfessors", "interface_application_1_1_interfaces_1_1_use_cases_1_1_professor_1_1_i_get_professors.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_professor_1_1_i_get_professors" ],
+    [ "IUpdateProfessor", "interface_application_1_1_interfaces_1_1_use_cases_1_1_professor_1_1_i_update_professor.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_professor_1_1_i_update_professor" ]
+];

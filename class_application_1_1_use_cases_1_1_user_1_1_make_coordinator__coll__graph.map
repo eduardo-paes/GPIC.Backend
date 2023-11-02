@@ -1,0 +1,5 @@
+<map id="Application.UseCases.User.MakeCoordinator" name="Application.UseCases.User.MakeCoordinator">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,192,120"/>
+<area shape="rect" id="Node000002" href="$interface_application_1_1_interfaces_1_1_use_cases_1_1_user_1_1_i_make_coordinator.html" title=" " alt="" coords="36,5,161,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,46,101,79,96,79,96,46"/>
+</map>

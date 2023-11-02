@@ -1,0 +1,4 @@
+var interface_application_1_1_interfaces_1_1_use_cases_1_1_project_partial_report_1_1_i_get_project_partial_report_by_project_id =
+[
+    [ "ExecuteAsync", "interface_application_1_1_interfaces_1_1_use_cases_1_1_project_partial_report_1_1_i_get_project_partial_report_by_project_id.html#aaa49c2d558e3d692b8b59783a7061093", null ]
+];

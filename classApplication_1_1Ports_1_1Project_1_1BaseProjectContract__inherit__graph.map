@@ -1,0 +1,5 @@
+<map id="Application.Ports.Project.BaseProjectContract" name="Application.Ports.Project.BaseProjectContract">
+<area shape="rect" id="node1" title=" " alt="" coords="5,39,191,80"/>
+<area shape="rect" id="node2" href="$classApplication_1_1Ports_1_1Project_1_1DetailedReadProjectOutput.html" title=" " alt="" coords="242,5,441,47"/>
+<area shape="rect" id="node3" href="$classApplication_1_1Ports_1_1Project_1_1ResumedReadProjectOutput.html" title=" " alt="" coords="239,71,444,112"/>
+</map>

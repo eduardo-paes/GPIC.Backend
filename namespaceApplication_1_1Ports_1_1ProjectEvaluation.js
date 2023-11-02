@@ -1,0 +1,7 @@
+var namespaceApplication_1_1Ports_1_1ProjectEvaluation =
+[
+    [ "DetailedReadProjectEvaluationOutput", "classApplication_1_1Ports_1_1ProjectEvaluation_1_1DetailedReadProjectEvaluationOutput.html", "classApplication_1_1Ports_1_1ProjectEvaluation_1_1DetailedReadProjectEvaluationOutput" ],
+    [ "EvaluateAppealProjectInput", "classApplication_1_1Ports_1_1ProjectEvaluation_1_1EvaluateAppealProjectInput.html", "classApplication_1_1Ports_1_1ProjectEvaluation_1_1EvaluateAppealProjectInput" ],
+    [ "EvaluateStudentDocumentsInput", "classApplication_1_1Ports_1_1ProjectEvaluation_1_1EvaluateStudentDocumentsInput.html", "classApplication_1_1Ports_1_1ProjectEvaluation_1_1EvaluateStudentDocumentsInput" ],
+    [ "EvaluateSubmissionProjectInput", "classApplication_1_1Ports_1_1ProjectEvaluation_1_1EvaluateSubmissionProjectInput.html", "classApplication_1_1Ports_1_1ProjectEvaluation_1_1EvaluateSubmissionProjectInput" ]
+];

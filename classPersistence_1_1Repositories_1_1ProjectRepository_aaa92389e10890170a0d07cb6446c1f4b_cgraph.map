@@ -1,0 +1,6 @@
+<map id="Persistence.Repositories.ProjectRepository.DeleteAsync" name="Persistence.Repositories.ProjectRepository.DeleteAsync">
+<area shape="rect" id="node1" title="Remove projeto através do Id informado." alt="" coords="5,71,227,112"/>
+<area shape="rect" id="node2" href="$classDomain_1_1Entities_1_1Primitives_1_1Entity.html#a3a368e3c302f8622ea0305003ef2a5eb" title=" " alt="" coords="290,5,490,47"/>
+<area shape="rect" id="node3" href="$classPersistence_1_1Repositories_1_1ProjectRepository.html#a82a252c950cc3fe554872ea976ee60e0" title="Obtém projeto pelo Id informado." alt="" coords="275,71,505,112"/>
+<area shape="rect" id="node4" href="$classPersistence_1_1Repositories_1_1ProjectRepository.html#a36d04fbf0e6b35cf94df1675c5eecd0e" title="Atualiza projeto conforme parâmetros fornecidos." alt="" coords="277,136,503,177"/>
+</map>

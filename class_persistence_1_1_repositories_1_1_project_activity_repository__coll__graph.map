@@ -1,0 +1,7 @@
+<map id="Persistence.Repositories.ProjectActivityRepository" name="Persistence.Repositories.ProjectActivityRepository">
+<area shape="rect" id="Node000001" title=" " alt="" coords="6,168,178,208"/>
+<area shape="rect" id="Node000002" href="$interface_domain_1_1_interfaces_1_1_repositories_1_1_i_project_activity_repository.html" title=" " alt="" coords="5,94,179,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,135,95,167,89,167,89,135"/>
+<area shape="rect" id="Node000003" href="$interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository.html" title=" " alt="" coords="5,5,179,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="95,62,95,93,89,93,89,62"/>
+</map>

@@ -1,0 +1,28 @@
+var classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests =
+[
+    [ "SetAppealEndDate_NullAppealEndDate_ThrowsException", "classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests.html#a850901a4b9645cf8fa1d08825a338da9", null ],
+    [ "SetAppealEndDate_ValidAppealEndDate_SetsAppealEndDate", "classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests.html#a298d0dd4d59f86e42431e672fc309692", null ],
+    [ "SetAppealStartDate_NullAppealStartDate_ThrowsException", "classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests.html#aa55f74ba1a10d75dd25038f845cd4de8", null ],
+    [ "SetAppealStartDate_ValidAppealStartDate_SetsAppealStartDate", "classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests.html#ad0627d03c0f585341e43fe5175f14645", null ],
+    [ "SetCreatedAt_ValidDate_SetsCreatedAt", "classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests.html#afc1f42e181d6d2de5c8eb4f60a830653", null ],
+    [ "SetDocUrl_ValidUrl_SetsDocUrl", "classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests.html#abbeab03c2886dc9f0ebfc37a04120711", null ],
+    [ "SetEvaluationEndDate_NullEndDate_ThrowsException", "classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests.html#aa88a8d948125131234c57042612a3838", null ],
+    [ "SetEvaluationEndDate_ValidEndDate_SetsEvaluationEndDate", "classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests.html#a2f640a292a7988bf5285bce7c544eba5", null ],
+    [ "SetEvaluationStartDate_NullStartDate_ThrowsException", "classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests.html#a6f0f444d5cf71b0485720e536ed05597", null ],
+    [ "SetEvaluationStartDate_ValidStartDate_SetsEvaluationStartDate", "classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests.html#adb25eca6ec1f1f57dfe612442aa5e106", null ],
+    [ "SetFinalReportDeadline_NullDeadline_ThrowsException", "classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests.html#a048b0c56a6ce95d999727f3972bd7c9e", null ],
+    [ "SetFinalReportDeadline_ValidDeadline_SetsFinalReportDeadline", "classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests.html#a0fca3558816c9fd50569bb63f44928d9", null ],
+    [ "SetPartialReportDeadline_NullDeadline_ThrowsException", "classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests.html#adec9bd57142ca6641b2444200c418aa7", null ],
+    [ "SetPartialReportDeadline_ValidDeadline_SetsPartialReportDeadline", "classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests.html#a789dcb3dbbbeced728c9ee52c06f8749", null ],
+    [ "SetRegistrationEndDate_NullEndDate_ThrowsException", "classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests.html#a3ddbfd831753a01194433c71d8580064", null ],
+    [ "SetRegistrationEndDate_ValidEndDate_SetsRegistrationEndDate", "classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests.html#a1a0d1bdfd3755542f67f32be4c396e16", null ],
+    [ "SetRegistrationStartDate_NullStartDate_ThrowsException", "classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests.html#a430764af8401d5e1b501f02cb4db0d51", null ],
+    [ "SetRegistrationStartDate_ValidStartDate_SetsRegistrationStartDate", "classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests.html#ad13a562b44e60768c1bd06ff8b205487", null ],
+    [ "SetSendingDocsEndDate_NullEndDate_ThrowsException", "classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests.html#a1807fa915ba5d808dfa6251925b1854f", null ],
+    [ "SetSendingDocsEndDate_ValidEndDate_SetsSendingDocsEndDate", "classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests.html#ad2bc740e00ee1ac1762126c449b8b9f3", null ],
+    [ "SetSendingDocsStartDate_NullStartDate_ThrowsException", "classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests.html#a8e4666dd162af823e0084877859fa231", null ],
+    [ "SetSendingDocsStartDate_ValidStartDate_SetsSendingDocsStartDate", "classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests.html#aa892f088820000cf62a0401b582454be", null ],
+    [ "SetSuspensionYears_NegativeSuspensionYears_ThrowsException", "classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests.html#a5430c82179ab8589fc9132699df10e7f", null ],
+    [ "SetSuspensionYears_NullSuspensionYears_ThrowsException", "classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests.html#ab6f2def2fc70fa75f583a397dbaffb14", null ],
+    [ "SetSuspensionYears_ValidSuspensionYears_SetsSuspensionYears", "classDomain_1_1Tests_1_1Entities_1_1NoticeUnitTests.html#a00fb2a81be30665ecbb75795f6f9558b", null ]
+];

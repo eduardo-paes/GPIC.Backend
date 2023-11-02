@@ -1,0 +1,5 @@
+<map id="Application.Tests.UseCases.Area.DeleteAreaTests.Execute_WithValidId_ShouldDeleteAreaAndReturnOutput" name="Application.Tests.UseCases.Area.DeleteAreaTests.Execute_WithValidId_ShouldDeleteAreaAndReturnOutput">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,313,61"/>
+<area shape="rect" id="Node000002" href="$interface_application_1_1_interfaces_1_1_use_cases_1_1_area_1_1_i_delete_area.html#a5f44ccc52f9120a2c88a8c09ceab9744" title=" " alt="" coords="361,13,613,54"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="313,31,345,31,345,36,313,36"/>
+</map>

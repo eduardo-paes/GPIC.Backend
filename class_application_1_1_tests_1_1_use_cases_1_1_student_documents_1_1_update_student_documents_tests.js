@@ -1,0 +1,6 @@
+var class_application_1_1_tests_1_1_use_cases_1_1_student_documents_1_1_update_student_documents_tests =
+[
+    [ "ExecuteAsync_IdIsNull_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_student_documents_1_1_update_student_documents_tests.html#ab01add49c2adefa5c9208e03dbc4a891", null ],
+    [ "ExecuteAsync_StudentDocumentsNotFound_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_student_documents_1_1_update_student_documents_tests.html#a4af7977801135fc9d2e0812d0a9bb703", null ],
+    [ "ExecuteAsync_ValidIdAndInput_ReturnsDetailedReadStudentDocumentsOutput", "class_application_1_1_tests_1_1_use_cases_1_1_student_documents_1_1_update_student_documents_tests.html#a84b3f45adf4f553fc4c7bcae3317c37c", null ]
+];

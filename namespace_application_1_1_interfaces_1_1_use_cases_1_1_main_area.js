@@ -1,0 +1,8 @@
+var namespace_application_1_1_interfaces_1_1_use_cases_1_1_main_area =
+[
+    [ "ICreateMainArea", "interface_application_1_1_interfaces_1_1_use_cases_1_1_main_area_1_1_i_create_main_area.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_main_area_1_1_i_create_main_area" ],
+    [ "IDeleteMainArea", "interface_application_1_1_interfaces_1_1_use_cases_1_1_main_area_1_1_i_delete_main_area.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_main_area_1_1_i_delete_main_area" ],
+    [ "IGetMainAreaById", "interface_application_1_1_interfaces_1_1_use_cases_1_1_main_area_1_1_i_get_main_area_by_id.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_main_area_1_1_i_get_main_area_by_id" ],
+    [ "IGetMainAreas", "interface_application_1_1_interfaces_1_1_use_cases_1_1_main_area_1_1_i_get_main_areas.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_main_area_1_1_i_get_main_areas" ],
+    [ "IUpdateMainArea", "interface_application_1_1_interfaces_1_1_use_cases_1_1_main_area_1_1_i_update_main_area.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_main_area_1_1_i_update_main_area" ]
+];

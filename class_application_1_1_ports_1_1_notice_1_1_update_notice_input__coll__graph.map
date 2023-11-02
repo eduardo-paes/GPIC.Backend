@@ -1,0 +1,5 @@
+<map id="Application.Ports.Notice.UpdateNoticeInput" name="Application.Ports.Notice.UpdateNoticeInput">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,172,120"/>
+<area shape="rect" id="Node000002" href="$class_application_1_1_ports_1_1_notice_1_1_base_notice_contract.html" title=" " alt="" coords="19,5,158,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,46,91,79,86,79,86,46"/>
+</map>

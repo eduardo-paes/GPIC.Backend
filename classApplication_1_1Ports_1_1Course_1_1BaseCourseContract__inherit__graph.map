@@ -1,0 +1,7 @@
+<map id="Application.Ports.Course.BaseCourseContract" name="Application.Ports.Course.BaseCourseContract">
+<area shape="rect" id="node1" title=" " alt="" coords="5,104,191,145"/>
+<area shape="rect" id="node2" href="$classApplication_1_1Ports_1_1Course_1_1CreateCourseInput.html" title=" " alt="" coords="249,5,434,47"/>
+<area shape="rect" id="node3" href="$classApplication_1_1Ports_1_1Course_1_1DetailedReadCourseOutput.html" title=" " alt="" coords="242,71,441,112"/>
+<area shape="rect" id="node4" href="$classApplication_1_1Ports_1_1Course_1_1ResumedReadCourseOutput.html" title=" " alt="" coords="239,136,444,177"/>
+<area shape="rect" id="node5" href="$classApplication_1_1Ports_1_1Course_1_1UpdateCourseInput.html" title=" " alt="" coords="249,201,434,243"/>
+</map>

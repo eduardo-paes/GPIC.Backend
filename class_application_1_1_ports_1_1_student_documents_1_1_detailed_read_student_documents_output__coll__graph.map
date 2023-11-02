@@ -1,0 +1,5 @@
+<map id="Application.Ports.StudentDocuments.DetailedReadStudentDocumentsOutput" name="Application.Ports.StudentDocuments.DetailedReadStudentDocumentsOutput">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,289,135"/>
+<area shape="rect" id="Node000002" href="$class_application_1_1_ports_1_1_student_documents_1_1_base_student_documents_output.html" title=" " alt="" coords="46,5,248,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,47,150,78,144,78,144,47"/>
+</map>

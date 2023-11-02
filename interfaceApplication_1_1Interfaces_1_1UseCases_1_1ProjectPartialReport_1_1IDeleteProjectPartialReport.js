@@ -1,0 +1,4 @@
+var interfaceApplication_1_1Interfaces_1_1UseCases_1_1ProjectPartialReport_1_1IDeleteProjectPartialReport =
+[
+    [ "ExecuteAsync", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1ProjectPartialReport_1_1IDeleteProjectPartialReport.html#a807150e7b40a658cd63d81a572df1640", null ]
+];

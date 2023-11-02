@@ -1,0 +1,7 @@
+<map id="Application.Tests.UseCases.Area.UpdateAreaTests.Execute_WithValidIdAndInput_ShouldReturnDetailedReadAreaOutput" name="Application.Tests.UseCases.Area.UpdateAreaTests.Execute_WithValidIdAndInput_ShouldReturnDetailedReadAreaOutput">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,24,286,94"/>
+<area shape="rect" id="Node000002" href="$interface_application_1_1_interfaces_1_1_use_cases_1_1_area_1_1_i_update_area.html#a11146620599ff301d16690067c8ccca8" title=" " alt="" coords="334,5,590,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="286,42,318,38,319,43,287,47"/>
+<area shape="rect" id="Node000003" href="$class_application_1_1_tests_1_1_use_cases_1_1_area_1_1_update_area_tests.html#a735023b00c7da6335e5f91af0662399c" title=" " alt="" coords="340,71,584,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="287,71,324,74,324,80,286,76"/>
+</map>

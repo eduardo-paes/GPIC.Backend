@@ -1,0 +1,35 @@
+<map id="UseCaseException.NotFoundEntityById" name="UseCaseException.NotFoundEntityById">
+<area shape="rect" id="node1" title=" " alt="" coords="351,1107,560,1149"/>
+<area shape="rect" id="node2" href="$classApplication_1_1UseCases_1_1ProjectFinalReport_1_1CreateProjectFinalReport.html#a00de73f1fa36d4c3c316dccef715a681" title=" " alt="" coords="21,5,287,61"/>
+<area shape="rect" id="node3" href="$classApplication_1_1UseCases_1_1ProjectPartialReport_1_1CreateProjectPartialReport.html#a62499f0836706ac149cb5c4441c25c08" title=" " alt="" coords="35,85,273,141"/>
+<area shape="rect" id="node4" href="$classApplication_1_1UseCases_1_1StudentDocuments_1_1CreateStudentDocuments.html#a1d45858f390f2bec3f9d51ed90699b0f" title=" " alt="" coords="19,165,289,221"/>
+<area shape="rect" id="node5" href="$classApplication_1_1UseCases_1_1ProjectEvaluation_1_1EvaluateAppealProject.html#a813d70e38bd8d7eee469aa9457e214d5" title="Avalia o recurso do projeto." alt="" coords="31,245,277,301"/>
+<area shape="rect" id="node6" href="$classApplication_1_1UseCases_1_1ProjectEvaluation_1_1EvaluateStudentDocuments.html#a8a19f6227f9ff613432ba339efd2ee70" title="Avalia os documentos informados pelo estudante associado ao projeto." alt="" coords="14,325,294,381"/>
+<area shape="rect" id="node7" href="$classApplication_1_1UseCases_1_1ProjectEvaluation_1_1EvaluateSubmissionProject.html#acccd1c604a29a4fe38fda87e2ed169a6" title="Avalia o projeto submetido." alt="" coords="16,405,292,461"/>
+<area shape="rect" id="node8" href="$classApplication_1_1UseCases_1_1Professor_1_1DeleteProfessor.html#a1b7f82a98cb7514fc1ed9672afbc36d1" title=" " alt="" coords="39,486,269,527"/>
+<area shape="rect" id="node9" href="$classApplication_1_1UseCases_1_1Project_1_1GetProjectById.html#a31dfebb3f5018d8e1b9014f47dacc7b3" title=" " alt="" coords="46,551,262,593"/>
+<area shape="rect" id="node10" href="$classApplication_1_1UseCases_1_1Student_1_1DeleteStudent.html#ab525fa45ff5e0714f7c0e6119afaaf79" title=" " alt="" coords="43,617,265,658"/>
+<area shape="rect" id="node11" href="$classApplication_1_1UseCases_1_1User_1_1ActivateUser.html#a2a75943819e96779ecc1f91a927873fe" title=" " alt="" coords="54,682,254,723"/>
+<area shape="rect" id="node12" href="$classApplication_1_1UseCases_1_1User_1_1DeactivateUser.html#a32b3d8e6f705e62a03f89ca0acb46317" title=" " alt="" coords="46,747,262,789"/>
+<area shape="rect" id="node13" href="$classApplication_1_1UseCases_1_1Project_1_1CancelProject.html#aedcb72b321bdee7c20066078abfd3fa8" title=" " alt="" coords="46,813,262,854"/>
+<area shape="rect" id="node14" href="$classApplication_1_1UseCases_1_1Area_1_1UpdateArea.html#a20ac2d3615af84c09df742b9b03d2e98" title=" " alt="" coords="53,878,255,919"/>
+<area shape="rect" id="node15" href="$classApplication_1_1UseCases_1_1AssistanceType_1_1UpdateAssistanceType.html#adb29d403b1974b891bdc93fe109228ed" title=" " alt="" coords="5,943,303,985"/>
+<area shape="rect" id="node16" href="$classApplication_1_1UseCases_1_1Course_1_1UpdateCourse.html#af2ed09e83a0aa0da9d09760718f375f6" title=" " alt="" coords="46,1009,262,1050"/>
+<area shape="rect" id="node17" href="$classApplication_1_1UseCases_1_1Notice_1_1UpdateNotice.html#a274f4939edb40d2449bdac6809230dec" title=" " alt="" coords="47,1074,261,1115"/>
+<area shape="rect" id="node18" href="$classApplication_1_1UseCases_1_1Professor_1_1UpdateProfessor.html#a8a14b059785d8547148ca0c1083d0821" title=" " alt="" coords="39,1139,269,1181"/>
+<area shape="rect" id="node19" href="$classApplication_1_1UseCases_1_1ProgramType_1_1UpdateProgramType.html#a0f5d6bc44bfa0d1a6c29a957cedfa85e" title=" " alt="" coords="13,1205,295,1246"/>
+<area shape="rect" id="node20" href="$classApplication_1_1UseCases_1_1ProjectFinalReport_1_1UpdateProjectFinalReport.html#ad52a5224b349314c0fe7dc833b3e579b" title=" " alt="" coords="19,1271,289,1327"/>
+<area shape="rect" id="node21" href="$classApplication_1_1UseCases_1_1Project_1_1UpdateProject.html#a7f7ebd2d14f5afeb6a633b7917c96b04" title=" " alt="" coords="46,1351,262,1393"/>
+<area shape="rect" id="node22" href="$classApplication_1_1UseCases_1_1ProjectPartialReport_1_1UpdateProjectPartialReport.html#aee231ea712a96aa2fbf8fcf3a8b171ef" title=" " alt="" coords="33,1417,275,1473"/>
+<area shape="rect" id="node23" href="$classApplication_1_1UseCases_1_1StudentDocuments_1_1UpdateStudentDocuments.html#a0aac0be387a2a1fc200962226a06ce8b" title=" " alt="" coords="17,1497,291,1553"/>
+<area shape="rect" id="node24" href="$classApplication_1_1UseCases_1_1Student_1_1UpdateStudent.html#a4360f5fa3462329a0e83499fbae31da2" title=" " alt="" coords="43,1578,265,1619"/>
+<area shape="rect" id="node25" href="$classApplication_1_1UseCases_1_1SubArea_1_1UpdateSubArea.html#a4e6e6297052a98c52167bd63ffa99dbe" title=" " alt="" coords="29,1643,279,1685"/>
+<area shape="rect" id="node26" href="$classApplication_1_1UseCases_1_1Project_1_1SubmitProject.html#a862824304d6ea781ee6a3f6aa8908fa1" title=" " alt="" coords="46,1709,262,1750"/>
+<area shape="rect" id="node27" href="$classApplication_1_1UseCases_1_1Project_1_1AppealProject.html#a17198169866dee74174cf476362a125e" title=" " alt="" coords="46,1774,262,1815"/>
+<area shape="rect" id="node28" href="$classApplication_1_1UseCases_1_1User_1_1MakeAdmin.html#a8e22ed6162e464ed6f119bd0c5272c01" title=" " alt="" coords="54,1839,254,1881"/>
+<area shape="rect" id="node29" href="$classApplication_1_1UseCases_1_1User_1_1MakeCoordinator.html#a2a87ccc47e461221b01a53607d76ebd2" title="Torna o usuário um coordenador e faz com que o coordenador anterior seja desativado." alt="" coords="41,1905,267,1946"/>
+<area shape="rect" id="node30" href="$classApplication_1_1UseCases_1_1Project_1_1OpenProject.html#a8b2fe42bad132482a4816eb3a0969750" title=" " alt="" coords="46,1970,262,2011"/>
+<area shape="rect" id="node31" href="$classApplication_1_1UseCases_1_1Auth_1_1ResetPassword.html#ac5ae2cc13974ce8187acdd136dab11ba" title=" " alt="" coords="47,2035,261,2077"/>
+<area shape="rect" id="node32" href="$classApplication_1_1UseCases_1_1User_1_1UpdateUser.html#aea0ae3dc06aca1d7f3ea9d08443284ac" title=" " alt="" coords="54,2101,254,2142"/>
+<area shape="rect" id="node33" href="$classUseCaseException.html#a1b9fe11bd42198a32a7c74d338969a50" title=" " alt="" coords="49,2166,259,2207"/>
+</map>

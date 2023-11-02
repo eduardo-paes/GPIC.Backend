@@ -1,0 +1,6 @@
+var class_application_1_1_tests_1_1_use_cases_1_1_project_partial_report_1_1_get_project_partial_report_by_id_tests =
+[
+    [ "ExecuteAsync_IdNotFound_ReturnsDetailedReadProjectPartialReportOutput", "class_application_1_1_tests_1_1_use_cases_1_1_project_partial_report_1_1_get_project_partial_report_by_id_tests.html#a42606e032692836bb9bc0b38f624f3bb", null ],
+    [ "ExecuteAsync_NullId_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_project_partial_report_1_1_get_project_partial_report_by_id_tests.html#a26329c43ff84143ce1ed111007f35961", null ],
+    [ "ExecuteAsync_ValidId_ReturnsDetailedReadProjectPartialReportOutput", "class_application_1_1_tests_1_1_use_cases_1_1_project_partial_report_1_1_get_project_partial_report_by_id_tests.html#a9471540cec1b03fc060ef1518e4d1852", null ]
+];

@@ -1,0 +1,7 @@
+var namespaceApplication_1_1Tests_1_1UseCases_1_1ProjectEvaluation =
+[
+    [ "EvaluateAppealProjectTests", "classApplication_1_1Tests_1_1UseCases_1_1ProjectEvaluation_1_1EvaluateAppealProjectTests.html", "classApplication_1_1Tests_1_1UseCases_1_1ProjectEvaluation_1_1EvaluateAppealProjectTests" ],
+    [ "EvaluateStudentDocumentsTests", "classApplication_1_1Tests_1_1UseCases_1_1ProjectEvaluation_1_1EvaluateStudentDocumentsTests.html", "classApplication_1_1Tests_1_1UseCases_1_1ProjectEvaluation_1_1EvaluateStudentDocumentsTests" ],
+    [ "EvaluateSubmissionProjectTests", "classApplication_1_1Tests_1_1UseCases_1_1ProjectEvaluation_1_1EvaluateSubmissionProjectTests.html", "classApplication_1_1Tests_1_1UseCases_1_1ProjectEvaluation_1_1EvaluateSubmissionProjectTests" ],
+    [ "GetEvaluationByProjectIdTests", "classApplication_1_1Tests_1_1UseCases_1_1ProjectEvaluation_1_1GetEvaluationByProjectIdTests.html", "classApplication_1_1Tests_1_1UseCases_1_1ProjectEvaluation_1_1GetEvaluationByProjectIdTests" ]
+];

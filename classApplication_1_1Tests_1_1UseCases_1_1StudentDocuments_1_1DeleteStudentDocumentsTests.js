@@ -1,0 +1,6 @@
+var classApplication_1_1Tests_1_1UseCases_1_1StudentDocuments_1_1DeleteStudentDocumentsTests =
+[
+    [ "ExecuteAsync_IdIsNull_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1StudentDocuments_1_1DeleteStudentDocumentsTests.html#aa70031bd86fe97eca05b1e074fa8190a", null ],
+    [ "ExecuteAsync_RepositoryReturnsNull_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1StudentDocuments_1_1DeleteStudentDocumentsTests.html#aa85df023fe323d9db2d64063e2d09df1", null ],
+    [ "ExecuteAsync_ValidInput_ReturnsDetailedReadStudentDocumentsOutput", "classApplication_1_1Tests_1_1UseCases_1_1StudentDocuments_1_1DeleteStudentDocumentsTests.html#a59ba698d718ec83b3ccf9f474696bf4c", null ]
+];

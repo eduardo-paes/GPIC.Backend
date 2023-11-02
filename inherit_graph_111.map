@@ -1,0 +1,7 @@
+<map id="Representação gráfica da hiearquia da classe" name="Representação gráfica da hiearquia da classe">
+<area shape="rect" id="node1" href="$classApplication_1_1Ports_1_1MainArea_1_1BaseMainAreaContract.html" title=" " alt="" coords="5,104,208,145"/>
+<area shape="rect" id="node2" href="$classApplication_1_1Ports_1_1MainArea_1_1CreateMainAreaInput.html" title=" " alt="" coords="266,5,469,47"/>
+<area shape="rect" id="node3" href="$classApplication_1_1Ports_1_1MainArea_1_1DetailedMainAreaOutput.html" title=" " alt="" coords="266,71,469,112"/>
+<area shape="rect" id="node4" href="$classApplication_1_1Ports_1_1MainArea_1_1ResumedReadMainAreaOutput.html" title=" " alt="" coords="256,136,479,177"/>
+<area shape="rect" id="node5" href="$classApplication_1_1Ports_1_1MainArea_1_1UpdateMainAreaInput.html" title=" " alt="" coords="266,201,469,243"/>
+</map>

@@ -1,0 +1,15 @@
+<map id="Services.Email.EmailService.SendEmailAsync" name="Services.Email.EmailService.SendEmailAsync">
+<area shape="rect" id="Node000001" title=" " alt="" coords="318,179,512,219"/>
+<area shape="rect" id="Node000002" href="$class_services_1_1_email_1_1_email_service.html#a6e847d27ce8279d1287963b092619c0c" title=" " alt="" coords="40,5,235,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="387,168,336,113,304,85,268,61,235,47,237,42,271,57,307,81,340,109,391,165"/>
+<area shape="rect" id="Node000003" href="$class_services_1_1_email_1_1_email_service.html#a1171bee4d40483b4f7dabbab2c32cd90" title=" " alt="" coords="40,71,235,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="365,173,319,148,269,125,234,114,236,109,271,121,322,143,368,168"/>
+<area shape="rect" id="Node000004" href="$class_services_1_1_email_1_1_email_service.html#a6dc6c315d8ba0e1453dc79435b7e7120" title=" " alt="" coords="27,135,248,191"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="302,187,248,180,249,175,303,182"/>
+<area shape="rect" id="Node000005" href="$class_services_1_1_email_1_1_email_service.html#acac60e14ea753ab4be216425451553b1" title=" " alt="" coords="23,215,252,255"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="302,216,252,223,252,218,302,211"/>
+<area shape="rect" id="Node000006" href="$class_services_1_1_email_1_1_email_service.html#aa7a1ff575189a23a96f806266a63eca4" title=" " alt="" coords="5,280,270,321"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="362,229,271,269,231,282,230,277,269,265,360,224"/>
+<area shape="rect" id="Node000007" href="$class_services_1_1_email_1_1_email_service.html#ae9e95fa7d7ee982aecbfab334e0952e5" title=" " alt="" coords="30,345,245,386"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="390,233,338,285,306,312,271,335,243,347,241,342,268,330,303,308,335,281,386,229"/>
+</map>

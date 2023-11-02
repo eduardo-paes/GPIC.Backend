@@ -1,0 +1,6 @@
+var classApplication_1_1Tests_1_1UseCases_1_1ProgramType_1_1CreateProgramTypeTests =
+[
+    [ "ExecuteAsync_NullName_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1ProgramType_1_1CreateProgramTypeTests.html#a0948333909a6b764f96a59e701c9ca61", null ],
+    [ "ExecuteAsync_ProgramTypeWithNameExists_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1ProgramType_1_1CreateProgramTypeTests.html#a20f0ecdc8ff5b27a1b3a76a1666cb5df", null ],
+    [ "ExecuteAsync_ValidInput_ReturnsDetailedReadProgramTypeOutput", "classApplication_1_1Tests_1_1UseCases_1_1ProgramType_1_1CreateProgramTypeTests.html#a9b8c898564d131ebe10382bb91d3e4d0", null ]
+];

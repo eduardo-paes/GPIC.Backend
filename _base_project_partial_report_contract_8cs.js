@@ -1,0 +1,4 @@
+var _base_project_partial_report_contract_8cs =
+[
+    [ "Application.Ports.ProjectPartialReport.BaseProjectPartialReportContract", "class_application_1_1_ports_1_1_project_partial_report_1_1_base_project_partial_report_contract.html", "class_application_1_1_ports_1_1_project_partial_report_1_1_base_project_partial_report_contract" ]
+];

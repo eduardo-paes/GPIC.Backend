@@ -1,0 +1,15 @@
+var namespace_application_1_1_interfaces_1_1_use_cases_1_1_project =
+[
+    [ "IAppealProject", "interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_appeal_project.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_appeal_project" ],
+    [ "ICancelProject", "interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_cancel_project.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_cancel_project" ],
+    [ "IClosePendingProjects", "interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_close_pending_projects.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_close_pending_projects" ],
+    [ "IGenerateCertificate", "interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_generate_certificate.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_generate_certificate" ],
+    [ "IGetActivitiesByProjectId", "interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_get_activities_by_project_id.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_get_activities_by_project_id" ],
+    [ "IGetClosedProjects", "interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_get_closed_projects.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_get_closed_projects" ],
+    [ "IGetOpenProjects", "interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_get_open_projects.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_get_open_projects" ],
+    [ "IGetProjectById", "interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_get_project_by_id.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_get_project_by_id" ],
+    [ "IGetProjectsToEvaluate", "interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_get_projects_to_evaluate.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_get_projects_to_evaluate" ],
+    [ "IOpenProject", "interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_open_project.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_open_project" ],
+    [ "ISubmitProject", "interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_submit_project.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_submit_project" ],
+    [ "IUpdateProject", "interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_update_project.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_update_project" ]
+];

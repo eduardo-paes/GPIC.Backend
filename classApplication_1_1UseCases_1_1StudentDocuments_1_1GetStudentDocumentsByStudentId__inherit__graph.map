@@ -1,0 +1,4 @@
+<map id="Application.UseCases.StudentDocuments.GetStudentDocumentsByStudentId" name="Application.UseCases.StudentDocuments.GetStudentDocumentsByStudentId">
+<area shape="rect" id="node1" title=" " alt="" coords="5,80,269,136"/>
+<area shape="rect" id="node2" href="$interfaceApplication_1_1Interfaces_1_1UseCases_1_1StudentDocuments_1_1IGetStudentDocumentsByStudentId.html" title=" " alt="" coords="11,5,263,32"/>
+</map>

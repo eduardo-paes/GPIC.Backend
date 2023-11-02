@@ -1,0 +1,18 @@
+<map id="Representação gráfica da hiearquia da classe" name="Representação gráfica da hiearquia da classe">
+<area shape="rect" id="node1" title=" " alt="" coords="5,415,68,442"/>
+<area shape="rect" id="node2" href="$classDomain_1_1Mappings_1_1ActivityMappings.html" title=" " alt="" coords="153,5,347,47"/>
+<area shape="rect" id="node3" href="$classDomain_1_1Mappings_1_1AreaMappings.html" title=" " alt="" coords="131,71,369,98"/>
+<area shape="rect" id="node4" href="$classDomain_1_1Mappings_1_1AssistanceTypeMappings.html" title=" " alt="" coords="143,123,357,164"/>
+<area shape="rect" id="node5" href="$classDomain_1_1Mappings_1_1CampusMappings.html" title=" " alt="" coords="120,189,380,215"/>
+<area shape="rect" id="node6" href="$classDomain_1_1Mappings_1_1CourseMappings.html" title=" " alt="" coords="124,239,376,266"/>
+<area shape="rect" id="node7" href="$classDomain_1_1Mappings_1_1MainAreaMappings.html" title=" " alt="" coords="147,291,353,332"/>
+<area shape="rect" id="node8" href="$classDomain_1_1Mappings_1_1NoticeMappings.html" title=" " alt="" coords="125,357,375,383"/>
+<area shape="rect" id="node9" href="$classDomain_1_1Mappings_1_1ProfessorMappings.html" title=" " alt="" coords="147,408,353,449"/>
+<area shape="rect" id="node10" href="$classDomain_1_1Mappings_1_1ProgramTypeMappings.html" title=" " alt="" coords="135,473,365,515"/>
+<area shape="rect" id="node11" href="$classDomain_1_1Mappings_1_1ProjectEvaluationMappings.html" title=" " alt="" coords="121,539,379,580"/>
+<area shape="rect" id="node12" href="$classDomain_1_1Mappings_1_1ProjectMappings.html" title=" " alt="" coords="124,605,376,631"/>
+<area shape="rect" id="node13" href="$classDomain_1_1Mappings_1_1StudentDocumentsMappings.html" title=" " alt="" coords="116,656,384,697"/>
+<area shape="rect" id="node14" href="$classDomain_1_1Mappings_1_1StudentMappings.html" title=" " alt="" coords="121,722,379,749"/>
+<area shape="rect" id="node15" href="$classDomain_1_1Mappings_1_1SubAreaMappings.html" title=" " alt="" coords="119,773,381,799"/>
+<area shape="rect" id="node16" href="$classDomain_1_1Mappings_1_1UserMappings.html" title=" " alt="" coords="131,823,369,850"/>
+</map>

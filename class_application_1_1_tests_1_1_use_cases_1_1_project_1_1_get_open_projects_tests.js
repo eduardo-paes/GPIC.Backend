@@ -1,0 +1,6 @@
+var class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_get_open_projects_tests =
+[
+    [ "ExecuteAsync_InvalidSkipOrTake_ThrowsArgumentException", "class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_get_open_projects_tests.html#a1b986e2f4b737171980c906892b667d6", null ],
+    [ "ExecuteAsync_UnauthorizedUser_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_get_open_projects_tests.html#a09beb260b5a5f93729ce79dc8e5dccec", null ],
+    [ "ExecuteAsync_WithValidInput_ReturnsProjectList", "class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_get_open_projects_tests.html#a1257ef613c17ba4ca5b61013c32b8ddd", null ]
+];

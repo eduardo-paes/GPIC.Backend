@@ -1,0 +1,4 @@
+var interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_delete_assistance_type =
+[
+    [ "ExecuteAsync", "interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_delete_assistance_type.html#a45d9b1045552279d6acd2a4cefe13523", null ]
+];

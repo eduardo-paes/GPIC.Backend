@@ -1,0 +1,5 @@
+var namespaceApplication_1_1Tests_1_1UseCases_1_1ActivityType =
+[
+    [ "GetActivitiesByNoticeIdTests", "classApplication_1_1Tests_1_1UseCases_1_1ActivityType_1_1GetActivitiesByNoticeIdTests.html", "classApplication_1_1Tests_1_1UseCases_1_1ActivityType_1_1GetActivitiesByNoticeIdTests" ],
+    [ "GetLastNoticeActivitiesTests", "classApplication_1_1Tests_1_1UseCases_1_1ActivityType_1_1GetLastNoticeActivitiesTests.html", "classApplication_1_1Tests_1_1UseCases_1_1ActivityType_1_1GetLastNoticeActivitiesTests" ]
+];

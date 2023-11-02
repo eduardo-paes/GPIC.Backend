@@ -1,0 +1,8 @@
+var classApplication_1_1Tests_1_1UseCases_1_1AssistanceType_1_1UpdateAssistanceTypeTests =
+[
+    [ "ExecuteAsync_AssistanceTypeIsDeleted_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1AssistanceType_1_1UpdateAssistanceTypeTests.html#ae2f14cf702eb93b9cec341aa87c37f7c", null ],
+    [ "ExecuteAsync_AssistanceTypeWithNameExists_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1AssistanceType_1_1UpdateAssistanceTypeTests.html#af4d8ae312a1673c965c45b2adf5bccbe", null ],
+    [ "ExecuteAsync_IdIsNull_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1AssistanceType_1_1UpdateAssistanceTypeTests.html#a3839f63da7b9b7caa260ee125bee60f3", null ],
+    [ "ExecuteAsync_NameIsNull_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1AssistanceType_1_1UpdateAssistanceTypeTests.html#aca68fc6d0c63494f6d5184b60aef4e25", null ],
+    [ "ExecuteAsync_ValidInput_ReturnsDetailedReadAssistanceTypeOutput", "classApplication_1_1Tests_1_1UseCases_1_1AssistanceType_1_1UpdateAssistanceTypeTests.html#abc6bb79d71bc4c80ec4c16d273217010", null ]
+];

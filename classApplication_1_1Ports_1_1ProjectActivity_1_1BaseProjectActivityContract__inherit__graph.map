@@ -1,0 +1,8 @@
+<map id="Application.Ports.ProjectActivity.BaseProjectActivityContract" name="Application.Ports.ProjectActivity.BaseProjectActivityContract">
+<area shape="rect" id="node1" title=" " alt="" coords="5,152,261,193"/>
+<area shape="rect" id="node2" href="$classApplication_1_1Ports_1_1ProjectActivity_1_1CreateProjectActivityInput.html" title=" " alt="" coords="318,5,563,47"/>
+<area shape="rect" id="node3" href="$classApplication_1_1Ports_1_1ProjectActivity_1_1DetailedReadProjectActivityOutput.html" title=" " alt="" coords="312,71,569,127"/>
+<area shape="rect" id="node4" href="$classApplication_1_1Ports_1_1ProjectActivity_1_1EvaluateProjectActivityInput.html" title=" " alt="" coords="311,152,570,193"/>
+<area shape="rect" id="node5" href="$classApplication_1_1Ports_1_1ProjectActivity_1_1ResumedReadProjectActivityOutput.html" title=" " alt="" coords="309,218,572,274"/>
+<area shape="rect" id="node6" href="$classApplication_1_1Ports_1_1ProjectActivity_1_1UpdateProjectActivityInput.html" title=" " alt="" coords="316,299,565,340"/>
+</map>

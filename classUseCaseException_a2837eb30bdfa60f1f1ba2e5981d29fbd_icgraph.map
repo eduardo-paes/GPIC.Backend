@@ -1,0 +1,46 @@
+<map id="UseCaseException.BusinessRuleViolation" name="UseCaseException.BusinessRuleViolation">
+<area shape="rect" id="node1" title=" " alt="" coords="351,1468,556,1509"/>
+<area shape="rect" id="node2" href="$classUseCaseException.html#a743150e54356568be42231a53607c866" title=" " alt="" coords="51,5,257,47"/>
+<area shape="rect" id="node3" href="$classApplication_1_1UseCases_1_1Area_1_1CreateArea.html#a061dd871d196e57608c18a4fe6e94642" title=" " alt="" coords="53,71,255,112"/>
+<area shape="rect" id="node4" href="$classApplication_1_1UseCases_1_1AssistanceType_1_1CreateAssistanceType.html#ac7b4c4e8aa35699fb01c8fdfe627353d" title=" " alt="" coords="7,136,301,177"/>
+<area shape="rect" id="node5" href="$classApplication_1_1UseCases_1_1Campus_1_1CreateCampus.html#ac2d25047801f13ba2c2b185d50596712" title=" " alt="" coords="42,201,266,243"/>
+<area shape="rect" id="node6" href="$classApplication_1_1UseCases_1_1Course_1_1CreateCourse.html#ada8b792515fef0320c648ba553415cfe" title=" " alt="" coords="46,267,262,308"/>
+<area shape="rect" id="node7" href="$classApplication_1_1UseCases_1_1MainArea_1_1CreateMainArea.html#adf155f02408dba9c90ee5a4a5e385231" title=" " alt="" coords="27,332,281,373"/>
+<area shape="rect" id="node8" href="$classApplication_1_1UseCases_1_1Notice_1_1CreateNotice.html#a4e80e06fc4c6a59af4bff79d45758485" title=" " alt="" coords="47,397,261,439"/>
+<area shape="rect" id="node9" href="$classApplication_1_1UseCases_1_1Professor_1_1CreateProfessor.html#a5e882ddd6ef98e38f2c3fb08a2f8cec5" title=" " alt="" coords="39,463,269,504"/>
+<area shape="rect" id="node10" href="$classApplication_1_1UseCases_1_1ProgramType_1_1CreateProgramType.html#a74cecabe2dba62518e5ff476e1cba48d" title=" " alt="" coords="15,528,293,569"/>
+<area shape="rect" id="node11" href="$classApplication_1_1UseCases_1_1ProjectFinalReport_1_1CreateProjectFinalReport.html#a00de73f1fa36d4c3c316dccef715a681" title=" " alt="" coords="21,594,287,650"/>
+<area shape="rect" id="node12" href="$classApplication_1_1UseCases_1_1ProjectPartialReport_1_1CreateProjectPartialReport.html#a62499f0836706ac149cb5c4441c25c08" title=" " alt="" coords="35,674,273,730"/>
+<area shape="rect" id="node13" href="$classApplication_1_1UseCases_1_1StudentDocuments_1_1CreateStudentDocuments.html#a1d45858f390f2bec3f9d51ed90699b0f" title=" " alt="" coords="19,754,289,810"/>
+<area shape="rect" id="node14" href="$classApplication_1_1UseCases_1_1Student_1_1CreateStudent.html#acf07f6462fe7e0bc893ed08d37430bbe" title=" " alt="" coords="43,835,265,876"/>
+<area shape="rect" id="node15" href="$classApplication_1_1UseCases_1_1SubArea_1_1CreateSubArea.html#ad046dae78a98463de48dd78d6401e05c" title=" " alt="" coords="31,900,277,941"/>
+<area shape="rect" id="node16" href="$classApplication_1_1UseCases_1_1ProjectEvaluation_1_1EvaluateAppealProject.html#a813d70e38bd8d7eee469aa9457e214d5" title="Avalia o recurso do projeto." alt="" coords="31,966,277,1022"/>
+<area shape="rect" id="node17" href="$classApplication_1_1UseCases_1_1ProjectEvaluation_1_1EvaluateStudentDocuments.html#a8a19f6227f9ff613432ba339efd2ee70" title="Avalia os documentos informados pelo estudante associado ao projeto." alt="" coords="14,1046,294,1102"/>
+<area shape="rect" id="node18" href="$classApplication_1_1UseCases_1_1ProjectEvaluation_1_1EvaluateSubmissionProject.html#acccd1c604a29a4fe38fda87e2ed169a6" title="Avalia o projeto submetido." alt="" coords="16,1126,292,1182"/>
+<area shape="rect" id="node19" href="$classApplication_1_1UseCases_1_1Professor_1_1DeleteProfessor.html#a1b7f82a98cb7514fc1ed9672afbc36d1" title=" " alt="" coords="39,1207,269,1248"/>
+<area shape="rect" id="node20" href="$classApplication_1_1UseCases_1_1Student_1_1DeleteStudent.html#ab525fa45ff5e0714f7c0e6119afaaf79" title=" " alt="" coords="43,1272,265,1313"/>
+<area shape="rect" id="node21" href="$classApplication_1_1UseCases_1_1Project_1_1CancelProject.html#aedcb72b321bdee7c20066078abfd3fa8" title=" " alt="" coords="46,1337,262,1379"/>
+<area shape="rect" id="node22" href="$classApplication_1_1UseCases_1_1AssistanceType_1_1UpdateAssistanceType.html#adb29d403b1974b891bdc93fe109228ed" title=" " alt="" coords="5,1403,303,1444"/>
+<area shape="rect" id="node23" href="$classApplication_1_1UseCases_1_1Campus_1_1UpdateCampus.html#aeb1ed1caac6dcaa9b692368e64b2cc31" title=" " alt="" coords="42,1468,266,1509"/>
+<area shape="rect" id="node24" href="$classApplication_1_1UseCases_1_1Course_1_1UpdateCourse.html#af2ed09e83a0aa0da9d09760718f375f6" title=" " alt="" coords="46,1533,262,1575"/>
+<area shape="rect" id="node25" href="$classApplication_1_1UseCases_1_1MainArea_1_1UpdateMainArea.html#ad48f24f7400c91e05b6596a1c98dda5a" title=" " alt="" coords="25,1599,283,1640"/>
+<area shape="rect" id="node26" href="$classApplication_1_1UseCases_1_1Notice_1_1UpdateNotice.html#a274f4939edb40d2449bdac6809230dec" title=" " alt="" coords="47,1664,261,1705"/>
+<area shape="rect" id="node27" href="$classApplication_1_1UseCases_1_1Professor_1_1UpdateProfessor.html#a8a14b059785d8547148ca0c1083d0821" title=" " alt="" coords="39,1729,269,1771"/>
+<area shape="rect" id="node28" href="$classApplication_1_1UseCases_1_1ProgramType_1_1UpdateProgramType.html#a0f5d6bc44bfa0d1a6c29a957cedfa85e" title=" " alt="" coords="13,1795,295,1836"/>
+<area shape="rect" id="node29" href="$classApplication_1_1UseCases_1_1ProjectFinalReport_1_1UpdateProjectFinalReport.html#ad52a5224b349314c0fe7dc833b3e579b" title=" " alt="" coords="19,1861,289,1917"/>
+<area shape="rect" id="node30" href="$classApplication_1_1UseCases_1_1Project_1_1UpdateProject.html#a7f7ebd2d14f5afeb6a633b7917c96b04" title=" " alt="" coords="46,1941,262,1983"/>
+<area shape="rect" id="node31" href="$classApplication_1_1UseCases_1_1ProjectPartialReport_1_1UpdateProjectPartialReport.html#aee231ea712a96aa2fbf8fcf3a8b171ef" title=" " alt="" coords="33,2007,275,2063"/>
+<area shape="rect" id="node32" href="$classApplication_1_1UseCases_1_1StudentDocuments_1_1UpdateStudentDocuments.html#a0aac0be387a2a1fc200962226a06ce8b" title=" " alt="" coords="17,2087,291,2143"/>
+<area shape="rect" id="node33" href="$classApplication_1_1UseCases_1_1Student_1_1UpdateStudent.html#a4360f5fa3462329a0e83499fbae31da2" title=" " alt="" coords="43,2168,265,2209"/>
+<area shape="rect" id="node34" href="$classApplication_1_1UseCases_1_1Project_1_1SubmitProject.html#a862824304d6ea781ee6a3f6aa8908fa1" title=" " alt="" coords="46,2233,262,2275"/>
+<area shape="rect" id="node35" href="$classApplication_1_1UseCases_1_1Project_1_1AppealProject.html#a17198169866dee74174cf476362a125e" title=" " alt="" coords="46,2299,262,2340"/>
+<area shape="rect" id="node36" href="$classApplication_1_1UseCases_1_1User_1_1MakeAdmin.html#a8e22ed6162e464ed6f119bd0c5272c01" title=" " alt="" coords="54,2364,254,2405"/>
+<area shape="rect" id="node37" href="$classApplication_1_1UseCases_1_1User_1_1MakeCoordinator.html#a2a87ccc47e461221b01a53607d76ebd2" title="Torna o usuário um coordenador e faz com que o coordenador anterior seja desativado." alt="" coords="41,2429,267,2471"/>
+<area shape="rect" id="node38" href="$classApplication_1_1UseCases_1_1Project_1_1GetProjectsToEvaluate.html#a9cdeb5075e293294bd37fa63a1544473" title="Retorna todos os projetos que foram submetidos ou cuja documentação foi fornecida e estão aguardando ..." alt="" coords="23,2495,285,2536"/>
+<area shape="rect" id="node39" href="$classApplication_1_1UseCases_1_1Project_1_1GetClosedProjects.html#a3b375e5677c9e9c360b89d10f96b3280" title=" " alt="" coords="37,2560,271,2601"/>
+<area shape="rect" id="node40" href="$classApplication_1_1UseCases_1_1Project_1_1GetOpenProjects.html#a78bfa5d1da8ee0281ce67a26284a5306" title=" " alt="" coords="41,2625,267,2667"/>
+<area shape="rect" id="node41" href="$classApplication_1_1UseCases_1_1Project_1_1OpenProject.html#a8b2fe42bad132482a4816eb3a0969750" title=" " alt="" coords="46,2691,262,2732"/>
+<area shape="rect" id="node42" href="$classApplication_1_1UseCases_1_1Student_1_1RequestStudentRegister.html#ab5b1955982b361c7018264a8a3aff568" title=" " alt="" coords="18,2756,290,2797"/>
+<area shape="rect" id="node43" href="$classApplication_1_1UseCases_1_1Auth_1_1Login.html#a4295a8cc56b59a5c4d75cba4d40d7091" title=" " alt="" coords="53,2821,255,2863"/>
+<area shape="rect" id="node44" href="$classApplication_1_1UseCases_1_1Auth_1_1ResetPassword.html#ac5ae2cc13974ce8187acdd136dab11ba" title=" " alt="" coords="47,2887,261,2928"/>
+</map>

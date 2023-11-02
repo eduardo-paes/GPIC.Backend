@@ -1,0 +1,4 @@
+var interfaceApplication_1_1Interfaces_1_1UseCases_1_1StudentDocuments_1_1IDeleteStudentDocuments =
+[
+    [ "ExecuteAsync", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1StudentDocuments_1_1IDeleteStudentDocuments.html#a15b08e8d8cb0e3a5a9464092dc5c8224", null ]
+];

@@ -1,0 +1,6 @@
+var classApplication_1_1Tests_1_1UseCases_1_1AssistanceType_1_1CreateAssistanceTypeTests =
+[
+    [ "ExecuteAsync_AssistanceTypeWithNameExists_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1AssistanceType_1_1CreateAssistanceTypeTests.html#a76214c4de04e793153930fb809202975", null ],
+    [ "ExecuteAsync_NameIsNull_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1AssistanceType_1_1CreateAssistanceTypeTests.html#a2301a833f1cf65ef5547a9ddd48fe97a", null ],
+    [ "ExecuteAsync_ValidInput_ReturnsDetailedReadAssistanceTypeOutput", "classApplication_1_1Tests_1_1UseCases_1_1AssistanceType_1_1CreateAssistanceTypeTests.html#a21d125b8b73109e7f09e519e997753ae", null ]
+];

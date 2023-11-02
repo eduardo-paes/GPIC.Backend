@@ -1,0 +1,5 @@
+var classApplication_1_1Tests_1_1UseCases_1_1AssistanceType_1_1DeleteAssistanceTypeTests =
+[
+    [ "ExecuteAsync_IdIsNull_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1AssistanceType_1_1DeleteAssistanceTypeTests.html#a108e6361aa30fd82244eebfadc5af057", null ],
+    [ "ExecuteAsync_ValidInput_ReturnsDetailedReadAssistanceTypeOutput", "classApplication_1_1Tests_1_1UseCases_1_1AssistanceType_1_1DeleteAssistanceTypeTests.html#a02e46097287a014f8e2ecdc853f052e5", null ]
+];

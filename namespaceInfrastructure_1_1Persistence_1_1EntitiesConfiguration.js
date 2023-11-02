@@ -1,0 +1,16 @@
+var namespaceInfrastructure_1_1Persistence_1_1EntitiesConfiguration =
+[
+    [ "AreaConfiguration", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1AreaConfiguration.html", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1AreaConfiguration" ],
+    [ "AssistanceTypeConfiguration", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1AssistanceTypeConfiguration.html", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1AssistanceTypeConfiguration" ],
+    [ "CampusConfiguration", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1CampusConfiguration.html", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1CampusConfiguration" ],
+    [ "CourseConfiguration", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1CourseConfiguration.html", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1CourseConfiguration" ],
+    [ "MainAreaConfiguration", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1MainAreaConfiguration.html", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1MainAreaConfiguration" ],
+    [ "NoticeConfiguration", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1NoticeConfiguration.html", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1NoticeConfiguration" ],
+    [ "ProfessorConfiguration", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1ProfessorConfiguration.html", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1ProfessorConfiguration" ],
+    [ "ProgramTypeConfiguration", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1ProgramTypeConfiguration.html", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1ProgramTypeConfiguration" ],
+    [ "ProjectFinalReportConfiguration", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1ProjectFinalReportConfiguration.html", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1ProjectFinalReportConfiguration" ],
+    [ "ProjectPartialReportConfiguration", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1ProjectPartialReportConfiguration.html", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1ProjectPartialReportConfiguration" ],
+    [ "StudentConfiguration", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1StudentConfiguration.html", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1StudentConfiguration" ],
+    [ "SubAreaConfiguration", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1SubAreaConfiguration.html", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1SubAreaConfiguration" ],
+    [ "UserConfiguration", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1UserConfiguration.html", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1UserConfiguration" ]
+];

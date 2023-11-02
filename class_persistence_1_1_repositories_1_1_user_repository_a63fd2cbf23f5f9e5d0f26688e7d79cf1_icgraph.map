@@ -1,0 +1,5 @@
+<map id="Persistence.Repositories.UserRepository.UpdateAsync" name="Persistence.Repositories.UserRepository.UpdateAsync">
+<area shape="rect" id="Node000001" title="Atualiza usuário utilizando os parâmetros informados." alt="" coords="243,5,436,46"/>
+<area shape="rect" id="Node000002" href="$class_persistence_1_1_repositories_1_1_user_repository.html#a439ce0bb5eaa65a0f848b0c59a65ea56" title="Realiza a remoção do usuário utilizando o id informado." alt="" coords="5,5,195,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="227,28,195,28,195,23,227,23"/>
+</map>

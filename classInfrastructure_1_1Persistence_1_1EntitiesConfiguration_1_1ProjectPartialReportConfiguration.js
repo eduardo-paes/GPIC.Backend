@@ -1,0 +1,4 @@
+var classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1ProjectPartialReportConfiguration =
+[
+    [ "Configure", "classInfrastructure_1_1Persistence_1_1EntitiesConfiguration_1_1ProjectPartialReportConfiguration.html#ab1de0a42941cb6b79013b4ef2e7aa1fb", null ]
+];

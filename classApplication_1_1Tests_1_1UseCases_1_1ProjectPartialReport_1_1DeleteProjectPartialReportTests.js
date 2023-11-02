@@ -1,0 +1,5 @@
+var classApplication_1_1Tests_1_1UseCases_1_1ProjectPartialReport_1_1DeleteProjectPartialReportTests =
+[
+    [ "ExecuteAsync_NullId_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1ProjectPartialReport_1_1DeleteProjectPartialReportTests.html#ac3c8fc633f152991613ab41476105a45", null ],
+    [ "ExecuteAsync_ValidId_ReturnsDetailedReadProjectPartialReportOutput", "classApplication_1_1Tests_1_1UseCases_1_1ProjectPartialReport_1_1DeleteProjectPartialReportTests.html#a6054403c7bdc2ab37b77d0e883f9756c", null ]
+];

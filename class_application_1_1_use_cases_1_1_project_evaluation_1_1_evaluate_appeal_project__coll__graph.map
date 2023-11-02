@@ -1,0 +1,5 @@
+<map id="Application.UseCases.ProjectEvaluation.EvaluateAppealProject" name="Application.UseCases.ProjectEvaluation.EvaluateAppealProject">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,224,120"/>
+<area shape="rect" id="Node000002" href="$interface_application_1_1_interfaces_1_1_use_cases_1_1_project_evaluation_1_1_i_evaluate_appeal_project.html" title=" " alt="" coords="36,5,193,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,46,117,79,112,79,112,46"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="Persistence.Repositories.UserRepository.DeleteAsync" name="Persistence.Repositories.UserRepository.DeleteAsync">
+<area shape="rect" id="Node000001" title="Realiza a remoção do usuário utilizando o id informado." alt="" coords="5,71,195,111"/>
+<area shape="rect" id="Node000002" href="$class_domain_1_1_entities_1_1_primitives_1_1_entity.html#a3a368e3c302f8622ea0305003ef2a5eb" title=" " alt="" coords="252,5,433,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="177,68,249,48,250,53,179,73"/>
+<area shape="rect" id="Node000003" href="$class_persistence_1_1_repositories_1_1_user_repository.html#aac14dc52ebd5a20734d2efd12522ba49" title="Recupera usuário através do Id informado." alt="" coords="243,71,442,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="195,88,227,88,227,94,195,94"/>
+<area shape="rect" id="Node000004" href="$class_persistence_1_1_repositories_1_1_user_repository.html#a63fd2cbf23f5f9e5d0f26688e7d79cf1" title="Atualiza usuário utilizando os parâmetros informados." alt="" coords="246,136,439,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="179,109,250,129,249,134,177,114"/>
+</map>

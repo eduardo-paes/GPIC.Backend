@@ -1,0 +1,8 @@
+var namespaceApplication_1_1Interfaces_1_1UseCases_1_1AssistanceType =
+[
+    [ "ICreateAssistanceType", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1AssistanceType_1_1ICreateAssistanceType.html", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1AssistanceType_1_1ICreateAssistanceType" ],
+    [ "IDeleteAssistanceType", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1AssistanceType_1_1IDeleteAssistanceType.html", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1AssistanceType_1_1IDeleteAssistanceType" ],
+    [ "IGetAssistanceTypeById", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1AssistanceType_1_1IGetAssistanceTypeById.html", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1AssistanceType_1_1IGetAssistanceTypeById" ],
+    [ "IGetAssistanceTypes", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1AssistanceType_1_1IGetAssistanceTypes.html", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1AssistanceType_1_1IGetAssistanceTypes" ],
+    [ "IUpdateAssistanceType", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1AssistanceType_1_1IUpdateAssistanceType.html", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1AssistanceType_1_1IUpdateAssistanceType" ]
+];

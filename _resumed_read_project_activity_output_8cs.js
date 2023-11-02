@@ -1,0 +1,4 @@
+var _resumed_read_project_activity_output_8cs =
+[
+    [ "Application.Ports.ProjectActivity.ResumedReadProjectActivityOutput", "class_application_1_1_ports_1_1_project_activity_1_1_resumed_read_project_activity_output.html", "class_application_1_1_ports_1_1_project_activity_1_1_resumed_read_project_activity_output" ]
+];

@@ -1,0 +1,9 @@
+<map id="UseCaseException.NotFoundEntityByParams" name="UseCaseException.NotFoundEntityByParams">
+<area shape="rect" id="node1" title=" " alt="" coords="372,169,581,211"/>
+<area shape="rect" id="node2" href="$classApplication_1_1UseCases_1_1SubArea_1_1CreateSubArea.html#ad046dae78a98463de48dd78d6401e05c" title=" " alt="" coords="41,5,288,47"/>
+<area shape="rect" id="node3" href="$classApplication_1_1UseCases_1_1Auth_1_1ForgotPassword.html#a9f5e6e93fde734561616fe27334e6f5c" title=" " alt="" coords="55,71,274,112"/>
+<area shape="rect" id="node4" href="$classApplication_1_1UseCases_1_1Auth_1_1ConfirmEmail.html#a477e5b787ef8cebabae73f0c15d16074" title=" " alt="" coords="63,136,267,177"/>
+<area shape="rect" id="node5" href="$classApplication_1_1UseCases_1_1Student_1_1GetStudentByRegistrationCode.html#af8e8fe93ac6e84cabb46e492d0e652ab" title=" " alt="" coords="5,201,324,243"/>
+<area shape="rect" id="node6" href="$classApplication_1_1UseCases_1_1Auth_1_1Login.html#a4295a8cc56b59a5c4d75cba4d40d7091" title=" " alt="" coords="64,267,265,308"/>
+<area shape="rect" id="node7" href="$classUseCaseException.html#a64bcc0201fa14fdac5a3e7c1f1168993" title=" " alt="" coords="60,332,269,373"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="Application.Ports.Notice.BaseNoticeContract" name="Application.Ports.Notice.BaseNoticeContract">
+<area shape="rect" id="node1" title=" " alt="" coords="5,104,188,145"/>
+<area shape="rect" id="node2" href="$classApplication_1_1Ports_1_1Notice_1_1CreateNoticeInput.html" title=" " alt="" coords="246,5,429,47"/>
+<area shape="rect" id="node3" href="$classApplication_1_1Ports_1_1Notice_1_1DetailedReadNoticeOutput.html" title=" " alt="" coords="239,71,435,112"/>
+<area shape="rect" id="node4" href="$classApplication_1_1Ports_1_1Notice_1_1ResumedReadNoticeOutput.html" title=" " alt="" coords="236,136,439,177"/>
+<area shape="rect" id="node5" href="$classApplication_1_1Ports_1_1Notice_1_1UpdateNoticeInput.html" title=" " alt="" coords="246,201,429,243"/>
+</map>

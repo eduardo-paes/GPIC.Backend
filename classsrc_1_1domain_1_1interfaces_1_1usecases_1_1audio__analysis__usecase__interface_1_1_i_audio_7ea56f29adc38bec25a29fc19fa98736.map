@@ -1,0 +1,7 @@
+<map id="src.domain.interfaces.usecases.audio_analysis_usecase_interface.IAudioAnalysisUseCase" name="src.domain.interfaces.usecases.audio_analysis_usecase_interface.IAudioAnalysisUseCase">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,286,135"/>
+<area shape="rect" id="Node000003" href="$classsrc_1_1domain_1_1usecases_1_1audio__analysis__usecase_1_1_audio_analysis_use_case.html" title=" " alt="" coords="36,183,255,238"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="148,150,148,182,143,182,143,150"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="121,5,170,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="148,46,148,78,143,78,143,46"/>
+</map>

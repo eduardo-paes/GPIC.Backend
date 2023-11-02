@@ -1,0 +1,4 @@
+<map id="Application.UseCases.Student.RequestStudentRegister.ValidateStudentEmail" name="Application.UseCases.Student.RequestStudentRegister.ValidateStudentEmail">
+<area shape="rect" id="node1" title="Verifica se o e&#45;mail informado é válido para o estudante. Padrões aceitos:" alt="" coords="325,5,648,47"/>
+<area shape="rect" id="node2" href="$classApplication_1_1UseCases_1_1Student_1_1RequestStudentRegister.html#ab5b1955982b361c7018264a8a3aff568" title=" " alt="" coords="5,5,277,47"/>
+</map>

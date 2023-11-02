@@ -1,0 +1,4 @@
+var classsrc_1_1domain_1_1interfaces_1_1services_1_1speech__recognition__service__interface_1_1_i_speech_recognition_service =
+[
+    [ "extract_terms", "classsrc_1_1domain_1_1interfaces_1_1services_1_1speech__recognition__service__interface_1_1_i_speech_recognition_service.html#a6e020a10fb7b5f37a3f4973056a84d64", null ]
+];

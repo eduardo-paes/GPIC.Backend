@@ -1,0 +1,6 @@
+var classApplication_1_1Tests_1_1UseCases_1_1ProjectFinalReport_1_1UpdateProjectFinalReportTests =
+[
+    [ "ExecuteAsync_NoId_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1ProjectFinalReport_1_1UpdateProjectFinalReportTests.html#a7d64f94e48bbc42529bea64ae3b29a0e", null ],
+    [ "ExecuteAsync_NoReportFile_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1ProjectFinalReport_1_1UpdateProjectFinalReportTests.html#aeca074d70b022b319ca428d594bb6a07", null ],
+    [ "ExecuteAsync_ValidInput_ReturnsDetailedReadProjectFinalReportOutput", "classApplication_1_1Tests_1_1UseCases_1_1ProjectFinalReport_1_1UpdateProjectFinalReportTests.html#a35c81242662912cd4afdf348ed485d7b", null ]
+];

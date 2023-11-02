@@ -1,0 +1,7 @@
+var namespaceApplication_1_1Interfaces_1_1UseCases_1_1ProjectEvaluation =
+[
+    [ "IEvaluateAppealProject", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1ProjectEvaluation_1_1IEvaluateAppealProject.html", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1ProjectEvaluation_1_1IEvaluateAppealProject" ],
+    [ "IEvaluateStudentDocuments", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1ProjectEvaluation_1_1IEvaluateStudentDocuments.html", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1ProjectEvaluation_1_1IEvaluateStudentDocuments" ],
+    [ "IEvaluateSubmissionProject", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1ProjectEvaluation_1_1IEvaluateSubmissionProject.html", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1ProjectEvaluation_1_1IEvaluateSubmissionProject" ],
+    [ "IGetEvaluationByProjectId", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1ProjectEvaluation_1_1IGetEvaluationByProjectId.html", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1ProjectEvaluation_1_1IGetEvaluationByProjectId" ]
+];

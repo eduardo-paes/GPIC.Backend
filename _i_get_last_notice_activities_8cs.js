@@ -1,0 +1,4 @@
+var _i_get_last_notice_activities_8cs =
+[
+    [ "Application.Interfaces.UseCases.ActivityType.IGetLastNoticeActivities", "interface_application_1_1_interfaces_1_1_use_cases_1_1_activity_type_1_1_i_get_last_notice_activities.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_activity_type_1_1_i_get_last_notice_activities" ]
+];

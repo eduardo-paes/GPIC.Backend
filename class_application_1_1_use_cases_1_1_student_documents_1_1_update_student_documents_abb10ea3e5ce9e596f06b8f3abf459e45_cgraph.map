@@ -1,0 +1,11 @@
+<map id="Application.UseCases.StudentDocuments.UpdateStudentDocuments.ExecuteAsync" name="Application.UseCases.StudentDocuments.UpdateStudentDocuments.ExecuteAsync">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,63,256,119"/>
+<area shape="rect" id="Node000002" href="$class_application_1_1_validation_1_1_use_case_exception.html#abdfb0053369c84d85c471ad55011c4c4" title=" " alt="" coords="304,5,549,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="256,61,316,47,317,52,257,66"/>
+<area shape="rect" id="Node000003" href="$class_application_1_1_validation_1_1_use_case_exception.html#a6bfcf35154fd3871957a71216a943cba" title=" " alt="" coords="310,71,543,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="256,88,295,88,295,94,256,94"/>
+<area shape="rect" id="Node000004" href="$class_application_1_1_validation_1_1_use_case_exception.html#a640987a86719d6afd8278fdbf578ab57" title=" " alt="" coords="314,136,539,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="257,116,317,130,316,135,256,121"/>
+<area shape="rect" id="Node000005" href="$class_application_1_1_validation_1_1_use_case_exception.html#ad2defa29da6c9eee2864794300f152ae" title=" " alt="" coords="597,136,824,177"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="539,154,581,154,581,159,539,159"/>
+</map>

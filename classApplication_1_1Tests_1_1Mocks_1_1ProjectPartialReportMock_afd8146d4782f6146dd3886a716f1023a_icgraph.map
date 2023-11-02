@@ -1,0 +1,15 @@
+<map id="Application.Tests.Mocks.ProjectPartialReportMock.MockValidProjectPartialReport" name="Application.Tests.Mocks.ProjectPartialReportMock.MockValidProjectPartialReport">
+<area shape="rect" id="node1" title=" " alt="" coords="444,534,669,590"/>
+<area shape="rect" id="node2" href="$classApplication_1_1Tests_1_1UseCases_1_1ProjectPartialReport_1_1UpdateProjectPartialReportTests.html#ad062d1f45f28486ba5e2679e1e9812af" title=" " alt="" coords="51,5,351,76"/>
+<area shape="rect" id="node3" href="$classApplication_1_1Tests_1_1UseCases_1_1ProjectPartialReport_1_1UpdateProjectPartialReportTests.html#a097b7ee0b6f372b69767d19fe7358c8d" title=" " alt="" coords="45,100,356,171"/>
+<area shape="rect" id="node4" href="$classApplication_1_1Tests_1_1UseCases_1_1ProjectPartialReport_1_1UpdateProjectPartialReportTests.html#a36349aef0855dc5e690e7d3246b31387" title=" " alt="" coords="41,195,360,265"/>
+<area shape="rect" id="node5" href="$classApplication_1_1Tests_1_1UseCases_1_1ProjectPartialReport_1_1UpdateProjectPartialReportTests.html#a5ce22261c3c358a0113ee989b8feb041" title=" " alt="" coords="51,289,350,360"/>
+<area shape="rect" id="node6" href="$classApplication_1_1Tests_1_1UseCases_1_1ProjectPartialReport_1_1UpdateProjectPartialReportTests.html#aefc1160c0591f0cf136fb7d46d221987" title=" " alt="" coords="18,384,383,455"/>
+<area shape="rect" id="node7" href="$classApplication_1_1Tests_1_1UseCases_1_1ProjectPartialReport_1_1UpdateProjectPartialReportTests.html#ab43ebfd9b42d6c2b90f3216a47d2ac3d" title=" " alt="" coords="41,479,361,549"/>
+<area shape="rect" id="node8" href="$classApplication_1_1Tests_1_1UseCases_1_1ProjectPartialReport_1_1UpdateProjectPartialReportTests.html#abef4c7973679328abbeca9f60c6d3503" title=" " alt="" coords="37,573,364,644"/>
+<area shape="rect" id="node9" href="$classApplication_1_1Tests_1_1UseCases_1_1ProjectPartialReport_1_1DeleteProjectPartialReportTests.html#a6054403c7bdc2ab37b77d0e883f9756c" title=" " alt="" coords="49,669,353,754"/>
+<area shape="rect" id="node10" href="$classApplication_1_1Tests_1_1UseCases_1_1ProjectPartialReport_1_1GetProjectPartialReportByIdTests.html#a9471540cec1b03fc060ef1518e4d1852" title=" " alt="" coords="5,779,396,849"/>
+<area shape="rect" id="node11" href="$classApplication_1_1Tests_1_1UseCases_1_1ProjectPartialReport_1_1CreateProjectPartialReportTests.html#adbfc3934e9221c6686db19f09dd8a79b" title=" " alt="" coords="38,874,363,959"/>
+<area shape="rect" id="node12" href="$classApplication_1_1Tests_1_1UseCases_1_1ProjectPartialReport_1_1UpdateProjectPartialReportTests.html#a9984f9ab30c35267bf61cc20ec336379" title=" " alt="" coords="38,983,363,1069"/>
+<area shape="rect" id="node13" href="$classApplication_1_1Tests_1_1UseCases_1_1ProjectPartialReport_1_1GetProjectPartialReportByProjectIdTests.html#a6b773cd81ec2e6afb806cebca585de9a" title=" " alt="" coords="27,1093,374,1178"/>
+</map>

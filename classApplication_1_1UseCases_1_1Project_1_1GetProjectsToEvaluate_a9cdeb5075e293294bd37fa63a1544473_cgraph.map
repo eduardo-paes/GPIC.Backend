@@ -1,0 +1,4 @@
+<map id="Application.UseCases.Project.GetProjectsToEvaluate.ExecuteAsync" name="Application.UseCases.Project.GetProjectsToEvaluate.ExecuteAsync">
+<area shape="rect" id="node1" title="Retorna todos os projetos que foram submetidos ou cuja documentação foi fornecida e estão aguardando ..." alt="" coords="5,5,268,47"/>
+<area shape="rect" id="node2" href="$classUseCaseException.html#a2837eb30bdfa60f1f1ba2e5981d29fbd" title=" " alt="" coords="316,5,521,47"/>
+</map>

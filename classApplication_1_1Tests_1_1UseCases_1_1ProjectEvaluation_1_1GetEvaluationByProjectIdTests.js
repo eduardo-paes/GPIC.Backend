@@ -1,0 +1,6 @@
+var classApplication_1_1Tests_1_1UseCases_1_1ProjectEvaluation_1_1GetEvaluationByProjectIdTests =
+[
+    [ "ExecuteAsync_NullProjectId_ThrowsUseCaseException", "classApplication_1_1Tests_1_1UseCases_1_1ProjectEvaluation_1_1GetEvaluationByProjectIdTests.html#aed6f7743369d29b553acd105e78cd80b", null ],
+    [ "ExecuteAsync_ProjectNotFound_ReturnsNull", "classApplication_1_1Tests_1_1UseCases_1_1ProjectEvaluation_1_1GetEvaluationByProjectIdTests.html#aad6281921cb610d770c0e3dec5cbff7b", null ],
+    [ "ExecuteAsync_ValidProjectId_ReturnsDetailedReadProjectEvaluationOutput", "classApplication_1_1Tests_1_1UseCases_1_1ProjectEvaluation_1_1GetEvaluationByProjectIdTests.html#a8d09a02b922d2c7c31594cd2831b4af0", null ]
+];

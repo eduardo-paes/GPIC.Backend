@@ -1,0 +1,24 @@
+var searchData=
+[
+  ['reportdeadlinenotification_2348',['ReportDeadlineNotification',['../classApplication_1_1UseCases_1_1Notice_1_1ReportDeadlineNotification.html',1,'Application::UseCases::Notice']]],
+  ['reportdeadlinenotificationfunction_2349',['ReportDeadlineNotificationFunction',['../classInfrastructure_1_1Functions_1_1WebFunctions_1_1ReportDeadlineNotificationFunction.html',1,'Infrastructure::Functions::WebFunctions']]],
+  ['reportdeadlinenotificationtests_2350',['ReportDeadlineNotificationTests',['../classApplication_1_1Tests_1_1UseCases_1_1Notice_1_1ReportDeadlineNotificationTests.html',1,'Application::Tests::UseCases::Notice']]],
+  ['reportservice_2351',['ReportService',['../classServices_1_1ReportService.html',1,'Services']]],
+  ['requeststudentregister_2352',['RequestStudentRegister',['../classApplication_1_1UseCases_1_1Student_1_1RequestStudentRegister.html',1,'Application::UseCases::Student']]],
+  ['requeststudentregistertests_2353',['RequestStudentRegisterTests',['../classApplication_1_1Tests_1_1UseCases_1_1Student_1_1RequestStudentRegisterTests.html',1,'Application::Tests::UseCases::Student']]],
+  ['resetpassword_2354',['ResetPassword',['../classApplication_1_1UseCases_1_1Auth_1_1ResetPassword.html',1,'Application::UseCases::Auth']]],
+  ['resetpasswordtests_2355',['ResetPasswordTests',['../classApplication_1_1Tests_1_1UseCases_1_1Auth_1_1ResetPasswordTests.html',1,'Application::Tests::UseCases::Auth']]],
+  ['resumedreadareaoutput_2356',['ResumedReadAreaOutput',['../classApplication_1_1Ports_1_1Area_1_1ResumedReadAreaOutput.html',1,'Application::Ports::Area']]],
+  ['resumedreadassistancetypeoutput_2357',['ResumedReadAssistanceTypeOutput',['../classApplication_1_1Ports_1_1AssistanceType_1_1ResumedReadAssistanceTypeOutput.html',1,'Application::Ports::AssistanceType']]],
+  ['resumedreadcampusoutput_2358',['ResumedReadCampusOutput',['../classApplication_1_1Ports_1_1Campus_1_1ResumedReadCampusOutput.html',1,'Application::Ports::Campus']]],
+  ['resumedreadcourseoutput_2359',['ResumedReadCourseOutput',['../classApplication_1_1Ports_1_1Course_1_1ResumedReadCourseOutput.html',1,'Application::Ports::Course']]],
+  ['resumedreadmainareaoutput_2360',['ResumedReadMainAreaOutput',['../classApplication_1_1Ports_1_1MainArea_1_1ResumedReadMainAreaOutput.html',1,'Application::Ports::MainArea']]],
+  ['resumedreadnoticeoutput_2361',['ResumedReadNoticeOutput',['../classApplication_1_1Ports_1_1Notice_1_1ResumedReadNoticeOutput.html',1,'Application::Ports::Notice']]],
+  ['resumedreadprofessoroutput_2362',['ResumedReadProfessorOutput',['../classApplication_1_1Ports_1_1Professor_1_1ResumedReadProfessorOutput.html',1,'Application::Ports::Professor']]],
+  ['resumedreadprogramtypeoutput_2363',['ResumedReadProgramTypeOutput',['../classApplication_1_1Ports_1_1ProgramType_1_1ResumedReadProgramTypeOutput.html',1,'Application::Ports::ProgramType']]],
+  ['resumedreadprojectactivityoutput_2364',['ResumedReadProjectActivityOutput',['../classApplication_1_1Ports_1_1ProjectActivity_1_1ResumedReadProjectActivityOutput.html',1,'Application::Ports::ProjectActivity']]],
+  ['resumedreadprojectoutput_2365',['ResumedReadProjectOutput',['../classApplication_1_1Ports_1_1Project_1_1ResumedReadProjectOutput.html',1,'Application::Ports::Project']]],
+  ['resumedreadstudentdocumentsoutput_2366',['ResumedReadStudentDocumentsOutput',['../classApplication_1_1Ports_1_1StudentDocuments_1_1ResumedReadStudentDocumentsOutput.html',1,'Application::Ports::StudentDocuments']]],
+  ['resumedreadstudentoutput_2367',['ResumedReadStudentOutput',['../classApplication_1_1Ports_1_1Student_1_1ResumedReadStudentOutput.html',1,'Application::Ports::Student']]],
+  ['resumedreadsubareaoutput_2368',['ResumedReadSubAreaOutput',['../classApplication_1_1Ports_1_1SubArea_1_1ResumedReadSubAreaOutput.html',1,'Application::Ports::SubArea']]]
+];

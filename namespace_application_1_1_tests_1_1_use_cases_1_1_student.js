@@ -1,0 +1,10 @@
+var namespace_application_1_1_tests_1_1_use_cases_1_1_student =
+[
+    [ "CreateStudentTests", "class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_create_student_tests.html", "class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_create_student_tests" ],
+    [ "DeleteStudentTests", "class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_delete_student_tests.html", "class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_delete_student_tests" ],
+    [ "GetStudentByIdTests", "class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_get_student_by_id_tests.html", "class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_get_student_by_id_tests" ],
+    [ "GetStudentByRegistrationCodeTests", "class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_get_student_by_registration_code_tests.html", "class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_get_student_by_registration_code_tests" ],
+    [ "GetStudentsTests", "class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_get_students_tests.html", "class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_get_students_tests" ],
+    [ "RequestStudentRegisterTests", "class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_request_student_register_tests.html", "class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_request_student_register_tests" ],
+    [ "UpdateStudentTests", "class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_update_student_tests.html", "class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_update_student_tests" ]
+];

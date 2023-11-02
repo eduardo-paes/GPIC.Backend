@@ -1,0 +1,8 @@
+var namespaceApplication_1_1Interfaces_1_1UseCases_1_1StudentDocuments =
+[
+    [ "ICreateStudentDocuments", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1StudentDocuments_1_1ICreateStudentDocuments.html", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1StudentDocuments_1_1ICreateStudentDocuments" ],
+    [ "IDeleteStudentDocuments", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1StudentDocuments_1_1IDeleteStudentDocuments.html", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1StudentDocuments_1_1IDeleteStudentDocuments" ],
+    [ "IGetStudentDocumentsByProjectId", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1StudentDocuments_1_1IGetStudentDocumentsByProjectId.html", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1StudentDocuments_1_1IGetStudentDocumentsByProjectId" ],
+    [ "IGetStudentDocumentsByStudentId", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1StudentDocuments_1_1IGetStudentDocumentsByStudentId.html", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1StudentDocuments_1_1IGetStudentDocumentsByStudentId" ],
+    [ "IUpdateStudentDocuments", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1StudentDocuments_1_1IUpdateStudentDocuments.html", "interfaceApplication_1_1Interfaces_1_1UseCases_1_1StudentDocuments_1_1IUpdateStudentDocuments" ]
+];
