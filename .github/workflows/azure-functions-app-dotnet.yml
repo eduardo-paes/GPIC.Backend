@@ -2,7 +2,7 @@ name: Deploy WebFunctions to Azure
 
 on:
   push:
-    branches: ["main"]
+    branches: ["production"]
 
 env:
   AZURE_FUNCTIONAPP_NAME: "GPIC-Stg-WebFunctions" # set this to your function app name on Azure
