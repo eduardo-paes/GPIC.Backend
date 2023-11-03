@@ -1,4 +1,0 @@
-var class_application_1_1_tests_1_1_use_cases_1_1_assistance_type_1_1_get_assistance_types_tests =
-[
-    [ "ExecuteAsync_ValidInput_ReturnsQueryableOfResumedReadAssistanceTypeOutput", "class_application_1_1_tests_1_1_use_cases_1_1_assistance_type_1_1_get_assistance_types_tests.html#ae8d49606400ceb1ba06a7683e77264e3", null ]
-];

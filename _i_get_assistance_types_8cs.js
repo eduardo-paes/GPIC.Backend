@@ -1,4 +1,0 @@
-var _i_get_assistance_types_8cs =
-[
-    [ "Application.Interfaces.UseCases.AssistanceType.IGetAssistanceTypes", "interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_get_assistance_types.html", "interface_application_1_1_interfaces_1_1_use_cases_1_1_assistance_type_1_1_i_get_assistance_types" ]
-];

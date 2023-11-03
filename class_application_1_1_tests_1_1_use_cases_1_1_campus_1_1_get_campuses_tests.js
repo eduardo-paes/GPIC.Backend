@@ -1,4 +1,0 @@
-var class_application_1_1_tests_1_1_use_cases_1_1_campus_1_1_get_campuses_tests =
-[
-    [ "ExecuteAsync_ValidInput_ReturnsQueryableOfResumedReadCampusOutput", "class_application_1_1_tests_1_1_use_cases_1_1_campus_1_1_get_campuses_tests.html#a42312dbcc71daff7a15a8118642092df", null ]
-];

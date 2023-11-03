@@ -1,5 +1,0 @@
-<map id="Application.UseCases.Campus.DeleteCampus" name="Application.UseCases.Campus.DeleteCampus">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,214,120"/>
-<area shape="rect" id="Node000002" href="$interface_application_1_1_interfaces_1_1_use_cases_1_1_campus_1_1_i_delete_campus.html" title=" " alt="" coords="53,5,166,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,46,112,79,107,79,107,46"/>
-</map>

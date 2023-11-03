@@ -1,4 +1,0 @@
-var classsrc_1_1domain_1_1interfaces_1_1usecases_1_1video__analysis__usecase__interface_1_1_i_video_analysis_use_case =
-[
-    [ "execute", "classsrc_1_1domain_1_1interfaces_1_1usecases_1_1video__analysis__usecase__interface_1_1_i_video_analysis_use_case.html#a76951522d86cd7d4386e9d0216e08855", null ]
-];

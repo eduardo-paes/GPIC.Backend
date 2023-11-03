@@ -1,4 +1,0 @@
-var namespacesrc_1_1domain_1_1interfaces_1_1services_1_1nautilus__api__service__interface =
-[
-    [ "INautilusAPIService", "classsrc_1_1domain_1_1interfaces_1_1services_1_1nautilus__api__service__interface_1_1_i_nautilus_a_p_i_service.html", "classsrc_1_1domain_1_1interfaces_1_1services_1_1nautilus__api__service__interface_1_1_i_nautilus_a_p_i_service" ]
-];

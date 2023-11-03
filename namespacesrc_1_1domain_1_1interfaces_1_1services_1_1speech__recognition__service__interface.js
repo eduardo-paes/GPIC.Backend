@@ -1,4 +1,0 @@
-var namespacesrc_1_1domain_1_1interfaces_1_1services_1_1speech__recognition__service__interface =
-[
-    [ "ISpeechRecognitionService", "classsrc_1_1domain_1_1interfaces_1_1services_1_1speech__recognition__service__interface_1_1_i_speech_recognition_service.html", "classsrc_1_1domain_1_1interfaces_1_1services_1_1speech__recognition__service__interface_1_1_i_speech_recognition_service" ]
-];

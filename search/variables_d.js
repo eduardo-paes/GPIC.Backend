@@ -1,7 +1,0 @@
-var searchData=
-[
-  ['scan_5fdirectory_0',['scan_directory',['../classsrc_1_1adapters_1_1services_1_1scan__directory__service_1_1_scan_directory_service.html#a36255c7e62e00b4a65d774c27c93dae0',1,'src::adapters::services::scan_directory_service::ScanDirectoryService']]],
-  ['speech_5frecognition_1',['speech_recognition',['../classsrc_1_1domain_1_1usecases_1_1audio__analysis__usecase_1_1_audio_analysis_use_case.html#a8c582675f1d69bc46443c3839c871364',1,'src.domain.usecases.audio_analysis_usecase.AudioAnalysisUseCase.speech_recognition'],['../classsrc_1_1domain_1_1usecases_1_1video__analysis__usecase_1_1_video_analysis_use_case.html#a62e6fc0b729836766e5c7996b3c95110',1,'src.domain.usecases.video_analysis_usecase.VideoAnalysisUseCase.speech_recognition']]],
-  ['spoken_5flanguage_5fidentification_2',['spoken_language_identification',['../classsrc_1_1domain_1_1usecases_1_1audio__analysis__usecase_1_1_audio_analysis_use_case.html#a01bf738650dd450f2bf34ad4030d1b00',1,'src.domain.usecases.audio_analysis_usecase.AudioAnalysisUseCase.spoken_language_identification'],['../classsrc_1_1domain_1_1usecases_1_1video__analysis__usecase_1_1_video_analysis_use_case.html#aedfd9fa226c12da3406f6994f239649a',1,'src.domain.usecases.video_analysis_usecase.VideoAnalysisUseCase.spoken_language_identification']]],
-  ['subject_3',['subject',['../classsrc_1_1domain_1_1entities_1_1info__file_1_1_info_file.html#a2eb211ef993f88f3c445c656fb04e1f8',1,'src::domain::entities::info_file::InfoFile']]]
-];

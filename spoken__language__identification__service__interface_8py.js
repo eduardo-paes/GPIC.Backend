@@ -1,4 +1,0 @@
-var spoken__language__identification__service__interface_8py =
-[
-    [ "src.domain.interfaces.services.spoken_language_identification_service_interface.ISpokenLanguageIdentificationService", "classsrc_1_1domain_1_1interfaces_1_1services_1_1spoken__language__identification__service__inter9e2bdb7ecce2f400f421b136c2dda8ba.html", "classsrc_1_1domain_1_1interfaces_1_1services_1_1spoken__language__identification__service__inter9e2bdb7ecce2f400f421b136c2dda8ba" ]
-];

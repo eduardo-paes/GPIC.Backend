@@ -1,7 +1,0 @@
-<map id="Application.UseCases.ProjectPartialReport.GetProjectPartialReportByProjectId.ExecuteAsync" name="Application.UseCases.ProjectPartialReport.GetProjectPartialReportByProjectId.ExecuteAsync">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,223,61"/>
-<area shape="rect" id="Node000002" href="$class_application_1_1_validation_1_1_use_case_exception.html#a640987a86719d6afd8278fdbf578ab57" title=" " alt="" coords="271,13,495,54"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="223,31,255,31,255,36,223,36"/>
-<area shape="rect" id="Node000003" href="$class_application_1_1_validation_1_1_use_case_exception.html#ad2defa29da6c9eee2864794300f152ae" title=" " alt="" coords="543,13,770,54"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="496,31,528,31,528,36,496,36"/>
-</map>

@@ -1,6 +1,0 @@
-var class_application_1_1_tests_1_1_use_cases_1_1_project_final_report_1_1_get_project_final_report_by_id_tests =
-[
-    [ "ExecuteAsync_NonExistentId_ReturnsNull", "class_application_1_1_tests_1_1_use_cases_1_1_project_final_report_1_1_get_project_final_report_by_id_tests.html#aca3642f21b858ddfe77937559dbb1b9e", null ],
-    [ "ExecuteAsync_NullId_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_project_final_report_1_1_get_project_final_report_by_id_tests.html#a1aea14733d733901bd9c557a52f81a0c", null ],
-    [ "ExecuteAsync_ValidId_ReturnsDetailedReadProjectFinalReportOutput", "class_application_1_1_tests_1_1_use_cases_1_1_project_final_report_1_1_get_project_final_report_by_id_tests.html#aaf9686dcd26d4bc99f2040a73d30553d", null ]
-];

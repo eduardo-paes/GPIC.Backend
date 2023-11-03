@@ -1,4 +1,0 @@
-var classsrc_1_1adapters_1_1interfaces_1_1scan__directory__service__interface_1_1_i_scan_directory_service =
-[
-    [ "scan", "classsrc_1_1adapters_1_1interfaces_1_1scan__directory__service__interface_1_1_i_scan_directory_service.html#a1076c950e0b3222369677dcd3835e503", null ]
-];

@@ -1,4 +1,0 @@
-var _detailed_read_assistance_type_output_8cs =
-[
-    [ "Application.Ports.AssistanceType.DetailedReadAssistanceTypeOutput", "class_application_1_1_ports_1_1_assistance_type_1_1_detailed_read_assistance_type_output.html", "class_application_1_1_ports_1_1_assistance_type_1_1_detailed_read_assistance_type_output" ]
-];

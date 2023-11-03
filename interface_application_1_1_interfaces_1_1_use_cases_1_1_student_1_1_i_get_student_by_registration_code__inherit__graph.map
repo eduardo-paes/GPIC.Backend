@@ -1,5 +1,0 @@
-<map id="Application.Interfaces.UseCases.Student.IGetStudentByRegistrationCode" name="Application.Interfaces.UseCases.Student.IGetStudentByRegistrationCode">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,305,46"/>
-<area shape="rect" id="Node000002" href="$class_application_1_1_use_cases_1_1_student_1_1_get_student_by_registration_code.html" title=" " alt="" coords="53,94,257,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="158,62,158,94,152,94,152,62"/>
-</map>

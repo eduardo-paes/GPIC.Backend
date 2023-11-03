@@ -1,4 +1,0 @@
-var class_infrastructure_1_1_persistence_1_1_entities_configuration_1_1_assistance_type_configuration =
-[
-    [ "Configure", "class_infrastructure_1_1_persistence_1_1_entities_configuration_1_1_assistance_type_configuration.html#a22ffe2888bba1378b43d15bf00ce7730", null ]
-];

@@ -1,4 +1,0 @@
-var speech__recognition__service_8py =
-[
-    [ "src.infra.external_services.speech_recognition_service.SpeechRecognitionService", "classsrc_1_1infra_1_1external__services_1_1speech__recognition__service_1_1_speech_recognition_service.html", "classsrc_1_1infra_1_1external__services_1_1speech__recognition__service_1_1_speech_recognition_service" ]
-];

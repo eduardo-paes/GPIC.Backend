@@ -1,6 +1,0 @@
-var class_application_1_1_tests_1_1_use_cases_1_1_student_documents_1_1_get_student_documents_by_student_id_tests =
-[
-    [ "ExecuteAsync_RepositoryReturnsNull_ReturnsNullOutput", "class_application_1_1_tests_1_1_use_cases_1_1_student_documents_1_1_get_student_documents_by_student_id_tests.html#afa410a7843281c6e43c814c7210a49e0", null ],
-    [ "ExecuteAsync_StudentIdIsNull_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_student_documents_1_1_get_student_documents_by_student_id_tests.html#ae73ea8bd5c4a0d7e56dcaac048921f8e", null ],
-    [ "ExecuteAsync_ValidStudentId_ReturnsResumedReadStudentDocumentsOutput", "class_application_1_1_tests_1_1_use_cases_1_1_student_documents_1_1_get_student_documents_by_student_id_tests.html#ac0a6d1ec107853cab66f73e5e673b390", null ]
-];

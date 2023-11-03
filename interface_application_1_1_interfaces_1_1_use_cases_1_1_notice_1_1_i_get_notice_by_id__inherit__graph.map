@@ -1,5 +1,0 @@
-<map id="Application.Interfaces.UseCases.Notice.IGetNoticeById" name="Application.Interfaces.UseCases.Notice.IGetNoticeById">
-<area shape="rect" id="Node000001" title=" " alt="" coords="6,5,202,46"/>
-<area shape="rect" id="Node000002" href="$class_application_1_1_use_cases_1_1_notice_1_1_get_notice_by_id.html" title=" " alt="" coords="5,94,203,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,62,107,94,101,94,101,62"/>
-</map>

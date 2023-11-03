@@ -1,9 +1,0 @@
-<map id="Application.UseCases.Student.CreateStudent.ExecuteAsync" name="Application.UseCases.Student.CreateStudent.ExecuteAsync">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,39,210,79"/>
-<area shape="rect" id="Node000002" href="$class_application_1_1_validation_1_1_use_case_exception.html#abdfb0053369c84d85c471ad55011c4c4" title=" " alt="" coords="258,5,503,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="210,44,242,40,242,45,211,49"/>
-<area shape="rect" id="Node000003" href="$class_application_1_1_validation_1_1_use_case_exception.html#a640987a86719d6afd8278fdbf578ab57" title=" " alt="" coords="268,71,493,111"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="211,68,253,73,252,79,210,74"/>
-<area shape="rect" id="Node000004" href="$class_application_1_1_validation_1_1_use_case_exception.html#ad2defa29da6c9eee2864794300f152ae" title=" " alt="" coords="551,71,778,111"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="493,88,535,88,535,94,493,94"/>
-</map>

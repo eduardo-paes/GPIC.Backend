@@ -1,6 +1,0 @@
-var class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_close_pending_projects_tests =
-[
-    [ "ExecuteAsync_CancelProjects_PartiallyCancelsProjects", "class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_close_pending_projects_tests.html#a54aede6c98068188f9cec9d5ce45e0b3", null ],
-    [ "ExecuteAsync_CancelProjects_SuccessfullyCancelsProjects", "class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_close_pending_projects_tests.html#a2d6e40f931e70f88444cacf603fb859e", null ],
-    [ "ExecuteAsync_NoPendingProjects_ReturnsSuccessMessage", "class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_close_pending_projects_tests.html#ac2a3a1a30b6d5465f98227fe85ba9faf", null ]
-];

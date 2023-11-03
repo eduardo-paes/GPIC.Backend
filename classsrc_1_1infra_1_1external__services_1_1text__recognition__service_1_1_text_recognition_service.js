@@ -1,4 +1,0 @@
-var classsrc_1_1infra_1_1external__services_1_1text__recognition__service_1_1_text_recognition_service =
-[
-    [ "execute", "classsrc_1_1infra_1_1external__services_1_1text__recognition__service_1_1_text_recognition_service.html#a5cf793c884a019b7f78e2babcf028f85", null ]
-];

@@ -1,6 +1,0 @@
-var class_application_1_1_tests_1_1_use_cases_1_1_professor_1_1_get_professors_tests =
-[
-    [ "ExecuteAsync_InvalidSkip_ThrowsArgumentException", "class_application_1_1_tests_1_1_use_cases_1_1_professor_1_1_get_professors_tests.html#ac1c554fb2afcbefca6bfe36295fb5a25", null ],
-    [ "ExecuteAsync_InvalidTake_ThrowsArgumentException", "class_application_1_1_tests_1_1_use_cases_1_1_professor_1_1_get_professors_tests.html#a9ed0900d848cb8164c21baf75a527790", null ],
-    [ "ExecuteAsync_ValidParameters_ReturnsQueryableOfResumedReadProfessorOutput", "class_application_1_1_tests_1_1_use_cases_1_1_professor_1_1_get_professors_tests.html#a6e256a3302b96a667564f62b0e5658b9", null ]
-];

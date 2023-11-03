@@ -1,4 +1,0 @@
-var text__recognition__service__interface_8py =
-[
-    [ "src.domain.interfaces.services.text_recognition_service_interface.ITextRecognitionService", "classsrc_1_1domain_1_1interfaces_1_1services_1_1text__recognition__service__interface_1_1_i_text_recognition_service.html", "classsrc_1_1domain_1_1interfaces_1_1services_1_1text__recognition__service__interface_1_1_i_text_recognition_service" ]
-];

@@ -1,7 +1,0 @@
-<map id="Application.Ports.StudentDocuments.BaseStudentDocumentsOutput" name="Application.Ports.StudentDocuments.BaseStudentDocumentsOutput">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,45,240,101"/>
-<area shape="rect" id="Node000002" href="$class_application_1_1_ports_1_1_student_documents_1_1_detailed_read_student_documents_output.html" title=" " alt="" coords="292,5,575,61"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="255,54,291,49,291,54,255,59"/>
-<area shape="rect" id="Node000003" href="$class_application_1_1_ports_1_1_student_documents_1_1_resumed_read_student_documents_output.html" title=" " alt="" coords="288,85,579,141"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="255,88,288,92,287,97,255,93"/>
-</map>

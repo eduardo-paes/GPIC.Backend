@@ -1,4 +1,0 @@
-var _get_last_notice_activities_tests_8cs =
-[
-    [ "Application.Tests.UseCases.ActivityType.GetLastNoticeActivitiesTests", "class_application_1_1_tests_1_1_use_cases_1_1_activity_type_1_1_get_last_notice_activities_tests.html", "class_application_1_1_tests_1_1_use_cases_1_1_activity_type_1_1_get_last_notice_activities_tests" ]
-];

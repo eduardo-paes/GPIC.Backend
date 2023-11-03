@@ -1,4 +1,0 @@
-var _get_student_documents_by_student_id_8cs =
-[
-    [ "Application.UseCases.StudentDocuments.GetStudentDocumentsByStudentId", "class_application_1_1_use_cases_1_1_student_documents_1_1_get_student_documents_by_student_id.html", "class_application_1_1_use_cases_1_1_student_documents_1_1_get_student_documents_by_student_id" ]
-];

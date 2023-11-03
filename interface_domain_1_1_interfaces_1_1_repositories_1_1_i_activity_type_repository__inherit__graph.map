@@ -1,7 +1,0 @@
-<map id="Domain.Interfaces.Repositories.IActivityTypeRepository" name="Domain.Interfaces.Repositories.IActivityTypeRepository">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,94,215,135"/>
-<area shape="rect" id="Node000003" href="$class_persistence_1_1_repositories_1_1_activity_type_repository.html" title=" " alt="" coords="24,183,196,223"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="113,150,113,182,107,182,107,150"/>
-<area shape="rect" id="Node000002" href="$interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository.html" title=" " alt="" coords="23,5,197,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,62,113,94,107,94,107,62"/>
-</map>

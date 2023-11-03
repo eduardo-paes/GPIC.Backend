@@ -1,7 +1,0 @@
-<map id="Services.AzureStorageService.AzureStorageService" name="Services.AzureStorageService.AzureStorageService">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,39,209,79"/>
-<area shape="rect" id="Node000002" href="$interface_services_1_1_i_dot_env_secrets.html#af46e83b8ed6a62a43db5646f9ebc4886" title=" " alt="" coords="257,5,470,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="209,43,241,39,242,44,210,48"/>
-<area shape="rect" id="Node000003" href="$interface_services_1_1_i_dot_env_secrets.html#a697ac853f4be346262aec440ec8a9eba" title=" " alt="" coords="261,71,466,111"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="210,69,246,74,245,79,209,74"/>
-</map>

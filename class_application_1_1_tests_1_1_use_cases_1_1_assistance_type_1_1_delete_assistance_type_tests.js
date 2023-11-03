@@ -1,5 +1,0 @@
-var class_application_1_1_tests_1_1_use_cases_1_1_assistance_type_1_1_delete_assistance_type_tests =
-[
-    [ "ExecuteAsync_IdIsNull_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_assistance_type_1_1_delete_assistance_type_tests.html#a108e6361aa30fd82244eebfadc5af057", null ],
-    [ "ExecuteAsync_ValidInput_ReturnsDetailedReadAssistanceTypeOutput", "class_application_1_1_tests_1_1_use_cases_1_1_assistance_type_1_1_delete_assistance_type_tests.html#a02e46097287a014f8e2ecdc853f052e5", null ]
-];

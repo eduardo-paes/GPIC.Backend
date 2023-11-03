@@ -1,5 +1,0 @@
-<map id="Application.Tests.UseCases.Project.OpenProjectTests.ExecuteAsync_StudentAlreadyHasProject_ThrowsBusinessRuleViolation" name="Application.Tests.UseCases.Project.OpenProjectTests.ExecuteAsync_StudentAlreadyHasProject_ThrowsBusinessRuleViolation">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,228,76"/>
-<area shape="rect" id="Node000002" href="$class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_open_project_tests.html#a14445156a8ec78dd92d2066be2d18ce7" title=" " alt="" coords="276,20,528,61"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="228,38,260,38,260,43,228,43"/>
-</map>

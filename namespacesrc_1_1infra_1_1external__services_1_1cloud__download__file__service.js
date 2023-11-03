@@ -1,4 +1,0 @@
-var namespacesrc_1_1infra_1_1external__services_1_1cloud__download__file__service =
-[
-    [ "CloudDownloadFileService", "classsrc_1_1infra_1_1external__services_1_1cloud__download__file__service_1_1_cloud_download_file_service.html", "classsrc_1_1infra_1_1external__services_1_1cloud__download__file__service_1_1_cloud_download_file_service" ]
-];

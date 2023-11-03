@@ -1,5 +1,0 @@
-<map id="Application.Tests.UseCases.Area.GetAreaByIdTests.MockValidArea" name="Application.Tests.UseCases.Area.GetAreaByIdTests.MockValidArea">
-<area shape="rect" id="Node000001" title=" " alt="" coords="313,20,563,61"/>
-<area shape="rect" id="Node000002" href="$class_application_1_1_tests_1_1_use_cases_1_1_area_1_1_get_area_by_id_tests.html#a40c400e38a787b09c14e564c03e7e0bc" title=" " alt="" coords="5,5,265,76"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="297,43,265,43,265,38,297,38"/>
-</map>

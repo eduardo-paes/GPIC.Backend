@@ -1,4 +1,0 @@
-var classsrc_1_1domain_1_1interfaces_1_1services_1_1message__queue__service__interface_1_1_i_message_queue_service =
-[
-    [ "run", "classsrc_1_1domain_1_1interfaces_1_1services_1_1message__queue__service__interface_1_1_i_message_queue_service.html#a9c65693f5560e1866ade0b3391f51398", null ]
-];

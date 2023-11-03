@@ -1,7 +1,0 @@
-var namespace_application_1_1_use_cases_1_1_project_evaluation =
-[
-    [ "EvaluateAppealProject", "class_application_1_1_use_cases_1_1_project_evaluation_1_1_evaluate_appeal_project.html", "class_application_1_1_use_cases_1_1_project_evaluation_1_1_evaluate_appeal_project" ],
-    [ "EvaluateStudentDocuments", "class_application_1_1_use_cases_1_1_project_evaluation_1_1_evaluate_student_documents.html", "class_application_1_1_use_cases_1_1_project_evaluation_1_1_evaluate_student_documents" ],
-    [ "EvaluateSubmissionProject", "class_application_1_1_use_cases_1_1_project_evaluation_1_1_evaluate_submission_project.html", "class_application_1_1_use_cases_1_1_project_evaluation_1_1_evaluate_submission_project" ],
-    [ "GetEvaluationByProjectId", "class_application_1_1_use_cases_1_1_project_evaluation_1_1_get_evaluation_by_project_id.html", "class_application_1_1_use_cases_1_1_project_evaluation_1_1_get_evaluation_by_project_id" ]
-];

@@ -1,7 +1,0 @@
-var namespacesrc_1_1domain_1_1interfaces_1_1usecases =
-[
-    [ "audio_analysis_usecase_interface", "namespacesrc_1_1domain_1_1interfaces_1_1usecases_1_1audio__analysis__usecase__interface.html", "namespacesrc_1_1domain_1_1interfaces_1_1usecases_1_1audio__analysis__usecase__interface" ],
-    [ "image_analysis_usecase_interface", "namespacesrc_1_1domain_1_1interfaces_1_1usecases_1_1image__analysis__usecase__interface.html", "namespacesrc_1_1domain_1_1interfaces_1_1usecases_1_1image__analysis__usecase__interface" ],
-    [ "scan_directory_usecase_interface", "namespacesrc_1_1domain_1_1interfaces_1_1usecases_1_1scan__directory__usecase__interface.html", "namespacesrc_1_1domain_1_1interfaces_1_1usecases_1_1scan__directory__usecase__interface" ],
-    [ "video_analysis_usecase_interface", "namespacesrc_1_1domain_1_1interfaces_1_1usecases_1_1video__analysis__usecase__interface.html", "namespacesrc_1_1domain_1_1interfaces_1_1usecases_1_1video__analysis__usecase__interface" ]
-];

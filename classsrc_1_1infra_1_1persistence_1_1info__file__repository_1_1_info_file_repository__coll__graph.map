@@ -1,7 +1,0 @@
-<map id="src.infra.persistence.info_file_repository.InfoFileRepository" name="src.infra.persistence.info_file_repository.InfoFileRepository">
-<area shape="rect" id="Node000001" title=" " alt="" coords="431,5,648,46"/>
-<area shape="rect" id="Node000002" href="$classsrc_1_1domain_1_1interfaces_1_1repositories_1_1info__file__repository__interface_1_1_i_info_file_repository.html" title=" " alt="" coords="103,5,383,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="398,23,430,23,430,28,398,28"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="5,13,55,39"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="70,23,102,23,102,28,70,28"/>
-</map>

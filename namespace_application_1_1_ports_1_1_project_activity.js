@@ -1,9 +1,0 @@
-var namespace_application_1_1_ports_1_1_project_activity =
-[
-    [ "BaseProjectActivityContract", "class_application_1_1_ports_1_1_project_activity_1_1_base_project_activity_contract.html", "class_application_1_1_ports_1_1_project_activity_1_1_base_project_activity_contract" ],
-    [ "CreateProjectActivityInput", "class_application_1_1_ports_1_1_project_activity_1_1_create_project_activity_input.html", null ],
-    [ "DetailedReadProjectActivityOutput", "class_application_1_1_ports_1_1_project_activity_1_1_detailed_read_project_activity_output.html", "class_application_1_1_ports_1_1_project_activity_1_1_detailed_read_project_activity_output" ],
-    [ "EvaluateProjectActivityInput", "class_application_1_1_ports_1_1_project_activity_1_1_evaluate_project_activity_input.html", "class_application_1_1_ports_1_1_project_activity_1_1_evaluate_project_activity_input" ],
-    [ "ResumedReadProjectActivityOutput", "class_application_1_1_ports_1_1_project_activity_1_1_resumed_read_project_activity_output.html", "class_application_1_1_ports_1_1_project_activity_1_1_resumed_read_project_activity_output" ],
-    [ "UpdateProjectActivityInput", "class_application_1_1_ports_1_1_project_activity_1_1_update_project_activity_input.html", "class_application_1_1_ports_1_1_project_activity_1_1_update_project_activity_input" ]
-];

@@ -1,4 +1,0 @@
-var audio__analysis__usecase__interface_8py =
-[
-    [ "src.domain.interfaces.usecases.audio_analysis_usecase_interface.IAudioAnalysisUseCase", "classsrc_1_1domain_1_1interfaces_1_1usecases_1_1audio__analysis__usecase__interface_1_1_i_audio_analysis_use_case.html", "classsrc_1_1domain_1_1interfaces_1_1usecases_1_1audio__analysis__usecase__interface_1_1_i_audio_analysis_use_case" ]
-];
