@@ -1,5 +1,0 @@
-var class_application_1_1_use_cases_1_1_project_final_report_1_1_get_project_final_report_by_project_id =
-[
-    [ "GetProjectFinalReportByProjectId", "class_application_1_1_use_cases_1_1_project_final_report_1_1_get_project_final_report_by_project_id.html#a4c2e2cc9cc0be72a69d8357440e69d12", null ],
-    [ "ExecuteAsync", "class_application_1_1_use_cases_1_1_project_final_report_1_1_get_project_final_report_by_project_id.html#a1b8dd079e2d6ddb0e5a150c841e381f4", null ]
-];

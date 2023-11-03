@@ -1,8 +1,0 @@
-var class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_generate_certificate_tests =
-[
-    [ "ExecuteAsync_CoordinatorNotFound_ReturnsErrorMessage", "class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_generate_certificate_tests.html#a90add539794e5478477029fb635f053b", null ],
-    [ "ExecuteAsync_NoProjectsFound_ReturnsErrorMessage", "class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_generate_certificate_tests.html#aca93eb50b2d7203ee8f5fe05e4850931", null ],
-    [ "ExecuteAsync_NoticeNotFound_ReturnsErrorMessage", "class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_generate_certificate_tests.html#ab3c54cd69242a01ef8bb795b02aca0e0", null ],
-    [ "ExecuteAsync_ProjectWithFinalReport_GeneratesCertificateAndClosesProject", "class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_generate_certificate_tests.html#a18c6b455e9e9ac71ce5d5c59aae9e0c6", null ],
-    [ "ExecuteAsync_ProjectWithoutFinalReport_ClosesProjectAndSuspendsProfessor", "class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_generate_certificate_tests.html#a8e60c08637c242d18761a0b1f4a64af0", null ]
-];

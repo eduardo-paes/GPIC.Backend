@@ -1,4 +1,0 @@
-var interface_application_1_1_interfaces_1_1_use_cases_1_1_activity_type_1_1_i_get_activities_by_notice_id =
-[
-    [ "ExecuteAsync", "interface_application_1_1_interfaces_1_1_use_cases_1_1_activity_type_1_1_i_get_activities_by_notice_id.html#a07a3f94d0cc0090a97a438f4b3c2f372", null ]
-];

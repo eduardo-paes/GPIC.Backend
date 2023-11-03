@@ -1,7 +1,0 @@
-<map id="src.domain.interfaces.services.speech_recognition_service_interface.ISpeechRecognitionService" name="src.domain.interfaces.services.speech_recognition_service_interface.ISpeechRecognitionService">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,255,135"/>
-<area shape="rect" id="Node000003" href="$classsrc_1_1infra_1_1external__services_1_1speech__recognition__service_1_1_speech_recognition_service.html" title=" " alt="" coords="14,183,246,238"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="133,150,133,182,127,182,127,150"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="105,5,155,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="133,46,133,78,127,78,127,46"/>
-</map>

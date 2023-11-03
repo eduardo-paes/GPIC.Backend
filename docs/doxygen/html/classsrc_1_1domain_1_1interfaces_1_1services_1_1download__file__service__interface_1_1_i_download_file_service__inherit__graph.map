@@ -1,9 +1,0 @@
-<map id="src.domain.interfaces.services.download_file_service_interface.IDownloadFileService" name="src.domain.interfaces.services.download_file_service_interface.IDownloadFileService">
-<area shape="rect" id="Node000001" title=" " alt="" coords="103,68,385,109"/>
-<area shape="rect" id="Node000003" href="$classsrc_1_1infra_1_1external__services_1_1cloud__download__file__service_1_1_cloud_download_file_service.html" title=" " alt="" coords="433,5,644,76"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="387,63,432,55,433,60,387,68"/>
-<area shape="rect" id="Node000004" href="$classsrc_1_1infra_1_1external__services_1_1local__download__file__service_1_1_local_download_file_service.html" title=" " alt="" coords="435,100,643,171"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="391,109,435,116,434,121,390,115"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,76,55,102"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="70,86,102,86,102,91,70,91"/>
-</map>

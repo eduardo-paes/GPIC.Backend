@@ -1,6 +1,0 @@
-var class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_get_projects_to_evaluate_tests =
-[
-    [ "ExecuteAsync_InvalidParameters_ThrowsArgumentException", "class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_get_projects_to_evaluate_tests.html#af5e263108dd0bbdf417746480b34d55a", null ],
-    [ "ExecuteAsync_UserNotAdminOrProfessor_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_get_projects_to_evaluate_tests.html#ab667563d96522803d800281d5b0fbc9e", null ],
-    [ "ExecuteAsync_ValidUser_GetProjectsToEvaluate", "class_application_1_1_tests_1_1_use_cases_1_1_project_1_1_get_projects_to_evaluate_tests.html#a17af45b84dab5c5bf864297f3e74c096", null ]
-];

@@ -1,5 +1,0 @@
-var classsrc_1_1domain_1_1interfaces_1_1repositories_1_1info__file__repository__interface_1_1_i_info_file_repository =
-[
-    [ "get_by_id", "classsrc_1_1domain_1_1interfaces_1_1repositories_1_1info__file__repository__interface_1_1_i_info_file_repository.html#a86c8da2fca4ddb9a1dfdb78920710bd4", null ],
-    [ "update", "classsrc_1_1domain_1_1interfaces_1_1repositories_1_1info__file__repository__interface_1_1_i_info_file_repository.html#a8057e8db150feb7f7e5408a50e7c7353", null ]
-];

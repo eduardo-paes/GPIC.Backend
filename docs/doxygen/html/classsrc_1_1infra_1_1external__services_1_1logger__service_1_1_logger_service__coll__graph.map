@@ -1,7 +1,0 @@
-<map id="src.infra.external_services.logger_service.LoggerService" name="src.infra.external_services.logger_service.LoggerService">
-<area shape="rect" id="Node000001" title=" " alt="" coords="20,168,229,223"/>
-<area shape="rect" id="Node000002" href="$classsrc_1_1domain_1_1interfaces_1_1services_1_1logger__service__interface_1_1_i_logger_service.html" title=" " alt="" coords="5,79,244,120"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="127,135,127,167,122,167,122,135"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="100,5,149,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="127,46,127,79,122,79,122,46"/>
-</map>

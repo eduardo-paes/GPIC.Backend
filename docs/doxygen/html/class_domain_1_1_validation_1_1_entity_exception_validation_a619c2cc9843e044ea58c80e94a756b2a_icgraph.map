@@ -1,9 +1,0 @@
-<map id="Domain.Validation.EntityExceptionValidation.EntityExceptionValidation" name="Domain.Validation.EntityExceptionValidation.EntityExceptionValidation">
-<area shape="rect" id="Node000001" title=" " alt="" coords="480,31,711,87"/>
-<area shape="rect" id="Node000002" href="$class_domain_1_1_validation_1_1_entity_exception_validation.html#a705026be8f97d13c737d20cf43fa4a01" title=" " alt="" coords="259,39,432,79"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="464,62,433,62,433,56,464,56"/>
-<area shape="rect" id="Node000003" href="$class_domain_1_1_entities_1_1_project_activity.html#a176bf85612a6477de9670920f21dfaa7" title="Calcula a pontuação da Atividade." alt="" coords="5,5,211,46"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="243,47,211,43,211,37,244,42"/>
-<area shape="rect" id="Node000004" href="$class_domain_1_1_entities_1_1_user.html#a1255c592fab4db26d28d7d190f96105e" title=" " alt="" coords="10,71,206,111"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="244,75,207,80,206,75,243,70"/>
-</map>

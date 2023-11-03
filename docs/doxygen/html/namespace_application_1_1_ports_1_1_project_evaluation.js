@@ -1,7 +1,0 @@
-var namespace_application_1_1_ports_1_1_project_evaluation =
-[
-    [ "DetailedReadProjectEvaluationOutput", "class_application_1_1_ports_1_1_project_evaluation_1_1_detailed_read_project_evaluation_output.html", "class_application_1_1_ports_1_1_project_evaluation_1_1_detailed_read_project_evaluation_output" ],
-    [ "EvaluateAppealProjectInput", "class_application_1_1_ports_1_1_project_evaluation_1_1_evaluate_appeal_project_input.html", "class_application_1_1_ports_1_1_project_evaluation_1_1_evaluate_appeal_project_input" ],
-    [ "EvaluateStudentDocumentsInput", "class_application_1_1_ports_1_1_project_evaluation_1_1_evaluate_student_documents_input.html", "class_application_1_1_ports_1_1_project_evaluation_1_1_evaluate_student_documents_input" ],
-    [ "EvaluateSubmissionProjectInput", "class_application_1_1_ports_1_1_project_evaluation_1_1_evaluate_submission_project_input.html", "class_application_1_1_ports_1_1_project_evaluation_1_1_evaluate_submission_project_input" ]
-];

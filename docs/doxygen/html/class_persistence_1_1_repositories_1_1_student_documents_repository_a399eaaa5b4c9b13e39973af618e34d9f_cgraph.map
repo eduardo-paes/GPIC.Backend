@@ -1,9 +1,0 @@
-<map id="Persistence.Repositories.StudentDocumentsRepository.DeleteAsync" name="Persistence.Repositories.StudentDocumentsRepository.DeleteAsync">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,77,279,118"/>
-<area shape="rect" id="Node000002" href="$class_domain_1_1_entities_1_1_primitives_1_1_entity.html#a3a368e3c302f8622ea0305003ef2a5eb" title=" " alt="" coords="375,5,556,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,74,359,46,361,52,237,79"/>
-<area shape="rect" id="Node000003" href="$class_persistence_1_1_repositories_1_1_student_documents_repository.html#ac8801027c6f4e34a381240bb029f9d49" title=" " alt="" coords="356,70,575,126"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="279,95,340,95,340,100,279,100"/>
-<area shape="rect" id="Node000004" href="$class_persistence_1_1_repositories_1_1_student_documents_repository.html#a645b26727238bb78147941799a50a3ee" title=" " alt="" coords="327,149,604,190"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="237,116,357,143,355,148,236,121"/>
-</map>

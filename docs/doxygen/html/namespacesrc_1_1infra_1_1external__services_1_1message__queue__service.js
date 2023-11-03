@@ -1,4 +1,0 @@
-var namespacesrc_1_1infra_1_1external__services_1_1message__queue__service =
-[
-    [ "MessageQueueService", "classsrc_1_1infra_1_1external__services_1_1message__queue__service_1_1_message_queue_service.html", "classsrc_1_1infra_1_1external__services_1_1message__queue__service_1_1_message_queue_service" ]
-];

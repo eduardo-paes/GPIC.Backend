@@ -1,6 +1,0 @@
-var class_application_1_1_tests_1_1_use_cases_1_1_student_documents_1_1_delete_student_documents_tests =
-[
-    [ "ExecuteAsync_IdIsNull_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_student_documents_1_1_delete_student_documents_tests.html#aa70031bd86fe97eca05b1e074fa8190a", null ],
-    [ "ExecuteAsync_RepositoryReturnsNull_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_student_documents_1_1_delete_student_documents_tests.html#aa85df023fe323d9db2d64063e2d09df1", null ],
-    [ "ExecuteAsync_ValidInput_ReturnsDetailedReadStudentDocumentsOutput", "class_application_1_1_tests_1_1_use_cases_1_1_student_documents_1_1_delete_student_documents_tests.html#a59ba698d718ec83b3ccf9f474696bf4c", null ]
-];

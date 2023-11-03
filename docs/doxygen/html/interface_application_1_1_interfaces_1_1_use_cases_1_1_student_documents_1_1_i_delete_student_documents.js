@@ -1,4 +1,0 @@
-var interface_application_1_1_interfaces_1_1_use_cases_1_1_student_documents_1_1_i_delete_student_documents =
-[
-    [ "ExecuteAsync", "interface_application_1_1_interfaces_1_1_use_cases_1_1_student_documents_1_1_i_delete_student_documents.html#ad19f2390c179764aad71c8af63d7372f", null ]
-];

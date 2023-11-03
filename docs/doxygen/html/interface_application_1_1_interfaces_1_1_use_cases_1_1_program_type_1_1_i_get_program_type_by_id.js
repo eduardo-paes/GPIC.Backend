@@ -1,4 +1,0 @@
-var interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_get_program_type_by_id =
-[
-    [ "ExecuteAsync", "interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_get_program_type_by_id.html#a9f209e463641a8be09a956384224c7fc", null ]
-];

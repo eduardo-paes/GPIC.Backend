@@ -1,5 +1,0 @@
-<map id="Application.Tests.UseCases.Student.CreateStudentTests.ExecuteAsync_UserWithEmailExists_ThrowsUseCaseException" name="Application.Tests.UseCases.Student.CreateStudentTests.ExecuteAsync_UserWithEmailExists_ThrowsUseCaseException">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,301,76"/>
-<area shape="rect" id="Node000002" href="$class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_create_student_tests.html#a7e29f44112389dc30c233c862b04cfa7" title=" " alt="" coords="349,20,617,61"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="301,38,333,38,333,43,301,43"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="Representação gráfica da hiearquia da classe" name="Representação gráfica da hiearquia da classe">
-<area shape="rect" id="Node000000" href="$interface_domain_1_1_interfaces_1_1_repositories_1_1_bases_1_1_i_generic_c_r_u_d_repository.html" title=" " alt="" coords="5,5,220,61"/>
-<area shape="rect" id="Node000001" href="$interface_domain_1_1_interfaces_1_1_repositories_1_1_i_activity_repository.html" title=" " alt="" coords="268,13,477,54"/>
-<area shape="poly" id="edge195_Node000000_Node000001" title=" " alt="" coords="236,31,267,31,267,36,236,36"/>
-<area shape="rect" id="Node000002" href="$class_persistence_1_1_repositories_1_1_activity_repository.html" title=" " alt="" coords="525,13,696,54"/>
-<area shape="poly" id="edge196_Node000001_Node000002" title=" " alt="" coords="493,31,525,31,525,36,493,36"/>
-</map>

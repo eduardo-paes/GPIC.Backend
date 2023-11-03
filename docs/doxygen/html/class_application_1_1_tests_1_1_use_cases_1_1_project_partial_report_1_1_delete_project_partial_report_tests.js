@@ -1,5 +1,0 @@
-var class_application_1_1_tests_1_1_use_cases_1_1_project_partial_report_1_1_delete_project_partial_report_tests =
-[
-    [ "ExecuteAsync_NullId_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_project_partial_report_1_1_delete_project_partial_report_tests.html#ac3c8fc633f152991613ab41476105a45", null ],
-    [ "ExecuteAsync_ValidId_ReturnsDetailedReadProjectPartialReportOutput", "class_application_1_1_tests_1_1_use_cases_1_1_project_partial_report_1_1_delete_project_partial_report_tests.html#a6054403c7bdc2ab37b77d0e883f9756c", null ]
-];

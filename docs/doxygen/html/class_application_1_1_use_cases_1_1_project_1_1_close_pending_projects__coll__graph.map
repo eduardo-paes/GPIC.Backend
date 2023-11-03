@@ -1,5 +1,0 @@
-<map id="Application.UseCases.Project.ClosePendingProjects" name="Application.UseCases.Project.ClosePendingProjects">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,206,120"/>
-<area shape="rect" id="Node000002" href="$interface_application_1_1_interfaces_1_1_use_cases_1_1_project_1_1_i_close_pending_projects.html" title=" " alt="" coords="28,5,183,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,46,108,79,103,79,103,46"/>
-</map>

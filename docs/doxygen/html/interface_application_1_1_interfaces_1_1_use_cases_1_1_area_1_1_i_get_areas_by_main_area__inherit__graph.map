@@ -1,5 +1,0 @@
-<map id="Application.Interfaces.UseCases.Area.IGetAreasByMainArea" name="Application.Interfaces.UseCases.Area.IGetAreasByMainArea">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,230,46"/>
-<area shape="rect" id="Node000002" href="$class_application_1_1_use_cases_1_1_area_1_1_get_areas_by_main_area.html" title=" " alt="" coords="24,94,211,135"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,62,120,94,115,94,115,62"/>
-</map>

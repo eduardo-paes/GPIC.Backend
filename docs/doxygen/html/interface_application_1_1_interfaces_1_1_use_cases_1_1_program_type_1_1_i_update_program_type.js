@@ -1,4 +1,0 @@
-var interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_update_program_type =
-[
-    [ "ExecuteAsync", "interface_application_1_1_interfaces_1_1_use_cases_1_1_program_type_1_1_i_update_program_type.html#a7b4dd1306352674b96cf74c4694dea75", null ]
-];

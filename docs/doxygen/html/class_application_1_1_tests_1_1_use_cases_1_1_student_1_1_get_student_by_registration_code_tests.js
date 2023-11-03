@@ -1,6 +1,0 @@
-var class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_get_student_by_registration_code_tests =
-[
-    [ "ExecuteAsync_WithEmptyRegistrationCode_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_get_student_by_registration_code_tests.html#a64c8eb5bba7c1bf65c8bc611cbef2f4f", null ],
-    [ "ExecuteAsync_WithInvalidRegistrationCode_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_get_student_by_registration_code_tests.html#ab95b1095dd7e80595557bd94df023751", null ],
-    [ "ExecuteAsync_WithValidRegistrationCode_ReturnsDetailedReadStudentOutput", "class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_get_student_by_registration_code_tests.html#afbd37709785d6dc767774854c0528566", null ]
-];

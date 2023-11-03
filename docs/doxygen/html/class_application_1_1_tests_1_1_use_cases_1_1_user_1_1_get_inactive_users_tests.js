@@ -1,5 +1,0 @@
-var class_application_1_1_tests_1_1_use_cases_1_1_user_1_1_get_inactive_users_tests =
-[
-    [ "ExecuteAsync_InvalidSkipAndTake_ThrowsArgumentException", "class_application_1_1_tests_1_1_use_cases_1_1_user_1_1_get_inactive_users_tests.html#a166d5bf5d5cea8b8dc539814a93e0986", null ],
-    [ "ExecuteAsync_ValidInput_ReturnsListOfUserReadOutput", "class_application_1_1_tests_1_1_use_cases_1_1_user_1_1_get_inactive_users_tests.html#a3a8150f0ff98c6a2cf5734368ad5629a", null ]
-];

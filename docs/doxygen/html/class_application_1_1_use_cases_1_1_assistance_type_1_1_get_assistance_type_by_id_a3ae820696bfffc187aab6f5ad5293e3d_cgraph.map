@@ -1,7 +1,0 @@
-<map id="Application.UseCases.AssistanceType.GetAssistanceTypeById.ExecuteAsync" name="Application.UseCases.AssistanceType.GetAssistanceTypeById.ExecuteAsync">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,289,46"/>
-<area shape="rect" id="Node000002" href="$class_application_1_1_validation_1_1_use_case_exception.html#a640987a86719d6afd8278fdbf578ab57" title=" " alt="" coords="337,5,561,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="289,23,321,23,321,28,289,28"/>
-<area shape="rect" id="Node000003" href="$class_application_1_1_validation_1_1_use_case_exception.html#ad2defa29da6c9eee2864794300f152ae" title=" " alt="" coords="609,5,836,46"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="562,23,594,23,594,28,562,28"/>
-</map>

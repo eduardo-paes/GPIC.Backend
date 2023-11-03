@@ -1,4 +1,0 @@
-var namespacesrc_1_1domain_1_1interfaces_1_1repositories_1_1info__file__repository__interface =
-[
-    [ "IInfoFileRepository", "classsrc_1_1domain_1_1interfaces_1_1repositories_1_1info__file__repository__interface_1_1_i_info_file_repository.html", "classsrc_1_1domain_1_1interfaces_1_1repositories_1_1info__file__repository__interface_1_1_i_info_file_repository" ]
-];

@@ -1,6 +1,0 @@
-var class_application_1_1_tests_1_1_use_cases_1_1_program_type_1_1_get_program_types_tests =
-[
-    [ "ExecuteAsync_InvalidSkip_ThrowsArgumentException", "class_application_1_1_tests_1_1_use_cases_1_1_program_type_1_1_get_program_types_tests.html#a0fcbca30b571cdca957971f36172632b", null ],
-    [ "ExecuteAsync_InvalidTake_ThrowsArgumentException", "class_application_1_1_tests_1_1_use_cases_1_1_program_type_1_1_get_program_types_tests.html#a352e9206e158d2a43fe736e2da6bfa80", null ],
-    [ "ExecuteAsync_ValidParameters_ReturnsQueryableOfResumedReadProgramTypeOutput", "class_application_1_1_tests_1_1_use_cases_1_1_program_type_1_1_get_program_types_tests.html#a1ca66b74d943ff51c9ae42aa41d139d6", null ]
-];

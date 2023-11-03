@@ -1,5 +1,0 @@
-<map id="Application.UseCases.Project.GetClosedProjects.ExecuteAsync" name="Application.UseCases.Project.GetClosedProjects.ExecuteAsync">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,226,46"/>
-<area shape="rect" id="Node000002" href="$class_application_1_1_validation_1_1_use_case_exception.html#abdfb0053369c84d85c471ad55011c4c4" title=" " alt="" coords="274,5,519,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="226,23,258,23,258,28,226,28"/>
-</map>

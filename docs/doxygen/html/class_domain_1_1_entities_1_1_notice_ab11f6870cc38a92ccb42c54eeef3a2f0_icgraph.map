@@ -1,7 +1,0 @@
-<map id="Domain.Entities.Notice.Notice" name="Domain.Entities.Notice.Notice">
-<area shape="rect" id="Node000001" title=" " alt="" coords="307,60,505,86"/>
-<area shape="rect" id="Node000002" href="$class_application_1_1_use_cases_1_1_project_evaluation_1_1_evaluate_appeal_project.html#a8e96ee7ea3cad7865da463605fd2086e" title="Avalia o recurso do projeto." alt="" coords="21,5,243,61"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="298,60,243,52,244,47,299,55"/>
-<area shape="rect" id="Node000003" href="$class_application_1_1_use_cases_1_1_project_evaluation_1_1_evaluate_student_documents.html#a1a32e70b327dd0c43ed11f67b8cb31c1" title="Avalia os documentos informados pelo estudante associado ao projeto." alt="" coords="5,85,259,141"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="299,91,259,97,259,92,298,86"/>
-</map>

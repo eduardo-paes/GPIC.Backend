@@ -1,7 +1,0 @@
-<map id="src.domain.usecases.image_analysis_usecase.ImageAnalysisUseCase" name="src.domain.usecases.image_analysis_usecase.ImageAnalysisUseCase">
-<area shape="rect" id="Node000001" title=" " alt="" coords="434,5,656,61"/>
-<area shape="rect" id="Node000002" href="$classsrc_1_1domain_1_1interfaces_1_1usecases_1_1image__analysis__usecase__interface_1_1_i_image_analysis_use_case.html" title=" " alt="" coords="103,5,386,61"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="401,31,434,31,434,36,401,36"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="5,20,55,46"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="70,31,102,31,102,36,70,36"/>
-</map>

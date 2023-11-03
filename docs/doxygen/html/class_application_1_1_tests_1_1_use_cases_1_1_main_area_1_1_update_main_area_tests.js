@@ -1,6 +1,0 @@
-var class_application_1_1_tests_1_1_use_cases_1_1_main_area_1_1_update_main_area_tests =
-[
-    [ "ExecuteAsync_IdIsNull_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_main_area_1_1_update_main_area_tests.html#a6a1520a72d45e85b94dfbdf8a16085ec", null ],
-    [ "ExecuteAsync_MainAreaNotFound_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_main_area_1_1_update_main_area_tests.html#a29756337e0836a5ef2d68380576481ee", null ],
-    [ "ExecuteAsync_ValidInput_ReturnsDetailedMainAreaOutput", "class_application_1_1_tests_1_1_use_cases_1_1_main_area_1_1_update_main_area_tests.html#a09f1f94d1415ca4c49babacb777d85b4", null ]
-];

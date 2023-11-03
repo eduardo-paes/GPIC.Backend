@@ -1,7 +1,0 @@
-var class_application_1_1_tests_1_1_use_cases_1_1_professor_1_1_update_professor_tests =
-[
-    [ "ExecuteAsync_DeletedProfessor_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_professor_1_1_update_professor_tests.html#a6a8dd48834a8570b7e7d5d5282b7da7b", null ],
-    [ "ExecuteAsync_NullId_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_professor_1_1_update_professor_tests.html#ae3408b32fc484c084825c04459194657", null ],
-    [ "ExecuteAsync_ProfessorNotFound_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_professor_1_1_update_professor_tests.html#a4f942bedbaa2eeb0af890f2be44cc6cb", null ],
-    [ "ExecuteAsync_ValidInput_ReturnsDetailedReadProfessorOutput", "class_application_1_1_tests_1_1_use_cases_1_1_professor_1_1_update_professor_tests.html#ac3ac29f4f49f14b795b9b59bfa7c4f0c", null ]
-];

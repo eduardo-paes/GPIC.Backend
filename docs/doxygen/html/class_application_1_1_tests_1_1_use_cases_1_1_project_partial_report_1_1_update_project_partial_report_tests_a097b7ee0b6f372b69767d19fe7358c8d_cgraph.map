@@ -1,5 +1,0 @@
-<map id="Application.Tests.UseCases.ProjectPartialReport.UpdateProjectPartialReportTests.ExecuteAsync_ProjectNotFound_ThrowsUseCaseException" name="Application.Tests.UseCases.ProjectPartialReport.UpdateProjectPartialReportTests.ExecuteAsync_ProjectNotFound_ThrowsUseCaseException">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,295,76"/>
-<area shape="rect" id="Node000002" href="$class_application_1_1_tests_1_1_mocks_1_1_project_partial_report_mock.html#afd8146d4782f6146dd3886a716f1023a" title=" " alt="" coords="343,13,549,69"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="295,38,327,38,327,43,295,43"/>
-</map>

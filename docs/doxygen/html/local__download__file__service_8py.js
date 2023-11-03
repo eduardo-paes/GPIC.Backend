@@ -1,4 +1,0 @@
-var local__download__file__service_8py =
-[
-    [ "src.infra.external_services.local_download_file_service.LocalDownloadFileService", "classsrc_1_1infra_1_1external__services_1_1local__download__file__service_1_1_local_download_file_service.html", "classsrc_1_1infra_1_1external__services_1_1local__download__file__service_1_1_local_download_file_service" ]
-];

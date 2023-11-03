@@ -1,9 +1,0 @@
-<map id="Application.Interfaces.UseCases.Area.IUpdateArea.ExecuteAsync" name="Application.Interfaces.UseCases.Area.IUpdateArea.ExecuteAsync">
-<area shape="rect" id="Node000001" title=" " alt="" coords="334,93,590,134"/>
-<area shape="rect" id="Node000002" href="$class_application_1_1_tests_1_1_use_cases_1_1_area_1_1_update_area_tests.html#aab9aa16fe244a5e20640a7fae72ef40d" title=" " alt="" coords="6,5,285,61"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="363,91,258,64,259,59,365,86"/>
-<area shape="rect" id="Node000003" href="$class_application_1_1_tests_1_1_use_cases_1_1_area_1_1_update_area_tests.html#a8df8ff7ca0b732291709fdd859051e5c" title=" " alt="" coords="30,85,261,141"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="318,116,261,116,261,111,318,111"/>
-<area shape="rect" id="Node000004" href="$class_application_1_1_tests_1_1_use_cases_1_1_area_1_1_update_area_tests.html#a1618bb5f5347e090d0356bbcc0784d9d" title=" " alt="" coords="5,165,286,235"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="371,141,277,167,276,161,369,136"/>
-</map>

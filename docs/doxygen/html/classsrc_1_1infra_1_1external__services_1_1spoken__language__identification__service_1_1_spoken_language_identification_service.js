@@ -1,7 +1,0 @@
-var classsrc_1_1infra_1_1external__services_1_1spoken__language__identification__service_1_1_spoken_language_identification_service =
-[
-    [ "__init__", "classsrc_1_1infra_1_1external__services_1_1spoken__language__identification__service_1_1_spoken_language_identification_service.html#a3c191469f49c51c0f4a6783f3e18a345", null ],
-    [ "detect", "classsrc_1_1infra_1_1external__services_1_1spoken__language__identification__service_1_1_spoken_language_identification_service.html#aacc52a3448438ad51d1b9f54ab2f94cd", null ],
-    [ "language_dict", "classsrc_1_1infra_1_1external__services_1_1spoken__language__identification__service_1_1_spoken_language_identification_service.html#a8307b1ccbfb7c6c069b5e834d479a161", null ],
-    [ "max_duration", "classsrc_1_1infra_1_1external__services_1_1spoken__language__identification__service_1_1_spoken_language_identification_service.html#a3cf3c939f24dd2704a8860a745a3120c", null ]
-];

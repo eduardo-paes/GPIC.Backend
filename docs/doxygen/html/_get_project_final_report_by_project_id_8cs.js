@@ -1,4 +1,0 @@
-var _get_project_final_report_by_project_id_8cs =
-[
-    [ "Application.UseCases.ProjectFinalReport.GetProjectFinalReportByProjectId", "class_application_1_1_use_cases_1_1_project_final_report_1_1_get_project_final_report_by_project_id.html", "class_application_1_1_use_cases_1_1_project_final_report_1_1_get_project_final_report_by_project_id" ]
-];

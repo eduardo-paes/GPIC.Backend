@@ -1,8 +1,0 @@
-var class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_request_student_register_tests =
-[
-    [ "ExecuteAsync_EmailAlreadyExists_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_request_student_register_tests.html#a94e18ed54b30d3dda414fe5c8691e681", null ],
-    [ "ExecuteAsync_EmptyEmail_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_request_student_register_tests.html#a02ef75583d6f728e1b2a43af6cabba72", null ],
-    [ "ExecuteAsync_InvalidEmail_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_request_student_register_tests.html#a7e7daecdda39c7f9fa80dc95457428be", null ],
-    [ "ExecuteAsync_InvalidStudentEmail_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_request_student_register_tests.html#ac1ada214ab4673418b9bcc8960d126d5", null ],
-    [ "ExecuteAsync_ValidEmail_ReturnsSuccessMessage", "class_application_1_1_tests_1_1_use_cases_1_1_student_1_1_request_student_register_tests.html#a119696c6b029008a159331a2c4288b0f", null ]
-];

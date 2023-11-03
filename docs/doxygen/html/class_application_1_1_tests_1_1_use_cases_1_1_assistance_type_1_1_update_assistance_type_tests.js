@@ -1,8 +1,0 @@
-var class_application_1_1_tests_1_1_use_cases_1_1_assistance_type_1_1_update_assistance_type_tests =
-[
-    [ "ExecuteAsync_AssistanceTypeIsDeleted_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_assistance_type_1_1_update_assistance_type_tests.html#ae2f14cf702eb93b9cec341aa87c37f7c", null ],
-    [ "ExecuteAsync_AssistanceTypeWithNameExists_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_assistance_type_1_1_update_assistance_type_tests.html#af4d8ae312a1673c965c45b2adf5bccbe", null ],
-    [ "ExecuteAsync_IdIsNull_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_assistance_type_1_1_update_assistance_type_tests.html#a3839f63da7b9b7caa260ee125bee60f3", null ],
-    [ "ExecuteAsync_NameIsNull_ThrowsUseCaseException", "class_application_1_1_tests_1_1_use_cases_1_1_assistance_type_1_1_update_assistance_type_tests.html#aca68fc6d0c63494f6d5184b60aef4e25", null ],
-    [ "ExecuteAsync_ValidInput_ReturnsDetailedReadAssistanceTypeOutput", "class_application_1_1_tests_1_1_use_cases_1_1_assistance_type_1_1_update_assistance_type_tests.html#abc6bb79d71bc4c80ec4c16d273217010", null ]
-];
