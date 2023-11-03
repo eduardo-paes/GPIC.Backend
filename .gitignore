@@ -416,3 +416,6 @@ files/*
 
 **/.env
 thunder-tests
+
+docs/doxygen
+docs/doxygen/*
