@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>ef326666-1cfa-4625-aae3-41ea85c01828</UserSecretsId>
     <BuildWithMSBuildOnMono>false</BuildWithMSBuildOnMono>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
