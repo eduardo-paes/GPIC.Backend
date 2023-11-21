@@ -36,8 +36,8 @@ namespace Persistence.Seeds
                         Guid.NewGuid(),
                         null!,
                         null!,
-                        "1234567",
                         1234567,
+                        "1234567",
                         userId
                     },
                 },
